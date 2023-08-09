@@ -21,15 +21,36 @@
     @apply h-full min-h-screen bg-greyLit text-greyDrk;
   }
   h1 {
-    @apply font-oswald text-7xl uppercase font-bold;
+    @apply font-oswald text-[34px]  uppercase font-bold;
   }
   h2 {
-    @apply font-oswald text-[36px] tracking-[15px] font-light text-center uppercase;
+    @apply font-oswald text-[30px] tracking-[15px] font-light text-center uppercase;
+  }
+  h3 {
+    @apply font-oswald text-[24px] tracking-[15px] font-light text-center uppercase;
+  }
+  h4 {
+    @apply font-oswald text-[20px] tracking-[15px] font-light text-center uppercase;
+  }
+  h5 {
+    @apply font-oswald text-[16px] tracking-[15px] font-light text-center uppercase;
+  }
+  h6 {
+    @apply font-oswald text-[16px] tracking-[15px] font-light text-left;
   }
   section {
     @apply w-full h-fit bg-neutral-200 border-b border-greyBorder;
   }
-  button {
-    @apply font-nunito uppercase;
+  p {
+    @apply font-nunito;
+  }
+  .test {
+    /* color: #ffffff00; //color opacity =0// */
+  }
+}
+
+@layer components {
+  .btn-1 {
+    @apply font-nunito text-[34px] uppercase font-bold;
   }
 }

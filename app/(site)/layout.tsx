@@ -1,7 +1,8 @@
 import "./styles/globals.css";
 import type { Metadata } from "next";
 import { Oswald, Nunito } from "next/font/google";
-import Navbar from "../components/NavbarComponents/Navbar";
+import Navbar from "./NavbarComponents/Navbar";
+import PageWrapper from "./pagewrapper";
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
 const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });
@@ -18,9 +19,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${nunito.variable} ${oswald.variable}  `}>
-        <Navbar />
-        {children}
+      <body className={`${nunito.variable} ${oswald.variable} scrollbar-none`}>
+        <PageWrapper>
+          <Navbar />
+          {children}
+        </PageWrapper>
       </body>
     </html>
   );
