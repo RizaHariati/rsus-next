@@ -86,4 +86,13 @@
   .menu-alert {
     @apply menu-link-icon border p-3 border-accent1txt bg-[#FFFB67] text-accent1txt rounded-sm bg-opacity-25;
   }
+  .btn-3 {
+    @apply font-nunito text-[16px] uppercase font-light tracking-widest;
+  }
+  .btn-3-bold {
+    @apply font-nunito text-[16px] uppercase font-medium tracking-widest;
+  }
+  .main-menu-item {
+    @apply btn-3 hover:btn-3-bold hover:text-greyBorder transition-all w-full bg-white leading-10 px-2 border-b border-b-greyBorder text-left h-10;
+  }
 }
