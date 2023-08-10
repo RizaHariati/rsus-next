@@ -71,6 +71,9 @@
   .btn-1 {
     @apply font-nunito text-[34px] uppercase font-bold;
   }
+  .btn-3 {
+    @apply font-nunito text-[16px] uppercase font-light tracking-widest;
+  }
   .btn-3-bold {
     @apply font-nunito text-[16px] uppercase font-medium tracking-widest;
   }

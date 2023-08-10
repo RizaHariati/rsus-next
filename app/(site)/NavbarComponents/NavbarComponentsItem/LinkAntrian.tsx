@@ -1,11 +1,12 @@
 "use client";
+
+import React from "react";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faPeopleGroup,
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React from "react";
-import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 type Props = {};
 
@@ -33,7 +34,7 @@ const LinkAntrian = () => {
             : "antrian-menu-container "
         }
       >
-        <div className="menu-alert">
+        {/* <div className="menu-alert">
           <FontAwesomeIcon
             icon={faTriangleExclamation}
             className="menu-icon "
@@ -67,7 +68,7 @@ const LinkAntrian = () => {
               <span className="font-bold">Nomor Anda 67 non racikan</span>.
             </p>
           </p>
-        </div>
+        </div> */}
       </div>
     </div>
   );

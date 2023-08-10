@@ -1,19 +1,19 @@
 "use client";
-import { faBarChart, faBell } from "@fortawesome/free-regular-svg-icons";
+
 import "../styles/navbar.css";
-import { faAmbulance, faHome } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-import { motion, AnimatePresence } from "framer-motion";
 
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import LinkMainMenu from "./NavbarLinks/LinkMainMenu";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBell, faHome } from "@fortawesome/free-solid-svg-icons";
+import LinkMainMenu from "./NavbarComponentsItem/LinkMainMenu";
+import LinkEmergency from "./NavbarComponentsItem/LinkEmergency";
+import LinkProfile from "./NavbarComponentsItem/LinkProfile";
+import LinkAntrian from "./NavbarComponentsItem/LinkAntrian";
 
-import LinkProfile from "./NavbarLinks/LinkProfile";
-import LinkEmergency from "./NavbarLinks/LinkEmergency";
-import LinkAntrian from "./NavbarLinks/LinkAntrian";
 type Props = {};
 
 const Navbar = (props: Props) => {

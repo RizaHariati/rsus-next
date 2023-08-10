@@ -1,11 +1,12 @@
 "use client";
 import React from "react";
+
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faAmbulance,
   faFireFlameSimple,
 } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 type Props = {};
 

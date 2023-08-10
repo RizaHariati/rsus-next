@@ -30,14 +30,14 @@ export const datamenu: DataMenuType[] = [
   {
     id: 2,
     name: "patient-right",
-    title: "Tentang RS Urip Sumoharjo",
+    title: "hak dan kewajiban pasien",
     link: "/patient-right",
     subdata: [],
   },
   {
     id: 3,
     name: "consultation",
-    title: "Tentang RS Urip Sumoharjo",
+    title: "konsultasi dokter",
     link: "/appointment",
     subdata: [
       {
