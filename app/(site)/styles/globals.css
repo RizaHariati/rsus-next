@@ -50,7 +50,37 @@
 }
 
 @layer components {
+  .flex-center-center {
+    @apply flex items-center justify-center;
+  }
+  .flex-center-between {
+    @apply flex items-center justify-between;
+  }
+  .flex-center-left {
+    @apply flex items-center justify-start;
+  }
+  .body-1-bold {
+    @apply font-nunito text-[22px] capitalize font-medium tracking-wide;
+  }
+  .body-2 {
+    @apply font-nunito text-[18px]  font-normal tracking-wide;
+  }
+  .body-3 {
+    @apply font-nunito text-[14px]  font-normal tracking-normal;
+  }
   .btn-1 {
     @apply font-nunito text-[34px] uppercase font-bold;
+  }
+  .btn-3-bold {
+    @apply font-nunito text-[16px] uppercase font-medium tracking-widest;
+  }
+  .footnote-1 {
+    @apply font-nunito text-[14px] leading-3;
+  }
+  .form-disable {
+    @apply h-10 border flex-center-left p-2 bg-greyLit rounded-sm;
+  }
+  .form-regular {
+    @apply h-8 border flex-center-left p-2  rounded-sm;
   }
 }

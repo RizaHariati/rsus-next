@@ -6,11 +6,15 @@
   .text-link {
     @apply cursor-pointer text-greyMed1 hover:text-greyDrk transition-all hover:font-bold;
   }
+
   .flex-center-center {
     @apply flex items-center justify-center;
   }
   .flex-center-between {
     @apply flex items-center justify-between;
+  }
+  .flex-top-left {
+    @apply flex items-start justify-start;
   }
   .navbar-container {
     @apply fixed z-40 left-0 top-0 w-full shadow-sm shadow-greyBorder bg-whiteOpacity;
@@ -36,8 +40,50 @@
   .navbar-reg-icon {
     @apply h-6 mr-1;
   }
-
   .navbar-menu-container {
-    @apply flex items-center justify-end h-full  gap-1 w-52;
+    @apply flex items-center justify-end h-full gap-1 w-52;
+  }
+
+  .navbar-drop-container {
+    @apply border border-greyBorder rounded-sm bg-white overflow-hidden absolute top-16 transition-all h-fit p-5  opacity-100;
+  }
+
+  .navbar-drop-hidden {
+    @apply border border-none rounded-sm bg-white overflow-hidden absolute top-16 transition-all h-0 p-0  px-5 opacity-0;
+  }
+  .emergency-menu-container {
+    @apply navbar-drop-container flex-center-between flex-col w-[500px]  left-0   opacity-100;
+  }
+  .emergency-menu-container-hidden {
+    @apply navbar-drop-hidden flex-center-between flex-col w-[500px]  left-0;
+  }
+
+  .profile-menu-container {
+    @apply navbar-drop-container w-[900px] left-1/2 -translate-x-1/2;
+  }
+
+  .profile-menu-container-hidden {
+    @apply navbar-drop-hidden w-[900px] left-1/2 -translate-x-1/2;
+  }
+
+  .antrian-menu-container {
+    @apply flex-center-between flex-col navbar-drop-container w-[500px] gap-2 left-1/2 -translate-x-1/2;
+  }
+  .antrian-menu-container-hidden {
+    @apply flex-center-between flex-col navbar-drop-hidden w-[500px] gap-2 left-1/2 -translate-x-1/2;
+  }
+  .menu-link-icon {
+    @apply flex-top-left text-redBase w-full p-1;
+  }
+  .menu-icon {
+    @apply h-5 w-5 mr-2;
+  }
+
+  .menu-info {
+    @apply menu-link-icon border p-3 border-greenUrip bg-greenUripOpacity text-greenUrip rounded-sm;
+  }
+
+  .menu-alert {
+    @apply menu-link-icon border p-3 border-accent1txt bg-[#FFFB67] text-accent1txt rounded-sm bg-opacity-25;
   }
 }

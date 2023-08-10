@@ -2,7 +2,7 @@ import React from "react";
 
 type Props = {};
 
-const About = (props: Props) => {
+const AboutGroup = (props: Props) => {
   return (
     <div>
       <div className=" ">
@@ -12,4 +12,4 @@ const About = (props: Props) => {
   );
 };
 
-export default About;
+export default AboutGroup;

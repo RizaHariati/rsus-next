@@ -7,6 +7,10 @@ module.exports = {
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
+    transitionDuration: {
+      DEFAULT: "250ms",
+    },
+
     extend: {
       fontFamily: {
         oswald: ["var(--oswald)", "sans-serif"],
@@ -15,9 +19,10 @@ module.exports = {
       colors: {
         whiteOpacity: "#ffffff8a",
         greenUrip: "#007814",
-        greenUripOpacity: "#00781449",
+        greenUripOpacity: "#0078142d",
         accent1: "#F4CD7F",
         accent2: "#DDC4A6",
+        accent1txt: "#7E5C29",
         greyDrk: "#404040",
         greyMed1: "#5C5A5A",
         greyMed2: "#939393",
