@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 
 import { datamenu } from "@/app/(tools)/data/datamenu";
-import { DataMenuType } from "@/app/(tools)/types";
+import { DataMenuType, SubDataType } from "@/app/(tools)/types";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
@@ -26,13 +26,19 @@ const LinkMainMenu = (props: Props) => {
     }
   };
   return (
-    <div className="flex-center-center text-link w-10 h-fit relative ">
+    <div className="flex-center-center text-link w-10 h-full relative ">
       <button id="main-menu" onClick={(e) => toggleMenu(e.currentTarget.id)}>
         <FontAwesomeIcon icon={faBars} className="navbar-reg-icon" />
       </button>
 
       {/* DROP MAIN MENU */}
-      <div className="navbar-drop-container w-[450px] right-0 p-0 pb-10 ">
+      <div
+        className={
+          menu_id != "main-menu"
+            ? "main-menu-container-hidden "
+            : "main-menu-container  "
+        }
+      >
         <div className="p-3 w-full h-full flex items-center gap-2 justify-end ">
           <FontAwesomeIcon
             icon={faFacebook}
@@ -66,23 +72,35 @@ const LinkMainMenu = (props: Props) => {
                   <div
                     className={
                       itemId != menu.name
-                        ? "h-0 overflow-hidden w-full"
-                        : "h-full overflow-hidden w-full"
+                        ? "h-0 overflow-hidden w-full transition-all opacity-0"
+                        : " h-36 overflow-hidden w-full transition-all opacity-100"
                     }
                   >
-                    <p>satu</p>
-                    <p>dua</p>
-                    <p>tiga</p>
+                    {menu.subdata.map((item: SubDataType, index) => {
+                      return (
+                        <div
+                          key={index}
+                          className="main-menu-item text-[14px] bg-greyBorder"
+                        >
+                          <p className="px-10 h-full w-full bg-white py-4">
+                            {item.title}
+                          </p>
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
               );
             } else {
               return (
                 <div
-                  className="bg-greyBorder h-10 flex items-center justify-end pl-2 "
+                  className="bg-greyBorder h-12 flex items-center justify-end pl-2 "
                   key={menu.title}
                 >
-                  <button className="btn-3 hover:btn-3-bold hover:text-greyBorder transition-all h-full w-full bg-white leading-10 px-2 border-b border-b-greyBorder text-left">
+                  <button
+                    onClick={() => toggleMenu("main-menu")}
+                    className="main-menu-item"
+                  >
                     {menu.title}
                   </button>
                 </div>

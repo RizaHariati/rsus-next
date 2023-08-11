@@ -3,10 +3,7 @@
 import React from "react";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPeopleGroup,
-  faTriangleExclamation,
-} from "@fortawesome/free-solid-svg-icons";
+import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {};
 

@@ -72,6 +72,14 @@
   .antrian-menu-container-hidden {
     @apply flex-center-between flex-col navbar-drop-hidden w-[500px] gap-2 left-1/2 -translate-x-1/2;
   }
+
+  .main-menu-container {
+    @apply navbar-drop-container w-[450px] right-0 p-0 pb-10;
+  }
+
+  .main-menu-container-hidden {
+    @apply navbar-drop-hidden w-[450px] right-0 p-0 pb-0;
+  }
   .menu-link-icon {
     @apply flex-top-left text-redBase w-full p-1;
   }
@@ -82,7 +90,6 @@
   .menu-info {
     @apply menu-link-icon border p-3 border-greenUrip bg-greenUripOpacity text-greenUrip rounded-sm;
   }
-
   .menu-alert {
     @apply menu-link-icon border p-3 border-accent1txt bg-[#FFFB67] text-accent1txt rounded-sm bg-opacity-25;
   }
@@ -93,6 +100,6 @@
     @apply font-nunito text-[16px] uppercase font-medium tracking-widest;
   }
   .main-menu-item {
-    @apply btn-3 hover:btn-3-bold hover:text-greyBorder transition-all w-full bg-white leading-10 px-2 border-b border-b-greyBorder text-left h-10;
+    @apply btn-3 hover:btn-3-bold hover:text-greyBorder transition-all w-full bg-white px-2 border-b border-b-greyBorder text-left h-12;
   }
 }

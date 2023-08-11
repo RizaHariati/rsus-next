@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
-import Navbar from "./NavbarComponents/Navbar";
 import PageWrapper from "./pagewrapper";
+import Navbar from "../(tools)/components/NavbarComponents/Navbar";
 
 type Props = {
   children: React.ReactNode;

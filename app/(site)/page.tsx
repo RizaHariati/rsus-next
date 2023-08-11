@@ -1,5 +1,3 @@
-"use client";
-
 import PageWrapper from "./pagewrapper";
 
 export default function Home() {
