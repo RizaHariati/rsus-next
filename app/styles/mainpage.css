@@ -1,0 +1,99 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply h-full min-h-screen bg-greyLit text-greyDrk;
+  }
+  h1 {
+    @apply font-oswald text-[40px] tracking-[2px] uppercase font-light shadow-black drop-shadow-sm;
+  }
+  h2 {
+    @apply font-oswald text-[30px] tracking-[15px] font-light text-center uppercase;
+  }
+  h3 {
+    @apply font-oswald text-[24px] tracking-[15px] font-light text-center uppercase;
+  }
+  h4 {
+    @apply font-oswald text-[20px] tracking-[7px] font-normal text-center uppercase;
+  }
+  h5 {
+    @apply font-oswald text-[16px] tracking-[15px] font-light text-center uppercase;
+  }
+  h6 {
+    @apply font-oswald text-[16px] tracking-[15px] font-light text-left;
+  }
+  section {
+    @apply w-full h-fit bg-neutral-200 border-b border-greyBorder;
+  }
+  p {
+    @apply font-nunito;
+  }
+  .test {
+    /* color: #ffffff00; //color opacity =0// */
+  }
+}
+
+@layer components {
+  .flex-center-center {
+    @apply flex items-center justify-center;
+  }
+  .flex-center-between {
+    @apply flex items-center justify-between;
+  }
+  .flex-top-left {
+    @apply flex items-start justify-start;
+  }
+  .flex-center-left {
+    @apply flex items-center justify-start;
+  }
+  .body-1-bold {
+    @apply font-nunito text-[22px] capitalize font-medium tracking-wide;
+  }
+  .body-2 {
+    @apply font-nunito text-[18px]  font-normal tracking-wide leading-6;
+  }
+  .body-3 {
+    @apply font-nunito text-[14px]  font-normal tracking-normal text-greyDrk  leading-4;
+  }
+  .btn-1 {
+    @apply font-nunito text-[20px] uppercase font-medium tracking-widest;
+  }
+  .btn-2 {
+    @apply font-nunito text-[18px] uppercase font-normal tracking-widest;
+  }
+  .btn-3 {
+    @apply font-nunito text-[16px] uppercase font-light tracking-widest;
+  }
+  .btn-3-bold {
+    @apply font-nunito text-[16px] uppercase font-semibold tracking-widest;
+  }
+
+  .button-lg {
+    @apply btn-2 bg-white bg-opacity-100 p-5 py-2 rounded-sm w-72 hover:bg-opacity-70 transition-all;
+  }
+  .footnote-1 {
+    @apply font-nunito text-[14px] leading-3;
+  }
+  .form-disable {
+    @apply h-10 border flex-center-left p-2 bg-greyLit rounded-sm;
+  }
+  .form-regular {
+    @apply h-8 border flex-center-left p-2  rounded-sm;
+  }
+  .standard-border {
+    @apply border border-greyBorder rounded-sm bg-white overflow-hidden;
+  }
+  /* ------------------------- FLOATING MENU ------------------------ */
+
+  .floating-menu-container {
+    @apply h-[370px] w-[400px] bg-white z-40 absolute top-1/2 border border-greyBorder rounded-sm shadow-sm mt-7 left-20 flex p-3 flex-col;
+  }
+  .floating-link {
+    @apply bg-white h-full w-full rounded-sm border border-greyBorder flex-center-between flex-col hover:bg-greyLit transition-all;
+  }
+  .darken-filter {
+    @apply z-20 bg-gradient-to-b from-stone-500 from-0% via-white via-40% to-stone-500 to-100% opacity-10 absolute top-0 left-0 h-full w-full mix-blend-multiply;
+  }
+}

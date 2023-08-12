@@ -20,8 +20,8 @@
   body {
     @apply h-full min-h-screen bg-greyLit text-greyDrk;
   }
-  h1 {
-    @apply font-oswald text-[34px]  uppercase font-bold;
+  /* h1 {
+    @apply font-oswald text-[40px] tracking-[2px] uppercase font-light shadow-black drop-shadow-sm;
   }
   h2 {
     @apply font-oswald text-[30px] tracking-[15px] font-light text-center uppercase;
@@ -30,7 +30,7 @@
     @apply font-oswald text-[24px] tracking-[15px] font-light text-center uppercase;
   }
   h4 {
-    @apply font-oswald text-[20px] tracking-[15px] font-light text-center uppercase;
+    @apply font-oswald text-[20px] tracking-[7px] font-normal text-center uppercase;
   }
   h5 {
     @apply font-oswald text-[16px] tracking-[15px] font-light text-center uppercase;
@@ -43,18 +43,21 @@
   }
   p {
     @apply font-nunito;
-  }
+  } */
   .test {
     /* color: #ffffff00; //color opacity =0// */
   }
 }
 
 @layer components {
-  .flex-center-center {
+  /* .flex-center-center {
     @apply flex items-center justify-center;
   }
   .flex-center-between {
     @apply flex items-center justify-between;
+  }
+  .flex-top-left {
+    @apply flex items-start justify-start;
   }
   .flex-center-left {
     @apply flex items-center justify-start;
@@ -66,10 +69,13 @@
     @apply font-nunito text-[18px]  font-normal tracking-wide;
   }
   .body-3 {
-    @apply font-nunito text-[14px]  font-normal tracking-normal;
+    @apply font-nunito text-[14px]  font-normal tracking-normal text-greyDrk  leading-4;
   }
-  .btn-1 {
-    @apply font-nunito text-[34px] uppercase font-bold;
+  .btn-2 {
+    @apply font-nunito text-[18px] uppercase font-medium tracking-widest;
+  }
+  .btn-3 {
+    @apply font-nunito text-[22px] uppercase font-medium tracking-widest;
   }
   .btn-3 {
     @apply font-nunito text-[16px] uppercase font-light tracking-widest;
@@ -85,5 +91,5 @@
   }
   .form-regular {
     @apply h-8 border flex-center-left p-2  rounded-sm;
-  }
+  } */
 }

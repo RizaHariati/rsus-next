@@ -32,3 +32,17 @@ export type DataMenuType = {
   link: string;
   subdata: SubDataType[];
 };
+
+export type FloatingMenuType = {
+  name: string;
+  title: string;
+  link: string;
+  image: string;
+};
+
+export type ConsultationMenuTypes = {
+  name: string;
+  title: string;
+  description: string;
+  image: string;
+};

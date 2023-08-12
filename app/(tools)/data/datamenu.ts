@@ -1,4 +1,9 @@
-import { DataMenuType } from "../types";
+import {
+  ConsultationMenuTypes,
+  DataMenuType,
+  FloatingMenuType,
+  SubDataType,
+} from "../types";
 
 export const datamenu: DataMenuType[] = [
   {
@@ -10,7 +15,7 @@ export const datamenu: DataMenuType[] = [
       {
         name: "about",
         title: "Tentang",
-        link: "/about-group/about",
+        link: "/about-group",
         type: "link",
       },
       {
@@ -38,7 +43,7 @@ export const datamenu: DataMenuType[] = [
     id: 3,
     name: "consultation",
     title: "konsultasi dokter",
-    link: "/appointment",
+    link: "/consultation",
     subdata: [
       {
         name: "appointment",
@@ -87,5 +92,56 @@ export const datamenu: DataMenuType[] = [
     title: "Rawat Inap",
     link: "/inpatient",
     subdata: [],
+  },
+];
+
+export const floatingMenu: FloatingMenuType[] = [
+  {
+    name: "consultation",
+    title: "Janji temu dokter",
+    link: "/consultation",
+    image: "Timesheet.jpg",
+  },
+  {
+    name: "facility",
+    title: "fasilitas",
+    link: "/facility",
+    image: "CT Scanner.jpg",
+  },
+  {
+    name: "poliklinik",
+    title: "Poliklinik",
+    link: "/poliklinik",
+    image: "Examination.jpg",
+  },
+  {
+    name: "laboratorium",
+    title: "Lab&check up",
+    link: "/laboratorium",
+    image: "Laboratory.jpg",
+  },
+];
+
+export const consultationMenu: ConsultationMenuTypes[] = [
+  {
+    name: "appointment",
+    title: "janji temu dokter",
+    description:
+      "Cek dokter yang paling sesuai dengan kebutuhan anda. Termasuk cek jadwal, cek antrian hari ini, ketersediaan BPJS dan ketersediaan Telemedicine",
+    image: "Doctor.jpg",
+  },
+  {
+    name: "telemedicine",
+    title: "daftar telemedicine",
+    description:
+      "Pelayanan dari dokter berpengalaman khusus untuk konsultasi jarak jauh via WhatsApp",
+    image: "Online Medical Consultation.jpg",
+  },
+  {
+    name: "registration",
+    title: "daftar pasien baru",
+    description:
+      "Daftarkan diri anda untuk mendapatkan pelayanan terbaik RS Urip Sumoharjo",
+    image: "Sick.jpg",
   },
 ];

@@ -3,7 +3,11 @@
 import React from "react";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPeopleGroup } from "@fortawesome/free-solid-svg-icons";
+import {
+  faInfo,
+  faPeopleGroup,
+  faTriangleExclamation,
+} from "@fortawesome/free-solid-svg-icons";
 
 type Props = {};
 
@@ -31,7 +35,7 @@ const LinkAntrian = () => {
             : "antrian-menu-container "
         }
       >
-        {/* <div className="menu-alert">
+        <div className="menu-alert">
           <FontAwesomeIcon
             icon={faTriangleExclamation}
             className="menu-icon "
@@ -54,18 +58,12 @@ const LinkAntrian = () => {
         </div>
 
         <div className="menu-info">
-          <FontAwesomeIcon
-            icon={faTriangleExclamation}
-            className="menu-icon "
-          />
+          <FontAwesomeIcon icon={faInfo} className="menu-icon " />
           <p className="body-3 ">
-            <p className="body-3 ">
-              Farmasi : Saat ini melayani nomor 48 racikan, nomor 34 non
-              racikan.
-              <span className="font-bold">Nomor Anda 67 non racikan</span>.
-            </p>
+            Farmasi : Saat ini melayani nomor 48 racikan, nomor 34 non racikan.
+            <span className="font-bold">Nomor Anda 67 non racikan</span>.
           </p>
-        </div> */}
+        </div>
       </div>
     </div>
   );

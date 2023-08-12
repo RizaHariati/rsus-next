@@ -2,11 +2,43 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+  body {
+    @apply h-full min-h-screen bg-greyLit text-greyDrk;
+  }
+  h1 {
+    @apply font-oswald text-[40px] tracking-[2px] uppercase font-light shadow-black drop-shadow-sm;
+  }
+  h2 {
+    @apply font-oswald text-[30px] tracking-[15px] font-light text-center uppercase;
+  }
+  h3 {
+    @apply font-oswald text-[24px] tracking-[15px] font-light text-center uppercase;
+  }
+  h4 {
+    @apply font-oswald text-[20px] tracking-[7px] font-normal text-center uppercase;
+  }
+  h5 {
+    @apply font-oswald text-[16px] tracking-[15px] font-light text-center uppercase;
+  }
+  h6 {
+    @apply font-oswald text-[16px] tracking-[15px] font-light text-left;
+  }
+  section {
+    @apply w-full h-fit bg-neutral-200 border-b border-greyBorder;
+  }
+  p {
+    @apply font-nunito;
+  }
+  .test {
+    /* color: #ffffff00; //color opacity =0// */
+  }
+}
+
 @layer components {
   .text-link {
     @apply cursor-pointer text-greyMed1 hover:text-greyDrk transition-all hover:font-bold;
   }
-
   .flex-center-center {
     @apply flex items-center justify-center;
   }
@@ -17,13 +49,13 @@
     @apply flex items-start justify-start;
   }
   .navbar-container {
-    @apply fixed z-40 left-0 top-0 w-full shadow-sm shadow-greyBorder bg-whiteOpacity;
+    @apply fixed z-40 left-0 top-0 w-full shadow-sm shadow-greyBorder bg-white bg-opacity-60 transition-all;
   }
   .navbar-container2 {
     @apply fixed z-40 left-0 top-0 w-full shadow-sm shadow-greyBorder bg-pink-500;
   }
   .navbar {
-    @apply flex-center-between w-full h-14  max-w-7xl mx-auto px-10;
+    @apply flex-center-between w-full h-14  z-0 max-w-[1440px] mx-auto px-10;
   }
   .navbar-logo-container {
     @apply flex items-center justify-start gap-1 w-52 h-full;
@@ -47,7 +79,6 @@
   .navbar-drop-container {
     @apply border border-greyBorder rounded-sm bg-white overflow-hidden absolute top-16 transition-all h-fit p-5  opacity-100;
   }
-
   .navbar-drop-hidden {
     @apply border border-none rounded-sm bg-white overflow-hidden absolute top-16 transition-all h-0 p-0  px-5 opacity-0;
   }

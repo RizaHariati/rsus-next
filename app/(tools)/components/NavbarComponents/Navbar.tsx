@@ -11,18 +11,31 @@ import LinkMainMenu from "./NavbarComponentsItem/LinkMainMenu";
 import LinkEmergency from "./NavbarComponentsItem/LinkEmergency";
 import LinkProfile from "./NavbarComponentsItem/LinkProfile";
 import LinkAntrian from "./NavbarComponentsItem/LinkAntrian";
-
+import { motion } from "framer-motion";
+import { usePathname } from "next/navigation";
 type Props = {};
+type MainProps = {
+  scrollTop: boolean;
+};
 
-const Navbar = (props: Props) => {
+const Navbar = ({ scrollTop }: MainProps) => {
+  const path = usePathname();
   return (
-    <div className="navbar-container">
+    <motion.div
+      key={path}
+      initial={{ opacity: 0 }}
+      animate={{ opacity: 1 }}
+      transition={{ duration: 1 }}
+      className={
+        scrollTop ? "navbar-container bg-opacity-100" : "navbar-container"
+      }
+    >
       <nav className="navbar">
         <MainLogo />
         <NavbarLinks />
         <NavbarMenu />
       </nav>
-    </div>
+    </motion.div>
   );
 };
 

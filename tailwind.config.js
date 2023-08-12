@@ -12,6 +12,9 @@ module.exports = {
     },
 
     extend: {
+      backgroundImage: {
+        pattern: "url('/images/pages/pattern.jpg')",
+      },
       fontFamily: {
         oswald: ["var(--oswald)", "sans-serif"],
         nunito: ["var(--nunito)", "sans-serif"],
