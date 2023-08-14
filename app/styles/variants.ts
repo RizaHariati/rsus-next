@@ -110,3 +110,30 @@ export const enterMiddleVariantLeftChildren = {
     },
   },
 };
+
+export const enterTop = {
+  initial: { opacity: 0, y: "-100%" },
+  animate: {
+    opacity: 1,
+    y: "0%",
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.2,
+      type: "spring",
+      stiffness: 30,
+    },
+  },
+};
+
+export const enterTopChildren = {
+  initial: { opacity: 0, y: "-100%" },
+  animate: {
+    opacity: 1,
+    y: "0%",
+    transition: {
+      duration: 0.1,
+      type: "spring",
+      stiffness: 30,
+    },
+  },
+};

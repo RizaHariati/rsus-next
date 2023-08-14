@@ -14,7 +14,7 @@ const Consultation = (props: Props) => {
     <div className=" h-screen w-full z-0 max-w-[1440px] mx-auto relative">
       <section
         id="zero"
-        className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center "
+        className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1"
       >
         <ConsultationMenu />
         <MainImageAnimatedLeft img="consultation" />

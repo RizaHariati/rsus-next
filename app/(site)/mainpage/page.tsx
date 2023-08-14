@@ -16,10 +16,10 @@ type Props = {};
 
 const MainPage = (props: Props) => {
   return (
-    <div className=" h-screen w-full z-0 max-w-[1440px] mx-auto">
+    <div className=" h-screen w-full z-0 max-w-[1440px] mx-auto ">
       <section
         id="zero"
-        className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center"
+        className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1"
       >
         <FloatingMenu />
         <div className="h-full w-3/12 bg-greyLit relative z-10 ">
