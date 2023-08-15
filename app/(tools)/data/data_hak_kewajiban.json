@@ -1,0 +1,75 @@
+[
+  {
+    "menu": "id01",
+    "title": "pemberian informasi dan persetujuan umum (general consent) untuk menerima pelayanan kesehatan",
+    "rules": [
+      {
+        "id": 1,
+        "title": "Persetujuan Untuk Perawatan dan Pengobatan",
+        "info": [
+          "Anda menyetujui untuk perawatan di Rumah Sakit Urip Sumoharjo sebagai pasien rawat jalan atau rawat inap tergantung kepada kebutuhan medis. Pengobatan dapat meliputi pemeriksaan x-ray/ radiologi, tes darah, perawatan rutin dan prosedur seperti cairan infus atau suntikan dan evaluasi (contohnya wawancara dan pemeriksaan fisik)",
+          "Persetujuan yang Anda berikan tidak termasuk persetujuan untuk prosedur/ tindakan invasif (misalnya, operasi) atau tindakan yang mempunyai resiko tinggi",
+          "Jika Anda memutuskan untuk menghentikan perawatan medis untuk diri Anda sendiri, Anda memahami dan menyadari bahwa Rumah Sakit Urip Sumoharjo atau dokter tidak bertanggung jawab atas hasil yang merugikan Anda."
+        ]
+      },
+      {
+        "id": 2,
+        "title": "Persetujuan Pelepasan Informasi",
+        "info": [
+          "Anda memahami informasi yang ada di dalam diri Anda, termasuk diagnosis, hasil laboratorium dan hasil tes diagnostik yang akan digunakan untuk perawatan medis. Rumah Sakit Urip Sumoharjo akan menjamin kerahasiaannya",
+          "Anda memberi wewenang kepada Rumah Sakit Urip Sumoharjo untuk memberikan informasi tentang tentang diagnosis, hasil pelayanan dan pengobatan bila diperlukan untuk memproses klaim asuransi/ perusahaan dan atau lembaga pemerintah dan penelitian sesuai prosedur yang berlaku",
+          "Apabila dalam kondisi tidak dapat memberikan keputusan untuk diri sendiri, maka Anda dapat meninta bantuan orang terdekat dalam mendukung perawatan kesehatan Anda"
+        ]
+      },
+      {
+        "id": 3,
+        "title": "Hak Dan Tanggung Jawab Pasien",
+        "info": [
+          "Anda memiliki hak untuk mengambil bagian dalam keputusan mengenai penyakit Anda dan dalam hal perawatan medis dan rencana pengobatan",
+          "Anda telah mendapat informasi tentang “Hak dan Kewajiban sebagai Pasien” di Rumah Sakit Urip Sumoharjo melalui leaflet dan banner yang disediakan oleh petugas",
+          "Anda memahami bahwa Rumah Sakit Urip Sumoharjo tidak bertanggung jawab atas kehilangan barang-barang pribadi dan barang berharga yang dibawa ke Rumah Sakit Urip Sumoharjo"
+        ]
+      },
+      {
+        "id": 4,
+        "title": "Informasi Rawat Inap",
+        "info": [
+          "Anda tidak diperkenankan untuk membawa barang-barang berharga ke ruang rawat inap. Bila ada, maka anggota keluarga atau teman diminta untuk membawa pulang barang-barang berharga tersebut. Bila tidak ada anggota keluarga, Rumah Sakit Urip Sumoharjo menyediakan tempat penitipan barang milik pasien di tempat resmi yang telah disediakan Rumah Sakit Universitas Indonesi",
+          "Anda telah menerima informasi tentang peraturan yang diberlakukan oleh Rumah Sakit Urip Sumoharjo dan Anda beserta keluarga bersedia untuk mematuhinya, termasuk akan mematuhi jam berkunjung pasien sesuai dengan aturan di rumah sakit",
+          "Anggota keluarga Anda yang menunggu Anda bersedia untuk selalu memakai tanda pengenal khusus yang diberikan oleh Rumah Sakit Urip Sumoharjo dan demi keamanan seluruh pasien setiap keluarga dan siapa pun yang akan megunjungi Anda diluar jam berkunjung, bersedia untuk diminta/ diperiksa identitasnya dan memakai identitias yang diberikan oleh Rumah Sakit Urip Sumoharjo",
+          "Anda/ keluarga Anda/ pihak lain tidak boleh mendokumentasikan dalam bentuk apapun (foto, rekaman dan lain-lain) seluruh proses pelayanan kesehatan yang Anda/ keluarga Anda jalani di Rumah Sakit Urip Sumoharjo tanpa seizin manajemen rumah sakit"
+        ]
+      }
+    ]
+  },
+  {
+    "menu": "id02",
+    "title": "addendum pemberian informasi dan persetujuan umum (general consent) untuk menerima pelayanan kesehatan pada masa tanggap darurat covid-19",
+    "rules": [
+      {
+        "id": 5,
+        "title": "Persetujuan Untuk Perawatan dan Pengobatan Pada Masa Tanggap Darurat COVID-19",
+        "info": [
+          "Anda menyetujui bahwa diagnosis Anda sebagai Pasien Dalam Pengawasan, Orang Dalam Pengawasan, dan Kasus Terkonfirmasi COVID-19 merupakan wewenang penuh Dokter Penanggung Jawab Pelayanan (DPJP) berdasarkan hasil pemeriksaan DPJP terhadap Anda",
+          "Anda menyetujui untuk mendapatkan penanganan dari DPJP sesuai diagnosis COVID-19 berdasarkan hasil pemeriksaan DPJP terhadap diri Anda",
+          "Persetujuan yang Anda berikan tidak termasuk persetujuan untuk prosedur/ tindakan invasif (misalnya, operasi) atau tindakan yang mempunyai resiko tinggi"
+        ]
+      },
+      {
+        "id": 6,
+        "title": "Persetujuan Pelepasan Informasi",
+        "info": [
+          "Anda menyetujui untuk menjalani langkah-langkah pencegahan dan pengendalian infeksi COVID-19 yang dianjurkan oleh staf RSUI kepada Anda",
+          "Selama masa perawatan di RSUI, Anda bersedia untuk tidak dikunjungi oleh siapa pun untuk mencegah risiko penyebaran penyakit COVID-19 sesuai kebijakan yang berlaku di RSUI"
+        ]
+      },
+      {
+        "id": 7,
+        "title": "Persetujuan Untuk Tata Kelola Jenazah dan Penguburan Pada Masa Tanggap Darurat COVID-19",
+        "info": [
+          "Bila Anda meninggal dunia dan didiagnosis dengan PDP atau Kasus Terkonfirmasi COVID-19 oleh DPJP, Anda menyetujui untuk dilakukan tata cara pengelolaan dan penguburan jenazah terhadap jenazah Anda sesuai peraturan pemerintah dan protokol yang berlaku di RSUI"
+        ]
+      }
+    ]
+  }
+]

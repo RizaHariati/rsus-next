@@ -1,7 +1,9 @@
-const article = [
+import { ArticleType } from "../types";
+
+export const dataArticle: ArticleType[] = [
   {
     id: 1,
-    date: "12/09/2022",
+    date: "09/12/2023",
     title: "RS Urip Sumoharjo Mulai Terapkan Rekam Medis Elektronik",
     text: [
       "Wakil Direktur Umum dan PSDM RS Urip Sumoharjo, Selamet Sukarno menyampaikan, bahwa rekam medis elektronik sudah mulai berjalan meskipun belum optimal. Dibutuhkan kerjasama dari semua pihak untuk menjalankan amanat Kemenkes tersebut.",
@@ -17,7 +19,7 @@ const article = [
   },
   {
     id: 2,
-    date: "20/6/2023",
+    date: "06/20/2023",
     title:
       "Meriahkan HUT Bandar Lampung, RS Urip Sumoharjo Beri Pemeriksaan Kesehatan Gratis",
     text: [
@@ -34,7 +36,7 @@ const article = [
   },
   {
     id: 3,
-    date: ":10/9/2022",
+    date: ":09/10/2022",
     title:
       "RS Urip Sumoharjo Gelar Baksos Operasi Bibir Sumbing dan Langit-langit",
     text: [
@@ -51,7 +53,7 @@ const article = [
   },
   {
     id: 4,
-    date: "08/07/2022",
+    date: "07/08/2022",
     title: "Rayakan HUT ke-21, RS Urip Sumoharjo Gelar Khitanan Massal  ",
     text: [
       "Rumah Sakit Urip Sumsoharjo (RSUS) bekerjasama dengan Yayasan Masjid Al Furqon Magelang Jawa Tengah menggelar khitanan massal, Jumat (08/07/2022). Khitanan massal berlangsung di Masjid Al Mustasyfa Kompleks RSUS.",
@@ -66,7 +68,7 @@ const article = [
   },
   {
     id: 5,
-    date: "17/08/2021",
+    date: "08/17/2021",
     title: "RS Urip Sumoharjo Bandar Lampung Buka Layanan PCR",
     text: [
       "Rumah Sakit Urip Sumoharjo Kota Bandar Lampung membuka layanan Laboratorium Polymerase Chain Reaction (PCR) untuk mempercepat pemeriksaan dini (testing), pelacakan (tracing), dan perawatan (treatment) atau 3T warga terpapar covid-19.",
@@ -77,12 +79,12 @@ const article = [
     news_link:
       "https://m.lampost.co/berita-rs-urip-sumoharjo-bandar-lampung-buka-layanan-pcr.html",
     img: "rumah-sakit-urip-sumoharjo-launching-laboratorium-_20210817150821",
-    category: "kiprah",
+    category: "aksi",
     featured: false,
   },
   {
     id: 6,
-    date: "19-sept-2024",
+    date: "09/11/2021",
     title: "RS Urip Sumoharjo Kini Siap Layani Kateterisasi Jantung",
     text: [
       "Rumah Sakit Urip Sumoharjo membuka layanan Cath Lab atau kateterisasi jantung. Layanan laboratorium ini untuk menentukan diagnostik penyakit jantung, dan pembulu darah yang dialami oleh pasien sehingga dokter bisa merekomendasikan tindak lanjut penanganan.",
@@ -93,29 +95,40 @@ const article = [
       "https://m.lampost.co/berita-rs-urip-sumoharjo-kini-siap-layani-kateterisasi-jantung.html",
     img: "rs-urip-sumoharjo-kini-siap-layani-kateterisasi-jantung",
     category: "kiprah",
-    featured: true,
+    featured: false,
   },
 
   {
     id: 7,
-    date: "19-sept-2024",
-    title: "",
-    text: [""],
-    newspaper: "",
-    news_link: "",
-    img: "",
-    category: "",
-    featured: true,
+    date: "12/21/2021",
+    title:
+      "Layanan Rehabilitasi Medik, Poli Kecantikan, dan Poli Anak Hadir di RS Urip Sumoharjo",
+    text: [
+      "Rumah Sakit Urip Sumoharjo Bandar Lampung membuka layanan baru Pusat Rehabilitasi Medik, Poli Kecantikan, dan Poli Anak di Lantai 5 Gedung Melati RS Urip Sumoharjo, Selasa, 21 Desember 2021.",
+      "Komisaris RS Urip Sumoharjo, Mahfud Santoso, mengatakan pihaknya membuka layanan rehabilitasi medik, poli kecantikan dan poli anak guna menjawab kebutuhan masyarakat di Sumatera Bagian Selatan khususnya Provinsi Lampung.s",
+    ],
+    newspaper: "Lampung Post",
+    news_link:
+      "https://m.lampost.co/berita-layanan-rehabilitasi-medik-poli-kecantikan-dan-poli-anak-hadir-di-rs-urip-sumoharjo.html",
+    img: "poli-kecantikan",
+    category: "kiprah",
+    featured: false,
   },
   {
     id: 8,
-    date: "19-sept-2024",
-    title: "",
-    text: [""],
-    newspaper: "",
-    news_link: "",
-    img: "",
-    category: "",
-    featured: true,
+    date: "04/27/2019",
+    title:
+      "Rumah Sakit Urip Sumoharjo Melaunching Layanan Operasi Retina Mata Menggunakan Cara Vitrektomi",
+    text: [
+      "Direktur RS Urip Sumoharjo Novayanti MM-BAT mengatakan, penambahan fasilitas pelayanan ini untuk mengakomodasi pasien yang membutuhkan layanan operasi retina mata pada penderita diabetes",
+      "Direktur RS Urip Sumoharjo Novayanti MM-BAT mengatakan, penambahan fasilitas pelayanan ini untuk mengakomodasi pasien yang membutuhkan layanan operasi retina mata pada penderita diabetes.",
+      "'Kita menghadirkan langsung dokter spesialis mata dari RS Pusat Mata Nasional (PMN) Cicendo Bandung untuk menjelaskan terkait masalah mata yang satu ini,' jelasnya di aula RS Urip Sumoharjo, Sabtu (27/4/2019).",
+    ],
+    newspaper: "Tribun News",
+    news_link:
+      "https://lampung.tribunnews.com/2019/04/27/rumah-sakit-urip-sumoharjo-melaunching-layanan-operasi-retina-mata-menggunakan-cara-vitrektomi",
+    img: "operasi-retina-mata-menggunakan-cara-vitrektomi",
+    category: "kiprah",
+    featured: false,
   },
 ];

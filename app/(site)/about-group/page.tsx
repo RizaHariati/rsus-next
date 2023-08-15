@@ -69,8 +69,12 @@ const AboutGroup = (props: Props) => {
                 </div>
                 <div className=" col-span-6 p-2">
                   {item.info.length > 1 &&
-                    item.info.map((info: string, index) => {
-                      return <li className=" list-inside">{info}</li>;
+                    item.info.map((info: string, indexList) => {
+                      return (
+                        <li className=" list-inside" key={indexList}>
+                          {info}
+                        </li>
+                      );
                     })}
                   {item.info.length === 1 && <p>{item.info[0]}</p>}
                 </div>

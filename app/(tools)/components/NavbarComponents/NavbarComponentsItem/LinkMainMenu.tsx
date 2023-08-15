@@ -70,7 +70,7 @@ const LinkMainMenu = (props: Props) => {
                   <Link
                     href={menu.link}
                     onClick={() => {
-                      toggleMenu("main-menu");
+                      toggleMenu(null);
                       toggleItem(null);
                     }}
                     className="main-menu-item pt-3"
@@ -132,7 +132,7 @@ const SubMenu = ({ menu, toggleItem, itemId }: SubProps) => {
               <Link
                 href={item.link}
                 onClick={() => {
-                  toggleMenu("main-menu");
+                  toggleMenu(null);
                   toggleItem(null);
                 }}
                 className="text-[14px] main-menu-item pt-3 text-center "

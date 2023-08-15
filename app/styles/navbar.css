@@ -130,6 +130,9 @@
   .btn-3-bold {
     @apply font-nunito text-[16px] uppercase font-medium tracking-widest;
   }
+  .btn-5-bold {
+    @apply font-nunito text-[12px] uppercase font-semibold tracking-widest;
+  }
   .main-menu-item {
     @apply btn-3 hover:btn-3-bold hover:text-greyBorder transition-all w-full bg-white px-2 border-b border-b-greyBorder text-left h-12;
   }

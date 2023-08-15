@@ -1,0 +1,38 @@
+export const dataDirectors = [
+  {
+    id: 1,
+    title: "Pemilik",
+    info: ["PT. Gunung Sulah Medika"],
+  },
+
+  {
+    id: 2,
+    title: "Komisaris Utama",
+    info: ["dr H. Surachman, Sp.A"],
+    img: "team1",
+  },
+  {
+    id: 3,
+    title: "Direktur Utama",
+    info: ["dr H.M Agusni, Sp.B"],
+    img: "team2",
+  },
+  {
+    id: 4,
+    title: "Direktur Rumah Sakit",
+    info: ["Saif’ulharis Djauhar, S.Sos"],
+    img: "team3",
+  },
+  {
+    id: 5,
+    title: "Direktur Umum & Keuangan",
+    info: ["Direktur Umum & Keuangan"],
+    img: "team4",
+  },
+  {
+    id: 6,
+    title: "Direktur Pelayanan Medis ",
+    info: ["dr. Melda Dasepta"],
+    img: "team5",
+  },
+];

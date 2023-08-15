@@ -46,3 +46,15 @@ export type ConsultationMenuTypes = {
   description: string;
   image: string;
 };
+
+export type ArticleType = {
+  id: number;
+  date: string;
+  title: string;
+  text: string[];
+  newspaper: string;
+  news_link: string;
+  img: string;
+  category: string;
+  featured: boolean;
+};

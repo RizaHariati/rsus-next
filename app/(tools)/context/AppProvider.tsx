@@ -12,7 +12,7 @@ interface Props {
 export const AppProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  const toggleMenu = (id: string) => {
+  const toggleMenu = (id: string | null) => {
     dispatch({ type: "TOGGLE_MENU", payload: id });
   };
   const value = {

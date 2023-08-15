@@ -19,7 +19,7 @@
     @apply font-oswald text-[20px] tracking-[7px] font-normal text-center uppercase;
   }
   h5 {
-    @apply font-oswald text-[16px] tracking-[15px] font-light text-center uppercase;
+    @apply font-oswald text-[16px] tracking-[5px] font-light text-center uppercase;
   }
   h6 {
     @apply font-oswald text-[16px] tracking-[15px] font-light text-left;
@@ -69,12 +69,15 @@
   .btn-3-bold {
     @apply font-nunito text-[16px] uppercase font-semibold tracking-widest;
   }
+  .btn-5-bold {
+    @apply font-nunito text-[12px] uppercase font-semibold tracking-widest leading-3;
+  }
 
   .button-lg {
     @apply btn-2 bg-white bg-opacity-100 p-5 py-2 rounded-sm w-72 hover:bg-opacity-70 transition-all;
   }
   .footnote-1 {
-    @apply font-nunito text-[14px] leading-3;
+    @apply font-nunito text-[12px] leading-3 text-greyMed1;
   }
   .form-disable {
     @apply h-10 border flex-center-left p-2 bg-greyLit rounded-sm;
