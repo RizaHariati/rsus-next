@@ -3,7 +3,6 @@ import React from "react";
 import { motion } from "framer-motion";
 import { enterTop, enterTopChildren } from "@/app/styles/variants";
 import Image from "next/image";
-import { dataAbout } from "@/app/(tools)/data/dataabout";
 import { dataDirectors } from "@/app/(tools)/data/datadirectors";
 
 type Props = {};
