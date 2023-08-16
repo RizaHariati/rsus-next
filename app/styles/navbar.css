@@ -31,7 +31,6 @@
   .navbar-menu-container {
     @apply flex items-center justify-end h-full gap-1 w-52;
   }
-
   .navbar-drop-container {
     @apply border border-greyBorder rounded-sm bg-white overflow-hidden absolute top-16 transition-all h-fit p-5  opacity-100;
   }

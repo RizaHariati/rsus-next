@@ -19,10 +19,10 @@
     @apply font-oswald text-[20px] tracking-[7px] font-normal text-center uppercase;
   }
   h5 {
-    @apply font-oswald text-[16px] tracking-[5px] font-light text-center uppercase;
+    @apply font-oswald text-[16px] tracking-[3px] font-medium text-center uppercase leading-5;
   }
   h6 {
-    @apply font-oswald text-[16px] tracking-[15px] font-light text-left;
+    @apply font-oswald text-[16px] tracking-[2px] font-medium text-left;
   }
   section {
     @apply w-full h-fit bg-neutral-200 border-b border-greyBorder;

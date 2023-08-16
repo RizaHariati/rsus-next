@@ -11,6 +11,12 @@ import {
   enterRightVariant,
   enterRightVariantChild,
 } from "@/app/(tools)/framervariants/variants";
+import { dataArticle } from "@/app/(tools)/data/dataarticle";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faChevronLeft,
+  faChevronRight,
+} from "@fortawesome/free-solid-svg-icons";
 
 type Props = {};
 
@@ -29,9 +35,50 @@ const MainPage = (props: Props) => {
       </section>
       <section
         id="one"
-        className=" bg-pink-300 h-screen w-full z-0 snap-center "
+        className=" bg-white h-fit w-full z-0 snap-center pt-14 pb-5 "
       >
-        <h2> Main Page</h2>
+        <h2> Aksi RS Urip Sumoharjo</h2>
+        <div className="w-full flex-center-center p-4 px-20">
+          <button className="text-white p-1 py-4 bg-accent2 hover:bg-greyMed1 h-fit rounded-sm transition-all">
+            <FontAwesomeIcon icon={faChevronLeft} className="text-xl" />
+          </button>
+          <div className="w-full max-w-5xl grid grid-cols-3 gap-5">
+            {dataArticle
+              .filter((data) => data.category === "aksi")
+              .slice(0, 3)
+              .map((article) => {
+                return (
+                  <div
+                    key={article.id}
+                    className="w-full rounded-sm overflow-hidden standard-border"
+                  >
+                    <div className="w-full h-auto">
+                      <Image
+                        src={`/images/news/${article.img}.jpg`}
+                        alt={article.img}
+                        height={220}
+                        width={400}
+                        className="object-center object-cover h-auto w-full overflow-hidden rounded-sm"
+                      />
+                    </div>
+                    <div className="p-3 flex gap-2 flex-col">
+                      <h5 className="h-16 text-left tracking-[2px]">
+                        {article.title}
+                      </h5>
+                      <p className=" footnote-1">{article.date}</p>
+                      <p>{article.text[0].slice(0, 120)}...</p>
+                      <button className="text-greenUrip text-center btn-4 w-full border border-greenUrip p-1 hover:text-white hover:bg-greenUrip transition-all cursor-pointer">
+                        baca selengkapnya
+                      </button>
+                    </div>
+                  </div>
+                );
+              })}
+          </div>
+          <button className="text-white p-1 py-4 bg-accent2 hover:bg-greyMed1 h-fit rounded-sm transition-all">
+            <FontAwesomeIcon icon={faChevronRight} />
+          </button>
+        </div>
       </section>
       <section
         id="two"

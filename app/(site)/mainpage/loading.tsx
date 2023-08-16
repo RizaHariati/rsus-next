@@ -21,18 +21,6 @@ const Loading = (props: Props) => {
         </div>
         <MainImageAnimated />
       </section>
-      <section
-        id="one"
-        className=" bg-pink-300 h-screen w-full z-0 snap-center "
-      >
-        <h2> Main Page</h2>
-      </section>
-      <section
-        id="two"
-        className=" bg-slate-300 h-screen w-full z-0 snap-center"
-      >
-        <h2> Main Page</h2>
-      </section>
     </div>
   );
 };
