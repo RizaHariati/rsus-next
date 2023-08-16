@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   enterTop,
-  enterTopChildren,
+  enterTopChildrenCenter,
 } from "../../(tools)/framervariants/variants";
 import { dataAbout } from "@/app/(tools)/data/dataabout";
 
@@ -17,15 +17,15 @@ const AboutGroup = (props: Props) => {
         variants={enterTop}
         initial="initial"
         animate="animate"
-        className="h-2/3 w-full overflow-hidden relative"
+        className="h-2/3 w-full overflow-hidden relative "
       >
         <motion.div
-          variants={enterTopChildren}
-          className=" bg-stone-700 bg-opacity-70 mix-blend-multiply w-full absolute h-full right-0 top-0 z-10"
+          variants={enterTopChildrenCenter}
+          className=" bg-stone-700 bg-opacity-90  mix-blend-multiply w-full absolute h-full right-1/2  top-0 z-10"
         ></motion.div>
         <motion.div
-          variants={enterTopChildren}
-          className="absolute w-full h-full right-0 z-0 object-cover"
+          variants={enterTopChildrenCenter}
+          className="absolute w-full h-full right-1/2  z-0 object-cover"
         >
           <Image
             src="/images/pages/rsus.jpg"
@@ -37,14 +37,14 @@ const AboutGroup = (props: Props) => {
           />
         </motion.div>
         <motion.h1
-          variants={enterTopChildren}
-          className="absolute z-20 top-1/3  right-16 text-white text-right font-regular text-[40px] tracking-[15px] w-1/2 drop-shadow-md shadow-black"
+          variants={enterTopChildrenCenter}
+          className="absolute z-20 top-1/3 right-1/2  text-white text-center font-regular text-[40px] tracking-[15px] w-1/2 drop-shadow-md shadow-black"
         >
           RS Urip Sumoharjo
         </motion.h1>
         <motion.p
-          variants={enterTopChildren}
-          className=" w-1/2 top-1/2 right-16 body-2 text-white text-right  absolute font-light z-20"
+          variants={enterTopChildrenCenter}
+          className="absolute w-1/2 top-1/2 right-1/2 body-2 mx-auto text-center text-white  font-light z-20 "
         >
           RS Urip Sumoharjo Merupakan RS Swasta dengan semangat Islami, yang
           menyediakan pelayanan kesehatan untuk semua kalangan sebagai bagian

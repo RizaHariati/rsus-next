@@ -17,6 +17,7 @@ export const AppProvider = ({ children }: Props) => {
   };
 
   const openModal = (modalTitle: string, modalValue: any) => {
+    toggleMenu(null);
     dispatch({ type: "OPEN_MODAL", payload: { modalTitle, modalValue } });
   };
 

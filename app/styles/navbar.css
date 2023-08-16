@@ -1,53 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  body {
-    @apply h-full min-h-screen bg-greyLit text-greyDrk;
-  }
-  h1 {
-    @apply font-oswald text-[40px] tracking-[2px] uppercase font-light shadow-black drop-shadow-sm;
-  }
-  h2 {
-    @apply font-oswald text-[30px] tracking-[15px] font-light text-center uppercase;
-  }
-  h3 {
-    @apply font-oswald text-[24px] tracking-[15px] font-light text-center uppercase;
-  }
-  h4 {
-    @apply font-oswald text-[20px] tracking-[7px] font-normal text-center uppercase;
-  }
-  h5 {
-    @apply font-oswald text-[16px] tracking-[15px] font-light text-center uppercase;
-  }
-  h6 {
-    @apply font-oswald text-[16px] tracking-[15px] font-light text-left;
-  }
-  section {
-    @apply w-full h-fit bg-neutral-200 border-b border-greyBorder;
-  }
-  p {
-    @apply font-nunito;
-  }
-  .test {
-    /* color: #ffffff00; //color opacity =0// */
-  }
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "./globals.css";
 
 @layer components {
-  .text-link {
-    @apply cursor-pointer text-greyMed1 hover:text-greyDrk transition-all hover:font-bold;
-  }
-  .flex-center-center {
-    @apply flex items-center justify-center;
-  }
-  .flex-center-between {
-    @apply flex items-center justify-between;
-  }
-  .flex-top-left {
-    @apply flex items-start justify-start;
-  }
   .navbar-container {
     @apply fixed z-40 left-0 top-0 w-full shadow-sm shadow-greyBorder bg-white bg-opacity-60 transition-all;
   }

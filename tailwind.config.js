@@ -13,7 +13,10 @@ module.exports = {
 
     extend: {
       width: {
+        modal_xl: "1300px",
         modal_lg: "1000px",
+        modal_md: "500px",
+        modal_sm: "350px",
       },
       maxWidth: {
         uripMax: "1440px",

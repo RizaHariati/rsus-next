@@ -1,93 +1,9 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
-@layer base {
-  body {
-    @apply h-full min-h-screen bg-greyLit text-greyDrk;
-  }
-  h1 {
-    @apply font-oswald text-[40px] tracking-[2px] uppercase font-light shadow-black drop-shadow-sm;
-  }
-  h2 {
-    @apply font-oswald text-[30px] tracking-[15px] font-light text-center uppercase;
-  }
-  h3 {
-    @apply font-oswald text-[24px] tracking-[15px] font-light text-center uppercase;
-  }
-  h4 {
-    @apply font-oswald text-[20px] tracking-[7px] font-normal text-center uppercase;
-  }
-  h5 {
-    @apply font-oswald text-[16px] tracking-[5px] font-light text-center uppercase;
-  }
-  h6 {
-    @apply font-oswald text-[16px] tracking-[15px] font-light text-left;
-  }
-  section {
-    @apply w-full h-fit bg-neutral-200 border-b border-greyBorder;
-  }
-  p {
-    @apply font-nunito;
-  }
-  .test {
-    /* color: #ffffff00; //color opacity =0// */
-  }
-}
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "./globals.css";
 
 @layer components {
-  .flex-center-center {
-    @apply flex items-center justify-center;
-  }
-  .flex-center-between {
-    @apply flex items-center justify-between;
-  }
-  .flex-top-left {
-    @apply flex items-start justify-start;
-  }
-  .flex-center-left {
-    @apply flex items-center justify-start;
-  }
-  .body-1-bold {
-    @apply font-nunito text-[22px] capitalize font-medium tracking-wide;
-  }
-  .body-2 {
-    @apply font-nunito text-[18px]  font-normal tracking-wide leading-6;
-  }
-  .body-3 {
-    @apply font-nunito text-[14px]  font-normal tracking-normal text-greyDrk  leading-4;
-  }
-  .btn-1 {
-    @apply font-nunito text-[20px] uppercase font-medium tracking-widest;
-  }
-  .btn-2 {
-    @apply font-nunito text-[18px] uppercase font-normal tracking-widest;
-  }
-  .btn-3 {
-    @apply font-nunito text-[16px] uppercase font-light tracking-widest;
-  }
-  .btn-3-bold {
-    @apply font-nunito text-[16px] uppercase font-semibold tracking-widest;
-  }
-  .btn-5-bold {
-    @apply font-nunito text-[12px] uppercase font-semibold tracking-widest leading-3;
-  }
-
-  .button-lg {
-    @apply btn-2 bg-white bg-opacity-100 p-5 py-2 rounded-sm w-72 hover:bg-opacity-70 transition-all;
-  }
-  .footnote-1 {
-    @apply font-nunito text-[12px] leading-3 text-greyMed1;
-  }
-  .form-disable {
-    @apply h-10 border flex-center-left p-2 bg-greyLit rounded-sm;
-  }
-  .form-regular {
-    @apply h-8 border flex-center-left p-2  rounded-sm;
-  }
-  .standard-border {
-    @apply border border-greyBorder rounded-sm bg-white overflow-hidden;
-  }
   /* ------------------------- FLOATING MENU ------------------------ */
 
   .floating-menu-container {
@@ -103,5 +19,14 @@
   /* ----------------------------- PAGE ----------------------------- */
   .page-main-container {
     @apply h-screen w-full z-0 max-w-uripMax mx-auto relative;
+  }
+
+  /* ----------------------------- MODAL ---------------------------- */
+
+  .modal-lg {
+    @apply absolute left-1/2 -translate-x-1/2  top-1/2 -translate-y-1/2 w-modal_lg h-fit bg-white standard-border  grid grid-cols-2 gap-3 py-5;
+  }
+  .slider-btn {
+    @apply absolute top-1/2 -translate-y-1/2 z-20 p-2 px-1 bg-greyMed1  hover:bg-greyMed2 active:bg-white transition-all rounded-sm text-white;
   }
 }

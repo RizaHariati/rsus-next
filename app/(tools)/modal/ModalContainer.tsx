@@ -1,16 +1,8 @@
 "use client";
-import Image from "next/image";
+
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClose,
-  faPeopleGroup,
-  faPerson,
-  faRupiahSign,
-  faXmarkSquare,
-} from "@fortawesome/free-solid-svg-icons";
 import { enterOpacity } from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "../context/AppProvider";
 import ModalInpatient from "./ModalInpatient";
@@ -19,9 +11,24 @@ type Props = {};
 
 const ModalContainer = (props: Props) => {
   const {
-    state: { showModal },
+    state: { showModal, modalValue },
   } = useGlobalContext();
-  return <AnimatePresence>{showModal && <ModalContent />}</AnimatePresence>;
+  return (
+    <AnimatePresence>
+      {showModal && (
+        <motion.div
+          variants={enterOpacity}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          transition={{ duration: 1 }}
+          className="w-screen h-screen bg-black  bg-opacity-50 overflow-hidden fixed top-0 left-0 z-50"
+        >
+          <ModalContent />
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
 };
 
 export default ModalContainer;

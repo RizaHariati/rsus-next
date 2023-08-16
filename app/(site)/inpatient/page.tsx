@@ -96,13 +96,13 @@ const ImageGallery = () => {
               id={item.kelas}
               onClick={() => openModal("inpatient", item)}
               key={index}
-              initial={{ opacity: 0, y: "40px" }}
+              initial={{ opacity: 0, y: "60px" }}
               whileInView={{
                 opacity: 1,
                 y: 0,
               }}
               transition={{
-                duration: 0.3 * (index % 3),
+                duration: 0.1 * (index % 3),
                 type: "spring",
               }}
               viewport={{ once: true }}

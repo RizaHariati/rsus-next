@@ -3,24 +3,10 @@
 @tailwind utilities;
 
 @layer base {
-  /* :root {
-    --foreground-rgb: 0, 0, 0;
-    --background-start-rgb: 214, 219, 220;
-    --background-end-rgb: 255, 255, 255;
-  }
-
-  @media (prefers-color-scheme: dark) {
-    :root {
-      --foreground-rgb: 255, 255, 255;
-      --background-start-rgb: 0, 0, 0;
-      --background-end-rgb: 0, 0, 0;
-    }
-  } */
-
   body {
     @apply h-full min-h-screen bg-greyLit text-greyDrk;
   }
-  /* h1 {
+  h1 {
     @apply font-oswald text-[40px] tracking-[2px] uppercase font-light shadow-black drop-shadow-sm;
   }
   h2 {
@@ -33,7 +19,7 @@
     @apply font-oswald text-[20px] tracking-[7px] font-normal text-center uppercase;
   }
   h5 {
-    @apply font-oswald text-[16px] tracking-[15px] font-light text-center uppercase;
+    @apply font-oswald text-[16px] tracking-[5px] font-light text-center uppercase;
   }
   h6 {
     @apply font-oswald text-[16px] tracking-[15px] font-light text-left;
@@ -43,14 +29,17 @@
   }
   p {
     @apply font-nunito;
-  } */
+  }
   .test {
     /* color: #ffffff00; //color opacity =0// */
   }
 }
 
 @layer components {
-  /* .flex-center-center {
+  .text-link {
+    @apply cursor-pointer text-greyMed1 hover:text-greyDrk transition-all hover:font-bold;
+  }
+  .flex-center-center {
     @apply flex items-center justify-center;
   }
   .flex-center-between {
@@ -66,30 +55,43 @@
     @apply font-nunito text-[22px] capitalize font-medium tracking-wide;
   }
   .body-2 {
-    @apply font-nunito text-[18px]  font-normal tracking-wide;
+    @apply font-nunito text-[18px]  font-normal tracking-wide leading-6;
   }
   .body-3 {
     @apply font-nunito text-[14px]  font-normal tracking-normal text-greyDrk  leading-4;
   }
-  .btn-2 {
-    @apply font-nunito text-[18px] uppercase font-medium tracking-widest;
+  .btn-1 {
+    @apply font-nunito text-[20px] uppercase font-medium tracking-widest;
   }
-  .btn-3 {
-    @apply font-nunito text-[22px] uppercase font-medium tracking-widest;
+  .btn-2 {
+    @apply font-nunito text-[18px] uppercase font-normal tracking-widest;
   }
   .btn-3 {
     @apply font-nunito text-[16px] uppercase font-light tracking-widest;
   }
   .btn-3-bold {
-    @apply font-nunito text-[16px] uppercase font-medium tracking-widest;
+    @apply font-nunito text-[16px] uppercase font-semibold tracking-widest;
+  }
+  .btn-4 {
+    @apply font-nunito text-[14px] uppercase font-light tracking-widest;
+  }
+  .btn-5-bold {
+    @apply font-nunito text-[12px] uppercase font-semibold tracking-widest leading-3;
+  }
+
+  .button-lg {
+    @apply btn-2 bg-white bg-opacity-100 p-5 py-2 rounded-sm w-72 hover:bg-opacity-70 transition-all;
   }
   .footnote-1 {
-    @apply font-nunito text-[14px] leading-3;
+    @apply font-nunito text-[12px] leading-3 text-greyMed1;
   }
   .form-disable {
     @apply h-10 border flex-center-left p-2 bg-greyLit rounded-sm;
   }
   .form-regular {
     @apply h-8 border flex-center-left p-2  rounded-sm;
-  } */
+  }
+  .standard-border {
+    @apply border border-greyBorder rounded-sm bg-white overflow-hidden;
+  }
 }
