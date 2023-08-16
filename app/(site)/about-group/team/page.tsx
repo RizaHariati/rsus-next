@@ -1,7 +1,10 @@
 "use client";
 import React from "react";
 import { motion } from "framer-motion";
-import { enterTop, enterTopChildren } from "@/app/styles/variants";
+import {
+  enterTop,
+  enterTopChildren,
+} from "@/app/(tools)/framervariants/variants";
 import Image from "next/image";
 import { dataDirectors } from "@/app/(tools)/data/datadirectors";
 
@@ -9,7 +12,7 @@ type Props = {};
 
 const Team = (props: Props) => {
   return (
-    <div className=" h-screen w-full z-0 max-w-[1440px] mx-auto relative ">
+    <div className="page-main-container">
       <motion.div
         variants={enterTopChildren}
         initial="initial"

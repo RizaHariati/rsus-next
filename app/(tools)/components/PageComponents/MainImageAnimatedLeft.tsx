@@ -2,7 +2,10 @@
 import Image from "next/image";
 import React from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { enterLeftVariant, enterLeftVariantChild } from "@/app/styles/variants";
+import {
+  enterLeftVariant,
+  enterLeftVariantChild,
+} from "@/app/(tools)/framervariants/variants";
 
 type Props = {
   img: string;

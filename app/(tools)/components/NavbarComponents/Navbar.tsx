@@ -13,6 +13,7 @@ import LinkProfile from "./NavbarComponentsItem/LinkProfile";
 import LinkAntrian from "./NavbarComponentsItem/LinkAntrian";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
+import { enterOpacity } from "../../framervariants/variants";
 type Props = {};
 type MainProps = {
   scrollTop: boolean;
@@ -23,9 +24,10 @@ const Navbar = ({ scrollTop }: MainProps) => {
   return (
     <motion.div
       key={path}
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      variants={enterOpacity}
+      initial="initial"
+      animate="animate"
+      exit="exit"
       className={
         scrollTop ? "navbar-container bg-opacity-100" : "navbar-container"
       }

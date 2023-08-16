@@ -11,7 +11,7 @@ type Props = {};
 
 const Loading = (props: Props) => {
   return (
-    <div className=" h-screen w-full z-0 max-w-[1440px] mx-auto">
+    <div className="page-main-container">
       <section
         id="zero"
         className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center"

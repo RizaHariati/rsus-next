@@ -15,10 +15,20 @@ export const AppProvider = ({ children }: Props) => {
   const toggleMenu = (id: string | null) => {
     dispatch({ type: "TOGGLE_MENU", payload: id });
   };
+
+  const openModal = (modalTitle: string, modalValue: any) => {
+    dispatch({ type: "OPEN_MODAL", payload: { modalTitle, modalValue } });
+  };
+
+  const closeModal = () => {
+    dispatch({ type: "CLOSE_MODAL", payload: "" });
+  };
   const value = {
     state,
     dispatch,
     toggleMenu,
+    openModal,
+    closeModal,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

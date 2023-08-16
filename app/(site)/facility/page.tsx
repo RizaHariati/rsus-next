@@ -4,7 +4,7 @@ import MainImageAnimatedLeft from "../../(tools)/components/PageComponents/MainI
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMinimize } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
-import { enterOpacity } from "@/app/styles/variants";
+import { enterOpacity } from "@/app/(tools)/framervariants/variants";
 
 type Props = {};
 
@@ -16,7 +16,7 @@ const unit = {
 };
 const Facility = (props: Props) => {
   return (
-    <div className=" h-screen w-full z-0 max-w-[1440px] mx-auto relative">
+    <div className="page-main-container">
       <section
         id="zero"
         className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1"

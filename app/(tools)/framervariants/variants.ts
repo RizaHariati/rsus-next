@@ -42,6 +42,13 @@ export const enterOpacity = {
       stiffness: 30,
     },
   },
+  exit: {
+    opacity: 0,
+    transition: {
+      duration: 0.5,
+      stiffness: 30,
+    },
+  },
 };
 
 export const enterOpacityChildren = {

@@ -58,3 +58,13 @@ export type ArticleType = {
   category: string;
   featured: boolean;
 };
+
+export type InpatientType = {
+  id: string;
+  kelas: string;
+  pasien: number;
+  harga: string;
+  img: string;
+  "img-array": string[];
+  fasilitas: string[];
+};

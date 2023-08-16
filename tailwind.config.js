@@ -12,6 +12,12 @@ module.exports = {
     },
 
     extend: {
+      width: {
+        modal_lg: "1000px",
+      },
+      maxWidth: {
+        uripMax: "1440px",
+      },
       backgroundImage: {
         pattern: "url('/images/pages/pattern.jpg')",
       },

@@ -21,7 +21,7 @@ const PatientRight = (props: Props) => {
     }
   };
   return (
-    <div className=" bg-clrBaseLightActive w-full py-14 ">
+    <div className="page-main-container pt-14">
       <h2>HAK DAN KEWAJIBAN PASIEN</h2>
       {hak.map((pasal) => {
         const { menu, title, rules } = pasal;

@@ -55,7 +55,7 @@
     @apply fixed z-40 left-0 top-0 w-full shadow-sm shadow-greyBorder bg-pink-500;
   }
   .navbar {
-    @apply flex-center-between w-full h-14  z-0 max-w-[1440px] mx-auto px-10;
+    @apply flex-center-between w-full h-14  z-0 max-w-uripMax mx-auto px-10;
   }
   .navbar-logo-container {
     @apply flex items-center justify-start gap-1 w-52 h-full;

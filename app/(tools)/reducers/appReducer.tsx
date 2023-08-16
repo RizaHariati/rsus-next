@@ -19,6 +19,23 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
       menu_id,
     };
   }
+  if (action.type === "OPEN_MODAL") {
+    const { modalTitle, modalValue } = action.payload;
+    return {
+      ...state,
+      showModal: true,
+      modalTitle,
+      modalValue,
+    };
+  }
+  if (action.type === "CLOSE_MODAL") {
+    return {
+      ...state,
+      showModal: false,
+      modalTitle: "",
+      modalValue: {},
+    };
+  }
 
   return state;
 };

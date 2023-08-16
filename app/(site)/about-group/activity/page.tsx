@@ -10,18 +10,18 @@ type Props = {};
 
 const Activity = (props: Props) => {
   return (
-    <div className="w-full h-screen  px-10  py-20  overflow-y-scroll">
-      <div className=" grid grid-cols-4 w-full gap-10 ">
+    <div className="page-main-container">
+      <div className=" grid grid-cols-4 w-full gap-10 h-screen relative snap-center p-14">
         <section className="col-span-3  h-screen  scrollbar-none bg-greyLit gap-5 flex flex-col">
           <h2 className=" text-left bg-greyLit">AKTIVITAS RS URIP SUMOHARJO</h2>
 
           <ArticleContainer category="kiprah" />
           <ArticleContainer category="aksi" />
         </section>
-        <section className="col-span-1 pt-20  bg-greyLit h-screen border-l pl-10 border-b-0">
+        <section className="col-span-1 pt-20  bg-greyLit h-screen border-l pl-10 border-b-0 ">
           <div className="mb-2">
             <p className="btn-3-bold border-b-0">Terbaru</p>
-            <div>
+            <div className="">
               {dataArticle
                 .map((item: ArticleType) => new Date(item.date))
                 .sort((a: any, b: any) => b - a)
@@ -55,7 +55,7 @@ const ArticleContainer = ({ category }: ArticleProps) => {
   return (
     <article className="  flex flex-col gap-3">
       <h4 className="text-left py-2">{category}</h4>
-      <div>
+      <div className="">
         {dataArticle
           .filter(
             (item) => item.category === category && item.featured === true

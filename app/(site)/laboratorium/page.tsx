@@ -2,7 +2,7 @@
 import React from "react";
 import MainImageAnimatedLeft from "../../(tools)/components/PageComponents/MainImageAnimatedLeft";
 import { motion } from "framer-motion";
-import { enterOpacity } from "../../styles/variants";
+import { enterOpacity } from "../../(tools)/framervariants/variants";
 
 type Props = {};
 const unit = {
@@ -14,7 +14,7 @@ const unit = {
 
 const Laboratorium = (props: Props) => {
   return (
-    <div className=" h-screen w-full z-0 max-w-[1440px] mx-auto relative">
+    <div className="page-main-container">
       <section
         id="zero"
         className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1"

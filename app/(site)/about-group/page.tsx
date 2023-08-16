@@ -2,14 +2,17 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-import { enterTop, enterTopChildren } from "../../styles/variants";
+import {
+  enterTop,
+  enterTopChildren,
+} from "../../(tools)/framervariants/variants";
 import { dataAbout } from "@/app/(tools)/data/dataabout";
 
 type Props = {};
 
 const AboutGroup = (props: Props) => {
   return (
-    <div className=" h-screen w-full z-0 max-w-[1440px] mx-auto ">
+    <div className="page-main-container">
       <motion.section
         variants={enterTop}
         initial="initial"

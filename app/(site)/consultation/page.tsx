@@ -2,7 +2,10 @@
 import Image from "next/image";
 import React from "react";
 import { motion } from "framer-motion";
-import { enterOpacity, enterOpacityChildren } from "@/app/styles/variants";
+import {
+  enterOpacity,
+  enterOpacityChildren,
+} from "@/app/(tools)/framervariants/variants";
 import { consultationMenu } from "@/app/(tools)/data/datamenu";
 import { ConsultationMenuTypes } from "@/app/(tools)/types";
 import MainImageAnimatedLeft from "../../(tools)/components/PageComponents/MainImageAnimatedLeft";
@@ -11,7 +14,7 @@ type Props = {};
 
 const Consultation = (props: Props) => {
   return (
-    <div className=" h-screen w-full z-0 max-w-[1440px] mx-auto relative">
+    <div className="page-main-container">
       <section
         id="zero"
         className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1"
