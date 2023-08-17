@@ -24,7 +24,7 @@ const Consultation = (props: Props) => {
         <div className="h-full w-3/12 bg-greenUrip relative z-10  overflow-hidden">
           <div
             className="absolute h-full w-full top-0 left-4 z-10 bg-[length:200px_200px]
-          bg-pattern  mix-blend-multiply opacity-30"
+          bg-pattern mix-blend-multiply opacity-30"
           ></div>
           <div className="w-4 h-full bg-accent1 absolute left-0 top-0"></div>
         </div>

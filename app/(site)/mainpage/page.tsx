@@ -1,13 +1,15 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-
+import { enterTitleVariants } from "@/app/(tools)/framervariants/titlevariants";
 import "../../styles/mainpage.css";
 
 import KegiatanRSUS from "@/app/(tools)/components/PageComponents/mainpage/KegiatanRSUS";
-import { enterTitleVariants } from "@/app/(tools)/framervariants/titlevariants";
+
 import FloatingMenu from "@/app/(tools)/components/PageComponents/mainpage/FloatingMenu";
 import MainImageAnimated from "@/app/(tools)/components/PageComponents/mainpage/MainImageAnimated";
+import KunjungiKami from "@/app/(tools)/components/PageComponents/mainpage/KunjungiKami";
+import FasilitasDanKlinik from "@/app/(tools)/components/PageComponents/mainpage/FasilitasDanKlinik";
 
 type Props = {};
 
@@ -25,9 +27,11 @@ const MainPage = (props: Props) => {
         <MainImageAnimated />
       </section>
       <KegiatanRSUS />
+      <KunjungiKami />
+      <FasilitasDanKlinik />
       <section
         id="two"
-        className=" bg-slate-300 h-screen w-full z-0 snap-center"
+        className=" bg-blue-300 h-screen w-full z-0 snap-center"
       >
         <motion.h2
           variants={enterTitleVariants}
@@ -35,7 +39,7 @@ const MainPage = (props: Props) => {
           whileInView="animate"
           viewport={{ once: true }}
         >
-          Kunjungi kami
+          Hanya untuk anda
         </motion.h2>
       </section>
     </div>
