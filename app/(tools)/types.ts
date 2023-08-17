@@ -48,7 +48,7 @@ export type ConsultationMenuTypes = {
 };
 
 export type ArticleType = {
-  id: number;
+  id: string;
   date: string;
   title: string;
   text: string[];

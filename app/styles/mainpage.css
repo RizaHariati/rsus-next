@@ -26,7 +26,13 @@
   .modal-lg {
     @apply absolute left-1/2 -translate-x-1/2  top-1/2 -translate-y-1/2 w-modal_lg h-fit bg-white standard-border  grid grid-cols-2 gap-3 py-5;
   }
-  .slider-btn {
+  .modal-slider-btn {
     @apply absolute top-1/2 -translate-y-1/2 z-20 p-2 px-1 bg-greyMed1  hover:bg-greyMed2 active:bg-white transition-all rounded-sm text-white;
+  }
+  .mainpage-slider-container {
+    @apply flex gap-5 overflow-x-hidden w-modal_lg scroll-smooth border-x border-r-greyBorder;
+  }
+  .mainpage-slider-btn {
+    @apply text-white p-1 py-4 bg-accent2 hover:bg-greyMed1 h-fit rounded-sm transition-all;
   }
 }

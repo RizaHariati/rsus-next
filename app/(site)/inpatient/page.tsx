@@ -1,30 +1,15 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { motion } from "framer-motion";
 
 import dataBed from "@/app/(tools)/data/data_inap.json";
-import { useState } from "react";
 import { InpatientType } from "@/app/(tools)/types";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+
 import {
-  faCheck,
-  faClose,
-  faCross,
-  faPeopleGroup,
-  faPerson,
-  faRupiahSign,
-  faX,
-  faXmarkSquare,
-} from "@fortawesome/free-solid-svg-icons";
-import {
-  enterOpacity,
   enterTop,
   enterTopChildren,
 } from "@/app/(tools)/framervariants/variants";
-import { Icon, IconDefinition } from "@fortawesome/fontawesome-svg-core";
-import { faCheckSquare } from "@fortawesome/free-regular-svg-icons";
-import { faXbox } from "@fortawesome/free-brands-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 type Props = {};

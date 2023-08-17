@@ -2,7 +2,7 @@ import { ArticleType } from "../types";
 
 export const dataArticle: ArticleType[] = [
   {
-    id: 1,
+    id: "article_1",
     date: "09/12/2023",
     title: "RS Urip Sumoharjo Mulai Terapkan Rekam Medis Elektronik",
     text: [
@@ -18,7 +18,7 @@ export const dataArticle: ArticleType[] = [
     featured: true,
   },
   {
-    id: 2,
+    id: "article_2",
     date: "06/20/2023",
     title:
       "Meriahkan HUT Bandar Lampung, RS Urip Sumoharjo Beri Pemeriksaan Kesehatan Gratis",
@@ -35,7 +35,7 @@ export const dataArticle: ArticleType[] = [
     featured: true,
   },
   {
-    id: 3,
+    id: "article_3",
     date: ":09/10/2022",
     title:
       "RS Urip Sumoharjo Gelar Baksos Operasi Bibir Sumbing dan Langit-langit",
@@ -52,7 +52,7 @@ export const dataArticle: ArticleType[] = [
     featured: false,
   },
   {
-    id: 4,
+    id: "article_4",
     date: "07/08/2022",
     title: "Rayakan HUT ke-21, RS Urip Sumoharjo Gelar Khitanan Massal  ",
     text: [
@@ -67,7 +67,7 @@ export const dataArticle: ArticleType[] = [
     featured: false,
   },
   {
-    id: 5,
+    id: "article_5",
     date: "08/17/2021",
     title: "RS Urip Sumoharjo Bandar Lampung Buka Layanan PCR",
     text: [
@@ -83,7 +83,7 @@ export const dataArticle: ArticleType[] = [
     featured: false,
   },
   {
-    id: 6,
+    id: "article_6",
     date: "09/11/2021",
     title: "RS Urip Sumoharjo Kini Siap Layani Kateterisasi Jantung",
     text: [
@@ -99,7 +99,7 @@ export const dataArticle: ArticleType[] = [
   },
 
   {
-    id: 7,
+    id: "article_7",
     date: "12/21/2021",
     title:
       "Layanan Rehabilitasi Medik, Poli Kecantikan, dan Poli Anak Hadir di RS Urip Sumoharjo",
@@ -115,10 +115,10 @@ export const dataArticle: ArticleType[] = [
     featured: false,
   },
   {
-    id: 8,
+    id: "article_8",
     date: "04/27/2019",
     title:
-      "Rumah Sakit Urip Sumoharjo Melaunching Layanan Operasi Retina Mata Menggunakan Cara Vitrektomi",
+      "Rumah Sakit Urip Sumoharjo Melaunching Layanan Vitrektomi untuk Operasi Retina Mata",
     text: [
       "Direktur RS Urip Sumoharjo Novayanti MM-BAT mengatakan, penambahan fasilitas pelayanan ini untuk mengakomodasi pasien yang membutuhkan layanan operasi retina mata pada penderita diabetes",
       "Direktur RS Urip Sumoharjo Novayanti MM-BAT mengatakan, penambahan fasilitas pelayanan ini untuk mengakomodasi pasien yang membutuhkan layanan operasi retina mata pada penderita diabetes.",

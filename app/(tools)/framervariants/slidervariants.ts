@@ -1,6 +1,10 @@
 export const sliderVariants = {
   initial: (amount: number) => {
-    return { opacity: 0, x: amount > 0 ? -200 : 200, z: 0 };
+    return {
+      opacity: 0,
+      x: amount < 0 ? -50 : 50,
+      z: 0,
+    };
   },
   animate: {
     opacity: 1,
@@ -16,11 +20,12 @@ export const sliderVariants = {
   exit: (amount: number) => {
     return {
       opacity: 0,
-      x: amount > 0 ? 200 : -200,
+      x: amount < 0 ? 50 : -50,
       z: 0,
       transition: {
         duration: 0.5,
         stiffness: 30,
+        type: "spring",
       },
     };
   },
