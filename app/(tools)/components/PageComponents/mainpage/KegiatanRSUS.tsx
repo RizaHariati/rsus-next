@@ -11,6 +11,7 @@ import {
   faChevronRight,
 } from "@fortawesome/free-solid-svg-icons";
 import { enterTitleVariants } from "@/app/(tools)/framervariants/titlevariants";
+import dayjs from "dayjs";
 type Props = {};
 
 const KegiatanRSUS = (props: Props) => {
@@ -48,7 +49,7 @@ const KegiatanRSUS = (props: Props) => {
   return (
     <section
       id="one"
-      className=" bg-white h-fit w-full z-0 snap-center pt-10 pb-5 "
+      className=" bg-white h-screen w-full z-0 snap-center pt-16"
     >
       <motion.h2
         variants={enterTitleVariants}
@@ -79,7 +80,7 @@ const KegiatanRSUS = (props: Props) => {
                     key={article.id}
                     className=" w-[280px] rounded-sm standard-border flex-shrink-0"
                   >
-                    <div className="w-auto h-44 overflow-hidden">
+                    <div className="w-auto h-56 overflow-hidden">
                       <Image
                         src={`/images/news/${article.img}.jpg`}
                         alt={article.img}
@@ -88,13 +89,16 @@ const KegiatanRSUS = (props: Props) => {
                         className="object-center object-cover h-full w-full overflow-hidden rounded-sm"
                       />
                     </div>
-                    <div className="p-3 flex gap-2 flex-col justify-between h-52">
+                    <div className="p-3 flex gap-2 flex-col justify-between h-56">
                       <h5 className="h-16 text-left tracking-normal">
                         {article.title}
                       </h5>
-                      <p className=" footnote-1">{article.date}</p>
+
+                      <p className=" footnote-1">
+                        {dayjs(article.date).format("DD MMMM YYYY")}
+                      </p>
                       <p className="body-3 ">
-                        {article.text[0].slice(0, 120)}...
+                        {article.text[0].slice(0, 150)}...
                       </p>
                       <a
                         href={article.news_link}
