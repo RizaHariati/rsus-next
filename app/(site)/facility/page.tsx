@@ -17,11 +17,11 @@ const unit = {
 const Facility = (props: Props) => {
   return (
     <div className="page-main-container">
+      <FindFacility />
       <section
         id="zero"
         className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1"
       >
-        <FindFacility />
         <MainImageAnimatedLeft
           img={unit.img}
           title={unit.title}

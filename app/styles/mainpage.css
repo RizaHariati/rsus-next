@@ -35,4 +35,21 @@
   .mainpage-slider-btn {
     @apply text-white p-1 py-4 bg-accent2 hover:bg-greyMed1 h-fit rounded-sm transition-all;
   }
+  /* ----------------------------- Gallery ---------------------------- */
+  .gallery-base {
+    @apply w-full h-48 flex flex-col items-center justify-center overflow-hidden;
+  }
+  .gallery-cell {
+    @apply w-full flex-center-center h-24 overflow-hidden;
+  }
+
+  .accent1 {
+    @apply gallery-cell bg-accent1;
+  }
+  .accent2 {
+    @apply gallery-cell bg-accent2;
+  }
+  .accent3 {
+    @apply gallery-cell bg-greyBorder;
+  }
 }

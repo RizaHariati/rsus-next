@@ -66,6 +66,9 @@
   .btn-2 {
     @apply font-nunito text-[18px] uppercase font-normal tracking-widest;
   }
+  .btn-2-bold {
+    @apply font-nunito text-[18px] uppercase font-medium tracking-widest;
+  }
   .btn-3 {
     @apply font-nunito text-[16px] uppercase font-light tracking-widest;
   }

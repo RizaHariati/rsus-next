@@ -15,6 +15,7 @@ import FasilitasGroup from "@/app/(tools)/components/PageComponents/mainpage/Fas
 import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
+import SloganGallery from "@/app/(tools)/components/PageComponents/mainpage/SloganGallery";
 
 type Props = {};
 
@@ -45,24 +46,12 @@ const MainPage = (props: Props) => {
           className="  text-greenUrip animate-pulse w-fit h-fit rounded-full absolute bottom-14 right-24 z-10"
         >
           <FontAwesomeIcon icon={faArrowRight} className="text-4xl" />
-          <p className="btn-3-bold"> Lebih </p>{" "}
+          <p className="btn-3-bold"> Lebih </p>
           <p className="btn-3-bold"> Banyak </p>
         </Link>
       </div>
 
-      <section
-        id="two"
-        className=" bg-blue-300 h-screen w-full z-0 snap-center"
-      >
-        <motion.h2
-          variants={enterTitleVariants}
-          initial="initial"
-          whileInView="animate"
-          viewport={{ once: true }}
-        >
-          Hanya untuk anda
-        </motion.h2>
-      </section>
+      <SloganGallery />
     </div>
   );
 };

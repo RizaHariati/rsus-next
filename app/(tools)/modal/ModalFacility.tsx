@@ -17,7 +17,7 @@ const ModalFacility = (props: Props) => {
       <button className="absolute top-2 right-4" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <div className="grid grid-cols-2 w-full gap-5">
+      <div className="grid grid-cols-2 w-full gap-5 ">
         <div className="w-full body-3 flex flex-col gap-5 leading-5">
           <div>
             <p className="btn-3-bold">Deskripsi Alat</p>
@@ -29,9 +29,13 @@ const ModalFacility = (props: Props) => {
           </div>
           <div>
             <p className="btn-3-bold">Dipakai oleh: </p>
-            <ul className=" grid grid-cols-2 list-disc list-inside ">
+            <ul className=" grid grid-cols-2 list-disc list-inside pl-5">
               {modalValue.poliklinik.map((item: string, index: number) => {
-                return <li key={index}>{item}</li>;
+                return (
+                  <li key={index} className=" -indent-5">
+                    {item}
+                  </li>
+                );
               })}
             </ul>
           </div>

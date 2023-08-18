@@ -20,6 +20,8 @@ module.exports = {
       },
       maxWidth: {
         uripMax: "1440px",
+        modal_xl: "1200px",
+        modal_lg: "1000px",
       },
       backgroundImage: {
         pattern: "url('/images/pages/pattern.jpg')",
