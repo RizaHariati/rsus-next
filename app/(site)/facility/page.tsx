@@ -2,6 +2,9 @@
 import React from "react";
 import MainImageAnimatedLeft from "../../(tools)/components/PageComponents/MainImageAnimatedLeft";
 import FindFacility from "@/app/(tools)/components/PageComponents/facility/FindFacility";
+import dataFacility from "@/app/(tools)/data/data_facility.json";
+import { groupCategoryFacility } from "../../(tools)/utils/groupCategoryFacility";
+import FasilitasGroup from "@/app/(tools)/components/PageComponents/mainpage/FasilitasGroup";
 
 type Props = {};
 
@@ -32,19 +35,17 @@ const Facility = (props: Props) => {
           <div className="w-4 h-full bg-accent1 absolute left-0 top-0"></div>
         </div>
       </section>
-
-      <section
-        id="one"
-        className=" bg-pink-300 h-screen w-full z-0 snap-center "
-      >
-        <h2> Main Page</h2>
-      </section>
-      <section
-        id="two"
-        className=" bg-slate-300 h-screen w-full z-0 snap-center"
-      >
-        <h2> Main Page</h2>
-      </section>
+      <div>
+        {Object.keys(groupCategoryFacility(dataFacility)).map((item, index) => {
+          return (
+            <FasilitasGroup
+              key={index}
+              facilityTitle={item}
+              facilityGroup={groupCategoryFacility(dataFacility)[item]}
+            />
+          );
+        })}
+      </div>
     </div>
   );
 };

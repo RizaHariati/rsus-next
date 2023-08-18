@@ -79,3 +79,7 @@ export type FacilityType = {
   category: string;
   featured: boolean;
 };
+
+export type CategoryFacilityType = {
+  [key: string]: FacilityType[];
+};

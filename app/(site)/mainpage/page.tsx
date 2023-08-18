@@ -5,11 +5,16 @@ import { enterTitleVariants } from "@/app/(tools)/framervariants/titlevariants";
 import "../../styles/mainpage.css";
 
 import KegiatanRSUS from "@/app/(tools)/components/PageComponents/mainpage/KegiatanRSUS";
-
+import dataFacility from "@/app/(tools)/data/data_facility.json";
 import FloatingMenu from "@/app/(tools)/components/PageComponents/mainpage/FloatingMenu";
 import MainImageAnimated from "@/app/(tools)/components/PageComponents/mainpage/MainImageAnimated";
 import KunjungiKami from "@/app/(tools)/components/PageComponents/mainpage/KunjungiKami";
-import FasilitasDanKlinik from "@/app/(tools)/components/PageComponents/mainpage/FasilitasDanKlinik";
+
+import { FacilityType } from "../../(tools)/types";
+import FasilitasGroup from "@/app/(tools)/components/PageComponents/mainpage/FasilitasGroup";
+import Link from "next/link";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {};
 
@@ -28,7 +33,23 @@ const MainPage = (props: Props) => {
       </section>
       <KegiatanRSUS />
       <KunjungiKami />
-      <FasilitasDanKlinik />
+      <div className=" relative w-full h-fit">
+        <FasilitasGroup
+          facilityTitle="fasilitas dan klinik unggulan"
+          facilityGroup={dataFacility.filter(
+            (item: FacilityType) => item.featured === true
+          )}
+        />
+        <Link
+          href="/facility"
+          className="  text-greenUrip animate-pulse w-fit h-fit rounded-full absolute bottom-14 right-24 z-10"
+        >
+          <FontAwesomeIcon icon={faArrowRight} className="text-4xl" />
+          <p className="btn-3-bold"> Lebih </p>{" "}
+          <p className="btn-3-bold"> Banyak </p>
+        </Link>
+      </div>
+
       <section
         id="two"
         className=" bg-blue-300 h-screen w-full z-0 snap-center"
