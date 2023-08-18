@@ -28,33 +28,13 @@ const ModalInpatient = (props: Props) => {
   return (
     <>
       <div className="modal-lg">
-        <h3 className=" col-span-2">{modalValue.kelas}</h3>
+        <h3 className=" col-span-2 font-normal">{modalValue.kelas}</h3>
         <button className="absolute top-2 right-4" onClick={() => closeModal()}>
           <FontAwesomeIcon icon={faClose} />
         </button>
-        <ImageSlide imgArray={modalValue["img-array"]} />
-        <div>
-          <InpatientItems
-            item={modalValue.pasien}
-            icon={faPeopleGroup}
-            text="Jumlah pasien per ruangan "
-          />
-          <InpatientItems
-            item={modalValue.harga}
-            icon={faRupiahSign}
-            text="Harga kamar/malam  "
-          />
-          <InpatientItems
-            item=""
-            icon={faXmarkSquare}
-            text="tidak termasuk biaya pengobatan / pemeriksaan"
-          />
-          <InpatientItems item="" icon={faPerson} text="fasilitas " />
-          <ul className=" grid grid-cols-2 pl-7">
-            {modalValue.fasilitas.map((item: string, index: number) => {
-              return <li key={index}>{item}</li>;
-            })}
-          </ul>
+        <div className="w-full  grid grid-cols-2 gap-3">
+          <ImageSlide imgArray={modalValue["img-array"]} />
+          <Info modalValue={modalValue} />
         </div>
       </div>
     </>
@@ -143,6 +123,38 @@ const ImageSlide = ({ imgArray }: ImageProps) => {
           </button>
         )}
       </AnimatePresence>
+    </div>
+  );
+};
+
+type InfoProps = {
+  modalValue: any;
+};
+
+const Info = ({ modalValue }: InfoProps) => {
+  return (
+    <div className="p-3">
+      <InpatientItems
+        item={modalValue.pasien}
+        icon={faPeopleGroup}
+        text="Jumlah pasien per ruangan "
+      />
+      <InpatientItems
+        item={modalValue.harga}
+        icon={faRupiahSign}
+        text="Harga kamar/malam  "
+      />
+      <InpatientItems
+        item=""
+        icon={faXmarkSquare}
+        text="tidak termasuk biaya pengobatan / pemeriksaan"
+      />
+      <InpatientItems item="" icon={faPerson} text="fasilitas " />
+      <ul className=" grid grid-cols-2 pl-7">
+        {modalValue.fasilitas.map((item: string, index: number) => {
+          return <li key={index}>{item}</li>;
+        })}
+      </ul>
     </div>
   );
 };

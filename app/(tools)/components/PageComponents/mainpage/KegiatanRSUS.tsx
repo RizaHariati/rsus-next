@@ -3,7 +3,7 @@ import React, { useEffect, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 
-import { dataArticle } from "@/app/(tools)/data/dataarticle";
+import dataArticle from "@/app/(tools)/data/data_article.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { sliderVariants } from "../../../framervariants/slidervariants";
 import {
@@ -17,6 +17,7 @@ type Props = {};
 const KegiatanRSUS = (props: Props) => {
   const [sliderContainer, setsliderContainer] = useState<Element | null>(null);
   const [amount, setAmount] = useState(1);
+
   useEffect(() => {
     let containerElement = document?.querySelector(
       ".mainpage-slider-container"
@@ -33,7 +34,7 @@ const KegiatanRSUS = (props: Props) => {
       return;
     } else {
       let width = sliderContainer.clientWidth;
-      sliderContainer.scrollLeft = sliderContainer.scrollLeft + width;
+      sliderContainer.scrollLeft = sliderContainer.scrollLeft + width / 2;
     }
   };
 
@@ -43,7 +44,7 @@ const KegiatanRSUS = (props: Props) => {
       return;
     } else {
       let width = sliderContainer.clientWidth;
-      sliderContainer.scrollLeft = sliderContainer.scrollLeft - width;
+      sliderContainer.scrollLeft = sliderContainer.scrollLeft - width / 2;
     }
   };
   return (
@@ -87,6 +88,7 @@ const KegiatanRSUS = (props: Props) => {
                         height={220}
                         width={400}
                         className="object-center object-cover h-full w-full overflow-hidden rounded-sm"
+                        loading="lazy"
                       />
                     </div>
                     <div className="p-3 flex gap-2 flex-col justify-between h-56">

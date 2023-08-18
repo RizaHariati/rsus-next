@@ -17,7 +17,7 @@ const Loading = (props: Props) => {
         className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center"
       >
         <div className="h-full w-3/12 bg-greyLit relative z-30 ">
-          <div className="w-4 h-full bg-accent1 absolute right-0 top-0"></div>
+          <div className="w-4 h-full bg-accent1 absolute right-0 top-0 animate-pulse"></div>
         </div>
         <MainImageAnimated />
       </section>

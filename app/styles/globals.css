@@ -13,10 +13,10 @@
     @apply font-oswald text-[30px] tracking-[15px] font-light text-center uppercase;
   }
   h3 {
-    @apply font-oswald text-[24px] tracking-[15px] font-light text-center uppercase;
+    @apply font-oswald text-[24px] tracking-[12px] font-light text-center uppercase;
   }
   h4 {
-    @apply font-oswald text-[20px] tracking-[7px] font-normal text-center uppercase;
+    @apply font-oswald text-[20px] tracking-[7px] font-normal text-center uppercase leading-6;
   }
   h5 {
     @apply font-oswald text-[16px] tracking-[3px] font-medium text-center uppercase leading-5;
@@ -55,7 +55,7 @@
     @apply font-nunito text-[22px] capitalize font-medium tracking-wide;
   }
   .body-2 {
-    @apply font-nunito text-[18px]  font-normal tracking-wide leading-6;
+    @apply font-nunito text-[18px]  font-normal tracking-wide leading-5;
   }
   .body-3 {
     @apply font-nunito text-[14px]  font-normal tracking-normal text-greyDrk  leading-4;

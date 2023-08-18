@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { enterOpacity } from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "../context/AppProvider";
 import ModalInpatient from "./ModalInpatient";
+import ModalFacility from "./ModalFacility";
 
 type Props = {};
 
@@ -38,6 +39,9 @@ const ModalContent = () => {
   } = useGlobalContext();
   if (modalTitle === "inpatient") {
     return <ModalInpatient />;
+  }
+  if (modalTitle === "facility") {
+    return <ModalFacility />;
   }
   return <div></div>;
 };

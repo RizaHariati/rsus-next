@@ -68,3 +68,14 @@ export type InpatientType = {
   "img-array": string[];
   fasilitas: string[];
 };
+
+export type FacilityType = {
+  id: string;
+  title: string;
+  img: string;
+  description: string;
+  function: string;
+  poliklinik: string[];
+  category: string;
+  featured: boolean;
+};
