@@ -11,19 +11,18 @@ type Props = {};
 const FindFacility = () => {
   const [resize, setResize] = useState(true);
   return (
-    <div
+    <motion.div
+      drag
+      variants={enterOpacity}
+      initial="initial"
+      animate="animate"
       className={
         resize
           ? " z-20 bg-white bottom-16 w-[450px] right-16 h-24 standard-border p-2 fixed transition-all shadow-md shadow-greyDrk"
           : " z-20 bg-white bottom-16 w-[250px] right-16 h-10 standard-border p-2 fixed transition-all shadow-md shadow-greyDrk"
       }
     >
-      <motion.div
-        drag
-        variants={enterOpacity}
-        initial="initial"
-        animate="animate"
-      >
+      <motion.div>
         <button
           onClick={() => setResize(!resize)}
           className="w-full flex items-center gap-2 text-greyMed1 hover:text-greyBorder transition-all justify-end"
@@ -47,7 +46,7 @@ const FindFacility = () => {
           />
         </form>
       </motion.div>
-    </div>
+    </motion.div>
   );
 };
 

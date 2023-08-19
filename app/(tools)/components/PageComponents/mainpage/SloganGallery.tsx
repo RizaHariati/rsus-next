@@ -43,7 +43,7 @@ const SloganGallery = (props: Props) => {
       </motion.h2>
 
       <div className="w-full max-w-5xl mx-auto overflow-hidden py-10 rounded-sm shadow-sm">
-        <div className="w-full grid grid-cols-5 text-white btn-2-bold bg-accent1  ">
+        <div className="w-full grid grid-cols-5 text-white btn-2-bold bg-accent1 overflow-hidden ">
           {currentGallery.map((item) => {
             return (
               <Slogan
