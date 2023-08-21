@@ -26,18 +26,16 @@ const ModalInpatient = (props: Props) => {
     closeModal,
   } = useGlobalContext();
   return (
-    <>
-      <div className="modal-lg">
-        <h3 className=" col-span-2 font-normal">{modalValue.kelas}</h3>
-        <button className="absolute top-2 right-4" onClick={() => closeModal()}>
-          <FontAwesomeIcon icon={faClose} />
-        </button>
-        <div className="w-full  grid grid-cols-2 gap-3">
-          <ImageSlide imgArray={modalValue["img-array"]} />
-          <Info modalValue={modalValue} />
-        </div>
+    <div className="modal-lg">
+      <h3 className=" col-span-2 font-normal">{modalValue.kelas}</h3>
+      <button className="absolute top-2 right-4" onClick={() => closeModal()}>
+        <FontAwesomeIcon icon={faClose} />
+      </button>
+      <div className="w-full  grid grid-cols-2 gap-3">
+        <ImageSlide imgArray={modalValue["img-array"]} />
+        <Info modalValue={modalValue} />
       </div>
-    </>
+    </div>
   );
 };
 

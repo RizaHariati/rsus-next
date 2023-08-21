@@ -32,7 +32,7 @@ const MainImageAnimated = () => {
       </motion.h1>
       <motion.p
         variants={enterRightVariantChild}
-        className="btn-1 z-30 text-white text-right right-14 w-1/2 top-[75vh] absolute font-light capitalize animate-pulse"
+        className="btn-1 z-30 text-white text-right right-14 w-1/2 top-[75vh] absolute font-light capitalize animate-pulse pt-5"
       >
         <Link href="/about-group" className="btn-1">
           TENTANG RS.URIP SUMOHARJO

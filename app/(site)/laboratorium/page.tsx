@@ -3,7 +3,8 @@ import React from "react";
 import MainImageAnimatedLeft from "../../(tools)/components/PageComponents/MainImageAnimatedLeft";
 import { motion } from "framer-motion";
 import { enterOpacity } from "../../(tools)/framervariants/variants";
-
+import PilihPaket from "@/app/(tools)/components/PageComponents/laboratory/PilihPaket";
+import PilihSatuan from "@/app/(tools)/components/PageComponents/laboratory/PilihSatuan";
 type Props = {};
 const unit = {
   img: "laboratorium",
@@ -19,7 +20,6 @@ const Laboratorium = (props: Props) => {
         id="zero"
         className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1"
       >
-        {/* <ConsultationMenu /> */}
         <MainImageAnimatedLeft
           img={unit.img}
           title={unit.title}
@@ -36,25 +36,14 @@ const Laboratorium = (props: Props) => {
           variants={enterOpacity}
           initial="initial"
           animate="animate"
-          className="absolute bottom-20 right-16 z-10 flex gap-5"
+          className="absolute bottom-14 right-16 z-10 flex gap-5"
         >
           <button className="button-lg">Pilih Test Sendiri</button>
           <button className="button-lg">Pilih Paket</button>
         </motion.div>
       </section>
-
-      <section
-        id="one"
-        className=" bg-pink-300 h-screen w-full z-0 snap-center "
-      >
-        <h2> Main Page</h2>
-      </section>
-      <section
-        id="two"
-        className=" bg-slate-300 h-screen w-full z-0 snap-center"
-      >
-        <h2> Main Page</h2>
-      </section>
+      <PilihPaket />
+      <PilihSatuan />
     </div>
   );
 };

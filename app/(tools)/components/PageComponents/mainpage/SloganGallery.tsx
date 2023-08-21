@@ -39,7 +39,7 @@ const SloganGallery = (props: Props) => {
         whileInView="animate"
         viewport={{ once: true }}
       >
-        Hanya untuk anda
+        Hanya untuk anda kami berikan :
       </motion.h2>
 
       <div className="w-full max-w-5xl mx-auto overflow-hidden py-10 rounded-sm shadow-sm">

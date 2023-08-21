@@ -7,6 +7,7 @@ import { enterOpacity } from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "../context/AppProvider";
 import ModalInpatient from "./ModalInpatient";
 import ModalFacility from "./ModalFacility";
+import ModalPaket from "./ModalPaket";
 
 type Props = {};
 
@@ -42,6 +43,9 @@ const ModalContent = () => {
   }
   if (modalTitle === "facility") {
     return <ModalFacility />;
+  }
+  if (modalTitle === "paketLab") {
+    return <ModalPaket />;
   }
   return <div></div>;
 };

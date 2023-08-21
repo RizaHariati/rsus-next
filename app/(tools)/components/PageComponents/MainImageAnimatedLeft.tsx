@@ -33,7 +33,7 @@ const MainImageAnimatedLeft = ({ img, title, description }: Props) => {
       </motion.h1>
       <motion.p
         variants={enterLeftVariantChild}
-        className="body-2 z-30 text-white text-left left-14 w-3/4 top-[60vh]  absolute font-light leading-normal"
+        className="body-2 z-30 text-white text-left left-14 w-3/4 top-[60vh]  absolute font-light leading-6"
       >
         {description}
       </motion.p>

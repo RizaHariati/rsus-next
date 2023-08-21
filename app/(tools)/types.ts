@@ -78,8 +78,26 @@ export type FacilityType = {
   poliklinik: string[];
   category: string;
   featured: boolean;
+  doctorref: boolean;
+  price: number;
 };
 
 export type CategoryFacilityType = {
   [key: string]: FacilityType[];
+};
+
+export type LabItemType = {
+  id: string;
+  title: string;
+  description?: string;
+  harga?: number;
+  category?: string;
+};
+export type PaketLabType = {
+  id: string;
+  title: string;
+  price: string;
+  img: string;
+  pemeriksaan: LabItemType[];
+  laboratorium: LabItemType[];
 };
