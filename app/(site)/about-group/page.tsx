@@ -6,7 +6,7 @@ import {
   enterTop,
   enterTopChildrenCenter,
 } from "../../(tools)/framervariants/variants";
-import { dataAbout } from "@/app/(tools)/data/dataabout";
+import dataAbout from "@/app/(tools)/data/data_about.json";
 
 type Props = {};
 

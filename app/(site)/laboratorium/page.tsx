@@ -5,6 +5,9 @@ import { motion } from "framer-motion";
 import { enterOpacity } from "../../(tools)/framervariants/variants";
 import PilihPaket from "@/app/(tools)/components/PageComponents/laboratory/PilihPaket";
 import PilihSatuan from "@/app/(tools)/components/PageComponents/laboratory/PilihSatuan";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faArrowAltCircleUp } from "@fortawesome/free-regular-svg-icons";
+import BackToTop from "@/app/(tools)/components/BackToTop";
 type Props = {};
 const unit = {
   img: "laboratorium",
@@ -18,7 +21,7 @@ const Laboratorium = (props: Props) => {
     <div className="page-main-container">
       <section
         id="zero"
-        className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1"
+        className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1 "
       >
         <MainImageAnimatedLeft
           img={unit.img}
@@ -38,12 +41,29 @@ const Laboratorium = (props: Props) => {
           animate="animate"
           className="absolute bottom-14 right-16 z-10 flex gap-5"
         >
-          <button className="button-lg">Pilih Test Sendiri</button>
-          <button className="button-lg">Pilih Paket</button>
+          <button
+            className="button-lg"
+            onClick={() => {
+              const access = document?.getElementById("satuan");
+              access?.scrollIntoView({ behavior: "smooth" });
+            }}
+          >
+            Pilih Test Sendiri
+          </button>
+          <button
+            onClick={() => {
+              const access = document?.getElementById("paket");
+              access?.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="button-lg"
+          >
+            Pilih Paket
+          </button>
         </motion.div>
       </section>
       <PilihPaket />
       <PilihSatuan />
+      <BackToTop />
     </div>
   );
 };

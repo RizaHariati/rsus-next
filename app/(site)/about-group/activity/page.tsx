@@ -1,5 +1,5 @@
 "use client";
-import { dataArticle } from "@/app/(tools)/data/dataarticle";
+import dataArticle from "@/app/(tools)/data/data_article.json";
 import { ArticleType } from "@/app/(tools)/types";
 import dayjs from "dayjs";
 import Image from "next/image";

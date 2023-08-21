@@ -1,7 +1,5 @@
 "use client";
 import React from "react";
-import { motion } from "framer-motion";
-import { enterTitleVariants } from "@/app/(tools)/framervariants/titlevariants";
 import "../../styles/mainpage.css";
 
 import KegiatanRSUS from "@/app/(tools)/components/PageComponents/mainpage/KegiatanRSUS";
@@ -16,17 +14,20 @@ import Link from "next/link";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowRight } from "@fortawesome/free-solid-svg-icons";
 import SloganGallery from "@/app/(tools)/components/PageComponents/mainpage/SloganGallery";
+import BackToTop from "@/app/(tools)/components/BackToTop";
 
 type Props = {};
 
 const MainPage = (props: Props) => {
   return (
     <div className=" page-main-container ">
+      <BackToTop />
       <section
         id="zero"
         className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1"
       >
         <FloatingMenu />
+
         <div className="h-full w-3/12 bg-greyLit relative z-10 ">
           <div className="w-4 h-full bg-accent1 absolute right-0 top-0"></div>
         </div>

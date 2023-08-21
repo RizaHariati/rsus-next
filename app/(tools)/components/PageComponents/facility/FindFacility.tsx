@@ -18,8 +18,8 @@ const FindFacility = () => {
       animate="animate"
       className={
         resize
-          ? " z-20 bg-white bottom-16 w-[450px] right-16 h-24 standard-border p-2 fixed transition-all shadow-md shadow-greyDrk"
-          : " z-20 bg-white bottom-16 w-[250px] right-16 h-10 standard-border p-2 fixed transition-all shadow-md shadow-greyDrk"
+          ? " z-20 bg-white top-1/4 w-[450px] right-16 h-24 standard-border p-2 fixed transition-all shadow-md shadow-greyDrk"
+          : " z-20 bg-white top-1/4 w-[250px] right-16 h-10 standard-border p-2 fixed transition-all shadow-md shadow-greyDrk"
       }
     >
       <motion.div>

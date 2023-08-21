@@ -5,6 +5,7 @@ import FindFacility from "@/app/(tools)/components/PageComponents/facility/FindF
 import dataFacility from "@/app/(tools)/data/data_facility.json";
 import { groupCategoryFacility } from "../../(tools)/utils/groupCategoryFacility";
 import FasilitasGroup from "@/app/(tools)/components/PageComponents/mainpage/FasilitasGroup";
+import BackToTop from "@/app/(tools)/components/BackToTop";
 
 type Props = {};
 
@@ -18,6 +19,7 @@ const Facility = (props: Props) => {
   return (
     <div className="page-main-container">
       <FindFacility />
+      <BackToTop />
       <section
         id="zero"
         className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1"

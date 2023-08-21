@@ -8,7 +8,6 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faChevronDown,
   faChevronUp,
-  faCircle,
   faCircleDot,
 } from "@fortawesome/free-solid-svg-icons";
 
@@ -68,14 +67,14 @@ const PilihSatuan = (props: Props) => {
                   >
                     {tests.map((test) => {
                       return (
-                        <div className=" w-full flex-center-between">
+                        <div className=" w-full flex-center-between hover:opacity-60 active:opacity-0 cursor-pointer transition-all">
                           <div
                             key={test.id}
                             className=" w-full flex-top-left gap-2"
                           >
                             <FontAwesomeIcon
                               icon={faCircleDot}
-                              className="h-4 pt-1 text-greyMed2"
+                              className="h-3 pt-2 text-greyMed2"
                             />
                             <div>
                               <p className=" flex-wrap btn-3-bold">
