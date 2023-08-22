@@ -9,6 +9,9 @@ import ModalInpatient from "./ModalInpatient";
 import ModalFacility from "./ModalFacility";
 import ModalPaket from "./ModalPaket";
 import ModalPoliklinik from "./ModalPoliklinik";
+import ModalAppointment from "./ModalAppointment";
+import ModalRegister from "./ModalRegister";
+import ModalTelemedicine from "./ModalTelemedicine";
 
 type Props = {};
 
@@ -50,6 +53,15 @@ const ModalContent = () => {
   }
   if (modalTitle === "poliklinik") {
     return <ModalPoliklinik />;
+  }
+  if (modalTitle === "appointment") {
+    return <ModalAppointment />;
+  }
+  if (modalTitle === "telemedicine") {
+    return <ModalTelemedicine />;
+  }
+  if (modalTitle === "register") {
+    return <ModalRegister />;
   }
   return <div></div>;
 };

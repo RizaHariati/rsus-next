@@ -45,6 +45,9 @@ export type ConsultationMenuTypes = {
   title: string;
   description: string;
   image: string;
+  modal: string;
+  intro: string[];
+  modal_img?: string;
 };
 
 export type ArticleType = {
@@ -106,17 +109,17 @@ export type DoctorType = {
   id: string;
   nama: string;
   waktu: string;
-  poliklinik: string;
+  poliklinik: { poli_id: string; title: string };
   hari: number[];
   jam: string;
   gender: number;
   on_call: number;
   telemedicine: number;
-  biaya_telemedicine: number;
-  sedang_online: number;
+  biaya_telemedicine?: number;
+  sedang_online?: number;
   biaya_tatapmuka: number;
   kuota: number;
-  note: string;
+  note?: string;
   pengalaman: number;
 };
 

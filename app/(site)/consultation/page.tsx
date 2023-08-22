@@ -6,9 +6,10 @@ import {
   enterOpacity,
   enterOpacityChildren,
 } from "@/app/(tools)/framervariants/variants";
-import { consultationMenu } from "@/app/(tools)/data/datamenu";
+import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 import { ConsultationMenuTypes } from "@/app/(tools)/types";
 import MainImageAnimatedLeft from "../../(tools)/components/PageComponents/MainImageAnimatedLeft";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 type Props = {};
 
@@ -36,6 +37,7 @@ const Consultation = (props: Props) => {
 export default Consultation;
 
 const ConsultationMenu = () => {
+  const { openModal } = useGlobalContext();
   return (
     <motion.div
       variants={enterOpacity}
@@ -43,11 +45,12 @@ const ConsultationMenu = () => {
       animate="animate"
       className="absolute w-[600px] h-auto  top-1/2 -translate-y-1/2  z-20 right-[10%] flex flex-col gap-2 "
     >
-      {consultationMenu.map((item: ConsultationMenuTypes, index: number) => {
+      {dataConsultation.map((item: ConsultationMenuTypes, index: number) => {
         return (
-          <motion.div
+          <motion.button
             variants={enterOpacityChildren}
             key={index}
+            onClick={() => openModal(item.modal, item)}
             className="grid grid-cols-6 w-full h-fit bg-white bg-opacity-100 hover:bg-opacity-80 place-items-center p-1 standard-border transition-all cursor-pointer group"
           >
             <div className=" col-span-1 w-20">
@@ -64,7 +67,7 @@ const ConsultationMenu = () => {
               <h4>{item.title}</h4>
               <p className="body-3">{item.description}</p>
             </div>
-          </motion.div>
+          </motion.button>
         );
       })}
     </motion.div>

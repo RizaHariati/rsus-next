@@ -121,27 +121,3 @@ export const floatingMenu: FloatingMenuType[] = [
     image: "Laboratory.jpg",
   },
 ];
-
-export const consultationMenu: ConsultationMenuTypes[] = [
-  {
-    name: "appointment",
-    title: "janji temu dokter",
-    description:
-      "Cek dokter yang paling sesuai dengan kebutuhan anda. Termasuk cek jadwal, cek antrian hari ini, ketersediaan BPJS dan ketersediaan Telemedicine",
-    image: "Doctor.jpg",
-  },
-  {
-    name: "telemedicine",
-    title: "daftar telemedicine",
-    description:
-      "Pelayanan dari dokter berpengalaman khusus untuk konsultasi jarak jauh via WhatsApp",
-    image: "Online Medical Consultation.jpg",
-  },
-  {
-    name: "registration",
-    title: "daftar pasien baru",
-    description:
-      "Daftarkan diri anda untuk mendapatkan pelayanan terbaik RS Urip Sumoharjo",
-    image: "Sick.jpg",
-  },
-];

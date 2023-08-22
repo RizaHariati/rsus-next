@@ -6,7 +6,7 @@ import {
   enterTopChildren,
 } from "@/app/(tools)/framervariants/variants";
 import Image from "next/image";
-import { dataDirectors } from "@/app/(tools)/data/datadirectors";
+import dataDirectors from "@/app/(tools)/data/data_directors.json";
 
 type Props = {};
 

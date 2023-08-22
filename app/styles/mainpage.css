@@ -22,9 +22,14 @@
   }
 
   /* ----------------------------- MODAL ---------------------------- */
-
-  .modal-lg {
+  .modal {
     @apply absolute left-1/2 -translate-x-1/2  top-1/2 -translate-y-1/2 w-modal_lg h-fit bg-white standard-border;
+  }
+  .modal-lg {
+    @apply modal w-modal_lg;
+  }
+  .modal-xl {
+    @apply modal w-modal_xl;
   }
   .modal-slider-btn {
     @apply absolute top-1/2 -translate-y-1/2 z-20 p-2 px-1 bg-greyMed1  hover:bg-greyMed2 active:bg-white transition-all rounded-sm text-white;

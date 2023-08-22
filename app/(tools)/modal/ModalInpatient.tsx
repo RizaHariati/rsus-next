@@ -16,7 +16,10 @@ import {
 
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { sliderVariants } from "../framervariants/slidervariants";
+import {
+  sliderVariants,
+  sliderVariants2,
+} from "../framervariants/slidervariants";
 
 type Props = {};
 
@@ -52,7 +55,7 @@ const InpatientItems = ({ item, icon, text }: itemProps) => {
       <div className="w-6">
         <FontAwesomeIcon icon={icon} className="w-5 " />
       </div>
-      <p className="btn-4">
+      <p className="btn-5 font-medium">
         {text} : {item}
       </p>
     </div>
@@ -85,9 +88,9 @@ const ImageSlide = ({ imgArray }: ImageProps) => {
 
   return (
     <div className="h-[350px] w-full rounded-sm overflow-hidden relative z-0 ">
-      <AnimatePresence initial={false} mode="sync">
+      <AnimatePresence initial={false} mode="popLayout">
         <motion.div
-          variants={sliderVariants}
+          variants={sliderVariants2}
           initial="initial"
           animate="animate"
           exit="exit"
@@ -107,7 +110,7 @@ const ImageSlide = ({ imgArray }: ImageProps) => {
         {position < imgArray.length - 1 && (
           <button
             onClick={() => movePosition(1)}
-            className="slider-btn right-2"
+            className="modal-slider-btn right-2"
           >
             <FontAwesomeIcon icon={faChevronRight} />
           </button>
@@ -115,7 +118,7 @@ const ImageSlide = ({ imgArray }: ImageProps) => {
         {position > 0 && (
           <button
             onClick={() => movePosition(-1)}
-            className="slider-btn left-2"
+            className="modal-slider-btn left-2"
           >
             <FontAwesomeIcon icon={faChevronLeft} />
           </button>
