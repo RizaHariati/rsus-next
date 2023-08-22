@@ -1,9 +1,4 @@
-import {
-  ConsultationMenuTypes,
-  DataMenuType,
-  FloatingMenuType,
-  SubDataType,
-} from "../types";
+import { DataMenuType, FloatingMenuType } from "../types";
 
 export const datamenu: DataMenuType[] = [
   {
