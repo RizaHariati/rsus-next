@@ -30,6 +30,8 @@ const PilihPaket = (props: Props) => {
           </div>
           <div className=" h-72 w-full overflow-hidden">
             <Image
+              rel="preload"
+              placeholder="empty"
               src="/images/slides/webinar.png"
               alt="webinar"
               width={500}

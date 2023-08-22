@@ -99,6 +99,7 @@ const NavbarLinks = (props: Props) => {
       <LinkProfile />
       <LinkAntrian />
       <Link
+        rel="preload"
         href="/mainpage"
         className="navbar-link"
         id="mainpage"

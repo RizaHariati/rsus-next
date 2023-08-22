@@ -32,7 +32,6 @@ export const getCompleteTests = () => {
   });
 
   let allNewTests: { [key: string]: LabItemType[] } = {};
-  console.log({ newData });
   newData.map((item) => {
     const newCategory = item.category?.toLowerCase()!;
     if (!allNewTests[newCategory]) {

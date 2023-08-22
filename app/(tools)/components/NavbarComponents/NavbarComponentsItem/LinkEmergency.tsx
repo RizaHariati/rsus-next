@@ -19,7 +19,7 @@ const LinkEmergency = (props: Props) => {
   return (
     <div className="relative h-full ">
       <button
-        id="emergency"
+        id="darurat"
         onClick={(e) => toggleMenu(e.currentTarget.id)}
         className="navbar-link text-redBase hover:text-red-700 "
       >
@@ -30,7 +30,7 @@ const LinkEmergency = (props: Props) => {
       {/* DROP MENU EMERGENCY */}
       <div
         className={
-          menu_id != "emergency"
+          menu_id != "darurat"
             ? "emergency-menu-container-hidden"
             : "emergency-menu-container "
         }

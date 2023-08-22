@@ -18,13 +18,15 @@ const PaketItem = ({ item }: ItemProps) => {
       className="standard-border flex items-start justify-between p-2 gap-4 text-greyDrk cursor-pointer bg-white hover:bg-greyBorder opacity-100 hover:opacity-50 active:bg-accent1 transition-all"
       onClick={() => openModal("paketLab", item)}
     >
-      <div className="w-14 h-14 overflow-hidden">
+      <div className="w-14 h-14 overflow-hidden  aspect-square">
         <Image
+          rel="preload"
+          placeholder="empty"
           src={`/images/icons/laboratory-icons/${item.img}.jpg`}
           alt={item.img}
           width={80}
           height={80}
-          className="object-center object-fit w-full h-auto"
+          className="object-center object-fit w-full h-auto  aspect-square"
           loading="lazy"
         />
       </div>

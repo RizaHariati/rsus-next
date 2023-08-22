@@ -101,3 +101,28 @@ export type PaketLabType = {
   pemeriksaan: LabItemType[];
   laboratorium: LabItemType[];
 };
+
+export type DoctorType = {
+  id: string;
+  nama: string;
+  waktu: string;
+  poliklinik: string;
+  hari: number[];
+  jam: string;
+  gender: number;
+  on_call: number;
+  telemedicine: number;
+  biaya_telemedicine: number;
+  sedang_online: number;
+  biaya_tatapmuka: number;
+  kuota: number;
+  note: string;
+  pengalaman: number;
+};
+
+export type PoliklinikType = {
+  id: string;
+  title: string;
+  img: string;
+  description: string[];
+};

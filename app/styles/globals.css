@@ -88,6 +88,9 @@
   .button-lg {
     @apply btn-2 bg-white bg-opacity-100 p-5 py-2 rounded-sm w-72 hover:bg-opacity-70 transition-all;
   }
+  .button-greenUrip {
+    @apply btn-2-bold w-40 bg-greenUrip border border-greenUrip hover:bg-white text-white hover:text-greenUrip  rounded-sm transition-all;
+  }
   .footnote-1 {
     @apply font-nunito text-[12px] leading-3 text-greyMed1;
   }
@@ -99,5 +102,8 @@
   }
   .standard-border {
     @apply border border-greyBorder rounded-sm bg-white overflow-hidden;
+  }
+  .custom-scrollbar {
+    @apply overflow-y-scroll scrollbar-thin scrollbar-track-greyLit scrollbar-thumb-greyBorder;
   }
 }

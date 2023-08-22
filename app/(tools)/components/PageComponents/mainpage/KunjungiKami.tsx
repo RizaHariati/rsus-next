@@ -10,7 +10,7 @@ type Props = {};
 const KunjungiKami = (props: Props) => {
   return (
     <section
-      id="two"
+      id="location"
       className=" bg-greyLit h-fit w-full z-0 snap-center pb-10 pt-5"
     >
       <motion.h2

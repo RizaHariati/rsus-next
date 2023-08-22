@@ -38,6 +38,8 @@ const MainImageAnimatedLeft = ({ img, title, description }: Props) => {
         {description}
       </motion.p>
       <Image
+        rel="preload"
+        placeholder="empty"
         src={`/images/pages/${img}.jpg`}
         alt="mainimage"
         height={1200}

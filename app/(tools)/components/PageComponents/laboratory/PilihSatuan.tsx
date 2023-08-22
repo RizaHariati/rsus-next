@@ -67,7 +67,10 @@ const PilihSatuan = (props: Props) => {
                   >
                     {tests.map((test) => {
                       return (
-                        <div className=" w-full flex-center-between hover:opacity-60 active:opacity-0 cursor-pointer transition-all">
+                        <div
+                          key={test.id}
+                          className=" w-full flex-center-between hover:opacity-60 active:opacity-0 cursor-pointer transition-all"
+                        >
                           <div
                             key={test.id}
                             className=" w-full flex-top-left gap-2"

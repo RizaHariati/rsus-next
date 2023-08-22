@@ -8,12 +8,13 @@ import { useGlobalContext } from "../context/AppProvider";
 import ModalInpatient from "./ModalInpatient";
 import ModalFacility from "./ModalFacility";
 import ModalPaket from "./ModalPaket";
+import ModalPoliklinik from "./ModalPoliklinik";
 
 type Props = {};
 
 const ModalContainer = (props: Props) => {
   const {
-    state: { showModal, modalValue },
+    state: { showModal },
   } = useGlobalContext();
   return (
     <AnimatePresence>
@@ -46,6 +47,9 @@ const ModalContent = () => {
   }
   if (modalTitle === "paketLab") {
     return <ModalPaket />;
+  }
+  if (modalTitle === "poliklinik") {
+    return <ModalPoliklinik />;
   }
   return <div></div>;
 };

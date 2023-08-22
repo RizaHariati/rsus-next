@@ -39,6 +39,8 @@ const MainImageAnimated = () => {
         </Link>
       </motion.p>
       <Image
+        rel="preload"
+        placeholder="empty"
         src="/images/pages/main-image-edited-01.jpg"
         alt="mainimage"
         height={1200}
