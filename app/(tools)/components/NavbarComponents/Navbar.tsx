@@ -44,10 +44,10 @@ const Navbar = ({ scrollTop }: MainProps) => {
 export default Navbar;
 
 const MainLogo = (props: Props) => {
-  const { toggleMenu } = useGlobalContext();
+  const { toggleMenuNavbar } = useGlobalContext();
 
   return (
-    <div id="home" onClick={(e) => toggleMenu(e.currentTarget.id)}>
+    <div id="home" onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}>
       <Link href="/" className="navbar-logo-container">
         <Image
           src="/images/navbar/main-logo.png"
@@ -90,7 +90,7 @@ const NavbarMenu = (props: Props) => {
 
 const NavbarLinks = (props: Props) => {
   const {
-    toggleMenu,
+    toggleMenuNavbar,
     state: { menu_id },
   } = useGlobalContext();
   return (
@@ -103,7 +103,7 @@ const NavbarLinks = (props: Props) => {
         href="/mainpage"
         className="navbar-link"
         id="mainpage"
-        onClick={(e) => toggleMenu(e.currentTarget.id)}
+        onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
       >
         <FontAwesomeIcon icon={faHome} className="navbar-link-icon" />
         <p>Beranda</p>

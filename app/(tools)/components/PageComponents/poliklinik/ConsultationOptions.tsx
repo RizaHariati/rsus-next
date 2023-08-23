@@ -3,10 +3,14 @@ import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { enterOpacity } from "@/app/(tools)/framervariants/variants";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import dataConsultation from "@/app/(tools)/data/data_consultation.json";
+import Link from "next/link";
 
 type Props = {};
 
 const ConsultationOptions = () => {
+  const { toggleMenuNavbar, openModal } = useGlobalContext();
   return (
     <div className="absolute z-20 bg-white top-1/4 w-[450px] right-16 h-fit standard-border p-2">
       <p className="text-center btn-3-bold">Buat janji temu dokter</p>
@@ -21,7 +25,19 @@ const ConsultationOptions = () => {
         animate="animate"
         className="flex gap-2"
       >
-        <button className="floating-link group p-1">
+        <Link
+          href="/consultation"
+          className="floating-link group p-1"
+          onClick={() => {
+            toggleMenuNavbar(null);
+            openModal(
+              "appointment",
+              dataConsultation.filter(
+                (consultationItem) => consultationItem.name === "appointment"
+              )[0]
+            );
+          }}
+        >
           <Image
             rel="preload"
             placeholder="empty"
@@ -35,8 +51,20 @@ const ConsultationOptions = () => {
           <p className=" font-nunito uppercase font-normal text-[16px] tracking-wide ">
             Janji Temu Dokter
           </p>
-        </button>
-        <button className="floating-link group p-1">
+        </Link>
+        <Link
+          className="floating-link group p-1"
+          href="/consultation"
+          onClick={() => {
+            toggleMenuNavbar(null);
+            openModal(
+              "telemedicine",
+              dataConsultation.filter(
+                (consultationItem) => consultationItem.name === "telemedicine"
+              )[0]
+            );
+          }}
+        >
           <Image
             rel="preload"
             placeholder="empty"
@@ -50,7 +78,7 @@ const ConsultationOptions = () => {
           <p className=" font-nunito uppercase font-normal text-[16px] tracking-wide ">
             Telemedicine
           </p>
-        </button>
+        </Link>
       </motion.div>
     </div>
   );
