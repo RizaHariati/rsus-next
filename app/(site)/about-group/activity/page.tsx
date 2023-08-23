@@ -68,6 +68,9 @@ const ArticleContainer = ({ category }: ArticleProps) => {
               >
                 <div>
                   <Image
+                    rel="preload"
+                    placeholder="empty"
+                    loading="lazy"
                     src={`/images/news/${articleItem.img}.jpg`}
                     alt={articleItem.img}
                     height={400}

@@ -12,7 +12,7 @@ type Props = {};
 
 const LinkEmergency = (props: Props) => {
   const {
-    toggleMenu,
+    toggleMenuNavbar,
     state: { menu_id },
   } = useGlobalContext();
 
@@ -20,7 +20,7 @@ const LinkEmergency = (props: Props) => {
     <div className="relative h-full ">
       <button
         id="darurat"
-        onClick={(e) => toggleMenu(e.currentTarget.id)}
+        onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
         className="navbar-link text-redBase hover:text-red-700 "
       >
         <FontAwesomeIcon icon={faAmbulance} className="navbar-link-icon" />

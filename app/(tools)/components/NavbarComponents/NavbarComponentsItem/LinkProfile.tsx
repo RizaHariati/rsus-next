@@ -15,7 +15,7 @@ type Props = {};
 
 const LinkProfile = () => {
   const {
-    toggleMenu,
+    toggleMenuNavbar,
     state: { menu_id, logged_in },
   } = useGlobalContext();
 
@@ -24,7 +24,7 @@ const LinkProfile = () => {
       {logged_in && (
         <button
           id="profile"
-          onClick={(e) => toggleMenu(e.currentTarget.id)}
+          onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
           className="navbar-link  "
         >
           <FontAwesomeIcon icon={faPerson} className="navbar-link-icon" />
@@ -34,7 +34,7 @@ const LinkProfile = () => {
       {!logged_in && (
         <button
           id="login"
-          onClick={(e) => toggleMenu(e.currentTarget.id)}
+          onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
           className="navbar-link  "
         >
           <FontAwesomeIcon icon={faDoorOpen} className="navbar-link-icon" />

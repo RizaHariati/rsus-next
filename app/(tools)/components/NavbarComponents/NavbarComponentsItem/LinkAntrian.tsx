@@ -13,14 +13,14 @@ type Props = {};
 
 const LinkAntrian = () => {
   const {
-    toggleMenu,
+    toggleMenuNavbar,
     state: { menu_id },
   } = useGlobalContext();
   return (
     <div className="relative h-full ">
       <button
         id="antrian"
-        onClick={(e) => toggleMenu(e.currentTarget.id)}
+        onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
         className="navbar-link  "
       >
         <FontAwesomeIcon icon={faPeopleGroup} className="navbar-link-icon" />

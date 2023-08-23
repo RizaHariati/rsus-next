@@ -9,12 +9,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
+import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 
 type Props = {};
 
 const LinkMainMenu = (props: Props) => {
   const {
-    toggleMenu,
+    toggleMenuNavbar,
     state: { menu_id },
   } = useGlobalContext();
 
@@ -28,7 +29,10 @@ const LinkMainMenu = (props: Props) => {
   };
   return (
     <div className="flex-center-center text-link w-10 h-full relative ">
-      <button id="main-menu" onClick={(e) => toggleMenu(e.currentTarget.id)}>
+      <button
+        id="main-menu"
+        onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
+      >
         <FontAwesomeIcon icon={faBars} className="navbar-reg-icon" />
       </button>
 
@@ -59,6 +63,7 @@ const LinkMainMenu = (props: Props) => {
                   toggleItem={toggleItem}
                   itemId={itemId}
                   key={menu.title}
+                  link={menu.link}
                 />
               );
             } else {
@@ -70,7 +75,7 @@ const LinkMainMenu = (props: Props) => {
                   <Link
                     href={menu.link}
                     onClick={() => {
-                      toggleMenu(null);
+                      toggleMenuNavbar(null);
                       toggleItem(null);
                     }}
                     className="main-menu-item pt-3"
@@ -93,10 +98,12 @@ type SubProps = {
   menu: DataMenuType;
   toggleItem: (id: string | null) => void;
   itemId: string | null;
+  link: string;
 };
-const SubMenu = ({ menu, toggleItem, itemId }: SubProps) => {
+const SubMenu = ({ menu, toggleItem, itemId, link }: SubProps) => {
   const {
-    toggleMenu,
+    toggleMenuNavbar,
+    openModal,
     state: { menu_id },
   } = useGlobalContext();
   return (
@@ -130,10 +137,19 @@ const SubMenu = ({ menu, toggleItem, itemId }: SubProps) => {
               className="bg-greyBorder h-12 flex items-center justify-center px-2"
             >
               <Link
-                href={item.link}
+                href={item.link ? item.link : link}
                 onClick={() => {
-                  toggleMenu(null);
+                  toggleMenuNavbar(null);
                   toggleItem(null);
+                  if (!item.link) {
+                    openModal(
+                      item.name,
+                      dataConsultation.filter(
+                        (consultationItem) =>
+                          consultationItem.name === item.name
+                      )[0]
+                    );
+                  }
                 }}
                 className="text-[14px] main-menu-item pt-3 text-center "
               >

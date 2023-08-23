@@ -4,7 +4,7 @@ import { AppState } from "./interfaces";
 export type AppContextProps = {
   state: AppState;
   dispatch: ({ type }: { type: string; payload?: any }) => void;
-  toggleMenu: (id: string | null) => void;
+  toggleMenuNavbar: (id: string | null) => void;
   openModal: (title: string, value: any) => void;
   closeModal: () => void;
 };

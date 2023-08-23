@@ -28,6 +28,8 @@ const Team = (props: Props) => {
           className="absolute w-full h-full right-0 z-0 object-cover"
         >
           <Image
+            rel="preload"
+            placeholder="empty"
             src="/images/pages/our-team.jpg"
             alt="our-team"
             height={1000}
@@ -60,12 +62,14 @@ const Team = (props: Props) => {
             >
               {item.img && (
                 <Image
+                  rel="preload"
+                  placeholder="empty"
+                  loading="lazy"
                   src={`/images/pages/${item.img}.jpg`}
                   alt="our-team"
                   height={400}
                   width={300}
                   className=" object-cover h-full w-full z-40   "
-                  priority
                 />
               )}
             </motion.div>

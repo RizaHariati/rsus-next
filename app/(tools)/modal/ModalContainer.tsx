@@ -60,7 +60,7 @@ const ModalContent = () => {
   if (modalTitle === "telemedicine") {
     return <ModalTelemedicine />;
   }
-  if (modalTitle === "register") {
+  if (modalTitle === "registration") {
     return <ModalRegister />;
   }
   return <div></div>;

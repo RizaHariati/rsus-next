@@ -12,12 +12,12 @@ interface Props {
 export const AppProvider = ({ children }: Props) => {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  const toggleMenu = (id: string | null) => {
+  const toggleMenuNavbar = (id: string | null) => {
     dispatch({ type: "TOGGLE_MENU", payload: id });
   };
 
   const openModal = (modalTitle: string, modalValue: any) => {
-    toggleMenu(null);
+    toggleMenuNavbar(null);
     dispatch({ type: "OPEN_MODAL", payload: { modalTitle, modalValue } });
   };
 
@@ -27,7 +27,7 @@ export const AppProvider = ({ children }: Props) => {
   const value = {
     state,
     dispatch,
-    toggleMenu,
+    toggleMenuNavbar,
     openModal,
     closeModal,
   };

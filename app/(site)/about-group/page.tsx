@@ -28,6 +28,8 @@ const AboutGroup = (props: Props) => {
           className="absolute w-full h-full right-1/2  z-0 object-cover"
         >
           <Image
+            rel="preload"
+            placeholder="empty"
             src="/images/pages/rsus.jpg"
             alt="mainimage"
             height={1200}
