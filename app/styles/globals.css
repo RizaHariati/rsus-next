@@ -109,4 +109,10 @@
   .custom-scrollbar {
     @apply overflow-y-scroll scrollbar-thin scrollbar-track-greyLit scrollbar-thumb-greyBorder;
   }
+  .sub-form {
+    @apply w-full text-left relative;
+  }
+  .active-input {
+    @apply standard-border bg-white w-full h-10 outline-none p-2 cursor-pointer;
+  }
 }

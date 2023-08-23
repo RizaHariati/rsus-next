@@ -2,11 +2,7 @@
 import React from "react";
 
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import {
-  PatientFormType,
-  PatientType,
-  PersonalItemType,
-} from "@/app/(tools)/types";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faDoorOpen, faPerson } from "@fortawesome/free-solid-svg-icons";
 import {
@@ -70,29 +66,27 @@ const LinkProfile = () => {
           </div>
         </div>
         <div className="grid grid-cols-3 col-start-1 gap-2 mb-2">
-          {Object.entries(patientFormInput.profile).map(
-            ([patientKey, patient]) => {
-              return (
-                <div
-                  key={patient.id}
-                  className={
-                    patient.id === "profil_1"
-                      ? "w-full flex flex-col"
-                      : "w-full flex flex-col"
-                  }
-                >
-                  <p className="body-2 ">{patient.title}</p>
-                  <p className="body-2 form-regular">
-                    {typeof samplePatient.profile[patientKey] === "string"
-                      ? samplePatient.profile[patientKey]
-                      : !samplePatient.profile[patientKey]
-                      ? "wanita"
-                      : "pria"}
-                  </p>
-                </div>
-              );
-            }
-          )}
+          {Object.entries(patientFormInput).map(([patientKey, patient]) => {
+            return (
+              <div
+                key={patient.id}
+                className={
+                  patient.id === "profil_1"
+                    ? "w-full flex flex-col"
+                    : "w-full flex flex-col"
+                }
+              >
+                <p className="body-2 ">{patient.title}</p>
+                <p className="body-2 form-regular">
+                  {typeof samplePatient.profile[patientKey] === "string"
+                    ? samplePatient.profile[patientKey]
+                    : !samplePatient.profile[patientKey]
+                    ? "wanita"
+                    : "pria"}
+                </p>
+              </div>
+            );
+          })}
           {samplePatient.bpjs && (
             <div className="mt-2">
               <div className="w-full flex flex-col">

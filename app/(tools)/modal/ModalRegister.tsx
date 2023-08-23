@@ -2,14 +2,11 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import {
-  ConsultationMenuTypes,
-  FormProfileType,
-  PatientFormType,
-} from "../types";
+import { ConsultationMenuTypes } from "../types";
 
 import { motion } from "framer-motion";
 import { enterTop } from "../framervariants/variants";
+import { patientFormInput } from "../utils/forms/patientFormInput";
 
 type Props = {};
 
@@ -38,28 +35,60 @@ const ModalRegister = (props: Props) => {
           );
         })}
       </article>
-      <article className="w-2/3 flex flex-col h-16">
-        <p className="btn-3-bold">tanggal daftar pasien</p>
-        <div className="standard-border">
-          <p className="btn-3 p-2">DD/MM/YYYY</p>
-        </div>
-      </article>
-      <article className="grid grid-cols-4">
-        <div>all forms</div>
-      </article>
-      <div className=" w-full flex items-center justify-end gap-3 pt-5 ">
-        <button className="button-greenUrip">Hapus</button>
-        <button
-          className="button-greenUrip"
-          onClick={() => {
-            closeModal();
-          }}
-        >
-          Batal
-        </button>
-      </div>
+      <form>
+        <InputTanggalDaftar />
+        <article className="grid grid-cols-4 gap-2 pt-2">
+          {Object.entries(patientFormInput)
+            .filter(([key, _]) => key !== "register_date")
+            .map(([_, values]) => {
+              return (
+                <div
+                  id={values.id}
+                  className={
+                    values.col_width
+                      ? "col-span-2 sub-form group"
+                      : "col-span-1 sub-form group"
+                  }
+                >
+                  <p>{values.title}</p>
+                  <input
+                    placeholder={values.placeholder}
+                    className="active-input"
+                  />
+                  <div className="active-input absolute -top-5 left-5 hidden group-hover:block group:hidden group-active:hidden">
+                    <p>contoh : {values.sample_value}</p>
+                  </div>
+                </div>
+              );
+            })}
+        </article>
+        <article className=" w-full flex items-center justify-end gap-3 pt-5 ">
+          <button className="button-greenUrip">Hapus</button>
+          <button
+            className="button-greenUrip"
+            onClick={() => {
+              closeModal();
+            }}
+          >
+            Daftarkan
+          </button>
+        </article>
+      </form>
     </div>
   );
 };
 
 export default ModalRegister;
+
+const InputTanggalDaftar = () => {
+  return (
+    <article className="w-1/2 flex flex-col h-16">
+      <p className="btn-3-bold">{patientFormInput["register_date"].title}</p>
+      <div className="standard-border">
+        <p className="btn-3 p-2">
+          {patientFormInput["register_date"].placeholder}
+        </p>
+      </div>
+    </article>
+  );
+};

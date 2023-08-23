@@ -1,6 +1,7 @@
-import { PatientFormType, PatientType } from "../../types";
+import { PatientType } from "../../types";
 
 export const samplePatient: PatientType = {
+  login: true,
   registered: true,
   register_date: "17/08/2023",
   medical_record: "US4234123398",

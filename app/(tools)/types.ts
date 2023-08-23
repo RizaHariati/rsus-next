@@ -4,9 +4,9 @@ export type PersonalItemType = {
   title: string;
   placeholder: string;
   col_width?: number;
-  name: string;
 };
 export type FormProfileType = {
+  register_date: PersonalItemType;
   name: PersonalItemType;
   NIK: PersonalItemType;
   address: PersonalItemType;
@@ -15,27 +15,23 @@ export type FormProfileType = {
   phone: PersonalItemType;
 };
 
-export type PatientFormType = {
-  register_date?: PersonalItemType;
-  profile: FormProfileType;
-};
-
-export interface PatientProfileType {
+export type PatientProfileType = {
   name: string;
   NIK: string;
   address: string;
   sex: boolean;
   birthdate: string;
   phone: string;
-}
-export interface PatientType {
+};
+export type PatientType = {
+  login: boolean;
   registered: boolean;
   register_date: string;
-  medical_record?: string;
+  medical_record: string;
   profile: { [key: string]: any };
   bpjs: boolean;
   bpjs_number?: string;
-}
+};
 
 export type SubDataType = {
   name: string;
