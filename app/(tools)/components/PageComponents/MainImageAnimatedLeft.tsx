@@ -6,6 +6,7 @@ import {
   enterLeftVariant,
   enterLeftVariantChild,
 } from "@/app/(tools)/framervariants/variants";
+import myImageLoader from "@/loader";
 
 type Props = {
   img: string;
@@ -38,6 +39,7 @@ const MainImageAnimatedLeft = ({ img, title, description }: Props) => {
         {description}
       </motion.p>
       <Image
+        loader={myImageLoader}
         rel="preload"
         placeholder="empty"
         src={`/images/pages/${img}.jpg`}

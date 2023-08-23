@@ -59,7 +59,7 @@ export const FasilitasUnitwide = ({ facility }: Props) => {
           loading="lazy"
         />
       </div>
-      <div className=" col-span-5 pt-3">
+      <div className=" col-span-5 pt-3 text-left">
         <h4 className="text-left mb-2">{facility.title}</h4>
         <p className="body-3 leading-normal">
           {facility.description.slice(0, 200)}... (lanjut)

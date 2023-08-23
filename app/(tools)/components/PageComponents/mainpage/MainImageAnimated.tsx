@@ -8,6 +8,7 @@ import {
   enterRightVariant,
   enterRightVariantChild,
 } from "@/app/(tools)/framervariants/variants";
+import myImageLoader from "@/loader";
 
 type Props = {};
 
@@ -39,6 +40,7 @@ const MainImageAnimated = () => {
         </Link>
       </motion.p>
       <Image
+        loader={myImageLoader}
         rel="preload"
         placeholder="empty"
         src="/images/pages/main-image-edited-01.jpg"

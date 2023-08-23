@@ -43,6 +43,7 @@ const ModalRegister = (props: Props) => {
             .map(([_, values]) => {
               return (
                 <div
+                  key={values.id}
                   id={values.id}
                   className={
                     values.col_width

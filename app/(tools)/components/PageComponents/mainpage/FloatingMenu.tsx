@@ -10,7 +10,7 @@ import { enterMiddleVariant } from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 const FloatingMenu = () => {
-  const { toggleMenu } = useGlobalContext();
+  const { toggleMenuNavbar } = useGlobalContext();
   return (
     <motion.div
       variants={enterMiddleVariant}
@@ -25,7 +25,7 @@ const FloatingMenu = () => {
               href={item.link}
               className="floating-link group"
               key={item.title}
-              onClick={() => toggleMenu(null)}
+              onClick={() => toggleMenuNavbar(null)}
             >
               <Image
                 rel="preload"
