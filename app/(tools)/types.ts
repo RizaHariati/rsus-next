@@ -1,9 +1,12 @@
 export type PersonalItemType = {
-  id: number;
-  value: string | boolean | number;
+  id: string;
+  sample_value: any;
   title: string;
+  placeholder: string;
+  col_width?: number;
+  name: string;
 };
-export type PatientPersonalType = {
+export type FormProfileType = {
   name: PersonalItemType;
   NIK: PersonalItemType;
   address: PersonalItemType;
@@ -11,13 +14,28 @@ export type PatientPersonalType = {
   birthdate: PersonalItemType;
   phone: PersonalItemType;
 };
-export type PatientType = {
+
+export type PatientFormType = {
+  register_date?: PersonalItemType;
+  profile: FormProfileType;
+};
+
+export interface PatientProfileType {
+  name: string;
+  NIK: string;
+  address: string;
+  sex: boolean;
+  birthdate: string;
+  phone: string;
+}
+export interface PatientType {
   registered: boolean;
+  register_date: string;
   medical_record?: string;
-  profile: PatientPersonalType;
+  profile: { [key: string]: any };
   bpjs: boolean;
   bpjs_number?: string;
-};
+}
 
 export type SubDataType = {
   name: string;

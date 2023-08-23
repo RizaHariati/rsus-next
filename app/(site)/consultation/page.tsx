@@ -60,12 +60,12 @@ const ConsultationMenu = () => {
                 height={1200}
                 width={1200}
                 className=" object-cover w-full z-10 h-full right-0 top-0 object-center opacity-100 group-hover:opacity-50"
-                priority
+                loading="lazy"
               />
             </div>
             <div className=" col-span-5 flex-top-left flex-col">
-              <h4>{item.title}</h4>
-              <p className="body-3">{item.description}</p>
+              <h4 className=" text-left">{item.title}</h4>
+              <p className="body-3 text-left">{item.description}</p>
             </div>
           </motion.button>
         );

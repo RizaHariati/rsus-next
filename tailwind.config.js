@@ -13,14 +13,14 @@ module.exports = {
 
     extend: {
       width: {
-        modal_xl: "1200px",
+        modal_xl: "1240px",
         modal_lg: "1000px",
         modal_md: "500px",
         modal_sm: "350px",
       },
       maxWidth: {
         uripMax: "1440px",
-        modal_xl: "1200px",
+        modal_xl: "1240px",
         modal_lg: "1000px",
       },
       backgroundImage: {

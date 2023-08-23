@@ -6,6 +6,9 @@
   body {
     @apply h-full min-h-screen bg-greyLit text-greyDrk scroll-smooth;
   }
+  mark {
+    @apply bg-white;
+  }
   h1 {
     @apply font-oswald text-[40px] tracking-[2px] uppercase font-light shadow-black drop-shadow-sm;
   }

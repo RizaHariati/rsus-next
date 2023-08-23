@@ -28,6 +28,9 @@ const FloatingMenu = () => {
               onClick={() => toggleMenu(null)}
             >
               <Image
+                rel="preload"
+                placeholder="empty"
+                loading="lazy"
                 src={`/images/icons/mainpage-icons/${item.image}`}
                 height={100}
                 width={100}

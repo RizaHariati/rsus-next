@@ -24,6 +24,9 @@ const KunjungiKami = (props: Props) => {
       <div className="flex h-[400px] w-full ">
         <div className="h-full w-full bg-white">
           <Image
+            rel="preload"
+            placeholder="empty"
+            loading="lazy"
             src={`/images/pages/rsus-real.png`}
             alt="rsus"
             height={600}

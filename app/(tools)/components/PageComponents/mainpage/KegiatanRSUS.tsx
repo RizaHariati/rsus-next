@@ -83,6 +83,8 @@ const KegiatanRSUS = (props: Props) => {
                   >
                     <div className="w-auto h-56 overflow-hidden">
                       <Image
+                        rel="preload"
+                        placeholder="empty"
                         src={`/images/news/${article.img}.jpg`}
                         alt={article.img}
                         height={220}

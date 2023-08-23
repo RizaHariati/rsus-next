@@ -138,11 +138,14 @@ const FindSupportingDoctors = ({ poliInfo }: FacilityProps) => {
               className="flex flex-col items-center justify-start"
             >
               <Image
+                rel="preload"
+                placeholder="empty"
                 src={`/images/doctors/${image}.jpg`}
                 alt={image}
                 width={50}
                 height={50}
                 className="w-20 h-20 rounded-full"
+                loading="lazy"
               />
               <p className="body-4 w-20 flex flex-wrap text-center">
                 {item.nama}

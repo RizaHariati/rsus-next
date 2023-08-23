@@ -81,9 +81,11 @@ const Slogan = ({ s1, s2, img, accentA, accentB }: SloganProps) => {
         whileInView="animate"
       >
         <Image
+          rel="preload"
+          placeholder="empty"
+          loading="lazy"
           src={`/images/mainpage-gallery/${img ? img : "img-gallery (1)"}.jpg`}
           alt="img-gallery"
-          loading="lazy"
           height={300}
           width={300}
           className="h-full w-full object-cover object-center"
@@ -111,6 +113,8 @@ const Slogan = ({ s1, s2, img, accentA, accentB }: SloganProps) => {
           >
             {img ? (
               <Image
+                rel="preload"
+                placeholder="empty"
                 src={`/images/mainpage-gallery/${img}.jpg`}
                 alt="img-gallery"
                 loading="lazy"
