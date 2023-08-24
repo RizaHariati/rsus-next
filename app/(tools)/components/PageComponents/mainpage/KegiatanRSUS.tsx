@@ -48,10 +48,7 @@ const KegiatanRSUS = (props: Props) => {
     }
   };
   return (
-    <section
-      id="one"
-      className=" bg-white h-screen w-full z-0 snap-center pt-16"
-    >
+    <section id="one" className=" bg-white h-fit w-full z-0 snap-center pt-16">
       <motion.h2
         variants={enterTitleVariants}
         initial="initial"

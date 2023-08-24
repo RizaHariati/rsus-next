@@ -12,6 +12,7 @@ import ModalPoliklinik from "./ModalPoliklinik";
 import ModalAppointment from "./ModalAppointment";
 import ModalRegister from "./ModalRegister";
 import ModalTelemedicine from "./ModalTelemedicine";
+import ModalDoctorDetail from "./ModalDoctorDetail";
 
 type Props = {};
 
@@ -62,6 +63,9 @@ const ModalContent = () => {
   }
   if (modalTitle === "registration") {
     return <ModalRegister />;
+  }
+  if (modalTitle === "doctordetail") {
+    return <ModalDoctorDetail />;
   }
   return <div></div>;
 };

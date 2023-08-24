@@ -77,7 +77,9 @@ const ModalTelemedicine = (props: Props) => {
           </mark>
         </article>
         <article>
-          <h4 className="text-left">Beberapa dokter kami</h4>
+          <h4 className="text-left mb-2">
+            Dokter kami yang melayani Telemedicine
+          </h4>
           <div className=" grid grid-cols-2 w-full gap-2">
             {randomizeDoctor().map((item: DoctorType, index: number) => {
               const image: string =

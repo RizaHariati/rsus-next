@@ -48,7 +48,7 @@ const AboutGroup = (props: Props) => {
           variants={enterTopChildrenCenter}
           className="absolute w-1/2 top-1/2 right-1/2 body-2 mx-auto text-center text-white  font-light z-20 "
         >
-          RS Urip Sumoharjo Merupakan RS Swasta dengan semangat Islami, yang
+          RS Urip Sumoharjo Merupakan RS Swasta Islam di BandarLampung, yang
           menyediakan pelayanan kesehatan untuk semua kalangan sebagai bagian
           dari rahmat untuk alam semesta. Telah beroperasi sejak tanggal 10
           September 2001 dan sesuai dengan Keputusan Menteri Kesehatan RI No.
