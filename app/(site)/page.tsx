@@ -8,11 +8,12 @@ export default function Home() {
     setTimeout(() => {
       router.push("/mainpage");
     }, 50);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (
     <main className="h-screen w-full bg-greenUripOpacity flex-center-center flex-col">
-      <h1 className=" delay-0">Selamat Datang di Urip Sumoharjo</h1>
+      <h1>Selamat Datang di Urip Sumoharjo</h1>
     </main>
   );
 }

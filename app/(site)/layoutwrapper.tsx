@@ -3,7 +3,7 @@ import React, { useState } from "react";
 
 import Navbar from "../(tools)/components/NavbarComponents/Navbar";
 import ModalContainer from "../(tools)/modal/ModalContainer";
-
+import "../styles/navbar.css";
 type Props = {
   children: React.ReactNode;
 };

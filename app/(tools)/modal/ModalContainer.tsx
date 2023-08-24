@@ -16,6 +16,7 @@ import ModalDoctorDetail from "./ModalDoctorDetail";
 import ModalChatTelemedicine from "./ModalChatTelemedicine";
 import ModalBayarTelemedicine from "./ModalBayarTelemedicine";
 import ModalInConstruction from "./ModalInConstruction";
+import ModalTatapMuka from "./ModalTatapMuka";
 
 type Props = {};
 
@@ -78,6 +79,9 @@ const ModalContent = () => {
   }
   if (modalTitle === "inconstruction") {
     return <ModalInConstruction />;
+  }
+  if (modalTitle === "tatapmuka") {
+    return <ModalTatapMuka />;
   }
   return <div></div>;
 };

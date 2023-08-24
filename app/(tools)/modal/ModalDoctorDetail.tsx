@@ -95,7 +95,14 @@ const ModalDoctorDetail = (props: Props) => {
             kembali
           </button>
         )}
-        <button className="button-greenUrip">Tatap Muka</button>
+        <button
+          onClick={() =>
+            openModal("tatapmuka", { doctorInfo, consultationInfo })
+          }
+          className="button-greenUrip"
+        >
+          Tatap Muka
+        </button>
       </article>
     </div>
   );

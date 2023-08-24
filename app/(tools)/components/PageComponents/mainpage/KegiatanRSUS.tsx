@@ -48,7 +48,7 @@ const KegiatanRSUS = (props: Props) => {
     }
   };
   return (
-    <section id="one" className=" bg-white h-fit w-full z-0 snap-center pt-16">
+    <section id="rsus" className=" bg-white h-fit w-full z-0 snap-center pt-16">
       <motion.h2
         variants={enterTitleVariants}
         initial="initial"
@@ -78,7 +78,7 @@ const KegiatanRSUS = (props: Props) => {
                     key={article.id}
                     className=" w-[280px] rounded-sm standard-border flex-shrink-0"
                   >
-                    <div className="w-auto h-56 overflow-hidden">
+                    <div className="w-auto h-48 overflow-hidden">
                       <Image
                         rel="preload"
                         placeholder="empty"
@@ -90,8 +90,8 @@ const KegiatanRSUS = (props: Props) => {
                         loading="lazy"
                       />
                     </div>
-                    <div className="p-3 flex gap-2 flex-col justify-between h-56">
-                      <h5 className="h-16 text-left tracking-normal">
+                    <div className="p-3 flex gap-2 flex-col justify-between h-60">
+                      <h5 className="h-20 text-left tracking-normal">
                         {article.title}
                       </h5>
 

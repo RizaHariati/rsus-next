@@ -28,7 +28,7 @@ const LinkProfile = () => {
           className="navbar-link  "
         >
           <FontAwesomeIcon icon={faPerson} className="navbar-link-icon" />
-          <p>Profil </p>
+          <p className="text-link">Profil </p>
         </button>
       )}
       {!logged_in && (

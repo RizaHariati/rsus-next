@@ -21,10 +21,10 @@ const LinkEmergency = (props: Props) => {
       <button
         id="darurat"
         onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
-        className="navbar-link text-redBase hover:text-red-700 "
+        className="navbar-link "
       >
         <FontAwesomeIcon icon={faAmbulance} className="navbar-link-icon" />
-        <p>Darurat</p>
+        <p className="text-link  text-redBase hover:text-red-700">Darurat</p>
       </button>
 
       {/* DROP MENU EMERGENCY */}

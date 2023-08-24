@@ -145,6 +145,8 @@ const Slogan = ({ s1, s2, img, accentA, accentB }: SloganProps) => {
           >
             {img ? (
               <Image
+                rel="preload"
+                placeholder="empty"
                 src={`/images/mainpage-gallery/${img}.jpg`}
                 alt="img-gallery"
                 loading="lazy"

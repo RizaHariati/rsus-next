@@ -33,7 +33,7 @@ const ModalTelemedicine = (props: Props) => {
         <FontAwesomeIcon icon={faClose} />
       </button>
       <div className="flex flex-col gap-3">
-        <article className="w-full grid grid-cols-3">
+        <section className="w-full grid grid-cols-3">
           <mark className=" col-span-2">
             <div>
               {consultationInfo.intro.map((item: string, index: number) => {
@@ -46,11 +46,11 @@ const ModalTelemedicine = (props: Props) => {
             </div>
             <div className="standard-border w-full p-2 mt-3">
               <p className="btn-3-bold">Pilih Poliklinik yang dituju</p>
-              <div className=" standard-border h-12 flex-center-between">
+              <div className=" standard-border h-10 flex-center-between">
                 <p className="body-2 w-full p-3 bg-greyLit text-greyMed1">
                   ketik nama poli{" "}
                 </p>
-                <button className="h-12 w-12 ml-auto button-greenUrip">
+                <button className="h-10 w-10 ml-auto button-greenUrip">
                   <FontAwesomeIcon icon={faMagnifyingGlass} />
                 </button>
               </div>
@@ -72,9 +72,9 @@ const ModalTelemedicine = (props: Props) => {
               </div>
             )}
           </mark>
-        </article>
+        </section>
         <TelemedicineDoctor />
-        <article className=" w-full flex items-center justify-end gap-3 pt-5 ">
+        <section className=" w-full flex items-center justify-end gap-3 pt-5 ">
           <button className="button-greenUrip">Pilih</button>
           <button
             className="button-greenUrip"
@@ -84,7 +84,7 @@ const ModalTelemedicine = (props: Props) => {
           >
             Batal
           </button>
-        </article>
+        </section>
       </div>
     </div>
   );
@@ -99,7 +99,7 @@ const TelemedicineDoctor = () => {
   } = useGlobalContext();
   const consultationInfo: ConsultationMenuTypes = modalValue;
   return (
-    <article>
+    <section>
       <h4 className="text-left mb-2">Dokter kami yang melayani Telemedicine</h4>
       <div className=" grid grid-cols-2 w-full gap-2">
         {randomizeDoctor().map((item: DoctorType, index: number) => {
@@ -151,6 +151,6 @@ const TelemedicineDoctor = () => {
           );
         })}
       </div>
-    </article>
+    </section>
   );
 };

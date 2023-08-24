@@ -81,6 +81,9 @@ const UripMap = () => {
   return (
     <div className="w-1/2 h-full overflow-hidden">
       <Image
+        rel="preload"
+        placeholder="empty"
+        loading="lazy"
         src={`/images/pages/rsus-map.png`}
         alt="rsus-map"
         height={210}

@@ -40,7 +40,6 @@ const MainImageAnimated = () => {
         </Link>
       </motion.p>
       <Image
-        loader={myImageLoader}
         rel="preload"
         placeholder="empty"
         src="/images/pages/main-image-edited-01.jpg"

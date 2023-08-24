@@ -24,7 +24,7 @@ const LinkAntrian = () => {
         className="navbar-link  "
       >
         <FontAwesomeIcon icon={faPeopleGroup} className="navbar-link-icon" />
-        <p>Antrian</p>
+        <p className="text-link">Antrian</p>
       </button>
 
       {/* DROP MENU EMERGENCY */}

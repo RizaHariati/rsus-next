@@ -39,7 +39,6 @@ const MainImageAnimatedLeft = ({ img, title, description }: Props) => {
         {description}
       </motion.p>
       <Image
-        loader={myImageLoader}
         rel="preload"
         placeholder="empty"
         src={`/images/pages/${img}.jpg`}

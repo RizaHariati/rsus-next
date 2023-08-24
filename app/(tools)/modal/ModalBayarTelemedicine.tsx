@@ -55,7 +55,10 @@ const ModalBayarTelemedicine = (props: Props) => {
         <div className=" standard-border p-2">
           {paymentMethod.map((item) => {
             return (
-              <button className="w-full flex-center-between gap-2 border-white standard-border p-2 hover:border-greyBorder transition-all cursor-pointer hover:bg-greyLit">
+              <button
+                key={item.id}
+                className="w-full flex-center-between gap-2 border-white standard-border p-2 hover:border-greyBorder transition-all cursor-pointer hover:bg-greyLit"
+              >
                 <Image
                   rel="preload"
                   placeholder="empty"

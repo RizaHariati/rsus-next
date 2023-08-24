@@ -25,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${nunito.variable} ${oswald.variable} scrollbar-none`}>
+      <body className={`${nunito.variable} ${oswald.variable}`}>
         <AppProvider>
           <LayoutWrapper>{children}</LayoutWrapper>
         </AppProvider>

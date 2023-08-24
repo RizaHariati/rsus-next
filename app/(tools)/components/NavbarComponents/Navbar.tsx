@@ -27,7 +27,6 @@ const Navbar = ({ scrollTop }: MainProps) => {
       variants={enterOpacity}
       initial="initial"
       animate="animate"
-      exit="exit"
       className={
         scrollTop ? "navbar-container bg-opacity-100" : "navbar-container"
       }
@@ -108,7 +107,7 @@ const NavbarLinks = (props: Props) => {
         onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
       >
         <FontAwesomeIcon icon={faHome} className="navbar-link-icon" />
-        <p>Beranda</p>
+        <p className="text-link">Beranda</p>
       </Link>
     </div>
   );

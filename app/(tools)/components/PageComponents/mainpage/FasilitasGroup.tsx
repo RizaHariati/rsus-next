@@ -12,7 +12,14 @@ type Props = {
 
 const FasilitasGroup = ({ facilityGroup, facilityTitle }: Props) => {
   return (
-    <section id="two" className=" bg-slate-300 h-fit w-full snap-start">
+    <section
+      id="two"
+      className={
+        facilityGroup.length > 4
+          ? " bg-slate-300 h-fit w-full snap-start"
+          : " bg-slate-300 h-fit w-full snap-center"
+      }
+    >
       <div className=" w-full bg-white h-fit p-10 pt-14">
         <motion.h2
           variants={enterTitleVariants}

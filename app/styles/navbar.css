@@ -7,9 +7,7 @@
   .navbar-container {
     @apply fixed z-40 left-0 top-0 w-full shadow-sm shadow-greyBorder bg-white bg-opacity-60 transition-all;
   }
-  .navbar-container2 {
-    @apply fixed z-40 left-0 top-0 w-full shadow-sm shadow-greyBorder bg-pink-500;
-  }
+
   .navbar {
     @apply flex-center-between w-full h-14  z-0 max-w-uripMax mx-auto px-10;
   }
@@ -32,7 +30,7 @@
     @apply flex items-center justify-end h-full gap-1 w-52;
   }
   .navbar-drop-container {
-    @apply border border-greyBorder rounded-sm bg-white overflow-hidden absolute top-16 transition-all h-fit p-5  opacity-100;
+    @apply border border-greyBorder rounded-sm bg-white overflow-hidden absolute top-16 transition-all h-fit p-5 opacity-100;
   }
   .navbar-drop-hidden {
     @apply border border-none rounded-sm bg-white overflow-hidden absolute top-16 transition-all h-0 p-0  px-5 opacity-0;
@@ -79,15 +77,7 @@
   .menu-alert {
     @apply menu-link-icon border p-3 border-accent1txt bg-[#FFFB67] text-accent1txt rounded-sm bg-opacity-25;
   }
-  .btn-3 {
-    @apply font-nunito text-[16px] uppercase font-light tracking-widest;
-  }
-  .btn-3-bold {
-    @apply font-nunito text-[16px] uppercase font-medium tracking-widest;
-  }
-  .btn-5-bold {
-    @apply font-nunito text-[12px] uppercase font-semibold tracking-widest;
-  }
+
   .main-menu-item {
     @apply btn-3 hover:btn-3-bold hover:text-greyBorder transition-all w-full bg-white px-2 border-b border-b-greyBorder text-left h-12;
   }

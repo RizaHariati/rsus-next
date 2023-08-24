@@ -4,7 +4,7 @@
 
 @layer base {
   body {
-    @apply h-full min-h-screen bg-greyLit text-greyDrk scroll-smooth;
+    @apply h-full min-h-screen bg-greyLit text-greyDrk scroll-smooth scrollbar-none;
   }
   mark {
     @apply bg-white;
@@ -31,7 +31,7 @@
     @apply w-full h-fit bg-neutral-200 border-b border-greyBorder;
   }
   p {
-    @apply font-nunito;
+    @apply font-nunito text-[16px]  font-normal tracking-normal text-greyDrk leading-5;
   }
   .test {
     /* color: #ffffff00; //color opacity =0// */
@@ -40,7 +40,7 @@
 
 @layer components {
   .text-link {
-    @apply cursor-pointer text-greyMed1 hover:text-greyDrk transition-all hover:font-bold;
+    @apply cursor-pointer text-greyMed1 hover:text-greyDrk transition-all hover:font-bold tracking-[3px];
   }
   .flex-center-center {
     @apply flex items-center justify-center;
@@ -61,7 +61,7 @@
     @apply font-nunito text-[18px]  font-normal tracking-wide leading-5;
   }
   .body-3 {
-    @apply font-nunito text-[14px]  font-normal tracking-normal text-greyDrk  leading-4;
+    @apply font-nunito text-[14px]  font-normal tracking-normal text-greyDrk leading-5;
   }
   .btn-1 {
     @apply font-nunito text-[20px] uppercase font-medium tracking-widest;
