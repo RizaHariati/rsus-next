@@ -31,7 +31,7 @@ module.exports = {
         nunito: ["var(--nunito)", "sans-serif"],
       },
       colors: {
-        whiteOpacity: "#ffffff8a",
+        hoverBG: "#fafaf9",
         greenUrip: "#007814",
         greenUripOpacity: "#0078142d",
         accent1: "#F4CD7F",

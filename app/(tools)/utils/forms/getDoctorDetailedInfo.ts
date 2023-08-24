@@ -1,5 +1,5 @@
 import { DoctorType } from "../../types";
-export const getDoctorDetailedIfo = (doctorInfo: DoctorType) => {
+export const getDoctorDetailedInfo = (doctorInfo: DoctorType) => {
   const detail = [
     { id: 1, title: "Poliklinik", value: doctorInfo.poliklinik.title },
     { id: 2, title: "Pengalaman", value: `${doctorInfo.pengalaman} tahun` },
@@ -12,13 +12,13 @@ export const getDoctorDetailedIfo = (doctorInfo: DoctorType) => {
       id: 4,
       title: doctorInfo.biaya_telemedicine ? "Biaya Telemedicine" : null,
       value: doctorInfo.biaya_telemedicine
-        ? doctorInfo.biaya_telemedicine
+        ? `Rp.${doctorInfo.biaya_telemedicine.toLocaleString()}`
         : null,
     },
     {
       id: 5,
       title: "Biaya Tatap Muka",
-      value: doctorInfo.biaya_tatapmuka,
+      value: `Rp.${doctorInfo.biaya_tatapmuka.toLocaleString()}`,
     },
     {
       id: 6,

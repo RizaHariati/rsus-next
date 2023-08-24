@@ -1,16 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircle,
-  faCircleDot,
-  faClose,
-} from "@fortawesome/free-solid-svg-icons";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../types";
-import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import Image from "next/image";
-import { env } from "process";
-import { getDoctorDetailedIfo } from "../utils/forms/getDoctorDetailedInfo";
+import { getDoctorDetailedInfo } from "../utils/forms/getDoctorDetailedInfo";
 
 type Props = {};
 
@@ -30,7 +24,7 @@ const ModalDoctorDetail = (props: Props) => {
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <article className="flex-center-between flex-col w-full gap-3s">
+      <article className="flex-center-between flex-col w-full gap-3">
         <div className=" aspect-square w-32 h-auto mx-auto relative">
           <Image
             rel="preload"
@@ -69,17 +63,39 @@ const ModalDoctorDetail = (props: Props) => {
             ) : null}
           </p>
           <div className=" w-full">
-            {getDoctorDetailedIfo(doctorInfo).map((item) => {
+            {getDoctorDetailedInfo(doctorInfo).map((item) => {
               return (
                 <div key={item.id} className="w-full grid grid-cols-2">
                   <p>{item.title}</p>
                   <p>: {item.value}</p>
                 </div>
               );
-              //   }
             })}
           </div>
         </div>
+      </article>
+      <article className=" w-full flex-center-center gap-3 pt-5 ">
+        {doctorInfo.telemedicine ? (
+          <button
+            disabled={doctorInfo.sedang_online ? false : true}
+            onClick={() =>
+              openModal("chattelemedicine", { doctorInfo, consultationInfo })
+            }
+            className={
+              doctorInfo.sedang_online ? "button-greenUrip" : "button-grey"
+            }
+          >
+            Telemedicine
+          </button>
+        ) : (
+          <button
+            onClick={() => openModal(consultationInfo.modal, consultationInfo)}
+            className="button-greenUrip"
+          >
+            kembali
+          </button>
+        )}
+        <button className="button-greenUrip">Tatap Muka</button>
       </article>
     </div>
   );

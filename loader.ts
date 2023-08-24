@@ -6,6 +6,6 @@ export default function myImageLoader({ src, width, quality }: any) {
       quality || 75
     }`;
   } else {
-    return src;
+    return `${src}?w=${width}&q=${quality || 75}`;
   }
 }

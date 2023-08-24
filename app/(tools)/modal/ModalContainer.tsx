@@ -13,6 +13,9 @@ import ModalAppointment from "./ModalAppointment";
 import ModalRegister from "./ModalRegister";
 import ModalTelemedicine from "./ModalTelemedicine";
 import ModalDoctorDetail from "./ModalDoctorDetail";
+import ModalChatTelemedicine from "./ModalChatTelemedicine";
+import ModalBayarTelemedicine from "./ModalBayarTelemedicine";
+import ModalInConstruction from "./ModalInConstruction";
 
 type Props = {};
 
@@ -66,6 +69,15 @@ const ModalContent = () => {
   }
   if (modalTitle === "doctordetail") {
     return <ModalDoctorDetail />;
+  }
+  if (modalTitle === "chattelemedicine") {
+    return <ModalChatTelemedicine />;
+  }
+  if (modalTitle === "bayartelemedicine") {
+    return <ModalBayarTelemedicine />;
+  }
+  if (modalTitle === "inconstruction") {
+    return <ModalInConstruction />;
   }
   return <div></div>;
 };

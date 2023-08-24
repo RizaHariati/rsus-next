@@ -71,7 +71,9 @@ const AppointmentSelect = () => {
         <div className="w-full flex gap-2 flex-col h-16">
           <p className="btn-3-bold">
             Pilih tanggal berobat
-            <span className="normal-case">(Maksimal 7 hari ke depan)</span>
+            <span className="normal-case tracking-normal">
+              (Maksimal 7 hari ke depan)
+            </span>
           </p>
           <div className="standard-border">
             <p className="btn-3 p-3">DD/MM/YYYY</p>

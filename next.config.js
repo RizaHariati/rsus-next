@@ -2,12 +2,17 @@
  * @type {import('next').NextConfig}
  */
 const nextConfig = {
-  output: "export",
-  images: {
-    loader: "custom",
-    loaderFile: "./loader.ts",
-    path: "https://rsuripsumoharjo-model.netlify.app/",
-  },
+  output: process.env.NODE_ENV === "production" ? "export" : "standalone",
+  images:
+    process.env.NODE_ENV === "production"
+      ? {
+          loader: "custom",
+          loaderFile: "./loader.ts",
+          path: "https://rsuripsumoharjo-model.netlify.app/",
+        }
+      : {
+          loader: "default",
+        },
 
   // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`
   // trailingSlash: true,

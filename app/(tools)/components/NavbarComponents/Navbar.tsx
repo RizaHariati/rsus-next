@@ -50,6 +50,8 @@ const MainLogo = (props: Props) => {
     <div id="home" onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}>
       <Link href="/" className="navbar-logo-container">
         <Image
+          rel="preload"
+          placeholder="empty"
           src="/images/navbar/main-logo.png"
           width={40}
           height={40}

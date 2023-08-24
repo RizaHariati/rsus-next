@@ -5,8 +5,6 @@ import { motion } from "framer-motion";
 import { enterOpacity } from "../../(tools)/framervariants/variants";
 import PilihPaket from "@/app/(tools)/components/PageComponents/laboratory/PilihPaket";
 import PilihSatuan from "@/app/(tools)/components/PageComponents/laboratory/PilihSatuan";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowAltCircleUp } from "@fortawesome/free-regular-svg-icons";
 import BackToTop from "@/app/(tools)/components/BackToTop";
 type Props = {};
 const unit = {

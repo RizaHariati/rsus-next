@@ -1,20 +1,20 @@
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClose,
   faMagnifyingGlass,
   faCircle,
-  faCircleDot,
 } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../types";
 
-import { motion } from "framer-motion";
-import { enterTop } from "../framervariants/variants";
 import Image from "next/image";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 type Props = {};
-
+const randomizeDoctor = () => {
+  const newDataDoctor = dataDoctor.filter((item) => item.telemedicine === 1);
+  return [...newDataDoctor].sort(() => 0.5 - Math.random()).slice(0, 4);
+};
 const ModalTelemedicine = (props: Props) => {
   const {
     state: { modalValue },
@@ -22,10 +22,7 @@ const ModalTelemedicine = (props: Props) => {
     openModal,
   } = useGlobalContext();
   const consultationInfo: ConsultationMenuTypes = modalValue;
-  const randomizeDoctor = () => {
-    const newDataDoctor = dataDoctor.filter((item) => item.telemedicine === 1);
-    return [...newDataDoctor].sort(() => 0.5 - Math.random()).slice(0, 4);
-  };
+
   return (
     <div className="modal-xl p-5 px-10 overflow-hidden bg-white">
       <h3 className=" col-span-2  w-full border-b border-greyBorder  font-light mb-4 bg-white">
@@ -76,59 +73,7 @@ const ModalTelemedicine = (props: Props) => {
             )}
           </mark>
         </article>
-        <article>
-          <h4 className="text-left mb-2">
-            Dokter kami yang melayani Telemedicine
-          </h4>
-          <div className=" grid grid-cols-2 w-full gap-2">
-            {randomizeDoctor().map((item: DoctorType, index: number) => {
-              const image: string =
-                item.gender === 1
-                  ? "male-" + (index + 1)
-                  : "female-" + (index + 1);
-              return (
-                <div key={index} className="standard-border flex gap-2">
-                  <div className=" aspect-square w-24 h-auto overflow-hidden">
-                    <Image
-                      rel="preload"
-                      placeholder="empty"
-                      src={`/images/doctors/${image}.jpg`}
-                      alt={image}
-                      width={70}
-                      height={70}
-                      className="w-auto h-full rounded-sm object-cover object-center"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="grid grid-cols-2 w-full body-3">
-                    <div className=" col-span-2 flex-center-left gap-2">
-                      {item.telemedicine ? (
-                        <FontAwesomeIcon
-                          icon={faCircle}
-                          className={
-                            item.sedang_online
-                              ? "text-greenUrip"
-                              : "text-greyMed1"
-                          }
-                        />
-                      ) : null}
-                      <p className="body-2">{item.nama}</p>
-                    </div>
-                    <p>Poliklinik</p>
-                    <p>: {item.poliklinik.title}</p>
-                    <p>Pengalaman</p>
-                    <p>: {item.pengalaman} tahun</p>
-                    {item.sedang_online ? (
-                      <p className="text-greenUrip">Sedang Online</p>
-                    ) : (
-                      <p className="text-greyMed2">Sedang offline</p>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </article>
+        <TelemedicineDoctor />
         <article className=" w-full flex items-center justify-end gap-3 pt-5 ">
           <button className="button-greenUrip">Pilih</button>
           <button
@@ -146,3 +91,66 @@ const ModalTelemedicine = (props: Props) => {
 };
 
 export default ModalTelemedicine;
+
+const TelemedicineDoctor = () => {
+  const {
+    state: { modalValue },
+    openModal,
+  } = useGlobalContext();
+  const consultationInfo: ConsultationMenuTypes = modalValue;
+  return (
+    <article>
+      <h4 className="text-left mb-2">Dokter kami yang melayani Telemedicine</h4>
+      <div className=" grid grid-cols-2 w-full gap-2">
+        {randomizeDoctor().map((item: DoctorType, index: number) => {
+          const image: string =
+            item.gender === 1 ? "male-" + (index + 1) : "female-" + (index + 1);
+          return (
+            <button
+              onClick={() =>
+                openModal("doctordetail", { item, image, consultationInfo })
+              }
+              key={index}
+              className="standard-border flex gap-2"
+            >
+              <div className=" aspect-square w-24 h-auto overflow-hidden">
+                <Image
+                  rel="preload"
+                  placeholder="empty"
+                  src={`/images/doctors/${image}.jpg`}
+                  alt={image}
+                  width={70}
+                  height={70}
+                  className="w-auto h-full rounded-sm object-cover object-center"
+                  loading="lazy"
+                />
+              </div>
+              <div className="grid grid-cols-2 w-full body-3 text-left">
+                <div className=" col-span-2 flex-center-left gap-2">
+                  {item.telemedicine ? (
+                    <FontAwesomeIcon
+                      icon={faCircle}
+                      className={
+                        item.sedang_online ? "text-greenUrip" : "text-greyMed1"
+                      }
+                    />
+                  ) : null}
+                  <p className="body-2">{item.nama}</p>
+                </div>
+                <p>Poliklinik</p>
+                <p>: {item.poliklinik.title}</p>
+                <p>Pengalaman</p>
+                <p>: {item.pengalaman} tahun</p>
+                {item.sedang_online ? (
+                  <p className="text-greenUrip">Sedang Online</p>
+                ) : (
+                  <p className="text-greyMed2">Sedang offline</p>
+                )}
+              </div>
+            </button>
+          );
+        })}
+      </div>
+    </article>
+  );
+};
