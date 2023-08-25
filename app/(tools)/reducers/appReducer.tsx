@@ -1,4 +1,6 @@
 import { AppState } from "../context/interfaces";
+import dataDoctor from "@/app/(tools)/data/data_dokter.json";
+import { DoctorType } from "../types";
 
 interface OpenModalAction {
   type: string;
@@ -36,6 +38,22 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
       modalValue: {},
     };
   }
-
+  if (action.type === "FILTER_DOCTORS") {
+    const category = action.payload.category;
+    const keyword = action.payload.keyword;
+    let filtered_doctor: DoctorType[] = [];
+    if (category === "spesialisasi") {
+      const filter = dataDoctor.filter(
+        (item) => item.poliklinik.poli_id === keyword
+      );
+      if (filter.length > 0) {
+        filtered_doctor = filter;
+      }
+    }
+    return {
+      ...state,
+      filtered_doctor,
+    };
+  }
   return state;
 };

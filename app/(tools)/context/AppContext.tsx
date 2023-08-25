@@ -7,6 +7,7 @@ export type AppContextProps = {
   toggleMenuNavbar: (id: string | null) => void;
   openModal: (title: string, value: any) => void;
   closeModal: () => void;
+  filteringDoctor: (keyword: string, category: string) => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

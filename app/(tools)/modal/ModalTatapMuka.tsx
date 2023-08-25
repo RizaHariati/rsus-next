@@ -54,7 +54,7 @@ const ModalTatapMuka = (props: Props) => {
       <h3 className=" col-span-2  w-full border-b border-greyBorder  font-light mb-4 bg-white">
         cek antrian tatap muka
       </h3>
-      <section className="bg-white  border-0 grid grid-cols-2 gap-5">
+      <section className="bg-white  border-0 grid grid-cols-2 gap-5 ">
         <mark className=" flex flex-col gap-2 ">
           <div>
             <p>Konsultasi dengan:</p>

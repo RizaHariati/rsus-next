@@ -116,10 +116,10 @@
     @apply w-full text-left relative;
   }
   .active-input {
-    @apply standard-border bg-white w-full h-10 outline-none p-2 cursor-pointer;
+    @apply standard-border bg-white w-full h-10 outline-none p-2 cursor-pointer body-3;
   }
   .dark-input {
-    @apply standard-border bg-greyLit w-full h-10 outline-none p-2 cursor-pointer;
+    @apply standard-border bg-greyLit w-full h-10 outline-none p-2 cursor-pointer body-3;
   }
   .form-line {
     @apply body-3 grid grid-cols-2  w-full gap-2 pb-2;

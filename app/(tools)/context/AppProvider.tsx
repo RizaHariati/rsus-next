@@ -24,12 +24,17 @@ export const AppProvider = ({ children }: Props) => {
   const closeModal = () => {
     dispatch({ type: "CLOSE_MODAL", payload: "" });
   };
+
+  const filteringDoctor = (keyword: string, category: string) => {
+    dispatch({ type: "FILTER_DOCTORS", payload: { keyword, category } });
+  };
   const value = {
     state,
     dispatch,
     toggleMenuNavbar,
     openModal,
     closeModal,
+    filteringDoctor,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

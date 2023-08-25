@@ -1,4 +1,5 @@
 import { AppState } from "./interfaces";
+import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 
 export const initialState: AppState = {
   menu_id: "home",
@@ -6,4 +7,5 @@ export const initialState: AppState = {
   showModal: false,
   modalTitle: "",
   modalValue: {},
+  filtered_doctor: dataDoctor,
 };
