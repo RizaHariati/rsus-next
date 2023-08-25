@@ -16,6 +16,7 @@ const ModalDoctorDetail = (props: Props) => {
   const doctorInfo: DoctorType = modalValue.item;
   const image: string = modalValue.image;
   const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
+
   return (
     <div className="modal-md p-3 px-10 overflow-hidden bg-white">
       <button

@@ -13,7 +13,7 @@ export const samplePatient: PatientType = {
     address: "Jl. Letjen Suprapto no.5",
     sex: true,
     birthdate: "13/08/1989",
-    phone: "0812840345x83x3",
+    phone: "08121234567890",
   },
 };
 

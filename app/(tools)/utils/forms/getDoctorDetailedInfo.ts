@@ -33,7 +33,7 @@ export const getDoctorDetailedInfo = (doctorInfo: DoctorType) => {
     {
       id: 8,
       title: "Hari Praktik",
-      value: doctorInfo.hari,
+      value: getPracticeDay(doctorInfo.hari),
     },
     {
       id: 9,
@@ -43,4 +43,63 @@ export const getDoctorDetailedInfo = (doctorInfo: DoctorType) => {
   ];
 
   return detail.filter((item) => item.title !== null);
+};
+
+export const numberToDay = [
+  { id: 1, hari: "senin" },
+  { id: 2, hari: "selasa" },
+  { id: 3, hari: "rabu" },
+  { id: 4, hari: "kamis" },
+  { id: 5, hari: "jumat" },
+  { id: 6, hari: "sabtu" },
+  { id: 7, hari: "minggu" },
+];
+
+export const getPracticeDay = (days: number[]) => {
+  let dayArray: string[] = [];
+  let lastDay: number = days[0];
+  let dayStart = "";
+  let dayEnd = "";
+  let jumpValue: boolean = false;
+  days.map((day, index) => {
+    const dayName = numberToDay.find((item) => item.id === day);
+    if (dayName) {
+      if (index === 0) {
+        dayStart = dayName.hari;
+      }
+      if (index !== 0 && index === days.length - 1) {
+        dayEnd = dayName.hari;
+      }
+      if (index > 0 && day - lastDay > 1) {
+        jumpValue = true;
+      }
+      lastDay = day;
+      dayArray.push(dayName.hari);
+    }
+  });
+
+  let practiceDays = "";
+  if (jumpValue) {
+    practiceDays = printAllDay(dayArray);
+  } else {
+    if (dayArray.length < 4) {
+      practiceDays = printAllDay(dayArray);
+    } else {
+      practiceDays = dayStart + " s/d " + dayEnd;
+    }
+  }
+  return practiceDays;
+};
+
+export const printAllDay = (dayArray: string[]) => {
+  let practiceDays = "";
+  dayArray.map((itemday, indexday) => {
+    if (indexday === dayArray.length - 1) {
+      practiceDays = practiceDays + " " + itemday;
+    } else {
+      practiceDays = practiceDays + " " + itemday + ",";
+    }
+    return "";
+  });
+  return practiceDays;
 };

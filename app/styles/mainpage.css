@@ -60,4 +60,10 @@
   .accent3 {
     @apply gallery-cell bg-greyBorder;
   }
+  .antrian-grid {
+    @apply grid w-fit place-items-center gap-1;
+  }
+  .kuota-icon {
+    @apply h-7;
+  }
 }

@@ -33,7 +33,7 @@ const ModalTelemedicine = (props: Props) => {
         <FontAwesomeIcon icon={faClose} />
       </button>
       <div className="flex flex-col gap-3">
-        <section className="w-full grid grid-cols-3">
+        <section className="w-full grid grid-cols-3 bg-white border-none">
           <mark className=" col-span-2">
             <div>
               {consultationInfo.intro.map((item: string, index: number) => {
@@ -74,7 +74,7 @@ const ModalTelemedicine = (props: Props) => {
           </mark>
         </section>
         <TelemedicineDoctor />
-        <section className=" w-full flex items-center justify-end gap-3 pt-5 ">
+        <section className=" w-full flex items-center justify-end gap-3 pt-5 bg-white border-none">
           <button className="button-greenUrip">Pilih</button>
           <button
             className="button-greenUrip"
@@ -99,7 +99,7 @@ const TelemedicineDoctor = () => {
   } = useGlobalContext();
   const consultationInfo: ConsultationMenuTypes = modalValue;
   return (
-    <section>
+    <section className="bg-white border-none">
       <h4 className="text-left mb-2">Dokter kami yang melayani Telemedicine</h4>
       <div className=" grid grid-cols-2 w-full gap-2">
         {randomizeDoctor().map((item: DoctorType, index: number) => {
