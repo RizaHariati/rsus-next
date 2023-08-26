@@ -223,8 +223,18 @@ const ResultDokter = ({ searchKeyword, consultationInfo }: ResultProps) => {
   } = useGlobalContext();
 
   return (
-    <>
-      {!searchKeyword && consultationInfo.modal_img && (
+    <div>
+      {searchKeyword && filtered_doctor.value.length < 1 && (
+        <p className="btn-3-bold text-center">
+          Tidak ditemukan Nama Dokter dengan kata kunci seperti itu
+        </p>
+      )}
+      {searchKeyword && filtered_doctor.value.length > 6 && (
+        <p className="btn-3-bold text-center">
+          Hasil terlalu banyak, tolong tambah kata kunci
+        </p>
+      )}
+      {consultationInfo.modal_img && (
         <div className="w-full h-40 my-auto">
           <Image
             rel="preload"
@@ -237,29 +247,7 @@ const ResultDokter = ({ searchKeyword, consultationInfo }: ResultProps) => {
             loading="lazy"
           />
         </div>
-      )}{" "}
-      {searchKeyword && !filtered_doctor.value && (
-        <div className="w-full h-40 my-auto ">
-          <p className="btn-3-bold text-center">
-            Tidak ditemukan Spesialisasi dengan kata kunci seperti itu
-          </p>
-
-          {consultationInfo.modal_img && (
-            <div className="w-full h-full my-auto">
-              <Image
-                rel="preload"
-                placeholder="empty"
-                src={`/images/pages/${consultationInfo.modal_img}.jpg`}
-                alt={consultationInfo.modal_img}
-                width={400}
-                height={400}
-                className="w-auto h-full m-auto"
-                loading="lazy"
-              />
-            </div>
-          )}
-        </div>
       )}
-    </>
+    </div>
   );
 };

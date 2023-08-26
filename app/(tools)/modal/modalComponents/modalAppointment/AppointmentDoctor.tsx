@@ -19,11 +19,12 @@ const AppointmentDoctor = () => {
   const consultationInfo: ConsultationMenuTypes = modalValue;
   const [doctorList, setdoctorList] = useState<DoctorType[]>(randomizeDoctor());
   const [title, setTitle] = useState("Beberapa dokter kami");
+
   useEffect(() => {
     const value = filtered_doctor.value;
     const category = filtered_doctor.category;
     if (value?.length > 0 && value?.length < dataDoctor.length) {
-      setdoctorList(value);
+      setdoctorList(value.slice(0, 6));
       if (category === "spesialisasi") {
         setTitle(value[0].poliklinik.title);
       } else {
