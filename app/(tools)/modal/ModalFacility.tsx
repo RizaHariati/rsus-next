@@ -22,7 +22,7 @@ const ModalFacility = (props: Props) => {
         <button className="absolute top-2 right-4" onClick={() => closeModal()}>
           <FontAwesomeIcon icon={faClose} />
         </button>
-        <div className="grid grid-cols-2 w-full gap-5 ">
+        <section className="bg-white border-none grid grid-cols-2 w-full gap-5 ">
           <div className="w-full body-3 flex flex-col gap-5 leading-5">
             <div>
               <p className="btn-3-bold">Deskripsi Alat</p>
@@ -60,7 +60,15 @@ const ModalFacility = (props: Props) => {
               priority
             />
           </div>
-        </div>
+        </section>
+        <section className="bg-white border-none w-full flex">
+          <button
+            onClick={() => closeModal()}
+            className="button-greenUrip ml-auto"
+          >
+            Tutup
+          </button>
+        </section>
       </div>
     );
   }

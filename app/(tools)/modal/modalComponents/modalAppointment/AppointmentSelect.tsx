@@ -1,4 +1,4 @@
-import React, { useReducer, useState } from "react";
+import React, { useReducer, useState, Dispatch } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faCircle,
@@ -6,35 +6,32 @@ import {
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-
-import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import Image from "next/image";
-import { ConsultationMenuTypes } from "@/app/(tools)/types";
+import { ConsultationMenuTypes, PoliklinikType } from "@/app/(tools)/types";
 import SelectDate from "./SelectDate";
-import { DoctorType } from "../../../types";
-import { appointmentState } from "./appointmentState";
+import { appointmentState, AppointmentState } from "./appointmentState";
 import { appointmentReducer } from "@/app/(tools)/reducers/appointmentReducer";
 
 type Props = {};
 const AppointmentSelect = () => {
   const {
     state: { modalValue },
+    filteringDoctor,
   } = useGlobalContext();
   const consultationInfo: ConsultationMenuTypes = modalValue;
-  const [
-    { searchCategory, keyword, searchKeyword, specializationList },
-    dispatch,
+  const [{ searchCategory, searchKeyword, specializationList }, dispatch]: [
+    AppointmentState,
+    Dispatch<any>
   ] = useReducer(appointmentReducer, appointmentState);
 
-  const {
-    filteringDoctor,
-    state: { filtered_doctor },
-  } = useGlobalContext();
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const keywordInput = e.currentTarget.value;
     if (searchCategory === "spesialisasi") {
       dispatch({ type: "GET_SPESIALISASI_LIST", payload: { keywordInput } });
+    } else {
+      dispatch({ type: "SET_KEYWORD", payload: { keywordInput } });
+      filteringDoctor(keywordInput, "dokter");
     }
   };
 
@@ -54,8 +51,8 @@ const AppointmentSelect = () => {
                 className="flex-center-between gap-2"
                 onClick={() =>
                   dispatch({
-                    type: "SET_SPESIALISASI",
-                    payload: "spesialisasi",
+                    type: "SET_CATEGORY",
+                    payload: { category: "spesialisasi" },
                   })
                 }
               >
@@ -63,7 +60,11 @@ const AppointmentSelect = () => {
                   icon={
                     searchCategory === "spesialisasi" ? faCircleDot : faCircle
                   }
-                  className=" text-greenUrip"
+                  className={
+                    searchCategory === "spesialisasi"
+                      ? " text-greenUrip"
+                      : "text-greyMed1"
+                  }
                 />
                 <p
                   className={
@@ -78,14 +79,21 @@ const AppointmentSelect = () => {
               <button
                 className="flex-center-between gap-2"
                 onClick={() =>
-                  dispatch({ type: "SET_SPESIALISASI", payload: "nama" })
+                  dispatch({
+                    type: "SET_CATEGORY",
+                    payload: { category: "dokter" },
+                  })
                 }
               >
                 <FontAwesomeIcon
                   icon={
                     searchCategory === "spesialisasi" ? faCircle : faCircleDot
                   }
-                  className=" text-greenUrip"
+                  className={
+                    searchCategory !== "spesialisasi"
+                      ? " text-greenUrip"
+                      : "text-greyMed1"
+                  }
                 />
                 <p
                   className={
@@ -94,7 +102,7 @@ const AppointmentSelect = () => {
                       : "font-light"
                   }
                 >
-                  Nama
+                  Dokter
                 </p>
               </button>
             </div>
@@ -112,6 +120,44 @@ const AppointmentSelect = () => {
         </div>
       </div>
 
+      {searchCategory === "spesialisasi" && (
+        <ResultSpesialisasi
+          searchKeyword={searchKeyword}
+          consultationInfo={consultationInfo}
+          specializationList={specializationList}
+          searchCategory={searchCategory}
+        />
+      )}
+      {searchCategory === "dokter" && (
+        <ResultDokter
+          searchKeyword={searchKeyword}
+          consultationInfo={consultationInfo}
+          specializationList={specializationList}
+          searchCategory={searchCategory}
+        />
+      )}
+    </mark>
+  );
+};
+export default AppointmentSelect;
+
+type ResultProps = {
+  searchKeyword: string;
+  consultationInfo: ConsultationMenuTypes;
+  specializationList: PoliklinikType[];
+  searchCategory: "spesialisasi" | "dokter";
+};
+
+const ResultSpesialisasi = ({
+  searchKeyword,
+  consultationInfo,
+  specializationList,
+  searchCategory,
+}: ResultProps) => {
+  const { filteringDoctor } = useGlobalContext();
+
+  return (
+    <>
       {!searchKeyword && consultationInfo.modal_img && (
         <div className="w-full h-40 my-auto">
           <Image
@@ -167,7 +213,53 @@ const AppointmentSelect = () => {
           )}
         </div>
       )}
-    </mark>
+    </>
   );
 };
-export default AppointmentSelect;
+
+const ResultDokter = ({ searchKeyword, consultationInfo }: ResultProps) => {
+  const {
+    state: { filtered_doctor },
+  } = useGlobalContext();
+
+  return (
+    <>
+      {!searchKeyword && consultationInfo.modal_img && (
+        <div className="w-full h-40 my-auto">
+          <Image
+            rel="preload"
+            placeholder="empty"
+            src={`/images/pages/${consultationInfo.modal_img}.jpg`}
+            alt={consultationInfo.modal_img}
+            width={400}
+            height={400}
+            className="w-auto h-full m-auto"
+            loading="lazy"
+          />
+        </div>
+      )}{" "}
+      {searchKeyword && !filtered_doctor.value && (
+        <div className="w-full h-40 my-auto ">
+          <p className="btn-3-bold text-center">
+            Tidak ditemukan Spesialisasi dengan kata kunci seperti itu
+          </p>
+
+          {consultationInfo.modal_img && (
+            <div className="w-full h-full my-auto">
+              <Image
+                rel="preload"
+                placeholder="empty"
+                src={`/images/pages/${consultationInfo.modal_img}.jpg`}
+                alt={consultationInfo.modal_img}
+                width={400}
+                height={400}
+                className="w-auto h-full m-auto"
+                loading="lazy"
+              />
+            </div>
+          )}
+        </div>
+      )}
+    </>
+  );
+};

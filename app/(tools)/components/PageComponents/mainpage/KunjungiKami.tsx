@@ -59,19 +59,19 @@ const Lokasi = () => {
       <div className="flex gap-2 body-2 text-white text-light ">
         <FontAwesomeIcon icon={faBuilding} className="h-4 pt-1" />
         <div>
-          <p>Jl. Urip Sumoharjo no.200</p>
-          <p>Gn. Sulah - Way Halim</p>
-          <p>Kota Bandar Lampung</p>
-          <p>Lampung 35356</p>
+          <p className="text-white">Jl. Urip Sumoharjo no.200</p>
+          <p className="text-white">Gn. Sulah - Way Halim</p>
+          <p className="text-white">Kota Bandar Lampung</p>
+          <p className="text-white">Lampung 35356</p>
         </div>
       </div>
       <div className="flex gap-2 body-2 text-white text-light ">
         <FontAwesomeIcon icon={faPhone} className="h-4 pt-1" />
-        <p>(0721 771322)</p>
+        <p className="text-white">(0721 771322)</p>
       </div>
       <div className="flex gap-2 body-2 text-white text-light ">
         <FontAwesomeIcon icon={faPhone} className="h-4 pt-1" />
-        <p>(0721 771322)</p>
+        <p className="text-white">(0721 771322)</p>
       </div>
     </div>
   );

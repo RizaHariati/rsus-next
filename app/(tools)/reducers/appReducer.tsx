@@ -1,6 +1,7 @@
 import { AppState } from "../context/interfaces";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import { DoctorType } from "../types";
+import dataDokter from "@/app/(tools)/data/data_dokter.json";
 
 interface OpenModalAction {
   type: string;
@@ -39,15 +40,26 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
     };
   }
   if (action.type === "FILTER_DOCTORS") {
-    const category = action.payload.category;
+    const category: "spesialisasi" | "dokter" = action.payload.category;
     const keyword = action.payload.keyword;
-    let filtered_doctor: DoctorType[] = [];
+    let filtered_doctor: {
+      category: "spesialisasi" | "dokter";
+      value: DoctorType[];
+    } = { category: "spesialisasi", value: [] };
+
     if (category === "spesialisasi") {
-      const filter = dataDoctor.filter(
+      const filter: DoctorType[] = dataDoctor.filter(
         (item) => item.poliklinik.poli_id === keyword
       );
       if (filter.length > 0) {
-        filtered_doctor = filter;
+        filtered_doctor = { category, value: filter };
+      }
+    } else {
+      const filter = dataDoctor.filter((item) =>
+        item.nama.toLowerCase().includes(keyword.toLowerCase())
+      );
+      if (filter.length > 0) {
+        filtered_doctor = { category, value: filter };
       }
     }
     return {

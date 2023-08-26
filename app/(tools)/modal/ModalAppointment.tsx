@@ -1,14 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircle,
-  faCircleDot,
-  faClose,
-} from "@fortawesome/free-solid-svg-icons";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../types";
-import dataDoctor from "@/app/(tools)/data/data_dokter.json";
-import Image from "next/image";
 import AppointmentSelect from "./modalComponents/modalAppointment/AppointmentSelect";
 import AppointmentDoctor from "./modalComponents/modalAppointment/AppointmentDoctor";
 

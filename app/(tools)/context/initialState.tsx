@@ -7,5 +7,5 @@ export const initialState: AppState = {
   showModal: false,
   modalTitle: "",
   modalValue: {},
-  filtered_doctor: dataDoctor,
+  filtered_doctor: { category: "spesialisasi", value: dataDoctor },
 };

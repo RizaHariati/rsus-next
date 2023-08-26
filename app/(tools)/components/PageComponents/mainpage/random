@@ -1,0 +1,42 @@
+const SloganImageBig = ({ img }: SloganProps) => {
+  return (
+    <motion.div
+      className="gallery-base"
+      variants={galleryTop}
+      initial="initial"
+      whileInView="animate"
+    >
+      <Image
+        rel="preload"
+        placeholder="empty"
+        loading="lazy"
+        src={`/images/mainpage-gallery/${img ? img : "img-gallery (1)"}.jpg`}
+        alt="img-gallery"
+        height={300}
+        width={300}
+        className="h-full w-full object-cover object-center"
+      />
+    </motion.div>
+  );
+};
+
+type SloganTextProps = {
+  accent?: string,
+  text: string,
+};
+
+const SloganText = ({ accent, text }: SloganTextProps) => {
+  return (
+    <motion.p
+      variants={galleryLeftVariant}
+      initial="initial"
+      whileInView="animate"
+      className={accent}
+    >
+      {text}
+    </motion.p>
+  );
+};
+
+<SloganImageBig img={img} />;
+<SloganText accent={accentA} text={s1} />;

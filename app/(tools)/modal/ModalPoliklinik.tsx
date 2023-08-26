@@ -1,19 +1,21 @@
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { DoctorType, LabItemType, PoliklinikType } from "../types";
+import { DoctorType, PoliklinikType } from "../types";
 import Image from "next/image";
 import { findSupportingFacility } from "../utils/findSupportingFacility";
 import { getDoctorPoli } from "../utils/getDoctorPoli";
 import { motion } from "framer-motion";
 import { enterTop } from "../framervariants/variants";
+import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 type Props = {};
 
 const ModalPoliklinik = (props: Props) => {
   const {
     state: { modalValue },
     closeModal,
+    filteringDoctor,
     openModal,
   } = useGlobalContext();
   const poliInfo: PoliklinikType = modalValue;
@@ -34,16 +36,15 @@ const ModalPoliklinik = (props: Props) => {
           variants={enterTop}
           initial="initial"
           whileInView="animate"
-          className="w-full  grid grid-cols-3 gap-5 h-full body-3 max-h-96 custom-scrollbar"
+          className="w-full  grid grid-cols-3 gap-5 h-full body-3  "
         >
-          <div className=" col-span-2 flex flex-col gap-2 w-full">
+          <div className=" col-span-2 flex flex-col gap-5 w-full custom-scrollbar h-64">
             <div>
               {poliInfo.description.map((item, index) => {
                 return <p key={index}>{item}</p>;
               })}
             </div>
             <FindSupportingFacility poliInfo={poliInfo} />
-            <FindSupportingDoctors poliInfo={poliInfo} />
           </div>
           <div>
             <Image
@@ -64,16 +65,27 @@ const ModalPoliklinik = (props: Props) => {
             />
           </div>
         </motion.div>
-        <div className=" w-full flex items-center justify-end gap-3 pt-5 ">
-          <button className="button-greenUrip">Pilih</button>
-          <button
-            className="button-greenUrip"
-            onClick={() => {
-              closeModal();
-            }}
-          >
-            Batal
-          </button>
+        <div className=" w-full flex items-end justify-between gap-3 pt-5 ">
+          <FindSupportingDoctors poliInfo={poliInfo} />
+          <div className=" flex gap-2">
+            <button
+              onClick={async () => {
+                await filteringDoctor(poliInfo.id, "spesialisasi");
+                openModal("appointment", dataConsultation[0]);
+              }}
+              className="button-greenUrip"
+            >
+              Lihat dokter
+            </button>
+            <button
+              className="button-greenUrip"
+              onClick={() => {
+                closeModal();
+              }}
+            >
+              kembali
+            </button>
+          </div>
         </div>
       </div>
     );
@@ -128,7 +140,7 @@ const FindSupportingDoctors = ({ poliInfo }: FacilityProps) => {
         <span className="font-medium text-greenUrip">{poliInfo.title}</span>
         &nbsp; kami :
       </p>
-      <div className="w-full flex gap-2 mt-2">
+      <div className="w-full flex gap-5 ">
         {getDoctorPoli(poliInfo.id).map((item: DoctorType, index: number) => {
           const image: string =
             item.gender === 1 ? "male-" + (index + 1) : "female-" + (index + 1);

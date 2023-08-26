@@ -5,5 +5,8 @@ export interface AppState {
   showModal: boolean;
   modalTitle: string;
   modalValue: any;
-  filtered_doctor: DoctorType[];
+  filtered_doctor: {
+    category: "spesialisasi" | "dokter";
+    value: DoctorType[];
+  };
 }

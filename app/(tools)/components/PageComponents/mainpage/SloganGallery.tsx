@@ -8,7 +8,6 @@ import { galleryArray } from "@/app/(tools)/data/galleryArray";
 import {
   galleryLeftVariant,
   galleryTop,
-  galleryRightVariant,
 } from "@/app/(tools)/framervariants/galleryvariants";
 
 type Props = {};
@@ -73,93 +72,86 @@ type SloganProps = {
 };
 const Slogan = ({ s1, s2, img, accentA, accentB }: SloganProps) => {
   if (!s1 && !s2) {
-    return (
-      <motion.div
-        className="gallery-base"
-        variants={galleryTop}
-        initial="initial"
-        whileInView="animate"
-      >
-        <Image
-          rel="preload"
-          placeholder="empty"
-          loading="lazy"
-          src={`/images/mainpage-gallery/${img ? img : "img-gallery (1)"}.jpg`}
-          alt="img-gallery"
-          height={300}
-          width={300}
-          className="h-full w-full object-cover object-center"
-        />
-      </motion.div>
-    );
+    return <SloganImageBig img={img} />;
   } else {
     return (
       <motion.div className="gallery-base">
         {s1 ? (
-          <motion.p
-            variants={galleryLeftVariant}
-            initial="initial"
-            whileInView="animate"
-            className={accentA}
-          >
-            {s1}
-          </motion.p>
+          <SloganText accent={accentA} text={s1} />
         ) : (
-          <motion.div
-            variants={galleryTop}
-            initial="initial"
-            whileInView="animate"
-            className="gallery-cell"
-          >
-            {img ? (
-              <Image
-                rel="preload"
-                placeholder="empty"
-                src={`/images/mainpage-gallery/${img}.jpg`}
-                alt="img-gallery"
-                loading="lazy"
-                height={300}
-                width={300}
-                className=" h-auto w-full object-center object-cover"
-              />
-            ) : (
-              <div className="accent1"></div>
-            )}
-          </motion.div>
+          <SloganImageAccent img={img} />
         )}
         {s2 ? (
-          <motion.p
-            variants={galleryRightVariant}
-            initial="initial"
-            whileInView="animate"
-            className={accentB}
-          >
-            {s2}
-          </motion.p>
+          <SloganText accent={accentB} text={s2} />
         ) : (
-          <motion.div
-            variants={galleryTop}
-            initial="initial"
-            whileInView="animate"
-            className="gallery-cell"
-          >
-            {img ? (
-              <Image
-                rel="preload"
-                placeholder="empty"
-                src={`/images/mainpage-gallery/${img}.jpg`}
-                alt="img-gallery"
-                loading="lazy"
-                height={300}
-                width={300}
-                className=" h-auto w-full object-center object-cover"
-              />
-            ) : (
-              <div className="accent1"></div>
-            )}
-          </motion.div>
+          <SloganImageAccent img={img} />
         )}
       </motion.div>
     );
   }
+};
+
+const SloganImageBig = ({ img }: SloganProps) => {
+  return (
+    <motion.div
+      className="gallery-base"
+      variants={galleryTop}
+      initial="initial"
+      whileInView="animate"
+    >
+      <Image
+        rel="preload"
+        placeholder="empty"
+        loading="lazy"
+        src={`/images/mainpage-gallery/${img ? img : "img-gallery (1)"}.jpg`}
+        alt="img-gallery"
+        height={300}
+        width={300}
+        className="h-full w-full object-cover object-center"
+      />
+    </motion.div>
+  );
+};
+
+const SloganImageAccent = ({ img }: SloganProps) => {
+  return (
+    <motion.div
+      variants={galleryTop}
+      initial="initial"
+      whileInView="animate"
+      className="gallery-cell"
+    >
+      {img ? (
+        <Image
+          rel="preload"
+          placeholder="empty"
+          src={`/images/mainpage-gallery/${img}.jpg`}
+          alt="img-gallery"
+          loading="lazy"
+          height={300}
+          width={300}
+          className=" h-auto w-full object-center object-cover"
+        />
+      ) : (
+        <div className="accent1"></div>
+      )}
+    </motion.div>
+  );
+};
+type SloganTextProps = {
+  accent?: string;
+  text: string;
+};
+
+const SloganText = ({ accent, text }: SloganTextProps) => {
+  return (
+    <motion.p
+      variants={galleryLeftVariant}
+      initial="initial"
+      whileInView="animate"
+      className={accent}
+    >
+      {text}
+    </motion.p>
+  );
 };

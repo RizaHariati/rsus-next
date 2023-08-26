@@ -1,17 +1,9 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClose,
-  faMagnifyingGlass,
-  faCircle,
-  faCalendarDays,
-  faCalendarTimes,
-  faCalendarWeek,
-} from "@fortawesome/free-solid-svg-icons";
+import { faClose, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../types";
 import { samplePatient } from "../utils/forms/samplePatient";
-import { faCalendar } from "@fortawesome/free-regular-svg-icons";
 import { numberToDay } from "../utils/forms/getDoctorDetailedInfo";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 

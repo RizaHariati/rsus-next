@@ -119,6 +119,10 @@ export type PaketLabType = {
   laboratorium: LabItemType[];
 };
 
+export type hariType = {
+  idHari: number;
+  kuotaHari: number;
+};
 export type DoctorType = {
   id: string;
   nama: string;

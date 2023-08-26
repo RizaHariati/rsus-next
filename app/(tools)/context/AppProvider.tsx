@@ -1,16 +1,20 @@
 "use client";
 
-import { useEffect, useContext, useReducer } from "react";
+import { useContext, useReducer, Dispatch } from "react";
 import { AppContext } from "./AppContext";
 import { initialState } from "./initialState";
 import { appReducer } from "../reducers/appReducer";
+import { AppState } from "./interfaces";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
 }
 
 export const AppProvider = ({ children }: Props) => {
-  const [state, dispatch] = useReducer(appReducer, initialState);
+  const [state, dispatch]: [AppState, Dispatch<any>] = useReducer(
+    appReducer,
+    initialState
+  );
 
   const toggleMenuNavbar = (id: string | null) => {
     dispatch({ type: "TOGGLE_MENU", payload: id });
@@ -25,7 +29,10 @@ export const AppProvider = ({ children }: Props) => {
     dispatch({ type: "CLOSE_MODAL", payload: "" });
   };
 
-  const filteringDoctor = (keyword: string, category: string) => {
+  const filteringDoctor = (
+    keyword: string,
+    category: "spesialisasi" | "dokter"
+  ) => {
     dispatch({ type: "FILTER_DOCTORS", payload: { keyword, category } });
   };
   const value = {

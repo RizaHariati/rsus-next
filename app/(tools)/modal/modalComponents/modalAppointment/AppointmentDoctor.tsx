@@ -18,19 +18,23 @@ const AppointmentDoctor = () => {
   } = useGlobalContext();
   const consultationInfo: ConsultationMenuTypes = modalValue;
   const [doctorList, setdoctorList] = useState<DoctorType[]>(randomizeDoctor());
-
+  const [title, setTitle] = useState("Beberapa dokter kami");
   useEffect(() => {
-    if (
-      filtered_doctor?.length > 0 &&
-      filtered_doctor?.length < dataDoctor.length
-    ) {
-      setdoctorList(filtered_doctor);
+    const value = filtered_doctor.value;
+    const category = filtered_doctor.category;
+    if (value?.length > 0 && value?.length < dataDoctor.length) {
+      setdoctorList(value);
+      if (category === "spesialisasi") {
+        setTitle(value[0].poliklinik.title);
+      } else {
+        setTitle("Beberapa dokter kami");
+      }
     }
   }, [filtered_doctor]);
 
   return (
     <mark className="w-full  h-52 custom-scrollbar">
-      <h4 className="text-left">Beberapa dokter kami</h4>
+      <h4 className="text-left">{title}</h4>
       <div className=" grid grid-cols-2 w-full gap-2">
         {doctorList.map((item: DoctorType, index: number) => {
           const image: string =
