@@ -61,8 +61,8 @@ const TelemedicineDoctor = () => {
                   loading="lazy"
                 />
               </div>
-              <div className="grid grid-cols-2 w-full body-3 text-left">
-                <div className=" col-span-2 flex-center-left gap-2">
+              <div className="grid grid-cols-3 w-full body-3 text-left">
+                <div className=" col-span-3 flex-center-left gap-2">
                   {item.telemedicine ? (
                     <FontAwesomeIcon
                       icon={faCircle}
@@ -74,13 +74,13 @@ const TelemedicineDoctor = () => {
                   <p className="body-2">{item.nama}</p>
                 </div>
                 <p>Poliklinik</p>
-                <p>: {item.poliklinik.title}</p>
+                <p className=" col-span-2">: {item.poliklinik.title}</p>
                 <p>Pengalaman</p>
-                <p>: {item.pengalaman} tahun</p>
+                <p className=" col-span-2">: {item.pengalaman} tahun</p>
                 {item.sedang_online ? (
-                  <p className="text-greenUrip">Sedang Online</p>
+                  <p className="text-greenUrip col-span-2">Sedang Online</p>
                 ) : (
-                  <p className="text-greyMed2">Sedang offline</p>
+                  <p className="text-greyMed2 col-span-2">Sedang offline</p>
                 )}
               </div>
             </button>

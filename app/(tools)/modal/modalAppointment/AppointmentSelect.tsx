@@ -20,10 +20,13 @@ const AppointmentSelect = () => {
     filteringDoctor,
   } = useGlobalContext();
   const consultationInfo: ConsultationMenuTypes = modalValue;
-  const [{ searchCategory, searchKeyword, specializationList }, dispatch]: [
-    AppointmentState,
-    Dispatch<any>
-  ] = useReducer(appointmentReducer, appointmentState);
+  const [
+    { searchCategory, searchKeyword, specializationList, pickDate },
+    dispatch,
+  ]: [AppointmentState, Dispatch<any>] = useReducer(
+    appointmentReducer,
+    appointmentState
+  );
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
@@ -36,10 +39,20 @@ const AppointmentSelect = () => {
     }
   };
 
+  const handleDateChange = (date: Date) => {
+    dispatch({ type: "SET_DATE", payload: { date } });
+  };
+  const clearDate = () => {
+    dispatch({ type: "CLEAR_DATE" });
+  };
   return (
     <mark className="w-full  grid grid-cols-2 gap-5 h-full body-3 max-h-96">
       <div className=" w-full standard-border p-3  flex flex-col gap-5">
-        <SelectDate />
+        <SelectDate
+          pickDate={pickDate}
+          handleDateChange={handleDateChange}
+          clearDate={clearDate}
+        />
         <div className="w-full flex gap-2 flex-col h-16">
           <div className="flex gap-2">
             <p className="btn-3-bold">
@@ -127,6 +140,7 @@ const AppointmentSelect = () => {
           consultationInfo={consultationInfo}
           specializationList={specializationList}
           searchCategory={searchCategory}
+          pickDate={pickDate}
         />
       )}
       {searchCategory === "dokter" && (

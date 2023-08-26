@@ -11,6 +11,17 @@ export const appointmentReducer = (
   state: AppointmentState,
   action: OpenModalAction
 ) => {
+  if (action.type === "CLEAR_DATE") {
+    let pickDate;
+    return {
+      ...state,
+      pickDate,
+    };
+  }
+  if (action.type === "SET_DATE") {
+    const pickDate = action.payload.date;
+    return { ...state, pickDate };
+  }
   if (action.type === "SET_CATEGORY") {
     const searchCategory = action.payload.category;
     const searchKeyword = "";

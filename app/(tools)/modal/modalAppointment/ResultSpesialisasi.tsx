@@ -8,12 +8,14 @@ type ResultProps = {
   consultationInfo: ConsultationMenuTypes;
   specializationList: PoliklinikType[];
   searchCategory: "spesialisasi" | "dokter";
+  pickDate?: Date;
 };
 const ResultSpesialisasi = ({
   searchKeyword,
   consultationInfo,
   specializationList,
   searchCategory,
+  pickDate,
 }: ResultProps) => {
   const {
     filteringDoctor,
@@ -45,7 +47,11 @@ const ResultSpesialisasi = ({
                 key={item.id}
                 onClick={(e) => {
                   e.preventDefault();
-                  filteringDoctor(item.id, searchCategory);
+                  if (pickDate) {
+                    return filteringDoctor(item.id, searchCategory, pickDate);
+                  } else {
+                    filteringDoctor(item.id, searchCategory);
+                  }
                 }}
                 className="standard-border p-2 w-full text-left overflow-visible hover:bg-greyLit transition-all"
               >

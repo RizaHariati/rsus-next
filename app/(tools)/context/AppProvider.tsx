@@ -31,9 +31,13 @@ export const AppProvider = ({ children }: Props) => {
 
   const filteringDoctor = (
     keyword: string,
-    category: "spesialisasi" | "dokter"
+    category: "spesialisasi" | "dokter",
+    pickDate?: Date | undefined
   ) => {
-    dispatch({ type: "FILTER_DOCTORS", payload: { keyword, category } });
+    dispatch({
+      type: "FILTER_DOCTORS",
+      payload: { keyword, category, pickDate },
+    });
   };
   const value = {
     state,

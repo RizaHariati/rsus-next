@@ -9,7 +9,8 @@ export type AppContextProps = {
   closeModal: () => void;
   filteringDoctor: (
     keyword: string,
-    category: "spesialisasi" | "dokter"
+    category: "spesialisasi" | "dokter",
+    pickDate?: Date | undefined
   ) => void;
 };
 

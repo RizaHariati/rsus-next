@@ -23,6 +23,12 @@ export type PatientProfileType = {
   birthdate: string;
   phone: string;
 };
+
+export type PatientSchedule = {
+  destination: "string";
+  date: Date;
+  using_bpjs: boolean;
+};
 export type PatientType = {
   login: boolean;
   registered: boolean;
@@ -31,6 +37,7 @@ export type PatientType = {
   profile: { [key: string]: any };
   bpjs: boolean;
   bpjs_number?: string;
+  schedule?: PatientSchedule[];
 };
 
 export type SubDataType = {

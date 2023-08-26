@@ -16,13 +16,13 @@ const AppointmentDoctor = () => {
     openModal,
     state: { modalValue, filtered_doctor },
   } = useGlobalContext();
+
   const consultationInfo: ConsultationMenuTypes = modalValue;
   const [doctorList, setdoctorList] = useState<DoctorType[]>(randomizeDoctor());
   const [title, setTitle] = useState("Beberapa dokter kami");
-
+  const value = filtered_doctor.value;
+  const category = filtered_doctor.category;
   useEffect(() => {
-    const value = filtered_doctor.value;
-    const category = filtered_doctor.category;
     if (value?.length > 0 && value?.length < dataDoctor.length) {
       setdoctorList(value.slice(0, 6));
       if (category === "spesialisasi") {
@@ -34,8 +34,12 @@ const AppointmentDoctor = () => {
   }, [filtered_doctor]);
 
   return (
-    <mark className="w-full  h-52 custom-scrollbar">
-      <h4 className="text-left">{title}</h4>
+    <mark className="w-full  h-60 custom-scrollbar">
+      <h4 className="text-left">
+        {value.length > 0
+          ? title
+          : "Tidak ditemukan Spesialis dengan kata kunci atau jadwal yang anda masukkan. Silahkan hapus tanggal untuk memilih hari lain"}
+      </h4>
       <div className=" grid grid-cols-2 w-full gap-2">
         {doctorList.map((item: DoctorType, index: number) => {
           const image: string =
@@ -60,8 +64,8 @@ const AppointmentDoctor = () => {
                   loading="lazy"
                 />
               </div>
-              <div className="grid grid-cols-2 w-full body-3 text-left">
-                <div className=" col-span-2 flex-center-left gap-2">
+              <div className="grid grid-cols-3 w-full body-3 text-left">
+                <div className=" col-span-3 flex-center-left gap-2">
                   {item.telemedicine ? (
                     <FontAwesomeIcon
                       icon={faCircle}
@@ -73,11 +77,13 @@ const AppointmentDoctor = () => {
                   <p className="body-2">{item.nama}</p>
                 </div>
                 <p>Poliklinik</p>
-                <p>: {item.poliklinik.title}</p>
+                <p className=" col-span-2">: {item.poliklinik.title}</p>
                 <p>Pengalaman</p>
-                <p>: {item.pengalaman} tahun</p>
+                <p className=" col-span-2">: {item.pengalaman} tahun</p>
                 <p>Telemedicine </p>
-                <p>{item.telemedicine ? ": Ya" : ": Tidak"} </p>
+                <p className=" col-span-2">
+                  {item.telemedicine ? ": Ya" : ": Tidak"}{" "}
+                </p>
               </div>
             </button>
           );

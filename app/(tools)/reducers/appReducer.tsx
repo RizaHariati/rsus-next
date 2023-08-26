@@ -1,6 +1,7 @@
 import { AppState } from "../context/interfaces";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import { DoctorType } from "../types";
+import dayjs from "dayjs";
 
 interface OpenModalAction {
   type: string;
@@ -51,6 +52,7 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
     const modal = state.modalTitle;
     const category: "spesialisasi" | "dokter" = action.payload.category;
     const keyword = action.payload.keyword;
+    const pickDate = action.payload.pickDate;
     const selectData =
       modal === "telemedicine"
         ? dataDoctor.filter((item) => item.telemedicine)
@@ -64,19 +66,28 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
     };
 
     if (category === "spesialisasi") {
-      const filter: DoctorType[] = selectData.filter(
+      const filterDoctor: DoctorType[] = selectData.filter(
         (item) => item.poliklinik.poli_id === keyword
       );
-      if (filter.length > 0) {
-        filtered_doctor = { category, value: filter };
+      if (filterDoctor.length > 0) {
+        filtered_doctor = { category, value: filterDoctor };
       }
     } else {
-      const filter = selectData.filter((item) =>
+      const filterDoctor = selectData.filter((item) =>
         item.nama.toLowerCase().includes(keyword.toLowerCase())
       );
-      if (filter.length > 0) {
-        filtered_doctor = { category, value: filter };
+      if (filterDoctor.length > 0) {
+        filtered_doctor = { category, value: filterDoctor };
       }
+    }
+    if (pickDate) {
+      const filterByPickDate = filtered_doctor.value;
+      const getDay = dayjs(pickDate).day();
+      const hari = getDay === 0 ? 7 : getDay;
+      const finalFilter = filterByPickDate.filter((item) =>
+        item.hari.find((itemhari) => itemhari === hari)
+      );
+      filtered_doctor = { category, value: finalFilter };
     }
     return {
       ...state,

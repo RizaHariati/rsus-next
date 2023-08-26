@@ -1,6 +1,7 @@
 import "../styles/globals.css";
 import "../styles/navbar.css";
 import "../styles/mainpage.css";
+import "react-datepicker/dist/react-datepicker.css";
 import type { Metadata } from "next";
 import { Oswald, Nunito } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";

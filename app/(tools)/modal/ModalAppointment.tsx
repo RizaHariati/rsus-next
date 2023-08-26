@@ -21,7 +21,12 @@ const ModalAppointment = (props: Props) => {
         {consultationInfo.title}
       </h3>
 
-      <button className="absolute top-2 right-4" onClick={() => closeModal()}>
+      <button
+        className="absolute top-2 right-4"
+        onClick={() => {
+          closeModal();
+        }}
+      >
         <FontAwesomeIcon icon={faClose} />
       </button>
       <article className="flex flex-col gap-3 ">
