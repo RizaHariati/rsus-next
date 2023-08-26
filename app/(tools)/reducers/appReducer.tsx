@@ -1,7 +1,6 @@
 import { AppState } from "../context/interfaces";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import { DoctorType } from "../types";
-import dataDokter from "@/app/(tools)/data/data_dokter.json";
 
 interface OpenModalAction {
   type: string;
@@ -22,15 +21,23 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
       menu_id,
     };
   }
+
   if (action.type === "OPEN_MODAL") {
     const { modalTitle, modalValue } = action.payload;
+    let filtered_doctor: {
+      category: "spesialisasi" | "dokter";
+      value: DoctorType[];
+    } = { category: "spesialisasi", value: [] };
+
     return {
       ...state,
       showModal: true,
       modalTitle,
       modalValue,
+      filtered_doctor,
     };
   }
+
   if (action.type === "CLOSE_MODAL") {
     return {
       ...state,
@@ -39,23 +46,32 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
       modalValue: {},
     };
   }
+
   if (action.type === "FILTER_DOCTORS") {
+    const modal = state.modalTitle;
     const category: "spesialisasi" | "dokter" = action.payload.category;
     const keyword = action.payload.keyword;
+    const selectData =
+      modal === "telemedicine"
+        ? dataDoctor.filter((item) => item.telemedicine)
+        : dataDoctor;
     let filtered_doctor: {
       category: "spesialisasi" | "dokter";
       value: DoctorType[];
-    } = { category: "spesialisasi", value: [] };
+    } = {
+      category: "spesialisasi",
+      value: [],
+    };
 
     if (category === "spesialisasi") {
-      const filter: DoctorType[] = dataDoctor.filter(
+      const filter: DoctorType[] = selectData.filter(
         (item) => item.poliklinik.poli_id === keyword
       );
       if (filter.length > 0) {
         filtered_doctor = { category, value: filter };
       }
     } else {
-      const filter = dataDoctor.filter((item) =>
+      const filter = selectData.filter((item) =>
         item.nama.toLowerCase().includes(keyword.toLowerCase())
       );
       if (filter.length > 0) {

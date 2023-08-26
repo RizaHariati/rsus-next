@@ -2,23 +2,25 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import { ConsultationMenuTypes, DoctorType } from "../../types";
 
-import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import Image from "next/image";
-import { ConsultationMenuTypes, DoctorType } from "../../../types";
+import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 
 type Props = {};
 const randomizeDoctor = () => {
-  return [...dataDoctor].sort(() => 0.5 - Math.random()).slice(0, 4);
+  const newDataDoctor = dataDoctor.filter((item) => item.telemedicine === 1);
+  return [...newDataDoctor].sort(() => 0.5 - Math.random()).slice(0, 4);
 };
-const AppointmentDoctor = () => {
+const TelemedicineDoctor = () => {
   const {
     openModal,
     state: { modalValue, filtered_doctor },
   } = useGlobalContext();
+
   const consultationInfo: ConsultationMenuTypes = modalValue;
   const [doctorList, setdoctorList] = useState<DoctorType[]>(randomizeDoctor());
-  const [title, setTitle] = useState("Beberapa dokter kami");
+  const [title, setTitle] = useState("Dokter kami yang melayani Telemedicine");
 
   useEffect(() => {
     const value = filtered_doctor.value;
@@ -28,14 +30,13 @@ const AppointmentDoctor = () => {
       if (category === "spesialisasi") {
         setTitle(value[0].poliklinik.title);
       } else {
-        setTitle("Beberapa dokter kami");
+        setTitle("Dokter kami yang melayani Telemedicine");
       }
     }
   }, [filtered_doctor]);
-
   return (
-    <mark className="w-full  h-52 custom-scrollbar">
-      <h4 className="text-left">{title}</h4>
+    <section className="bg-white border-none">
+      <h4 className="text-left mb-2">{`${title} Telemedicine`}</h4>
       <div className=" grid grid-cols-2 w-full gap-2">
         {doctorList.map((item: DoctorType, index: number) => {
           const image: string =
@@ -76,15 +77,18 @@ const AppointmentDoctor = () => {
                 <p>: {item.poliklinik.title}</p>
                 <p>Pengalaman</p>
                 <p>: {item.pengalaman} tahun</p>
-                <p>Telemedicine </p>
-                <p>{item.telemedicine ? ": Ya" : ": Tidak"} </p>
+                {item.sedang_online ? (
+                  <p className="text-greenUrip">Sedang Online</p>
+                ) : (
+                  <p className="text-greyMed2">Sedang offline</p>
+                )}
               </div>
             </button>
           );
         })}
       </div>
-    </mark>
+    </section>
   );
 };
 
-export default AppointmentDoctor;
+export default TelemedicineDoctor;

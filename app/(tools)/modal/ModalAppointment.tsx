@@ -3,8 +3,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../types";
-import AppointmentSelect from "./modalComponents/modalAppointment/AppointmentSelect";
-import AppointmentDoctor from "./modalComponents/modalAppointment/AppointmentDoctor";
+import AppointmentSelect from "./modalAppointment/AppointmentSelect";
+import AppointmentDoctor from "./modalAppointment/AppointmentDoctor";
 
 type Props = {};
 

@@ -1,5 +1,5 @@
 import { AppState } from "../context/interfaces";
-import { AppointmentState } from "../modal/modalComponents/modalAppointment/appointmentState";
+import { AppointmentState } from "../modal/modalAppointment/appointmentState";
 import dataPoliklinik from "@/app/(tools)/data/data_poliklinik.json";
 import dataDokter from "@/app/(tools)/data/data_dokter.json";
 
