@@ -6,6 +6,8 @@ import { ConsultationMenuTypes, DoctorType } from "../types";
 import { samplePatient } from "../utils/forms/samplePatient";
 import { numberToDay } from "../utils/forms/getDoctorDetailedInfo";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
+import { getHariOrder } from "../utils/getHariOrder";
+import dayjs from "dayjs";
 
 type Props = {};
 
@@ -80,31 +82,29 @@ const ModalTatapMuka = (props: Props) => {
                     )?.class
                   }
                 >
-                  {doctorInfo.hari.map((item, index: number) => {
-                    const randomPatient = Math.floor(
-                      Math.random() * doctorInfo.kuota + 1
-                    );
-
+                  {getHariOrder(doctorInfo.hari).map((item, index: number) => {
                     return (
                       <div
-                        key={item}
+                        key={index}
                         className="flex-center-center flex-col standard-border gap-1 p-1 cursor-pointer bg-white hover:bg-greyLit transition-all"
                       >
                         <p>
                           {numberToDay.find(
-                            (itemKonsul) => itemKonsul.id === item
+                            (itemKonsul) => itemKonsul.id === item.id_hari
                           )?.hari || ""}
                         </p>
-
-                        <div key={item}>
+                        <p className="footnote-1">
+                          {dayjs().add(index, "d").format("DD/mm/YY")}
+                        </p>
+                        <div>
                           <FontAwesomeIcon
                             icon={faCalendarDays}
                             className={`${getWarnaKuota(
-                              randomPatient / doctorInfo.kuota
+                              item.kuota_terisi / doctorInfo.kuota
                             )}`}
                           />
                         </div>
-                        <p>{`${randomPatient}/${doctorInfo.kuota}`}</p>
+                        <p>{`${item.kuota_terisi}/${doctorInfo.kuota}`}</p>
                       </div>
                     );
                   })}

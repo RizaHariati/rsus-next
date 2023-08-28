@@ -1,4 +1,4 @@
-import { DoctorType } from "../../types";
+import { DoctorType, HariType } from "../../types";
 export const getDoctorDetailedInfo = (doctorInfo: DoctorType) => {
   const detail = [
     { id: 1, title: "Poliklinik", value: doctorInfo.poliklinik.title },
@@ -55,14 +55,15 @@ export const numberToDay = [
   { id: 7, hari: "minggu" },
 ];
 
-export const getPracticeDay = (days: number[]) => {
+export const getPracticeDay = (days: HariType[]) => {
   let dayArray: string[] = [];
-  let lastDay: number = days[0];
+  let lastDay: number = days[0].id_hari;
   let dayStart = "";
   let dayEnd = "";
   let jumpValue: boolean = false;
   days.map((day, index) => {
-    const dayName = numberToDay.find((item) => item.id === day);
+    const dayName = numberToDay.find((item) => item.id === day.id_hari);
+
     if (dayName) {
       if (index === 0) {
         dayStart = dayName.hari;
@@ -70,10 +71,10 @@ export const getPracticeDay = (days: number[]) => {
       if (index !== 0 && index === days.length - 1) {
         dayEnd = dayName.hari;
       }
-      if (index > 0 && day - lastDay > 1) {
+      if (index > 0 && day.id_hari - lastDay > 1) {
         jumpValue = true;
       }
-      lastDay = day;
+      lastDay = day.id_hari;
       dayArray.push(dayName.hari);
     }
   });

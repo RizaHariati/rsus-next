@@ -126,16 +126,16 @@ export type PaketLabType = {
   laboratorium: LabItemType[];
 };
 
-export type hariType = {
-  idHari: number;
-  kuotaHari: number;
+export type HariType = {
+  id_hari: number;
+  kuota_terisi: number;
 };
 export type DoctorType = {
   id: string;
   nama: string;
   waktu: string;
   poliklinik: { poli_id: string; title: string };
-  hari: number[];
+  hari: HariType[];
   jam: string;
   gender: number;
   on_call: number;
