@@ -1,24 +1,14 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../types";
-import { samplePatient } from "../utils/forms/samplePatient";
-import { numberToDay } from "../utils/forms/getDoctorDetailedInfo";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
-import { getHariOrder } from "../utils/getHariOrder";
-import dayjs from "dayjs";
+import AppoinmentCalendarIcon from "./modalAppointment/AppoinmentCalendarIcon";
+import { samplePatient } from "../utils/forms/samplePatient";
 
 type Props = {};
 
-const gridColumn = [
-  { length: 1, class: "antrian-grid grid-cols-1" },
-  { length: 2, class: "antrian-grid grid-cols-2" },
-  { length: 3, class: "antrian-grid grid-cols-3" },
-  { length: 4, class: "antrian-grid grid-cols-4" },
-  { length: 5, class: "antrian-grid grid-cols-5" },
-  { length: 6, class: "antrian-grid grid-cols-6" },
-];
 const ModalTatapMuka = (props: Props) => {
   const {
     state: { modalValue },
@@ -27,16 +17,7 @@ const ModalTatapMuka = (props: Props) => {
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.doctorInfo;
   const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
-  const getWarnaKuota = (kuota: number) => {
-    let kuotaClass = "kuota-icon text-greenUrip";
-    if (kuota > 0.6 && kuota < 1) {
-      kuotaClass = "kuota-icon text-accent1";
-    }
-    if (kuota === 1) {
-      kuotaClass = "kuota-icon text-greyLit";
-    }
-    return kuotaClass;
-  };
+  const [bpjs, setBpjs] = useState(true);
   return (
     <div className="modal-lg p-3 px-10 overflow-hidden bg-white">
       <button
@@ -68,49 +49,7 @@ const ModalTatapMuka = (props: Props) => {
           </div>
           <div>
             <p>Antrian 7 hari kedepan (pilih 1)</p>
-            <div>
-              <div className="flex standard-border  p-2 gap-2 ">
-                <div className="flex flex-col py-3 capitalize justify-between">
-                  <p>Waktu</p>
-                  <p>kuota</p>
-                </div>
-                {/* Memasukkan pasien yang sudah terdaftar per hari */}
-                <div
-                  className={
-                    gridColumn.find(
-                      (item) => item.length === doctorInfo.hari.length
-                    )?.class
-                  }
-                >
-                  {getHariOrder(doctorInfo.hari).map((item, index: number) => {
-                    return (
-                      <div
-                        key={index}
-                        className="flex-center-center flex-col standard-border gap-1 p-1 cursor-pointer bg-white hover:bg-greyLit transition-all"
-                      >
-                        <p>
-                          {numberToDay.find(
-                            (itemKonsul) => itemKonsul.id === item.id_hari
-                          )?.hari || ""}
-                        </p>
-                        <p className="footnote-1">
-                          {dayjs().add(index, "d").format("DD/mm/YY")}
-                        </p>
-                        <div>
-                          <FontAwesomeIcon
-                            icon={faCalendarDays}
-                            className={`${getWarnaKuota(
-                              item.kuota_terisi / doctorInfo.kuota
-                            )}`}
-                          />
-                        </div>
-                        <p>{`${item.kuota_terisi}/${doctorInfo.kuota}`}</p>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
+            <AppoinmentCalendarIcon />
           </div>
           <div className="body-3 in">
             Nomor Rekam Medis didapatkan saat anda mendaftar sebagai pasien RS
@@ -135,24 +74,44 @@ const ModalTatapMuka = (props: Props) => {
             <div>
               <p>Apakah anda menggunakan jaminan BPJS?</p>
               <div className="grid grid-cols-2 gap-2">
-                <button className="button-greenUrip w-full text-sm h-10">
+                <button
+                  onClick={() => setBpjs(true)}
+                  className={
+                    bpjs
+                      ? "button-greenUrip w-full text-sm h-10"
+                      : "button-grey w-full text-sm h-10"
+                  }
+                >
                   Menggunakan Bpjs
                 </button>
-                <button className="button-grey w-full text-sm h-10">
-                  Menggunakan Bpjs
+                <button
+                  onClick={() => setBpjs(false)}
+                  className={
+                    !bpjs
+                      ? "button-greenUrip w-full text-sm h-10"
+                      : "button-grey w-full text-sm h-10"
+                  }
+                >
+                  Tanpa Bpjs (umum)
                 </button>
               </div>
             </div>
-            <div>
+            <div
+              className={
+                bpjs
+                  ? "h-20 overflow-hidden transition-all "
+                  : "h-0 overflow-hidden transition-all"
+              }
+            >
               <p>Masukkan nomor BPJS Anda </p>
-              <p className="active-input">0001454326918</p>
+              <p className="active-input">{samplePatient.bpjs_number}</p>
             </div>
           </div>
           <button
             onClick={() => closeModal()}
             className="button-greenUrip w-1/2 h-10 ml-auto"
           >
-            Daftarkan BPJS
+            {bpjs ? "Daftarkan BPJS" : "Daftarkan Umum"}
           </button>
         </mark>
       </section>

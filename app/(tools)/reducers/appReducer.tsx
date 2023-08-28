@@ -85,7 +85,7 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
       const getDay = dayjs(pickDate).day();
       const hari = getDay === 0 ? 7 : getDay;
       const finalFilter = filterByPickDate.filter((item) =>
-        item.hari.find((itemhari) => itemhari === hari)
+        item.hari.find((itemhari) => itemhari.id_hari === hari)
       );
       filtered_doctor = { category, value: finalFilter };
     }
