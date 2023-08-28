@@ -8,18 +8,16 @@ type ResultProps = {
   consultationInfo: ConsultationMenuTypes;
   specializationList: PoliklinikType[];
   searchCategory: "spesialisasi" | "dokter";
-  pickDate?: Date;
 };
 const ResultSpesialisasi = ({
   searchKeyword,
   consultationInfo,
   specializationList,
   searchCategory,
-  pickDate,
 }: ResultProps) => {
   const {
     filteringDoctor,
-    state: { modalTitle },
+    state: { modalTitle, selected_date },
   } = useGlobalContext();
 
   return (
@@ -47,8 +45,12 @@ const ResultSpesialisasi = ({
                 key={item.id}
                 onClick={(e) => {
                   e.preventDefault();
-                  if (pickDate) {
-                    return filteringDoctor(item.id, searchCategory, pickDate);
+                  if (selected_date) {
+                    return filteringDoctor(
+                      item.id,
+                      searchCategory,
+                      selected_date
+                    );
                   } else {
                     filteringDoctor(item.id, searchCategory);
                   }

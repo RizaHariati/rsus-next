@@ -12,6 +12,8 @@ export type AppContextProps = {
     category: "spesialisasi" | "dokter",
     pickDate?: Date | undefined
   ) => void;
+  setDate: (date: Date) => void;
+  clearDate: () => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

@@ -154,3 +154,9 @@ export type PoliklinikType = {
   img: string;
   description: string[];
 };
+
+export type FilterDoctorType = {
+  category: "spesialisasi" | "dokter";
+  value: DoctorType[];
+  keyword?: string;
+};

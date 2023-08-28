@@ -22,13 +22,23 @@ const AppointmentDoctor = () => {
   const [title, setTitle] = useState("Beberapa dokter kami");
   const value = filtered_doctor.value;
   const category = filtered_doctor.category;
+  const keyword = filtered_doctor.keyword;
   useEffect(() => {
-    if (value?.length > 0 && value?.length < dataDoctor.length) {
-      setdoctorList(value.slice(0, 6));
-      if (category === "spesialisasi") {
-        setTitle(value[0].poliklinik.title);
+    if (!value) return;
+    if (!keyword) {
+      setTitle("Beberapa dokter kami");
+    } else {
+      if (value.length < 1) {
+        setTitle(
+          "Tidak ditemukan Spesialis dengan kata kunci atau jadwal yang anda masukkan. Silahkan hapus tanggal untuk memilih hari lain"
+        );
       } else {
-        setTitle("Beberapa dokter kami");
+        setdoctorList(value.slice(0, 6));
+        if (category === "spesialisasi") {
+          setTitle(value[0].poliklinik.title);
+        } else {
+          setTitle("Beberapa dokter kami");
+        }
       }
     }
   }, [filtered_doctor]);
@@ -36,7 +46,7 @@ const AppointmentDoctor = () => {
   return (
     <mark className="w-full  h-60 custom-scrollbar">
       <h4 className="text-left">
-        {value.length > 0
+        {keyword !== ""
           ? title
           : "Tidak ditemukan Spesialis dengan kata kunci atau jadwal yang anda masukkan. Silahkan hapus tanggal untuk memilih hari lain"}
       </h4>

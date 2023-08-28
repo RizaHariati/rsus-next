@@ -18,7 +18,8 @@ const gridColumn = [
 ];
 const AppoinmentCalendarIcon = ({}: Props) => {
   const {
-    state: { modalValue },
+    state: { modalValue, selected_date },
+    setDate,
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.doctorInfo;
 
@@ -48,7 +49,16 @@ const AppoinmentCalendarIcon = ({}: Props) => {
         >
           {getHariOrder(doctorInfo.hari).map((item, index: number) => {
             return (
-              <div
+              <button
+                onClick={() =>
+                  setDate(
+                    new Date(
+                      dayjs()
+                        .add(item.id_hari - 1, "d")
+                        .toString()
+                    )
+                  )
+                }
                 key={index}
                 className="flex-center-center flex-col standard-border gap-1 p-1 cursor-pointer bg-white hover:bg-greyLit transition-all"
               >
@@ -58,7 +68,9 @@ const AppoinmentCalendarIcon = ({}: Props) => {
                   )?.hari || ""}
                 </p>
                 <p className="footnote-1">
-                  {dayjs().add(index, "d").format("DD/mm/YY")}
+                  {dayjs()
+                    .add(item.id_hari - 1, "d")
+                    .format("DD/mm/YY")}
                 </p>
                 <div>
                   <FontAwesomeIcon
@@ -69,7 +81,7 @@ const AppoinmentCalendarIcon = ({}: Props) => {
                   />
                 </div>
                 <p>{`${item.kuota_terisi}/${doctorInfo.kuota}`}</p>
-              </div>
+              </button>
             );
           })}
         </div>

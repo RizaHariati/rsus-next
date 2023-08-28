@@ -32,12 +32,20 @@ export const AppProvider = ({ children }: Props) => {
   const filteringDoctor = (
     keyword: string,
     category: "spesialisasi" | "dokter",
-    pickDate?: Date | undefined
+    selected_date?: Date | undefined
   ) => {
     dispatch({
       type: "FILTER_DOCTORS",
-      payload: { keyword, category, pickDate },
+      payload: { keyword, category, selected_date },
     });
+  };
+
+  const setDate = (date: Date) => {
+    dispatch({ type: "SET_DATE", payload: { date } });
+  };
+
+  const clearDate = () => {
+    dispatch({ type: "CLEAR_DATE" });
   };
   const value = {
     state,
@@ -46,6 +54,8 @@ export const AppProvider = ({ children }: Props) => {
     openModal,
     closeModal,
     filteringDoctor,
+    setDate,
+    clearDate,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

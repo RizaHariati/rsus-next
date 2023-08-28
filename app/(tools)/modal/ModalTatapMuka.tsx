@@ -6,12 +6,13 @@ import { ConsultationMenuTypes, DoctorType } from "../types";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 import AppoinmentCalendarIcon from "./modalAppointment/AppoinmentCalendarIcon";
 import { samplePatient } from "../utils/forms/samplePatient";
+import dayjs from "dayjs";
 
 type Props = {};
 
 const ModalTatapMuka = (props: Props) => {
   const {
-    state: { modalValue },
+    state: { modalValue, selected_date },
     openModal,
     closeModal,
   } = useGlobalContext();
@@ -37,7 +38,11 @@ const ModalTatapMuka = (props: Props) => {
           </div>
           <div>
             <p>Nomor WhatsApp untuk nomor antrian</p>
-            <p className="active-input">{samplePatient.profile.phone}</p>
+            <input
+              placeholder={samplePatient.profile.phone}
+              className="active-input"
+            />
+
             <p className=" text-redBase footnote-1">
               Nomor HP tidak sama dengan nomor pada Rekam Medik, abaikan jika
               memang anda mengganti nomor
@@ -45,7 +50,11 @@ const ModalTatapMuka = (props: Props) => {
           </div>
           <div>
             <p>Hari yang anda pilih</p>
-            <p className="active-input">12/09/2023</p>
+            <p className="active-input">
+              {selected_date
+                ? dayjs(selected_date).format("DD MMMM YYYY")
+                : "anda belum memilih hari"}
+            </p>
           </div>
           <div>
             <p>Antrian 7 hari kedepan (pilih 1)</p>

@@ -1,6 +1,6 @@
 import { AppState } from "../context/interfaces";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
-import { DoctorType } from "../types";
+import { DoctorType, FilterDoctorType } from "../types";
 import dayjs from "dayjs";
 
 interface OpenModalAction {
@@ -8,6 +8,15 @@ interface OpenModalAction {
   payload?: any;
 }
 export const appReducer = (state: AppState, action: OpenModalAction) => {
+  if (action.type === "SET_DATE") {
+    const selected_date = action.payload.date;
+    return { ...state, selected_date };
+  }
+
+  if (action.type === "CLEAR_DATE") {
+    let selected_date;
+    return { ...state, selected_date };
+  }
   if (action.type === "TOGGLE_MENU") {
     let menu_id = state.menu_id;
 
@@ -52,17 +61,15 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
     const modal = state.modalTitle;
     const category: "spesialisasi" | "dokter" = action.payload.category;
     const keyword = action.payload.keyword;
-    const pickDate = action.payload.pickDate;
+    const selected_date = action.payload.selected_date;
     const selectData =
       modal === "telemedicine"
         ? dataDoctor.filter((item) => item.telemedicine)
         : dataDoctor;
-    let filtered_doctor: {
-      category: "spesialisasi" | "dokter";
-      value: DoctorType[];
-    } = {
+    let filtered_doctor: FilterDoctorType = {
       category: "spesialisasi",
       value: [],
+      keyword,
     };
 
     if (category === "spesialisasi") {
@@ -70,24 +77,24 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
         (item) => item.poliklinik.poli_id === keyword
       );
       if (filterDoctor.length > 0) {
-        filtered_doctor = { category, value: filterDoctor };
+        filtered_doctor = { category, value: filterDoctor, keyword };
       }
     } else {
       const filterDoctor = selectData.filter((item) =>
         item.nama.toLowerCase().includes(keyword.toLowerCase())
       );
       if (filterDoctor.length > 0) {
-        filtered_doctor = { category, value: filterDoctor };
+        filtered_doctor = { category, value: filterDoctor, keyword };
       }
     }
-    if (pickDate) {
+    if (selected_date) {
       const filterByPickDate = filtered_doctor.value;
-      const getDay = dayjs(pickDate).day();
+      const getDay = dayjs(selected_date).day();
       const hari = getDay === 0 ? 7 : getDay;
       const finalFilter = filterByPickDate.filter((item) =>
         item.hari.find((itemhari) => itemhari.id_hari === hari)
       );
-      filtered_doctor = { category, value: finalFilter };
+      filtered_doctor = { category, value: finalFilter, keyword };
     }
     return {
       ...state,
