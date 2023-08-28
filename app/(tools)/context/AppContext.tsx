@@ -14,6 +14,8 @@ export type AppContextProps = {
   ) => void;
   setDate: (date: Date) => void;
   clearDate: () => void;
+  openAlert: (alertTitle: string, alertValue: any) => void;
+  closeAlert: () => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

@@ -28,7 +28,7 @@ const SelectDate = ({ searchCategory, handleDateChange, clearDate }: Props) => {
           disabled={searchCategory === "dokter" ? true : false}
           placeholderText={
             searchCategory === "dokter"
-              ? "pilih tanggal untuk spesialisasi"
+              ? "Pilih spesialisasi"
               : "Biarkan kosong atau pilih tanggal yang diinginkan"
           }
           onKeyDown={(e) => {

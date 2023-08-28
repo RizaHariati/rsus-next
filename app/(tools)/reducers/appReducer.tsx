@@ -8,6 +8,25 @@ interface OpenModalAction {
   payload?: any;
 }
 export const appReducer = (state: AppState, action: OpenModalAction) => {
+  if (action.type === "OPEN_ALERT") {
+    const { alertTitle, alertValue } = action.payload;
+
+    return {
+      ...state,
+      showAlert: true,
+      alertTitle,
+      alertValue,
+    };
+  }
+
+  if (action.type === "CLOSE_ALERT") {
+    return {
+      ...state,
+      showAlert: false,
+      alertTitle: "",
+      alertValue: {},
+    };
+  }
   if (action.type === "SET_DATE") {
     const selected_date = action.payload.date;
     return { ...state, selected_date };
@@ -49,11 +68,13 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
   }
 
   if (action.type === "CLOSE_MODAL") {
+    let selected_date;
     return {
       ...state,
       showModal: false,
       modalTitle: "",
       modalValue: {},
+      selected_date,
     };
   }
 
@@ -92,7 +113,10 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
       const getDay = dayjs(selected_date).day();
       const hari = getDay === 0 ? 7 : getDay;
       const finalFilter = filterByPickDate.filter((item) =>
-        item.hari.find((itemhari) => itemhari.id_hari === hari)
+        item.hari.find(
+          (itemhari) =>
+            itemhari.id_hari === hari && itemhari.kuota_terisi < item.kuota
+        )
       );
       filtered_doctor = { category, value: finalFilter, keyword };
     }

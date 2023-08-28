@@ -45,6 +45,11 @@ const AppointmentSelect = () => {
   return (
     <mark className="w-full  grid grid-cols-2 gap-5 h-full body-3 max-h-96">
       <div className=" w-full standard-border p-3  flex flex-col gap-5">
+        <SelectDate
+          searchCategory={searchCategory}
+          handleDateChange={handleDateChange}
+          clearDate={clearDate}
+        />
         <div className="w-full flex gap-2 flex-col h-16">
           <div className="flex gap-2">
             <p className="btn-3-bold">
@@ -84,12 +89,13 @@ const AppointmentSelect = () => {
               </button>
               <button
                 className="flex-center-between gap-2"
-                onClick={() =>
+                onClick={() => {
+                  clearDate();
                   dispatch({
                     type: "SET_CATEGORY",
                     payload: { category: "dokter" },
-                  })
-                }
+                  });
+                }}
               >
                 <FontAwesomeIcon
                   icon={
@@ -124,11 +130,6 @@ const AppointmentSelect = () => {
             />
           </div>
         </div>
-        <SelectDate
-          searchCategory={searchCategory}
-          handleDateChange={handleDateChange}
-          clearDate={clearDate}
-        />
       </div>
 
       {searchCategory === "spesialisasi" && (

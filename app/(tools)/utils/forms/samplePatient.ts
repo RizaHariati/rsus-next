@@ -1,7 +1,7 @@
 import { PatientType } from "../../types";
 
 export const samplePatient: PatientType = {
-  login: true,
+  login: false,
   registered: true,
   register_date: "17/08/2023",
   medical_record: "US4234123398",

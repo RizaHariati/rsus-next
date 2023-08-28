@@ -23,6 +23,7 @@ const AppointmentDoctor = () => {
   const value = filtered_doctor.value;
   const category = filtered_doctor.category;
   const keyword = filtered_doctor.keyword;
+
   useEffect(() => {
     if (!value) return;
     if (!keyword) {
@@ -30,7 +31,7 @@ const AppointmentDoctor = () => {
     } else {
       if (value.length < 1) {
         setTitle(
-          "Tidak ditemukan Spesialis dengan kata kunci atau jadwal yang anda masukkan. Silahkan hapus tanggal untuk memilih hari lain"
+          "Tidak ditemukan Spesialis/Doker dengan kata kunci atau jadwal yang anda masukkan."
         );
       } else {
         setdoctorList(value.slice(0, 6));
@@ -41,6 +42,7 @@ const AppointmentDoctor = () => {
         }
       }
     }
+    // eslint-disable-next-line
   }, [filtered_doctor]);
 
   return (
@@ -48,7 +50,7 @@ const AppointmentDoctor = () => {
       <h4 className="text-left">
         {keyword !== ""
           ? title
-          : "Tidak ditemukan Spesialis dengan kata kunci atau jadwal yang anda masukkan. Silahkan hapus tanggal untuk memilih hari lain"}
+          : "Tidak ditemukan Spesialis/Doker dengan kata kunci atau jadwal yang anda masukkan."}
       </h4>
       <div className=" grid grid-cols-2 w-full gap-2">
         {doctorList.map((item: DoctorType, index: number) => {

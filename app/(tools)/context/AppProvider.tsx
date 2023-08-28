@@ -47,6 +47,16 @@ export const AppProvider = ({ children }: Props) => {
   const clearDate = () => {
     dispatch({ type: "CLEAR_DATE" });
   };
+
+  const openAlert = (alertTitle: string, alertValue: any) => {
+    toggleMenuNavbar(null);
+    dispatch({ type: "OPEN_ALERT", payload: { alertTitle, alertValue } });
+  };
+
+  const closeAlert = () => {
+    dispatch({ type: "CLOSE_ALERT", payload: "" });
+  };
+
   const value = {
     state,
     dispatch,
@@ -56,6 +66,8 @@ export const AppProvider = ({ children }: Props) => {
     filteringDoctor,
     setDate,
     clearDate,
+    openAlert,
+    closeAlert,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

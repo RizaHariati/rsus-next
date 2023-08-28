@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import dayjs from "dayjs";
@@ -6,9 +6,10 @@ import { useGlobalContext } from "../../context/AppProvider";
 import { DoctorType } from "../../types";
 import { getHariOrder } from "../../utils/getHariOrder";
 import { numberToDay } from "../../utils/forms/getDoctorDetailedInfo";
+import SelectDateIcon from "./SelectDateIcon";
 
 type Props = {};
-const gridColumn = [
+export const gridColumn = [
   { length: 1, class: "antrian-grid grid-cols-1" },
   { length: 2, class: "antrian-grid grid-cols-2" },
   { length: 3, class: "antrian-grid grid-cols-3" },
@@ -19,19 +20,13 @@ const gridColumn = [
 const AppoinmentCalendarIcon = ({}: Props) => {
   const {
     state: { modalValue, selected_date },
-    setDate,
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.doctorInfo;
-
-  const getWarnaKuota = (kuota: number) => {
-    let kuotaClass = "kuota-icon text-greenUrip";
-    if (kuota > 0.6 && kuota < 1) {
-      kuotaClass = "kuota-icon text-accent1";
-    }
-    if (kuota === 1) {
-      kuotaClass = "kuota-icon text-greyLit";
-    }
-    return kuotaClass;
+  const [toggleKuota, setToggleKuota] = useState<number | null>(
+    selected_date ? dayjs(selected_date).day() : null
+  );
+  const handleToggle = (date: number) => {
+    return setToggleKuota(date);
   };
   return (
     <div>
@@ -49,39 +44,12 @@ const AppoinmentCalendarIcon = ({}: Props) => {
         >
           {getHariOrder(doctorInfo.hari).map((item, index: number) => {
             return (
-              <button
-                onClick={() =>
-                  setDate(
-                    new Date(
-                      dayjs()
-                        .add(item.id_hari - 1, "d")
-                        .toString()
-                    )
-                  )
-                }
+              <SelectDateIcon
                 key={index}
-                className="flex-center-center flex-col standard-border gap-1 p-1 cursor-pointer bg-white hover:bg-greyLit transition-all"
-              >
-                <p>
-                  {numberToDay.find(
-                    (itemKonsul) => itemKonsul.id === item.id_hari
-                  )?.hari || ""}
-                </p>
-                <p className="footnote-1">
-                  {dayjs()
-                    .add(item.id_hari - 1, "d")
-                    .format("DD/mm/YY")}
-                </p>
-                <div>
-                  <FontAwesomeIcon
-                    icon={faCalendarDays}
-                    className={`${getWarnaKuota(
-                      item.kuota_terisi / doctorInfo.kuota
-                    )}`}
-                  />
-                </div>
-                <p>{`${item.kuota_terisi}/${doctorInfo.kuota}`}</p>
-              </button>
+                item={item}
+                toggleKuota={toggleKuota}
+                handleToggle={handleToggle}
+              />
             );
           })}
         </div>

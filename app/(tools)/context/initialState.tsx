@@ -9,4 +9,7 @@ export const initialState: AppState = {
   modalValue: {},
   filtered_doctor: { category: "spesialisasi", value: dataDoctor, keyword: "" },
   selected_date: undefined,
+  showAlert: false,
+  alertTitle: "",
+  alertValue: {},
 };

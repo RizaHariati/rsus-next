@@ -5,7 +5,8 @@ import dataFacility from "@/app/(tools)/data/data_facility.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { LabItemType, PaketLabType } from "../types";
+import { LabItemType, PaketLabType } from "../../types";
+import { samplePatient } from "../../utils/forms/samplePatient";
 
 type Props = {};
 
@@ -14,6 +15,7 @@ const ModalPaket = (props: Props) => {
     state: { modalValue },
     closeModal,
     openModal,
+    openAlert,
   } = useGlobalContext();
 
   const paketLab: PaketLabType = modalValue;
@@ -82,8 +84,20 @@ const ModalPaket = (props: Props) => {
           </ul>
         </div>
       </div>
-      <div className=" w-full flex items-center justify-end gap-3 pt-5 ">
-        <button className="button-greenUrip">Pilih</button>
+      <div className=" w-full flex items-center justify-end gap-3 pt-5 s">
+        <button
+          onClick={() => {
+            //  check login
+            if (samplePatient.login) {
+              openModal("keranjang", { paketLab });
+            } else {
+              openAlert("lablogin", { paketLab });
+            }
+          }}
+          className="button-greenUrip"
+        >
+          Pilih
+        </button>
         <button
           className="button-greenUrip"
           onClick={() => {

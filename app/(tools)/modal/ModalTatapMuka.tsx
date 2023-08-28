@@ -19,6 +19,10 @@ const ModalTatapMuka = (props: Props) => {
   const doctorInfo: DoctorType = modalValue.doctorInfo;
   const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
   const [bpjs, setBpjs] = useState(true);
+  const matchSelectedDate = doctorInfo.hari.find(
+    (doctorHari) => doctorHari.id_hari === dayjs(selected_date).day()
+  );
+
   return (
     <div className="modal-lg p-3 px-10 overflow-hidden bg-white">
       <button
@@ -51,7 +55,7 @@ const ModalTatapMuka = (props: Props) => {
           <div>
             <p>Hari yang anda pilih</p>
             <p className="active-input">
-              {selected_date
+              {selected_date && matchSelectedDate
                 ? dayjs(selected_date).format("DD MMMM YYYY")
                 : "anda belum memilih hari"}
             </p>

@@ -7,4 +7,7 @@ export interface AppState {
   modalValue: any;
   filtered_doctor: FilterDoctorType;
   selected_date?: Date;
+  showAlert: boolean;
+  alertTitle: string;
+  alertValue: any;
 }

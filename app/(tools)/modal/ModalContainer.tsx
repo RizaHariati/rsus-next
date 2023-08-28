@@ -7,7 +7,7 @@ import { enterOpacity } from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "../context/AppProvider";
 import ModalInpatient from "./ModalInpatient";
 import ModalFacility from "./ModalFacility";
-import ModalPaket from "./ModalPaket";
+import ModalPaket from "./modalLaboratorium/ModalPaket";
 import ModalPoliklinik from "./ModalPoliklinik";
 import ModalAppointment from "./ModalAppointment";
 import ModalRegister from "./ModalRegister";
@@ -17,6 +17,7 @@ import ModalChatTelemedicine from "./ModalChatTelemedicine";
 import ModalBayarTelemedicine from "./ModalBayarTelemedicine";
 import ModalInConstruction from "./ModalInConstruction";
 import ModalTatapMuka from "./ModalTatapMuka";
+import ModalLabCarts from "./modalLaboratorium/ModalLabCarts";
 
 type Props = {};
 
@@ -82,6 +83,9 @@ const ModalContent = () => {
   }
   if (modalTitle === "tatapmuka") {
     return <ModalTatapMuka />;
+  }
+  if (modalTitle === "keranjang") {
+    return <ModalLabCarts />;
   }
   return <div></div>;
 };
