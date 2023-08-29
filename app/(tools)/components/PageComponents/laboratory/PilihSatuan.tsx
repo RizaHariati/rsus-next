@@ -10,16 +10,34 @@ import {
   faChevronUp,
   faCircleDot,
 } from "@fortawesome/free-solid-svg-icons";
+import { samplePatient } from "@/app/(tools)/utils/forms/samplePatient";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 type Props = {};
 
 const PilihSatuan = (props: Props) => {
   const [labContent, setLabContent] = useState<string | null>(null);
+
+  const { openModal, openAlert } = useGlobalContext();
+
   const toggleContent = (category: string | null) => {
     if (labContent === category) {
       setLabContent(null);
     } else {
       setLabContent(category);
+    }
+  };
+
+  const openingLabCart = (labItem: LabItemType) => {
+    {
+      //  check login
+      if (samplePatient.login) {
+        openModal("keranjang", {});
+      } else {
+        openAlert("lablogin", {
+          labItem: labItem,
+        });
+      }
     }
   };
   return (
@@ -68,14 +86,15 @@ const PilihSatuan = (props: Props) => {
                         : "h-fit overflow-hidden w-full transition-all"
                     }
                   >
-                    {tests.map((test) => {
+                    {tests.map((labItem) => {
                       return (
-                        <div
-                          key={test.id}
-                          className=" w-full flex-center-between hover:opacity-60 active:opacity-0 cursor-pointer transition-all"
+                        <button
+                          onClick={() => openingLabCart(labItem)}
+                          key={labItem.id}
+                          className=" w-full flex-center-between hover:opacity-60 active:opacity-0 cursor-pointer transition-all "
                         >
                           <div
-                            key={test.id}
+                            key={labItem.id}
                             className=" w-full flex-top-left gap-2"
                           >
                             <FontAwesomeIcon
@@ -84,15 +103,15 @@ const PilihSatuan = (props: Props) => {
                             />
                             <div>
                               <p className=" flex-wrap btn-3-bold">
-                                {test.title}
+                                {labItem.title}
                               </p>
-                              <p className="body-3 ">{test.description}</p>
+                              <p className="body-3 ">{labItem.description}</p>
                             </div>
                           </div>
                           <p className=" w-40  text-right ">
-                            Rp. {test.harga?.toLocaleString()}
+                            Rp. {labItem.price.toLocaleString()}
                           </p>
-                        </div>
+                        </button>
                       );
                     })}
                   </div>

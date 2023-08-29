@@ -1,4 +1,10 @@
-import { DoctorType, FilterDoctorType } from "../types";
+import {
+  DoctorType,
+  FilterDoctorType,
+  LabCartType,
+  LabItemType,
+  PaketLabType,
+} from "../types";
 export interface AppState {
   menu_id: string | null;
   logged_in: boolean;
@@ -10,4 +16,5 @@ export interface AppState {
   showAlert: boolean;
   alertTitle: string;
   alertValue: any;
+  labCart: LabCartType[];
 }

@@ -13,6 +13,7 @@ type ItemProps = {
 
 const PaketItem = ({ item }: ItemProps) => {
   const { openModal } = useGlobalContext();
+
   return (
     <div
       className="standard-border flex items-start justify-between p-2 gap-4 text-greyDrk cursor-pointer bg-white hover:bg-greyBorder opacity-100 hover:opacity-50 active:bg-accent1 transition-all"
@@ -32,7 +33,22 @@ const PaketItem = ({ item }: ItemProps) => {
       </div>
       <div className="mr-auto ">
         <h4 className="text-left">{item.title}</h4>
-        <p>Rp. {item.price}</p>
+        <div className="flex w-fit text-left gap-2">
+          {item.price.map((item, index) => {
+            const { type, value } = item;
+            return (
+              <div key={index}>
+                {type === "all" && value > 0 && (
+                  <p>Rp. {value.toLocaleString()}</p>
+                )}
+                {type === "pria" && <p>Pria : Rp. {value.toLocaleString()}</p>}
+                {type === "wanita" && (
+                  <p>Wanita : Rp. {value.toLocaleString()}</p>
+                )}
+              </div>
+            );
+          })}
+        </div>
       </div>
       <button
         onClick={() => openModal("paketLab", item)}

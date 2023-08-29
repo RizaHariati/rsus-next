@@ -1,6 +1,6 @@
 import { AppState } from "../context/interfaces";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
-import { DoctorType, FilterDoctorType } from "../types";
+import { DoctorType, FilterDoctorType, LabCartType } from "../types";
 import dayjs from "dayjs";
 
 interface OpenModalAction {
@@ -8,6 +8,26 @@ interface OpenModalAction {
   payload?: any;
 }
 export const appReducer = (state: AppState, action: OpenModalAction) => {
+  if (action.type === "ADD_ITEM") {
+    const labCart = state.labCart;
+    const newLabItem = action.payload.newLabItem;
+    labCart.push(newLabItem);
+    console.log({ newLabItem });
+    return {
+      ...state,
+      labCart,
+    };
+  }
+  if (action.type === "REMOVE_ITEM") {
+    const statelabCart = state.labCart;
+    const newLabItem: LabCartType = action.payload.newLabItem;
+    const labCart = statelabCart.filter((item) => item.id === newLabItem.id)!;
+
+    return {
+      ...state,
+      labCart,
+    };
+  }
   if (action.type === "OPEN_ALERT") {
     const { alertTitle, alertValue } = action.payload;
 

@@ -114,22 +114,30 @@ export type LabItemType = {
   id: string;
   title: string;
   description?: string;
-  harga?: number;
-  category?: string;
+  price: number;
+  category: string;
 };
+
+export type PemeriksaanType = Omit<LabItemType, "price" | "category">;
+export type LaboratoriumType = Omit<
+  LabItemType,
+  "price" | "category" | "description"
+>;
+
 export type PaketLabType = {
   id: string;
   title: string;
-  price: string;
+  price: { type: string; value: number }[];
   img: string;
-  pemeriksaan: LabItemType[];
-  laboratorium: LabItemType[];
+  pemeriksaan: PemeriksaanType[];
+  laboratorium: LaboratoriumType[];
 };
 
 export type HariType = {
   id_hari: number;
   kuota_terisi: number;
 };
+
 export type DoctorType = {
   id: string;
   nama: string;
@@ -159,4 +167,11 @@ export type FilterDoctorType = {
   category: "spesialisasi" | "dokter";
   value: DoctorType[];
   keyword?: string;
+};
+
+export type LabCartType = {
+  id: string;
+  title: string;
+  description: string[];
+  price: number;
 };

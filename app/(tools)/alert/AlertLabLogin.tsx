@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { PaketLabType } from "../types";
+import { LabItemType, PaketLabType } from "../types";
 
 type Props = {};
 const AlertLabLogin = (props: Props) => {
@@ -11,9 +11,11 @@ const AlertLabLogin = (props: Props) => {
     state: { modalValue },
     closeAlert,
     openModal,
+    toggleCart,
   } = useGlobalContext();
 
-  const paketLab: PaketLabType = modalValue.paketLab;
+  const labItem: LabItemType = modalValue.labItem;
+
   return (
     <div className="modal-md p-5 px-10 overflow-hidden bg-white">
       <button className="absolute top-2 right-4" onClick={() => closeAlert()}>
@@ -28,7 +30,8 @@ const AlertLabLogin = (props: Props) => {
           <button
             onClick={() => {
               closeAlert();
-              openModal("keranjang", { paketLab });
+              toggleCart(labItem);
+              openModal("keranjang", {});
             }}
             className="button-greenUrip w-full"
           >

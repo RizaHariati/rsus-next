@@ -11,7 +11,7 @@ export const getCompleteTests = () => {
       id: test.id,
       title: test.title,
       description: test.description,
-      harga: test.price,
+      price: test.price,
       category: "baba",
     };
     for (let i = 0; i < test.poliklinik.length; i++) {

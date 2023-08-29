@@ -5,7 +5,12 @@ import dataFacility from "@/app/(tools)/data/data_facility.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { LabItemType, PaketLabType } from "../../types";
+import {
+  LabItemType,
+  LaboratoriumType,
+  PaketLabType,
+  PemeriksaanType,
+} from "../../types";
 import { samplePatient } from "../../utils/forms/samplePatient";
 
 type Props = {};
@@ -16,6 +21,7 @@ const ModalPaket = (props: Props) => {
     closeModal,
     openModal,
     openAlert,
+    toggleCart,
   } = useGlobalContext();
 
   const paketLab: PaketLabType = modalValue;
@@ -25,7 +31,7 @@ const ModalPaket = (props: Props) => {
         {paketLab.title}
       </h3>
       <p className="w-full btn-3 text-right mb-4">
-        Harga : Rp. {paketLab.price}
+        {/* Harga : Rp. {paketLab.price} */}
       </p>
       <button className="absolute top-2 right-4" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
@@ -34,7 +40,7 @@ const ModalPaket = (props: Props) => {
         <div className="w-full h-full border-r border-greyBorder ">
           <p className="btn-2-bold">Pemeriksaan</p>
           <ul>
-            {paketLab.pemeriksaan.map((item: LabItemType) => {
+            {paketLab.pemeriksaan.map((item: PemeriksaanType) => {
               const findFacility = dataFacility.find(
                 (facility) => facility.id === item.id
               );
@@ -69,15 +75,11 @@ const ModalPaket = (props: Props) => {
         <div className="w-full h-full ">
           <p className="btn-2-bold">Laboratorium</p>
           <ul>
-            {paketLab.laboratorium.map((item: LabItemType) => {
-              const description = item.description
-                ? item.description
-                : dataSatuan.find((satuan) => satuan.id === item.id)
-                    ?.description;
+            {paketLab.laboratorium.map((item: LaboratoriumType) => {
               return (
                 <li key={item.id} className="list-disc ml-4">
                   <p className="body-3">{item.title}</p>
-                  <p className="body-3">{description}</p>
+                  {/* <p className="body-3">{description}</p> */}
                 </li>
               );
             })}
@@ -89,7 +91,8 @@ const ModalPaket = (props: Props) => {
           onClick={() => {
             //  check login
             if (samplePatient.login) {
-              openModal("keranjang", { paketLab });
+              toggleCart(paketLab);
+              openModal("keranjang", {});
             } else {
               openAlert("lablogin", { paketLab });
             }

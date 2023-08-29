@@ -11,6 +11,7 @@ type Props = {
 
 const LayoutWrapper = ({ children }: Props) => {
   const [scrollTop, setScrollTop] = useState<boolean>(false);
+
   return (
     <div
       onScroll={(e) => {

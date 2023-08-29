@@ -12,4 +12,5 @@ export const initialState: AppState = {
   showAlert: false,
   alertTitle: "",
   alertValue: {},
+  labCart: [],
 };
