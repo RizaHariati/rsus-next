@@ -30,7 +30,7 @@ const AlertLabLogin = (props: Props) => {
           <button
             onClick={() => {
               closeAlert();
-              toggleCart(labItem);
+
               openModal("keranjang", {});
             }}
             className="button-greenUrip w-full"

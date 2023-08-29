@@ -5,6 +5,7 @@ import Navbar from "../(tools)/components/NavbarComponents/Navbar";
 import ModalContainer from "../(tools)/modal/ModalContainer";
 import "../styles/navbar.css";
 import AlertContainer from "../(tools)/alert/AlertContainer";
+import { ToastContainer } from "react-toastify";
 type Props = {
   children: React.ReactNode;
 };
@@ -24,6 +25,7 @@ const LayoutWrapper = ({ children }: Props) => {
       }}
       className="bg-greyLit h-screen overflow-y-scroll scrollbar-none snap-y snap-proximity"
     >
+      <ToastContainer position="top-right" theme="light" autoClose={1000} />
       <ModalContainer />
       <AlertContainer />
       <Navbar scrollTop={scrollTop} />

@@ -66,4 +66,10 @@
   .kuota-icon {
     @apply h-7;
   }
+  .lab-paket-item {
+    @apply standard-border flex items-start justify-between p-2 gap-4 text-greyDrk cursor-pointer bg-white hover:bg-greyBorder opacity-100 hover:opacity-50 active:bg-accent1 transition-all;
+  }
+  .lab-satuan-item {
+    @apply w-full flex-center-between hover:opacity-60 active:opacity-0 cursor-pointer transition-all text-left h-fit;
+  }
 }

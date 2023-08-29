@@ -6,17 +6,25 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { PaketLabType } from "@/app/(tools)/types";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import { findInCart } from "@/app/(tools)/utils/findInCart";
 
 type ItemProps = {
   item: PaketLabType;
 };
 
 const PaketItem = ({ item }: ItemProps) => {
-  const { openModal } = useGlobalContext();
+  const {
+    openModal,
+    state: { labCart },
+  } = useGlobalContext();
 
   return (
     <div
-      className="standard-border flex items-start justify-between p-2 gap-4 text-greyDrk cursor-pointer bg-white hover:bg-greyBorder opacity-100 hover:opacity-50 active:bg-accent1 transition-all"
+      className={
+        findInCart(labCart, item.id)
+          ? "lab-paket-item  bg-greenUripOpacity"
+          : "lab-paket-item "
+      }
       onClick={() => openModal("paketLab", item)}
     >
       <div className="w-14 h-14 overflow-hidden  aspect-square">

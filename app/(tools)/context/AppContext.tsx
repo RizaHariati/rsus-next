@@ -17,7 +17,7 @@ export type AppContextProps = {
   clearDate: () => void;
   openAlert: (alertTitle: string, alertValue: any) => void;
   closeAlert: () => void;
-  toggleCart: (item: any) => void;
+  toggleCart: (item: any, gender: "all" | "pria" | "wanita") => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

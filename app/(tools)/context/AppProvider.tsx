@@ -59,17 +59,21 @@ export const AppProvider = ({ children }: Props) => {
     dispatch({ type: "CLOSE_ALERT", payload: "" });
   };
 
-  const toggleCart = (item: any) => {
+  const toggleCart = (item: any, gender: "all" | "pria" | "wanita") => {
     const newLabItem = getLabCartItem(item);
-    console.log({ newLabItem });
+
     const findLabItem = state.labCart.find((labItem) => labItem.id === item.id);
+
     if (findLabItem) {
-      dispatch({ type: "REMOVE_ITEM", payload: { newLabItem } });
+      dispatch({ type: "REMOVE_ITEM", payload: { id: item.id } });
     } else {
       dispatch({ type: "ADD_ITEM", payload: { newLabItem } });
     }
   };
 
+  const clearInfo = () => {
+    dispatch({ type: "CLEAR_NOTIFICATION" });
+  };
   const value = {
     state,
     dispatch,
@@ -82,6 +86,7 @@ export const AppProvider = ({ children }: Props) => {
     openAlert,
     closeAlert,
     toggleCart,
+    clearInfo,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

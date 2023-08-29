@@ -10,10 +10,8 @@ const ModalLabCarts = (props: Props) => {
   const {
     state: { labCart },
     closeModal,
-    openModal,
   } = useGlobalContext();
 
-  console.log(labCart);
   return (
     <div className="modal-lg p-5 px-10">
       <h3 className=" col-span-2 font-normal w-full border-b border-greyBorder">
