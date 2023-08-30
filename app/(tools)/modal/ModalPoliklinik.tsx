@@ -70,7 +70,7 @@ const ModalPoliklinik = (props: Props) => {
           <div className=" flex gap-2">
             <button
               onClick={async () => {
-                await filteringDoctor(poliInfo.id, "spesialisasi");
+                filteringDoctor(poliInfo.id, "spesialisasi");
                 openModal("appointment", dataConsultation[0]);
               }}
               className="button-greenUrip"

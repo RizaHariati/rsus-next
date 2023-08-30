@@ -55,7 +55,7 @@ const ResultSpesialisasi = ({
                     filteringDoctor(item.id, searchCategory);
                   }
                 }}
-                className="standard-border p-2 w-full text-left overflow-visible hover:bg-greyLit transition-all"
+                className="button-long"
               >
                 <p>{item.title}</p>
               </button>

@@ -80,17 +80,12 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
 
   if (action.type === "OPEN_MODAL") {
     const { modalTitle, modalValue } = action.payload;
-    let filtered_doctor: {
-      category: "spesialisasi" | "dokter";
-      value: DoctorType[];
-    } = { category: "spesialisasi", value: [] };
 
     return {
       ...state,
       showModal: true,
       modalTitle,
       modalValue,
-      filtered_doctor,
     };
   }
 

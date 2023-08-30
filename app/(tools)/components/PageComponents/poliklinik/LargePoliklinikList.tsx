@@ -23,7 +23,7 @@ const LargePoliklinikList = (props: Props) => {
           return (
             <button
               key={item.id}
-              id={item.id}
+              id={item.id + "-lg"}
               onClick={() => openModal("poliklinik", item)}
               className="grid grid-cols-10 standard-border py-3 cursor-pointer hover:opacity-50 active:opacity-0 transition-all"
             >

@@ -13,7 +13,7 @@ type Props = {
 const FasilitasGroup = ({ facilityGroup, facilityTitle }: Props) => {
   return (
     <section
-      id="two"
+      id={facilityTitle.toLowerCase()}
       className={
         facilityGroup.length > 4
           ? " bg-slate-300 h-fit w-full snap-start"

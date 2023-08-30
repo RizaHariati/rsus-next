@@ -18,11 +18,17 @@ const AppointmentDoctor = () => {
   } = useGlobalContext();
 
   const consultationInfo: ConsultationMenuTypes = modalValue;
-  const [doctorList, setdoctorList] = useState<DoctorType[]>(randomizeDoctor());
-  const [title, setTitle] = useState("Beberapa dokter kami");
+
   const value = filtered_doctor.value;
   const category = filtered_doctor.category;
   const keyword = filtered_doctor.keyword;
+
+  const [doctorList, setdoctorList] = useState<DoctorType[]>(
+    value.length > 0 ? value : randomizeDoctor()
+  );
+  const [title, setTitle] = useState(
+    value.length > 0 ? category : "Beberapa dokter kami"
+  );
 
   useEffect(() => {
     if (!value) return;
@@ -46,7 +52,7 @@ const AppointmentDoctor = () => {
   }, [filtered_doctor]);
 
   return (
-    <mark className="w-full  h-60 custom-scrollbar">
+    <mark className="w-full  h-52 custom-scrollbar">
       <h4 className="text-left">
         {keyword !== ""
           ? title
