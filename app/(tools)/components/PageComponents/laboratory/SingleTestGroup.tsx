@@ -43,8 +43,8 @@ const SingleTestGroup = ({ item, tests }: Props) => {
       if (samplePatient.login) {
         const findLabItem = labCart.find((item) => item.id === labItem.id);
         findLabItem
-          ? toast(`${labItem.title} berhasil dihapus`)
-          : toast(`${labItem.title} berhasil ditambahkan`);
+          ? toast(`Test ${labItem.title} berhasil dihapus`)
+          : toast(`Test ${labItem.title} berhasil ditambahkan`);
         toggleCart(labItem, "all");
 
         openModal("keranjang", {});

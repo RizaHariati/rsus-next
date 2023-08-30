@@ -96,7 +96,7 @@ const Team = (props: Props) => {
             return (
               <div
                 key={index}
-                className="grid grid-cols-10 border-t border-t-greyBorder"
+                className="grid grid-cols-10 border-t border-t-greyBorder h-12"
               >
                 <div className=" col-span-4 p-2">
                   <p className="btn-2 ">{item.title}</p>

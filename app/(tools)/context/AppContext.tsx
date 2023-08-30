@@ -18,6 +18,7 @@ export type AppContextProps = {
   openAlert: (alertTitle: string, alertValue: any) => void;
   closeAlert: () => void;
   toggleCart: (item: any, gender: "all" | "pria" | "wanita") => void;
+  clearLabCart: () => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

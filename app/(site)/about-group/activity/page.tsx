@@ -127,12 +127,14 @@ const ArticleContainer = ({ category }: ArticleProps) => {
                     />
                   </div>
                   <div className="p-3 flex flex-col justify-between">
-                    <p className="btn-5-bold h-12">{articleItem.title}</p>
+                    <h6 className=" tracking-normal h-12 mb-2">
+                      {articleItem.title}
+                    </h6>
                     <p className="footnote-1">
                       {dayjs(articleItem.date).format("DD MMMM YYYY")}
                     </p>
                     <p className="body-3 h-28">
-                      {articleItem.text.slice(0, 1)}
+                      {articleItem.text[0].slice(0, 180)}...(cont)
                     </p>
                     <a
                       href={articleItem.news_link}

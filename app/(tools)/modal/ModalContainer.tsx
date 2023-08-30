@@ -14,10 +14,11 @@ import ModalRegister from "./ModalRegister";
 import ModalTelemedicine from "./ModalTelemedicine";
 import ModalDoctorDetail from "./ModalDoctorDetail";
 import ModalChatTelemedicine from "./ModalChatTelemedicine";
-import ModalBayarTelemedicine from "./ModalBayarTelemedicine";
+import ModalBayarTelemedicine from "./modalPembayaran/ModalBayarTelemedicine";
 import ModalInConstruction from "./ModalInConstruction";
 import ModalTatapMuka from "./ModalTatapMuka";
 import ModalLabCarts from "./modalLaboratorium/ModalLabCarts";
+import ModalBayarLaboratorium from "./modalPembayaran/ModalBayarLaboratorium";
 
 type Props = {};
 
@@ -86,6 +87,9 @@ const ModalContent = () => {
   }
   if (modalTitle === "keranjang") {
     return <ModalLabCarts />;
+  }
+  if (modalTitle === "bayarlab") {
+    return <ModalBayarLaboratorium />;
   }
   return <div></div>;
 };

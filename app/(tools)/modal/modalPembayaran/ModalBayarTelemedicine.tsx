@@ -6,9 +6,10 @@ import {
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ConsultationMenuTypes, DoctorType } from "../types";
-import { samplePatient } from "../utils/forms/samplePatient";
+import { ConsultationMenuTypes, DoctorType } from "../../types";
+import { samplePatient } from "../../utils/forms/samplePatient";
 import Image from "next/image";
+import PaymentMethods from "./PaymentMethods";
 
 type Props = {};
 const paymentMethod = [
@@ -41,43 +42,21 @@ const ModalBayarTelemedicine = (props: Props) => {
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
+      <h3 className=" col-span-2 font-normal w-full border-b border-greyBorder">
+        Pembayaran Telemedicine
+      </h3>
       <section className="bg-white flex flex-col gap-3 border-none">
         <p className="body-3">
           Kami akan terlebih dahulu mengkonfirmasi jadwal dokter yang
           bersangkutan, setelah itu anda diberikan waktu 5 menit untuk membayar
           uang konsultasi
         </p>
-        <div className="body-2 sub-form">
-          <p>Chat sekarang dengan: </p>
+        <div className="body-3 sub-form">
+          <p className="body-3">Chat sekarang dengan: </p>
           <p className="dark-input">{doctorInfo.nama}</p>
         </div>
         <TelemedicineInfo doctorInfo={doctorInfo} />
-        <div className=" standard-border p-2">
-          {paymentMethod.map((item) => {
-            return (
-              <button
-                key={item.id}
-                className="w-full flex-center-between gap-2 border-white standard-border p-2 hover:border-greyBorder transition-all cursor-pointer hover:bg-greyLit"
-              >
-                <Image
-                  rel="preload"
-                  placeholder="empty"
-                  src={`/images/icons/consultation-icons/${item.img}.jpg`}
-                  alt={item.img}
-                  width={70}
-                  height={40}
-                  className="w-auto h-full rounded-sm object-cover object-center"
-                  loading="lazy"
-                />
-                <p className="text-left mr-auto">{item.title}</p>
-                <FontAwesomeIcon
-                  className={item.selected ? "text-greenUrip" : "text-greyMed1"}
-                  icon={item.selected ? faCircleCheck : faCircle}
-                />
-              </button>
-            );
-          })}
-        </div>
+        <PaymentMethods />
         <div className="w-full flex-center-center">
           <button
             onClick={() => openModal("inconstruction", {})}

@@ -1,7 +1,6 @@
 "use client";
 import Image from "next/image";
-import React, { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import React from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -16,10 +15,8 @@ import {
 
 import { IconDefinition } from "@fortawesome/fontawesome-svg-core";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import {
-  sliderVariants,
-  sliderVariants2,
-} from "../framervariants/slidervariants";
+
+import Slider, { Settings } from "react-slick";
 
 type Props = {};
 
@@ -28,14 +25,29 @@ const ModalInpatient = (props: Props) => {
     state: { modalValue },
     closeModal,
   } = useGlobalContext();
+  const ImgArray: string[] = modalValue["img-array"];
+  const settings: Settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    initialSlide: 0,
+    nextArrow: <NextArrow />,
+    prevArrow: <PrevArrow />,
+  };
   return (
-    <div className="modal-lg">
-      <h3 className=" col-span-2 font-normal">{modalValue.kelas}</h3>
+    <div className="modal-lg py-10 pt-2">
+      <h3 className=" col-span-2 font-normal py-2">{modalValue.kelas}</h3>
       <button className="absolute top-2 right-4" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
       <div className="w-full  grid grid-cols-2 gap-3">
-        <ImageSlide imgArray={modalValue["img-array"]} />
+        <Slider {...settings}>
+          {ImgArray.map((imgItem, index) => {
+            return <ImageSlide imgItem={imgItem} index={index} key={index} />;
+          })}
+        </Slider>
         <Info modalValue={modalValue} />
       </div>
     </div>
@@ -63,67 +75,22 @@ const InpatientItems = ({ item, icon, text }: itemProps) => {
 };
 
 type ImageProps = {
-  imgArray: string[];
+  imgItem: string;
+  index: number;
 };
-const ImageSlide = ({ imgArray }: ImageProps) => {
-  const [position, setPosition] = useState(0);
-  const [amount, setAmount] = useState(1);
-  const movePosition = (moveAmount: number) => {
-    if (moveAmount > 0) {
-      if (position < imgArray.length - 1) {
-        setPosition(position + 1);
-      } else {
-        setPosition(position + 0);
-      }
-    } else {
-      if (position > 0) {
-        setPosition(position - 1);
-      } else {
-        setPosition(position + 0);
-      }
-    }
-    setAmount(moveAmount);
-    return;
-  };
-
+const ImageSlide = ({ imgItem, index }: ImageProps) => {
   return (
     <div className="h-[350px] w-full rounded-sm overflow-hidden relative z-0 ">
-      <AnimatePresence initial={false} mode="popLayout">
-        <motion.div
-          variants={sliderVariants2}
-          initial="initial"
-          animate="animate"
-          exit="exit"
-          key={position}
-          className="w-full h-full z-10 absolute  "
-          custom={amount}
-        >
-          <Image
-            src={`/images/inpatient/big/${imgArray[position]}`}
-            alt={imgArray[position].slice(0, -4)}
-            width={500}
-            height={350}
-            loading="lazy"
-            className="w-full h-auto object-center object-cover"
-          />
-        </motion.div>
-        {position < imgArray.length - 1 && (
-          <button
-            onClick={() => movePosition(1)}
-            className="modal-slider-btn right-2"
-          >
-            <FontAwesomeIcon icon={faChevronRight} />
-          </button>
-        )}
-        {position > 0 && (
-          <button
-            onClick={() => movePosition(-1)}
-            className="modal-slider-btn left-2"
-          >
-            <FontAwesomeIcon icon={faChevronLeft} />
-          </button>
-        )}
-      </AnimatePresence>
+      <Image
+        rel="preload"
+        placeholder="empty"
+        src={`/images/inpatient/big/${imgItem}`}
+        alt={imgItem.slice(0, -4)}
+        width={500}
+        height={350}
+        loading="lazy"
+        className="w-full h-auto object-center object-cover"
+      />
     </div>
   );
 };
@@ -156,6 +123,30 @@ const Info = ({ modalValue }: InfoProps) => {
           return <li key={index}>{item}</li>;
         })}
       </ul>
+      <div>
+        <p className="text-sm text-redBase px-5 w-full text-right">
+          Harga dapat berubah sewaktu-waktu, mohon cek terlebih dahulu ke RS
+          Urip Sumoharjo di nomor 0811 x270 x37
+        </p>
+      </div>
     </div>
+  );
+};
+
+const NextArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <button onClick={() => onClick()} className="modal-slider-btn right-2">
+      <FontAwesomeIcon icon={faChevronRight} />
+    </button>
+  );
+};
+
+const PrevArrow = (props: any) => {
+  const { onClick } = props;
+  return (
+    <button onClick={() => onClick()} className="modal-slider-btn left-2">
+      <FontAwesomeIcon icon={faChevronLeft} />
+    </button>
   );
 };

@@ -60,7 +60,7 @@ export const AppProvider = ({ children }: Props) => {
   };
 
   const toggleCart = (item: any, gender: "all" | "pria" | "wanita") => {
-    const newLabItem = getLabCartItem(item);
+    const newLabItem = getLabCartItem(item, gender);
 
     const findLabItem = state.labCart.find((labItem) => labItem.id === item.id);
 
@@ -73,6 +73,10 @@ export const AppProvider = ({ children }: Props) => {
 
   const clearInfo = () => {
     dispatch({ type: "CLEAR_NOTIFICATION" });
+  };
+
+  const clearLabCart = () => {
+    dispatch({ type: "CLEAR_ITEM" });
   };
   const value = {
     state,
@@ -87,6 +91,7 @@ export const AppProvider = ({ children }: Props) => {
     closeAlert,
     toggleCart,
     clearInfo,
+    clearLabCart,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

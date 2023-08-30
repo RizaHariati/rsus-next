@@ -8,6 +8,14 @@ interface OpenModalAction {
   payload?: any;
 }
 export const appReducer = (state: AppState, action: OpenModalAction) => {
+  if (action.type === "CLEAR_ITEM") {
+    const labCart: LabCartType[] = [];
+
+    return {
+      ...state,
+      labCart,
+    };
+  }
   if (action.type === "ADD_ITEM") {
     const labCart = state.labCart;
     const newLabItem: LabCartType = action.payload.newLabItem;

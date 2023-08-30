@@ -11,10 +11,7 @@ type Props = {};
 
 const PilihSatuan = (props: Props) => {
   return (
-    <section
-      id="satuan"
-      className=" h-fit w-full z-0  mt-14 bg-white snap-start"
-    >
+    <section id="satuan" className=" h-fit w-full z-0  mt-14 bg-white">
       <motion.h2
         variants={enterTitleVariants}
         initial="initial"

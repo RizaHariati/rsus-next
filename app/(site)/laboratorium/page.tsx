@@ -6,6 +6,8 @@ import { enterOpacity } from "../../(tools)/framervariants/variants";
 import PilihPaket from "@/app/(tools)/components/PageComponents/laboratory/PilihPaket";
 import PilihSatuan from "@/app/(tools)/components/PageComponents/laboratory/PilihSatuan";
 import BackToTop from "@/app/(tools)/components/BackToTop";
+import Keranjang from "@/app/(tools)/components/PageComponents/laboratory/Keranjang";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 type Props = {};
 const unit = {
   img: "laboratorium",
@@ -15,8 +17,12 @@ const unit = {
 };
 
 const Laboratorium = (props: Props) => {
+  const {
+    state: { labCart },
+  } = useGlobalContext();
   return (
     <div className="page-main-container">
+      {labCart.length > 0 && <Keranjang />}
       <section
         id="zero"
         className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1 "
