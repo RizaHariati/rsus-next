@@ -4,9 +4,12 @@ import { useContext, useReducer, Dispatch } from "react";
 import { AppContext } from "./AppContext";
 import { initialState } from "./initialState";
 import { appReducer } from "../reducers/appReducer";
-import { AppState } from "./interfaces";
+import { AppState, PatientState } from "./interfaces";
 
 import { getLabCartItem } from "../utils/getLabCartItem";
+import { patientReducer } from "../reducers/patientReducer";
+import { initialPatientState } from "./initialPatientState";
+import { UserType } from "../patientTypes";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -17,6 +20,8 @@ export const AppProvider = ({ children }: Props) => {
     appReducer,
     initialState
   );
+  const [patientState, patientDispatch]: [PatientState, Dispatch<any>] =
+    useReducer(patientReducer, initialPatientState);
 
   const toggleMenuNavbar = (id: string | null) => {
     dispatch({ type: "TOGGLE_MENU", payload: id });
@@ -31,6 +36,7 @@ export const AppProvider = ({ children }: Props) => {
     dispatch({ type: "CLOSE_MODAL", payload: "" });
   };
 
+  /* ------ Memfilter dokter berdasarkan nama atau spesialisasi ----- */
   const filteringDoctor = (
     keyword: string,
     category: "spesialisasi" | "dokter",
@@ -42,6 +48,7 @@ export const AppProvider = ({ children }: Props) => {
     });
   };
 
+  /* ------------------ menentukan hari pemeriksaan ----------------- */
   const setDate = (date: Date) => {
     dispatch({ type: "SET_DATE", payload: { date } });
   };
@@ -59,9 +66,9 @@ export const AppProvider = ({ children }: Props) => {
     dispatch({ type: "CLOSE_ALERT", payload: "" });
   };
 
+  /* -------- menambah dan mengurangi  test laboratorium item ------- */
   const toggleCart = (item: any, gender: "all" | "pria" | "wanita") => {
     const newLabItem = getLabCartItem(item, gender);
-
     const findLabItem = state.labCart.find((labItem) => labItem.id === item.id);
 
     if (findLabItem) {
@@ -71,14 +78,27 @@ export const AppProvider = ({ children }: Props) => {
     }
   };
 
-  const clearInfo = () => {
-    dispatch({ type: "CLEAR_NOTIFICATION" });
-  };
-
   const clearLabCart = () => {
     dispatch({ type: "CLEAR_ITEM" });
   };
+
+  const checkUser = (loginData: Partial<UserType>) => {
+    patientDispatch({ type: "CHECK_USER", payload: loginData });
+  };
+
+  const login = (loginData: Partial<UserType>) => {
+    patientDispatch({ type: "LOGIN_USER", payload: loginData });
+  };
+
+  const logout = () => {
+    patientDispatch({ type: "LOGOUT_USER" });
+  };
   const value = {
+    patientState,
+    patientDispatch,
+    login,
+    logout,
+    checkUser,
     state,
     dispatch,
     toggleMenuNavbar,
@@ -90,7 +110,6 @@ export const AppProvider = ({ children }: Props) => {
     openAlert,
     closeAlert,
     toggleCart,
-    clearInfo,
     clearLabCart,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;

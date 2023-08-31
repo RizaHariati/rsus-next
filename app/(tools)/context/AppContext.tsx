@@ -1,8 +1,10 @@
 import { createContext } from "react";
-import { AppState } from "./interfaces";
-import { LabCartType } from "../types";
+import { AppState, PatientState } from "./interfaces";
+import { UserType } from "../patientTypes";
 
 export type AppContextProps = {
+  patientState: PatientState;
+  patientDispatch: ({ type }: { type: string; payload?: any }) => void;
   state: AppState;
   dispatch: ({ type }: { type: string; payload?: any }) => void;
   toggleMenuNavbar: (id: string | null) => void;
@@ -19,6 +21,9 @@ export type AppContextProps = {
   closeAlert: () => void;
   toggleCart: (item: any, gender: "all" | "pria" | "wanita") => void;
   clearLabCart: () => void;
+  login: (loginData: Partial<UserType>) => void;
+  checkUser: (loginData: Partial<UserType>) => void;
+  logout: () => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

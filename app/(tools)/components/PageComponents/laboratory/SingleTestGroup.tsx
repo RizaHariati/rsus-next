@@ -10,7 +10,7 @@ import {
   faChevronUp,
   faCircleDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { samplePatient } from "@/app/(tools)/utils/forms/samplePatient";
+import { samplePatient } from "@/app/(tools)/data/samplePatient";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { findInCart } from "@/app/(tools)/utils/findInCart";
 import { toast } from "react-toastify";

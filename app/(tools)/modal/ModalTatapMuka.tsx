@@ -5,8 +5,9 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../types";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 import AppoinmentCalendarIcon from "./modalAppointment/AppoinmentCalendarIcon";
-import { samplePatient } from "../utils/forms/samplePatient";
+import { samplePatient } from "../data/samplePatient";
 import dayjs from "dayjs";
+import RegisterSuggestion from "./RegisterSuggestion";
 
 type Props = {};
 
@@ -64,19 +65,7 @@ const ModalTatapMuka = (props: Props) => {
             <p>Antrian 7 hari kedepan (pilih 1)</p>
             <AppoinmentCalendarIcon />
           </div>
-          <div className="body-3 in">
-            Nomor Rekam Medis didapatkan saat anda mendaftar sebagai pasien RS
-            Urip Sumoharjo. Jika anda belum memiliki nomor Rekam medis, silahkan
-            <button
-              onClick={() => {
-                openModal("registration", dataConsultation[2]);
-                //   dataConsultation[2] adalah data untuk menu registrasi
-              }}
-              className=" text-redBase font-medium ml-3 hover:font-bold transition-all"
-            >
-              MENDAFTAR SEBAGAI PASIEN BARU
-            </button>
-          </div>
+          <RegisterSuggestion />
         </mark>
         <mark className=" flex flex-col gap-2 items-center justify-between w-full">
           <div className=" flex flex-col gap-2 w-full">

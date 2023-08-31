@@ -22,7 +22,6 @@ export const getHariOrder = (doctorHari: HariType[]) => {
       });
 
       const moveToBack = doctorHari.slice(0, indexHari);
-      console.log({ moveToBack });
       const moveToStart = doctorHari.slice(indexHari);
 
       return moveToStart.concat(moveToBack);

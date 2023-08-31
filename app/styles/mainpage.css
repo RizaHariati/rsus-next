@@ -52,13 +52,13 @@
   }
 
   .accent1 {
-    @apply gallery-cell bg-accent1;
+    @apply gallery-cell bg-accent1 text-greyDrk font-bold tracking-[2px];
   }
   .accent2 {
-    @apply gallery-cell bg-accent2;
+    @apply gallery-cell bg-accent2 text-greyDrk font-bold tracking-[2px];
   }
   .accent3 {
-    @apply gallery-cell bg-greyBorder;
+    @apply gallery-cell bg-greyBorder text-greyDrk font-bold tracking-[2px];
   }
   .antrian-grid {
     @apply grid w-fit place-items-center gap-1;

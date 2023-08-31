@@ -6,6 +6,7 @@ import Image from "next/image";
 
 import { galleryArray } from "@/app/(tools)/data/galleryArray";
 import {
+  galleryBottom,
   galleryLeftVariant,
   galleryTop,
 } from "@/app/(tools)/framervariants/galleryvariants";
@@ -95,7 +96,7 @@ const SloganImageBig = ({ img }: SloganProps) => {
   return (
     <motion.div
       className="gallery-base"
-      variants={galleryTop}
+      variants={galleryBottom}
       initial="initial"
       whileInView="animate"
     >

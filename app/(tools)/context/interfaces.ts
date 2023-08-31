@@ -1,13 +1,7 @@
-import {
-  DoctorType,
-  FilterDoctorType,
-  LabCartType,
-  LabItemType,
-  PaketLabType,
-} from "../types";
+import { PatientProfileType, PatientType, UserType } from "../patientTypes";
+import { FilterDoctorType, LabCartType } from "../types";
 export interface AppState {
   menu_id: string | null;
-  logged_in: boolean;
   showModal: boolean;
   modalTitle: string;
   modalValue: any;
@@ -17,4 +11,13 @@ export interface AppState {
   alertTitle: string;
   alertValue: any;
   labCart: LabCartType[];
+}
+
+export interface PatientState {
+  user: UserType;
+  user_checked: { medical_record: string; password: string; checked: boolean };
+  verification_number: number;
+  patient: PatientType;
+  patientProfile: PatientProfileType;
+  allMedicalRecords: PatientType[];
 }

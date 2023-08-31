@@ -43,13 +43,20 @@
   }
 
   .profile-menu-container {
-    @apply navbar-drop-container w-[900px] left-1/2 -translate-x-1/2;
+    @apply navbar-drop-container fixed w-modal_lg left-1/2 -translate-x-1/2;
   }
 
   .profile-menu-container-hidden {
-    @apply navbar-drop-hidden w-[900px] left-1/2 -translate-x-1/2;
+    @apply navbar-drop-hidden fixed w-modal_lg left-1/2 -translate-x-1/2;
   }
 
+  .login-menu-container {
+    @apply navbar-drop-container fixed w-modal_md left-1/2 -translate-x-1/2;
+  }
+
+  .login-menu-container-hidden {
+    @apply navbar-drop-hidden fixed w-modal_md left-1/2 -translate-x-1/2;
+  }
   .antrian-menu-container {
     @apply flex-center-between flex-col navbar-drop-container w-[500px] gap-2 left-1/2 -translate-x-1/2;
   }
@@ -58,7 +65,7 @@
   }
 
   .main-menu-container {
-    @apply navbar-drop-container w-[450px] right-0 p-0 pb-10;
+    @apply navbar-drop-container w-[450px] right-0 p-0 pb-4;
   }
 
   .main-menu-container-hidden {
@@ -79,6 +86,6 @@
   }
 
   .main-menu-item {
-    @apply btn-3 hover:btn-3-bold hover:text-greyBorder transition-all w-full bg-white px-2 border-b border-b-greyBorder text-left h-12;
+    @apply btn-3 text-greyDrk font-normal hover:btn-3-bold hover:text-greyBorder transition-all w-full bg-white px-2 border-b border-b-greyBorder text-left h-12;
   }
 }

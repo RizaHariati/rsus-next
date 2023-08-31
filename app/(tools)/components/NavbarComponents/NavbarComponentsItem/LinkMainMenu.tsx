@@ -6,7 +6,11 @@ import { datamenu } from "@/app/(tools)/data/datamenu";
 import { DataMenuType, SubDataType } from "@/app/(tools)/types";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faDoorClosed,
+  faSignOut,
+} from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
@@ -16,7 +20,9 @@ type Props = {};
 const LinkMainMenu = (props: Props) => {
   const {
     toggleMenuNavbar,
+    logout,
     state: { menu_id },
+    patientState: { user },
   } = useGlobalContext();
 
   const [itemId, setItemId] = useState<string | null>(null);
@@ -86,6 +92,20 @@ const LinkMainMenu = (props: Props) => {
               );
             }
           })}
+        </div>
+        <div className="w-full p-3 h-12 ">
+          {user.login && (
+            <button
+              onClick={() => {
+                logout();
+                toggleMenuNavbar(null);
+              }}
+              className="flex-center-center gap-2 standard-border p-2 px-3  ml-auto bg-white hover:bg-greyLit active:bg-greyMed1 transition-all"
+            >
+              <FontAwesomeIcon icon={faSignOut} className="h-5" />
+              <p className="body-2 text-greyMed1">Logout</p>
+            </button>
+          )}
         </div>
       </div>
     </div>

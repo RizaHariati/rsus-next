@@ -1,4 +1,4 @@
-import { FormProfileType } from "../../types";
+import { FormProfileType } from "../../patientTypes";
 
 export const patientFormInput: FormProfileType = {
   register_date: {

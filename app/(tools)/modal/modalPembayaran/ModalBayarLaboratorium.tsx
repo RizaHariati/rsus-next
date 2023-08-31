@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType, LabCartType } from "../../types";
-import { samplePatient } from "../../utils/forms/samplePatient";
+import { samplePatient } from "../../data/samplePatient";
 import PaymentMethods from "./PaymentMethods";
 
 type Props = {};

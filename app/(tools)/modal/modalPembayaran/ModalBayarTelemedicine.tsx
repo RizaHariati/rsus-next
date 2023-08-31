@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../../types";
-import { samplePatient } from "../../utils/forms/samplePatient";
+import { samplePatient } from "../../data/samplePatient";
 import Image from "next/image";
 import PaymentMethods from "./PaymentMethods";
 

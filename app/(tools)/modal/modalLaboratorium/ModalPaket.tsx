@@ -6,7 +6,7 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { LaboratoriumType, PaketLabType, PemeriksaanType } from "../../types";
 import { getLabGender } from "../../utils/getLabGender";
 import { getFasGender } from "../../utils/getFasGender";
-import { samplePatient } from "../../utils/forms/samplePatient";
+import { samplePatient } from "../../data/samplePatient";
 import { findInCart } from "../../utils/findInCart";
 import { toast } from "react-toastify";
 type Props = {};
