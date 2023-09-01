@@ -5,8 +5,8 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { enterOpacity } from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "../context/AppProvider";
-import AlertLabLogin from "./AlertLabLogin";
 import AlertVerifikasi from "./AlertVerifikasi";
+import AlertNotLogin from "./AlertNotLogin";
 
 type Props = {};
 
@@ -37,8 +37,8 @@ const ModalContent = () => {
   const {
     state: { alertTitle },
   } = useGlobalContext();
-  if (alertTitle === "lablogin") {
-    return <AlertLabLogin />;
+  if (alertTitle === "notlogin") {
+    return <AlertNotLogin />;
   }
   if (alertTitle === "verifikasi") {
     return <AlertVerifikasi />;

@@ -14,6 +14,7 @@ import LinkAntrian from "./NavbarComponentsItem/LinkAntrian";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { enterOpacity } from "../../framervariants/variants";
+import MainLogoImage from "../../modal/MainLogoImage";
 type Props = {};
 type MainProps = {
   scrollTop: boolean;
@@ -48,16 +49,7 @@ const MainLogo = (props: Props) => {
   return (
     <div id="home" onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}>
       <Link href="/" className="navbar-logo-container">
-        <Image
-          rel="preload"
-          placeholder="empty"
-          src="/images/navbar/main-logo.png"
-          width={40}
-          height={40}
-          className=" object-covers rounded-full overflow-hidden"
-          alt="main-logo"
-          loading="lazy"
-        />
+        <MainLogoImage />
         <div className=" text-greenUrip">
           <h6 className="text-sm tracking-[7px] leading-3 font-oswald ">
             Rumah Sakit

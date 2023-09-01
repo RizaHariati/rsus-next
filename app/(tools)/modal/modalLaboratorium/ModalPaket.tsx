@@ -6,7 +6,6 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { LaboratoriumType, PaketLabType, PemeriksaanType } from "../../types";
 import { getLabGender } from "../../utils/getLabGender";
 import { getFasGender } from "../../utils/getFasGender";
-import { samplePatient } from "../../data/samplePatient";
 import { findInCart } from "../../utils/findInCart";
 import { toast } from "react-toastify";
 type Props = {};
@@ -14,6 +13,7 @@ type Props = {};
 const ModalPaket = (props: Props) => {
   const {
     state: { modalValue, labCart },
+    patientState: { user },
     closeModal,
     openModal,
     openAlert,
@@ -55,7 +55,7 @@ const ModalPaket = (props: Props) => {
     }
     //  check login
     else {
-      if (samplePatient.login) {
+      if (user.login) {
         const findLabItem = labCart.find((item) => item.id === paketLab.id);
         findLabItem
           ? toast(`${paketLab.title} berhasil dihapus`)
@@ -66,7 +66,7 @@ const ModalPaket = (props: Props) => {
         );
         openModal("keranjang", {});
       } else {
-        openAlert("lablogin", { paketLab, selectGender });
+        openAlert("notlogin", {});
       }
     }
   };

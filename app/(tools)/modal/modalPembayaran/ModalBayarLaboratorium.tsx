@@ -2,14 +2,19 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ConsultationMenuTypes, DoctorType, LabCartType } from "../../types";
-import { samplePatient } from "../../data/samplePatient";
+import { LabCartType } from "../../types";
 import PaymentMethods from "./PaymentMethods";
+import { getMedicalRecord } from "../../data/sample";
 
 type Props = {};
 
 const ModalBayarLaboratorium = (props: Props) => {
-  const { closeModal, openModal, clearLabCart } = useGlobalContext();
+  const {
+    closeModal,
+    openModal,
+    clearLabCart,
+    patientState: { patientProfile },
+  } = useGlobalContext();
 
   return (
     <div className="modal-md p-10 py-5 overflow-hidden bg-white">
@@ -21,10 +26,11 @@ const ModalBayarLaboratorium = (props: Props) => {
       </h3>
       <section className="bg-white flex flex-col gap-3 border-none">
         <p className="text-base dark-input">
-          Nomor Medical Record : {samplePatient.medical_record}
+          Nomor Medical Record :{" "}
+          {getMedicalRecord(patientProfile.medical_record_number)}
         </p>
         <p className="text-base dark-input">
-          Nama Subject Test : {samplePatient.profile.name}
+          Nama Subject Test : {patientProfile.name}
         </p>
 
         <LabCartList />

@@ -1,4 +1,10 @@
-import { PatientProfileType, PatientType, UserType } from "../patientTypes";
+import {
+  MedicalRecordDataType,
+  PatientProfileType,
+  PatientType,
+  ScheduledType,
+  UserType,
+} from "../patientTypes";
 import { FilterDoctorType, LabCartType } from "../types";
 export interface AppState {
   menu_id: string | null;
@@ -15,9 +21,9 @@ export interface AppState {
 
 export interface PatientState {
   user: UserType;
-  user_checked: { medical_record: string; password: string; checked: boolean };
   verification_number: number;
-  patient: PatientType;
   patientProfile: PatientProfileType;
-  allMedicalRecords: PatientType[];
+  allPatients: PatientProfileType[];
+  medicalRecords: MedicalRecordDataType[];
+  scheduledAppointments: ScheduledType[];
 }

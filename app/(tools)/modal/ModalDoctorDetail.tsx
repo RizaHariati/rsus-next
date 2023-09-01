@@ -11,7 +11,9 @@ type Props = {};
 const ModalDoctorDetail = (props: Props) => {
   const {
     state: { modalValue },
+    patientState: { user },
     openModal,
+    openAlert,
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.item;
   const image: string = modalValue.image;
@@ -79,9 +81,13 @@ const ModalDoctorDetail = (props: Props) => {
         {doctorInfo.telemedicine ? (
           <button
             disabled={doctorInfo.sedang_online ? false : true}
-            onClick={() =>
-              openModal("chattelemedicine", { doctorInfo, consultationInfo })
-            }
+            onClick={() => {
+              if (user.login) {
+                openModal("chattelemedicine", { doctorInfo, consultationInfo });
+              } else {
+                openAlert("notlogin", {});
+              }
+            }}
             className={
               doctorInfo.sedang_online ? "button-greenUrip" : "button-grey"
             }
@@ -97,9 +103,14 @@ const ModalDoctorDetail = (props: Props) => {
           </button>
         )}
         <button
-          onClick={() =>
-            openModal("tatapmuka", { doctorInfo, consultationInfo })
-          }
+          onClick={() => {
+            //check login
+            if (user.login) {
+              openModal("tatapmuka", { doctorInfo, consultationInfo });
+            } else {
+              openAlert("notlogin", {});
+            }
+          }}
           className="button-greenUrip"
         >
           Tatap Muka

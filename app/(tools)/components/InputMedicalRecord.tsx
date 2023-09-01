@@ -8,20 +8,32 @@ type Props = {
 
 const InputMedicalRecord = ({ medical_record_number, handleChange }: Props) => {
   const [keypressed, setKeypressed] = useState("maju");
-  const element = document?.getElementById("input_mr");
+  const [element, setElement] = useState<any>();
   useEffect(() => {
-    const getKeyName = (e: KeyboardEvent) => {
-      if (e.key === "Backspace" || e.key === "Delete") {
-        setKeypressed("mundur");
-      } else {
-        setKeypressed("maju");
-      }
-    };
-    element?.addEventListener("keydown", getKeyName);
-    return () => {
-      element?.removeEventListener("keydown", getKeyName);
-    };
+    if (!typeof document) return;
+    else {
+      setElement(document.getElementById("input_mr"));
+    }
+  }, []);
+
+  useEffect(() => {
+    if (!element) {
+      return;
+    } else {
+      const getKeyName = (e: KeyboardEvent) => {
+        if (e.key === "Backspace" || e.key === "Delete") {
+          setKeypressed("mundur");
+        } else {
+          setKeypressed("maju");
+        }
+      };
+      element?.addEventListener("keydown", getKeyName);
+      return () => {
+        element?.removeEventListener("keydown", getKeyName);
+      };
+    }
   }, [element]);
+
   return (
     <div className="w-full">
       <p className="text-left w-full">Nomor Rekam Medis (MR)</p>

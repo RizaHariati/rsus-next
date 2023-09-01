@@ -1,19 +1,20 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../types";
-import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 import AppoinmentCalendarIcon from "./modalAppointment/AppoinmentCalendarIcon";
-import { samplePatient } from "../data/samplePatient";
+
 import dayjs from "dayjs";
 import RegisterSuggestion from "./RegisterSuggestion";
+import { getMedicalRecord } from "../data/sample";
 
 type Props = {};
 
 const ModalTatapMuka = (props: Props) => {
   const {
     state: { modalValue, selected_date },
+    patientState: { patientProfile },
     openModal,
     closeModal,
   } = useGlobalContext();
@@ -25,7 +26,7 @@ const ModalTatapMuka = (props: Props) => {
   );
 
   return (
-    <div className="modal-lg p-3 px-10 overflow-hidden bg-white">
+    <div className="modal-lg p-5 px-10 overflow-hidden bg-white">
       <button
         className="absolute top-2 right-4"
         onClick={() => openModal(consultationInfo.modal, consultationInfo)}
@@ -44,7 +45,7 @@ const ModalTatapMuka = (props: Props) => {
           <div>
             <p>Nomor WhatsApp untuk nomor antrian</p>
             <input
-              placeholder={samplePatient.profile.phone}
+              placeholder={patientProfile.phone}
               className="active-input"
             />
 
@@ -65,13 +66,14 @@ const ModalTatapMuka = (props: Props) => {
             <p>Antrian 7 hari kedepan (pilih 1)</p>
             <AppoinmentCalendarIcon />
           </div>
-          <RegisterSuggestion />
         </mark>
         <mark className=" flex flex-col gap-2 items-center justify-between w-full">
           <div className=" flex flex-col gap-2 w-full">
             <div>
-              <p>Masukkan nomor Rekam Medis (MR) Anda </p>
-              <p className="active-input">US-XXXX-XXXX-XX</p>
+              <p>Nomor Rekam Medis (MR) </p>
+              <p className="active-input">
+                {getMedicalRecord(patientProfile.medical_record_number)}
+              </p>
             </div>
             <div>
               <p>Apakah anda menggunakan jaminan BPJS?</p>
@@ -106,7 +108,7 @@ const ModalTatapMuka = (props: Props) => {
               }
             >
               <p>Masukkan nomor BPJS Anda </p>
-              <p className="active-input">{samplePatient.bpjs_number}</p>
+              <p className="active-input">{patientProfile.bpjs_number}</p>
             </div>
           </div>
           <button

@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import dayjs from "dayjs";
 import { useGlobalContext } from "../../context/AppProvider";
 import { DoctorType } from "../../types";
 import { getHariOrder } from "../../utils/getHariOrder";
-import { numberToDay } from "../../utils/forms/getDoctorDetailedInfo";
 import SelectDateIcon from "./SelectDateIcon";
 
 type Props = {};

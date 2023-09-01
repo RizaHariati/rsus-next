@@ -5,7 +5,6 @@ import {
   faMinusCircle,
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import Head from "next/head";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import hak from "../../(tools)/data/data_hak_kewajiban.json";

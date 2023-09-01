@@ -20,25 +20,43 @@ export type FormProfileType = {
 };
 
 export type PatientProfileType = {
+  medical_record_number: string;
   name: string;
   NIK: string;
   address: string;
   sex: boolean;
   birthdate: string;
   phone: string;
+  register_date: string;
+  password: string;
+  bpjs_number?: string;
 };
 
-export type PatientSchedule = {
-  destination: "string";
-  date: string;
-  using_bpjs: boolean;
-};
-export type PatientType = {
-  register_date: string;
+export type ScheduledType = {
   medical_record_number: string;
-  password: string;
+  schedule_id: string;
+  doctor: string;
+  appointment_type: string;
+  selected_date: string;
+  using_bpjs: boolean;
+  kuota_number: number;
+};
+export type MedicalRecordDataType = {
+  medical_record_number: string;
+  med_id: string;
+  appointment_type: string;
+  incoming_date: string;
+  discharge_date: string;
+  riwayat: string;
+  pemeriksaan: string;
+  hasil_lab: string;
+  diagnosis: string;
+  tindakan: string;
+};
+
+export type PatientType = {
+  medical_record_number: string;
   profile: PatientProfileType;
-  bpjs: boolean;
-  bpjs_number?: string;
-  schedule?: PatientSchedule[];
+  scheduled_appointments: ScheduledType[];
+  medical_records: MedicalRecordDataType[];
 };

@@ -6,6 +6,7 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { LabItemType, PaketLabType } from "../types";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import MainLogoImage from "../modal/MainLogoImage";
 type CheckType = { id: number; value: string };
 type Props = {};
 const placehoder_values: CheckType[] = [
@@ -74,16 +75,7 @@ const AlertVerifikasi = (props: Props) => {
           <FontAwesomeIcon icon={faClose} />
         </button>
         <section className="bg-white border-none flex-center-center flex-col gap-5">
-          <Image
-            rel="preload"
-            placeholder="empty"
-            src="/images/navbar/main-logo.png"
-            width={30}
-            height={30}
-            className=" object-covers rounded-full overflow-hidden"
-            alt="main-logo"
-            loading="lazy"
-          />
+          <MainLogoImage />
           <p className="body-2 text-center">
             Silahkan masukkan empat nomor yang dikirimkan via Whatsapp
           </p>

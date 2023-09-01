@@ -24,7 +24,9 @@ const AppointmentDoctor = () => {
   const keyword = filtered_doctor.keyword;
 
   const [doctorList, setdoctorList] = useState<DoctorType[]>(
-    value.length > 0 ? value : randomizeDoctor()
+    value.length > 0 && value.length !== dataDoctor.length
+      ? value
+      : randomizeDoctor()
   );
   const [title, setTitle] = useState(
     value.length > 0 ? category : "Beberapa dokter kami"
@@ -54,7 +56,7 @@ const AppointmentDoctor = () => {
   return (
     <mark className="w-full  h-52 custom-scrollbar">
       <h4 className="text-left">
-        {keyword !== ""
+        {!keyword || keyword !== ""
           ? title
           : "Tidak ditemukan Spesialis/Doker dengan kata kunci atau jadwal yang anda masukkan."}
       </h4>

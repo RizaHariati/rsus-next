@@ -1,10 +1,6 @@
 "use client";
 import React from "react";
-import Image from "next/image";
-import { motion } from "framer-motion";
-import Link from "next/link";
-import { floatingMenu } from "@/app/(tools)/data/datamenu";
-import { FloatingMenuType } from "@/app/(tools)/types";
+
 import "../../styles/mainpage.css";
 
 type Props = {};

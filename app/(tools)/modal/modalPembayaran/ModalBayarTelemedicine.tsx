@@ -1,31 +1,13 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCircle,
-  faCircleCheck,
-  faClose,
-} from "@fortawesome/free-solid-svg-icons";
+import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../../types";
-import { samplePatient } from "../../data/samplePatient";
-import Image from "next/image";
+import { getMedicalRecord } from "../../data/sample";
 import PaymentMethods from "./PaymentMethods";
 
 type Props = {};
-const paymentMethod = [
-  {
-    id: 1,
-    title: "Internet Banking BCA",
-    img: "BCA",
-    selected: false,
-  },
-  {
-    id: 2,
-    title: "GoPay",
-    img: "Gopay",
-    selected: true,
-  },
-];
+
 const ModalBayarTelemedicine = (props: Props) => {
   const {
     state: { modalValue },
@@ -76,13 +58,16 @@ type PatientProps = {
   doctorInfo: DoctorType;
 };
 const TelemedicineInfo = ({ doctorInfo }: PatientProps) => {
+  const {
+    patientState: { patientProfile },
+  } = useGlobalContext();
   return (
     <div className=" flex flex-col gap-3">
       <div className="form-line border-b border-greyBorder">
         <p>Nama Pasien</p>
-        <p>:&nbsp;{samplePatient.profile.name}</p>
+        <p>:&nbsp;{patientProfile.name}</p>
         <p>Nomor Rekam Medik </p>
-        <p>:&nbsp;{samplePatient.medical_record}</p>
+        <p>:&nbsp;{getMedicalRecord(patientProfile.medical_record_number)}</p>
       </div>
 
       <div className="form-line border-b border-greyBorder">

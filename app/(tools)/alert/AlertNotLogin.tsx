@@ -4,17 +4,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { LabItemType, PaketLabType } from "../types";
+import Image from "next/image";
+import MainLogoImage from "../modal/MainLogoImage";
 
 type Props = {};
-const AlertLabLogin = (props: Props) => {
+const AlertNotLogin = (props: Props) => {
   const {
-    state: { modalValue },
+    patientState: { user },
     closeAlert,
-    openModal,
-    toggleCart,
+    closeModal,
+    toggleMenuNavbar,
   } = useGlobalContext();
-
-  const labItem: LabItemType = modalValue.labItem;
 
   return (
     <div className="modal-md p-5 px-10 overflow-hidden bg-white">
@@ -22,28 +22,29 @@ const AlertLabLogin = (props: Props) => {
         <FontAwesomeIcon icon={faClose} />
       </button>
       <section className="bg-white border-none flex-center-center flex-col gap-5">
+        <MainLogoImage />
         <p className="body-2 text-center">
-          Anda belum login, apakah Anda ingin melanjutkan sebagai tamu atau
-          login dulu?
+          Anda belum login, silahkan login terlebih dahulu
         </p>
         <div className="w-full flex-center-center gap-2">
           <button
             onClick={() => {
               closeAlert();
-
-              openModal("keranjang", {});
             }}
             className="button-greenUrip w-full"
           >
-            Sebagai Tamu
+            Batal
           </button>
           <button
             onClick={() => {
               closeAlert();
+              closeModal();
+              if (!user.login) {
+                toggleMenuNavbar("login");
+              }
             }}
             className="button-greenUrip w-full"
           >
-            {" "}
             Login Dulu
           </button>
         </div>
@@ -52,4 +53,4 @@ const AlertLabLogin = (props: Props) => {
   );
 };
 
-export default AlertLabLogin;
+export default AlertNotLogin;

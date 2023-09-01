@@ -1,6 +1,5 @@
 import { PatientState } from "../context/interfaces";
-import { LabCartType } from "../types";
-import { appReducer } from "./appReducer";
+import { MedicalRecordDataType, ScheduledType } from "../patientTypes";
 
 interface OpenModalAction {
   type: string;
@@ -11,13 +10,13 @@ export const patientReducer = (
   action: OpenModalAction
 ) => {
   if (action.type === "CHECK_USER") {
-    const allMedicalRecords = patientState.allMedicalRecords;
+    const allPatients = patientState.allPatients;
     const loginData = action.payload;
     let verification_number = patientState.verification_number;
-    const findMedicalRecord = allMedicalRecords.find(
+    const findPatient = allPatients.find(
       (item) => item.medical_record_number === loginData.medical_record_number
     );
-    if (findMedicalRecord) {
+    if (findPatient) {
       verification_number = Math.floor(Math.random() * 9000 + 1000);
     } else {
       verification_number = verification_number + 1;
@@ -29,16 +28,15 @@ export const patientReducer = (
     };
   }
   if (action.type === "LOGIN_USER") {
-    const allMedicalRecords = patientState.allMedicalRecords;
+    const allPatients = patientState.allPatients;
     const loginData = action.payload;
-    const findMedicalRecord = allMedicalRecords.find(
+    const findPatient = allPatients.find(
       (item) => item.medical_record_number === loginData.medical_record_number
     );
+
     let patientProfile = patientState.patientProfile;
-    let patient = patientState.patient;
-    if (findMedicalRecord) {
-      patient = findMedicalRecord;
-      patientProfile = findMedicalRecord.profile;
+    if (findPatient) {
+      patientProfile = findPatient;
     }
     let user = {
       ...action.payload,
@@ -49,7 +47,6 @@ export const patientReducer = (
       ...patientState,
       user,
       patientProfile,
-      patient,
     };
   }
   if (action.type === "LOGOUT_USER") {
@@ -58,37 +55,26 @@ export const patientReducer = (
       password: "",
       medical_record_number: "",
     };
-
-    let patientProfile = {
+    const patientProfile = {
+      medical_record_number: "",
       name: "",
       NIK: "",
       address: "",
       sex: true,
       birthdate: "",
       phone: "",
-    };
-
-    let patient = {
       register_date: "",
-      medical_record_number: "",
       password: "",
-      profile: {
-        name: "",
-        NIK: "",
-        address: "",
-        sex: true,
-        birthdate: "",
-        phone: "",
-      },
-      bpjs: true,
       bpjs_number: "",
-      schedule: [],
     };
+    const medicalRecords: MedicalRecordDataType[] = [];
+    const scheduledAppointments: ScheduledType[] = [];
     return {
       ...patientState,
       user,
       patientProfile,
-      patient,
+      medicalRecords,
+      scheduledAppointments,
     };
   }
 

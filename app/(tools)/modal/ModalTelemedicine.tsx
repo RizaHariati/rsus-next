@@ -22,7 +22,6 @@ const ModalTelemedicine = (props: Props) => {
   const {
     state: { modalValue },
     closeModal,
-    openModal,
   } = useGlobalContext();
   const consultationInfo: ConsultationMenuTypes = modalValue;
   const [searchKeyword, setSearchKeyword] = useState("");

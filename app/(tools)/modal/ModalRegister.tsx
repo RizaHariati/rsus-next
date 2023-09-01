@@ -1,11 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes } from "../types";
 
-import { motion } from "framer-motion";
-import { enterTop } from "../framervariants/variants";
 import { patientFormInput } from "../utils/forms/patientFormInput";
 
 type Props = {};
@@ -13,8 +11,8 @@ type Props = {};
 const ModalRegister = (props: Props) => {
   const {
     state: { modalValue },
+    patientState: { patientProfile },
     closeModal,
-    openModal,
   } = useGlobalContext();
   const consultationInfo: ConsultationMenuTypes = modalValue;
 
@@ -57,7 +55,7 @@ const ModalRegister = (props: Props) => {
                     className="active-input"
                   />
                   <div className="active-input absolute -top-5 left-5 hidden group-hover:block group:hidden group-active:hidden">
-                    <p>contoh : {values.sample_value}</p>
+                    contoh
                   </div>
                 </div>
               );
@@ -82,13 +80,14 @@ const ModalRegister = (props: Props) => {
 export default ModalRegister;
 
 const InputTanggalDaftar = () => {
+  const {
+    patientState: { patientProfile },
+  } = useGlobalContext();
   return (
     <article className="w-1/2 flex flex-col h-16">
-      <p className="btn-3-bold">{patientFormInput["register_date"].title}</p>
+      <p className="btn-3-bold">Register Date</p>
       <div className="standard-border">
-        <p className="btn-3 p-2">
-          {patientFormInput["register_date"].placeholder}
-        </p>
+        <p className="btn-3 p-2">{patientProfile.register_date}</p>
       </div>
     </article>
   );

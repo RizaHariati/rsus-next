@@ -157,11 +157,11 @@ const UserLogin = (props: Props) => {
           Login
         </button>
       </form>
-      <p className="body-3 leading-4 text-center">
+      <p className="body-3 leading-4 text-center text-greyDrk">
         Jika Anda lupa password atau nomor rekam medis, maka anda harus datang
         ke RS Urip Sumoharjo untuk reset password
       </p>
-      <p className="body-3 leading-4 text-center">
+      <p className="body-3 leading-4 text-center mt-2 text-black">
         Masukkan nomor Rekam Medis:US4234123398 dan password:password untuk test
         login
       </p>

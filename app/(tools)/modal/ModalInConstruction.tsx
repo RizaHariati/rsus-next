@@ -6,8 +6,6 @@ import {
   faClose,
 } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ConsultationMenuTypes, DoctorType } from "../types";
-import { samplePatient } from "../data/samplePatient";
 import Image from "next/image";
 import { RingLoader } from "react-spinners";
 import { motion } from "framer-motion";
@@ -69,10 +67,8 @@ const override: CSSProperties = {
   borderColor: "#007814",
 };
 const Spinner = () => {
-  let [color, setColor] = useState("");
-
   return (
-    <div className="modal-md p-10 py-5 overflow-hidden flex items-center justify-center flex-col gap-5 bg-white mx-auto h-[370px]">
+    <div className="modal-md p-10 py-5 overflow-hidden flex items-center justify-center flex-col gap-5 bg-white mx-auto h-[370px] border-none">
       <p className="btn-2-bold text-center">Harap tunggu sebentar</p>
       <div className="flex-center-center gap-5">
         <div className="sweet-loading ">

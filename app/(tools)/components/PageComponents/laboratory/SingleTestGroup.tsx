@@ -10,7 +10,6 @@ import {
   faChevronUp,
   faCircleDot,
 } from "@fortawesome/free-solid-svg-icons";
-import { samplePatient } from "@/app/(tools)/data/samplePatient";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { findInCart } from "@/app/(tools)/utils/findInCart";
 import { toast } from "react-toastify";
@@ -27,6 +26,7 @@ const SingleTestGroup = ({ item, tests }: Props) => {
     openAlert,
     toggleCart,
     state: { labCart },
+    patientState: { user },
   } = useGlobalContext();
 
   const toggleContent = (category: string | null) => {
@@ -40,18 +40,15 @@ const SingleTestGroup = ({ item, tests }: Props) => {
   const openingLabCart = (labItem: LabItemType) => {
     {
       //  check login
-      if (samplePatient.login) {
+      if (user.login) {
         const findLabItem = labCart.find((item) => item.id === labItem.id);
         findLabItem
           ? toast(`Test ${labItem.title} berhasil dihapus`)
           : toast(`Test ${labItem.title} berhasil ditambahkan`);
         toggleCart(labItem, "all");
-
         openModal("keranjang", {});
       } else {
-        openAlert("lablogin", {
-          labItem: labItem,
-        });
+        openAlert("notloging", {});
       }
     }
   };

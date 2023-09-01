@@ -3,9 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../types";
-
-import dataConsultation from "@/app/(tools)/data/data_consultation.json";
-import RegisterSuggestion from "./RegisterSuggestion";
+import MainLogoImage from "./MainLogoImage";
 
 type Props = {};
 
@@ -24,7 +22,8 @@ const ModalChatTelemedicine = (props: Props) => {
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <section className="bg-white flex flex-col gap-3 border-none">
+      <section className="bg-white flex items-center flex-col gap-3 border-none">
+        <MainLogoImage />
         <p className="body-3">
           Kami akan terlebih dahulu mengkonfirmasi jadwal dokter yang
           bersangkutan, setelah itu anda diberikan waktu 5 menit untuk membayar
@@ -34,12 +33,11 @@ const ModalChatTelemedicine = (props: Props) => {
           <p>Chat sekarang dengan: </p>
           <p className="dark-input">{doctorInfo.nama}</p>
         </div>
-        <div>
+        <div className="w-full">
           <p className="body-2">Spesialis</p>
           <p className="dark-input">{doctorInfo.poliklinik.title}</p>
         </div>
 
-        <RegisterSuggestion />
         <div className="w-full flex-center-center">
           <button
             onClick={() =>
