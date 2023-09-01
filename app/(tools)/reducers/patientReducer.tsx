@@ -13,13 +13,33 @@ export const patientReducer = (
   if (action.type === "CHECK_USER") {
     const allMedicalRecords = patientState.allMedicalRecords;
     const loginData = action.payload;
-    console.log(loginData);
+    let verification_number = patientState.verification_number;
+    const findMedicalRecord = allMedicalRecords.find(
+      (item) => item.medical_record_number === loginData.medical_record_number
+    );
+    if (findMedicalRecord) {
+      verification_number = Math.floor(Math.random() * 9000 + 1000);
+    } else {
+      verification_number = verification_number + 1;
+    }
 
     return {
       ...patientState,
+      verification_number,
     };
   }
   if (action.type === "LOGIN_USER") {
+    const allMedicalRecords = patientState.allMedicalRecords;
+    const loginData = action.payload;
+    const findMedicalRecord = allMedicalRecords.find(
+      (item) => item.medical_record_number === loginData.medical_record_number
+    );
+    let patientProfile = patientState.patientProfile;
+    let patient = patientState.patient;
+    if (findMedicalRecord) {
+      patient = findMedicalRecord;
+      patientProfile = findMedicalRecord.profile;
+    }
     let user = {
       ...action.payload,
       login: true,
@@ -28,6 +48,8 @@ export const patientReducer = (
     return {
       ...patientState,
       user,
+      patientProfile,
+      patient,
     };
   }
   if (action.type === "LOGOUT_USER") {

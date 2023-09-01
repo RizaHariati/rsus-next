@@ -6,6 +6,7 @@ import { AnimatePresence, motion } from "framer-motion";
 import { enterOpacity } from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "../context/AppProvider";
 import AlertLabLogin from "./AlertLabLogin";
+import AlertVerifikasi from "./AlertVerifikasi";
 
 type Props = {};
 
@@ -38,6 +39,9 @@ const ModalContent = () => {
   } = useGlobalContext();
   if (alertTitle === "lablogin") {
     return <AlertLabLogin />;
+  }
+  if (alertTitle === "verifikasi") {
+    return <AlertVerifikasi />;
   }
 
   return <div></div>;

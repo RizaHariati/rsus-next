@@ -21,7 +21,7 @@ export type AppContextProps = {
   closeAlert: () => void;
   toggleCart: (item: any, gender: "all" | "pria" | "wanita") => void;
   clearLabCart: () => void;
-  login: (loginData: Partial<UserType>) => void;
+  login: (loginData: Partial<UserType>) => Promise<void>;
   checkUser: (loginData: Partial<UserType>) => void;
   logout: () => void;
 };

@@ -6,13 +6,11 @@ export type UserType = {
 
 export type PersonalItemType = {
   id: string;
-  sample_value: any;
   title: string;
   placeholder: string;
   col_width?: number;
 };
 export type FormProfileType = {
-  register_date: PersonalItemType;
   name: PersonalItemType;
   NIK: PersonalItemType;
   address: PersonalItemType;

@@ -1,25 +1,27 @@
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import RegisterSuggestion from "@/app/(tools)/modal/RegisterSuggestion";
 import { UserType } from "@/app/(tools)/patientTypes";
-import { editMRValue } from "@/app/(tools)/utils/editMRValue";
 import Image from "next/image";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import InputMedicalRecord from "../../InputMedicalRecord";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faEye, faEyeLowVision } from "@fortawesome/free-solid-svg-icons";
 type Props = {};
 
 const UserLogin = (props: Props) => {
   const {
-    login,
     checkUser,
     toggleMenuNavbar,
+    openAlert,
     state: { menu_id },
+    patientState: { verification_number },
   } = useGlobalContext();
   const [loginData, setLoginData] = useState<Partial<UserType>>({
     medical_record_number: "",
     password: "",
   });
-
+  const [showValue, setShowValue] = useState(false);
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -35,14 +37,42 @@ const UserLogin = (props: Props) => {
       return;
     } else {
       checkUser(loginData);
-      toggleMenuNavbar("login");
-      setLoginData({
-        medical_record_number: "",
-        password: "",
-      });
-      toast.success("Login berhasil");
     }
   };
+
+  useEffect(() => {
+    if (loginData.password !== "" && loginData.medical_record_number !== "") {
+      if (verification_number < 1000) {
+        if (verification_number < 10) {
+          toast.error(
+            "Tidak ditemukan pasien dengan nomor dan password tersebut",
+            {
+              position: toast.POSITION.TOP_CENTER,
+            }
+          );
+        } else if (verification_number >= 10) {
+          toggleMenuNavbar(null);
+          toast.error(
+            "Anda sudah terlalu banyak memasukkan data yang salah, harap reload kembali",
+            {
+              position: toast.POSITION.TOP_CENTER,
+            }
+          );
+        }
+      } else {
+        toast.info(
+          "harap tunggu sebentar kami akan mengirimkan nomor verifikasi"
+        );
+        setTimeout(() => {
+          openAlert("verifikasi", { verification_number, loginData });
+        }, 1200);
+      }
+    }
+    setLoginData({
+      medical_record_number: "",
+      password: "",
+    });
+  }, [verification_number]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -91,7 +121,7 @@ const UserLogin = (props: Props) => {
           height={30}
           className=" object-covers rounded-full overflow-hidden"
           alt="main-logo"
-          priority
+          loading="lazy"
         />
         <h4>Login Form</h4>
       </div>
@@ -106,12 +136,22 @@ const UserLogin = (props: Props) => {
         />
 
         <p className="text-left w-full">Password</p>
-        <input
-          placeholder="masukkan password"
-          className="active-input"
-          value={loginData.password}
-          onChange={(e) => handleChange(e, "password")}
-        />
+        <div className="w-full inline-flex">
+          <input
+            type={showValue ? "text" : "password"}
+            placeholder="masukkan password"
+            className="active-input rounded-r-none"
+            value={loginData.password}
+            onChange={(e) => handleChange(e, "password")}
+          />
+          <button
+            type="button"
+            onClick={() => setShowValue(!showValue)}
+            className="active-input w-10 hover:bg-greyLit rounded-l-none"
+          >
+            <FontAwesomeIcon icon={showValue ? faEyeLowVision : faEye} />
+          </button>
+        </div>
         <RegisterSuggestion />
         <button type="submit" className="button-greenUrip ml-auto mt-2">
           Login

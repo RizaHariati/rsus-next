@@ -86,8 +86,8 @@ export const AppProvider = ({ children }: Props) => {
     patientDispatch({ type: "CHECK_USER", payload: loginData });
   };
 
-  const login = (loginData: Partial<UserType>) => {
-    patientDispatch({ type: "LOGIN_USER", payload: loginData });
+  const login = async (loginData: Partial<UserType>) => {
+    await patientDispatch({ type: "LOGIN_USER", payload: loginData });
   };
 
   const logout = () => {

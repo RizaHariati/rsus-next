@@ -56,7 +56,7 @@ const MainLogo = (props: Props) => {
           height={40}
           className=" object-covers rounded-full overflow-hidden"
           alt="main-logo"
-          priority
+          loading="lazy"
         />
         <div className=" text-greenUrip">
           <h6 className="text-sm tracking-[7px] leading-3 font-oswald ">
