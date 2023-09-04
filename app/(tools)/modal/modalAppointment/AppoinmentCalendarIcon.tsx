@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import dayjs from "dayjs";
 import { useGlobalContext } from "../../context/AppProvider";
 import { DoctorType } from "../../types";
-import { getHariOrder } from "../../utils/getHariOrder";
+import { DoctorHariType, getHariOrder } from "../../utils/getHariOrder";
 import SelectDateIcon from "./SelectDateIcon";
 
 type Props = {};
@@ -25,6 +25,7 @@ const AppoinmentCalendarIcon = ({}: Props) => {
   const handleToggle = (date: number) => {
     return setToggleKuota(date);
   };
+  getHariOrder(doctorInfo.hari);
   return (
     <div>
       <div className="flex standard-border  p-2 gap-2 ">
@@ -39,16 +40,18 @@ const AppoinmentCalendarIcon = ({}: Props) => {
               ?.class
           }
         >
-          {getHariOrder(doctorInfo.hari).map((item, index: number) => {
-            return (
-              <SelectDateIcon
-                key={index}
-                item={item}
-                toggleKuota={toggleKuota}
-                handleToggle={handleToggle}
-              />
-            );
-          })}
+          {getHariOrder(doctorInfo.hari).map(
+            (item: DoctorHariType, index: number) => {
+              return (
+                <SelectDateIcon
+                  key={index}
+                  item={item}
+                  toggleKuota={toggleKuota}
+                  handleToggle={handleToggle}
+                />
+              );
+            }
+          )}
         </div>
       </div>
     </div>

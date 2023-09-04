@@ -3,6 +3,14 @@
 @tailwind utilities;
 
 @layer base {
+  input::-webkit-inner-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  input[type="number"] {
+    -moz-appearance: textfield;
+  }
   body {
     @apply h-full min-h-screen bg-greyLit text-greyDrk scroll-smooth scrollbar-none;
   }
@@ -92,7 +100,7 @@
     @apply btn-2 bg-white bg-opacity-100 p-5 py-2 rounded-sm w-72 hover:bg-opacity-70 transition-all;
   }
   .button-greenUrip {
-    @apply btn-2-bold w-40 bg-greenUrip border border-greenUrip hover:bg-white text-white hover:text-greenUrip  rounded-sm transition-all;
+    @apply btn-2-bold w-40 bg-greenUrip border border-greenUrip hover:bg-white text-white hover:text-greenUrip  rounded-sm transition-all active:bg-greenUripOpacity;
   }
   .button-grey {
     @apply btn-2-bold w-40 bg-greyMed2 border border-greyMed2  hover:bg-white text-white hover:text-greyMed1   rounded-sm transition-all;

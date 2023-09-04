@@ -3,11 +3,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
 import dayjs from "dayjs";
 import { useGlobalContext } from "../../context/AppProvider";
-import { DoctorType, HariType } from "../../types";
+import { DoctorType } from "../../types";
 import { numberToDay } from "../../utils/forms/getDoctorDetailedInfo";
+import { DoctorHariType } from "../../utils/getHariOrder";
 
 type Props = {
-  item: HariType;
+  item: DoctorHariType;
   toggleKuota: number | null;
   handleToggle: (date: number) => void;
 };
@@ -19,11 +20,6 @@ const SelectDateIcon = ({ item, toggleKuota, handleToggle }: Props) => {
   } = useGlobalContext();
 
   const doctorInfo: DoctorType = modalValue.doctorInfo;
-  const newDate = new Date(
-    dayjs()
-      .add(item.id_hari - 1, "d")
-      .toString()
-  );
   const getWarnaKuota = (kuota: number) => {
     let kuotaClass = "kuota-icon text-greenUrip";
     if (kuota > 0.6 && kuota < 1) {
@@ -40,7 +36,7 @@ const SelectDateIcon = ({ item, toggleKuota, handleToggle }: Props) => {
       disabled={item?.kuota_terisi >= doctorInfo.kuota ? true : false}
       onClick={() => {
         handleToggle(item.id_hari);
-        setDate(newDate);
+        setDate(item.date);
       }}
       className="flex-center-center flex-col standard-border gap-1 p-1 cursor-pointer bg-white hover:bg-greyLit transition-all"
     >
@@ -48,11 +44,7 @@ const SelectDateIcon = ({ item, toggleKuota, handleToggle }: Props) => {
         {numberToDay.find((itemKonsul) => itemKonsul.id === item.id_hari)
           ?.hari || ""}
       </p>
-      <p className="footnote-1">
-        {dayjs()
-          .add(item.id_hari - 1, "d")
-          .format("DD/MM/YY")}
-      </p>
+      <p className="footnote-1">{dayjs(item.date).format("DD/MM/YYYY")}</p>
       <div>
         <FontAwesomeIcon
           icon={faCalendarDays}

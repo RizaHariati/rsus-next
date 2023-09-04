@@ -21,10 +21,15 @@ const ModalTatapMuka = (props: Props) => {
   const doctorInfo: DoctorType = modalValue.doctorInfo;
   const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
   const [bpjs, setBpjs] = useState(true);
+  const [newPhoneNumber, setNewPhoneNumber] = useState(patientProfile.phone);
   const matchSelectedDate = doctorInfo.hari.find(
     (doctorHari) => doctorHari.id_hari === dayjs(selected_date).day()
   );
 
+  const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    setNewPhoneNumber(e.currentTarget.value);
+  };
   return (
     <div className="modal-lg p-5 px-10 overflow-hidden bg-white">
       <button
@@ -47,12 +52,18 @@ const ModalTatapMuka = (props: Props) => {
             <input
               placeholder={patientProfile.phone}
               className="active-input"
+              value={newPhoneNumber}
+              onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                handlePhoneChange(e)
+              }
             />
 
-            <p className=" text-redBase footnote-1">
-              Nomor HP tidak sama dengan nomor pada Rekam Medik, abaikan jika
-              memang anda mengganti nomor
-            </p>
+            {patientProfile.phone !== newPhoneNumber && (
+              <p className=" text-redBase footnote-1">
+                Nomor HP tidak sama dengan nomor pada Rekam Medik, abaikan jika
+                memang anda mengganti nomor
+              </p>
+            )}
           </div>
           <div>
             <p>Hari yang anda pilih</p>

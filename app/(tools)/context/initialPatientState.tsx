@@ -25,7 +25,7 @@ export const initialPatientState: PatientState = {
     {
       medical_record_number: "US4234123398",
       name: "Purwanto",
-      NIK: "3327051303890004",
+      NIK: "051303890004",
       address: "Jl. Letjen Suprapto no.5",
       sex: true,
       birthdate: "13/08/1989",

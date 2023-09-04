@@ -9,6 +9,7 @@ export type PersonalItemType = {
   title: string;
   placeholder: string;
   col_width?: number;
+  error: string;
 };
 export type FormProfileType = {
   name: PersonalItemType;
@@ -17,6 +18,7 @@ export type FormProfileType = {
   sex: PersonalItemType;
   birthdate: PersonalItemType;
   phone: PersonalItemType;
+  bpjs_number?: PersonalItemType;
 };
 
 export type PatientProfileType = {
@@ -33,6 +35,7 @@ export type PatientProfileType = {
 };
 
 export type ScheduledType = {
+  current_phone: string;
   medical_record_number: string;
   schedule_id: string;
   doctor: string;

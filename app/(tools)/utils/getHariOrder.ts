@@ -1,30 +1,30 @@
 import dayjs from "dayjs";
 import { HariType } from "../types";
 
+export type DoctorHariType = {
+  date: Date;
+  kuota_terisi: number;
+  id_hari: number;
+};
 export const getHariOrder = (doctorHari: HariType[]) => {
   const today = dayjs().day();
+  // const today = 3;
 
-  let indexHari = today;
-  if (doctorHari.length < 2) {
-    return doctorHari;
-  } else {
-    if (
-      doctorHari[0].id_hari >= today ||
-      doctorHari[doctorHari.length - 1].id_hari < today
-    ) {
-      return doctorHari;
+  let startDays: DoctorHariType[] = [];
+  let endDays: DoctorHariType[] = [];
+  doctorHari.forEach((item) => {
+    if (item.id_hari < today) {
+      const date = dayjs()
+        .add(item.id_hari + 1, "d")
+        .toDate();
+      endDays.push({ ...item, date });
     } else {
-      doctorHari.map((item, index) => {
-        if (item.id_hari < today) {
-          indexHari = index + 1;
-        }
-        return "";
-      });
-
-      const moveToBack = doctorHari.slice(0, indexHari);
-      const moveToStart = doctorHari.slice(indexHari);
-
-      return moveToStart.concat(moveToBack);
+      const date = dayjs()
+        .add(item.id_hari - 6, "d")
+        .toDate();
+      startDays.push({ ...item, date });
     }
-  }
+    return "";
+  });
+  return startDays.concat(endDays);
 };

@@ -1,20 +1,90 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes } from "../types";
-
 import { patientFormInput } from "../utils/forms/patientFormInput";
+import dayjs from "dayjs";
+import InputRegisterDate from "./modalRegister/InputRegisterDate";
+import InputSex from "./modalRegister/InputSex";
+import InputBirthDate from "./modalRegister/InputBirthDate";
+import InputFormatReguler from "./modalRegister/InputFormatReguler";
 
+export type PatientInitialValueType = {
+  [key: string]: { value: any; error: boolean };
+};
 type Props = {};
+const initialPatient: PatientInitialValueType = {
+  medical_record_number: {
+    value: "US" + Math.floor(Math.random() * 9000000000 + 1000000000),
+    error: false,
+  },
+  register_date: { value: dayjs().format("DD/MM/YYYY"), error: false },
+  name: { value: "", error: false },
+  NIK: { value: "", error: false },
+  address: { value: "", error: false },
+  sex: { value: true, error: false },
+  birthdate: { value: "", error: false },
+  phone: { value: "", error: false },
+  password: { value: "", error: false },
+  bpjs_number: { value: "", error: false },
+};
 
 const ModalRegister = (props: Props) => {
   const {
     state: { modalValue },
-    patientState: { patientProfile },
     closeModal,
   } = useGlobalContext();
   const consultationInfo: ConsultationMenuTypes = modalValue;
+
+  const [newPatientPersonal, setNewPatientPersonal] =
+    useState<PatientInitialValueType>(initialPatient);
+
+  useEffect(() => {
+    console.log(newPatientPersonal);
+    const findError = Object.values(newPatientPersonal).find(
+      (item) => !item.value && item.error
+    );
+    if (findError) console.log("masih error");
+    else {
+      console.log("udah bener semua nyaah");
+    }
+  }, [newPatientPersonal]);
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    let patientObject = newPatientPersonal;
+    Object.entries(newPatientPersonal).map(([key, entryValue]) => {
+      if (key === "password" || key === "bpjs_number") {
+        patientObject = {
+          ...patientObject,
+          [key]: { ...entryValue, error: false },
+        };
+      } else {
+        if (!entryValue.value) {
+          patientObject = {
+            ...patientObject,
+            [key]: { ...entryValue, error: true },
+          };
+        } else {
+          patientObject = { ...patientObject, [key]: { ...entryValue } };
+        }
+      }
+    });
+    setNewPatientPersonal(patientObject);
+  };
+  const handlePatientChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    patientKey: string
+  ) => {
+    e.preventDefault();
+
+    let newData = {
+      ...newPatientPersonal,
+      [patientKey]: { value: e.target.value, error: false },
+    };
+    setNewPatientPersonal(newData);
+  };
 
   return (
     <div className="modal-lg p-5 px-10 overflow-hidden bg-white">
@@ -33,42 +103,55 @@ const ModalRegister = (props: Props) => {
           );
         })}
       </article>
-      <form>
-        <InputTanggalDaftar />
-        <article className="grid grid-cols-4 gap-2 pt-2">
-          {Object.entries(patientFormInput)
-            .filter(([key, _]) => key !== "register_date")
-            .map(([_, values]) => {
+      <form className="w-full mt-3" onSubmit={(e) => handleSubmit(e)}>
+        <InputRegisterDate />
+        bpjs_number
+        <article className="grid grid-cols-4 gap-x-2 pt-2 w-full">
+          {Object.entries(patientFormInput).map(([key, values]) => {
+            if (key === "sex") {
               return (
-                <div
+                <InputSex
                   key={values.id}
-                  id={values.id}
-                  className={
-                    values.col_width
-                      ? "col-span-2 sub-form group"
-                      : "col-span-1 sub-form group"
-                  }
-                >
-                  <p>{values.title}</p>
-                  <input
-                    placeholder={values.placeholder}
-                    className="active-input"
-                  />
-                  <div className="active-input absolute -top-5 left-5 hidden group-hover:block group:hidden group-active:hidden">
-                    contoh
-                  </div>
-                </div>
+                  newPatientPersonal={newPatientPersonal}
+                  setNewPatientPersonal={setNewPatientPersonal}
+                />
               );
-            })}
+            } else if (key === "birthdate") {
+              return (
+                <InputBirthDate
+                  key={values.id}
+                  values={values}
+                  newPatientPersonal={newPatientPersonal}
+                  setNewPatientPersonal={setNewPatientPersonal}
+                />
+              );
+            } else {
+              const [patientKey, patientValue] = Object.entries(
+                newPatientPersonal
+              ).find(([item, _]) => item === key)!;
+
+              return (
+                <InputFormatReguler
+                  key={values.id}
+                  newPatientPersonal={newPatientPersonal}
+                  values={values}
+                  patientKey={patientKey}
+                  patientValue={patientValue}
+                  handlePatientChange={handlePatientChange}
+                />
+              );
+            }
+          })}
         </article>
         <article className=" w-full flex items-center justify-end gap-3 pt-5 ">
-          <button className="button-greenUrip">Hapus</button>
           <button
+            type="button"
+            onClick={() => setNewPatientPersonal(initialPatient)}
             className="button-greenUrip"
-            onClick={() => {
-              closeModal();
-            }}
           >
+            Hapus
+          </button>
+          <button className="button-greenUrip" type="submit">
             Daftarkan
           </button>
         </article>
@@ -78,17 +161,3 @@ const ModalRegister = (props: Props) => {
 };
 
 export default ModalRegister;
-
-const InputTanggalDaftar = () => {
-  const {
-    patientState: { patientProfile },
-  } = useGlobalContext();
-  return (
-    <article className="w-1/2 flex flex-col h-16">
-      <p className="btn-3-bold">Register Date</p>
-      <div className="standard-border">
-        <p className="btn-3 p-2">{patientProfile.register_date}</p>
-      </div>
-    </article>
-  );
-};
