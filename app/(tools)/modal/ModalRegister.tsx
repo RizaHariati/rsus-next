@@ -9,6 +9,10 @@ import InputRegisterDate from "./modalRegister/InputRegisterDate";
 import InputSex from "./modalRegister/InputSex";
 import InputBirthDate from "./modalRegister/InputBirthDate";
 import InputFormatReguler from "./modalRegister/InputFormatReguler";
+import { toast } from "react-toastify";
+import ConsultationMenu from "../components/PageComponents/consultation/ConsultationMenu";
+import ConsultationOptions from "../components/PageComponents/poliklinik/ConsultationOptions";
+import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 
 export type PatientInitialValueType = {
   [key: string]: { value: any; error: boolean };
@@ -31,25 +35,15 @@ const initialPatient: PatientInitialValueType = {
 };
 
 const ModalRegister = (props: Props) => {
-  const {
-    state: { modalValue },
-    closeModal,
-  } = useGlobalContext();
-  const consultationInfo: ConsultationMenuTypes = modalValue;
-
+  const { state, closeModal, openModal } = useGlobalContext();
   const [newPatientPersonal, setNewPatientPersonal] =
-    useState<PatientInitialValueType>(initialPatient);
-
-  useEffect(() => {
-    console.log(newPatientPersonal);
-    const findError = Object.values(newPatientPersonal).find(
-      (item) => !item.value && item.error
+    useState<PatientInitialValueType>(
+      state.modalValue.newPatientPersonal
+        ? state.modalValue.newPatientPersonal
+        : initialPatient
     );
-    if (findError) console.log("masih error");
-    else {
-      console.log("udah bener semua nyaah");
-    }
-  }, [newPatientPersonal]);
+
+  useEffect(() => {}, [newPatientPersonal]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -71,6 +65,26 @@ const ModalRegister = (props: Props) => {
         }
       }
     });
+    console.log(patientObject);
+    const findError = Object.values(patientObject).find((item) => item.error);
+    const findEmptyValue = Object.entries(patientObject).find(
+      ([key, values]) => {
+        if (key === "password" || key === "bpjs_number") {
+          return;
+        } else {
+          return !values.value;
+        }
+      }
+    );
+    if (findEmptyValue) {
+      if (!findError) {
+        return;
+      } else {
+        toast.error("semua kolom harus diisi", { position: "top-center" });
+      }
+    } else {
+      openModal("registerpassword", { newPatientPersonal });
+    }
     setNewPatientPersonal(patientObject);
   };
   const handlePatientChange = (
@@ -89,13 +103,14 @@ const ModalRegister = (props: Props) => {
   return (
     <div className="modal-lg p-5 px-10 overflow-hidden bg-white">
       <h3 className=" col-span-2  w-full border-b border-greyBorder  font-light mb-4 bg-white">
-        {consultationInfo.title}
+        {dataConsultation[2].title}
+        {/* dataConsultation[2] adalah data untuk menu registrasi */}
       </h3>
       <button className="absolute top-2 right-4" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
       <article>
-        {consultationInfo.intro.map((item: string, index: number) => {
+        {dataConsultation[2].intro.map((item: string, index: number) => {
           return (
             <p className="body-3" key={index}>
               {item}

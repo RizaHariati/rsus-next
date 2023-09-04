@@ -7,6 +7,7 @@ import { enterOpacity } from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "../context/AppProvider";
 import AlertVerifikasi from "./AlertVerifikasi";
 import AlertNotLogin from "./AlertNotLogin";
+import AlertRegistrasiSukses from "./AlertRegistrasiSukses";
 
 type Props = {};
 
@@ -43,6 +44,8 @@ const ModalContent = () => {
   if (alertTitle === "verifikasi") {
     return <AlertVerifikasi />;
   }
-
+  if (alertTitle === "registrasisukses") {
+    return <AlertRegistrasiSukses />;
+  }
   return <div></div>;
 };

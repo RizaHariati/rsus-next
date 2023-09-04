@@ -41,8 +41,8 @@ export const patientFormInput: FormProfileType = {
   },
   bpjs_number: {
     id: "profile_7",
-    title: "Nomor BPJS Anda boleh memilih untuk memakai atau tidak ",
-    placeholder: "Silahkan masukkan Nomor BPJS",
+    title: "Nomor BPJS  ",
+    placeholder: " Nomor BPJS boleh memilih untuk memakai atau tidak",
     error: "",
     col_width: 2,
   },

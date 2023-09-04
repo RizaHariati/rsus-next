@@ -19,6 +19,7 @@ import ModalInConstruction from "./ModalInConstruction";
 import ModalTatapMuka from "./ModalTatapMuka";
 import ModalLabCarts from "./modalLaboratorium/ModalLabCarts";
 import ModalBayarLaboratorium from "./modalPembayaran/ModalBayarLaboratorium";
+import ModalRegisterPassword from "./modalRegister/ModalRegisterPassword";
 
 type Props = {};
 
@@ -90,6 +91,9 @@ const ModalContent = () => {
   }
   if (modalTitle === "bayarlab") {
     return <ModalBayarLaboratorium />;
+  }
+  if (modalTitle === "registerpassword") {
+    return <ModalRegisterPassword />;
   }
   return <div></div>;
 };

@@ -13,8 +13,7 @@ const RegisterSuggestion = (props: Props) => {
       <button
         type="button"
         onClick={() => {
-          openModal("registration", dataConsultation[2]);
-          //   dataConsultation[2] adalah data untuk menu registrasi
+          openModal("registration", {});
         }}
         className=" text-redBase font-medium ml-3 hover:font-bold transition-all"
       >
