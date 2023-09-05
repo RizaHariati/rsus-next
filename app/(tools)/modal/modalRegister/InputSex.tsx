@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { faCircle, faCircleDot } from "@fortawesome/free-solid-svg-icons";
-import { PatientInitialValueType } from "../ModalRegister";
+import { PatientInitialValueType } from "../../patientTypes";
 
 type Props = {
   newPatientPersonal: PatientInitialValueType;

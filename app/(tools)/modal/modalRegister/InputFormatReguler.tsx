@@ -1,6 +1,5 @@
 import React from "react";
-import { PatientInitialValueType } from "../ModalRegister";
-import { PersonalItemType } from "../../patientTypes";
+import { PatientInitialValueType, PersonalItemType } from "../../patientTypes";
 
 type RegularProps = {
   newPatientPersonal: PatientInitialValueType;

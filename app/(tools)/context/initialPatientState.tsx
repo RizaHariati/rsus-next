@@ -28,7 +28,7 @@ export const initialPatientState: PatientState = {
       NIK: "051303890004",
       address: "Jl. Letjen Suprapto no.5",
       sex: true,
-      birthdate: "13/08/1989",
+      birthdate: "13/02/1989",
       phone: "08121234567890",
       register_date: "17/08/2023",
       password: "password",

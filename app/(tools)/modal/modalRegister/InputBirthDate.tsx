@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import ReactDatePicker from "react-datepicker";
 import id from "date-fns/locale/id";
 import dayjs from "dayjs";
-import { PersonalItemType } from "../../patientTypes";
-import { PatientInitialValueType } from "../ModalRegister";
+import { PatientInitialValueType, PersonalItemType } from "../../patientTypes";
 type Props = {
   newPatientPersonal: PatientInitialValueType;
   setNewPatientPersonal: React.Dispatch<

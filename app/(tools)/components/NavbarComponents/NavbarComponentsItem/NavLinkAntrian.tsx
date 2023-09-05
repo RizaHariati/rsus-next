@@ -11,7 +11,7 @@ import {
 
 type Props = {};
 
-const LinkAntrian = () => {
+const NavLinkAntrian = () => {
   const {
     toggleMenuNavbar,
     state: { menu_id },
@@ -19,6 +19,7 @@ const LinkAntrian = () => {
   return (
     <div className="relative h-full ">
       <button
+        type="button"
         id="antrian"
         onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
         className="navbar-link  "
@@ -69,4 +70,4 @@ const LinkAntrian = () => {
   );
 };
 
-export default LinkAntrian;
+export default NavLinkAntrian;

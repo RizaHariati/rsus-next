@@ -3,6 +3,7 @@ import { patientFormInput } from "@/app/(tools)/utils/forms/patientFormInput";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
+import { getAge } from "@/app/(tools)/utils/getAge";
 type Props = {};
 
 const PatientProfile = (props: Props) => {
@@ -59,13 +60,24 @@ const PatientProfile = (props: Props) => {
               }
             >
               <p className="body-2 ">{patientValues.title}</p>
-              <p className="active-input capitalize ">
-                {findPatient[0] !== "sex"
-                  ? findPatient[1]
-                  : !findPatient[1]
-                  ? "wanita"
-                  : "pria"}
-              </p>
+              {findPatient[0] !== "sex" && findPatient[0] !== "birthdate" && (
+                <p className="active-input capitalize ">{findPatient[1]}</p>
+              )}
+              {findPatient[0] === "sex" && (
+                <p className="active-input capitalize ">
+                  {!findPatient[1] ? "wanita" : "pria"}
+                </p>
+              )}
+              {findPatient[0] === "birthdate" && (
+                <div className="active-input capitalize flex-center-between">
+                  <p>{findPatient[1]}</p>
+                  <p>
+                    {`${getAge(findPatient[1].toString()).ageyear} thn/ ${
+                      getAge(findPatient[1].toString()).agemonth
+                    } bln`}
+                  </p>
+                </div>
+              )}
             </div>
           );
         })}

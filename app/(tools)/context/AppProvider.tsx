@@ -9,7 +9,7 @@ import { AppState, PatientState } from "./interfaces";
 import { getLabCartItem } from "../utils/getLabCartItem";
 import { patientReducer } from "../reducers/patientReducer";
 import { initialPatientState } from "./initialPatientState";
-import { UserType } from "../patientTypes";
+import { PatientInitialValueType, UserType } from "../patientTypes";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -93,6 +93,11 @@ export const AppProvider = ({ children }: Props) => {
   const logout = () => {
     patientDispatch({ type: "LOGOUT_USER" });
   };
+
+  const register = (newPatientPersonal: PatientInitialValueType) => {
+    patientDispatch({ type: "REGISTER_USER", payload: { newPatientPersonal } });
+  };
+
   const value = {
     patientState,
     patientDispatch,
@@ -111,6 +116,7 @@ export const AppProvider = ({ children }: Props) => {
     closeAlert,
     toggleCart,
     clearLabCart,
+    register,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

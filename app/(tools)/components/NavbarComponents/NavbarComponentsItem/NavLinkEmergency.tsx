@@ -10,7 +10,7 @@ import {
 
 type Props = {};
 
-const LinkEmergency = (props: Props) => {
+const NavLinkEmergency = (props: Props) => {
   const {
     toggleMenuNavbar,
     state: { menu_id },
@@ -20,6 +20,7 @@ const LinkEmergency = (props: Props) => {
     <div className="relative h-full ">
       <button
         id="darurat"
+        type="button"
         onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
         className="navbar-link "
       >
@@ -50,4 +51,4 @@ const LinkEmergency = (props: Props) => {
   );
 };
 
-export default LinkEmergency;
+export default NavLinkEmergency;

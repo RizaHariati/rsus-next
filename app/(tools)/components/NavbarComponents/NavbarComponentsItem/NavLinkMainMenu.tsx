@@ -17,10 +17,11 @@ import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 
 type Props = {};
 
-const LinkMainMenu = (props: Props) => {
+const NavLinkMainMenu = (props: Props) => {
   const {
     toggleMenuNavbar,
     logout,
+    closeModal,
     state: { menu_id },
     patientState: { user },
   } = useGlobalContext();
@@ -36,6 +37,7 @@ const LinkMainMenu = (props: Props) => {
   return (
     <div className="flex-center-center text-link w-10 h-full relative ">
       <button
+        type="button"
         id="main-menu"
         onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
       >
@@ -99,6 +101,7 @@ const LinkMainMenu = (props: Props) => {
               onClick={() => {
                 logout();
                 toggleMenuNavbar(null);
+                closeModal();
               }}
               className="flex-center-center gap-2 standard-border p-2 px-3  ml-auto bg-white hover:bg-greyLit active:bg-greyMed1 transition-all"
             >
@@ -112,7 +115,7 @@ const LinkMainMenu = (props: Props) => {
   );
 };
 
-export default LinkMainMenu;
+export default NavLinkMainMenu;
 
 type SubProps = {
   menu: DataMenuType;

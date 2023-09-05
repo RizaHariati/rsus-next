@@ -3,9 +3,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { LabItemType, PaketLabType } from "../types";
 import { toast } from "react-toastify";
-import Image from "next/image";
 import MainLogoImage from "../modal/MainLogoImage";
 type CheckType = { id: number; value: string };
 type Props = {};
@@ -19,11 +17,14 @@ const AlertVerifikasi = (props: Props) => {
   const {
     state: { alertValue },
     closeAlert,
+    openAlert,
     login,
     toggleMenuNavbar,
+    register,
   } = useGlobalContext();
   const verification_number = alertValue.verification_number;
-  const loginData = alertValue.loginData;
+  const data = alertValue.data;
+  const type = alertValue.type;
   const [verified, setVerified] = useState<CheckType[]>(placehoder_values);
   const [checking, setChecking] = useState(false);
   const handleChange = (
@@ -52,22 +53,29 @@ const AlertVerifikasi = (props: Props) => {
 
   useEffect(() => {
     if (checking) {
-      const resolveAfter3Sec = async () => {
-        await login(loginData);
-        setTimeout(() => {
-          closeAlert();
-          toggleMenuNavbar("profile");
-        }, 1000);
-      };
+      if (type === "login") {
+        const loginUser = async () => {
+          await login(data);
+          setTimeout(() => {
+            closeAlert();
+            toggleMenuNavbar("profile");
+          }, 1000);
+        };
 
-      toast.promise(resolveAfter3Sec, {
-        pending: "Promise is pending",
-        success: "Selamat Datang di Urip Sumoharjo ",
-      });
+        toast.promise(loginUser, {
+          pending: "Promise is pending",
+          success: "Selamat Datang di Urip Sumoharjo ",
+        });
+      } else if (type === "registration") {
+        openAlert("registrasisukses", {
+          newPatientPersonal: data,
+        });
+        register(data);
+      }
     }
   }, [checking]);
 
-  if (verification_number < 1000) return <div></div>;
+  if (!verification_number || verification_number < 1000) return <div></div>;
   else {
     return (
       <div className="modal-md p-5 px-10 overflow-hidden bg-white">

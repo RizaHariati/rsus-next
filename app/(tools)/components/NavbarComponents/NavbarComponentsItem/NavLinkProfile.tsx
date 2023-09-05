@@ -9,7 +9,7 @@ import UserLogin from "./UserLogin";
 
 type Props = {};
 
-const LinkProfile = () => {
+const NavLinkProfile = () => {
   const {
     toggleMenuNavbar,
     patientState: { user },
@@ -19,6 +19,7 @@ const LinkProfile = () => {
     <div className="relative h-full">
       {user.login && (
         <button
+          type="button"
           id="profile"
           onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
           className="navbar-link  "
@@ -29,6 +30,7 @@ const LinkProfile = () => {
       )}
       {!user.login && (
         <button
+          type="button"
           id="login"
           onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
           className="navbar-link  "
@@ -44,4 +46,4 @@ const LinkProfile = () => {
   );
 };
 
-export default LinkProfile;
+export default NavLinkProfile;

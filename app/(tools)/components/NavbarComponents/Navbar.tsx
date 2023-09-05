@@ -7,14 +7,14 @@ import React from "react";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBell, faHome } from "@fortawesome/free-solid-svg-icons";
-import LinkMainMenu from "./NavbarComponentsItem/LinkMainMenu";
-import LinkEmergency from "./NavbarComponentsItem/LinkEmergency";
-import LinkProfile from "./NavbarComponentsItem/LinkProfile";
-import LinkAntrian from "./NavbarComponentsItem/LinkAntrian";
+import LinkMainMenu from "./NavbarComponentsItem/NavLinkMainMenu";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { enterOpacity } from "../../framervariants/variants";
 import MainLogoImage from "../../modal/MainLogoImage";
+import NavLinkEmergency from "./NavbarComponentsItem/NavLinkEmergency";
+import NavLinkProfile from "./NavbarComponentsItem/NavLinkProfile";
+import NavLinkAntrian from "./NavbarComponentsItem/NavLinkAntrian";
 type Props = {};
 type MainProps = {
   scrollTop: boolean;
@@ -88,11 +88,10 @@ const NavbarLinks = (props: Props) => {
   } = useGlobalContext();
   return (
     <div className="navbar-links-container">
-      <LinkEmergency />
-      <LinkProfile />
-      <LinkAntrian />
+      <NavLinkEmergency />
+      <NavLinkProfile />
+      <NavLinkAntrian />
       <Link
-        rel="preload"
         href="/mainpage"
         className="navbar-link"
         id="mainpage"

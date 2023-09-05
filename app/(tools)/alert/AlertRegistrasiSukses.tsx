@@ -5,8 +5,8 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 import MainLogoImage from "../modal/MainLogoImage";
-import { PatientInitialValueType } from "../modal/ModalRegister";
 import { getMedicalRecord } from "../data/sample";
+import { PatientInitialValueType } from "../patientTypes";
 
 type Props = {};
 const AlertRegistrasiSukses = (props: Props) => {

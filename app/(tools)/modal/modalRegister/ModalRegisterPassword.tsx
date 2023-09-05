@@ -6,10 +6,10 @@ import {
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useState } from "react";
 import { useGlobalContext } from "../../context/AppProvider";
-import { PatientInitialValueType } from "../ModalRegister";
 import { patientFormInput } from "../../utils/forms/patientFormInput";
 import { getMedicalRecord } from "../../data/sample";
 import { toast } from "react-toastify";
+import { PatientInitialValueType } from "../../patientTypes";
 
 type Props = {};
 
@@ -18,7 +18,7 @@ const ModalRegisterPassword = (props: Props) => {
   const [copyText, setCopyText] = useState(false);
   const newPatientPersonal: PatientInitialValueType =
     state.modalValue.newPatientPersonal;
-
+  console.log({ registerPassword: newPatientPersonal });
   const [passwordValue, setPasswordValue] = useState({
     value1: "",
     value2: "",
@@ -49,7 +49,26 @@ const ModalRegisterPassword = (props: Props) => {
             position: "top-center",
           });
         } else {
-          openAlert("registrasisukses", { newPatientPersonal });
+          newPatientPersonal.birthdate;
+          const patientPersonalData = {
+            ...newPatientPersonal,
+            password: {
+              value: value1,
+              error: false,
+            },
+          };
+          const verification_number = Math.floor(Math.random() * 9000 + 1000);
+          toast.info(
+            "harap tunggu sebentar kami akan mengirimkan nomor verifikasi"
+          );
+
+          setTimeout(() => {
+            openAlert("verifikasi", {
+              verification_number,
+              data: patientPersonalData,
+              type: "registration",
+            });
+          }, 1200);
         }
       }
     }
@@ -129,7 +148,12 @@ const SalinRekamMedis = ({ copyText, setCopyText }: CopyProps) => {
       <div className="flex-center-between my-1">
         <p>Harap salin nomor ini untuk login nanti</p>
         <button
-          onClick={() => setCopyText(true)}
+          onClick={() => {
+            setCopyText(true);
+            navigator.clipboard.writeText(
+              newPatientPersonal["medical_record_number"].value
+            );
+          }}
           disabled={copyText ? true : false}
           className={
             copyText

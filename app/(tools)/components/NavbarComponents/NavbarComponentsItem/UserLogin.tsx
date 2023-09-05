@@ -22,6 +22,7 @@ const UserLogin = (props: Props) => {
     password: "",
   });
   const [showValue, setShowValue] = useState(false);
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -64,7 +65,11 @@ const UserLogin = (props: Props) => {
           "harap tunggu sebentar kami akan mengirimkan nomor verifikasi"
         );
         setTimeout(() => {
-          openAlert("verifikasi", { verification_number, loginData });
+          openAlert("verifikasi", {
+            verification_number,
+            data: loginData,
+            type: "login",
+          });
         }, 1200);
       }
     }

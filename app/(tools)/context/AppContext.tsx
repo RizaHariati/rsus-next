@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { AppState, PatientState } from "./interfaces";
-import { UserType } from "../patientTypes";
+import { PatientInitialValueType, UserType } from "../patientTypes";
 
 export type AppContextProps = {
   patientState: PatientState;
@@ -24,6 +24,7 @@ export type AppContextProps = {
   login: (loginData: Partial<UserType>) => Promise<void>;
   checkUser: (loginData: Partial<UserType>) => void;
   logout: () => void;
+  register: (newPatientPersonal: PatientInitialValueType) => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ConsultationMenuTypes } from "../types";
 import { patientFormInput } from "../utils/forms/patientFormInput";
 import dayjs from "dayjs";
 import InputRegisterDate from "./modalRegister/InputRegisterDate";
@@ -10,17 +9,15 @@ import InputSex from "./modalRegister/InputSex";
 import InputBirthDate from "./modalRegister/InputBirthDate";
 import InputFormatReguler from "./modalRegister/InputFormatReguler";
 import { toast } from "react-toastify";
-import ConsultationMenu from "../components/PageComponents/consultation/ConsultationMenu";
-import ConsultationOptions from "../components/PageComponents/poliklinik/ConsultationOptions";
-import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 
-export type PatientInitialValueType = {
-  [key: string]: { value: any; error: boolean };
-};
+import dataConsultation from "@/app/(tools)/data/data_consultation.json";
+import { PatientInitialValueType } from "../patientTypes";
+const newMedicalRecordNumber =
+  "US" + Math.floor(Math.random() * 9000000000 + 1000000000);
 type Props = {};
 const initialPatient: PatientInitialValueType = {
   medical_record_number: {
-    value: "US" + Math.floor(Math.random() * 9000000000 + 1000000000),
+    value: newMedicalRecordNumber,
     error: false,
   },
   register_date: { value: dayjs().format("DD/MM/YYYY"), error: false },
@@ -65,7 +62,7 @@ const ModalRegister = (props: Props) => {
         }
       }
     });
-    console.log(patientObject);
+
     const findError = Object.values(patientObject).find((item) => item.error);
     const findEmptyValue = Object.entries(patientObject).find(
       ([key, values]) => {
@@ -84,8 +81,9 @@ const ModalRegister = (props: Props) => {
       }
     } else {
       openModal("registerpassword", { newPatientPersonal });
+      setNewPatientPersonal(initialPatient);
     }
-    setNewPatientPersonal(patientObject);
+    setNewPatientPersonal(initialPatient);
   };
   const handlePatientChange = (
     e: React.ChangeEvent<HTMLInputElement>,

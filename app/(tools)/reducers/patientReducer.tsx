@@ -1,5 +1,11 @@
 import { PatientState } from "../context/interfaces";
-import { MedicalRecordDataType, ScheduledType } from "../patientTypes";
+
+import {
+  MedicalRecordDataType,
+  PatientInitialValueType,
+  PatientProfileType,
+  ScheduledType,
+} from "../patientTypes";
 
 interface OpenModalAction {
   type: string;
@@ -9,6 +15,25 @@ export const patientReducer = (
   patientState: PatientState,
   action: OpenModalAction
 ) => {
+  if (action.type === "REGISTER_USER") {
+    let newPatient: any = {};
+    const newPatientPersonal: PatientInitialValueType =
+      action.payload.newPatientPersonal;
+    Object.entries(newPatientPersonal).map(([key, values]) => {
+      newPatient = { ...newPatient, [key]: values.value };
+
+      return "";
+    });
+
+    const patientProfile: PatientProfileType = { ...newPatient };
+    const allPatients: PatientProfileType[] = patientState.allPatients;
+    allPatients.push(patientProfile);
+
+    return {
+      ...patientState,
+      allPatients,
+    };
+  }
   if (action.type === "CHECK_USER") {
     const allPatients = patientState.allPatients;
     const loginData = action.payload;
@@ -29,6 +54,7 @@ export const patientReducer = (
   }
   if (action.type === "LOGIN_USER") {
     const allPatients = patientState.allPatients;
+    console.log({ allPatients });
     const loginData = action.payload;
     const findPatient = allPatients.find(
       (item) => item.medical_record_number === loginData.medical_record_number

@@ -1,7 +1,5 @@
 import React from "react";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import dataConsultation from "@/app/(tools)/data/data_consultation.json";
-
 type Props = {};
 
 const RegisterSuggestion = (props: Props) => {
@@ -13,7 +11,7 @@ const RegisterSuggestion = (props: Props) => {
       <button
         type="button"
         onClick={() => {
-          openModal("registration", {});
+          openModal("registration", { newPatientPersonal: null });
         }}
         className=" text-redBase font-medium ml-3 hover:font-bold transition-all"
       >

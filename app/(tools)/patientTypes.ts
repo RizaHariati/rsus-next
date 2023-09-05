@@ -63,3 +63,7 @@ export type PatientType = {
   scheduled_appointments: ScheduledType[];
   medical_records: MedicalRecordDataType[];
 };
+
+export type PatientInitialValueType = {
+  [key: string]: { value: any; error: boolean };
+};
