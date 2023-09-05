@@ -101,7 +101,6 @@ const NavLinkMainMenu = (props: Props) => {
               onClick={() => {
                 logout();
                 toggleMenuNavbar(null);
-                closeModal();
               }}
               className="flex-center-center gap-2 standard-border p-2 px-3  ml-auto bg-white hover:bg-greyLit active:bg-greyMed1 transition-all"
             >

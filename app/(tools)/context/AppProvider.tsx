@@ -92,6 +92,7 @@ export const AppProvider = ({ children }: Props) => {
 
   const logout = () => {
     patientDispatch({ type: "LOGOUT_USER" });
+    dispatch({ type: "CLOSE_MODAL", payload: "" });
   };
 
   const register = (newPatientPersonal: PatientInitialValueType) => {

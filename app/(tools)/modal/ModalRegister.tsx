@@ -12,26 +12,32 @@ import { toast } from "react-toastify";
 
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 import { PatientInitialValueType } from "../patientTypes";
-const newMedicalRecordNumber =
-  "US" + Math.floor(Math.random() * 9000000000 + 1000000000);
+
 type Props = {};
-const initialPatient: PatientInitialValueType = {
-  medical_record_number: {
-    value: newMedicalRecordNumber,
-    error: false,
-  },
-  register_date: { value: dayjs().format("DD/MM/YYYY"), error: false },
-  name: { value: "", error: false },
-  NIK: { value: "", error: false },
-  address: { value: "", error: false },
-  sex: { value: true, error: false },
-  birthdate: { value: "", error: false },
-  phone: { value: "", error: false },
-  password: { value: "", error: false },
-  bpjs_number: { value: "", error: false },
+export const getNumber = () => {
+  let newMedicalRecordNumber = Math.floor(
+    Math.random() * 9000000000 + 1000000000
+  );
+  return newMedicalRecordNumber;
 };
 
 const ModalRegister = (props: Props) => {
+  const initialPatient: PatientInitialValueType = {
+    medical_record_number: {
+      value: "US" + getNumber(),
+      error: false,
+    },
+    register_date: { value: dayjs().format("DD/MM/YYYY"), error: false },
+    name: { value: "", error: false },
+    NIK: { value: "", error: false },
+    address: { value: "", error: false },
+    sex: { value: true, error: false },
+    birthdate: { value: "", error: false },
+    phone: { value: "", error: false },
+    password: { value: "", error: false },
+    bpjs_number: { value: "", error: false },
+  };
+
   const { state, closeModal, openModal } = useGlobalContext();
   const [newPatientPersonal, setNewPatientPersonal] =
     useState<PatientInitialValueType>(
@@ -40,6 +46,10 @@ const ModalRegister = (props: Props) => {
         : initialPatient
     );
 
+  console.log({ modal: state.modalValue });
+  console.log({
+    newPatientPersonal: newPatientPersonal.medical_record_number.value,
+  });
   useEffect(() => {}, [newPatientPersonal]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

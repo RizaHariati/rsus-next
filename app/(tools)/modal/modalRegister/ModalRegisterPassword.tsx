@@ -18,7 +18,7 @@ const ModalRegisterPassword = (props: Props) => {
   const [copyText, setCopyText] = useState(false);
   const newPatientPersonal: PatientInitialValueType =
     state.modalValue.newPatientPersonal;
-  console.log({ registerPassword: newPatientPersonal });
+
   const [passwordValue, setPasswordValue] = useState({
     value1: "",
     value2: "",
