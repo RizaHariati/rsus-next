@@ -21,7 +21,6 @@ const NavLinkMainMenu = (props: Props) => {
   const {
     toggleMenuNavbar,
     logout,
-    closeModal,
     state: { menu_id },
     patientState: { user },
   } = useGlobalContext();

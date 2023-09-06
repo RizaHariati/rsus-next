@@ -1,13 +1,10 @@
 "use client";
 
-import Image from "next/image";
 import Link from "next/link";
 import React from "react";
-
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBell, faHome } from "@fortawesome/free-solid-svg-icons";
-import LinkMainMenu from "./NavbarComponentsItem/NavLinkMainMenu";
+import { faHome } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
 import { enterOpacity } from "../../framervariants/variants";
@@ -15,6 +12,8 @@ import MainLogoImage from "../../modal/MainLogoImage";
 import NavLinkEmergency from "./NavbarComponentsItem/NavLinkEmergency";
 import NavLinkProfile from "./NavbarComponentsItem/NavLinkProfile";
 import NavLinkAntrian from "./NavbarComponentsItem/NavLinkAntrian";
+import NavLinkMainMenu from "./NavbarComponentsItem/NavLinkMainMenu";
+import NavLinkNotification from "./NavbarComponentsItem/NavLinkNotification";
 type Props = {};
 type MainProps = {
   scrollTop: boolean;
@@ -65,17 +64,8 @@ const NavbarMenu = (props: Props) => {
   return (
     <div className="h-full ">
       <div className="navbar-menu-container ">
-        <div className=" flex-center-center text-link w-12  h-full  ">
-          <div className="relative">
-            <button id="notification">
-              <FontAwesomeIcon icon={faBell} className="navbar-reg-icon" />
-              <p className="absolute bg-redBase text-[12px] w-4 h-4 rounded-full text-center text-white -top-2 -right-2">
-                2
-              </p>
-            </button>
-          </div>
-        </div>
-        <LinkMainMenu />
+        <NavLinkNotification />
+        <NavLinkMainMenu />
       </div>
     </div>
   );

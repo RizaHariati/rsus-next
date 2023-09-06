@@ -46,10 +46,6 @@ const ModalRegister = (props: Props) => {
         : initialPatient
     );
 
-  console.log({ modal: state.modalValue });
-  console.log({
-    newPatientPersonal: newPatientPersonal.medical_record_number.value,
-  });
   useEffect(() => {}, [newPatientPersonal]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {

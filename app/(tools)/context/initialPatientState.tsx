@@ -1,3 +1,4 @@
+import { sampleNotifications, sampleProfile } from "../data/sample";
 import { PatientState } from "./interfaces";
 export const initialPatientState: PatientState = {
   user: {
@@ -28,20 +29,10 @@ export const initialPatientState: PatientState = {
   allPatients: [
     {
       medical_record_number: "US4234123398",
-      patient_profile: {
-        name: "Purwanto",
-        NIK: "051303890004",
-        address: "Jl. Letjen Suprapto no.5",
-        sex: true,
-        birthdate: "13/02/1989",
-        phone: "08121234567890",
-        register_date: "17/08/2023",
-        password: "password",
-        bpjs_number: "0001454326918",
-      },
+      patient_profile: sampleProfile,
       scheduled_appointments: [],
       medical_records: [],
-      notifications: [],
+      notifications: sampleNotifications,
     },
   ],
 };

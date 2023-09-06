@@ -55,9 +55,9 @@ export type MedicalRecordDataType = {
 };
 export type NotificationType = {
   id: string;
-  medical_record_number: string;
-  category: string;
-  message: string;
+  notification_code: string;
+  schedule_code: string;
+  title: string;
   date: string;
 };
 

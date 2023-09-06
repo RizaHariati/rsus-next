@@ -2,7 +2,6 @@
 @import "tailwindcss/components";
 @import "tailwindcss/utilities";
 @import "./globals.css";
-
 @layer components {
   .navbar-container {
     @apply fixed z-40 left-0 top-0 w-full shadow-sm shadow-greyBorder bg-white bg-opacity-60 transition-all;
@@ -87,5 +86,12 @@
 
   .main-menu-item {
     @apply btn-3 text-greyDrk font-normal hover:btn-3-bold hover:text-greyBorder transition-all w-full bg-white px-2 border-b border-b-greyBorder text-left h-12;
+  }
+
+  .notification-container {
+    @apply navbar-drop-container w-modal_md right-0 origin-top px-0 top-12 pt-2;
+  }
+  .notification-container-hidden {
+    @apply navbar-drop-hidden  w-modal_md right-0 origin-top top-12;
   }
 }

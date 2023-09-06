@@ -51,7 +51,7 @@ const PatientProfile = (props: Props) => {
               return item[0] === patientKey;
             }
           )!;
-
+          const [key, value] = findPatient;
           return (
             <div
               key={patientValues.id}
@@ -62,20 +62,28 @@ const PatientProfile = (props: Props) => {
               }
             >
               <p className="body-2 ">{patientValues.title}</p>
-              {findPatient[0] !== "sex" && findPatient[0] !== "birthdate" && (
-                <p className="active-input capitalize ">{findPatient[1]}</p>
-              )}
-              {findPatient[0] === "sex" && (
-                <p className="active-input capitalize ">
-                  {!findPatient[1] ? "wanita" : "pria"}
+              {key !== "sex" && key !== "birthdate" && (
+                <p
+                  className={
+                    key === "bpjs_number"
+                      ? "dark-input capitalize "
+                      : "active-input capitalize "
+                  }
+                >
+                  {value}
                 </p>
               )}
-              {findPatient[0] === "birthdate" && (
+              {key === "sex" && (
+                <p className="active-input capitalize ">
+                  {!value ? "wanita" : "pria"}
+                </p>
+              )}
+              {key === "birthdate" && (
                 <div className="active-input capitalize flex-center-between">
-                  <p>{findPatient[1]}</p>
+                  <p>{value}</p>
                   <p>
-                    {`${getAge(findPatient[1].toString()).ageyear} thn/ ${
-                      getAge(findPatient[1].toString()).agemonth
+                    {`${getAge(value.toString()).ageyear} thn/ ${
+                      getAge(value.toString()).agemonth
                     } bln`}
                   </p>
                 </div>
@@ -83,16 +91,6 @@ const PatientProfile = (props: Props) => {
             </div>
           );
         })}
-        {patient.patient_profile.bpjs_number && (
-          <div className="mt-2">
-            <div className="w-full flex flex-col">
-              <p className="body-2 ">Nomor BPJS</p>
-              <p className="body-2 form-disable">
-                {patient.patient_profile?.bpjs_number}
-              </p>
-            </div>
-          </div>
-        )}
       </div>
     </div>
   );

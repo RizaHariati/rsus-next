@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import ReactDatePicker from "react-datepicker";
-import id from "date-fns/locale/id";
 import dayjs from "dayjs";
 import { PatientInitialValueType, PersonalItemType } from "../../patientTypes";
 type Props = {
