@@ -10,7 +10,7 @@ const PatientProfile = (props: Props) => {
   const {
     toggleMenuNavbar,
     state: { menu_id },
-    patientState: { patientProfile },
+    patientState: { patient },
   } = useGlobalContext();
 
   return (
@@ -33,9 +33,9 @@ const PatientProfile = (props: Props) => {
       <div className="grid grid-cols-3 col-start-1 gap-2 mb-2">
         <div className="w-full flex flex-col col-span-2">
           <p className="body-1-bold ">Nomor Rekam Medik (MR)</p>
-          {patientProfile.medical_record_number && (
+          {patient.medical_record_number && (
             <p className="body-2 form-disable">
-              {getMedicalRecord(patientProfile.medical_record_number)}
+              {getMedicalRecord(patient.medical_record_number)}
             </p>
           )}
           <p className="footnote-1 mt-2">
@@ -46,9 +46,11 @@ const PatientProfile = (props: Props) => {
       </div>
       <div className="grid grid-cols-3 col-start-1 gap-2 mb-2">
         {Object.entries(patientFormInput).map(([patientKey, patientValues]) => {
-          const findPatient = Object.entries(patientProfile).find((item) => {
-            return item[0] === patientKey;
-          })!;
+          const findPatient = Object.entries(patient.patient_profile).find(
+            (item) => {
+              return item[0] === patientKey;
+            }
+          )!;
 
           return (
             <div
@@ -81,12 +83,12 @@ const PatientProfile = (props: Props) => {
             </div>
           );
         })}
-        {patientProfile.bpjs_number && (
+        {patient.patient_profile.bpjs_number && (
           <div className="mt-2">
             <div className="w-full flex flex-col">
               <p className="body-2 ">Nomor BPJS</p>
               <p className="body-2 form-disable">
-                {patientProfile?.bpjs_number}
+                {patient.patient_profile?.bpjs_number}
               </p>
             </div>
           </div>

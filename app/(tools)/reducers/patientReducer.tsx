@@ -1,11 +1,6 @@
 import { PatientState } from "../context/interfaces";
 
-import {
-  MedicalRecordDataType,
-  PatientInitialValueType,
-  PatientProfileType,
-  ScheduledType,
-} from "../patientTypes";
+import { PatientInitialValueType, PatientType } from "../patientTypes";
 
 interface OpenModalAction {
   type: string;
@@ -16,24 +11,49 @@ export const patientReducer = (
   action: OpenModalAction
 ) => {
   if (action.type === "REGISTER_USER") {
-    let newPatient: any = {};
+    let patient: PatientType = {
+      medical_record_number: "",
+      patient_profile: {
+        name: "",
+        NIK: "",
+        address: "",
+        sex: true,
+        birthdate: "",
+        phone: "",
+        register_date: "",
+        password: "",
+        bpjs_number: "",
+      },
+      scheduled_appointments: [],
+      medical_records: [],
+      notifications: [],
+    };
     const newPatientPersonal: PatientInitialValueType =
       action.payload.newPatientPersonal;
     Object.entries(newPatientPersonal).map(([key, values]) => {
-      newPatient = { ...newPatient, [key]: values.value };
-
+      if (key === "medical_record_number") {
+        patient = { ...patient, [key]: values.value };
+      } else {
+        patient = {
+          ...patient,
+          patient_profile: {
+            ...patient["patient_profile"],
+            [key]: values.value,
+          },
+        };
+      }
       return "";
     });
-
-    const patientProfile: PatientProfileType = { ...newPatient };
-    const allPatients: PatientProfileType[] = patientState.allPatients;
-    allPatients.push(patientProfile);
+    console.log({ patient });
+    const allPatients: PatientType[] = patientState.allPatients;
+    allPatients.push(patient);
 
     return {
       ...patientState,
       allPatients,
     };
   }
+
   if (action.type === "CHECK_USER") {
     const allPatients = patientState.allPatients;
     const loginData = action.payload;
@@ -52,17 +72,18 @@ export const patientReducer = (
       verification_number,
     };
   }
+
   if (action.type === "LOGIN_USER") {
     const allPatients = patientState.allPatients;
-    console.log({ allPatients });
     const loginData = action.payload;
+
     const findPatient = allPatients.find(
       (item) => item.medical_record_number === loginData.medical_record_number
     );
 
-    let patientProfile = patientState.patientProfile;
+    let patient = patientState.patient;
     if (findPatient) {
-      patientProfile = findPatient;
+      patient = findPatient;
     }
     let user = {
       ...action.payload,
@@ -72,35 +93,38 @@ export const patientReducer = (
     return {
       ...patientState,
       user,
-      patientProfile,
+      patient,
     };
   }
+
   if (action.type === "LOGOUT_USER") {
     let user = {
       login: false,
       password: "",
       medical_record_number: "",
     };
-    const patientProfile = {
+    let patient = {
       medical_record_number: "",
-      name: "",
-      NIK: "",
-      address: "",
-      sex: true,
-      birthdate: "",
-      phone: "",
-      register_date: "",
-      password: "",
-      bpjs_number: "",
+      patient_profile: {
+        name: "",
+        NIK: "",
+        address: "",
+        sex: true,
+        birthdate: "",
+        phone: "",
+        register_date: "",
+        password: "",
+        bpjs_number: "",
+      },
+      scheduled_appointments: [],
+      medical_records: [],
+      notifications: [],
     };
-    const medicalRecords: MedicalRecordDataType[] = [];
-    const scheduledAppointments: ScheduledType[] = [];
+
     return {
       ...patientState,
       user,
-      patientProfile,
-      medicalRecords,
-      scheduledAppointments,
+      patient,
     };
   }
 

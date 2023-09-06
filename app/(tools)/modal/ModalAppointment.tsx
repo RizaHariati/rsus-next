@@ -43,7 +43,6 @@ const ModalAppointment = (props: Props) => {
         <AppointmentDoctor /> {/* contoh2 dokter yang tersedia */}
       </article>
       <article className=" w-full flex items-center justify-end gap-3 pt-5 ">
-        <button className="button-greenUrip">Pilih</button>
         <button
           className="button-greenUrip"
           onClick={() => {

@@ -22,7 +22,6 @@ export type FormProfileType = {
 };
 
 export type PatientProfileType = {
-  medical_record_number: string;
   name: string;
   NIK: string;
   address: string;
@@ -36,7 +35,6 @@ export type PatientProfileType = {
 
 export type ScheduledType = {
   current_phone: string;
-  medical_record_number: string;
   schedule_id: string;
   doctor: string;
   appointment_type: string;
@@ -45,7 +43,6 @@ export type ScheduledType = {
   kuota_number: number;
 };
 export type MedicalRecordDataType = {
-  medical_record_number: string;
   med_id: string;
   appointment_type: string;
   incoming_date: string;
@@ -56,12 +53,20 @@ export type MedicalRecordDataType = {
   diagnosis: string;
   tindakan: string;
 };
+export type NotificationType = {
+  id: string;
+  medical_record_number: string;
+  category: string;
+  message: string;
+  date: string;
+};
 
 export type PatientType = {
   medical_record_number: string;
-  profile: PatientProfileType;
+  patient_profile: PatientProfileType;
   scheduled_appointments: ScheduledType[];
   medical_records: MedicalRecordDataType[];
+  notifications: NotificationType[];
 };
 
 export type PatientInitialValueType = {
