@@ -59,15 +59,15 @@ type PatientProps = {
 };
 const TelemedicineInfo = ({ doctorInfo }: PatientProps) => {
   const {
-    patientState: { patientProfile },
+    patientState: { patient },
   } = useGlobalContext();
   return (
     <div className=" flex flex-col gap-3">
       <div className="form-line border-b border-greyBorder">
         <p>Nama Pasien</p>
-        <p>:&nbsp;{patientProfile.name}</p>
+        <p>:&nbsp;{patient.patient_profile.name}</p>
         <p>Nomor Rekam Medik </p>
-        <p>:&nbsp;{getMedicalRecord(patientProfile.medical_record_number)}</p>
+        <p>:&nbsp;{getMedicalRecord(patient.medical_record_number)}</p>
       </div>
 
       <div className="form-line border-b border-greyBorder">

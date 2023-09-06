@@ -13,7 +13,7 @@ const ModalBayarLaboratorium = (props: Props) => {
     closeModal,
     openModal,
     clearLabCart,
-    patientState: { patientProfile },
+    patientState: { patient },
   } = useGlobalContext();
 
   return (
@@ -27,10 +27,10 @@ const ModalBayarLaboratorium = (props: Props) => {
       <section className="bg-white flex flex-col gap-3 border-none">
         <p className="text-base dark-input">
           Nomor Medical Record :{" "}
-          {getMedicalRecord(patientProfile.medical_record_number)}
+          {getMedicalRecord(patient.medical_record_number)}
         </p>
         <p className="text-base dark-input">
-          Nama Subject Test : {patientProfile.name}
+          Nama Subject Test : {patient.patient_profile.name}
         </p>
 
         <LabCartList />

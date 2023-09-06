@@ -77,6 +77,7 @@ const UserLogin = (props: Props) => {
       medical_record_number: "",
       password: "",
     });
+    // eslint-disable-next-line
   }, [verification_number]);
 
   const handleChange = (

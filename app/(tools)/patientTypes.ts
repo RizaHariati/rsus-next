@@ -37,10 +37,10 @@ export type ScheduledType = {
   current_phone: string;
   schedule_id: string;
   doctor: string;
-  appointment_type: string;
+  appointment_type: "tatap_muka" | "telemedicine";
   selected_date: string;
   using_bpjs: boolean;
-  kuota_number: number;
+  nomor_antrian: number;
 };
 export type MedicalRecordDataType = {
   med_id: string;

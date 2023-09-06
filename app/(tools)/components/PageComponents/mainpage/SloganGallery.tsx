@@ -32,7 +32,11 @@ const SloganGallery = (props: Props) => {
   }, []);
 
   return (
-    <section id="two" className=" h-fit w-full z-0 snap-center pt-14" ref={ref}>
+    <section
+      id="gallery"
+      className=" h-fit w-full z-0 snap-center pt-14"
+      ref={ref}
+    >
       <motion.h2
         variants={enterTitleVariants}
         initial="initial"

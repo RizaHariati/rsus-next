@@ -73,6 +73,7 @@ const AlertVerifikasi = (props: Props) => {
         register(data);
       }
     }
+    // eslint-disable-next-line
   }, [checking]);
 
   if (!verification_number || verification_number < 1000) return <div></div>;

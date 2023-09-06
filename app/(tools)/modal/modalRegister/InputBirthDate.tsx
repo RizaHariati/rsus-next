@@ -30,6 +30,7 @@ const InputBirthDate = ({
       },
     };
     setNewPatientPersonal(patientBirthDate);
+    // eslint-disable-next-line
   }, [selectedDate]);
 
   return (

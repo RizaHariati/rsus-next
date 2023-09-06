@@ -19,6 +19,7 @@ const AlertRegistrasiSukses = (props: Props) => {
       closeAlert();
       closeModal();
     }, 3000);
+    // eslint-disable-next-line
   }, []);
 
   if (!newPatientPersonal) return <div></div>;

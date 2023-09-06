@@ -14,14 +14,16 @@ type Props = {};
 const ModalTatapMuka = (props: Props) => {
   const {
     state: { modalValue, selected_date },
-    patientState: { patientProfile },
+    patientState: { patient },
     openModal,
     closeModal,
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.doctorInfo;
   const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
   const [bpjs, setBpjs] = useState(true);
-  const [newPhoneNumber, setNewPhoneNumber] = useState(patientProfile.phone);
+  const [newPhoneNumber, setNewPhoneNumber] = useState(
+    patient.patient_profile.phone
+  );
   const matchSelectedDate = doctorInfo.hari.find(
     (doctorHari) => doctorHari.id_hari === dayjs(selected_date).day()
   );
@@ -50,7 +52,7 @@ const ModalTatapMuka = (props: Props) => {
           <div>
             <p>Nomor WhatsApp untuk nomor antrian</p>
             <input
-              placeholder={patientProfile.phone}
+              placeholder={patient.patient_profile.phone}
               className="active-input"
               value={newPhoneNumber}
               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
@@ -58,7 +60,7 @@ const ModalTatapMuka = (props: Props) => {
               }
             />
 
-            {patientProfile.phone !== newPhoneNumber && (
+            {patient.patient_profile.phone !== newPhoneNumber && (
               <p className=" text-redBase footnote-1">
                 Nomor HP tidak sama dengan nomor pada Rekam Medik, abaikan jika
                 memang anda mengganti nomor
@@ -83,7 +85,7 @@ const ModalTatapMuka = (props: Props) => {
             <div>
               <p>Nomor Rekam Medis (MR) </p>
               <p className="active-input">
-                {getMedicalRecord(patientProfile.medical_record_number)}
+                {getMedicalRecord(patient.medical_record_number)}
               </p>
             </div>
             <div>
@@ -119,7 +121,9 @@ const ModalTatapMuka = (props: Props) => {
               }
             >
               <p>Masukkan nomor BPJS Anda </p>
-              <p className="active-input">{patientProfile.bpjs_number}</p>
+              <p className="active-input">
+                {patient.patient_profile.bpjs_number}
+              </p>
             </div>
           </div>
           <button

@@ -92,6 +92,6 @@
     @apply navbar-drop-container w-modal_md right-0 origin-top px-0 top-12 pt-2;
   }
   .notification-container-hidden {
-    @apply navbar-drop-hidden  w-modal_md right-0 origin-top top-12;
+    @apply navbar-drop-hidden  w-modal_md right-0 origin-top top-12 pt-0;
   }
 }

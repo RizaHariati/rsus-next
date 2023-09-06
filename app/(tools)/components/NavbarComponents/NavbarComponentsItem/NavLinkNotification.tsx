@@ -10,6 +10,7 @@ import { NotificationType } from "@/app/(tools)/patientTypes";
 import dataNotification from "@/app/(tools)/data/data_notifications.json";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import MainLogoImage from "@/app/(tools)/modal/MainLogoImage";
+import dayjs from "dayjs";
 type Props = {};
 
 const NavLinkNotification = (props: Props) => {
@@ -68,16 +69,16 @@ const NotificationLogin = () => {
               </div>
               <h5>Notifikasi</h5>
             </div>
-            <div className=" h-72 overflow-y-scroll scrollbar-none scrollbar-track-greyLit scrollbar-thumb-greyBorder border-y border-greyBorder px-5 py-2">
+            <div className=" h-72 overflow-y-scroll scrollbar-none scrollbar-track-greyLit scrollbar-thumb-greyBorder border-y border-greyBorder px-5 pt-2">
               {notification.map((item) => {
                 const findNotif = dataNotification.find(
                   (itemNotif) => itemNotif.id === item.notification_code
                 )!;
-                console.log({ findNotif });
+
                 return (
                   <div
                     key={item.id}
-                    className="w-full grid grid-cols-12 items-start standard-border mb-2"
+                    className="w-full grid grid-cols-12 items-start standard-border mb-2 hover:bg-greyLit transition-all"
                   >
                     <FontAwesomeIcon
                       icon={
@@ -92,6 +93,7 @@ const NotificationLogin = () => {
                       }
                     />
                     <div className=" col-span-10 inline leading-4">
+                      <p className=" footnote-1 text-greyMed2">{item.date}</p>
                       {findNotif.message.map((message, index: number) => {
                         return (
                           <div key={index} className="inline body-3 leading-4">
@@ -100,7 +102,7 @@ const NotificationLogin = () => {
                         );
                       })}
                     </div>
-                    <button className="col-span-1">
+                    <button className="col-span-1 hover:text-redBase active:text-redOpacity transition-all">
                       <FontAwesomeIcon icon={faTrashAlt} />
                     </button>
                   </div>
