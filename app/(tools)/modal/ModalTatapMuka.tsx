@@ -3,11 +3,11 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../types";
-import AppoinmentCalendarIcon from "./modalAppointment/AppoinmentCalendarIcon";
 
 import dayjs from "dayjs";
 import RegisterSuggestion from "./RegisterSuggestion";
 import { getMedicalRecord } from "../data/sample";
+import AppointmentCalendarIcon from "./modalAppointment/AppointmentCalendarIcon";
 
 type Props = {};
 
@@ -24,6 +24,7 @@ const ModalTatapMuka = (props: Props) => {
   const [newPhoneNumber, setNewPhoneNumber] = useState(
     patient.patient_profile.phone
   );
+
   const matchSelectedDate = doctorInfo.hari.find(
     (doctorHari) => doctorHari.id_hari === dayjs(selected_date).day()
   );
@@ -77,7 +78,7 @@ const ModalTatapMuka = (props: Props) => {
           </div>
           <div>
             <p>Antrian 7 hari kedepan (pilih 1)</p>
-            <AppoinmentCalendarIcon />
+            <AppointmentCalendarIcon />
           </div>
         </mark>
         <mark className=" flex flex-col gap-2 items-center justify-between w-full">

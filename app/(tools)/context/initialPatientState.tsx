@@ -1,4 +1,8 @@
-import { sampleNotifications, sampleProfile } from "../data/sample";
+import {
+  sampleNotifications,
+  sampleProfile,
+  sampleSchedule,
+} from "../data/sample";
 import { PatientState } from "./interfaces";
 export const initialPatientState: PatientState = {
   user: {
@@ -14,9 +18,9 @@ export const initialPatientState: PatientState = {
       NIK: "",
       address: "",
       sex: true,
-      birthdate: "",
+      birthdate: new Date(),
       phone: "",
-      register_date: "",
+      register_date: new Date(),
       password: "",
       bpjs_number: "",
     },
@@ -30,7 +34,7 @@ export const initialPatientState: PatientState = {
     {
       medical_record_number: "US4234123398",
       patient_profile: sampleProfile,
-      scheduled_appointments: [],
+      scheduled_appointments: sampleSchedule,
       medical_records: [],
       notifications: sampleNotifications,
     },

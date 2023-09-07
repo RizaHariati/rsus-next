@@ -1,8 +1,6 @@
 import { AppState } from "../context/interfaces";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import { DoctorType, FilterDoctorType, LabCartType } from "../types";
-import dayjs from "dayjs";
-
 interface OpenModalAction {
   type: string;
   payload?: any;
@@ -56,6 +54,7 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
   }
   if (action.type === "SET_DATE") {
     const selected_date = action.payload.date;
+
     return { ...state, selected_date };
   }
 
@@ -132,7 +131,7 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
     }
     if (selected_date) {
       const filterByPickDate = filtered_doctor.value;
-      const getDay = dayjs(selected_date).day();
+      const getDay = selected_date;
       const hari = getDay === 0 ? 7 : getDay;
       const finalFilter = filterByPickDate.filter((item) =>
         item.hari.find(

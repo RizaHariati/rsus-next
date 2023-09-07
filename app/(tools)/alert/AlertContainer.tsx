@@ -25,7 +25,7 @@ const AlertContainer = (props: Props) => {
           exit="exit"
           className="w-screen h-screen bg-black bg-opacity-50 overflow-hidden fixed top-0 left-0 z-[60]"
         >
-          <ModalContent />
+          <AlertContent />
         </motion.div>
       )}
     </AnimatePresence>
@@ -34,7 +34,7 @@ const AlertContainer = (props: Props) => {
 
 export default AlertContainer;
 
-const ModalContent = () => {
+const AlertContent = () => {
   const {
     state: { alertTitle },
   } = useGlobalContext();

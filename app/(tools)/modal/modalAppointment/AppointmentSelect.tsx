@@ -16,7 +16,7 @@ import ResultSpesialisasi from "./ResultSpesialisasi";
 type Props = {};
 const AppointmentSelect = () => {
   const {
-    state: { modalValue, selected_date },
+    state: { modalValue },
     filteringDoctor,
     setDate,
     clearDate,

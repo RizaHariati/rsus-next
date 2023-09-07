@@ -41,7 +41,6 @@ const NavLinkProfile = () => {
       )}
       <PatientProfile />
       <UserLogin />
-      {/* DROP MENU PROFILE */}
     </div>
   );
 };

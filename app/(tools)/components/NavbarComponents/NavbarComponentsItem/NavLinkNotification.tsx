@@ -6,11 +6,15 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { NotificationType } from "@/app/(tools)/patientTypes";
+import {
+  NotificationLibraryType,
+  NotificationType,
+} from "@/app/(tools)/patientTypes";
 import dataNotification from "@/app/(tools)/data/data_notifications.json";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import MainLogoImage from "@/app/(tools)/modal/MainLogoImage";
 import dayjs from "dayjs";
+import NotificationMessages from "./NotificationMessages";
 type Props = {};
 
 const NavLinkNotification = (props: Props) => {
@@ -70,15 +74,17 @@ const NotificationLogin = () => {
               <h5>Notifikasi</h5>
             </div>
             <div className=" h-72 overflow-y-scroll scrollbar-none scrollbar-track-greyLit scrollbar-thumb-greyBorder border-y border-greyBorder px-5 pt-2">
-              {notification.map((item) => {
-                const findNotif = dataNotification.find(
-                  (itemNotif) => itemNotif.id === item.notification_code
-                )!;
+              {notification.map((notificationItem) => {
+                const findNotif: NotificationLibraryType =
+                  dataNotification.find(
+                    (itemNotif: NotificationLibraryType) =>
+                      itemNotif.id === notificationItem.notification_code
+                  )!;
 
                 return (
                   <div
-                    key={item.id}
-                    className="w-full grid grid-cols-12 items-start standard-border mb-2 hover:bg-greyLit transition-all"
+                    key={notificationItem.id}
+                    className="w-full grid grid-cols-12 items-start standard-border mb-2 hover:bg-greyLit transition-all p-1"
                   >
                     <FontAwesomeIcon
                       icon={
@@ -93,14 +99,14 @@ const NotificationLogin = () => {
                       }
                     />
                     <div className=" col-span-10 inline leading-4">
-                      <p className=" footnote-1 text-greyMed2">{item.date}</p>
-                      {findNotif.message.map((message, index: number) => {
-                        return (
-                          <div key={index} className="inline body-3 leading-4">
-                            {message}
-                          </div>
-                        );
-                      })}
+                      <p className=" footnote-1 text-greyMed2">
+                        {dayjs(notificationItem.date).format("DD MMMM YYYY")}
+                      </p>
+                      <NotificationMessages
+                        messages={findNotif.message}
+                        findNotif={findNotif}
+                        notificationItem={notificationItem}
+                      />
                     </div>
                     <button className="col-span-1 hover:text-redBase active:text-redOpacity transition-all">
                       <FontAwesomeIcon icon={faTrashAlt} />

@@ -4,6 +4,7 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { getAge } from "@/app/(tools)/utils/getAge";
+import dayjs from "dayjs";
 type Props = {};
 
 const PatientProfile = (props: Props) => {
@@ -52,6 +53,7 @@ const PatientProfile = (props: Props) => {
             }
           )!;
           const [key, value] = findPatient;
+
           return (
             <div
               key={patientValues.id}
@@ -70,7 +72,7 @@ const PatientProfile = (props: Props) => {
                       : "active-input capitalize "
                   }
                 >
-                  {value}
+                  {value.toString()}
                 </p>
               )}
               {key === "sex" && (
@@ -80,11 +82,17 @@ const PatientProfile = (props: Props) => {
               )}
               {key === "birthdate" && (
                 <div className="active-input capitalize flex-center-between">
-                  <p>{value}</p>
                   <p>
-                    {`${getAge(value.toString()).ageyear} thn/ ${
-                      getAge(value.toString()).agemonth
-                    } bln`}
+                    {typeof value === "object"
+                      ? dayjs(value).format("DD MMMM YYYY")
+                      : ""}
+                  </p>
+                  <p>
+                    {typeof value === "object"
+                      ? `${getAge(value).ageyear} thn/ ${
+                          getAge(value).agemonth
+                        } bln`
+                      : ""}
                   </p>
                 </div>
               )}

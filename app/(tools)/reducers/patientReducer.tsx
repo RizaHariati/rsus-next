@@ -18,9 +18,9 @@ export const patientReducer = (
         NIK: "",
         address: "",
         sex: true,
-        birthdate: "",
+        birthdate: new Date(),
         phone: "",
-        register_date: "",
+        register_date: new Date(),
         password: "",
         bpjs_number: "",
       },
@@ -44,7 +44,6 @@ export const patientReducer = (
       }
       return "";
     });
-    console.log({ patient });
     const allPatients: PatientType[] = patientState.allPatients;
     allPatients.push(patient);
 
@@ -110,9 +109,9 @@ export const patientReducer = (
         NIK: "",
         address: "",
         sex: true,
-        birthdate: "",
+        birthdate: new Date(),
         phone: "",
-        register_date: "",
+        register_date: new Date(),
         password: "",
         bpjs_number: "",
       },

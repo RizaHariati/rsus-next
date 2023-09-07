@@ -25,7 +25,7 @@ const InputBirthDate = ({
     const patientBirthDate = {
       ...newPatientPersonal,
       birthdate: {
-        value: selectedDate ? dayjs(selectedDate).format("DD/MM/YYYY") : null,
+        value: selectedDate ? selectedDate : null,
         error: false,
       },
     };

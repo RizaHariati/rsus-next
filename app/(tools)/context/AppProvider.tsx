@@ -105,6 +105,7 @@ export const AppProvider = ({ children }: Props) => {
     login,
     logout,
     checkUser,
+    register,
     state,
     dispatch,
     toggleMenuNavbar,
@@ -117,7 +118,6 @@ export const AppProvider = ({ children }: Props) => {
     closeAlert,
     toggleCart,
     clearLabCart,
-    register,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

@@ -14,7 +14,7 @@ export const gridColumn = [
   { length: 5, class: "antrian-grid grid-cols-5" },
   { length: 6, class: "antrian-grid grid-cols-6" },
 ];
-const AppoinmentCalendarIcon = ({}: Props) => {
+const AppointmentCalendarIcon = ({}: Props) => {
   const {
     state: { modalValue, selected_date },
   } = useGlobalContext();
@@ -58,4 +58,4 @@ const AppoinmentCalendarIcon = ({}: Props) => {
   );
 };
 
-export default AppoinmentCalendarIcon;
+export default AppointmentCalendarIcon;

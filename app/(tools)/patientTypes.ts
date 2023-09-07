@@ -1,3 +1,5 @@
+import { patientFormInput } from "./utils/forms/patientFormInput";
+
 export type UserType = {
   login: boolean;
   password?: string;
@@ -26,9 +28,9 @@ export type PatientProfileType = {
   NIK: string;
   address: string;
   sex: boolean;
-  birthdate: string;
+  birthdate: Date;
   phone: string;
-  register_date: string;
+  register_date: Date;
   password: string;
   bpjs_number?: string;
 };
@@ -36,17 +38,18 @@ export type PatientProfileType = {
 export type ScheduledType = {
   current_phone: string;
   schedule_id: string;
-  doctor: string;
-  appointment_type: "tatap_muka" | "telemedicine";
-  selected_date: string;
+  tujuan: string[];
+  appointment_type: "tatap_muka" | "telemedicine" | "test";
+  selected_date: Date;
   using_bpjs: boolean;
   nomor_antrian: number;
 };
+
 export type MedicalRecordDataType = {
   med_id: string;
   appointment_type: string;
-  incoming_date: string;
-  discharge_date: string;
+  incoming_date: Date;
+  discharge_date: Date;
   riwayat: string;
   pemeriksaan: string;
   hasil_lab: string;
@@ -56,11 +59,18 @@ export type MedicalRecordDataType = {
 export type NotificationType = {
   id: string;
   notification_code: string;
-  schedule_code: string;
+  schedule_code?: string;
   title: string;
-  date: string;
+  date: Date;
 };
 
+export type NotificationLibraryType = {
+  id: string;
+  type: string;
+  title: string;
+  category: string;
+  message: string[];
+};
 export type PatientType = {
   medical_record_number: string;
   patient_profile: PatientProfileType;

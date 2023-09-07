@@ -10,6 +10,7 @@ import { patientFormInput } from "../../utils/forms/patientFormInput";
 import { getMedicalRecord } from "../../data/sample";
 import { toast } from "react-toastify";
 import { PatientInitialValueType } from "../../patientTypes";
+import dayjs from "dayjs";
 
 type Props = {};
 
@@ -190,7 +191,12 @@ const DataPasien = () => {
                 </p>
               )}
               {key !== "sex" && (
-                <p className="capitalize">:&nbsp;{patientValue.value}</p>
+                <p className="capitalize">
+                  :&nbsp;
+                  {typeof patientValue.value === "object"
+                    ? dayjs(patientValue.value).format("DD-MM-YYYY")
+                    : patientValue.value.toString()}
+                </p>
               )}
             </div>
           );

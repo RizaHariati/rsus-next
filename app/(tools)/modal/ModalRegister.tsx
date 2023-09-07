@@ -27,7 +27,7 @@ const ModalRegister = (props: Props) => {
       value: "US" + getNumber(),
       error: false,
     },
-    register_date: { value: dayjs().format("DD/MM/YYYY"), error: false },
+    register_date: { value: dayjs().toDate(), error: false },
     name: { value: "", error: false },
     NIK: { value: "", error: false },
     address: { value: "", error: false },
@@ -91,6 +91,7 @@ const ModalRegister = (props: Props) => {
     }
     setNewPatientPersonal(initialPatient);
   };
+
   const handlePatientChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     patientKey: string
