@@ -48,7 +48,7 @@ const SingleTestGroup = ({ item, tests }: Props) => {
         toggleCart(labItem, "all");
         openModal("keranjang", {});
       } else {
-        openAlert("notloging", {});
+        openAlert("notlogin", {});
       }
     }
   };

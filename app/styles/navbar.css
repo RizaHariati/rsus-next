@@ -81,7 +81,7 @@
     @apply menu-link-icon border p-3 border-greenUrip bg-greenUripOpacity text-greenUrip rounded-sm;
   }
   .menu-alert {
-    @apply menu-link-icon border p-3 border-accent1txt bg-[#FFFB67] text-accent1txt rounded-sm bg-opacity-25;
+    @apply menu-link-icon border p-3 border-greyBorder bg-white text-greyDrk rounded-sm bg-opacity-25;
   }
 
   .main-menu-item {

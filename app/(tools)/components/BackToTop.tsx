@@ -11,7 +11,7 @@ const BackToTop = (props: Props) => {
         const access = document?.getElementById("zero");
         access?.scrollIntoView({ behavior: "smooth" });
       }}
-      className=" fixed bottom-5 right-5 animate-pulse flex-center-center flex-col z-50 text-greyMed1"
+      className=" fixed bottom-14 right-5 animate-pulse flex-center-center flex-col z-50 text-greyMed1"
     >
       <FontAwesomeIcon icon={faArrowAltCircleUp} className="h-10" />
       <p className="btn-2-bold">Top</p>
