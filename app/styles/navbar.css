@@ -8,13 +8,13 @@
   }
 
   .navbar {
-    @apply flex-center-between w-full h-14  z-0 max-w-uripMax mx-auto px-10;
+    @apply flex-center-between w-full h-14 z-0 max-w-uripMax mx-auto px-2 md:px-10;
   }
   .navbar-logo-container {
-    @apply flex items-center justify-start gap-1 w-52 h-full;
+    @apply flex items-center justify-start gap-1 md:w-52 h-full;
   }
   .navbar-links-container {
-    @apply flex-center-center gap-4 h-full;
+    @apply md:flex-center-center gap-4 h-full hidden md:visible;
   }
   .navbar-link {
     @apply flex-center-center text-link uppercase w-28 h-full;
@@ -26,13 +26,13 @@
     @apply h-6 mr-1;
   }
   .navbar-menu-container {
-    @apply flex items-center justify-end h-full gap-1 w-52;
+    @apply flex items-center justify-end h-full gap-1 md:w-52;
   }
   .navbar-drop-container {
-    @apply border border-greyBorder rounded-sm bg-white overflow-hidden absolute top-16 transition-all h-fit p-5 opacity-100;
+    @apply border border-greyBorder rounded-sm bg-white overflow-hidden fixed md:absolute top-12 md:top-16 transition-all h-fit p-5 opacity-100 w-full;
   }
   .navbar-drop-hidden {
-    @apply border border-none rounded-sm bg-white overflow-hidden absolute top-16 transition-all h-0 p-0  px-5 opacity-0;
+    @apply border border-none rounded-sm bg-white overflow-hidden fixed md:absolute top-12 md:top-16  transition-all h-0 p-0  px-5 opacity-0  w-full;
   }
   .emergency-menu-container {
     @apply navbar-drop-container flex-center-between flex-col w-[500px]  left-0   opacity-100;
@@ -64,7 +64,7 @@
   }
 
   .main-menu-container {
-    @apply navbar-drop-container w-[450px] right-0 p-0 pb-4;
+    @apply navbar-drop-container md:w-[450px] right-0 p-0 pb-4;
   }
 
   .main-menu-container-hidden {
@@ -89,9 +89,10 @@
   }
 
   .notification-container {
-    @apply navbar-drop-container w-modal_md right-0 origin-top px-0 top-12 pt-2;
+    @apply navbar-drop-container md:w-modal_md right-0 origin-top px-0 pt-2;
   }
+
   .notification-container-hidden {
-    @apply navbar-drop-hidden  w-modal_md right-0 origin-top top-12 pt-0;
+    @apply navbar-drop-hidden md:w-modal_md right-0 origin-top pt-0;
   }
 }

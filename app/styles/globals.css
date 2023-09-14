@@ -18,10 +18,10 @@
     @apply bg-white;
   }
   h1 {
-    @apply font-oswald text-[40px] tracking-[2px] uppercase font-light shadow-black drop-shadow-sm;
+    @apply font-oswald text-[30px]  md:text-[40px] tracking-[2px] uppercase font-light shadow-black drop-shadow-sm;
   }
   h2 {
-    @apply font-oswald text-[30px] tracking-[15px] font-light text-center uppercase;
+    @apply font-oswald text-[20px] md:text-[30px] tracking-[2px] md:tracking-[15px] font-light text-center uppercase;
   }
   h3 {
     @apply font-oswald text-[24px] tracking-[12px] font-light text-center uppercase;

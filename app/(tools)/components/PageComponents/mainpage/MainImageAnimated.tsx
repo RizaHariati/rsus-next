@@ -18,7 +18,7 @@ const MainImageAnimated = () => {
       variants={enterRightVariant}
       initial="initial"
       animate="animate"
-      className="h-screen w-9/12  relative z-0 overflow-hidden"
+      className="h-screen w-9/12  relative z-0 overflow-hidden hidden md:block"
     >
       <motion.div
         variants={enterRightVariantChild}

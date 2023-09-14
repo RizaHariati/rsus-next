@@ -7,7 +7,7 @@
   /* ------------------------- FLOATING MENU ------------------------ */
 
   .floating-menu-container {
-    @apply h-[370px] w-[400px] bg-white z-40 absolute top-1/2 border border-greyBorder rounded-sm shadow-sm mt-7 left-20 flex p-3 flex-col;
+    @apply h-[370px] w-[400px] bg-white z-40 absolute top-1/2 border border-greyBorder rounded-sm shadow-sm mt-7 left-20 hidden md:flex p-3 flex-col;
   }
   .floating-link {
     @apply bg-white h-full w-full rounded-sm border border-greyBorder flex-center-between flex-col hover:bg-greyLit transition-all;
@@ -18,7 +18,7 @@
 
   /* ----------------------------- PAGE ----------------------------- */
   .page-main-container {
-    @apply h-screen w-full z-0 max-w-uripMax mx-auto relative;
+    @apply h-screen w-full z-0 md:max-w-uripMax mx-auto relative;
   }
 
   /* ----------------------------- MODAL ---------------------------- */

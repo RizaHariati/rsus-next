@@ -6,6 +6,7 @@ import ModalContainer from "../(tools)/modal/ModalContainer";
 import "../styles/navbar.css";
 import AlertContainer from "../(tools)/alert/AlertContainer";
 import { ToastContainer } from "react-toastify";
+import BottomNavComponents from "../(tools)/components/BottomNavComponents/BottomNavComponents";
 
 type Props = {
   children: React.ReactNode;
@@ -13,11 +14,14 @@ type Props = {
 
 const LayoutWrapper = ({ children }: Props) => {
   const [scrollTop, setScrollTop] = useState<boolean>(false);
-
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollingUp, setscrollingUp] = useState(true);
   return (
     <div
       onScroll={(e) => {
         const top = e.currentTarget.scrollTop;
+        setScrollPosition(top);
+        setscrollingUp(top < scrollPosition);
         if (top > 100) {
           setScrollTop(true);
         } else {
@@ -31,6 +35,7 @@ const LayoutWrapper = ({ children }: Props) => {
       <AlertContainer />
       <Navbar scrollTop={scrollTop} />
       {children}
+      <BottomNavComponents scrollingUp={scrollingUp} scrollTop={scrollTop} />
     </div>
   );
 };

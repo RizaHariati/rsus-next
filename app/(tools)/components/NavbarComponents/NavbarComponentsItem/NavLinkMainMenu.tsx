@@ -6,11 +6,7 @@ import { datamenu } from "@/app/(tools)/data/datamenu";
 import { DataMenuType, SubDataType } from "@/app/(tools)/types";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faBars,
-  faDoorClosed,
-  faSignOut,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBars, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";

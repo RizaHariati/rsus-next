@@ -48,7 +48,9 @@ const MainLogo = (props: Props) => {
   return (
     <div id="home" onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}>
       <Link href="/" className="navbar-logo-container">
-        <MainLogoImage />
+        <div className="h-8 w-8">
+          <MainLogoImage />
+        </div>
         <div className=" text-greenUrip">
           <h6 className="text-sm tracking-[7px] leading-3 font-oswald ">
             Rumah Sakit
@@ -72,10 +74,7 @@ const NavbarMenu = (props: Props) => {
 };
 
 const NavbarLinks = (props: Props) => {
-  const {
-    toggleMenuNavbar,
-    state: { menu_id },
-  } = useGlobalContext();
+  const { toggleMenuNavbar } = useGlobalContext();
   return (
     <div className="navbar-links-container">
       <NavLinkEmergency />

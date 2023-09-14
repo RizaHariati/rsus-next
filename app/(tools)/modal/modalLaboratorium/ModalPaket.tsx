@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import dataFacility from "@/app/(tools)/data/data_facility.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faClose, faCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faClose,
+  faCircle,
+  faCircleDot,
+} from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { LaboratoriumType, PaketLabType, PemeriksaanType } from "../../types";
 import { getLabGender } from "../../utils/getLabGender";
@@ -30,10 +34,12 @@ const ModalPaket = (props: Props) => {
   const [selectGender, setSelectGender] = useState<"pria" | "wanita" | null>(
     null
   );
-  const [showAlert, setShowAlert] = useState(false);
+
   useEffect(() => {
-    if (!selectGender) return;
-    setShowAlert(false);
+    if (!selectGender) {
+      return;
+    }
+
     if (selectGender === "pria") {
       const newLab = getLabGender(paketLab, "pria");
       setLaboratorium(newLab);
@@ -50,7 +56,7 @@ const ModalPaket = (props: Props) => {
 
   const openingLabCart = () => {
     if (paketLab.price[0].type !== "all" && !selectGender) {
-      setShowAlert(true);
+      toast.error("Silahkan pilih gender terlebih dahulu");
       return;
     }
     //  check login
@@ -147,15 +153,6 @@ const ModalPaket = (props: Props) => {
       </div>
       {paketLab.price[0].type !== "all" && (
         <div className=" w-full flex items-end flex-col justify-end">
-          <p
-            className={
-              showAlert
-                ? "h-10 overflow-hidden transition-all text-redBase"
-                : "h-0 overflow-hidden  transition-all"
-            }
-          >
-            ----------Anda belum memilih gender----------
-          </p>
           <SelectGender
             selectGender={selectGender}
             setSelectGender={setSelectGender}
@@ -189,7 +186,7 @@ type GenderProps = {
 
 const SelectGender = ({ selectGender, setSelectGender }: GenderProps) => {
   return (
-    <div className="flex items-center justify-end mt-2 gap-2">
+    <div className="flex items-center justify-end mt-2 gap-5">
       <p className="btn-3">Pilih salah satu</p>
       <button
         onClick={() => setSelectGender("pria")}
@@ -199,7 +196,11 @@ const SelectGender = ({ selectGender, setSelectGender }: GenderProps) => {
             : "btn-3 text-grey"
         }
       >
-        <FontAwesomeIcon icon={faCircle} /> Pria
+        <FontAwesomeIcon
+          icon={selectGender !== "wanita" ? faCircleDot : faCircle}
+          className="mr-2"
+        />
+        Pria
       </button>
       <button
         onClick={() => setSelectGender("wanita")}
@@ -209,7 +210,11 @@ const SelectGender = ({ selectGender, setSelectGender }: GenderProps) => {
             : "btn-3 text-grey"
         }
       >
-        <FontAwesomeIcon icon={faCircle} /> Wanita
+        <FontAwesomeIcon
+          icon={selectGender !== "pria" ? faCircleDot : faCircle}
+          className="mr-2"
+        />
+        Wanita
       </button>
     </div>
   );

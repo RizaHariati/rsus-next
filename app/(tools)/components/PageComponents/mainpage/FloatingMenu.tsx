@@ -18,7 +18,7 @@ const FloatingMenu = () => {
       animate="animate"
       className="floating-menu-container"
     >
-      <div className="h-1/2 w-full grid grid-cols-2 gap-1 ">
+      <div className="h-1/2 w-full grid grid-cols-2 gap-1  ">
         {floatingMenu.map((item: FloatingMenuType) => {
           return (
             <Link
