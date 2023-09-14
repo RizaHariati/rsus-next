@@ -12,6 +12,7 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 import LayoutWrapper from "./layoutwrapper";
 import { AppProvider } from "../(tools)/context/AppProvider";
 import Head from "next/head";
+import Footer from "../(tools)/components/Footer";
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
 const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });
@@ -47,6 +48,7 @@ export default function RootLayout({
       <body className={`${nunito.variable} ${oswald.variable}`}>
         <AppProvider>
           <LayoutWrapper>{children}</LayoutWrapper>
+          <Footer />
         </AppProvider>
       </body>
     </html>

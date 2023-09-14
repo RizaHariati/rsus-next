@@ -57,10 +57,7 @@ const AboutGroup = (props: Props) => {
         </motion.p>
       </motion.section>
 
-      <section
-        id="one"
-        className=" bg-greyLit h-screen w-full z-0 snap-center pt-14 "
-      >
+      <section id="one" className=" bg-greyLit h-screen w-full z-0 pt-14 ">
         <h2> Tentang Kami</h2>
         <div className="w-full max-w-4xl mx-auto  mt-4">
           {dataAbout.map((item, index) => {

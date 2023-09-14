@@ -77,10 +77,7 @@ const Team = (props: Props) => {
         })}
       </motion.div>
 
-      <section
-        id="one"
-        className=" bg-greyLit h-screen w-full z-0 snap-center p-14 "
-      >
+      <section id="one" className=" bg-greyLit h-screen w-full z-0  p-14 ">
         <h3> TIM RS URIP SUMOHARJO</h3>
         <p className=" w-full max-w-4xl body-2 text-greyDrk text-right  font-light z-20 mx-auto">
           RS Urip Sumoharjo berterimakasih kepada seluruh anggota tim kami, yang

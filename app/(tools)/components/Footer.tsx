@@ -5,7 +5,7 @@ type Props = {};
 
 const Footer = (props: Props) => {
   return (
-    <div className="absolute h-12 bg-greenUrip w-full z-40 -bottom-32 flex-center-center">
+    <div className="absolute h-12 bg-greenUrip w-full z-40 -bottom-32 flex-center-center snap-end">
       <p className="text-white">
         by Riza Hariati for Ichacodes copyright &copy;{dayjs().format("YYYY")}
       </p>

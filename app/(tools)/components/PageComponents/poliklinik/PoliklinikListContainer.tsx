@@ -13,7 +13,7 @@ const PoliklinikListContainer = ({ children }: Props) => {
   return (
     <section
       id="seluruhklinik"
-      className=" bg-greyLit h-screen w-full z-0 snap-start pb-10 pt-14"
+      className=" bg-greyLit h-screen w-full z-0  pb-10 pt-14"
     >
       <motion.h2
         variants={enterTitleVariants}
