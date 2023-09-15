@@ -11,10 +11,28 @@ type Props = {};
 
 const UserLogin = (props: Props) => {
   const {
+    state: { menu_id },
+  } = useGlobalContext();
+  return (
+    <div
+      className={
+        menu_id != "login"
+          ? "login-menu-container-hidden  "
+          : "login-menu-container"
+      }
+    >
+      <LoginFormContent />
+    </div>
+  );
+};
+
+export default UserLogin;
+
+export const LoginFormContent = () => {
+  const {
     checkUser,
     toggleMenuNavbar,
     openAlert,
-    state: { menu_id },
     patientState: { verification_number },
   } = useGlobalContext();
   const [loginData, setLoginData] = useState<Partial<UserType>>({
@@ -91,33 +109,14 @@ const UserLogin = (props: Props) => {
         password: e.target.value,
       }));
     } else {
-      const a = e.target.value;
-      let newvalue = "";
-      for (let i = 0; i < a.length; i++) {
-        const element = a[i];
-        if (element !== "-") {
-          newvalue = newvalue + element;
-        }
-      }
-
       setLoginData((prev) => ({
         ...prev,
-        medical_record_number:
-          newvalue.length > 12
-            ? newvalue.toUpperCase().slice(0, -1)
-            : newvalue.toUpperCase(),
+        medical_record_number: e.target.value,
       }));
     }
   };
-
   return (
-    <div
-      className={
-        menu_id != "login"
-          ? "login-menu-container-hidden  "
-          : "login-menu-container"
-      }
-    >
+    <>
       <div className="w-full flex-center-center gap-3 mb-3">
         <Image
           rel="preload"
@@ -131,7 +130,6 @@ const UserLogin = (props: Props) => {
         />
         <h4>Login Form</h4>
       </div>
-
       <form
         onSubmit={(e) => handleSubmit(e)}
         className=" p-3 px-5 flex-center-center flex-col gap-2 w-full standard-border mb-3"
@@ -144,6 +142,7 @@ const UserLogin = (props: Props) => {
         <p className="text-left w-full">Password</p>
         <div className="w-full inline-flex">
           <input
+            maxLength={20}
             type={showValue ? "text" : "password"}
             placeholder="masukkan password"
             className="active-input rounded-r-none"
@@ -171,8 +170,6 @@ const UserLogin = (props: Props) => {
         Masukkan nomor Rekam Medis:US4234123398 dan password:password untuk test
         login
       </p>
-    </div>
+    </>
   );
 };
-
-export default UserLogin;

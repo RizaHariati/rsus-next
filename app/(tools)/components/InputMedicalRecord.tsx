@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { editMRValue } from "../utils/editMRValue";
+import React from "react";
 
 type Props = {
   medical_record_number: string;
@@ -7,41 +6,15 @@ type Props = {
 };
 
 const InputMedicalRecord = ({ medical_record_number, handleChange }: Props) => {
-  const [keypressed, setKeypressed] = useState("maju");
-  const [element, setElement] = useState<any>();
-  useEffect(() => {
-    if (!typeof document) return;
-    else {
-      setElement(document.getElementById("input_mr"));
-    }
-  }, []);
-
-  useEffect(() => {
-    if (!element) {
-      return;
-    } else {
-      const getKeyName = (e: KeyboardEvent) => {
-        if (e.key === "Backspace" || e.key === "Delete") {
-          setKeypressed("mundur");
-        } else {
-          setKeypressed("maju");
-        }
-      };
-      element?.addEventListener("keydown", getKeyName);
-      return () => {
-        element?.removeEventListener("keydown", getKeyName);
-      };
-    }
-  }, [element]);
-
   return (
     <div className="w-full">
       <p className="text-left w-full">Nomor Rekam Medis (MR)</p>
       <input
+        maxLength={12}
         id="input_mr"
         placeholder="masukkan nomor rekam medis"
         className="active-input"
-        value={editMRValue(medical_record_number, keypressed)}
+        value={medical_record_number}
         onChange={(e) => handleChange(e, "mrnumber")}
       />
     </div>

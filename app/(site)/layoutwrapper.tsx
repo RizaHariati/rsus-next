@@ -7,12 +7,14 @@ import "../styles/navbar.css";
 import AlertContainer from "../(tools)/alert/AlertContainer";
 import { ToastContainer } from "react-toastify";
 import BottomNavComponents from "../(tools)/components/BottomNavComponents/BottomNavComponents";
+import { useGlobalContext } from "../(tools)/context/AppProvider";
 
 type Props = {
   children: React.ReactNode;
 };
 
 const LayoutWrapper = ({ children }: Props) => {
+  const { toggleMenuNavbar } = useGlobalContext();
   const [scrollTop, setScrollTop] = useState<boolean>(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollingUp, setscrollingUp] = useState(true);
@@ -26,6 +28,9 @@ const LayoutWrapper = ({ children }: Props) => {
           setScrollTop(true);
         } else {
           setScrollTop(false);
+        }
+        if (scrollingUp) {
+          toggleMenuNavbar(null);
         }
       }}
       className="bg-greyLit h-screen overflow-y-scroll scrollbar-none snap-y snap-proximity relative"

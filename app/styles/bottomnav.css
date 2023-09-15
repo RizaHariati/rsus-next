@@ -5,10 +5,10 @@
 
 @layer components {
   .nav-b-container {
-    @apply fixed w-full h-fit bottom-0 left-0 md:hidden;
+    @apply fixed w-full h-fit bottom-0 left-0 md:hidden z-10;
   }
   .nav-b {
-    @apply bg-greenUrip w-full z-10 snap-end overflow-hidden transition-all relative;
+    @apply bg-greenUrip w-full z-30 snap-end overflow-hidden transition-all relative;
   }
   .nav-b-show {
     @apply nav-b h-12;
@@ -35,5 +35,18 @@
   }
   .nav-b-link {
     @apply flex-center-center flex-col gap-0 w-24;
+  }
+
+  /* ------------------------- BOTTOM DRAWER ------------------------ */
+  .drawer-b-container {
+    @apply absolute left-0 bottom-20 z-20 bg-white  rounded-t-lg w-full overflow-hidden transition-all origin-bottom shadow-md shadow-greyMed2;
+  }
+
+  .drawer-b-container-show {
+    @apply drawer-b-container h-fit max-h-[80vh] border  border-greyBorder border-b-0 shadow-sm overflow-y-scroll scrollbar-none;
+  }
+
+  .drawer-b-container-hide {
+    @apply drawer-b-container h-0 border  border-greyBorder border-b-0 shadow-sm border-none;
   }
 }

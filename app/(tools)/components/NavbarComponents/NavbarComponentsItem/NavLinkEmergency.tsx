@@ -36,19 +36,27 @@ const NavLinkEmergency = (props: Props) => {
             : "emergency-menu-container "
         }
       >
-        <div className="menu-link-icon">
-          <FontAwesomeIcon icon={faAmbulance} className="menu-icon" />
-          <p className="btn-3-bold text-greyDrk">AMBULANS : (0721)700323</p>
-        </div>
-        <div className="menu-link-icon">
-          <FontAwesomeIcon icon={faFireFlameSimple} className="menu-icon" />
-          <p className="btn-3-bold text-greyDrk">
-            igd: instalasi gawat darurat 24 jam : (0721)771322
-          </p>
-        </div>
+        <DaruratContent />
       </div>
     </div>
   );
 };
 
 export default NavLinkEmergency;
+
+export const DaruratContent = () => {
+  return (
+    <>
+      <div className="menu-link-icon">
+        <FontAwesomeIcon icon={faAmbulance} className="menu-icon" />
+        <p className="btn-3-bold text-greyDrk">AMBULANS : (0721)700323</p>
+      </div>
+      <div className="menu-link-icon">
+        <FontAwesomeIcon icon={faFireFlameSimple} className="menu-icon" />
+        <p className="btn-3-bold text-greyDrk">
+          igd: instalasi gawat darurat 24 jam : (0721)771322
+        </p>
+      </div>
+    </>
+  );
+};

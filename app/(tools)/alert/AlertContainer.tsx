@@ -23,7 +23,7 @@ const AlertContainer = (props: Props) => {
           initial="initial"
           animate="animate"
           exit="exit"
-          className="w-screen h-screen bg-black bg-opacity-50 overflow-hidden fixed top-0 left-0 z-[60]"
+          className="w-screen h-screen bg-black bg-opacity-50 overflow-hidden fixed top-0 left-0 z-[60] p-2"
         >
           <AlertContent />
         </motion.div>

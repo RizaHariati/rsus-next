@@ -9,9 +9,7 @@ type Props = {};
 
 const PatientProfile = (props: Props) => {
   const {
-    toggleMenuNavbar,
     state: { menu_id },
-    patientState: { patient },
   } = useGlobalContext();
 
   return (
@@ -22,6 +20,21 @@ const PatientProfile = (props: Props) => {
           : "profile-menu-container"
       }
     >
+      <PatientProfileContent />
+    </div>
+  );
+};
+
+export default PatientProfile;
+
+export const PatientProfileContent = () => {
+  const {
+    toggleMenuNavbar,
+    patientState: { patient },
+  } = useGlobalContext();
+
+  return (
+    <>
       <h3>Profil Pasien</h3>
       <button
         className="absolute top-2 right-4"
@@ -31,21 +44,21 @@ const PatientProfile = (props: Props) => {
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <div className="grid grid-cols-3 col-start-1 gap-2 mb-2">
+      <div className="grid grid-cols-2 md:grid-cols-3 col-start-1 gap-2 mb-2  px-5 md:px-0">
         <div className="w-full flex flex-col col-span-2">
-          <p className="body-1-bold ">Nomor Rekam Medik (MR)</p>
+          <p className="body-3 md:body-1-bold ">Nomor Rekam Medik (MR)</p>
           {patient.medical_record_number && (
             <p className="body-2 form-disable">
               {getMedicalRecord(patient.medical_record_number)}
             </p>
           )}
-          <p className="footnote-1 mt-2">
+          <p className=" hidden md:block footnote-1 mt-2">
             Nomor Rekam Medis ini akan Anda perlukan saat mendaftar untuk
             berobat nanti, karenanya harap dicatat dengan baik.
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-3 col-start-1 gap-2 mb-2">
+      <div className="grid grid-cols-1 md:grid-cols-3 col-start-1 gap-1 md:gap-2 mb-1 md:mb-2  px-5 md:px-0">
         {Object.entries(patientFormInput).map(([patientKey, patientValues]) => {
           const findPatient = Object.entries(patient.patient_profile).find(
             (item) => {
@@ -63,7 +76,7 @@ const PatientProfile = (props: Props) => {
                   : "w-full flex flex-col"
               }
             >
-              <p className="body-2 ">{patientValues.title}</p>
+              <p className="body-3 md:body-2 ">{patientValues.title}</p>
               {key !== "sex" && key !== "birthdate" && (
                 <p
                   className={
@@ -100,8 +113,6 @@ const PatientProfile = (props: Props) => {
           );
         })}
       </div>
-    </div>
+    </>
   );
 };
-
-export default PatientProfile;

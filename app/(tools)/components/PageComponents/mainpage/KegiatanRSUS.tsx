@@ -4,12 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 
 import dataArticle from "@/app/(tools)/data/data_article.json";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { sliderVariants } from "../../../framervariants/slidervariants";
-import {
-  faChevronLeft,
-  faChevronRight,
-} from "@fortawesome/free-solid-svg-icons";
+
 import { enterTitleVariants } from "@/app/(tools)/framervariants/titlevariants";
 import dayjs from "dayjs";
 import KegiatanRSUSSlide from "./KegiatanRSUSSlide";
@@ -17,7 +12,6 @@ type Props = {};
 
 const KegiatanRSUS = (props: Props) => {
   const [sliderContainer, setsliderContainer] = useState<Element | null>(null);
-  const [amount, setAmount] = useState(1);
 
   useEffect(() => {
     let containerElement = document?.querySelector(
@@ -29,29 +23,10 @@ const KegiatanRSUS = (props: Props) => {
     }
   }, []);
 
-  const nextBtn = () => {
-    setAmount(-1);
-    if (!sliderContainer) {
-      return;
-    } else {
-      let width = sliderContainer.clientWidth;
-      sliderContainer.scrollLeft = sliderContainer.scrollLeft + width / 2;
-    }
-  };
-
-  const prevBtn = () => {
-    setAmount(1);
-    if (!sliderContainer) {
-      return;
-    } else {
-      let width = sliderContainer.clientWidth;
-      sliderContainer.scrollLeft = sliderContainer.scrollLeft - width / 2;
-    }
-  };
   return (
     <section
       id="rsus"
-      className="  md:h-fit h-[75%] w-full z-0 snap-none md:snap-center p-2 md:p-10 md:px-0"
+      className="  md:h-fit h-[75%] w-full z-0 snap-none md:snap-center p-2 md:p-10 md:pt-16 md:px-0"
     >
       <motion.h2
         variants={enterTitleVariants}

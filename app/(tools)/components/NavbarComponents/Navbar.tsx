@@ -28,7 +28,9 @@ const Navbar = ({ scrollTop }: MainProps) => {
       initial="initial"
       animate="animate"
       className={
-        scrollTop ? "navbar-container bg-opacity-100" : "navbar-container"
+        scrollTop
+          ? "navbar-container bg-opacity-100 shadow-md"
+          : "navbar-container shadow-sm"
       }
     >
       <nav className="navbar">

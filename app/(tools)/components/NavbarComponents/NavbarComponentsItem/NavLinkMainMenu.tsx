@@ -90,7 +90,7 @@ const NavLinkMainMenu = (props: Props) => {
             }
           })}
         </div>
-        <div className="w-full p-3 h-12 ">
+        <div className="w-full p-3 h-fit ">
           {user.login && (
             <button
               onClick={() => {

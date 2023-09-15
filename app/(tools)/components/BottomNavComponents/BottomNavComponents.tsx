@@ -13,6 +13,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import Link from "next/link";
+import { DaruratContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkEmergency";
+
+import { PatientProfileContent } from "../NavbarComponents/NavbarComponentsItem/PatientProfile";
+import { MenuAntrianContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkAntrian";
+import { LoginFormContent } from "../NavbarComponents/NavbarComponentsItem/UserLogin";
 
 type Props = { scrollingUp: boolean; scrollTop: boolean };
 
@@ -92,6 +97,45 @@ const BottomNavComponents = ({ scrollingUp, scrollTop }: Props) => {
         <p className="text-greenUrip footnote-1 m-auto">
           by Riza Hariati for Ichacodes copyright &copy;{dayjs().format("YYYY")}
         </p>
+      </div>
+
+      <div
+        className={
+          menu_id === "darurat"
+            ? "drawer-b-container-show p-5"
+            : "drawer-b-container-hide p-0 px-5"
+        }
+      >
+        <DaruratContent />
+      </div>
+
+      <div
+        className={
+          menu_id === "login"
+            ? "drawer-b-container-show p-2"
+            : "drawer-b-container-hide p-0 px-2"
+        }
+      >
+        <LoginFormContent />
+      </div>
+
+      <div
+        className={
+          menu_id === "profile"
+            ? "drawer-b-container-show p-2"
+            : "drawer-b-container-hide p-0 px-2"
+        }
+      >
+        <PatientProfileContent />
+      </div>
+      <div
+        className={
+          menu_id === "antrian"
+            ? "drawer-b-container-show p-2"
+            : "drawer-b-container-hide p-0 px-2"
+        }
+      >
+        <MenuAntrianContent />
       </div>
     </div>
   );

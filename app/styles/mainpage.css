@@ -34,6 +34,9 @@
   .modal-md {
     @apply modal w-modal_md;
   }
+  .modal-phone {
+    @apply modal w-[98%]  top-1/4 standard-border rounded-md;
+  }
   .modal-slider-btn {
     @apply absolute top-1/2 -translate-y-1/2 z-20 p-2 px-1 bg-greyMed1  hover:bg-greyMed2 active:bg-white transition-all rounded-sm text-white;
   }

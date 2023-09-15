@@ -79,7 +79,7 @@ const AlertVerifikasi = (props: Props) => {
   if (!verification_number || verification_number < 1000) return <div></div>;
   else {
     return (
-      <div className="modal-md p-5 px-10 overflow-hidden bg-white">
+      <div className="modal-phone md:modal-md p-2 md:p-5 px-5 md:px-10 overflow-hidden bg-white">
         <button className="absolute top-2 right-4" onClick={() => closeAlert()}>
           <FontAwesomeIcon icon={faClose} />
         </button>
@@ -93,7 +93,7 @@ const AlertVerifikasi = (props: Props) => {
               return (
                 <div
                   key={index}
-                  className=" text-center w-20 h-fit font-bold py-3"
+                  className=" text-center w-16 md:w-20 h-fit font-bold py-3"
                 >
                   <input
                     placeholder="-"
@@ -102,7 +102,7 @@ const AlertVerifikasi = (props: Props) => {
                     onChange={(e) => {
                       handleChange(e, item);
                     }}
-                    className="w-full text-center active-input text-6xl h-fit"
+                    className="w-full text-center active-input text-4xl md:text-6xl h-fit"
                   />
                 </div>
               );

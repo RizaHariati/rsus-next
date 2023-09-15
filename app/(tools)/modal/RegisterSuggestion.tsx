@@ -5,7 +5,7 @@ type Props = {};
 const RegisterSuggestion = (props: Props) => {
   const { openModal } = useGlobalContext();
   return (
-    <div className="body-3 leading-4 ">
+    <div className="body-3 leading-5 text-center">
       Nomor Rekam Medis didapatkan saat anda mendaftar sebagai pasien RS Urip
       Sumoharjo. Jika anda belum memiliki nomor Rekam medis, silahkan
       <button
@@ -13,7 +13,7 @@ const RegisterSuggestion = (props: Props) => {
         onClick={() => {
           openModal("registration", { newPatientPersonal: null });
         }}
-        className=" text-redBase font-medium ml-3 hover:font-bold transition-all"
+        className=" text-redBase font-medium ml-3 hover:font-bold transition-all text-center"
       >
         MENDAFTAR SEBAGAI PASIEN BARU
       </button>
