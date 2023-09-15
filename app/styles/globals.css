@@ -18,16 +18,16 @@
     @apply bg-white;
   }
   h1 {
-    @apply font-oswald text-[30px]  md:text-[40px] tracking-[2px] uppercase font-light shadow-black drop-shadow-sm;
+    @apply font-oswald text-[24px]  md:text-[40px] tracking-[1px] md:tracking-[2px] uppercase font-light shadow-black drop-shadow-sm;
   }
   h2 {
-    @apply font-oswald text-[20px] md:text-[30px] tracking-[2px] md:tracking-[15px] font-light text-center uppercase;
+    @apply font-oswald text-[20px] md:text-[30px] font-normal  md:font-light  text-center uppercase;
   }
   h3 {
-    @apply font-oswald text-[24px] tracking-[12px] font-light text-center uppercase;
+    @apply font-oswald text-[18px] md:text-[24px] tracking-[2px] md:tracking-[12px] font-light text-center uppercase;
   }
   h4 {
-    @apply font-oswald text-[20px] tracking-[7px] font-normal text-center uppercase leading-6;
+    @apply font-oswald text-[16px] md:text-[20px] tracking-[2px]  md:tracking-[7px] font-normal text-center uppercase leading-6;
   }
   h5 {
     @apply font-oswald text-[16px] tracking-[3px] font-medium text-center uppercase leading-5;
@@ -36,7 +36,7 @@
     @apply font-oswald text-[16px] tracking-[2px] font-medium text-left;
   }
   section {
-    @apply w-full h-fit bg-neutral-200 border-b border-greyBorder;
+    @apply w-full h-fit bg-greyLit;
   }
   p {
     @apply font-nunito text-[16px]  font-normal tracking-normal text-greyDrk leading-5;
@@ -69,7 +69,7 @@
     @apply font-nunito text-[18px]  font-normal tracking-wide leading-5;
   }
   .body-3 {
-    @apply font-nunito text-[14px]  font-normal tracking-normal text-greyDrk leading-5;
+    @apply font-nunito text-[16px]  font-normal tracking-normal text-greyDrk leading-5;
   }
   .btn-1 {
     @apply font-nunito text-[20px] uppercase font-medium tracking-widest;

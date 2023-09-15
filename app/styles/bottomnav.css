@@ -5,26 +5,33 @@
 
 @layer components {
   .nav-b-container {
-    @apply fixed w-full h-fit bottom-0 left-0;
+    @apply fixed w-full h-fit bottom-0 left-0 md:hidden;
   }
   .nav-b {
-    @apply flex-center-center  bg-greenUrip w-full z-40 snap-end overflow-hidden transition-all relative;
+    @apply bg-greenUrip w-full z-10 snap-end overflow-hidden transition-all relative;
   }
   .nav-b-show {
-    @apply nav-b h-14 pt-2;
+    @apply nav-b h-12;
   }
   .nav-b-hide {
-    @apply nav-b h-0 pt-0;
+    @apply nav-b h-0;
   }
 
   .nav-b-pattern {
-    @apply bg-pattern z-50 h-14 w-full absolute top-0 bg-[length:100px_100px] mix-blend-multiply opacity-30;
+    @apply bg-pattern z-20 h-14 w-full absolute top-0 bg-[length:100px_100px] mix-blend-multiply transition-all;
   }
+  .nav-b-pattern-show {
+    @apply nav-b-pattern opacity-30;
+  }
+  .nav-b-pattern-hide {
+    @apply nav-b-pattern opacity-0;
+  }
+
   .nav-b-txt {
     @apply cursor-pointer uppercase text-white transition-all hover:font-bold text-[12px];
   }
   .nav-b-icon {
-    @apply h-7 text-white;
+    @apply h-5 text-white;
   }
   .nav-b-link {
     @apply flex-center-center flex-col gap-0 w-24;

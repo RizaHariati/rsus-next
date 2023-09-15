@@ -12,6 +12,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { enterTitleVariants } from "@/app/(tools)/framervariants/titlevariants";
 import dayjs from "dayjs";
+import KegiatanRSUSSlide from "./KegiatanRSUSSlide";
 type Props = {};
 
 const KegiatanRSUS = (props: Props) => {
@@ -48,7 +49,10 @@ const KegiatanRSUS = (props: Props) => {
     }
   };
   return (
-    <section id="rsus" className=" bg-white h-fit w-full z-0 snap-center pt-16">
+    <section
+      id="rsus"
+      className="  md:h-fit h-[75%] w-full z-0 snap-none md:snap-center p-2 md:p-10 md:px-0"
+    >
       <motion.h2
         variants={enterTitleVariants}
         initial="initial"
@@ -57,68 +61,53 @@ const KegiatanRSUS = (props: Props) => {
       >
         Kegiatan RS Urip Sumoharjo
       </motion.h2>
-      <div className="w-full flex-center-center p-4 px-20">
-        <button className="mainpage-slider-btn" onClick={() => prevBtn()}>
-          <FontAwesomeIcon icon={faChevronLeft} className="text-xl" />
-        </button>
-        <div className="mainpage-slider-container">
-          {dataArticle
-            // .filter((data) => data.category === "aksi")
-            // .slice(0, 3)
-            .map((article) => {
-              if (!sliderContainer) return <div key={article.id}></div>;
-              else {
-                return (
-                  <motion.div
-                    variants={sliderVariants}
-                    initial="initial"
-                    whileInView="animate"
-                    exit="exit"
-                    custom={amount}
-                    key={article.id}
-                    className=" w-[280px] rounded-sm standard-border flex-shrink-0"
-                  >
-                    <div className="w-auto h-48 overflow-hidden">
-                      <Image
-                        rel="preload"
-                        placeholder="empty"
-                        src={`/images/news/${article.img}.jpg`}
-                        alt={article.img}
-                        height={220}
-                        width={400}
-                        className="object-center object-cover h-full w-full overflow-hidden rounded-sm"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="p-3 flex gap-2 flex-col justify-between h-60">
-                      <h5 className="h-20 text-left tracking-normal">
-                        {article.title}
-                      </h5>
+      <div className=" p-2 md:hidden flex flex-col gap-2 h-[calc(75vh-80px)] w-full overflow-y-scroll bg-white scrollbar-thin ">
+        {dataArticle.map((article) => {
+          if (!sliderContainer) return <div key={article.id}></div>;
+          else {
+            return (
+              <div
+                key={article.id}
+                className="w-full border-b border-greyBorder p-2"
+              >
+                <div className=" h-20 w-full  flex items-center justify-between gap-2">
+                  <div className="w-20 h-20 rounded-sm overflow-hidden">
+                    <Image
+                      rel="preload"
+                      placeholder="empty"
+                      src={`/images/news/${article.img}.jpg`}
+                      alt={article.img}
+                      height={100}
+                      width={100}
+                      className="object-center object-cover h-full w-auto aspect-square "
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="w-full h-full flex flex-col ">
+                    <h5 className="h-20 text-left tracking-normal">
+                      {article.title}
+                    </h5>
 
-                      <p className=" footnote-1">
-                        {dayjs(article.date).format("DD MMMM YYYY")}
-                      </p>
-                      <p className="body-3 ">
-                        {article.text[0].slice(0, 150)}...
-                      </p>
-                      <a
-                        href={article.news_link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-greenUrip text-center btn-5 w-full border border-greenUrip p-1 hover:text-white hover:bg-greenUrip transition-all cursor-pointer"
-                      >
-                        baca selengkapnya
-                      </a>
-                    </div>
-                  </motion.div>
-                );
-              }
-            })}
-        </div>
-        <button className="mainpage-slider-btn" onClick={() => nextBtn()}>
-          <FontAwesomeIcon icon={faChevronRight} />
-        </button>
+                    <p className=" footnote-1">
+                      {dayjs(article.date).format("DD MMMM YYYY")}
+                    </p>
+                  </div>
+                </div>
+                <p className="body-3 ">{article.text[0].slice(0, 150)}...</p>
+                <a
+                  href={article.news_link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-greenUrip text-center btn-5 w-full border border-greenUrip p-1 hover:text-white hover:bg-greenUrip transition-all cursor-pointer"
+                >
+                  baca selengkapnya
+                </a>
+              </div>
+            );
+          }
+        })}
       </div>
+      <KegiatanRSUSSlide />
     </section>
   );
 };

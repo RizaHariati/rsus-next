@@ -20,7 +20,7 @@ const SloganGallery = (props: Props) => {
   useEffect(() => {
     if (typeof window !== "undefined") {
       const gallery = () => {
-        if (window.innerWidth < 600) {
+        if (window.outerWidth < 450) {
           setCurrentGallery(galleryArray.slice(0, -1));
         } else {
           setCurrentGallery(galleryArray);
@@ -34,7 +34,7 @@ const SloganGallery = (props: Props) => {
   return (
     <section
       id="gallery"
-      className=" h-fit w-full z-0 snap-center pt-14"
+      className=" h-screen md:h-fit w-full z-0 snap-center pt-14"
       ref={ref}
     >
       <motion.h2
@@ -46,8 +46,8 @@ const SloganGallery = (props: Props) => {
         Hanya untuk anda kami berikan :
       </motion.h2>
 
-      <div className="w-full max-w-5xl mx-auto overflow-hidden py-10 rounded-sm shadow-sm">
-        <div className="w-full grid grid-cols-5 text-white btn-2-bold bg-accent1 overflow-hidden ">
+      <div className="w-full max-w-5xl mx-auto overflow-hidden py-2 md:py-10 rounded-sm shadow-sm">
+        <div className="w-full h-fit grid grid-cols-3 md:grid-cols-5 text-white btn-2-bold overflow-hidden ">
           {currentGallery.map((item) => {
             return (
               <Slogan

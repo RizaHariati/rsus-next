@@ -12,15 +12,15 @@ type Props = {
 
 const FasilitasGroup = ({ facilityGroup, facilityTitle }: Props) => {
   return (
-    <section
+    <article
       id={facilityTitle.toLowerCase()}
       className={
         facilityGroup.length > 4
-          ? " bg-slate-300 h-fit w-full snap-start"
-          : " bg-slate-300 h-fit w-full snap-center"
+          ? " h-fit w-full snap-start"
+          : "  h-fit w-full snap-center"
       }
     >
-      <div className=" w-full bg-white h-fit p-10 pt-14">
+      <div className=" w-full h-fit p-2 md:p-10 pt-14">
         <motion.h2
           variants={enterTitleVariants}
           initial="initial"
@@ -29,7 +29,7 @@ const FasilitasGroup = ({ facilityGroup, facilityTitle }: Props) => {
         >
           {facilityTitle}
         </motion.h2>
-        <div className=" w-modal_xl standard-border mx-auto grid grid-cols-2 p-3 px-10 gap-2 relative">
+        <div className="w-full md:w-modal_xl standard-border mx-auto grid grid-cols-2 p-3 px-2 md:px-10 gap-2 relative">
           {facilityGroup.map((facility: FacilityType, index: number) => {
             if (
               index === facilityGroup.length - 1 &&
@@ -44,7 +44,7 @@ const FasilitasGroup = ({ facilityGroup, facilityTitle }: Props) => {
           })}
         </div>
       </div>
-    </section>
+    </article>
   );
 };
 

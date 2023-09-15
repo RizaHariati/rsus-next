@@ -13,9 +13,9 @@ const FasilitasUnit = ({ facility }: Props) => {
     <button
       key={facility.id}
       onClick={() => openModal("facility", facility)}
-      className=" grid grid-cols-7 bg-white hover:bg-greyLit rounded-sm overflow-hidden border border-white hover:border-greyBorder transition-all opacity-100 hover:opacity-50 gap-2 cursor-pointer "
+      className=" grid grid-cols-7 bg-white hover:bg-greyLit rounded-sm overflow-hidden border border-white hover:border-greyBorder transition-all opacity-100 hover:opacity-50 gap-1 md:gap-2 cursor-pointer "
     >
-      <div className=" col-span-2 standard-border h-36 w-full flex items-center justify-center ">
+      <div className=" col-span-full md:col-span-2 standard-border h-28 md:h-36 w-full flex items-center justify-center ">
         <Image
           rel="preload"
           placeholder="empty"
@@ -27,9 +27,9 @@ const FasilitasUnit = ({ facility }: Props) => {
           loading="lazy"
         />
       </div>
-      <div className=" col-span-5 pt-3 text-left">
-        <h4 className=" mb-2 text-left">{facility.title}</h4>
-        <p className="body-3 leading-normal">
+      <div className=" col-span-full md:col-span-5 pt-0 md:pt-3 text-center md:text-left ">
+        <h4 className=" mb-2 text-center md:text-left  ">{facility.title}</h4>
+        <p className="body-3 leading-5 hidden md:block">
           {facility.description.slice(0, 200)}... (lanjut)
         </p>
       </div>
@@ -47,7 +47,7 @@ export const FasilitasUnitwide = ({ facility }: Props) => {
       onClick={() => openModal("facility", facility)}
       className=" col-span-2 w-1/2 mx-auto grid grid-cols-7 bg-white hover:bg-greyLit rounded-sm overflow-hidden border border-white hover:border-greyBorder transition-all opacity-100 hover:opacity-50 gap-2 cursor-pointer "
     >
-      <div className=" col-span-2 standard-border h-36 w-full flex items-center justify-center ">
+      <div className=" col-span-full md:col-span-2 standard-border h-28 md:h-36 w-full flex items-center justify-center">
         <Image
           rel="preload"
           placeholder="empty"
@@ -59,9 +59,11 @@ export const FasilitasUnitwide = ({ facility }: Props) => {
           loading="lazy"
         />
       </div>
-      <div className=" col-span-5 pt-3 text-left">
-        <h4 className="text-left mb-2">{facility.title}</h4>
-        <p className="body-3 leading-normal">
+      <div className="col-span-full md:col-span-5 pt-0 md:pt-3 text-center md:text-left">
+        <h4 className=" mb-2 tracking-normal text-center md:text-left">
+          {facility.title}
+        </h4>
+        <p className="body-3 leading-5 hidden md:block">
           {facility.description.slice(0, 200)}... (lanjut)
         </p>
       </div>

@@ -9,10 +9,7 @@ type Props = {};
 
 const KunjungiKami = (props: Props) => {
   return (
-    <section
-      id="location"
-      className=" bg-greyLit h-fit w-full z-0 snap-center pb-10 pt-5"
-    >
+    <section id="location" className=" h-fit w-full z-0 snap-center pb-10 pt-5">
       <motion.h2
         variants={enterTitleVariants}
         initial="initial"
@@ -21,7 +18,7 @@ const KunjungiKami = (props: Props) => {
       >
         Kunjungi kami
       </motion.h2>
-      <div className="flex h-[400px] w-full ">
+      <div className="grid md:grid-cols-2 grid-cols-1 h-fit md:h-[400px] w-full ">
         <div className="h-full w-full bg-white">
           <Image
             rel="preload"
@@ -31,19 +28,19 @@ const KunjungiKami = (props: Props) => {
             alt="rsus"
             height={600}
             width={1000}
-            className="object-center object-cover h-full w-full overflow-hidden rounded-sm"
+            className="object-center object-cover h-auto w-full overflow-hidden "
           />
         </div>
-        <div className="h-full  w-full bg-greenUrip relative flex  flex-col  ">
-          <div className="w-full h-full bg-pattern bg-[length:200px_200px] mix-blend-multiply opacity-30 absolute left-0 top-0 z-0"></div>
-          <div className="w-full"></div>
-          <div className=" w-full mt-auto z-10 p-5">
-            <div></div>
-            <div className="w-full flex items-center justify-between">
+        <div className="h-full w-full bg-greenUrip relative grid-cols-1 p-2 ">
+          <div className="w-full z-10 h-[200px] md:h-1/3 hidden md:block"></div>
+          <div className="w-full  h-[200px]  md:h-fit mt-auto z-10 py-5">
+            <div className="w-full h-full grid grid-cols-3 overflow-hidden ">
               <Lokasi />
               <UripMap />
             </div>
           </div>
+
+          <div className="w-full h-full bg-pattern bg-[length:200px_200px] mix-blend-multiply opacity-30 absolute left-0 top-0 z-0"></div>
         </div>
       </div>
     </section>
@@ -54,7 +51,7 @@ export default KunjungiKami;
 
 const Lokasi = () => {
   return (
-    <div className="p-5 text-white">
+    <div className="p-1 md:p-5 text-white col-span-2">
       <h3 className="text-left">Lokasi</h3>
       <div className="flex gap-2 body-2 text-white text-light ">
         <FontAwesomeIcon icon={faBuilding} className="h-4 pt-1" />
@@ -79,7 +76,7 @@ const Lokasi = () => {
 
 const UripMap = () => {
   return (
-    <div className="w-1/2 h-full overflow-hidden">
+    <div className="w-full h-full overflow-hidden">
       <Image
         rel="preload"
         placeholder="empty"
@@ -88,7 +85,7 @@ const UripMap = () => {
         alt="rsus-map"
         height={210}
         width={390}
-        className="object-center object-cover h-full w-full overflow-hidden rounded-sm"
+        className="object-center object-cover h-full w-auto overflow-hidden rounded-sm"
       />
     </div>
   );

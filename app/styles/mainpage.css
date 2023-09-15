@@ -7,10 +7,10 @@
   /* ------------------------- FLOATING MENU ------------------------ */
 
   .floating-menu-container {
-    @apply h-[370px] w-[400px] bg-white z-40 absolute top-1/2 border border-greyBorder rounded-sm shadow-sm mt-7 left-20 hidden md:flex p-3 flex-col;
+    @apply h-full w-full md:h-fit md:w-[400px] bg-white z-10 md:z-40 absolute top-0 md:top-1/2 border border-greyBorder rounded-sm shadow-sm mt-2 md:mt-7 left-0 md:left-20  md:flex p-3 flex-col;
   }
   .floating-link {
-    @apply bg-white h-full w-full rounded-sm border border-greyBorder flex-center-between flex-col hover:bg-greyLit transition-all;
+    @apply bg-white h-full w-full rounded-sm border border-greyBorder flex-center-center flex-col hover:bg-greyLit transition-all p-1;
   }
   .darken-filter {
     @apply z-20 bg-gradient-to-b from-stone-500 from-0% via-white via-40% to-stone-500 to-100% opacity-10 absolute top-0 left-0 h-full w-full mix-blend-multiply;
@@ -45,10 +45,10 @@
   }
   /* ----------------------------- Gallery ---------------------------- */
   .gallery-base {
-    @apply w-full h-48 flex flex-col items-center justify-center overflow-hidden;
+    @apply w-full h-40 md:h-48 flex flex-col items-center justify-center overflow-hidden;
   }
   .gallery-cell {
-    @apply w-full flex-center-center h-24 overflow-hidden;
+    @apply w-full flex-center-center h-20  md:h-24 overflow-hidden;
   }
 
   .accent1 {
