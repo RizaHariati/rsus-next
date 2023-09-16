@@ -29,26 +29,34 @@ const AlertVerifikasi = (props: Props) => {
   const [checking, setChecking] = useState(false);
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    item: CheckType
+    item: CheckType,
+    index: number
   ) => {
-    const keyword = e.target.value.slice(-1);
-    let a = "";
-    const newArray = verified.map((ver: CheckType, index: number) => {
-      if (ver.id === item.id) {
-        const newVer = { ...item, value: keyword };
-        a = a + keyword;
-        return newVer;
+    if (!document || !typeof document) return;
+    else {
+      const keyword = e.target.value.slice(-1);
+      let a = "";
+      const newArray = verified.map((ver: CheckType, index: number) => {
+        if (ver.id === item.id) {
+          const newVer = { ...item, value: keyword };
+          a = a + keyword;
+          return newVer;
+        } else {
+          a = a + ver.value;
+          return ver;
+        }
+      });
+
+      if (a === verification_number.toString()) {
+        setChecking(true);
       } else {
-        a = a + ver.value;
-        return ver;
+        setChecking(false);
       }
-    });
-    if (a === verification_number.toString()) {
-      setChecking(true);
-    } else {
-      setChecking(false);
+      setVerified(newArray);
+      if (index < verified.length - 1) {
+        document.getElementById(`verinput${index + 1}`)!.focus();
+      }
     }
-    setVerified(newArray);
   };
 
   useEffect(() => {
@@ -96,11 +104,12 @@ const AlertVerifikasi = (props: Props) => {
                   className=" text-center w-16 md:w-20 h-fit font-bold py-3"
                 >
                   <input
+                    id={`verinput${index}`}
                     placeholder="-"
                     value={verified[index].value}
                     onFocus={(e) => (e.currentTarget.value = "")}
                     onChange={(e) => {
-                      handleChange(e, item);
+                      handleChange(e, item, index);
                     }}
                     className="w-full text-center active-input text-4xl md:text-6xl h-fit"
                   />

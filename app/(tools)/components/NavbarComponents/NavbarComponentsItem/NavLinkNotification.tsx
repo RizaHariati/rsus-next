@@ -15,6 +15,7 @@ import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import MainLogoImage from "@/app/(tools)/modal/MainLogoImage";
 import dayjs from "dayjs";
 import NotificationMessages from "./NotificationMessages";
+import { toast } from "react-toastify";
 type Props = {};
 
 const NavLinkNotification = (props: Props) => {
@@ -123,10 +124,22 @@ const NotificationLogin = () => {
 };
 
 const NotificationLogout = () => {
+  const {
+    patientState: { user },
+    toggleMenuNavbar,
+  } = useGlobalContext();
   return (
     <div className=" flex-center-center text-link w-12  h-full ">
       <div className="relative">
-        <button type="button">
+        <button
+          onClick={(e) => {
+            if (!user.login) {
+              toast.error("Anda harus login terlebih dahulu");
+            }
+            toggleMenuNavbar(null);
+          }}
+          type="button"
+        >
           <FontAwesomeIcon icon={faBell} className="navbar-reg-icon" />
         </button>
       </div>

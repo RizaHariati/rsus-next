@@ -2,7 +2,7 @@ import { AppState } from "./interfaces";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 
 export const initialState: AppState = {
-  menu_id: "home",
+  menu_id: null,
   showModal: false,
   modalTitle: "",
   modalValue: {},

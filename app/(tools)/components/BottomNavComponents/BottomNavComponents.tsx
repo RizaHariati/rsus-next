@@ -1,6 +1,6 @@
 "use client";
 import dayjs from "dayjs";
-import React from "react";
+import React, { useEffect, useState } from "react";
 
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -18,6 +18,9 @@ import { DaruratContent } from "../NavbarComponents/NavbarComponentsItem/NavLink
 import { PatientProfileContent } from "../NavbarComponents/NavbarComponentsItem/PatientProfile";
 import { MenuAntrianContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkAntrian";
 import { LoginFormContent } from "../NavbarComponents/NavbarComponentsItem/UserLogin";
+import { AnimatePresence, motion } from "framer-motion";
+import { enterOpacity } from "../../framervariants/variants";
+import { popBottomVariant } from "../../framervariants/bottomvariants";
 
 type Props = { scrollingUp: boolean; scrollTop: boolean };
 
@@ -93,52 +96,52 @@ const BottomNavComponents = ({ scrollingUp, scrollTop }: Props) => {
         </div>
       </div>
 
-      <div className="w-full h-8 bg-white flex-center-center border-t  border-greenUrip">
-        <p className="text-greenUrip footnote-1 m-auto">
+      <div className="w-full h-8 bg-white flex-center-center border-t z-40 absolute bottom-0  border-greenUrip">
+        <a
+          href="https://www.ichacodes.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-greenUrip footnote-1 m-auto"
+        >
           by Riza Hariati for Ichacodes copyright &copy;{dayjs().format("YYYY")}
-        </p>
+        </a>
       </div>
 
-      <div
-        className={
-          menu_id === "darurat"
-            ? "drawer-b-container-show p-5"
-            : "drawer-b-container-hide p-0 px-5"
-        }
-      >
-        <DaruratContent />
-      </div>
-
-      <div
-        className={
-          menu_id === "login"
-            ? "drawer-b-container-show p-2"
-            : "drawer-b-container-hide p-0 px-2"
-        }
-      >
-        <LoginFormContent />
-      </div>
-
-      <div
-        className={
-          menu_id === "profile"
-            ? "drawer-b-container-show p-2"
-            : "drawer-b-container-hide p-0 px-2"
-        }
-      >
-        <PatientProfileContent />
-      </div>
-      <div
-        className={
-          menu_id === "antrian"
-            ? "drawer-b-container-show p-2"
-            : "drawer-b-container-hide p-0 px-2"
-        }
-      >
-        <MenuAntrianContent />
-      </div>
+      <BottomNavContent>
+        {menu_id === "darurat" && <DaruratContent />}
+        {menu_id === "login" && <LoginFormContent />}
+        {menu_id === "profile" && <PatientProfileContent />}
+        {menu_id === "antrian" && <MenuAntrianContent />}
+      </BottomNavContent>
     </div>
   );
 };
 
 export default BottomNavComponents;
+
+type BottomProps = {
+  children: React.ReactNode;
+};
+const BottomNavContent = ({ children }: BottomProps) => {
+  const {
+    state: { menu_id },
+  } = useGlobalContext();
+
+  return (
+    <AnimatePresence initial={false}>
+      {menu_id && (
+        <motion.div
+          key={menu_id}
+          variants={popBottomVariant}
+          initial="initial"
+          animate="animate"
+          exit="exit"
+          className="drawer-b-container"
+        >
+          <button className=" fixed left-1/2 -translate-x-1/2 top-2 w-16 h-2 rounded-full border-greyBorder bg-greyBorder"></button>
+          {children}
+        </motion.div>
+      )}
+    </AnimatePresence>
+  );
+};

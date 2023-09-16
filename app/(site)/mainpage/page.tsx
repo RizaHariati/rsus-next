@@ -32,7 +32,7 @@ const MainPage = (props: Props) => {
           <FloatingMenu />
         </div>
 
-        <div className="hidden md:block h-full w-3/12 bg-greyLit relative z-10 ">
+        <div className="hidden md:block h-screen w-3/12 bg-greyLit relative z-10 ">
           <div className="w-4 h-full bg-accent1 absolute right-0 top-0"></div>
         </div>
         <MainImageAnimated />

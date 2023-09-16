@@ -64,11 +64,11 @@
   }
 
   .main-menu-container {
-    @apply navbar-drop-container md:w-[450px] right-0 p-0 pb-4;
+    @apply navbar-drop-container md:w-[450px] right-0 p-0 pb-4 top-14 md:top-16 shadow-sm shadow-greyMed2 rounded-b-md md:rounded-sm;
   }
 
   .main-menu-container-hidden {
-    @apply navbar-drop-hidden w-[450px] right-0 p-0 pb-0;
+    @apply navbar-drop-hidden w-[450px] right-0 p-0 pb-0 shadow-none;
   }
   .menu-link-icon {
     @apply flex-top-left text-redBase w-full p-1;
@@ -89,10 +89,10 @@
   }
 
   .notification-container {
-    @apply navbar-drop-container md:w-modal_md right-0 origin-top px-0 pt-2;
+    @apply navbar-drop-container md:w-modal_md right-0 origin-top px-0 pt-2 md:pt-0 top-14 md:top-12 rounded-b-md md:rounded-sm shadow-sm shadow-greyMed2;
   }
 
   .notification-container-hidden {
-    @apply navbar-drop-hidden md:w-modal_md right-0 origin-top pt-0;
+    @apply navbar-drop-hidden md:w-modal_md right-0 origin-top pt-0 shadow-none;
   }
 }

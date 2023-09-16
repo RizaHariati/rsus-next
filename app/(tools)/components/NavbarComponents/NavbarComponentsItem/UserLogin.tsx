@@ -167,8 +167,8 @@ export const LoginFormContent = () => {
         ke RS Urip Sumoharjo untuk reset password
       </p>
       <p className="body-3 leading-4 text-center mt-2 text-black">
-        Masukkan nomor Rekam Medis:US4234123398 dan password:password untuk test
-        login
+        Masukkan nomor Rekam Medis: US4234123398 dan password: password untuk
+        test login
       </p>
     </>
   );

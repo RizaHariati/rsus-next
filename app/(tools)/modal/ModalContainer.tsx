@@ -35,7 +35,7 @@ const ModalContainer = (props: Props) => {
           initial="initial"
           animate="animate"
           exit="exit"
-          className="w-screen h-screen bg-black  bg-opacity-50 overflow-hidden fixed top-0 left-0 z-50"
+          className="w-screen h-screen bg-black  bg-opacity-50 overflow-hidden fixed top-0 left-0 z-[50] p-3  pb-10 md:p-0"
         >
           <ModalContent />
         </motion.div>

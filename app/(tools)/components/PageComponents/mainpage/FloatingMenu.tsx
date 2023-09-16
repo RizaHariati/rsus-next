@@ -19,7 +19,7 @@ const FloatingMenu = () => {
       viewport={{ once: true }}
       className="floating-menu-container"
     >
-      <div className="h-1/2 w-full grid grid-cols-2 gap-1  ">
+      <div className="h-1/2 min-h-40 w-full grid grid-cols-2 gap-1  ">
         {floatingMenu.map((item: FloatingMenuType) => {
           return (
             <Link
@@ -45,12 +45,12 @@ const FloatingMenu = () => {
           );
         })}
       </div>
-      <div className="h-1/2 w-full flex-center-between flex-col py-2 ">
-        <p className="body-3 leading-4 md:leading-5">
+      <div className="h-1/2 w-full flex-center-between flex-col md:py-2 ">
+        <p className="body-3 leading-5 md:leading-5">
           Selain konsultasi tatap muka, RS Urip Sumoharjo menyediakan pelayanan
           konsultasi Doktor jarak jauh, TeleMedicine awal lewat WhatsApp.
         </p>
-        <p className="body-3 leading-4  md:leading-5 mb-2">
+        <p className="body-3 leading-5  md:leading-5 ">
           Jika data anda valid, admin kami akan menghubungi anda pada jam kerja
           baik melalui WhatsApp maupun telpon untuk mengkonfirmasi pendaftaran.
         </p>

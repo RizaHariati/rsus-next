@@ -39,7 +39,7 @@ const InputSex = ({ newPatientPersonal, setNewPatientPersonal }: Props) => {
     setOpenSelection(false);
   };
   return (
-    <div className="relative">
+    <div className="col-span-2 md:col-span-1 relative">
       <div>
         <p> Pilih Jenis Kelamin</p>
         <button

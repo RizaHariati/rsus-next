@@ -34,7 +34,7 @@ const InputBirthDate = ({
   }, [selectedDate]);
 
   return (
-    <div className="w-full col-span-1">
+    <div className="w-full col-span-2 md:col-span-1 ">
       <p> {values.title}</p>
       <ReactDatePicker
         locale="id"

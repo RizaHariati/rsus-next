@@ -7,10 +7,10 @@
   /* ------------------------- FLOATING MENU ------------------------ */
 
   .floating-menu-container {
-    @apply h-full w-full md:h-fit md:w-[400px] bg-white z-10 md:z-40 absolute top-0 md:top-1/2 border border-greyBorder rounded-sm shadow-sm mt-2 md:mt-7 left-0 md:left-20  md:flex p-3 flex-col;
+    @apply h-full w-full md:h-fit md:w-[400px] bg-white z-10 md:z-40 absolute top-0 md:top-1/2 border border-greyBorder rounded-sm shadow-sm  md:mt-7 left-0 md:left-20  md:flex  p-3 flex-col;
   }
   .floating-link {
-    @apply bg-white h-full w-full rounded-sm border border-greyBorder flex-center-center flex-col hover:bg-greyLit transition-all p-1;
+    @apply bg-white h-full w-full rounded-sm border border-greyBorder flex-center-center flex-col hover:bg-greyLit transition-all;
   }
   .darken-filter {
     @apply z-20 bg-gradient-to-b from-stone-500 from-0% via-white via-40% to-stone-500 to-100% opacity-10 absolute top-0 left-0 h-full w-full mix-blend-multiply;
@@ -18,7 +18,7 @@
 
   /* ----------------------------- PAGE ----------------------------- */
   .page-main-container {
-    @apply h-screen w-full z-0 md:max-w-uripMax mx-auto relative;
+    @apply h-[110vh] md:h-full w-full z-0 md:max-w-uripMax mx-auto relative;
   }
 
   /* ----------------------------- MODAL ---------------------------- */
@@ -35,7 +35,7 @@
     @apply modal w-modal_md;
   }
   .modal-phone {
-    @apply modal w-[98%]  top-1/4 standard-border rounded-md;
+    @apply modal w-[98%] overflow-hidden top-1/4 standard-border rounded-md;
   }
   .modal-slider-btn {
     @apply absolute top-1/2 -translate-y-1/2 z-20 p-2 px-1 bg-greyMed1  hover:bg-greyMed2 active:bg-white transition-all rounded-sm text-white;

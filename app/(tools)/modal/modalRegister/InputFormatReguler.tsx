@@ -28,8 +28,8 @@ const InputFormatReguler = ({
       id={values.id}
       className={
         values.col_width
-          ? "col-span-2 sub-form group"
-          : "col-span-1 sub-form group"
+          ? "col-span-full md:col-span-2 sub-form group"
+          : "col-span-full md:col-span-1 sub-form group"
       }
     >
       <p>{values.title}</p>

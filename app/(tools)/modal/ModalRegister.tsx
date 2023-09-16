@@ -106,12 +106,15 @@ const ModalRegister = (props: Props) => {
   };
 
   return (
-    <div className="modal-lg p-5 px-10 overflow-hidden bg-white">
-      <h3 className=" col-span-2  w-full border-b border-greyBorder  font-light mb-4 bg-white">
+    <div className="modal_phone h-[90%] md:h-fit md:modal-lg p-3 md:p-5 px-3 md:px-10 pt-0 custom overflow-y-scroll scrollbar-none md:overflow-hidden bg-white rounded-md md:rounded-sm">
+      <h3 className=" col-span-2  w-full border-b border-greyBorder  font-light mb-4 bg-white sticky top-0 py-2">
         {dataConsultation[2].title}
         {/* dataConsultation[2] adalah data untuk menu registrasi */}
       </h3>
-      <button className="absolute top-2 right-4" onClick={() => closeModal()}>
+      <button
+        className="absolute top-4 md:top-2 right-4"
+        onClick={() => closeModal()}
+      >
         <FontAwesomeIcon icon={faClose} />
       </button>
       <article>
@@ -123,9 +126,9 @@ const ModalRegister = (props: Props) => {
           );
         })}
       </article>
-      <form className="w-full mt-3" onSubmit={(e) => handleSubmit(e)}>
+      <form className="w-full mt-3 " onSubmit={(e) => handleSubmit(e)}>
         <InputRegisterDate />
-        bpjs_number
+
         <article className="grid grid-cols-4 gap-x-2 pt-2 w-full">
           {Object.entries(patientFormInput).map(([key, values]) => {
             if (key === "sex") {
