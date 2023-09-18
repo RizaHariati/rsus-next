@@ -117,7 +117,7 @@ export const LoginFormContent = () => {
   };
   return (
     <>
-      <div className="w-full flex-center-center gap-3 mb-3">
+      <div className="w-full flex-center-center gap-3 mb-3 ">
         <Image
           rel="preload"
           placeholder="empty"
@@ -158,7 +158,10 @@ export const LoginFormContent = () => {
           </button>
         </div>
         <RegisterSuggestion />
-        <button type="submit" className="button-greenUrip ml-auto mt-2">
+        <button
+          type="submit"
+          className="button-greenUrip mx-auto md:ml-auto mt-2"
+        >
           Login
         </button>
       </form>

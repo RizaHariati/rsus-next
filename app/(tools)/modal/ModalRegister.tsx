@@ -106,7 +106,7 @@ const ModalRegister = (props: Props) => {
   };
 
   return (
-    <div className="modal_phone h-[90%] md:h-fit md:modal-lg p-3 md:p-5 px-3 md:px-10 pt-0 custom overflow-y-scroll scrollbar-none md:overflow-hidden bg-white rounded-md md:rounded-sm">
+    <div className="modal_phone h-[calc(100%-136px)]  md:h-fit md:modal-lg p-3 md:p-5 px-3 md:px-10 pt-0 custom overflow-y-scroll scrollbar-none md:overflow-hidden bg-white rounded-md md:rounded-sm">
       <h3 className=" col-span-2  w-full border-b border-greyBorder  font-light mb-4 bg-white sticky top-0 py-2">
         {dataConsultation[2].title}
         {/* dataConsultation[2] adalah data untuk menu registrasi */}

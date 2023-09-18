@@ -20,7 +20,7 @@ const MainImageAnimatedLeft = ({ img, title, description }: Props) => {
       variants={enterLeftVariant}
       initial="initial"
       animate="animate"
-      className="h-screen w-9/12  relative z-0 overflow-hidden"
+      className="md:h-screen w-9/12 relative z-0 overflow-hidden hidden md:block"
     >
       <motion.div
         variants={enterLeftVariantChild}

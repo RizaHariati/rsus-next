@@ -19,7 +19,6 @@ import { PatientProfileContent } from "../NavbarComponents/NavbarComponentsItem/
 import { MenuAntrianContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkAntrian";
 import { LoginFormContent } from "../NavbarComponents/NavbarComponentsItem/UserLogin";
 import { AnimatePresence, motion, useDragControls } from "framer-motion";
-import { enterOpacity } from "../../framervariants/variants";
 import { popBottomVariant } from "../../framervariants/bottomvariants";
 
 type Props = {};

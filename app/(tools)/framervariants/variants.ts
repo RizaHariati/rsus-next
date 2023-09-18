@@ -62,7 +62,7 @@ export const enterOpacityChildren = {
 };
 
 export const enterLeftVariant = {
-  initial: { x: "-50%" },
+  initial: { x: "-100%" },
   animate: {
     x: "0%",
     transition: {
@@ -73,7 +73,7 @@ export const enterLeftVariant = {
     },
   },
   exit: {
-    x: "-50%",
+    x: "-100%",
     transition: {
       duration: 0.5,
       staggerChildren: 0.2,
