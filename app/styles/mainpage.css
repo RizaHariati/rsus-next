@@ -7,7 +7,7 @@
   /* ------------------------- FLOATING MENU ------------------------ */
 
   .floating-menu-container {
-    @apply h-full w-full md:h-fit md:w-[400px] bg-white z-10 md:z-40 absolute top-0 md:top-1/2 border border-greyBorder rounded-sm shadow-sm  md:mt-7 left-0 md:left-20  md:flex  p-3 flex-col;
+    @apply h-full w-full md:h-fit md:w-[400px] bg-white z-10 md:z-40 absolute top-0 md:top-1/2 md:border border-greyBorder rounded-sm shadow-sm  md:mt-7 left-0 md:left-20  md:flex  p-3 flex-col;
   }
   .floating-link {
     @apply bg-white h-full w-full rounded-sm border border-greyBorder flex-center-center flex-col hover:bg-greyLit transition-all;
@@ -17,8 +17,14 @@
   }
 
   /* ----------------------------- PAGE ----------------------------- */
+  .main-layout-container {
+    @apply bg-greyMed2 h-screen overflow-y-scroll scrollbar-none snap-y snap-proximity relative scroll-smooth;
+  }
+  .main-layout-container-short {
+    @apply main-layout-container h-[calc(100vh-136px)]  md:h-[calc(100vh-56px)];
+  }
   .page-main-container {
-    @apply h-[110vh] md:h-full w-full z-0 md:max-w-uripMax mx-auto relative;
+    @apply h-[110vh] md:h-full md:min-h-screen w-full z-0 md:max-w-uripMax mx-auto relative;
   }
 
   /* ----------------------------- MODAL ---------------------------- */
@@ -48,10 +54,10 @@
   }
   /* ----------------------------- Gallery ---------------------------- */
   .gallery-base {
-    @apply w-full h-40 md:h-48 flex flex-col items-center justify-center overflow-hidden;
+    @apply w-full h-[170px] md:h-48 flex flex-col items-center justify-center overflow-hidden;
   }
   .gallery-cell {
-    @apply w-full flex-center-center h-20  md:h-24 overflow-hidden;
+    @apply w-full flex-center-center h-[85px]  md:h-24 overflow-hidden;
   }
 
   .accent1 {

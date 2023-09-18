@@ -15,11 +15,11 @@ import NavLinkAntrian from "./NavbarComponentsItem/NavLinkAntrian";
 import NavLinkMainMenu from "./NavbarComponentsItem/NavLinkMainMenu";
 import NavLinkNotification from "./NavbarComponentsItem/NavLinkNotification";
 type Props = {};
-type MainProps = {
-  scrollTop: boolean;
-};
+type MainProps = {};
 
-const Navbar = ({ scrollTop }: MainProps) => {
+const Navbar = (props: MainProps) => {
+  const { scrollTop } = useGlobalContext();
+
   const path = usePathname();
   return (
     <motion.div
@@ -30,7 +30,7 @@ const Navbar = ({ scrollTop }: MainProps) => {
       className={
         scrollTop
           ? "navbar-container bg-opacity-100 shadow-md"
-          : "navbar-container shadow-sm"
+          : "navbar-container shadow-sm bg-opacity-60 fixed top-0"
       }
     >
       <nav className="navbar">

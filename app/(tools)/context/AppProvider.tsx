@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useReducer, Dispatch } from "react";
+import { useContext, useReducer, Dispatch, useState } from "react";
 import { AppContext } from "./AppContext";
 import { initialState } from "./initialState";
 import { appReducer } from "../reducers/appReducer";
@@ -22,7 +22,10 @@ export const AppProvider = ({ children }: Props) => {
   );
   const [patientState, patientDispatch]: [PatientState, Dispatch<any>] =
     useReducer(patientReducer, initialPatientState);
-
+  const [scrollTop, setScrollTop] = useState<boolean>(false);
+  const [scrollPosition, setScrollPosition] = useState(0);
+  const [scrollingUp, setscrollingUp] = useState(true);
+  const [showFooter, setShowFooter] = useState(false);
   const toggleMenuNavbar = (id: string | null) => {
     dispatch({ type: "TOGGLE_MENU", payload: id });
   };
@@ -99,6 +102,29 @@ export const AppProvider = ({ children }: Props) => {
     patientDispatch({ type: "REGISTER_USER", payload: { newPatientPersonal } });
   };
 
+  const handleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
+    e.currentTarget.scrollTop;
+    const top = e.currentTarget.scrollTop;
+    const scrollHeight = e.currentTarget.scrollHeight;
+    const pageHeight = e.currentTarget.clientHeight;
+
+    if (top > scrollHeight - pageHeight - 100) {
+      setShowFooter(true);
+    } else {
+      setShowFooter(false);
+      setScrollTop(true);
+    }
+    setScrollPosition(top);
+    setscrollingUp(top < scrollPosition);
+    if (top > 100) {
+      setScrollTop(true);
+    } else {
+      setScrollTop(false);
+    }
+    if (scrollingUp) {
+      toggleMenuNavbar(null);
+    }
+  };
   const value = {
     patientState,
     patientDispatch,
@@ -118,6 +144,10 @@ export const AppProvider = ({ children }: Props) => {
     closeAlert,
     toggleCart,
     clearLabCart,
+    handleScroll,
+    scrollingUp,
+    scrollTop,
+    showFooter,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

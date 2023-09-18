@@ -16,11 +16,11 @@ const FasilitasGroup = ({ facilityGroup, facilityTitle }: Props) => {
       id={facilityTitle.toLowerCase()}
       className={
         facilityGroup.length > 4
-          ? " h-fit w-full snap-start pt-8"
-          : "  h-fit w-full snap-center"
+          ? " h-fit w-full snap-start "
+          : " h-fit w-full snap-center"
       }
     >
-      <div className=" w-full h-fit p-2 md:p-10 pt-10">
+      <div className=" w-full h-fit p-2 md:px-10 ">
         <motion.h2
           variants={enterTitleVariants}
           initial="initial"

@@ -8,11 +8,21 @@
     -webkit-appearance: none;
     margin: 0;
   }
+
+  *,
+  *::after,
+  *::before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    scroll-behavior: smooth;
+  }
   input[type="number"] {
     -moz-appearance: textfield;
   }
   body {
-    @apply h-full min-h-screen bg-greyLit text-greyDrk scroll-smooth scrollbar-none;
+    @apply h-screen bg-greyLit text-greyDrk scroll-smooth scrollbar-none overflow-hidden;
   }
   mark {
     @apply bg-white;
@@ -134,5 +144,11 @@
   }
   .form-line {
     @apply body-3 grid grid-cols-2  w-full gap-2 pb-2;
+  }
+  .footer {
+    @apply hidden md:flex-center-center  fixed bottom-0 h-12 bg-greenUrip w-full z-40 transition-all overflow-hidden;
+  }
+  .footer-hide {
+    @apply footer h-0;
   }
 }

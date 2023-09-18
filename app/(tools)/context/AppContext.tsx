@@ -25,6 +25,10 @@ export type AppContextProps = {
   checkUser: (loginData: Partial<UserType>) => void;
   logout: () => void;
   register: (newPatientPersonal: PatientInitialValueType) => void;
+  handleScroll: (e: React.UIEvent<HTMLDivElement, UIEvent>) => void;
+  scrollTop: boolean;
+  scrollingUp: boolean;
+  showFooter: boolean;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

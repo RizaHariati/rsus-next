@@ -48,7 +48,7 @@ const KegiatanRSUSSlide = (props: Props) => {
     }
   };
   return (
-    <div className="hidden w-full md:flex-center-center p-4 px-20 bg-white">
+    <div className="hidden w-full md:flex-center-center p-4 px-20 bg-white h-[calc(85vh-56px)]">
       <button className="mainpage-slider-btn" onClick={() => prevBtn()}>
         <FontAwesomeIcon icon={faChevronLeft} className="text-xl" />
       </button>
@@ -67,7 +67,7 @@ const KegiatanRSUSSlide = (props: Props) => {
                   exit="exit"
                   custom={amount}
                   key={article.id}
-                  className=" w-[280px] rounded-sm standard-border flex-shrink-0"
+                  className=" w-1/4 rounded-sm standard-border flex-shrink-0"
                 >
                   <div className="w-auto h-48 overflow-hidden">
                     <Image

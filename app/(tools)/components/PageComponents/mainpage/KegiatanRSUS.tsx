@@ -26,7 +26,7 @@ const KegiatanRSUS = (props: Props) => {
   return (
     <section
       id="rsus"
-      className="  md:h-fit h-[75%] w-full z-0 snap-none md:snap-center p-2 md:p-10 md:pt-16 md:px-0"
+      className="h-[calc(100vh-136px)] md:h-[calc(100vh-56px)] w-full z-0 snap-start p-2 md:px-0 "
     >
       <motion.h2
         variants={enterTitleVariants}
@@ -36,14 +36,15 @@ const KegiatanRSUS = (props: Props) => {
       >
         Kegiatan RS Urip Sumoharjo
       </motion.h2>
-      <div className=" p-2 md:hidden flex flex-col gap-2 h-[calc(75vh-80px)] w-full overflow-y-scroll bg-white scrollbar-thin ">
+      <div className=" p-2 md:hidden flex flex-col gap-2 h-[70vh] w-full overflow-y-scroll bg-white scrollbar-thin ">
         {dataArticle.map((article) => {
           if (!sliderContainer) return <div key={article.id}></div>;
           else {
             return (
               <div
                 key={article.id}
-                className="w-full border-b border-greyBorder p-2"
+                className="w-full h-fit
+                 border-b border-greyBorder p-2"
               >
                 <div className=" h-20 w-full  flex items-center justify-between gap-2">
                   <div className="w-20 h-20 rounded-sm overflow-hidden">
@@ -62,7 +63,6 @@ const KegiatanRSUS = (props: Props) => {
                     <h5 className="h-20 text-left tracking-normal">
                       {article.title}
                     </h5>
-
                     <p className=" footnote-1">
                       {dayjs(article.date).format("DD MMMM YYYY")}
                     </p>

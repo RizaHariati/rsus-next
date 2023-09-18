@@ -14,6 +14,7 @@ import LayoutWrapper from "./layoutwrapper";
 import { AppProvider } from "../(tools)/context/AppProvider";
 import Head from "next/head";
 import Footer from "../(tools)/components/Footer";
+import Navbar from "../(tools)/components/NavbarComponents/Navbar";
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
 const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });
@@ -48,6 +49,7 @@ export default function RootLayout({
       </Head>
       <body className={`${nunito.variable} ${oswald.variable}`}>
         <AppProvider>
+          <Navbar />
           <LayoutWrapper>{children}</LayoutWrapper>
           <Footer />
         </AppProvider>

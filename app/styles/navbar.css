@@ -4,7 +4,7 @@
 @import "./globals.css";
 @layer components {
   .navbar-container {
-    @apply fixed z-40 left-0 top-0 w-full  shadow-greyMed2 bg-white bg-opacity-60 transition-all;
+    @apply relative z-40 left-0 top-0 w-full  shadow-greyMed2 bg-white bg-opacity-60 transition-all;
   }
 
   .navbar {

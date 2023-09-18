@@ -9,7 +9,10 @@ type Props = {};
 
 const KunjungiKami = (props: Props) => {
   return (
-    <section id="location" className=" h-fit w-full z-0 snap-center pb-10 pt-5">
+    <section
+      id="location"
+      className=" h-[calc(100vh-136px)] md:h-[calc(100vh-56px)] w-full z-0 snap-start p-2 md:px-0 "
+    >
       <motion.h2
         variants={enterTitleVariants}
         initial="initial"
@@ -18,7 +21,7 @@ const KunjungiKami = (props: Props) => {
       >
         Kunjungi kami
       </motion.h2>
-      <div className="grid md:grid-cols-2 grid-cols-1 h-fit md:h-[400px] w-full ">
+      <div className="grid md:grid-cols-2 grid-cols-1 h-[calc(85vh-56px)] w-full ">
         <div className="h-full w-full bg-white">
           <Image
             rel="preload"
@@ -28,12 +31,12 @@ const KunjungiKami = (props: Props) => {
             alt="rsus"
             height={600}
             width={1000}
-            className="object-center object-cover h-auto w-full overflow-hidden "
+            className="object-center object-cover h-full w-full overflow-hidden "
           />
         </div>
         <div className="h-full w-full bg-greenUrip relative grid-cols-1 p-2 ">
-          <div className="w-full z-10 h-[200px] md:h-1/3 hidden md:block"></div>
-          <div className="w-full  h-[200px]  md:h-fit mt-auto z-10 py-5">
+          <div className="w-full z-10 h-full md:h-1/3 hidden md:block"></div>
+          <div className="w-full  h-full  md:h-fit mt-auto z-10 py-5">
             <div className="w-full h-full grid grid-cols-3 overflow-hidden ">
               <Lokasi />
               <UripMap />

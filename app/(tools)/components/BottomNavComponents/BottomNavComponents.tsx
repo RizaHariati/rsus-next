@@ -18,15 +18,17 @@ import { DaruratContent } from "../NavbarComponents/NavbarComponentsItem/NavLink
 import { PatientProfileContent } from "../NavbarComponents/NavbarComponentsItem/PatientProfile";
 import { MenuAntrianContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkAntrian";
 import { LoginFormContent } from "../NavbarComponents/NavbarComponentsItem/UserLogin";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, motion, useDragControls } from "framer-motion";
 import { enterOpacity } from "../../framervariants/variants";
 import { popBottomVariant } from "../../framervariants/bottomvariants";
 
-type Props = { scrollingUp: boolean; scrollTop: boolean };
+type Props = {};
 
-const BottomNavComponents = ({ scrollingUp, scrollTop }: Props) => {
+const BottomNavComponents = (props: Props) => {
   const {
     toggleMenuNavbar,
+    scrollingUp,
+    scrollTop,
     state: { menu_id },
     patientState: { user },
   } = useGlobalContext();
@@ -88,7 +90,7 @@ const BottomNavComponents = ({ scrollingUp, scrollTop }: Props) => {
             href="/mainpage"
             className="nav-b-link "
             id="mainpage"
-            onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
+            onClick={(e) => toggleMenuNavbar(null)}
           >
             <FontAwesomeIcon icon={faHome} className="nav-b-icon" />
             <p className="nav-b-txt">Beranda</p>
@@ -101,7 +103,7 @@ const BottomNavComponents = ({ scrollingUp, scrollTop }: Props) => {
           href="https://www.ichacodes.com/"
           target="_blank"
           rel="noopener noreferrer"
-          className="text-greenUrip footnote-1 m-auto"
+          className="text-greenUrip footnote-1 m-auto underline"
         >
           by Riza Hariati for Ichacodes copyright &copy;{dayjs().format("YYYY")}
         </a>
@@ -124,8 +126,19 @@ type BottomProps = {
 };
 const BottomNavContent = ({ children }: BottomProps) => {
   const {
+    toggleMenuNavbar,
     state: { menu_id },
   } = useGlobalContext();
+  const controls = useDragControls();
+
+  const [dragging, setDragging] = useState<false | "y">("y");
+  function startDrag(event: any) {
+    if (event.target.id === "drag-btn") {
+      toggleMenuNavbar(null);
+    } else {
+      setDragging(false);
+    }
+  }
 
   return (
     <AnimatePresence initial={false}>
@@ -136,9 +149,21 @@ const BottomNavContent = ({ children }: BottomProps) => {
           initial="initial"
           animate="animate"
           exit="exit"
-          className="drawer-b-container"
+          className="drawer-b-container "
+          drag={dragging}
+          onDrag={(e) => {
+            startDrag(e);
+          }}
         >
-          <button className=" fixed left-1/2 -translate-x-1/2 top-2 w-16 h-2 rounded-full border-greyBorder bg-greyBorder"></button>
+          <button
+            onClick={() => setDragging("y")}
+            id="drag-btn"
+            className={
+              !dragging
+                ? "drag-btn bg-redBase border-redBase w-3 h-3"
+                : "drag-btn "
+            }
+          ></button>
           {children}
         </motion.div>
       )}

@@ -32,11 +32,7 @@ const SloganGallery = (props: Props) => {
   }, []);
 
   return (
-    <section
-      id="gallery"
-      className=" h-screen md:h-fit w-full z-0 snap-center pt-14"
-      ref={ref}
-    >
+    <section id="gallery" className=" h-screen w-full z-0 pt-5" ref={ref}>
       <motion.h2
         variants={enterTitleVariants}
         initial="initial"
@@ -46,8 +42,8 @@ const SloganGallery = (props: Props) => {
         Hanya untuk anda kami berikan :
       </motion.h2>
 
-      <div className="w-full max-w-5xl mx-auto overflow-hidden py-2 md:py-10 rounded-sm shadow-sm">
-        <div className="w-full h-fit grid grid-cols-3 md:grid-cols-5 text-white btn-2-bold overflow-hidden ">
+      <div className="w-full max-w-5xl mx-auto overflow-hidden py-2 md:py-10 rounded-sm shadow-sm ">
+        <div className="w-full h-[510px] md:h-fit grid grid-cols-3 md:grid-cols-5 text-white btn-2-bold overflow-hidden ">
           {currentGallery.map((item) => {
             return (
               <Slogan
@@ -103,6 +99,7 @@ const SloganImageBig = ({ img }: SloganProps) => {
       variants={galleryBottom}
       initial="initial"
       whileInView="animate"
+      viewport={{ once: true }}
     >
       <Image
         rel="preload"
@@ -125,6 +122,7 @@ const SloganImageAccent = ({ img }: SloganProps) => {
       initial="initial"
       whileInView="animate"
       className="gallery-cell"
+      viewport={{ once: true }}
     >
       {img ? (
         <Image
@@ -135,7 +133,7 @@ const SloganImageAccent = ({ img }: SloganProps) => {
           loading="lazy"
           height={300}
           width={300}
-          className=" h-auto w-full object-center object-cover"
+          className=" h-full w-full object-center object-cover"
         />
       ) : (
         <div className="accent1"></div>
@@ -155,6 +153,7 @@ const SloganText = ({ accent, text }: SloganTextProps) => {
       initial="initial"
       whileInView="animate"
       className={accent}
+      viewport={{ once: true }}
     >
       {text}
     </motion.p>

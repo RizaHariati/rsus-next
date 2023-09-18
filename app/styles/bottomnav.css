@@ -5,7 +5,7 @@
 
 @layer components {
   .nav-b-container {
-    @apply fixed w-full h-fit bottom-0 left-0 md:hidden z-10;
+    @apply fixed w-full h-fit bottom-0 left-0 md:hidden z-[100];
   }
   .nav-b {
     @apply bg-greenUrip w-full z-30 snap-end overflow-hidden transition-all relative bottom-8;
@@ -40,5 +40,8 @@
   /* ------------------------- BOTTOM DRAWER ------------------------ */
   .drawer-b-container {
     @apply absolute  z-20 bg-white  rounded-t-lg w-full h-fit max-h-[75vh] border border-greyBorder border-b-0 shadow-sm overflow-y-scroll scrollbar-none origin-bottom p-5 pt-10;
+  }
+  .drag-btn {
+    @apply fixed left-1/2 -translate-x-1/2 top-2 w-16 h-2 rounded-full border-greyBorder bg-greyBorder transition-all;
   }
 }
