@@ -6,6 +6,7 @@ import dataFacility from "@/app/(tools)/data/data_facility.json";
 import { groupCategoryFacility } from "../../(tools)/utils/groupCategoryFacility";
 import FasilitasGroup from "@/app/(tools)/components/PageComponents/mainpage/FasilitasGroup";
 import BackToTop from "@/app/(tools)/components/BackToTop";
+import MainImageSmall from "@/app/(tools)/components/PageComponents/MainImageSmall";
 
 type Props = {};
 
@@ -17,27 +18,33 @@ const unit = {
 };
 const Facility = (props: Props) => {
   return (
-    <div className="page-main-container">
-      <FindFacility />
+    <div className="page-main-container ">
       <BackToTop />
       <section
         id="zero"
-        className=" h-full  min-h-screen w-full z-0 overflow-hidden flex relative snap-center bg-accent1"
+        className=" h-[calc(100vh-32px)] md:h-full md:min-h-screen w-full z-0 overflow-hidden flex flex-col md:flex-row relative  md:bg-accent1 bg-white"
       >
+        <MainImageSmall img={unit.img} title={unit.title} />
         <MainImageAnimatedLeft
           img={unit.img}
           title={unit.title}
           description={unit.description}
         />
-        <div className="h-full w-3/12 bg-greenUrip relative z-10  overflow-hidden">
+        <div className="hidden md:block h-full w-3/12 bg-greenUrip relative z-10  overflow-hidden">
           <div
             className="absolute h-full w-full top-0 left-4 z-10 bg-[length:200px_200px]
           bg-pattern  mix-blend-multiply opacity-30"
           ></div>
           <div className="w-4 h-full bg-accent1 absolute left-0 top-0"></div>
         </div>
+
+        <p className="h-1/4 p-2 text-center leading-5 md:hidden">
+          {unit.description}
+        </p>
+        <FindFacility />
       </section>
-      <div>
+
+      <div className="pb-[100px] bg-greyLit">
         {Object.keys(groupCategoryFacility(dataFacility)).map((item, index) => {
           return (
             <FasilitasGroup

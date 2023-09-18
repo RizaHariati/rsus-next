@@ -24,7 +24,7 @@
     @apply main-layout-container h-[calc(100vh-136px)]  md:h-[calc(100vh-56px)];
   }
   .page-main-container {
-    @apply h-[110vh] md:h-full md:min-h-screen w-full z-0 md:max-w-uripMax mx-auto relative;
+    @apply h-screen md:h-full md:min-h-screen w-full z-0 md:max-w-uripMax mx-auto relative bg-greyLit;
   }
 
   /* ----------------------------- MODAL ---------------------------- */
@@ -89,5 +89,14 @@
   }
   .gender-selection-closed {
     @apply gender-selection h-0 border-none gap-0 p-0;
+  }
+  .find-facility {
+    @apply relative z-40 bg-white top-0 md:top-1/4 md:right-16  standard-border p-0 md:p-3 md:fixed transition-all  h-fit flex flex-col;
+  }
+  .find-facility-small {
+    @apply find-facility  w-[250px] h-10 shadow-md shadow-greyDrk;
+  }
+  .find-facility-big {
+    @apply find-facility w-full md:w-[450px] h-fit md:shadow-md md:shadow-greyDrk;
   }
 }

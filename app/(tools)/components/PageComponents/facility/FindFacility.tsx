@@ -42,16 +42,12 @@ const FindFacility = () => {
       variants={enterOpacity}
       initial="initial"
       animate="animate"
-      className={
-        resize
-          ? " z-20 bg-white top-1/4 w-[450px] right-16 h-fit standard-border p-2 fixed transition-all shadow-md shadow-greyDrk"
-          : " z-20 bg-white top-1/4 w-[250px] right-16 h-10 standard-border p-2 fixed transition-all shadow-md shadow-greyDrk"
-      }
+      className={resize ? "find-facility-big" : " find-facility-small"}
     >
-      <div className="h-fit w-full flex flex-col gap-2 ">
+      <div className="h-fit w-full flex flex-col gap-2  ">
         <button
           onClick={() => setResize(!resize)}
-          className="w-full flex items-center gap-2 text-greyMed1 hover:text-greyBorder transition-all justify-end"
+          className="hidden md:flex w-full items-center gap-2 text-greyMed1 hover:text-greyBorder transition-all justify-end h-5"
         >
           <FontAwesomeIcon
             icon={resize ? faMinimize : faMaximize}
@@ -62,8 +58,8 @@ const FindFacility = () => {
         <div
           className={
             resize
-              ? "w-full standard-border h-fit opacity-100 transition-all "
-              : "w-full standard-border h-fit opacity-0  transition-all"
+              ? "w-full standard-border h-10 opacity-100 transition-all "
+              : "w-full standard-border h-10 opacity-0  transition-all"
           }
         >
           <input
@@ -78,8 +74,8 @@ const FindFacility = () => {
         <div
           className={
             resize
-              ? "custom-scrollbar gap-2 h-fit max-h-52 transition-all "
-              : "custom-scrollbar scrollbar-none gap-2 h-0 transition-all"
+              ? "custom-scrollbar gap-2 h-fit max-h-28 md:max-h-52 transition-all"
+              : "custom-scrollbar scrollbar-none gap-2 h-0 transition-all "
           }
         >
           {fasList.map((fas) => {
@@ -89,7 +85,7 @@ const FindFacility = () => {
                   findFacility(fas);
                 }}
                 key={fas.id}
-                className="active-input mt-2"
+                className="active-input mt-1 md:mt-2 h-10 "
               >
                 <p> {fas.title}</p>
               </button>

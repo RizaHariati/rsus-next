@@ -28,7 +28,7 @@ const MainPage = (props: Props) => {
         className=" h-[calc(100vh-32px)] md:h-full md:min-h-screen w-full z-0 overflow-hidden flex flex-col md:flex-row relative snap-start md:snap-center bg-white md:bg-accent1 pb-2 border-b border-greyBorder"
       >
         <MainImageSmall />
-        <div className=" h-1/2 w-full md:h-full relative md:absolute z-0 translate-y-1/2  md:top-0 md:translate-y-0 md:z-20">
+        <div className="h-1/2 w-full md:h-full relative md:absolute z-0 translate-y-1/2  md:top-0 md:translate-y-0 md:z-20">
           <FloatingMenu />
         </div>
         <div className="hidden md:block h-screen w-3/12 bg-greyLit relative z-10 ">

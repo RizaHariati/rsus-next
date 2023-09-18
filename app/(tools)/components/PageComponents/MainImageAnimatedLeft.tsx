@@ -6,7 +6,6 @@ import {
   enterLeftVariant,
   enterLeftVariantChild,
 } from "@/app/(tools)/framervariants/variants";
-import myImageLoader from "@/loader";
 
 type Props = {
   img: string;

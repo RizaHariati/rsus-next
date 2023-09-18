@@ -112,11 +112,10 @@ export const AppProvider = ({ children }: Props) => {
       setShowFooter(true);
     } else {
       setShowFooter(false);
-      setScrollTop(true);
     }
     setScrollPosition(top);
     setscrollingUp(top < scrollPosition);
-    if (top > 100) {
+    if (top > 120) {
       setScrollTop(true);
     } else {
       setScrollTop(false);

@@ -26,7 +26,7 @@ const KegiatanRSUS = (props: Props) => {
   return (
     <section
       id="rsus"
-      className="h-[calc(100vh-136px)] md:h-[calc(100vh-56px)] w-full z-0 snap-start p-2 md:px-0 "
+      className="h-[calc(100vh-136px)] md:h-[calc(100vh-56px)] w-full z-0  p-2 md:px-0 "
     >
       <motion.h2
         variants={enterTitleVariants}

@@ -17,7 +17,7 @@ const FasilitasGroup = ({ facilityGroup, facilityTitle }: Props) => {
       className={
         facilityGroup.length > 4
           ? " h-fit w-full snap-start "
-          : " h-fit w-full snap-center"
+          : " h-fit w-full snap-none md:snap-center"
       }
     >
       <div className=" w-full h-fit p-2 md:px-10 ">

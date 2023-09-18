@@ -54,6 +54,9 @@
   .test {
     /* color: #ffffff00; //color opacity =0// */
   }
+  article {
+    @apply bg-greyLit;
+  }
 }
 
 @layer components {

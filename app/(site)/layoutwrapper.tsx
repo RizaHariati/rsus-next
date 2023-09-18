@@ -13,7 +13,7 @@ type Props = {
 };
 
 const LayoutWrapper = ({ children }: Props) => {
-  const { handleScroll, showFooter, scrollingUp } = useGlobalContext();
+  const { handleScroll } = useGlobalContext();
 
   return (
     <div
