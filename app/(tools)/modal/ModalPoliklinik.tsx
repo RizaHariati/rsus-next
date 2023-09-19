@@ -25,9 +25,7 @@ const ModalPoliklinik = (props: Props) => {
   } else {
     return (
       <div className="modal-phone md:modal-lg p-3 md:p-5 pt-0 md:pt-5">
-        <h3 className=" col-span-2 font-normal mb-2 w-full  sticky top-0 h-14 bg-white py-1 px-4 z-20">
-          {poliInfo.title}
-        </h3>
+        <h3 className="modal-title sticky">{poliInfo.title}</h3>
 
         <button
           className="absolute top-2 right-4 z-30"
@@ -35,13 +33,8 @@ const ModalPoliklinik = (props: Props) => {
         >
           <FontAwesomeIcon icon={faClose} />
         </button>
-        <motion.div
-          variants={enterTop}
-          initial="initial"
-          whileInView="animate"
-          className="bg-white border-none grid grid-cols-1 md:grid-cols-3 w-full gap-2 h-1/2  "
-        >
-          <div className=" col-span-2 flex flex-col md:gap-5 w-full custom-scrollbar h-full ">
+        <div className="bg-white border-none grid grid-cols-1 md:grid-cols-3 w-full md:gap-2 h-1/2 md:h-[200px] ">
+          <div className=" col-span-2 flex flex-col md:gap-5 w-full  h-full  custom-scrollbar row-start-2 md:row-start-auto">
             <div>
               {poliInfo.description.map((item, index) => {
                 return <p key={index}>{item}</p>;
@@ -49,7 +42,7 @@ const ModalPoliklinik = (props: Props) => {
             </div>
             <FindSupportingFacility poliInfo={poliInfo} />
           </div>
-          <div>
+          <div className="h-full w-full  aspect-square overflow-hidden m-auto row-start-1 md:row-start-auto">
             <Image
               rel="preload"
               placeholder="empty"
@@ -63,11 +56,11 @@ const ModalPoliklinik = (props: Props) => {
               alt="lab-pcr"
               width={400}
               height={400}
-              className="object-center object-cover w-auto h-full mx-auto"
+              className="object-center object-cover w-full h-full "
               loading="lazy"
             />
           </div>
-        </motion.div>
+        </div>
         <div className=" w-full flex flex-col md:flex-row items-center md:items-end justify-between gap-3 pt-5 h-full md:h-1/2 ">
           <FindSupportingDoctors poliInfo={poliInfo} />
           <div className=" flex gap-2">
@@ -110,7 +103,7 @@ const FindSupportingFacility = ({ poliInfo }: FacilityProps) => {
             <span className="font-medium text-greenUrip">{poliInfo.title}</span>
             &nbsp; yang kini tersedia di RS Urip Sumoharjo :
           </p>
-          <div className="grid grid-cols-2 gap-2">
+          <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-2">
             {findSupportingFacility(poliInfo).map((item) => {
               return (
                 <div key={item.id} className="w-full flex-center-left gap-2">

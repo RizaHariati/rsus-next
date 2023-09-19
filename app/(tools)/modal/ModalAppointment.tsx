@@ -16,10 +16,8 @@ const ModalAppointment = (props: Props) => {
   const consultationInfo: ConsultationMenuTypes = modalValue;
 
   return (
-    <div className="modal-xl p-3 px-10 overflow-hidden bg-white">
-      <h3 className=" col-span-2  w-full border-b border-greyBorder  font-light mb-4 bg-white">
-        {consultationInfo.title}
-      </h3>
+    <div className=" modal-phone modal-xl md:p-3 px-10 md:overflow-hidden bg-white">
+      <h3 className=" modal-title">{consultationInfo.title}</h3>
 
       <button
         className="absolute top-2 right-4"

@@ -11,7 +11,7 @@ const KunjungiKami = (props: Props) => {
   return (
     <section
       id="location"
-      className=" h-[calc(100vh-136px)] md:h-full w-full z-0 snap-start p-2 md:px-0 "
+      className=" h-screen-min-top-bottom  md:h-full w-full z-0 snap-start p-2 md:px-0 "
     >
       <motion.h2
         variants={enterTitleVariants}
@@ -21,7 +21,7 @@ const KunjungiKami = (props: Props) => {
       >
         Kunjungi kami
       </motion.h2>
-      <div className="grid md:grid-cols-2 grid-cols-1 h-[calc(85vh-56px)] w-full ">
+      <div className="grid md:grid-cols-2 grid-cols-1 h-[calc(80vh-56px)] w-full ">
         <div className="h-full w-full bg-white">
           <Image
             rel="preload"

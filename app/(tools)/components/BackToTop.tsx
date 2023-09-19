@@ -9,9 +9,9 @@ const BackToTop = (props: Props) => {
     <button
       onClick={() => {
         const access = document?.getElementById("zero");
-        access?.scrollIntoView({ behavior: "smooth" });
+        access?.scrollIntoView({ block: "start", behavior: "smooth" });
       }}
-      className=" fixed bottom-20 md:bottom-14 right-2 md:right-5 animate-pulse flex-center-center flex-col z-50 text-greyMed1"
+      className=" fixed bottom-20 md:bottom-14 right-2 md:right-5 animate-pulse flex-center-center flex-col z-[60] text-greyMed1"
     >
       <FontAwesomeIcon icon={faArrowAltCircleUp} className="h-10" />
       <p className="hidden md:block btn-2-bold">Top</p>

@@ -60,6 +60,12 @@
 }
 
 @layer components {
+  .h-screen-min-top-bottom {
+    @apply h-[calc(100vh-136px)];
+  }
+  .h-screen-min-bottom {
+    @apply h-[calc(100vh-80px)];
+  }
   .text-link {
     @apply cursor-pointer text-greyMed1 hover:text-greyDrk transition-all hover:font-bold tracking-[3px];
   }

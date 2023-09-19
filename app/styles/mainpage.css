@@ -41,7 +41,10 @@
     @apply modal w-modal_md;
   }
   .modal-phone {
-    @apply modal w-[95%] overflow-y-scroll standard-border rounded-md md:top-1/2 top-1/4 -translate-y-1/4 md:-translate-y-1/2 max-h-[calc(100%-136px)] scrollbar-none;
+    @apply modal w-[95%] overflow-y-scroll standard-border rounded-md md:top-1/2 top-1/4 -translate-y-1/4 md:-translate-y-1/2 h-fit max-h-[calc(100%-136px)] scrollbar-none;
+  }
+  .modal-title {
+    @apply col-span-full  w-full border-b border-greyBorder  font-light mb-4 bg-white sticky top-0 py-2;
   }
   .modal-slider-btn {
     @apply absolute top-1/2 -translate-y-1/2 z-20 p-2 px-1 bg-greyMed1  hover:bg-greyMed2 active:bg-white transition-all rounded-sm text-white;

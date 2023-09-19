@@ -18,9 +18,7 @@ const ModalFacility = (props: Props) => {
   } else {
     return (
       <div className="modal-phone md:modal-lg p-5 pt-0 md:pt-5">
-        <h3 className=" col-span-2 font-normal mb-2 w-full  sticky top-0 h-12 bg-white py-2">
-          {facility.title}
-        </h3>
+        <h3 className=" modal-title">{facility.title}</h3>
         <button className="absolute top-2 right-4" onClick={() => closeModal()}>
           <FontAwesomeIcon icon={faClose} />
         </button>
