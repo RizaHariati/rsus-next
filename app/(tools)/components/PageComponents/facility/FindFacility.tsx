@@ -1,5 +1,5 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMaximize, faMinimize } from "@fortawesome/free-solid-svg-icons";
@@ -8,6 +8,7 @@ import { enterOpacity } from "@/app/(tools)/framervariants/variants";
 import { FacilityType } from "@/app/(tools)/types";
 import dataFacility from "@/app/(tools)/data/data_facility.json";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import Image from "next/image";
 
 type Props = {};
 
@@ -16,15 +17,26 @@ const FindFacility = () => {
   const [resize, setResize] = useState(true);
   const [keyword, setKeyword] = useState<string>("");
   const [fasList, setfasList] = useState<FacilityType[]>([]);
-
+  const [windowIsBig, setwindowIsBig] = useState<boolean>(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     setKeyword(e.target.value);
     const filterPoli = dataFacility.filter((itemFas) =>
-      itemFas.title.toLowerCase().includes(e.target.value)
+      itemFas.title.toLowerCase().includes(e.target.value.toLowerCase())
     );
     setfasList(filterPoli);
   };
+
+  useEffect(() => {
+    if (!typeof document) return;
+    else {
+      if (window.innerWidth > 500) {
+        setwindowIsBig(true);
+      } else {
+        setwindowIsBig(false);
+      }
+    }
+  }, []);
 
   const findFacility = (fas: FacilityType) => {
     if (fasList.length < 2) {
@@ -36,10 +48,12 @@ const FindFacility = () => {
       behavior: "smooth",
     });
   };
+
   return (
     <motion.div
-      drag
+      drag={windowIsBig}
       variants={enterOpacity}
+      style={{ touchAction: "auto" }}
       initial="initial"
       animate="animate"
       className={resize ? "find-facility-big" : " find-facility-small"}
@@ -70,29 +84,56 @@ const FindFacility = () => {
           />
         </div>
       </div>
-      {keyword && fasList.length > 0 && (
-        <div
-          className={
-            resize
-              ? "custom-scrollbar gap-2 h-fit max-h-28 md:max-h-52 transition-all"
-              : "custom-scrollbar scrollbar-none gap-2 h-0 transition-all "
-          }
-        >
-          {fasList.map((fas) => {
-            return (
-              <button
-                onClick={() => {
-                  findFacility(fas);
-                }}
-                key={fas.id}
-                className="active-input mt-1 md:mt-2 h-10 "
-              >
-                <p> {fas.title}</p>
-              </button>
-            );
-          })}
-        </div>
-      )}
+      <div className="h-full w-full p-2">
+        {!keyword && (
+          <div className="w-full h-full overflow-hidden flex-center-center">
+            <Image
+              rel="preload"
+              placeholder="empty"
+              src={`/images/pages/sorry.jpg`}
+              alt="sorry"
+              height={200}
+              width={200}
+              className="object-center object-cover h-full w-auto overflow-hidden rounded-sm"
+              loading="lazy"
+            />
+          </div>
+        )}
+        {keyword && fasList.length > 0 && (
+          <div
+            className={
+              resize
+                ? "custom-scrollbar gap-2 h-fit max-h-28 md:max-h-44 transition-all"
+                : "custom-scrollbar scrollbar-none gap-2 h-0 transition-all "
+            }
+          >
+            {fasList.map((fas) => {
+              return (
+                <button
+                  onClick={() => {
+                    findFacility(fas);
+                  }}
+                  key={fas.id}
+                  className="active-input mt-1 md:mt-2 h-10 "
+                >
+                  <p> {fas.title}</p>
+                </button>
+              );
+            })}
+          </div>
+        )}
+        {keyword && fasList.length < 1 && (
+          <div
+            className={
+              resize
+                ? "custom-scrollbar gap-2 h-fit max-h-28 md:max-h-52 transition-all"
+                : "custom-scrollbar scrollbar-none gap-2 h-0 transition-all "
+            }
+          >
+            <h4>Tidak ditemukan fasilitas dengan kata kunci tersebut </h4>
+          </div>
+        )}
+      </div>
     </motion.div>
   );
 };

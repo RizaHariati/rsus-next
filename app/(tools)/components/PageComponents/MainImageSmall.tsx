@@ -44,7 +44,7 @@ const MainImageSmall = ({ img, title, description }: Props) => {
         <motion.h1
           key="small-image-title"
           variants={enterTopChildren}
-          className="z-30 text-white text-center w-full left-0 bottom-1/3 leading-6 tracking-[5px] absolute  font-light uppercase"
+          className="z-40 text-white text-center w-full left-0 bottom-1/3 leading-6 tracking-[5px] absolute  font-light uppercase"
         >
           {title}
         </motion.h1>

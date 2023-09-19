@@ -41,7 +41,7 @@
     @apply modal w-modal_md;
   }
   .modal-phone {
-    @apply modal w-[98%] overflow-hidden standard-border rounded-md top-1/2 -translate-y-1/2;
+    @apply modal w-[95%] overflow-y-scroll standard-border rounded-md md:top-1/2 top-1/4 -translate-y-1/4 md:-translate-y-1/2 max-h-[calc(100%-136px)] scrollbar-none;
   }
   .modal-slider-btn {
     @apply absolute top-1/2 -translate-y-1/2 z-20 p-2 px-1 bg-greyMed1  hover:bg-greyMed2 active:bg-white transition-all rounded-sm text-white;
@@ -90,13 +90,36 @@
   .gender-selection-closed {
     @apply gender-selection h-0 border-none gap-0 p-0;
   }
+  /* ----------------------------- FACILITY ---------------------------- */
   .find-facility {
-    @apply relative z-40 bg-white top-0 md:top-1/4 md:right-16  standard-border p-0 md:p-3 md:fixed transition-all  h-fit flex flex-col;
+    @apply relative z-40 bg-white top-0 md:top-1/4 md:right-16  standard-border p-3 md:absolute transition-all  h-fit flex flex-col;
   }
   .find-facility-small {
     @apply find-facility  w-[250px] h-10 shadow-md shadow-greyDrk;
   }
   .find-facility-big {
-    @apply find-facility w-full md:w-[450px] h-fit md:shadow-md md:shadow-greyDrk;
+    @apply find-facility w-full md:w-[450px] h-1/4 md:h-fit md:shadow-md md:shadow-greyDrk;
+  }
+  .facility-unit-container {
+    @apply flex flex-col md:flex-row items-center justify-start md:justify-between bg-white hover:bg-greyLit rounded-sm overflow-hidden border border-white hover:border-greyBorder transition-all opacity-100 hover:opacity-50 gap-1 md:gap-2 cursor-pointer p-1 w-full  place-items-center;
+  }
+
+  .facility-unit-container-wide {
+    @apply facility-unit-container w-1/2 mx-auto col-span-2 group-hover:opacity-50;
+  }
+  .facility-unit-img-container {
+    @apply standard-border h-24 w-24 overflow-hidden rounded-sm md:h-28 md:w-28;
+  }
+  .facility-unit-img {
+    @apply object-center object-cover h-full w-full;
+  }
+  .facility-unit-info {
+    @apply pt-0 md:pt-3 text-center md:text-left w-full md:w-[80%];
+  }
+  .facility-unit-title {
+    @apply mb-1 tracking-normal md:tracking-[2px] text-center md:text-left w-full;
+  }
+  .facility-unit-description {
+    @apply body-3 leading-5 hidden md:block;
   }
 }

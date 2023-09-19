@@ -108,12 +108,14 @@ const BottomNavComponents = (props: Props) => {
         </a>
       </div>
 
-      <BottomNavContent>
-        {menu_id === "darurat" && <DaruratContent />}
-        {menu_id === "login" && <LoginFormContent />}
-        {menu_id === "profile" && <PatientProfileContent />}
-        {menu_id === "antrian" && <MenuAntrianContent />}
-      </BottomNavContent>
+      {menu_id !== "main-menu" && (
+        <BottomNavContent>
+          {menu_id === "darurat" && <DaruratContent />}
+          {menu_id === "login" && <LoginFormContent />}
+          {menu_id === "profile" && <PatientProfileContent />}
+          {menu_id === "antrian" && <MenuAntrianContent />}
+        </BottomNavContent>
+      )}
     </div>
   );
 };

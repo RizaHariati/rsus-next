@@ -17,12 +17,14 @@ const ModalFacility = (props: Props) => {
     return <div></div>;
   } else {
     return (
-      <div className="modal-lg p-5">
-        <h3 className=" col-span-2 font-normal mb-2 ">{facility.title}</h3>
+      <div className="modal-phone md:modal-lg p-5 pt-0 md:pt-5">
+        <h3 className=" col-span-2 font-normal mb-2 w-full  sticky top-0 h-12 bg-white py-2">
+          {facility.title}
+        </h3>
         <button className="absolute top-2 right-4" onClick={() => closeModal()}>
           <FontAwesomeIcon icon={faClose} />
         </button>
-        <section className="bg-white border-none grid grid-cols-2 w-full gap-5 ">
+        <section className="bg-white border-none grid grid-cols-1 md:grid-cols-2 w-full gap-5  ">
           <div className="w-full body-3 flex flex-col gap-5 leading-5">
             <div>
               <p className="btn-3-bold">Deskripsi Alat</p>
@@ -48,7 +50,7 @@ const ModalFacility = (props: Props) => {
               </div>
             )}
           </div>
-          <div className=" h-[400px] w-fit overflow-hidden rounded-sm">
+          <div className=" w-full aspect-square md:h-[400px] md:w-fit overflow-hidden rounded-sm order-first md:order-none">
             <Image
               rel="preload"
               src={`/images/pelayanan-fasilitas/${facility.img}.jpg`}
@@ -56,7 +58,7 @@ const ModalFacility = (props: Props) => {
               height={400}
               width={500}
               placeholder="empty"
-              className="object-center object-cover w-full h-auto rounded-sm aspect-[5/4]"
+              className="object-center object-cover w-full h-full rounded-sm aspect-[5/4]"
               priority
             />
           </div>

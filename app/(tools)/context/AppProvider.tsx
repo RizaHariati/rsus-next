@@ -28,6 +28,7 @@ export const AppProvider = ({ children }: Props) => {
   const [showFooter, setShowFooter] = useState(false);
   const toggleMenuNavbar = (id: string | null) => {
     dispatch({ type: "TOGGLE_MENU", payload: id });
+    dispatch({ type: "CLOSE_MODAL", payload: "" });
   };
 
   const openModal = (modalTitle: string, modalValue: any) => {

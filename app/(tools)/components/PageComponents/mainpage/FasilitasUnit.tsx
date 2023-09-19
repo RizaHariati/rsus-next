@@ -13,9 +13,9 @@ const FasilitasUnit = ({ facility }: Props) => {
     <button
       key={facility.id}
       onClick={() => openModal("facility", facility)}
-      className=" grid grid-cols-7 bg-white hover:bg-greyLit rounded-sm overflow-hidden border border-white hover:border-greyBorder transition-all opacity-100 hover:opacity-50 gap-1 md:gap-2 cursor-pointer "
+      className=" facility-unit-container group"
     >
-      <div className=" col-span-full md:col-span-2 standard-border h-28 md:h-36 w-full flex items-center justify-center ">
+      <div className=" facility-unit-img-container  ">
         <Image
           rel="preload"
           placeholder="empty"
@@ -23,14 +23,14 @@ const FasilitasUnit = ({ facility }: Props) => {
           alt={facility.img}
           height={200}
           width={200}
-          className="object-center object-cover h-full w-auto overflow-hidden rounded-sm"
+          className="facility-unit-img"
           loading="lazy"
         />
       </div>
-      <div className=" col-span-full md:col-span-5 pt-0 md:pt-3 text-center md:text-left ">
-        <h4 className=" mb-2 text-center md:text-left  ">{facility.title}</h4>
-        <p className="body-3 leading-5 hidden md:block">
-          {facility.description.slice(0, 200)}... (lanjut)
+      <div className=" facility-unit-info ">
+        <h4 className=" facility-unit-title  ">{facility.title}</h4>
+        <p className="facility-unit-description">
+          {facility.description.slice(0, 130)}... (lanjut)
         </p>
       </div>
     </button>
@@ -45,9 +45,9 @@ export const FasilitasUnitwide = ({ facility }: Props) => {
     <button
       key={facility.id}
       onClick={() => openModal("facility", facility)}
-      className=" col-span-2 w-1/2 mx-auto grid grid-cols-7 bg-white hover:bg-greyLit rounded-sm overflow-hidden border border-white hover:border-greyBorder transition-all opacity-100 hover:opacity-50 gap-2 cursor-pointer "
+      className=" facility-unit-container-wide group"
     >
-      <div className=" col-span-full md:col-span-2 standard-border h-28 md:h-36 w-full flex items-center justify-center">
+      <div className=" facility-unit-img-container ">
         <Image
           rel="preload"
           placeholder="empty"
@@ -55,15 +55,13 @@ export const FasilitasUnitwide = ({ facility }: Props) => {
           alt={facility.img}
           height={200}
           width={200}
-          className="object-center object-cover h-full w-auto overflow-hidden rounded-sm"
+          className="facility-unit-img"
           loading="lazy"
         />
       </div>
-      <div className="col-span-full md:col-span-5 pt-0 md:pt-3 text-center md:text-left">
-        <h4 className=" mb-2 tracking-normal text-center md:text-left">
-          {facility.title}
-        </h4>
-        <p className="body-3 leading-5 hidden md:block">
+      <div className="facility-unit-info ">
+        <h4 className=" facility-unit-title ">{facility.title}</h4>
+        <p className="facility-unit-description">
           {facility.description.slice(0, 200)}... (lanjut)
         </p>
       </div>

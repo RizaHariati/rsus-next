@@ -38,7 +38,7 @@ const MainPage = (props: Props) => {
       </section>
       <KegiatanRSUS />
       <KunjungiKami />
-      <section className="relative h-[calc(100vh-136px)] md:h-[calc(100vh-56px)]">
+      <section className="relative h-[calc(100vh-136px)] md:h-full flex-center-center ">
         <FasilitasGroup
           facilityTitle="fasilitas dan klinik unggulan"
           facilityGroup={dataFacility.filter(
@@ -47,7 +47,7 @@ const MainPage = (props: Props) => {
         />
         <Link
           href="/facility"
-          className="hidden md:block  text-greenUrip animate-pulse w-fit h-fit rounded-full absolute bottom-14 right-24 z-10"
+          className="hidden md:block  text-greenUrip animate-pulse w-fit h-fit rounded-full absolute bottom-24 right-24 z-10"
         >
           <FontAwesomeIcon icon={faArrowRight} className="text-4xl" />
           <p className="btn-3-bold"> Lebih </p>

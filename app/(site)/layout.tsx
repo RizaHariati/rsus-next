@@ -47,7 +47,10 @@ export default function RootLayout({
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
       </Head>
-      <body className={`${nunito.variable} ${oswald.variable}`}>
+      <body
+        className={`${nunito.variable} ${oswald.variable}`}
+        style={{ touchAction: "auto" }}
+      >
         <AppProvider>
           <Navbar />
           <LayoutWrapper>{children}</LayoutWrapper>
