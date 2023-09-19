@@ -80,7 +80,7 @@ const SingleTestGroup = ({ item, tests }: Props) => {
         className={
           labContent !== item
             ? "h-0 overflow-hidden w-full transition-all flex flex-col gap-2"
-            : "h-fit overflow-hidden w-full transition-all flex flex-col gap-2"
+            : "h-fit overflow-hidden w-full transition-all flex flex-col gap-2 "
         }
       >
         {tests.map((labItem) => {

@@ -130,6 +130,16 @@ export const enterTop = {
       stiffness: 30,
     },
   },
+  exit: {
+    opacity: 0,
+    y: "-100%",
+    transition: {
+      duration: 0.6,
+      staggerChildren: 0.2,
+      type: "spring",
+      stiffness: 30,
+    },
+  },
 };
 
 export const enterTopChildren = {

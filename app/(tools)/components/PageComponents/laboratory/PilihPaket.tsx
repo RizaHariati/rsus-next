@@ -11,27 +11,24 @@ type Props = {};
 
 const PilihPaket = (props: Props) => {
   return (
-    <section
-      id="paket"
-      className=" h-fit w-full z-0  mt-14 bg-white snap-start  "
-    >
+    <section id="paket" className=" h-fit w-full z-0  md:snap-start  bg-white ">
       <motion.h2
         variants={enterTitleVariants}
         initial="initial"
         whileInView="animate"
         viewport={{ once: true }}
-        className="sticky top-0 pt-16 pb-2 bg-white w-full border-b border-b-greyBorder"
+        className="sticky top-0 py-2 bg-white w-full border-b border-b-greyBorder"
       >
         pilihan Paket Laboratorium
       </motion.h2>
-      <div className="w-modal_lg mx-auto bg-white py-10">
-        <div className="grid grid-cols-2 gap-5">
-          <div className="flex flex-col gap-4 w-full pt-2">
+      <div className=" max-w-4xl mx-auto bg-white pb-10 p-3 md:py-10 md:px-5">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-4">
+          <div className="flex flex-col  gap-2 md:gap-4 w-full md:pt-2">
             {dataPaketKesehatan.slice(0, 3).map((item: PaketLabType) => {
               return <PaketItem item={item} key={item.id} />;
             })}
           </div>
-          <div className=" h-72 w-full overflow-hidden">
+          <div className="h-52 md:h-72 w-full overflow-hidden">
             <Image
               rel="preload"
               placeholder="empty"
@@ -43,7 +40,7 @@ const PilihPaket = (props: Props) => {
             />
           </div>
         </div>
-        <div className="w-full flex flex-col gap-4  pt-4 ">
+        <div className="w-full flex flex-col  gap-2 md:gap-4  pt-4 ">
           {dataPaketKesehatan.slice(3).map((item) => {
             return <PaketItem item={item} key={item.id} />;
           })}

@@ -110,7 +110,7 @@
   }
 
   .button-lg {
-    @apply btn-2 bg-white bg-opacity-100 p-5 py-2 rounded-sm w-72 hover:bg-opacity-70 transition-all;
+    @apply btn-3-bold md:btn-2-bold bg-white bg-opacity-100 p-1 md:p-5 md:py-2 rounded-sm w-72 hover:bg-opacity-70 transition-all standard-border h-14;
   }
   .button-greenUrip {
     @apply btn-2-bold w-40 bg-greenUrip border border-greenUrip hover:bg-white text-white hover:text-greenUrip  rounded-sm transition-all active:bg-greenUripOpacity;

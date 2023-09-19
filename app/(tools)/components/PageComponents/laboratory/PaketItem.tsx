@@ -27,7 +27,7 @@ const PaketItem = ({ item }: ItemProps) => {
       }
       onClick={() => openModal("paketLab", item)}
     >
-      <div className="w-14 h-14 overflow-hidden  aspect-square">
+      <div className="w-10 h-10 md:w-14 md:h-14 overflow-hidden  aspect-square">
         <Image
           rel="preload"
           placeholder="empty"
@@ -35,23 +35,29 @@ const PaketItem = ({ item }: ItemProps) => {
           alt={item.img}
           width={80}
           height={80}
-          className="object-center object-fit w-full h-auto  aspect-square"
+          className="object-center object-cover w-full h-auto  "
           loading="lazy"
         />
       </div>
       <div className="mr-auto ">
         <h4 className="text-left">{item.title}</h4>
-        <div className="flex w-fit text-left gap-2">
+        <div className="flex flex-col md:flex-row w-fit text-left md:gap-2">
           {item.price.map((item, index) => {
             const { type, value } = item;
             return (
               <div key={index}>
                 {type === "all" && value > 0 && (
-                  <p>Rp. {value.toLocaleString()}</p>
+                  <p className="body-3">Rp. {value.toLocaleString()}</p>
                 )}
-                {type === "pria" && <p>Pria : Rp. {value.toLocaleString()}</p>}
+                {type === "pria" && (
+                  <p className="body-3 leading-4">
+                    Pria : Rp. {value.toLocaleString()}
+                  </p>
+                )}
                 {type === "wanita" && (
-                  <p>Wanita : Rp. {value.toLocaleString()}</p>
+                  <p className="body-3 leading-4">
+                    Wanita : Rp. {value.toLocaleString()}
+                  </p>
                 )}
               </div>
             );
@@ -60,7 +66,7 @@ const PaketItem = ({ item }: ItemProps) => {
       </div>
       <button
         onClick={() => openModal("paketLab", item)}
-        className="standard-border p-1 pl-7  transition-all  hover:animate-pulse flex items-center justify-center"
+        className="standard-border p-1 pl-7  transition-all  hover:animate-pulse hidden md:flex-center-center"
       >
         <FontAwesomeIcon icon={faChevronRight} className="h-3" />
       </button>
