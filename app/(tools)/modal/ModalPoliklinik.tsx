@@ -24,21 +24,24 @@ const ModalPoliklinik = (props: Props) => {
     return <div></div>;
   } else {
     return (
-      <div className="modal-lg p-5 px-10 overflow-hidden bg-white">
-        <h3 className=" col-span-2  w-full border-b border-greyBorder  font-light mb-4 bg-white">
+      <div className="modal-phone md:modal-lg p-3 md:p-5 pt-0 md:pt-5">
+        <h3 className=" col-span-2 font-normal mb-2 w-full  sticky top-0 h-14 bg-white py-1 px-4 z-20">
           {poliInfo.title}
         </h3>
 
-        <button className="absolute top-2 right-4" onClick={() => closeModal()}>
+        <button
+          className="absolute top-2 right-4 z-30"
+          onClick={() => closeModal()}
+        >
           <FontAwesomeIcon icon={faClose} />
         </button>
         <motion.div
           variants={enterTop}
           initial="initial"
           whileInView="animate"
-          className="w-full  grid grid-cols-3 gap-5 h-full body-3  "
+          className="bg-white border-none grid grid-cols-1 md:grid-cols-3 w-full gap-2 h-1/2  "
         >
-          <div className=" col-span-2 flex flex-col gap-5 w-full custom-scrollbar h-64">
+          <div className=" col-span-2 flex flex-col md:gap-5 w-full custom-scrollbar h-full ">
             <div>
               {poliInfo.description.map((item, index) => {
                 return <p key={index}>{item}</p>;
@@ -65,7 +68,7 @@ const ModalPoliklinik = (props: Props) => {
             />
           </div>
         </motion.div>
-        <div className=" w-full flex items-end justify-between gap-3 pt-5 ">
+        <div className=" w-full flex flex-col md:flex-row items-center md:items-end justify-between gap-3 pt-5 h-full md:h-1/2 ">
           <FindSupportingDoctors poliInfo={poliInfo} />
           <div className=" flex gap-2">
             <button
@@ -140,7 +143,7 @@ const FindSupportingDoctors = ({ poliInfo }: FacilityProps) => {
         <span className="font-medium text-greenUrip">{poliInfo.title}</span>
         &nbsp; kami :
       </p>
-      <div className="w-full flex gap-5 ">
+      <div className="w-full grid grid-cols-3 md:flex gap-5 ">
         {getDoctorPoli(poliInfo.id).map((item: DoctorType, index: number) => {
           const image: string =
             item.gender === 1 ? "male-" + (index + 1) : "female-" + (index + 1);

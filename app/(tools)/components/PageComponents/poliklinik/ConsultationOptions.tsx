@@ -2,7 +2,10 @@
 import React from "react";
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { enterOpacity } from "@/app/(tools)/framervariants/variants";
+import {
+  enterLeftVariant,
+  enterOpacity,
+} from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 import Link from "next/link";
@@ -10,20 +13,35 @@ import Link from "next/link";
 type Props = {};
 
 const ConsultationOptions = () => {
+  return (
+    <motion.div
+      key="consultation"
+      variants={enterOpacity}
+      initial="initial"
+      animate="animate"
+      className="hidden md:block absolute z-20 bg-white top-20 w-[450px] right-20 h-fit standard-border p-2 "
+    >
+      <ConsultationOptionsContent />
+    </motion.div>
+  );
+};
+
+export default ConsultationOptions;
+
+export const ConsultationOptionsContent = () => {
   const { toggleMenuNavbar, openModal } = useGlobalContext();
   return (
-    <div className="absolute z-20 bg-white top-1/4 w-[450px] right-16 h-fit standard-border p-2">
-      <p className="text-center btn-3-bold">Buat janji temu dokter</p>
-      <p className="text-center body-3">
+    <>
+      <p className="text-center btn-3-bold order-1">Buat janji temu dokter</p>
+      <p className="text-center body-3 order-3">
         Selain konsultasi tatap muka, RS Urip Sumoharjo menyediakan pelayanan
-        konsultasi Doktor jarak jauh, TeleMedicine awal lewat WhatsApp dan Zoom
-        untuk klinik tertentu. Anda bisa melakukan pendaftaran online.
+        konsultasi Doktor jarak jauh, TeleMedicine awal lewat WhatsApp.
       </p>
       <motion.div
         variants={enterOpacity}
         initial="initial"
         animate="animate"
-        className="flex gap-2"
+        className="flex gap-2 order-2"
       >
         <Link
           href="/consultation"
@@ -45,7 +63,7 @@ const ConsultationOptions = () => {
             height={100}
             width={100}
             alt="doctor"
-            className="h-14 w-auto group-hover:opacity-20 transition-all"
+            className="h-14 w-14 group-hover:opacity-20 transition-all"
             loading="lazy"
           />
           <p className=" font-nunito uppercase font-normal text-[16px] tracking-wide ">
@@ -80,8 +98,6 @@ const ConsultationOptions = () => {
           </p>
         </Link>
       </motion.div>
-    </div>
+    </>
   );
 };
-
-export default ConsultationOptions;

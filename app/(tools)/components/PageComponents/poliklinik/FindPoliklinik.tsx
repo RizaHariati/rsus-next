@@ -9,7 +9,7 @@ type Props = {
 
 const FindPoliklinik = ({ keyword, handleChange, handleSubmit }: Props) => {
   return (
-    <div className=" z-20 bg-white w-full h-24     p-2 transition-all  flex  flex-col">
+    <div className=" z-20 bg-white w-full h-24  p-2 transition-all  flex  flex-col">
       <p className="btn-3-bold">Cari Poliklinik</p>
       <form
         onSubmit={(e) => handleSubmit(e)}

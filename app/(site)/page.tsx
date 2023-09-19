@@ -12,7 +12,7 @@ export default function Home() {
   }, []);
 
   return (
-    <main className="h-screen w-full bg-greenUripOpacity flex-center-center flex-col">
+    <main className="h-screen w-full bg-greenUripOpacity flex-center-center flex-col p-5 text-center">
       <h1>Selamat Datang di Urip Sumoharjo</h1>
     </main>
   );

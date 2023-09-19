@@ -7,6 +7,7 @@ import { groupCategoryFacility } from "../../(tools)/utils/groupCategoryFacility
 import FasilitasGroup from "@/app/(tools)/components/PageComponents/mainpage/FasilitasGroup";
 import BackToTop from "@/app/(tools)/components/BackToTop";
 import MainImageSmall from "@/app/(tools)/components/PageComponents/MainImageSmall";
+import PageGreenAccent from "@/app/(tools)/components/PageGreenAccent";
 
 type Props = {};
 
@@ -30,13 +31,7 @@ const Facility = (props: Props) => {
           title={unit.title}
           description={unit.description}
         />
-        <div className="hidden md:block h-screen w-3/12 bg-greenUrip relative z-10  overflow-hidden">
-          <div
-            className="absolute h-full w-full top-0 left-4 z-10 bg-[length:200px_200px]
-          bg-pattern  mix-blend-multiply opacity-30"
-          ></div>
-          <div className="w-4 h-full bg-accent1 absolute left-0 top-0"></div>
-        </div>
+        <PageGreenAccent />
 
         <p className="h-1/4 p-2 text-center leading-normal md:hidden">
           {unit.description}
