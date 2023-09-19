@@ -10,7 +10,7 @@
     @apply h-full w-full md:h-fit md:w-[400px] bg-white z-10 md:z-40 absolute top-0 md:top-1/2 md:border border-greyBorder rounded-sm shadow-sm  md:mt-7 left-0 md:left-20  md:flex  p-3 flex-col;
   }
   .floating-link {
-    @apply bg-white w-full rounded-sm border border-greyBorder flex-center-center flex-col hover:bg-greyLit transition-all text-center h-24;
+    @apply bg-white w-full rounded-sm border border-greyBorder flex-center-center flex-col hover:bg-greyLit transition-all text-center h-fit overflow-hidden p-2;
   }
   .darken-filter {
     @apply z-20 bg-gradient-to-b from-stone-500 from-0% via-white via-40% to-stone-500 to-100% opacity-10 absolute top-0 left-0 h-full w-full mix-blend-multiply;

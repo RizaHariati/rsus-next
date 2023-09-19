@@ -45,7 +45,7 @@ export const ConsultationOptionsContent = () => {
       >
         <Link
           href="/consultation"
-          className="floating-link group p-1"
+          className="floating-link group p-1 h-24"
           onClick={() => {
             toggleMenuNavbar(null);
             openModal(
@@ -71,7 +71,7 @@ export const ConsultationOptionsContent = () => {
           </p>
         </Link>
         <Link
-          className="floating-link group p-1"
+          className="floating-link group p-1 h-24"
           href="/consultation"
           onClick={() => {
             toggleMenuNavbar(null);

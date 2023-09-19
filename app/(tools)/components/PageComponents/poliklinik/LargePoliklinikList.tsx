@@ -16,8 +16,8 @@ const LargePoliklinikList = (props: Props) => {
       <motion.div
         variants={enterTop}
         initial="initial"
-        whileInView="animate"
-        viewport={{ once: true }}
+        animate="animate"
+        // viewport={{ once: true }}
       >
         {dataPoliklinik.map((item) => {
           return (

@@ -18,7 +18,7 @@ const MainImageSmall = (props: Props) => {
         key={pathname}
         variants={enterTop}
         initial="initial"
-        whileInView="animate"
+        animate="animate"
         // viewport={{ once: true }}
         className=" h-1/2 w-full overflow-hidden rounded-b-lg relative z-10 md:hidden bg-greenUrip"
       >
