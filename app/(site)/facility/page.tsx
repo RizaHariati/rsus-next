@@ -6,8 +6,8 @@ import dataFacility from "@/app/(tools)/data/data_facility.json";
 import { groupCategoryFacility } from "../../(tools)/utils/groupCategoryFacility";
 import FasilitasGroup from "@/app/(tools)/components/PageComponents/mainpage/FasilitasGroup";
 import BackToTop from "@/app/(tools)/components/BackToTop";
-import MainImageSmall from "@/app/(tools)/components/PageComponents/MainImageSmall";
 import PageGreenAccent from "@/app/(tools)/components/PageGreenAccent";
+import MainImageSmallB from "@/app/(tools)/components/PageComponents/MainImageSmallB";
 
 type Props = {};
 
@@ -25,7 +25,7 @@ const Facility = (props: Props) => {
         id="facility-top"
         className=" h-[calc(100vh-32px)] md:h-full md:min-h-screen w-full z-0 overflow-hidden flex flex-col md:flex-row relative  md:bg-accent1 bg-white snap-none  md:snap-center pb-2"
       >
-        <MainImageSmall img={unit.img} title={unit.title} />
+        <MainImageSmallB img={unit.img} title={unit.title} />
         <MainImageAnimatedLeft
           img={unit.img}
           title={unit.title}

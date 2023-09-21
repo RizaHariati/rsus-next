@@ -108,7 +108,7 @@ const BottomNavComponents = (props: Props) => {
         </a>
       </div>
 
-      {menu_id !== "main-menu" && (
+      {menu_id !== "main-menu" && menu_id !== "nav-notification" && (
         <BottomNavContent>
           {menu_id === "darurat" && <DaruratContent />}
           {menu_id === "login" && <LoginFormContent />}

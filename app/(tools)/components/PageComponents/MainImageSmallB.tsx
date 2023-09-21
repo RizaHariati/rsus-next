@@ -15,7 +15,7 @@ type Props = {
   description?: string;
 };
 
-const MainImageSmall = ({ img, title, description }: Props) => {
+const MainImageSmallB = ({ img, title, description }: Props) => {
   const pathname = usePathname();
   return (
     <AnimatePresence>
@@ -81,4 +81,4 @@ const MainImageSmall = ({ img, title, description }: Props) => {
   );
 };
 
-export default MainImageSmall;
+export default MainImageSmallB;

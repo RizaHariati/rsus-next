@@ -8,7 +8,7 @@ import PilihSatuan from "@/app/(tools)/components/PageComponents/laboratory/Pili
 import BackToTop from "@/app/(tools)/components/BackToTop";
 import Keranjang from "@/app/(tools)/components/PageComponents/laboratory/Keranjang";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import MainImageSmall from "@/app/(tools)/components/PageComponents/MainImageSmall";
+import MainImageSmall from "@/app/(tools)/components/PageComponents/MainImageSmallB";
 import PageGreenAccent from "@/app/(tools)/components/PageGreenAccent";
 type Props = {};
 const unit = {

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import {
   enterLeftVariant,
   enterOpacity,
+  enterTop,
 } from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
@@ -16,10 +17,10 @@ const ConsultationOptions = () => {
   return (
     <motion.div
       key="consultation"
-      variants={enterOpacity}
+      variants={enterTop}
       initial="initial"
       animate="animate"
-      className="hidden md:block absolute z-20 bg-white top-20 w-[450px] right-20 h-fit standard-border p-2 "
+      className="hidden md:block absolute z-20 bg-white bottom-10 w-[450px] right-10 h-fit standard-border p-2 "
     >
       <ConsultationOptionsContent />
     </motion.div>

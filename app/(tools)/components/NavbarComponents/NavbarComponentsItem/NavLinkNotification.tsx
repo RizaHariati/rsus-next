@@ -68,13 +68,13 @@ const NotificationLogin = () => {
                 : "notification-container  "
             }
           >
-            <div className="flex-center-left px-5">
+            <div className="flex-center-left ">
               <div className=" scale-50 origin-left">
                 <MainLogoImage />
               </div>
               <h5>Notifikasi</h5>
             </div>
-            <div className=" h-72 overflow-y-scroll scrollbar-none scrollbar-track-greyLit scrollbar-thumb-greyBorder border-y border-greyBorder px-5 pt-2">
+            <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none scrollbar-track-greyLit scrollbar-thumb-greyBorder standard-border border-greyBorder  p-2 ">
               {notification.map((notificationItem) => {
                 const findNotif: NotificationLibraryType =
                   dataNotification.find(

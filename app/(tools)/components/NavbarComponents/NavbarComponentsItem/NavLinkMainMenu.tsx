@@ -44,18 +44,32 @@ const NavLinkMainMenu = (props: Props) => {
         className={
           menu_id != "main-menu"
             ? "main-menu-container-hidden "
-            : "main-menu-container  "
+            : "main-menu-container "
         }
       >
         <div className="p-3 w-full h-full flex items-center gap-2 justify-end ">
-          <FontAwesomeIcon
-            icon={faFacebook}
-            className="h-8 text-blue-600 hover:text-blue-700 transition-all"
-          />
-          <FontAwesomeIcon
-            icon={faInstagram}
-            className="h-8 text-fuchsia-700 hover:text-fuchsia-800 transition-all"
-          />
+          <a
+            key="facebook"
+            href="https://www.facebook.com/rs.sumoharjo"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon
+              icon={faFacebook}
+              className="h-8 text-blue-600 hover:text-blue-700 transition-all"
+            />
+          </a>
+          <a
+            key="instagram"
+            href="https://www.instagram.com/rs.uripsumoharjo.lampung/?hl=id"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <FontAwesomeIcon
+              icon={faInstagram}
+              className="h-8 text-fuchsia-700 hover:text-fuchsia-800 transition-all"
+            />
+          </a>
         </div>
         <div className="flex flex-col">
           {datamenu.map((menu: DataMenuType) => {
@@ -124,7 +138,7 @@ const SubMenu = ({ menu, toggleItem, itemId, link }: SubProps) => {
     state: { menu_id },
   } = useGlobalContext();
   return (
-    <div>
+    <div className=" ">
       <div className="bg-greyBorder h-fit flex items-center justify-end pl-2 relative ">
         <button
           id={menu.name}
@@ -133,7 +147,7 @@ const SubMenu = ({ menu, toggleItem, itemId, link }: SubProps) => {
           }}
           className={
             itemId != menu.name
-              ? "main-menu-item w-full"
+              ? "main-menu-item w-full transition-all "
               : "main-menu-item text-right w-10/12 transition-all"
           }
         >
@@ -151,7 +165,7 @@ const SubMenu = ({ menu, toggleItem, itemId, link }: SubProps) => {
           return (
             <div
               key={index}
-              className="bg-greyBorder h-12 flex items-center justify-center px-2"
+              className="bg-greyBorder h-12 flex items-center justify-center "
             >
               <Link
                 href={item.link ? item.link : link}
@@ -168,7 +182,7 @@ const SubMenu = ({ menu, toggleItem, itemId, link }: SubProps) => {
                     );
                   }
                 }}
-                className="text-[14px] main-menu-item pt-3 text-center "
+                className="text-[14px] main-menu-item h-full text-center pt-4 "
               >
                 {item.title}
               </Link>

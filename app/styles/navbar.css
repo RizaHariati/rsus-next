@@ -64,11 +64,11 @@
   }
 
   .main-menu-container {
-    @apply navbar-drop-container md:w-[450px] right-0 p-0 pb-4 top-14 md:top-16 shadow-sm shadow-greyMed2 rounded-b-md md:rounded-sm;
+    @apply navbar-drop-container w-full md:w-[450px] right-0 p-0 pb-4 top-[57px] md:top-16 shadow-sm shadow-greyMed2 rounded-none rounded-b-md md:rounded-sm;
   }
 
   .main-menu-container-hidden {
-    @apply navbar-drop-hidden w-[450px] right-0 p-0 pb-0 shadow-none;
+    @apply navbar-drop-hidden right-0 p-0 pb-0 shadow-none;
   }
   .menu-link-icon {
     @apply flex-top-left text-redBase w-full p-1;
@@ -85,14 +85,14 @@
   }
 
   .main-menu-item {
-    @apply btn-3 text-greyDrk font-normal hover:btn-3-bold hover:text-greyBorder transition-all w-full bg-white px-2 border-b border-b-greyBorder text-left h-12;
+    @apply btn-3 text-greyDrk font-normal hover:btn-3-bold hover:text-greyBorder transition-all w-full bg-white px-2 border-b border-b-greyBorder text-left h-12 leading-4 overflow-hidden;
   }
 
   .notification-container {
-    @apply navbar-drop-container md:w-modal_md right-0 origin-top px-0 pt-2 md:pt-0 top-14 md:top-12 rounded-b-md md:rounded-sm shadow-sm shadow-greyMed2;
+    @apply navbar-drop-container w-full md:w-modal_md right-0 origin-top p-2 md:p-5  top-[57px] md:top-12 rounded-none rounded-b-md md:rounded-sm shadow-sm shadow-greyMed2 h-fit;
   }
 
   .notification-container-hidden {
-    @apply navbar-drop-hidden md:w-modal_md right-0 origin-top pt-0 shadow-none;
+    @apply notification-container  pt-0 shadow-none  h-0 transition-all p-0 px-2 md:px-5 border-none;
   }
 }

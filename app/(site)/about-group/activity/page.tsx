@@ -11,7 +11,7 @@ type Props = {};
 const Activity = (props: Props) => {
   return (
     <div className="page-main-container h-fit bg-greyLit">
-      <div className=" grid grid-cols-4 w-full gap-10 h-fit relative p-3 md:p-14 pt-16 md:pt-0">
+      <div className=" grid grid-cols-4 w-full gap-10 h-fit relative p-3 md:p-14 pt-16 ">
         <section className="col-span-full md:col-span-3  h-full md:h-[calc(100vh-56px)] custom-scrollbar  scrollbar-none bg-greyLit gap-2 md:gap-5 flex flex-col">
           <h2 className=" text-left bg-greyLit tracking-[5px]">
             AKTIVITAS RS URIP SUMOHARJO

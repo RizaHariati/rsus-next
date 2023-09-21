@@ -81,8 +81,8 @@ const Team = (props: Props) => {
       </motion.div>
 
       <section
-        id="one"
-        className=" bg-greyLit h-fit w-full z-0 p-3 md:pt-10  md:p-14 pb-[150px]"
+        id="team-content"
+        className=" bg-greyLit h-fit min-h-screen w-full z-0 p-3 pt-10 md:p-14 pb-[150px]"
       >
         <h3 className="text-xl font-medium mb-2"> TIM RS URIP SUMOHARJO</h3>
         <p className=" w-full max-w-4xl body-2 text-greyDrk text-left md:text-right  font-light z-20 mx-auto">
