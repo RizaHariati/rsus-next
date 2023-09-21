@@ -57,6 +57,9 @@
   article {
     @apply bg-greyLit;
   }
+  mark {
+    @apply bg-white;
+  }
 }
 
 @layer components {
@@ -65,6 +68,10 @@
   }
   .h-screen-min-bottom {
     @apply h-[calc(100vh-80px)];
+  }
+
+  .h-screen-min-top {
+    @apply h-[calc(100vh-56px)];
   }
   .text-link {
     @apply cursor-pointer text-greyMed1 hover:text-greyDrk transition-all hover:font-bold tracking-[3px];

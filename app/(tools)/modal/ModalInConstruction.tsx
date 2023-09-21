@@ -19,7 +19,7 @@ const ModalInConstruction = (props: Props) => {
   }, []);
 
   return (
-    <div className="modal-md p-10 py-5 overflow-hidden bg-white h-[450px]">
+    <div className="modal-phone md:modal-md aspect-square md:h-[450px] ">
       <button className="absolute top-2 right-4" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
@@ -36,7 +36,7 @@ const Apology = () => {
       variants={enterOpacity}
       initial="initial"
       animate="animate"
-      className="bg-white flex flex-col gap-3 border-none h-full "
+      className="bg-white flex flex-col gap-3 border-none p-3"
     >
       <div className="w-full flex-center-center flex-col gap-2  standard-border p-2  transition-all cursor-pointer bg-greyLit m-auto">
         <h2>mohon maaf</h2>

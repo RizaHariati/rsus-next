@@ -38,7 +38,7 @@ const SelectDateIcon = ({ item, toggleKuota, handleToggle }: Props) => {
         handleToggle(item.id_hari);
         setDate(item.date);
       }}
-      className="flex-center-center flex-col standard-border gap-1 p-1 cursor-pointer bg-white hover:bg-greyLit transition-all"
+      className="flex-center-center flex-col standard-border gap-1 p-1 cursor-pointer bg-white hover:bg-greyLit transition-all w-20"
     >
       <p>
         {numberToDay.find((itemKonsul) => itemKonsul.id === item.id_hari)

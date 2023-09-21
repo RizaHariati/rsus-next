@@ -91,13 +91,13 @@ const ModalRegisterPassword = (props: Props) => {
   if (!newPatientPersonal) return <div></div>;
   else {
     return (
-      <div className="modal-md p-5 overflow-hidden bg-white h-fit">
-        <button className="absolute top-2 right-4" onClick={() => closeModal()}>
+      <div className="modal-phone md:modal-md ">
+        <button className="modal-close-btn" onClick={() => closeModal()}>
           <FontAwesomeIcon icon={faClose} />
         </button>
 
-        <div className="w-full flex-center-center flex-col gap-2 p-2  transition-all  m-auto">
-          <h4 className="tracking-[3px]">Cek Data dan Masukkan password</h4>
+        <div className="modal-title">
+          <h4 className="tracking-[3px]">Cek Data & Masukkan password</h4>
           <form
             className="w-full flex flex-col gap-2"
             onSubmit={(e) => handleSubmit(e)}

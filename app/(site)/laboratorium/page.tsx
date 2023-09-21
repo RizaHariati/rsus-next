@@ -26,7 +26,7 @@ const Laboratorium = (props: Props) => {
     <div className="page-main-container">
       {labCart.length > 0 && <Keranjang />}
       <section
-        id="zero"
+        id="laboratorium-top"
         className=" h-full md:min-h-screen w-full z-0 overflow-hidden flex flex-col md:flex-row relative  md:bg-accent1 bg-white snap-none  md:snap-center pb-2"
       >
         <MainImageSmall img={unit.img} title={unit.title} />
@@ -43,7 +43,7 @@ const Laboratorium = (props: Props) => {
           variants={enterOpacity}
           initial="initial"
           animate="animate"
-          className="h-1/4 p-2 md:h-fit  relative md:absolute pt-8 md:bottom-14 md:right-16 z-10 flex gap-2 md:gap-5"
+          className="h-1/4 p-2 md:h-fit  relative md:absolute pt-8 md:bottom-14 md:right-16 z-10 flex gap-2 md:gap-5 mt-5"
         >
           <button
             className="button-lg"
@@ -67,7 +67,7 @@ const Laboratorium = (props: Props) => {
       </section>
       <PilihPaket />
       <PilihSatuan />
-      <BackToTop />
+      <BackToTop sectionID="laboratorium-top" />
     </div>
   );
 };

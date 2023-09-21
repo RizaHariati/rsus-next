@@ -25,7 +25,7 @@ const AlertRegistrasiSukses = (props: Props) => {
   if (!newPatientPersonal) return <div></div>;
   else {
     return (
-      <div className="modal-md p-5 px-10 overflow-hidden bg-white">
+      <div className="modal-phone md:modal-md p-5 px-10 md:overflow-hidden bg-white">
         <button className="absolute top-2 right-4" onClick={() => closeAlert()}>
           <FontAwesomeIcon icon={faClose} />
         </button>

@@ -21,23 +21,18 @@ const ResultSpesialisasi = ({
   } = useGlobalContext();
 
   return (
-    <div className={modalTitle === "appointment" ? "h-40" : "h-64"}>
+    <div
+      className={
+        modalTitle === "appointment"
+          ? "h-40 custom-scrollbar standard-border  "
+          : "h-40 md:h-64 custom-scrollbar md:border-none standard-border "
+      }
+    >
       {!searchKeyword && consultationInfo.modal_img && (
-        <div className="w-full h-full  my-auto">
-          <Image
-            rel="preload"
-            placeholder="empty"
-            src={`/images/pages/${consultationInfo.modal_img}.jpg`}
-            alt={consultationInfo.modal_img}
-            width={400}
-            height={400}
-            className="w-auto h-full m-auto"
-            loading="lazy"
-          />
-        </div>
+        <ImageSearch consultationInfo={consultationInfo!} />
       )}
       {searchKeyword && specializationList.length > 0 && (
-        <div className="w-full h-full my-auto custom-scrollbar flex flex-col gap-2 px-2">
+        <div className="w-full h-full h-max-40 my-auto flex flex-col gap-2 px-2">
           <h4>Pilih satu spesialis/klinik</h4>
           {specializationList.map((item) => {
             return (
@@ -64,24 +59,13 @@ const ResultSpesialisasi = ({
         </div>
       )}
       {searchKeyword && specializationList.length < 1 && (
-        <div className="w-full h-full my-auto ">
+        <div className="w-full h-full h-max-40 my-auto ">
           <p className="btn-3-bold text-center">
             Tidak ditemukan Spesialisasi dengan kata kunci seperti itu
           </p>
 
           {consultationInfo.modal_img && (
-            <div className="w-full h-full my-auto">
-              <Image
-                rel="preload"
-                placeholder="empty"
-                src={`/images/pages/${consultationInfo.modal_img}.jpg`}
-                alt={consultationInfo.modal_img}
-                width={400}
-                height={400}
-                className="w-auto h-full m-auto"
-                loading="lazy"
-              />
-            </div>
+            <ImageSearch consultationInfo={consultationInfo!} />
           )}
         </div>
       )}
@@ -90,3 +74,26 @@ const ResultSpesialisasi = ({
 };
 
 export default ResultSpesialisasi;
+
+type ImageProps = {
+  consultationInfo: ConsultationMenuTypes;
+};
+
+const ImageSearch = ({ consultationInfo }: ImageProps) => {
+  return (
+    <div className="w-auto h-40 my-auto ">
+      {consultationInfo && (
+        <Image
+          rel="preload"
+          placeholder="empty"
+          src={`/images/pages/${consultationInfo.modal_img}.jpg`}
+          alt={consultationInfo.modal_img || "consul_img"}
+          width={400}
+          height={400}
+          className="w-auto h-40 m-auto"
+          loading="lazy"
+        />
+      )}
+    </div>
+  );
+};

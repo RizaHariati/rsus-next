@@ -3,8 +3,6 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { LabItemType, PaketLabType } from "../types";
-import Image from "next/image";
 import MainLogoImage from "../modal/MainLogoImage";
 
 type Props = {};
@@ -17,7 +15,7 @@ const AlertNotLogin = (props: Props) => {
   } = useGlobalContext();
 
   return (
-    <div className="modal-md p-5 px-10 overflow-hidden bg-white">
+    <div className="modal-phone md:modal-md  overflow-hidden bg-white">
       <button className="absolute top-2 right-4" onClick={() => closeAlert()}>
         <FontAwesomeIcon icon={faClose} />
       </button>

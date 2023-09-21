@@ -38,21 +38,18 @@ const ModalTelemedicine = (props: Props) => {
     setSpecializationList(list);
   };
   return (
-    <div className="modal-xl p-5 px-10 overflow-hidden bg-white">
-      <h3 className=" col-span-2  w-full border-b border-greyBorder  font-light mb-4 bg-white">
-        {consultationInfo.title}
-      </h3>
-
-      <button className="absolute top-2 right-4" onClick={() => closeModal()}>
+    <div className="modal-phone md:modal-xl ">
+      <h3 className=" modal-title">{consultationInfo.title}</h3>
+      <button className="modal-close-btn" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <div className="flex flex-col gap-3">
-        <section className="w-full grid grid-cols-2 bg-white border-none">
-          <mark className=" ">
+      <div className="flex flex-col gap-2">
+        <section className="w-full grid grid-cols-1 md:grid-cols-2 gap-5 bg-white border-none">
+          <mark className="h-full w-full ">
             <div>
               {consultationInfo.intro.map((item: string, index: number) => {
                 return (
-                  <p className="body-2" key={index}>
+                  <p className="body-3 md:body-2" key={index}>
                     {item}
                   </p>
                 );
@@ -83,8 +80,7 @@ const ModalTelemedicine = (props: Props) => {
           </mark>
         </section>
         <TelemedicineDoctor />
-        <section className=" w-full flex items-center justify-end gap-3 pt-5 bg-white border-none">
-          <button className="button-greenUrip">Pilih</button>
+        <section className=" w-full flex items-center justify-end gap-3 bg-white border-none ">
           <button
             className="button-greenUrip"
             onClick={() => {

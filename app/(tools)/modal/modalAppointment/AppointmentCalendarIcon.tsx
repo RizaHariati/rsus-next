@@ -28,18 +28,13 @@ const AppointmentCalendarIcon = ({}: Props) => {
   getHariOrder(doctorInfo.hari);
   return (
     <div>
-      <div className="flex standard-border  p-2 gap-2 ">
-        <div className="flex flex-col py-3 capitalize justify-between">
+      <div className="appointment-date-container ">
+        <div className="flex flex-col py-3 capitalize justify-between w-20 ">
           <p>Waktu</p>
           <p>kuota</p>
         </div>
         {/* Memasukkan pasien yang sudah terdaftar per hari */}
-        <div
-          className={
-            gridColumn.find((item) => item.length === doctorInfo.hari.length)
-              ?.class
-          }
-        >
+        <div className=" flex-center-center gap-1 ">
           {getHariOrder(doctorInfo.hari).map(
             (item: DoctorHariType, index: number) => {
               return (

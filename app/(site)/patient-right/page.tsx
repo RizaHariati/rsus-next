@@ -20,7 +20,7 @@ const PatientRight = (props: Props) => {
     }
   };
   return (
-    <div className="page-main-container pt-14">
+    <div className="page-main-container pt-14 custom-scrollbar scrollbar-none pb-[150px]">
       <h2>HAK DAN KEWAJIBAN PASIEN</h2>
       {hak.map((pasal) => {
         const { menu, title, rules } = pasal;
@@ -28,7 +28,9 @@ const PatientRight = (props: Props) => {
           <div key={menu} className="mx-auto text-greyDrk  ">
             <div className="w-full md:w-9/12 mx-auto ">
               <div className="w-full  px-5">
-                <p className="btn-1 capitalize text-center my-5">{title}</p>
+                <p className="text-base md:text-xl tracking-normal leading-5 md:tracking-[1px]  capitalize text-center my-2 md:my-5">
+                  {title}
+                </p>
               </div>
               <div className=" text-greyDrk  ">
                 {rules.map((rule) => {
@@ -38,8 +40,8 @@ const PatientRight = (props: Props) => {
                       key={id}
                       className={
                         selected === id
-                          ? "bg-white bg-opacity-70 hover:bg-opacity-100 rounded-sm shadow-sm mb-2 px-7 transition-all overflow-hidden min-h-full"
-                          : "bg-white bg-opacity-70 hover:bg-opacity-100 rounded-sm shadow-sm mb-2 px-7 transition-all overflow-hidden h-14"
+                          ? "bg-white bg-opacity-70 hover:bg-opacity-100 rounded-sm shadow-sm mb-2 px-2 md:px-7 transition-all overflow-hidden min-h-full"
+                          : "bg-white bg-opacity-70 hover:bg-opacity-100 rounded-sm shadow-sm mb-2 px-2 md:px-7 transition-all overflow-hidden h-16"
                       }
                     >
                       <div
@@ -50,7 +52,7 @@ const PatientRight = (props: Props) => {
                             : { borderBottomWidth: "1px" }
                         }
                       >
-                        <h5 className="text-greyDrk font-normal py-2 text-left h-14">
+                        <h5 className="text-greyDrk font-normal py-2 text-left h-16 w-full leading-4 md:leading-normal ">
                           {title}
                         </h5>
                         <button

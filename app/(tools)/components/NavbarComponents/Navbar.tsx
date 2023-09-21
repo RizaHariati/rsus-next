@@ -48,7 +48,7 @@ const MainLogo = (props: Props) => {
   const { toggleMenuNavbar } = useGlobalContext();
 
   return (
-    <div id="home" onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}>
+    <div id="home" onClick={(e) => toggleMenuNavbar(null)}>
       <Link href="/" className="navbar-logo-container">
         <div className="h-8 w-8">
           <MainLogoImage />

@@ -34,17 +34,15 @@ const ModalTatapMuka = (props: Props) => {
     setNewPhoneNumber(e.currentTarget.value);
   };
   return (
-    <div className="modal-lg p-5 px-10 overflow-hidden bg-white">
+    <div className="modal-phone md:modal-lg">
       <button
-        className="absolute top-2 right-4"
+        className="modal-close-btn"
         onClick={() => openModal(consultationInfo.modal, consultationInfo)}
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <h3 className=" col-span-2  w-full border-b border-greyBorder  font-light mb-4 bg-white">
-        cek antrian tatap muka
-      </h3>
-      <section className="bg-white  border-0 grid grid-cols-2 gap-5 ">
+      <h3 className=" modal-title">cek antrian tatap muka</h3>
+      <section className="bg-white  border-0 grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5 ">
         <mark className=" flex flex-col gap-2 ">
           <div>
             <p>Konsultasi dengan:</p>
@@ -81,8 +79,8 @@ const ModalTatapMuka = (props: Props) => {
             <AppointmentCalendarIcon />
           </div>
         </mark>
-        <mark className=" flex flex-col gap-2 items-center justify-between w-full">
-          <div className=" flex flex-col gap-2 w-full">
+        <mark className=" flex flex-col gap-1 md:gap-2 items-center justify-between w-full">
+          <div className=" flex flex-col  gap-1 md:gap-2 w-full">
             <div>
               <p>Nomor Rekam Medis (MR) </p>
               <p className="active-input">
@@ -91,7 +89,7 @@ const ModalTatapMuka = (props: Props) => {
             </div>
             <div>
               <p>Apakah anda menggunakan jaminan BPJS?</p>
-              <div className="grid grid-cols-2 gap-2">
+              <div className="grid grid-cols-2  gap-1 md:gap-2">
                 <button
                   onClick={() => setBpjs(true)}
                   className={
@@ -117,7 +115,7 @@ const ModalTatapMuka = (props: Props) => {
             <div
               className={
                 bpjs
-                  ? "h-20 overflow-hidden transition-all "
+                  ? "h-16 md:h-20 overflow-hidden transition-all "
                   : "h-0 overflow-hidden transition-all"
               }
             >
@@ -129,7 +127,7 @@ const ModalTatapMuka = (props: Props) => {
           </div>
           <button
             onClick={() => closeModal()}
-            className="button-greenUrip w-1/2 h-10 ml-auto"
+            className="button-greenUrip w-full md:w-1/2 h-10 ml-auto"
           >
             {bpjs ? "Daftarkan BPJS" : "Daftarkan Umum"}
           </button>

@@ -34,7 +34,7 @@ const InputBirthDate = ({
   }, [selectedDate]);
 
   return (
-    <div className="w-full col-span-2 md:col-span-1 ">
+    <div className="w-full col-span-2 md:col-span-1 z-50 ">
       <p> {values.title}</p>
       <ReactDatePicker
         locale="id"
@@ -50,8 +50,8 @@ const InputBirthDate = ({
         showYearDropdown
         dropdownMode="select"
         placeholderText={values.placeholder}
-        calendarClassName="text-md font-light outline-none h-fit !w-full text-left cursor-pointer"
-        className="react-datepicker !w-full  h-10 text-greyMed1 font-nunito text-base cursor-pointer"
+        calendarClassName="text-md font-light outline-none h-fit w-full text-left cursor-pointer"
+        className="react-datepicker w-full h-10 text-greyMed1 font-nunito text-base cursor-pointer "
         minDate={new Date(dayjs().subtract(110, "y").toString())}
         maxDate={new Date(dayjs().toString())}
         openToDate={new Date("09/09/1990")}

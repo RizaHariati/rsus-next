@@ -19,7 +19,7 @@ const ModalFacility = (props: Props) => {
     return (
       <div className="modal-phone md:modal-lg p-5 pt-0 md:pt-5">
         <h3 className=" modal-title">{facility.title}</h3>
-        <button className="absolute top-2 right-4" onClick={() => closeModal()}>
+        <button className="modal-close-btn" onClick={() => closeModal()}>
           <FontAwesomeIcon icon={faClose} />
         </button>
         <section className="bg-white border-none grid grid-cols-1 md:grid-cols-2 w-full gap-5  ">
@@ -36,7 +36,7 @@ const ModalFacility = (props: Props) => {
               facility.title.toLowerCase() && (
               <div>
                 <p className="btn-3-bold">Dipakai oleh: </p>
-                <ul className=" grid grid-cols-2 list-disc list-inside pl-5">
+                <ul className=" grid grid-cols-1 md:grid-cols-2 list-disc list-inside pl-5">
                   {facility.poliklinik.map((item: string, index: number) => {
                     return (
                       <li key={index} className=" -indent-5">

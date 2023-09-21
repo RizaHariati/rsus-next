@@ -16,14 +16,14 @@ const SelectDate = ({ searchCategory, handleDateChange, clearDate }: Props) => {
     state: { selected_date },
   } = useGlobalContext();
   return (
-    <div className="w-full flex gap-2 flex-col h-16 ">
-      <p className="btn-3-bold w-full ">
+    <div className="w-full flex gap-2 flex-col h-fit md:h-16 ">
+      <p className="md:btn-3-bold btn-4 w-full leading-4 md:leading-5">
         Pilih tanggal berobat
         <span className="normal-case tracking-normal">
           (Maksimal 7 hari ke depan)
         </span>
       </p>
-      <div className="flex justify-between w-full gap-0 ">
+      <div className="flex flex-col md:flex-row justify-between w-full gap-2 ">
         <ReactDatePicker
           disabled={searchCategory === "dokter" ? true : false}
           placeholderText={
@@ -35,7 +35,7 @@ const SelectDate = ({ searchCategory, handleDateChange, clearDate }: Props) => {
             e.preventDefault();
           }}
           calendarClassName="text-md font-light outline-none h-fit w-full"
-          className="react-datepicker w-[350px] col-span-5 h-10 p-2 text-greyMed1 font-nunito text-base"
+          className="react-datepicker w-full md:w-[350px] h-10 p-2 text-greyMed1 font-nunito text-base"
           locale="id"
           dateFormat={`eeee, dd MMMM yyyy`}
           selected={selected_date}

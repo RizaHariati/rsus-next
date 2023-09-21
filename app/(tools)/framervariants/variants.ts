@@ -119,7 +119,7 @@ export const enterMiddleVariantLeftChildren = {
 };
 
 export const enterTop = {
-  initial: { opacity: 0, y: "-100%" },
+  initial: { opacity: 0, y: "-100%", z: 40 },
   animate: {
     opacity: 1,
     y: "0%",
@@ -143,10 +143,12 @@ export const enterTop = {
 };
 
 export const enterTopChildren = {
-  initial: { opacity: 0, y: "-100%" },
+  initial: { opacity: 0, y: "-100%", scale: 1 },
   animate: {
     opacity: 1,
     y: "0%",
+    scale: 1,
+    z: 40,
     transition: {
       duration: 0.1,
       type: "spring",

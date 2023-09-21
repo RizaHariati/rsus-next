@@ -54,13 +54,13 @@ const AppointmentDoctor = () => {
   }, [filtered_doctor]);
 
   return (
-    <mark className="w-full  h-52 custom-scrollbar">
+    <mark className="w-full h-fit max-h-96 md:max-h-44  scrollbar-none md:scrollbar-thin overflow-y-scroll">
       <h4 className="text-left">
         {!keyword || keyword !== ""
           ? title
           : "Tidak ditemukan Spesialis/Doker dengan kata kunci atau jadwal yang anda masukkan."}
       </h4>
-      <div className=" grid grid-cols-2 w-full gap-2">
+      <div className=" grid grid-cols-1 md:grid-cols-2 w-full gap-2">
         {doctorList.map((item: DoctorType, index: number) => {
           const image: string =
             item.gender === 1 ? "male-" + (index + 1) : "female-" + (index + 1);
@@ -70,9 +70,9 @@ const AppointmentDoctor = () => {
                 openModal("doctordetail", { item, image, consultationInfo })
               }
               key={index}
-              className="standard-border flex gap-2"
+              className="standard-border flex flex-col md:flex-row gap-2  p-2 md:p-0"
             >
-              <div className=" aspect-square w-24 h-auto overflow-hidden">
+              <div className=" aspect-square w-14 md:w-24 h-auto overflow-hidden mx-auto">
                 <Image
                   rel="preload"
                   placeholder="empty"
@@ -85,7 +85,7 @@ const AppointmentDoctor = () => {
                 />
               </div>
               <div className="grid grid-cols-3 w-full body-3 text-left">
-                <div className=" col-span-3 flex-center-left gap-2">
+                <div className=" col-span-full flex-center-left gap-2">
                   {item.telemedicine ? (
                     <FontAwesomeIcon
                       icon={faCircle}

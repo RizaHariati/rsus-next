@@ -16,22 +16,22 @@ const ModalAppointment = (props: Props) => {
   const consultationInfo: ConsultationMenuTypes = modalValue;
 
   return (
-    <div className=" modal-phone modal-xl md:p-3 px-10 md:overflow-hidden bg-white">
-      <h3 className=" modal-title">{consultationInfo.title}</h3>
+    <div className=" modal-phone md:modal-xl ">
+      <h3 className="modal-title">{consultationInfo.title}</h3>
 
       <button
-        className="absolute top-2 right-4"
+        className="modal-close-btn"
         onClick={() => {
           closeModal();
         }}
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <article className="flex flex-col gap-3 ">
+      <article className="flex flex-col gap-2 bg-white ">
         <mark>
           {consultationInfo.intro.map((item: string, index: number) => {
             return (
-              <p className="body-2" key={index}>
+              <p className="body-3 md:body-2" key={index}>
                 {item}
               </p>
             );
@@ -40,7 +40,7 @@ const ModalAppointment = (props: Props) => {
         <AppointmentSelect /> {/* cari poli yang dituju */}
         <AppointmentDoctor /> {/* contoh2 dokter yang tersedia */}
       </article>
-      <article className=" w-full flex items-center justify-end gap-3 pt-5 ">
+      <article className=" w-full flex items-center justify-end pt-2 bg-white ">
         <button
           className="button-greenUrip"
           onClick={() => {

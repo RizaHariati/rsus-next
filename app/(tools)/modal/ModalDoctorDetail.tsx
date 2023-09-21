@@ -20,14 +20,14 @@ const ModalDoctorDetail = (props: Props) => {
   const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
 
   return (
-    <div className="modal-md p-3 px-10 overflow-hidden bg-white">
+    <div className="modal-phone md:modal-md p-3 md:px-10 overflow-hidden bg-white ">
       <button
         className="absolute top-2 right-4"
         onClick={() => openModal(consultationInfo.modal, consultationInfo)}
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <article className="flex-center-between flex-col w-full gap-3">
+      <article className="flex-center-between flex-col w-full gap-3 bg-white">
         <div className=" aspect-square w-32 h-auto mx-auto relative">
           <Image
             rel="preload"
@@ -77,7 +77,7 @@ const ModalDoctorDetail = (props: Props) => {
           </div>
         </div>
       </article>
-      <article className=" w-full flex-center-center gap-3 pt-5 ">
+      <article className=" w-full flex-center-center gap-3 pt-5 bg-white ">
         {doctorInfo.telemedicine ? (
           <button
             disabled={doctorInfo.sedang_online ? false : true}

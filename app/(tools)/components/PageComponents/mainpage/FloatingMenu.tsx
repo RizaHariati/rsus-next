@@ -6,11 +6,11 @@ import Link from "next/link";
 import { floatingMenu } from "@/app/(tools)/data/datamenu";
 import { FloatingMenuType } from "@/app/(tools)/types";
 import { enterMiddleVariant } from "@/app/(tools)/framervariants/variants";
-
+import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 const FloatingMenu = () => {
-  const { toggleMenuNavbar } = useGlobalContext();
+  const { toggleMenuNavbar, openModal } = useGlobalContext();
   return (
     <motion.div
       variants={enterMiddleVariant}
@@ -54,9 +54,16 @@ const FloatingMenu = () => {
           Jika data anda valid, admin kami akan mengkonfirmasi pendaftara pada
           jam kerja melalui WhatsApp.
         </p>
-        <button className="btn-2 w-full bg-greenUrip hover:bg-greenUripOpacity border border-greenUrip text-white hover:text-greenUrip transition-all mt-2">
+        <Link
+          href="/consultation/"
+          onClick={() => {
+            toggleMenuNavbar(null);
+            openModal("telemedicine", dataConsultation[1]);
+          }}
+          className="btn-2 w-full bg-greenUrip hover:bg-greenUripOpacity border border-greenUrip text-white hover:text-greenUrip transition-all mt-2 text-center"
+        >
           Daftar Telemedicine
-        </button>
+        </Link>
       </div>
     </motion.div>
   );

@@ -15,7 +15,7 @@ const ModalChatTelemedicine = (props: Props) => {
   const doctorInfo: DoctorType = modalValue.doctorInfo;
   const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
   return (
-    <div className="modal-md p-10 py-5 overflow-hidden bg-white">
+    <div className="modal-phone md:modal-md py-5 overflow-hidden bg-white">
       <button
         className="absolute top-2 right-4"
         onClick={() => openModal(consultationInfo.modal, consultationInfo)}

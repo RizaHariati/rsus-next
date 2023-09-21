@@ -37,7 +37,7 @@ const TelemedicineDoctor = () => {
   return (
     <section className="bg-white border-none">
       <h4 className="text-left mb-2">{`${title} Telemedicine`}</h4>
-      <div className=" grid grid-cols-2 w-full gap-2">
+      <div className=" grid grid-cols-1 md:grid-cols-2 w-full gap-2">
         {doctorList.map((item: DoctorType, index: number) => {
           const image: string =
             item.gender === 1 ? "male-" + (index + 1) : "female-" + (index + 1);
@@ -47,9 +47,9 @@ const TelemedicineDoctor = () => {
                 openModal("doctordetail", { item, image, consultationInfo })
               }
               key={index}
-              className="standard-border flex gap-2"
+              className="standard-border flex flex-col md:flex-row items-center p-1 md:p-0 gap-2"
             >
-              <div className=" aspect-square w-24 h-auto overflow-hidden">
+              <div className=" aspect-square w-14 md:w-24 h-auto overflow-hidden">
                 <Image
                   rel="preload"
                   placeholder="empty"

@@ -106,18 +106,15 @@ const ModalRegister = (props: Props) => {
   };
 
   return (
-    <div className="modal-phone md:h-fit md:modal-lg p-3 md:p-5 px-3 md:px-10 pt-0  md:overflow-hidden md:rounded-sm">
-      <h3 className=" modal-title">
+    <div className="modal-phone md:h-fit md:modal-lg p-3  md:px-10 pt-0  md:rounded-sm ">
+      <h3 className=" modal-title ">
         {dataConsultation[2].title}
         {/* dataConsultation[2] adalah data untuk menu registrasi */}
       </h3>
-      <button
-        className="absolute top-4 md:top-2 right-4"
-        onClick={() => closeModal()}
-      >
+      <button className="modal-close-btn" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <article>
+      <article className="bg-white">
         {dataConsultation[2].intro.map((item: string, index: number) => {
           return (
             <p className="body-3" key={index}>
@@ -126,10 +123,10 @@ const ModalRegister = (props: Props) => {
           );
         })}
       </article>
-      <form className="w-full mt-3 " onSubmit={(e) => handleSubmit(e)}>
+      <form className="w-full mt-2 " onSubmit={(e) => handleSubmit(e)}>
         <InputRegisterDate />
 
-        <article className="grid grid-cols-4 gap-x-2 pt-2 w-full">
+        <article className="grid grid-cols-4 gap-x-2 pt-2 w-full bg-white">
           {Object.entries(patientFormInput).map(([key, values]) => {
             if (key === "sex") {
               return (
@@ -166,7 +163,7 @@ const ModalRegister = (props: Props) => {
             }
           })}
         </article>
-        <article className=" w-full flex items-center justify-end gap-3 pt-5 ">
+        <article className=" w-full flex items-center justify-end gap-3 pt-2 md:pt-5 bg-white ">
           <button
             type="button"
             onClick={() => setNewPatientPersonal(initialPatient)}

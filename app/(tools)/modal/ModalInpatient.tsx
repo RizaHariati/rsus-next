@@ -37,12 +37,12 @@ const ModalInpatient = (props: Props) => {
     prevArrow: <PrevArrow />,
   };
   return (
-    <div className="modal-lg py-10 pt-2">
-      <h3 className=" col-span-2 font-normal py-2">{modalValue.kelas}</h3>
-      <button className="absolute top-2 right-4" onClick={() => closeModal()}>
+    <div className="modal-phone md:modal-lg ">
+      <h3 className="modal-title">{modalValue.kelas}</h3>
+      <button className="modal-close-btn" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <div className="w-full  grid grid-cols-2 gap-3">
+      <div className="w-full  grid grid-cols-1 md:grid-cols-2 gap-2 ">
         <Slider {...settings}>
           {ImgArray.map((imgItem, index) => {
             return <ImageSlide imgItem={imgItem} index={index} key={index} />;
@@ -80,7 +80,7 @@ type ImageProps = {
 };
 const ImageSlide = ({ imgItem, index }: ImageProps) => {
   return (
-    <div className="h-[350px] w-full rounded-sm overflow-hidden relative z-0 ">
+    <div className="h-fit md:h-[350px] w-full rounded-sm overflow-hidden z-0 relative">
       <Image
         rel="preload"
         placeholder="empty"
@@ -118,13 +118,13 @@ const Info = ({ modalValue }: InfoProps) => {
         text="tidak termasuk biaya pengobatan / pemeriksaan"
       />
       <InpatientItems item="" icon={faPerson} text="fasilitas " />
-      <ul className=" grid grid-cols-2 pl-7">
+      <ul className=" grid grid-cols-1 md:grid-cols-2 pl-7">
         {modalValue.fasilitas.map((item: string, index: number) => {
           return <li key={index}>{item}</li>;
         })}
       </ul>
       <div>
-        <p className="text-sm text-redBase px-5 w-full text-right">
+        <p className="text-sm text-redBase px-0 pr-7  md:px-5 w-full text-right">
           Harga dapat berubah sewaktu-waktu, mohon cek terlebih dahulu ke RS
           Urip Sumoharjo di nomor 0811 x270 x37
         </p>

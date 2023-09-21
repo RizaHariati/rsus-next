@@ -17,13 +17,11 @@ const ModalBayarLaboratorium = (props: Props) => {
   } = useGlobalContext();
 
   return (
-    <div className="modal-md p-10 py-5 overflow-hidden bg-white">
-      <button className="absolute top-2 right-4" onClick={() => closeModal()}>
+    <div className="modal-phone md:modal-md ">
+      <button className="modal-close-btn" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <h4 className=" col-span-2 font-normal w-full border-b border-greyBorder mb-2">
-        Pembayaran Test Laboratorium
-      </h4>
+      <h4 className="modal-title">Pembayaran Test Laboratorium</h4>
       <section className="bg-white flex flex-col gap-2 border-none">
         <p className="text-base dark-input h-8 pt-1">
           Nomor Medical Record :{" "}

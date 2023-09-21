@@ -77,10 +77,8 @@ const ModalPaket = (props: Props) => {
     }
   };
   return (
-    <div className="modal-lg p-5 px-10">
-      <h3 className=" col-span-2 font-normal w-full border-b border-greyBorder">
-        {paketLab.title}
-      </h3>
+    <div className="modal-phone md:modal-lg">
+      <h3 className="modal-title">{paketLab.title}</h3>
       <div className="flex items-end justify-end mb-3 w-full text-right gap-2">
         <p>Harga</p>
         {paketLab.price.map((item, index) => {
@@ -98,10 +96,10 @@ const ModalPaket = (props: Props) => {
           );
         })}
       </div>
-      <button className="absolute top-2 right-4" onClick={() => closeModal()}>
+      <button className="modal-close-btn" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <div className="w-full  grid grid-cols-2 gap-3 max-h-80 custom-scrollbar">
+      <div className="w-full  grid grid-cols-1 md:grid-cols-2 gap-3 md:max-h-80 md:custom-scrollbar">
         <div className="w-full h-full border-r border-greyBorder ">
           <p className="btn-2-bold">Pemeriksaan</p>
           <ul>

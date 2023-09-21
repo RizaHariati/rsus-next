@@ -20,16 +20,14 @@
   .main-layout-container {
     @apply bg-greyMed2 h-screen overflow-y-scroll scrollbar-none snap-y snap-proximity relative scroll-smooth;
   }
-  .main-layout-container-short {
-    @apply main-layout-container h-[calc(100vh-136px)]  md:h-[calc(100vh-56px)];
-  }
+
   .page-main-container {
-    @apply h-screen md:h-full md:min-h-screen w-full z-0 md:max-w-uripMax mx-auto relative bg-greyLit;
+    @apply h-screen md:h-full md:min-h-screen w-full z-0 md:max-w-uripMax mx-auto relative bg-greyLit md:pb-0;
   }
 
   /* ----------------------------- MODAL ---------------------------- */
   .modal {
-    @apply absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-modal_lg h-fit bg-white standard-border;
+    @apply absolute left-1/2 -translate-x-1/2 top-1/2 -translate-y-1/2 w-modal_lg h-fit max-h-[calc(100%-56px)] bg-white standard-border p-3  md:px-10 custom-scrollbar;
   }
   .modal-lg {
     @apply modal w-modal_lg;
@@ -41,10 +39,13 @@
     @apply modal w-modal_md;
   }
   .modal-phone {
-    @apply modal w-[95%] overflow-y-scroll standard-border rounded-md md:top-1/2 top-1/4 -translate-y-1/4 md:-translate-y-1/2 h-fit max-h-[calc(100%-136px)] scrollbar-none;
+    @apply modal w-[95%] standard-border rounded-md  top-[calc(25%-20px)] -translate-y-1/4 h-fit max-h-[calc(100%-150px)] scrollbar-none pt-0;
   }
   .modal-title {
-    @apply col-span-full  w-full border-b border-greyBorder  font-light mb-4 bg-white sticky top-0 py-2;
+    @apply col-span-full w-full border-b border-greyBorder  font-light mb-2 bg-white sticky top-0 py-2 z-30;
+  }
+  .modal-close-btn {
+    @apply absolute top-2 right-4 z-40;
   }
   .modal-slider-btn {
     @apply absolute top-1/2 -translate-y-1/2 z-20 p-2 px-1 bg-greyMed1  hover:bg-greyMed2 active:bg-white transition-all rounded-sm text-white;
@@ -73,7 +74,7 @@
     @apply gallery-cell bg-greyBorder text-greyDrk font-bold tracking-[2px];
   }
   .antrian-grid {
-    @apply grid w-fit place-items-center gap-1;
+    @apply grid h-full max-w-full gap-1;
   }
   .kuota-icon {
     @apply h-7;
@@ -124,5 +125,12 @@
   }
   .facility-unit-description {
     @apply body-3 leading-5 hidden md:block;
+  }
+
+  .appointment-date-container {
+    @apply flex flex-row standard-border  p-2 gap-2 overflow-x-scroll;
+  }
+  .appointment-date-container::-webkit-scrollbar {
+    scrollbar-width: 2px;
   }
 }

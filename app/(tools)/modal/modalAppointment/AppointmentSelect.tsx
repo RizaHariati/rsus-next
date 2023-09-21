@@ -43,23 +43,23 @@ const AppointmentSelect = () => {
   };
 
   return (
-    <mark className="w-full  grid grid-cols-2 gap-5 h-full body-3 max-h-96">
-      <div className=" w-full standard-border p-3  flex flex-col gap-5">
+    <mark className="w-full  grid grid-cols-1 md:grid-cols-2 gap-2 h-full body-3 ">
+      <div className=" w-full standard-border p-3 flex flex-col gap-2  ">
         <SelectDate
           searchCategory={searchCategory}
           handleDateChange={handleDateChange}
           clearDate={clearDate}
         />
-        <div className="w-full flex gap-2 flex-col h-16">
-          <div className="flex gap-2">
+        <div className="w-full flex gap-2 flex-col h-fit md:h-16 ">
+          <div className="flex flex-col md:flex-row gap-0 md:gap-2">
             <p className="btn-3-bold">
               {searchCategory === "spesialisasi"
                 ? "Spesialisasi/klinik"
                 : "Nama dokter"}
             </p>
-            <div className=" flex body-3 ml-auto gap-5">
+            <div className=" flex body-3 md:ml-auto">
               <button
-                className="flex-center-between gap-2"
+                className="flex-center-between gap-2 mr-3"
                 onClick={() =>
                   dispatch({
                     type: "SET_CATEGORY",
@@ -166,7 +166,7 @@ const ResultDokter = ({ searchKeyword, consultationInfo }: ResultProps) => {
   } = useGlobalContext();
 
   return (
-    <div>
+    <div className="w-full h-full">
       {searchKeyword && filtered_doctor.value.length < 1 && (
         <p className="btn-3-bold text-center">
           Tidak ditemukan Nama Dokter dengan kata kunci seperti itu

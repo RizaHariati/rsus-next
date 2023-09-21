@@ -17,17 +17,15 @@ const ModalBayarTelemedicine = (props: Props) => {
   const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
 
   return (
-    <div className="modal-md p-10 py-5 overflow-hidden bg-white">
+    <div className="modal-phone md:modal-md overflow-hidden bg-white">
       <button
-        className="absolute top-2 right-4"
+        className="modal-close-btn"
         onClick={() => openModal(consultationInfo.modal, consultationInfo)}
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
-      <h3 className=" col-span-2 font-normal w-full border-b border-greyBorder">
-        Pembayaran Telemedicine
-      </h3>
-      <section className="bg-white flex flex-col gap-3 border-none">
+      <h3 className="modal-title">Pembayaran Telemedicine</h3>
+      <section className="bg-white flex flex-col gap-2 border-none">
         <p className="body-3">
           Kami akan terlebih dahulu mengkonfirmasi jadwal dokter yang
           bersangkutan, setelah itu anda diberikan waktu 5 menit untuk membayar
@@ -62,7 +60,7 @@ const TelemedicineInfo = ({ doctorInfo }: PatientProps) => {
     patientState: { patient },
   } = useGlobalContext();
   return (
-    <div className=" flex flex-col gap-3">
+    <div className=" flex flex-col gap-2">
       <div className="form-line border-b border-greyBorder">
         <p>Nama Pasien</p>
         <p>:&nbsp;{patient.patient_profile.name}</p>

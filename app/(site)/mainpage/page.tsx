@@ -22,9 +22,9 @@ type Props = {};
 const MainPage = (props: Props) => {
   return (
     <div className=" page-main-container ">
-      <BackToTop />
+      <BackToTop sectionID="main-page-top" />
       <section
-        id="zero"
+        id="main-page-top"
         className="h-full md:min-h-screen w-full z-0 overflow-hidden flex flex-col md:flex-row relative snap-none md:snap-center bg-white md:bg-accent1 pb-2 border-b border-greyBorder"
       >
         <MainImageSmall />
