@@ -45,7 +45,7 @@ const PatientRight = (props: Props) => {
                       }
                     >
                       <div
-                        className="flex items-center justify-between border-b-greyBorder transition-all"
+                        className="flex items-start justify-between border-b-greyBorder transition-all "
                         style={
                           selected != id
                             ? { borderBottomWidth: "0px" }
@@ -59,6 +59,7 @@ const PatientRight = (props: Props) => {
                           onClick={() => {
                             toggle(id);
                           }}
+                          className="p-1 md:p-2"
                         >
                           <FontAwesomeIcon
                             className=" text-greyMed1 active:text-greyDrk hover:text-greyMed2 transition-all"

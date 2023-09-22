@@ -1,12 +1,5 @@
 "use client";
-import Image from "next/image";
 import React from "react";
-import { motion } from "framer-motion";
-import {
-  enterTop,
-  enterTopChildrenCenter,
-} from "../../(tools)/framervariants/variants";
-import dataAbout from "@/app/(tools)/data/data_about.json";
 
 type Props = {};
 

@@ -34,7 +34,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <Head>
+      <head>
         <link
           rel="stylesheet"
           type="text/css"
@@ -46,7 +46,7 @@ export default function RootLayout({
           type="text/css"
           href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
         />
-      </Head>
+      </head>
       <body
         className={`${nunito.variable} ${oswald.variable}`}
         style={{ touchAction: "auto" }}

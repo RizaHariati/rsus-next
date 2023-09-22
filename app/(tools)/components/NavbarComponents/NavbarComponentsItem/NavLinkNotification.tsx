@@ -129,10 +129,10 @@ const NotificationLogout = () => {
     toggleMenuNavbar,
   } = useGlobalContext();
   return (
-    <div className=" flex-center-center text-link w-12  h-full ">
+    <div className=" flex-center-center text-link w-12 h-full ">
       <div className="relative">
         <button
-          onClick={(e) => {
+          onClick={() => {
             if (!user.login) {
               toast.error("Anda harus login terlebih dahulu");
             }
