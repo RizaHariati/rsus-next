@@ -97,7 +97,7 @@ export const PatientProfileContent = () => {
                 <div className="active-input capitalize flex-center-between">
                   <p>
                     {typeof value === "object"
-                      ? dayjs(value).format("DD MMMM YYYY")
+                      ? dayjs(value).locale("id").format("DD MMMM YYYY")
                       : ""}
                   </p>
                   <p>

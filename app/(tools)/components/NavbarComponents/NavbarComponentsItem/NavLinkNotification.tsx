@@ -33,7 +33,7 @@ export default NavLinkNotification;
 
 const NotificationLogin = () => {
   const {
-    patientState: { patient, user },
+    patientState: { patient },
     state: { menu_id },
     toggleMenuNavbar,
   } = useGlobalContext();
@@ -46,13 +46,18 @@ const NotificationLogin = () => {
         <button
           type="button"
           id="nav-notification"
-          onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
+          onClick={(e) => {
+            toggleMenuNavbar(e.currentTarget.id);
+            if (notification.length < 1) {
+              toast.info("belum ada pesan untuk anda");
+            }
+          }}
         >
           <FontAwesomeIcon icon={faBell} className="navbar-reg-icon" />
-          {notification.length > 0 && (
+          {notification.filter((item) => item.seen === false).length > 0 && (
             <div className="absolute bg-redBase w-5 min-w-fit aspect-square rounded-full -top-2 -right-3 flex-center-center p-0.5">
               <p className="text-white font-oswald text-xs text-center">
-                {notification.length}
+                {notification.filter((item) => item.seen === false).length}
               </p>
             </div>
           )}
@@ -74,46 +79,56 @@ const NotificationLogin = () => {
               </div>
               <h5>Notifikasi</h5>
             </div>
-            <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none scrollbar-track-greyLit scrollbar-thumb-greyBorder standard-border border-greyBorder  p-2 ">
-              {notification.map((notificationItem) => {
-                const findNotif: NotificationLibraryType =
+            <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none scrollbar-track-greyLit scrollbar-thumb-greyBorder standard-border border-greyBorder p-2 ">
+              {notification.reverse().map((notificationItem, index) => {
+                const findNotif: NotificationLibraryType | undefined =
                   dataNotification.find(
                     (itemNotif: NotificationLibraryType) =>
                       itemNotif.id === notificationItem.notification_code
-                  )!;
+                  );
 
-                return (
-                  <div
-                    key={notificationItem.id}
-                    className="w-full grid grid-cols-12 items-start standard-border mb-2 hover:bg-greyLit transition-all p-1"
-                  >
-                    <FontAwesomeIcon
-                      icon={
-                        findNotif.type === "success"
-                          ? faCheckCircle
-                          : faInfoCircle
-                      }
+                if (!findNotif) {
+                  return <div key={index}></div>;
+                } else {
+                  return (
+                    <div
+                      key={index}
                       className={
-                        findNotif.type === "success"
-                          ? "text-greenUrip col-span-1 p-1"
-                          : "text-blue-300 p-1"
+                        notificationItem.seen
+                          ? "notification-item "
+                          : "notification-item bg-greyLit"
                       }
-                    />
-                    <div className=" col-span-10 inline leading-4">
-                      <p className=" footnote-1 text-greyMed2">
-                        {dayjs(notificationItem.date).format("DD MMMM YYYY")}
-                      </p>
-                      <NotificationMessages
-                        messages={findNotif.message}
-                        findNotif={findNotif}
-                        notificationItem={notificationItem}
+                    >
+                      <FontAwesomeIcon
+                        icon={
+                          findNotif.type === "success"
+                            ? faCheckCircle
+                            : faInfoCircle
+                        }
+                        className={
+                          findNotif.type === "success"
+                            ? "text-greenUrip col-span-1 p-1"
+                            : "text-blue-300 p-1"
+                        }
                       />
+                      <div className=" col-span-10 inline leading-4">
+                        <p className=" footnote-1 text-greyMed2">
+                          {dayjs(notificationItem.register_date).format(
+                            "DD MMMM YYYY"
+                          )}
+                        </p>
+                        <NotificationMessages
+                          messages={findNotif.message}
+                          findNotif={findNotif}
+                          notificationItem={notificationItem}
+                        />
+                      </div>
+                      <button className="col-span-1 hover:text-redBase active:text-redOpacity transition-all">
+                        <FontAwesomeIcon icon={faTrashAlt} />
+                      </button>
                     </div>
-                    <button className="col-span-1 hover:text-redBase active:text-redOpacity transition-all">
-                      <FontAwesomeIcon icon={faTrashAlt} />
-                    </button>
-                  </div>
-                );
+                  );
+                }
               })}
             </div>
           </div>

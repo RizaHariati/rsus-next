@@ -9,7 +9,12 @@ import { AppState, PatientState } from "./interfaces";
 import { getLabCartItem } from "../utils/getLabCartItem";
 import { patientReducer } from "../reducers/patientReducer";
 import { initialPatientState } from "./initialPatientState";
-import { PatientInitialValueType, UserType } from "../patientTypes";
+import {
+  NotificationType,
+  PatientInitialValueType,
+  ScheduledType,
+  UserType,
+} from "../patientTypes";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -26,6 +31,7 @@ export const AppProvider = ({ children }: Props) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollingUp, setscrollingUp] = useState(true);
   const [showFooter, setShowFooter] = useState(false);
+
   const toggleMenuNavbar = (id: string | null) => {
     dispatch({ type: "TOGGLE_MENU", payload: id });
     dispatch({ type: "CLOSE_MODAL", payload: "" });
@@ -125,6 +131,16 @@ export const AppProvider = ({ children }: Props) => {
       toggleMenuNavbar(null);
     }
   };
+
+  const addingSchedule = (
+    newSchedule: ScheduledType,
+    newNotif: NotificationType
+  ) => {
+    patientDispatch({
+      type: "ADD_SCHEDULE",
+      payload: { newSchedule, newNotif },
+    });
+  };
   const value = {
     patientState,
     patientDispatch,
@@ -132,6 +148,7 @@ export const AppProvider = ({ children }: Props) => {
     logout,
     checkUser,
     register,
+    addingSchedule,
     state,
     dispatch,
     toggleMenuNavbar,

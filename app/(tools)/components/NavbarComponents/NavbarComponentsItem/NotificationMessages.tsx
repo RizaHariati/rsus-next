@@ -37,7 +37,11 @@ const NotificationMessages = ({
       <div className="inline body-3 leading-4">
         {`${messages[0]} ${patientprofile.name}.
         ${messages[1]}
-        ${dayjs(notificationItem?.date).format("DD-MM-YYYY") || ""}.`}
+        ${
+          dayjs(notificationItem?.register_date).format(
+            "DD-MM-YYYY [jam] HH:mm"
+          ) || ""
+        }.`}
       </div>
     );
   } else {
@@ -50,7 +54,8 @@ const NotificationMessages = ({
               : `${activities.doctorActivities.name}-poli ${activities.doctorActivities.poli}`
           }.
         ${messages[1]}  ${
-            dayjs(notificationItem?.date).format("DD-MM-YYYY") || ""
+            dayjs(schedule.scheduled_date).format("DD-MM-YYYY [jam] HH:mm") ||
+            ""
           }.   ${messages[2] || ""}`}
         </div>
       );

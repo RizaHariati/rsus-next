@@ -88,6 +88,7 @@ const ModalRegisterPassword = (props: Props) => {
       }));
     }
   };
+
   if (!newPatientPersonal) return <div></div>;
   else {
     return (
@@ -96,8 +97,10 @@ const ModalRegisterPassword = (props: Props) => {
           <FontAwesomeIcon icon={faClose} />
         </button>
 
-        <div className="modal-title">
-          <h4 className="tracking-[3px]">Cek Data & Masukkan password</h4>
+        <div className="">
+          <h4 className="tracking-[3px] modal-title ">
+            Cek Data & Masukkan password
+          </h4>
           <form
             className="w-full flex flex-col gap-2"
             onSubmit={(e) => handleSubmit(e)}
@@ -149,6 +152,7 @@ const SalinRekamMedis = ({ copyText, setCopyText }: CopyProps) => {
       <div className="flex-center-between my-1">
         <p>Harap salin nomor ini untuk login nanti</p>
         <button
+          type="button"
           onClick={() => {
             setCopyText(true);
             navigator.clipboard.writeText(
@@ -209,7 +213,7 @@ const DataPasien = () => {
         </button>
       </div>
 
-      <p className="body-3 text-left">
+      <p className="footnote-1 text-left leading-4">
         Jika data sudah benar, silahkan memasukkan password, dan kami akan
         mengirimkan nomor verifikasi ke nomor hp yang Anda daftarkan
       </p>
@@ -242,6 +246,7 @@ const FormInput = ({
       <p>{text}</p>
       <div className=" flex">
         <input
+          autoComplete="new-password"
           type={showPassword ? "text" : "password"}
           placeholder="masukkan password"
           className="active-input rounded-r-none"

@@ -8,6 +8,10 @@ import dayjs from "dayjs";
 import RegisterSuggestion from "./RegisterSuggestion";
 import { getMedicalRecord } from "../data/sample";
 import AppointmentCalendarIcon from "./modalAppointment/AppointmentCalendarIcon";
+import { NotificationType, ScheduledType } from "../patientTypes";
+import { toast } from "react-toastify";
+import { getScheduleID } from "../utils/getScheduleID";
+import { getNotificationID } from "../utils/getNotificationID";
 
 type Props = {};
 
@@ -17,6 +21,7 @@ const ModalTatapMuka = (props: Props) => {
     patientState: { patient },
     openModal,
     closeModal,
+    addingSchedule,
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.doctorInfo;
   const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
@@ -25,13 +30,61 @@ const ModalTatapMuka = (props: Props) => {
     patient.patient_profile.phone
   );
 
-  const matchSelectedDate = doctorInfo.hari.find(
-    (doctorHari) => doctorHari.id_hari === dayjs(selected_date).day()
-  );
+  const matchSelectedDate = doctorInfo.hari.find((doctorHari) => {
+    const day =
+      dayjs(selected_date).day() === 0 ? 7 : dayjs(selected_date).day();
+    return doctorHari.id_hari === day;
+  });
 
   const handlePhoneChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
-    setNewPhoneNumber(e.currentTarget.value);
+    if (newPhoneNumber.length < 16) {
+      setNewPhoneNumber(e.currentTarget.value);
+    }
+  };
+
+  const handleTatapMuka = () => {
+    if (!newPhoneNumber) {
+      return toast.error("nomor telpon tidak boleh kosong", {
+        position: "top-center",
+      });
+    }
+    if (newPhoneNumber.length < 10) {
+      return toast.error("nomor telpon terlalu pendek", {
+        position: "top-center",
+      });
+    }
+    if (!selected_date) {
+      return toast.error("Tanggal tidak boleh kosong", {
+        position: "top-center",
+      });
+    }
+    const date =
+      dayjs(selected_date).format("MM/DD/YYYY") +
+      doctorInfo.jam.slice(3, 9).replace(".", ":");
+
+    const newScheduleID = getScheduleID(patient.scheduled_appointments);
+    const schedule: ScheduledType = {
+      current_phone: newPhoneNumber,
+      schedule_id: newScheduleID,
+      tujuan: [doctorInfo.id],
+      appointment_type: "tatap_muka",
+      scheduled_date: new Date(date),
+      using_bpjs: bpjs,
+      nomor_antrian: Math.floor(Math.random() * doctorInfo.kuota + 1),
+    };
+    const newNotif: NotificationType = {
+      id: getNotificationID(patient.notifications),
+      notification_code: "ncat-002",
+      schedule_code: newScheduleID,
+      register_date: new Date(),
+      seen: false,
+    };
+    addingSchedule(schedule, newNotif);
+    toast.success(
+      `Pertemuan tatap muka dengan ${doctorInfo.nama} berhasil dijadwalkan`
+    );
+    closeModal();
   };
   return (
     <div className="modal-phone md:modal-lg">
@@ -51,6 +104,8 @@ const ModalTatapMuka = (props: Props) => {
           <div>
             <p>Nomor WhatsApp untuk nomor antrian</p>
             <input
+              type="number"
+              maxLength={16}
               placeholder={patient.patient_profile.phone}
               className="active-input"
               value={newPhoneNumber}
@@ -126,7 +181,9 @@ const ModalTatapMuka = (props: Props) => {
             </div>
           </div>
           <button
-            onClick={() => closeModal()}
+            onClick={() => {
+              handleTatapMuka();
+            }}
             className="button-greenUrip w-full md:w-1/2 h-10 ml-auto"
           >
             {bpjs ? "Daftarkan BPJS" : "Daftarkan Umum"}

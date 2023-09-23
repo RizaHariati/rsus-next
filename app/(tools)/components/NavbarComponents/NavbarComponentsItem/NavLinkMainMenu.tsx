@@ -10,6 +10,7 @@ import { faBars, faSignOut } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
+import { toast } from "react-toastify";
 
 type Props = {};
 
@@ -18,7 +19,7 @@ const NavLinkMainMenu = (props: Props) => {
     toggleMenuNavbar,
     logout,
     state: { menu_id },
-    patientState: { user },
+    patientState: { user, patient },
   } = useGlobalContext();
 
   const [itemId, setItemId] = useState<string | null>(null);
@@ -110,6 +111,9 @@ const NavLinkMainMenu = (props: Props) => {
               onClick={() => {
                 logout();
                 toggleMenuNavbar(null);
+                toast.success(
+                  `Terimakasih ${patient.patient_profile.name}, anda berhasil Logout`
+                );
               }}
               className="flex-center-center gap-2 standard-border p-2 px-3  ml-auto bg-white hover:bg-greyLit active:bg-greyMed1 transition-all"
             >

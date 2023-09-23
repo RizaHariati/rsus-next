@@ -50,7 +50,7 @@ export const LoginFormContent = () => {
       });
       return;
     } else if (loginData.medical_record_number!.length < 12) {
-      toast.error("Nomor rekam medis tidak sesuai format", {
+      toast.error("Nomor rekam medis minimal 12 karakter", {
         position: toast.POSITION.TOP_CENTER,
       });
       return;
@@ -60,6 +60,7 @@ export const LoginFormContent = () => {
   };
 
   useEffect(() => {
+    if (verification_number === 0) return;
     if (loginData.password !== "" && loginData.medical_record_number !== "") {
       if (verification_number < 1000) {
         if (verification_number < 10) {
@@ -89,12 +90,13 @@ export const LoginFormContent = () => {
             type: "login",
           });
         }, 1200);
+        setLoginData({
+          medical_record_number: "",
+          password: "",
+        });
       }
     }
-    setLoginData({
-      medical_record_number: "",
-      password: "",
-    });
+
     // eslint-disable-next-line
   }, [verification_number]);
 
@@ -142,6 +144,7 @@ export const LoginFormContent = () => {
         <p className="text-left w-full">Password</p>
         <div className="w-full inline-flex">
           <input
+            autoComplete="new-password"
             maxLength={20}
             type={showValue ? "text" : "password"}
             placeholder="masukkan password"

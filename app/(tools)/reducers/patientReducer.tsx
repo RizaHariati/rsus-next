@@ -1,6 +1,12 @@
 import { PatientState } from "../context/interfaces";
 
-import { PatientInitialValueType, PatientType } from "../patientTypes";
+import {
+  NotificationType,
+  PatientInitialValueType,
+  PatientType,
+  ScheduledType,
+} from "../patientTypes";
+import { addZeroString } from "../utils/addZeroString";
 
 interface OpenModalAction {
   type: string;
@@ -56,10 +62,16 @@ export const patientReducer = (
   if (action.type === "CHECK_USER") {
     const allPatients = patientState.allPatients;
     const loginData = action.payload;
-    let verification_number = patientState.verification_number;
+    let verification_number =
+      patientState.verification_number > 999
+        ? 0
+        : patientState.verification_number;
     const findPatient = allPatients.find(
-      (item) => item.medical_record_number === loginData.medical_record_number
+      (item) =>
+        item.medical_record_number === loginData.medical_record_number &&
+        item.patient_profile.password === loginData.password
     );
+
     if (findPatient) {
       verification_number = Math.floor(Math.random() * 9000 + 1000);
     } else {
@@ -75,14 +87,32 @@ export const patientReducer = (
   if (action.type === "LOGIN_USER") {
     const allPatients = patientState.allPatients;
     const loginData = action.payload;
-
-    const findPatient = allPatients.find(
+    let notificationList: NotificationType[] = [];
+    let newNotification = {
+      id: "ntf-001",
+      notification_code: "ncat-001",
+      schedule_code: "",
+      register_date: new Date(),
+      seen: false,
+    };
+    const findPatient: PatientType | undefined = allPatients.find(
       (item) => item.medical_record_number === loginData.medical_record_number
     );
 
     let patient = patientState.patient;
+
     if (findPatient) {
-      patient = findPatient;
+      notificationList = findPatient.notifications;
+      if (notificationList.length > 0) {
+        newNotification = {
+          ...newNotification,
+          id: addZeroString(notificationList[notificationList.length - 1].id),
+        };
+      }
+      patient = {
+        ...findPatient,
+        notifications: [...findPatient.notifications, newNotification],
+      };
     }
     let user = {
       ...action.payload,
@@ -127,5 +157,21 @@ export const patientReducer = (
     };
   }
 
+  if (action.type === "ADD_SCHEDULE") {
+    const newNotif: NotificationType = action.payload.newNotif;
+    const newSchedule: ScheduledType = action.payload.newSchedule;
+
+    let patient: PatientType = patientState.patient;
+
+    patient = {
+      ...patient,
+      notifications: [...patient.notifications, newNotif],
+      scheduled_appointments: [...patient.scheduled_appointments, newSchedule],
+    };
+    return {
+      ...patientState,
+      patient,
+    };
+  }
   return patientState;
 };

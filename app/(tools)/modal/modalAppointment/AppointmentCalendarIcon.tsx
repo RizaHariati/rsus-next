@@ -25,7 +25,7 @@ const AppointmentCalendarIcon = ({}: Props) => {
   const handleToggle = (date: number) => {
     return setToggleKuota(date);
   };
-  getHariOrder(doctorInfo.hari);
+
   return (
     <div>
       <div className="appointment-date-container ">

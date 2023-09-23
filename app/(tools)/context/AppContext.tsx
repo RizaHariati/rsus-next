@@ -1,6 +1,11 @@
 import { createContext } from "react";
 import { AppState, PatientState } from "./interfaces";
-import { PatientInitialValueType, UserType } from "../patientTypes";
+import {
+  NotificationType,
+  PatientInitialValueType,
+  ScheduledType,
+  UserType,
+} from "../patientTypes";
 
 export type AppContextProps = {
   patientState: PatientState;
@@ -29,6 +34,10 @@ export type AppContextProps = {
   scrollTop: boolean;
   scrollingUp: boolean;
   showFooter: boolean;
+  addingSchedule: (
+    newSchedule: ScheduledType,
+    newNotif: NotificationType
+  ) => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

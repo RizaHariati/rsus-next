@@ -11,6 +11,7 @@ import { ScheduledType } from "@/app/(tools)/patientTypes";
 import { getActivities } from "@/app/(tools)/utils/getActivities";
 import { DoctorType } from "@/app/(tools)/types";
 import { toast } from "react-toastify";
+import dayjs from "dayjs";
 
 type Props = {};
 
@@ -18,7 +19,7 @@ const NavLinkAntrian = () => {
   const {
     toggleMenuNavbar,
     state: { menu_id },
-    patientState: { user },
+    patientState: { user, patient },
   } = useGlobalContext();
   return (
     <div className="relative h-full ">
@@ -29,7 +30,11 @@ const NavLinkAntrian = () => {
           if (!user.login) {
             toast.error("Anda harus login terlebih dahulu");
           } else {
-            toggleMenuNavbar(e.currentTarget.id);
+            if (patient.scheduled_appointments.length < 1) {
+              return toast.info("Anda belum menjadwalkan kegiatan apapun");
+            } else {
+              toggleMenuNavbar(e.currentTarget.id);
+            }
           }
         }}
         className="navbar-link  "
@@ -63,7 +68,7 @@ export const MenuAntrianContent = () => {
 
   const schedule: ScheduledType[] = patient.scheduled_appointments;
   return (
-    <>
+    <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none">
       {schedule?.map((scheduleItem) => {
         const activities = getActivities(scheduleItem);
         const { doctorActivities, testActivities } = activities;
@@ -117,6 +122,18 @@ export const MenuAntrianContent = () => {
                   <p className="capitalize font-semibold">
                     {scheduleItem.appointment_type}
                   </p>
+                  {new Date(scheduleItem.scheduled_date) > new Date() && (
+                    <p>
+                      Jadwal Anda untuk {doctor.poliklinik.title}: dengan
+                      {doctor.nama} tanggal
+                      {dayjs(scheduleItem.scheduled_date).format(
+                        "DD-MM-YYYY [jam] HH:mm"
+                      )}
+                    </p>
+                  )}
+                  {new Date(scheduleItem.scheduled_date) <= new Date() && (
+                    <p>Jadwal Anda di pada tanggal</p>
+                  )}
                   <p className="body-3 ">
                     {doctor.poliklinik.title}: {doctor.nama} Saat ini melayani
                     nomor 10. &nbsp;
@@ -131,6 +148,6 @@ export const MenuAntrianContent = () => {
           );
         }
       })}
-    </>
+    </div>
   );
 };
