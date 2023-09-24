@@ -103,6 +103,19 @@ export const AppProvider = ({ children }: Props) => {
   const logout = () => {
     patientDispatch({ type: "LOGOUT_USER" });
     dispatch({ type: "CLOSE_MODAL", payload: "" });
+    if (patientState.patient.notifications.length > 0) {
+      const findNotifID = patientState.patient.notifications.find(
+        (item) => item.notification_code === "ncat-001"
+      );
+      if (findNotifID) {
+        patientDispatch({
+          type: "DELETE_NOTIFICATION",
+          payload: {
+            notificationID: findNotifID.id,
+          },
+        });
+      }
+    }
   };
 
   const register = (newPatientPersonal: PatientInitialValueType) => {
@@ -141,6 +154,20 @@ export const AppProvider = ({ children }: Props) => {
       payload: { newSchedule, newNotif },
     });
   };
+  const clearNotifBackground = (notificationID: string) => {
+    patientDispatch({
+      type: "CLEAR_BACKGROUND_NOTIFICATION",
+      payload: { notificationID },
+    });
+  };
+
+  const deleteNotification = (notificationID: string) => {
+    patientDispatch({
+      type: "DELETE_NOTIFICATION",
+      payload: { notificationID },
+    });
+  };
+
   const value = {
     patientState,
     patientDispatch,
@@ -149,6 +176,8 @@ export const AppProvider = ({ children }: Props) => {
     checkUser,
     register,
     addingSchedule,
+    clearNotifBackground,
+    deleteNotification,
     state,
     dispatch,
     toggleMenuNavbar,

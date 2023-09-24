@@ -70,6 +70,7 @@ const ModalTatapMuka = (props: Props) => {
       tujuan: [doctorInfo.id],
       appointment_type: "tatap_muka",
       scheduled_date: new Date(date),
+      register_date: new Date(),
       using_bpjs: bpjs,
       nomor_antrian: Math.floor(Math.random() * doctorInfo.kuota + 1),
     };
@@ -77,14 +78,21 @@ const ModalTatapMuka = (props: Props) => {
       id: getNotificationID(patient.notifications),
       notification_code: "ncat-002",
       schedule_code: newScheduleID,
-      register_date: new Date(),
+      notification_date: new Date(),
       seen: false,
     };
-    addingSchedule(schedule, newNotif);
-    toast.success(
-      `Pertemuan tatap muka dengan ${doctorInfo.nama} berhasil dijadwalkan`
-    );
-    closeModal();
+
+    const promiseTatapMuka = new Promise((resolve) => {
+      addingSchedule(schedule, newNotif);
+      setTimeout(() => {
+        resolve(closeModal());
+      }, 1000);
+    });
+    toast.promise(promiseTatapMuka, {
+      pending: "Mendaftarkan Jadwal",
+      success: `Pertemuan tatap muka dengan ${doctorInfo.nama} berhasil dijadwalkan`,
+      error: "Schedule rejected ",
+    });
   };
   return (
     <div className="modal-phone md:modal-lg">

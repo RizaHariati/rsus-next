@@ -89,12 +89,12 @@
   }
 
   .notification-container {
-    @apply navbar-drop-container w-full md:w-modal_md right-0 origin-top p-2 md:p-5 md:py-2 top-[57px] md:top-12 rounded-none rounded-b-md md:rounded-sm shadow-sm shadow-greyMed2 h-fit;
+    @apply navbar-drop-container w-full md:w-modal_md right-0 origin-top p-2 md:p-5 md:py-2 top-[57px] md:top-12 rounded-none rounded-b-md md:rounded-sm shadow-sm shadow-greyMed2 h-fit text-left;
   }
   .notification-container-hidden {
     @apply notification-container  pt-0 shadow-none  h-0 transition-all p-0 px-2 md:px-5 border-none top-[57px] md:top-12;
   }
   .notification-item {
-    @apply w-full grid grid-cols-12 items-start standard-border mb-2 hover:bg-greyLit transition-all p-1;
+    @apply w-full grid grid-cols-12 items-start standard-border mb-2 hover:bg-greyLit transition-all p-1 text-left;
   }
 }

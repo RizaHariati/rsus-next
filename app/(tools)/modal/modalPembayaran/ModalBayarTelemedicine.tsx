@@ -5,6 +5,10 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ConsultationMenuTypes, DoctorType } from "../../types";
 import { getMedicalRecord } from "../../data/sample";
 import PaymentMethods from "./PaymentMethods";
+import { getScheduleID } from "../../utils/getScheduleID";
+import { ScheduledType, NotificationType } from "../../patientTypes";
+import { getNotificationID } from "../../utils/getNotificationID";
+import { toast } from "react-toastify";
 
 type Props = {};
 
@@ -12,10 +16,46 @@ const ModalBayarTelemedicine = (props: Props) => {
   const {
     state: { modalValue },
     openModal,
+    patientState: { patient },
+    addingSchedule,
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.doctorInfo;
   const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
 
+  const handleTelemedicine = async () => {
+    const newScheduleID = getScheduleID(patient.scheduled_appointments);
+    const schedule: ScheduledType = {
+      current_phone: patient.patient_profile.phone,
+      schedule_id: newScheduleID,
+      tujuan: [doctorInfo.id],
+      appointment_type: "telemedicine",
+      scheduled_date: new Date(),
+      register_date: new Date(),
+      using_bpjs: false,
+      nomor_antrian: 0,
+    };
+    const newNotif: NotificationType = {
+      id: getNotificationID(patient.notifications),
+      notification_code: "ncat-003",
+      schedule_code: newScheduleID,
+      notification_date: new Date(),
+      seen: false,
+    };
+
+    const promiseTelemedicine = new Promise((resolve) => {
+      addingSchedule(schedule, newNotif);
+
+      setTimeout(() => {
+        resolve(openModal("inconstruction", {}));
+      }, 1500);
+    });
+
+    toast.promise(promiseTelemedicine, {
+      pending: "Menunggu pembayaran",
+      success: `Jadwal Telemedicine dengan ${doctorInfo.nama} berhasil ditambahkan`,
+      error: "Schedule rejected ",
+    });
+  };
   return (
     <div className="modal-phone md:modal-md overflow-hidden bg-white">
       <button
@@ -39,7 +79,7 @@ const ModalBayarTelemedicine = (props: Props) => {
         <PaymentMethods />
         <div className="w-full flex-center-center">
           <button
-            onClick={() => openModal("inconstruction", {})}
+            onClick={() => handleTelemedicine()}
             className="button-greenUrip w-fit mx-auto px-3"
           >
             Bayar sekarang

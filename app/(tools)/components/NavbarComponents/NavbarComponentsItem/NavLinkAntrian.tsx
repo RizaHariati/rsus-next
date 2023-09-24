@@ -4,14 +4,18 @@ import React from "react";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
+  faInfoCircle,
   faPeopleGroup,
   faTriangleExclamation,
 } from "@fortawesome/free-solid-svg-icons";
 import { ScheduledType } from "@/app/(tools)/patientTypes";
-import { getActivities } from "@/app/(tools)/utils/getActivities";
-import { DoctorType } from "@/app/(tools)/types";
 import { toast } from "react-toastify";
 import dayjs from "dayjs";
+import dataDokter from "@/app/(tools)/data/data_dokter.json";
+import dataPaketKesehatan from "@/app/(tools)/data/data_paketkesehatan.json";
+import dataFacility from "@/app/(tools)/data/data_facility.json";
+import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
+import { faQq } from "@fortawesome/free-brands-svg-icons";
 
 type Props = {};
 
@@ -67,87 +71,100 @@ export const MenuAntrianContent = () => {
   } = useGlobalContext();
 
   const schedule: ScheduledType[] = patient.scheduled_appointments;
+  faQq;
   return (
-    <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none">
-      {schedule?.map((scheduleItem) => {
-        const activities = getActivities(scheduleItem);
-        const { doctorActivities, testActivities } = activities;
-        if (testActivities.length > 0) {
-          return (
-            <div key={scheduleItem.schedule_id}>
-              {testActivities.map((item, index) => {
-                return (
-                  <div key={index} className="menu-alert mb-2">
-                    <FontAwesomeIcon
-                      icon={faTriangleExclamation}
-                      className="menu-icon text-blue-700"
-                    />
-                    <div>
-                      <p className="capitalize font-semibold">
-                        {scheduleItem.appointment_type}
-                      </p>
-                      <p className="body-3 ">
-                        {item.title}: Saat ini melayani nomor 25. &nbsp;
-                        <span className="font-bold">
-                          Nomor Anda {scheduleItem.nomor_antrian}
-                        </span>
-                        . Harap bersiap-siap
-                      </p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          );
-        } else {
-          const doctor: DoctorType = doctorActivities.doctor!;
+    <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none flex flex-col gap-2">
+      <h4>Jadwal Antrian Anda</h4>
+      {schedule.map((scheduleItem) => {
+        const detailSchedule = getScheduleType(
+          scheduleItem.appointment_type,
+          scheduleItem.tujuan
+        );
+        if (scheduleItem.appointment_type === "telemedicine") {
           return (
             <div key={scheduleItem.schedule_id} className="menu-alert">
               <FontAwesomeIcon
-                icon={faTriangleExclamation}
-                className="menu-icon text-greenUrip "
+                icon={faInfoCircle}
+                className="menu-icon text-blue-700"
               />
-              {scheduleItem.appointment_type === "telemedicine" ? (
-                <div>
-                  <p className="capitalize font-semibold">
-                    {scheduleItem.appointment_type}
-                  </p>
-                  <p className="body-3 ">
-                    {doctor.poliklinik.title}: {doctor.nama} Saat ini akan
-                    segera menghubungi anda via WhatsApp. Harap bersiap-siap
-                  </p>
-                </div>
-              ) : (
-                <div>
-                  <p className="capitalize font-semibold">
-                    {scheduleItem.appointment_type}
-                  </p>
-                  {new Date(scheduleItem.scheduled_date) > new Date() && (
-                    <p>
-                      Jadwal Anda untuk {doctor.poliklinik.title}: dengan
-                      {doctor.nama} tanggal
-                      {dayjs(scheduleItem.scheduled_date).format(
-                        "DD-MM-YYYY [jam] HH:mm"
-                      )}
-                    </p>
-                  )}
-                  {new Date(scheduleItem.scheduled_date) <= new Date() && (
-                    <p>Jadwal Anda di pada tanggal</p>
-                  )}
-                  <p className="body-3 ">
-                    {doctor.poliklinik.title}: {doctor.nama} Saat ini melayani
-                    nomor 10. &nbsp;
-                    <span className="font-bold">
-                      Nomor Anda {scheduleItem.nomor_antrian}
-                    </span>
-                    . Harap bersiap-siap
-                  </p>
-                </div>
-              )}
+              <p>
+                Anda terjadwal untuk melakukan {detailSchedule.type}&nbsp;
+                <span className="font-bold">
+                  {detailSchedule.tujuanSchedule}
+                </span>
+                &nbsp;Anda akan segera dihubungi lewat WhatApp. Harap anda
+                bersiap-siap
+              </p>
             </div>
           );
+        } else {
+          if (scheduleItem.scheduled_date > new Date()) {
+            return (
+              <div key={scheduleItem.schedule_id} className="menu-alert">
+                <FontAwesomeIcon
+                  icon={faInfoCircle}
+                  className="menu-icon text-blue-700"
+                />
+                <p>
+                  Anda terjadwal untuk melakukan {detailSchedule.type}&nbsp;
+                  <span className="font-bold">
+                    {detailSchedule.tujuanSchedule}
+                  </span>
+                  &nbsp;untuk tanggal&nbsp;
+                  {dayjs(scheduleItem.scheduled_date).format(
+                    "DD MMMM YYYY [jam] HH:mm"
+                  )}
+                </p>
+              </div>
+            );
+          } else {
+            return (
+              <div key={scheduleItem.schedule_id} className="menu-alert">
+                <FontAwesomeIcon
+                  icon={faTriangleExclamation}
+                  className="menu-icon text-greenUrip "
+                />
+                <p>
+                  Hari ini Anda memiliki jadwal {detailSchedule.type}&nbsp;
+                  <span className="font-bold">
+                    {detailSchedule.tujuanSchedule}
+                  </span>
+                  . nomor Antrian anda adalah : {scheduleItem.nomor_antrian},
+                  saat ini sudah mencapai urutan. Jangan lupa untuk melunasi
+                  pembayaran 1 jam sebelum jadwal.
+                </p>
+              </div>
+            );
+          }
         }
       })}
     </div>
   );
+};
+const getScheduleType = (appointment_type: string, tujuan: string[]) => {
+  const translateType =
+    appointment_type === "tatap_muka" ? "tatap muka" : "telemedicine";
+  let type =
+    appointment_type !== "test" ? `konsultasi ${translateType}` : `test `;
+  let tujuanSchedule = "";
+  if (appointment_type !== "test") {
+    const findDoctor = dataDokter.find((item) => item.id === tujuan[0])!;
+
+    tujuanSchedule = `dengan ${findDoctor.nama} dari Poli ${findDoctor.poliklinik.title}`;
+  } else {
+    tujuanSchedule = tujuan
+      .map((itemTujuan) => {
+        const findPaket = dataPaketKesehatan.find(
+          (item) => item.id === itemTujuan
+        );
+        const findFas = dataFacility.find((item) => item.id === itemTujuan);
+        const findLab = dataLabSatuan.find((item) => item.id === itemTujuan);
+        if (findPaket) return findPaket.title;
+        else if (findFas) return findFas?.title;
+        else if (findLab) return findLab.title;
+        else return "";
+      })
+      .join(", ");
+  }
+  return { type, tujuanSchedule };
 };

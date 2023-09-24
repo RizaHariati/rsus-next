@@ -92,7 +92,7 @@ export const patientReducer = (
       id: "ntf-001",
       notification_code: "ncat-001",
       schedule_code: "",
-      register_date: new Date(),
+      notification_date: new Date(),
       seen: false,
     };
     const findPatient: PatientType | undefined = allPatients.find(
@@ -168,6 +168,46 @@ export const patientReducer = (
       notifications: [...patient.notifications, newNotif],
       scheduled_appointments: [...patient.scheduled_appointments, newSchedule],
     };
+    return {
+      ...patientState,
+      patient,
+    };
+  }
+  if (action.type === "CLEAR_BACKGROUND_NOTIFICATION") {
+    let patient = patientState.patient;
+    let notifications = patientState.patient.notifications;
+    const notificationID = action.payload.notificationID;
+
+    notifications = notifications.map((item) => {
+      if (item.id === notificationID) {
+        return { ...item, seen: true };
+      } else {
+        return item;
+      }
+    });
+    patient = { ...patient, notifications };
+
+    return {
+      ...patientState,
+      patient,
+    };
+  }
+  if (action.type === "DELETE_NOTIFICATION") {
+    let patient = patientState.patient;
+    let notifications = patientState.patient.notifications;
+    const notificationID = action.payload.notificationID;
+
+    if (notificationID === "all") {
+      patient = { ...patient, notifications: [] };
+    } else {
+      notifications = notifications.filter((item) => {
+        if (item.id !== notificationID) {
+          return { ...item, seen: true };
+        }
+      });
+      patient = { ...patient, notifications };
+    }
+
     return {
       ...patientState,
       patient,

@@ -38,7 +38,7 @@ const NotificationMessages = ({
         {`${messages[0]} ${patientprofile.name}.
         ${messages[1]}
         ${
-          dayjs(notificationItem?.register_date).format(
+          dayjs(notificationItem?.notification_date).format(
             "DD-MM-YYYY [jam] HH:mm"
           ) || ""
         }.`}

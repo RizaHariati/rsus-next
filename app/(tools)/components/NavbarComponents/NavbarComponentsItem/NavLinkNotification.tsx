@@ -36,6 +36,8 @@ const NotificationLogin = () => {
     patientState: { patient },
     state: { menu_id },
     toggleMenuNavbar,
+    clearNotifBackground,
+    deleteNotification,
   } = useGlobalContext();
   const notification: NotificationType[] = patient.notifications;
 
@@ -49,7 +51,7 @@ const NotificationLogin = () => {
           onClick={(e) => {
             toggleMenuNavbar(e.currentTarget.id);
             if (notification.length < 1) {
-              toast.info("belum ada pesan untuk anda");
+              toast.info("belum ada pesan baru untuk anda");
             }
           }}
         >
@@ -73,63 +75,92 @@ const NotificationLogin = () => {
                 : "notification-container  "
             }
           >
-            <div className="flex-center-left ">
-              <div className=" scale-50 origin-left">
-                <MainLogoImage />
+            <div className="flex-center-between ">
+              <div className="flex-center-left">
+                <div className=" scale-50 origin-left">
+                  <MainLogoImage />
+                </div>
+                <h5>Notifikasi</h5>
               </div>
-              <h5>Notifikasi</h5>
+              <button
+                onClick={() => {
+                  deleteNotification("all");
+                  toast.success("pesan berhasil dihapus");
+                }}
+                className=" standard-border btn-3 px-2 hover:text-black transition-all active:bg-greyMed2 active:text-white"
+              >
+                hapus semua
+              </button>
             </div>
             <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none scrollbar-track-greyLit scrollbar-thumb-greyBorder standard-border border-greyBorder p-2 ">
-              {notification.reverse().map((notificationItem, index) => {
-                const findNotif: NotificationLibraryType | undefined =
-                  dataNotification.find(
-                    (itemNotif: NotificationLibraryType) =>
-                      itemNotif.id === notificationItem.notification_code
-                  );
+              {notification
+                .slice()
+                .reverse()
+                .map((notificationItem, index) => {
+                  const findNotif: NotificationLibraryType | undefined =
+                    dataNotification.find(
+                      (itemNotif: NotificationLibraryType) =>
+                        itemNotif.id === notificationItem.notification_code
+                    );
 
-                if (!findNotif) {
-                  return <div key={index}></div>;
-                } else {
-                  return (
-                    <div
-                      key={index}
-                      className={
-                        notificationItem.seen
-                          ? "notification-item "
-                          : "notification-item bg-greyLit"
-                      }
-                    >
-                      <FontAwesomeIcon
-                        icon={
-                          findNotif.type === "success"
-                            ? faCheckCircle
-                            : faInfoCircle
-                        }
+                  if (!findNotif) {
+                    return <div key={index}></div>;
+                  } else {
+                    return (
+                      <div
+                        key={index}
                         className={
-                          findNotif.type === "success"
-                            ? "text-greenUrip col-span-1 p-1"
-                            : "text-blue-300 p-1"
+                          notificationItem.seen
+                            ? "notification-item "
+                            : "notification-item bg-greyLit"
                         }
-                      />
-                      <div className=" col-span-10 inline leading-4">
-                        <p className=" footnote-1 text-greyMed2">
-                          {dayjs(notificationItem.register_date).format(
-                            "DD MMMM YYYY"
-                          )}
-                        </p>
-                        <NotificationMessages
-                          messages={findNotif.message}
-                          findNotif={findNotif}
-                          notificationItem={notificationItem}
+                      >
+                        <FontAwesomeIcon
+                          icon={
+                            findNotif.type === "success"
+                              ? faCheckCircle
+                              : faInfoCircle
+                          }
+                          className={
+                            findNotif.type === "success"
+                              ? "text-greenUrip col-span-1 p-1"
+                              : "text-blue-300 p-1"
+                          }
                         />
+                        <button
+                          onPointerEnter={() => {
+                            if (notificationItem.seen) {
+                              return;
+                            } else {
+                              clearNotifBackground(notificationItem.id);
+                            }
+                          }}
+                          className=" col-span-10 inline leading-4 text-left"
+                        >
+                          <p className=" footnote-1 text-greyMed2">
+                            {dayjs(notificationItem.notification_date).format(
+                              "DD MMMM YYYY"
+                            )}
+                          </p>
+                          <NotificationMessages
+                            messages={findNotif.message}
+                            findNotif={findNotif}
+                            notificationItem={notificationItem}
+                          />
+                        </button>
+                        <button
+                          onClick={() => {
+                            deleteNotification(notificationItem.id);
+                            toast.success("pesan berhasil dihapus");
+                          }}
+                          className="col-span-1 hover:text-redBase active:text-redOpacity transition-all"
+                        >
+                          <FontAwesomeIcon icon={faTrashAlt} />
+                        </button>
                       </div>
-                      <button className="col-span-1 hover:text-redBase active:text-redOpacity transition-all">
-                        <FontAwesomeIcon icon={faTrashAlt} />
-                      </button>
-                    </div>
-                  );
-                }
-              })}
+                    );
+                  }
+                })}
             </div>
           </div>
         )}

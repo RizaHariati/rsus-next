@@ -16,7 +16,18 @@ const ModalInConstruction = (props: Props) => {
     setTimeout(() => {
       setloading(false);
     }, 1000);
+    // eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (loading) return;
+    else {
+      setTimeout(() => {
+        closeModal();
+      }, 2000);
+    }
+    // eslint-disable-next-line
+  }, [loading]);
 
   return (
     <div className="modal-phone md:modal-md aspect-square md:h-[450px] ">

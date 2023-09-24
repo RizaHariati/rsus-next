@@ -38,6 +38,8 @@ export type AppContextProps = {
     newSchedule: ScheduledType,
     newNotif: NotificationType
   ) => void;
+  clearNotifBackground: (notificationID: string) => void;
+  deleteNotification: (notificationID: string) => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

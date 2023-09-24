@@ -41,6 +41,7 @@ export type ScheduledType = {
   tujuan: string[];
   appointment_type: "tatap_muka" | "telemedicine" | "test";
   scheduled_date: Date;
+  register_date: Date;
   using_bpjs: boolean;
   nomor_antrian: number;
 };
@@ -60,7 +61,7 @@ export type NotificationType = {
   id: string;
   notification_code: string;
   schedule_code?: string;
-  register_date: Date;
+  notification_date: Date;
   seen: boolean;
 };
 
