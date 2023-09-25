@@ -78,6 +78,7 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
   }
 
   if (action.type === "OPEN_MODAL") {
+    console.log({ modalSelectedDatea: state.selected_date });
     const { modalTitle, modalValue } = action.payload;
 
     return {

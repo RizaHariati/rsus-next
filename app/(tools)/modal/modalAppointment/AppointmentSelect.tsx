@@ -38,18 +38,10 @@ const AppointmentSelect = () => {
     }
   };
 
-  const handleDateChange = (date: Date) => {
-    setDate(date);
-  };
-
   return (
     <mark className="w-full  grid grid-cols-1 md:grid-cols-2 gap-2 h-full body-3 ">
       <div className=" w-full standard-border p-3 flex flex-col gap-2  ">
-        <SelectDate
-          searchCategory={searchCategory}
-          handleDateChange={handleDateChange}
-          clearDate={clearDate}
-        />
+        <SelectDate searchCategory={searchCategory} />
         <div className="w-full flex gap-2 flex-col h-fit md:h-16 ">
           <div className="flex flex-col md:flex-row gap-0 md:gap-2">
             <p className="btn-3-bold">

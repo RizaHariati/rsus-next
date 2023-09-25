@@ -7,6 +7,10 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { LabCartType } from "../../types";
 import { toast } from "react-toastify";
 import { getAge } from "../../utils/getAge";
+import SelectDate from "../modalAppointment/SelectDate";
+import { NotificationType, ScheduledType } from "../../patientTypes";
+import { getScheduleID } from "../../utils/getScheduleID";
+import { getNotificationID } from "../../utils/getNotificationID";
 
 type Props = {};
 
@@ -16,11 +20,44 @@ const ModalLabCarts = (props: Props) => {
     closeModal,
     clearLabCart,
     openModal,
+    openAlert,
+    state: { selected_date },
     patientState: { patient },
   } = useGlobalContext();
   const labCart: LabCartType[] = state.labCart;
   const patientProfile = patient.patient_profile;
   let total = 0;
+
+  const handleBayarLab = () => {
+    if (!selected_date) {
+      openAlert("datenotselected", {});
+    } else {
+      const labType: string[] = labCart.map((item) => item.id);
+
+      const newScheduleID = getScheduleID(patient.scheduled_appointments);
+      if (labCart.length > 0) {
+        const schedule: ScheduledType = {
+          current_phone: patient.patient_profile.phone,
+          schedule_id: newScheduleID,
+          tujuan: labType,
+          appointment_type: "test",
+          scheduled_date: selected_date,
+          register_date: new Date(),
+          using_bpjs: false,
+          nomor_antrian: 0,
+        };
+        const newNotif: NotificationType = {
+          id: getNotificationID(patient.notifications),
+          notification_code: "ncat-005",
+          schedule_code: newScheduleID,
+          notification_date: new Date(),
+          seen: false,
+        };
+
+        openModal("bayarlab", { schedule, newNotif });
+      }
+    }
+  };
   return (
     <div className="modal-phone md:modal-lg min-h-[300px] flex-center-between flex-col">
       <h3 className="modal-title">Pilihan Test Laboratorium</h3>
@@ -33,6 +70,9 @@ const ModalLabCarts = (props: Props) => {
           <p className="active-input capitalize ">
             {patient.medical_record_number}
           </p>
+        </div>
+        <div className="w-full col-span-full">
+          <SelectDate searchCategory="laboratorium" />
         </div>
         <div className=" col-span-full w-full flex flex-col col-start-1 md:col-span-2">
           <p className="body-2 text-xs">Nama</p>
@@ -102,7 +142,7 @@ const ModalLabCarts = (props: Props) => {
           </div>
         )}
       </div>
-      <div className="flex items-center justify-end w-full gap-3 mt-2 w-full md:w-1/2 ">
+      <div className="flex items-center justify-end w-full gap-3 mt-2 md:w-1/2 ">
         <button
           onClick={() => {
             clearLabCart();
@@ -116,9 +156,7 @@ const ModalLabCarts = (props: Props) => {
         <button
           disabled={labCart.length > 0 ? false : true}
           onClick={() => {
-            if (labCart.length > 0) {
-              openModal("bayarlab", {});
-            }
+            handleBayarLab();
           }}
           className={
             labCart.length > 0

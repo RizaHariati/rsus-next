@@ -75,30 +75,15 @@ export const MenuAntrianContent = () => {
   return (
     <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none flex flex-col gap-2">
       <h4>Jadwal Antrian Anda</h4>
-      {schedule.map((scheduleItem) => {
-        const detailSchedule = getScheduleType(
-          scheduleItem.appointment_type,
-          scheduleItem.tujuan
-        );
-        if (scheduleItem.appointment_type === "telemedicine") {
-          return (
-            <div key={scheduleItem.schedule_id} className="menu-alert">
-              <FontAwesomeIcon
-                icon={faInfoCircle}
-                className="menu-icon text-blue-700"
-              />
-              <p>
-                Anda terjadwal untuk melakukan {detailSchedule.type}&nbsp;
-                <span className="font-bold">
-                  {detailSchedule.tujuanSchedule}
-                </span>
-                &nbsp;Anda akan segera dihubungi lewat WhatApp. Harap anda
-                bersiap-siap
-              </p>
-            </div>
+      {schedule
+        .slice()
+        .reverse()
+        .map((scheduleItem) => {
+          const detailSchedule = getScheduleType(
+            scheduleItem.appointment_type,
+            scheduleItem.tujuan
           );
-        } else {
-          if (scheduleItem.scheduled_date > new Date()) {
+          if (scheduleItem.appointment_type === "telemedicine") {
             return (
               <div key={scheduleItem.schedule_id} className="menu-alert">
                 <FontAwesomeIcon
@@ -110,34 +95,52 @@ export const MenuAntrianContent = () => {
                   <span className="font-bold">
                     {detailSchedule.tujuanSchedule}
                   </span>
-                  &nbsp;untuk tanggal&nbsp;
-                  {dayjs(scheduleItem.scheduled_date).format(
-                    "DD MMMM YYYY [jam] HH:mm"
-                  )}
+                  &nbsp;Anda akan segera dihubungi lewat WhatApp. Harap anda
+                  bersiap-siap
                 </p>
               </div>
             );
           } else {
-            return (
-              <div key={scheduleItem.schedule_id} className="menu-alert">
-                <FontAwesomeIcon
-                  icon={faTriangleExclamation}
-                  className="menu-icon text-greenUrip "
-                />
-                <p>
-                  Hari ini Anda memiliki jadwal {detailSchedule.type}&nbsp;
-                  <span className="font-bold">
-                    {detailSchedule.tujuanSchedule}
-                  </span>
-                  . nomor Antrian anda adalah : {scheduleItem.nomor_antrian},
-                  saat ini sudah mencapai urutan. Jangan lupa untuk melunasi
-                  pembayaran 1 jam sebelum jadwal.
-                </p>
-              </div>
-            );
+            if (scheduleItem.scheduled_date > new Date()) {
+              return (
+                <div key={scheduleItem.schedule_id} className="menu-alert">
+                  <FontAwesomeIcon
+                    icon={faInfoCircle}
+                    className="menu-icon text-blue-700"
+                  />
+                  <p>
+                    Anda terjadwal untuk melakukan {detailSchedule.type}&nbsp;
+                    <span className="font-bold">
+                      {detailSchedule.tujuanSchedule}
+                    </span>
+                    &nbsp;untuk tanggal&nbsp;
+                    {dayjs(scheduleItem.scheduled_date).format(
+                      "DD MMMM YYYY [jam] HH:mm"
+                    )}
+                  </p>
+                </div>
+              );
+            } else {
+              return (
+                <div key={scheduleItem.schedule_id} className="menu-alert">
+                  <FontAwesomeIcon
+                    icon={faTriangleExclamation}
+                    className="menu-icon text-greenUrip "
+                  />
+                  <p>
+                    Hari ini Anda memiliki jadwal {detailSchedule.type}&nbsp;
+                    <span className="font-bold">
+                      {detailSchedule.tujuanSchedule}
+                    </span>
+                    . nomor Antrian anda adalah : {scheduleItem.nomor_antrian},
+                    saat ini sudah mencapai urutan. Jangan lupa untuk melunasi
+                    pembayaran 1 jam sebelum jadwal.
+                  </p>
+                </div>
+              );
+            }
           }
-        }
-      })}
+        })}
     </div>
   );
 };

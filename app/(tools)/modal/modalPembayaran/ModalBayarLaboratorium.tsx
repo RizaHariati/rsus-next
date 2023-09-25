@@ -5,6 +5,7 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { LabCartType } from "../../types";
 import PaymentMethods from "./PaymentMethods";
 import { getMedicalRecord } from "../../data/sample";
+import { toast } from "react-toastify";
 
 type Props = {};
 
@@ -13,9 +14,29 @@ const ModalBayarLaboratorium = (props: Props) => {
     closeModal,
     openModal,
     clearLabCart,
+    addingSchedule,
+    state: { modalValue },
     patientState: { patient },
   } = useGlobalContext();
 
+  const { schedule, newNotif } = modalValue;
+  const handleBayar = () => {
+    //  clearLabCart();
+    //  openModal("inconstruction", {});
+    const promiseTelemedicine = new Promise((resolve) => {
+      addingSchedule(schedule, newNotif);
+
+      setTimeout(() => {
+        resolve(openModal("inconstruction", {}));
+      }, 1500);
+    });
+
+    toast.promise(promiseTelemedicine, {
+      pending: "Menunggu pembayaran",
+      success: `Jadwal test berhasil ditambahkan`,
+      error: "Schedule rejected ",
+    });
+  };
   return (
     <div className="modal-phone md:modal-md ">
       <button className="modal-close-btn" onClick={() => closeModal()}>
@@ -36,8 +57,7 @@ const ModalBayarLaboratorium = (props: Props) => {
         <div className="w-full flex-center-center">
           <button
             onClick={() => {
-              clearLabCart();
-              openModal("inconstruction", {});
+              handleBayar();
             }}
             className="button-greenUrip w-fit mx-auto px-3"
           >

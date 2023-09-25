@@ -1,24 +1,28 @@
 import dayjs from "dayjs";
-import React from "react";
+import React, { useEffect } from "react";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import id from "date-fns/locale/id";
 import { useGlobalContext } from "../../context/AppProvider";
 
 registerLocale("id", id);
 type Props = {
-  handleDateChange: (date: Date) => void;
-  clearDate: () => void;
-  searchCategory: "dokter" | "spesialisasi";
+  searchCategory: "dokter" | "spesialisasi" | "laboratorium";
 };
 
-const SelectDate = ({ searchCategory, handleDateChange, clearDate }: Props) => {
+const SelectDate = ({ searchCategory }: Props) => {
   const {
     state: { selected_date },
+    setDate,
+    clearDate,
   } = useGlobalContext();
+  useEffect(() => {
+    console.log({ selected_date });
+  }, [selected_date]);
+
   return (
     <div className="w-full flex gap-2 flex-col h-fit md:h-16 ">
       <p className="md:btn-3-bold btn-4 w-full leading-4 md:leading-5">
-        Pilih tanggal berobat
+        Pilih tanggal
         <span className="normal-case tracking-normal">
           (Maksimal 7 hari ke depan)
         </span>
@@ -27,8 +31,10 @@ const SelectDate = ({ searchCategory, handleDateChange, clearDate }: Props) => {
         <ReactDatePicker
           disabled={searchCategory === "dokter" ? true : false}
           placeholderText={
-            searchCategory === "dokter"
-              ? "Pilih spesialisasi"
+            selected_date
+              ? dayjs(selected_date).format("DD MMMM YYYY HH:MM")
+              : searchCategory === "dokter"
+              ? "Pilihan tanggal untuk Spesialisasi"
               : "Biarkan kosong atau pilih tanggal yang diinginkan"
           }
           onKeyDown={(e) => {
@@ -40,7 +46,7 @@ const SelectDate = ({ searchCategory, handleDateChange, clearDate }: Props) => {
           dateFormat={`eeee, dd MMMM yyyy`}
           selected={selected_date}
           // onSelect={(date: Date) => handleSelectedDate(date)} //when day is clicked
-          onChange={(date: Date) => handleDateChange(date)} //only when value has changed
+          onChange={(date: Date) => setDate(date)} //only when value has changed
           minDate={new Date(dayjs().toString())}
           maxDate={new Date(dayjs().add(6, "d").toString())}
         />

@@ -8,6 +8,7 @@ import { useGlobalContext } from "../context/AppProvider";
 import AlertVerifikasi from "./AlertVerifikasi";
 import AlertNotLogin from "./AlertNotLogin";
 import AlertRegistrasiSukses from "./AlertRegistrasiSukses";
+import AlertDateNotSelected from "./AlertDateNotSelected";
 
 type Props = {};
 
@@ -46,6 +47,9 @@ const AlertContent = () => {
   }
   if (alertTitle === "registrasisukses") {
     return <AlertRegistrasiSukses />;
+  }
+  if (alertTitle === "datenotselected") {
+    return <AlertDateNotSelected />;
   }
   return <div></div>;
 };

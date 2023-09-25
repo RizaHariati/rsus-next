@@ -56,6 +56,7 @@ const ModalBayarTelemedicine = (props: Props) => {
       error: "Schedule rejected ",
     });
   };
+
   return (
     <div className="modal-phone md:modal-md overflow-hidden bg-white">
       <button
