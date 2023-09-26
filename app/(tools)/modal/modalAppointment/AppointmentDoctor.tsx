@@ -6,6 +6,11 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import Image from "next/image";
 import { ConsultationMenuTypes, DoctorType } from "../../types";
+import {
+  checkExistingDoctor,
+  checkExistingSchedule,
+} from "../../utils/checkExistingSchedule";
+import { toast } from "react-toastify";
 
 type Props = {};
 const randomizeDoctor = () => {
@@ -15,6 +20,7 @@ const AppointmentDoctor = () => {
   const {
     openModal,
     state: { modalValue, filtered_doctor },
+    patientState: { patient },
   } = useGlobalContext();
 
   const consultationInfo: ConsultationMenuTypes = modalValue;
@@ -32,6 +38,28 @@ const AppointmentDoctor = () => {
     value.length > 0 ? category : "Beberapa dokter kami"
   );
 
+  const handleDoctor = (doctorInfo: DoctorType, image: string) => {
+    if (
+      patient.medical_record_number !== "US4234123398" &&
+      patient.scheduled_appointments.length > 6
+    ) {
+      return toast.error(
+        "Anda sudah mencapai kuota pendaftaran online minggu ini"
+      );
+    }
+    if (!doctorInfo) return;
+    else {
+      const check = checkExistingDoctor(
+        doctorInfo,
+        patient.scheduled_appointments
+      );
+      if (!check.passChecking) {
+        return toast.error(check.message);
+      } else {
+        openModal("doctordetail", { doctorInfo, image, consultationInfo });
+      }
+    }
+  };
   useEffect(() => {
     if (!value) return;
     if (!keyword) {
@@ -66,9 +94,7 @@ const AppointmentDoctor = () => {
             item.gender === 1 ? "male-" + (index + 1) : "female-" + (index + 1);
           return (
             <button
-              onClick={() =>
-                openModal("doctordetail", { item, image, consultationInfo })
-              }
+              onClick={() => handleDoctor(item, image)}
               key={index}
               className="standard-border flex flex-col md:flex-row gap-2  p-2 md:p-0"
             >

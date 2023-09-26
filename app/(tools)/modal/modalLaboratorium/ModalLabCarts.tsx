@@ -29,6 +29,14 @@ const ModalLabCarts = (props: Props) => {
   let total = 0;
 
   const handleBayarLab = () => {
+    if (
+      patient.medical_record_number !== "US4234123398" &&
+      patient.scheduled_appointments.length > 6
+    ) {
+      return toast.error(
+        "Anda sudah mencapai kuota pendaftaran online minggu ini"
+      );
+    }
     if (!selected_date) {
       openAlert("datenotselected", {});
     } else {
@@ -64,6 +72,13 @@ const ModalLabCarts = (props: Props) => {
       <button className="modal-close-btn" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
+      {patient.medical_record_number !== "US4234123398" &&
+        patient.scheduled_appointments.length > 6 && (
+          <p className=" text-redBase">
+            Anda sudah mencapai kuota pendaftaran online minggu ini, anda harus
+            mendaftar langsung di RS Urip Sumoharjo
+          </p>
+        )}
       <div className="w-full  grid grid-cols-6 gap-2 capitalize my-2">
         <div className=" col-span-full w-full flex flex-col md:col-span-2">
           <p className="body-2  ">Nomor Rekam Medis</p>

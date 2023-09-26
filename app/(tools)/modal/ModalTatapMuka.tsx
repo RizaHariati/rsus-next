@@ -12,6 +12,7 @@ import { NotificationType, ScheduledType } from "../patientTypes";
 import { toast } from "react-toastify";
 import { getScheduleID } from "../utils/getScheduleID";
 import { getNotificationID } from "../utils/getNotificationID";
+import { checkExistingSchedule } from "../utils/checkExistingSchedule";
 
 type Props = {};
 
@@ -59,40 +60,49 @@ const ModalTatapMuka = (props: Props) => {
         position: "top-center",
       });
     }
-    const date =
-      dayjs(selected_date).format("MM/DD/YYYY") +
-      doctorInfo.jam.slice(3, 9).replace(".", ":");
+    const check = checkExistingSchedule(
+      doctorInfo,
+      patient.scheduled_appointments,
+      selected_date
+    );
+    if (!check.passChecking) {
+      return toast.error(check.message);
+    } else {
+      const date =
+        dayjs(selected_date).format("MM/DD/YYYY") +
+        doctorInfo.jam.slice(3, 9).replace(".", ":");
 
-    const newScheduleID = getScheduleID(patient.scheduled_appointments);
-    const schedule: ScheduledType = {
-      current_phone: newPhoneNumber,
-      schedule_id: newScheduleID,
-      tujuan: [doctorInfo.id],
-      appointment_type: "tatap_muka",
-      scheduled_date: new Date(date),
-      register_date: new Date(),
-      using_bpjs: bpjs,
-      nomor_antrian: Math.floor(Math.random() * doctorInfo.kuota + 1),
-    };
-    const newNotif: NotificationType = {
-      id: getNotificationID(patient.notifications),
-      notification_code: "ncat-002",
-      schedule_code: newScheduleID,
-      notification_date: new Date(),
-      seen: false,
-    };
+      const newScheduleID = getScheduleID(patient.scheduled_appointments);
+      const schedule: ScheduledType = {
+        current_phone: newPhoneNumber,
+        schedule_id: newScheduleID,
+        tujuan: [doctorInfo.id],
+        appointment_type: "tatap_muka",
+        scheduled_date: new Date(date),
+        register_date: new Date(),
+        using_bpjs: bpjs,
+        nomor_antrian: Math.floor(Math.random() * doctorInfo.kuota + 1),
+      };
+      const newNotif: NotificationType = {
+        id: getNotificationID(patient.notifications),
+        notification_code: "ncat-002",
+        schedule_code: newScheduleID,
+        notification_date: new Date(),
+        seen: false,
+      };
 
-    const promiseTatapMuka = new Promise((resolve) => {
-      addingSchedule(schedule, newNotif);
-      setTimeout(() => {
-        resolve(closeModal());
-      }, 1000);
-    });
-    toast.promise(promiseTatapMuka, {
-      pending: "Mendaftarkan Jadwal",
-      success: `Pertemuan tatap muka dengan ${doctorInfo.nama} berhasil dijadwalkan`,
-      error: "Schedule rejected ",
-    });
+      const promiseTatapMuka = new Promise((resolve) => {
+        addingSchedule(schedule, newNotif);
+        setTimeout(() => {
+          resolve(closeModal());
+        }, 1000);
+      });
+      toast.promise(promiseTatapMuka, {
+        pending: "Mendaftarkan Jadwal",
+        success: `Pertemuan tatap muka dengan ${doctorInfo.nama} berhasil dijadwalkan`,
+        error: "Schedule rejected ",
+      });
+    }
   };
   return (
     <div className="modal-phone md:modal-lg">

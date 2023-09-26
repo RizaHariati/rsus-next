@@ -16,10 +16,10 @@ import Link from "next/link";
 import { DaruratContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkEmergency";
 
 import { PatientProfileContent } from "../NavbarComponents/NavbarComponentsItem/PatientProfile";
-import { MenuAntrianContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkSchedule";
 import { LoginFormContent } from "../NavbarComponents/NavbarComponentsItem/UserLogin";
 import { AnimatePresence, motion, useDragControls } from "framer-motion";
 import { popBottomVariant } from "../../framervariants/bottomvariants";
+import { MenuJadwalContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkSchedule";
 
 type Props = {};
 
@@ -72,7 +72,7 @@ const BottomNavComponents = (props: Props) => {
           )}
           <button
             type="button"
-            id="antrian"
+            id="jadwal"
             onClick={(e) => {
               if (!user.login) {
                 toast.error("Anda harus login terlebih dahulu");
@@ -83,7 +83,7 @@ const BottomNavComponents = (props: Props) => {
             className="nav-b-link"
           >
             <FontAwesomeIcon icon={faPeopleGroup} className="nav-b-icon" />
-            <p className="nav-b-txt">Antrian</p>
+            <p className="nav-b-txt">Jadwal</p>
           </button>
           <Link
             href="/mainpage"
@@ -113,7 +113,7 @@ const BottomNavComponents = (props: Props) => {
           {menu_id === "darurat" && <DaruratContent />}
           {menu_id === "login" && <LoginFormContent />}
           {menu_id === "profile" && <PatientProfileContent />}
-          {menu_id === "antrian" && <MenuAntrianContent />}
+          {menu_id === "jadwal" && <MenuJadwalContent />}
         </BottomNavContent>
       )}
     </div>

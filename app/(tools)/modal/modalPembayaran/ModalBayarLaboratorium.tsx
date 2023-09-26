@@ -21,8 +21,6 @@ const ModalBayarLaboratorium = (props: Props) => {
 
   const { schedule, newNotif } = modalValue;
   const handleBayar = () => {
-    //  clearLabCart();
-    //  openModal("inconstruction", {});
     const promiseTelemedicine = new Promise((resolve) => {
       addingSchedule(schedule, newNotif);
 

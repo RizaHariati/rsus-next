@@ -74,7 +74,7 @@
     @apply h-[calc(100vh-56px)];
   }
   .text-link {
-    @apply cursor-pointer text-greyMed1 hover:text-greyDrk transition-all hover:font-bold tracking-[3px];
+    @apply cursor-pointer text-greyMed1 hover:text-greyDrk transition-all hover:font-bold tracking-[3px]  h-full flex-center-center w-28;
   }
   .flex-center-center {
     @apply flex items-center justify-center;

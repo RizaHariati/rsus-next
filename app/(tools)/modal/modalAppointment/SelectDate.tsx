@@ -15,9 +15,6 @@ const SelectDate = ({ searchCategory }: Props) => {
     setDate,
     clearDate,
   } = useGlobalContext();
-  useEffect(() => {
-    console.log({ selected_date });
-  }, [selected_date]);
 
   return (
     <div className="w-full flex gap-2 flex-col h-fit md:h-16 ">

@@ -29,7 +29,7 @@ const NavLinkSchedule = () => {
     <div className="relative h-full ">
       <button
         type="button"
-        id="antrian"
+        id="jadwal"
         onClick={(e) => {
           if (!user.login) {
             toast.error("Anda harus login terlebih dahulu");
@@ -55,16 +55,16 @@ const NavLinkSchedule = () => {
         </p>
       </button>
 
-      {/* DROP MENU ANTRIAN */}
+      {/* DROP MENU JADWAL */}
       {user.login && (
         <div
           className={
-            menu_id != "antrian"
-              ? "antrian-menu-container-hidden "
-              : "antrian-menu-container "
+            menu_id != "jadwal"
+              ? "jadwal-menu-container-hidden "
+              : "jadwal-menu-container "
           }
         >
-          <MenuAntrianContent />
+          <MenuJadwalContent />
         </div>
       )}
     </div>
@@ -73,7 +73,7 @@ const NavLinkSchedule = () => {
 
 export default NavLinkSchedule;
 
-export const MenuAntrianContent = () => {
+export const MenuJadwalContent = () => {
   const {
     patientState: { patient },
   } = useGlobalContext();
@@ -140,9 +140,8 @@ export const MenuAntrianContent = () => {
                     <span className="font-bold">
                       {detailSchedule.tujuanSchedule}
                     </span>
-                    . nomor Antrian anda adalah : {scheduleItem.nomor_antrian},
-                    saat ini sudah mencapai urutan. Jangan lupa untuk melunasi
-                    pembayaran 1 jam sebelum jadwal.
+                    . nomor Antrian anda adalah : {scheduleItem.nomor_antrian}.
+                    Jangan lupa untuk melunasi pembayaran 1 jam sebelum jadwal.
                   </p>
                 </div>
               );

@@ -56,10 +56,10 @@
   .login-menu-container-hidden {
     @apply navbar-drop-hidden fixed w-modal_md left-1/2 -translate-x-1/2;
   }
-  .antrian-menu-container {
+  .jadwal-menu-container {
     @apply flex-center-between flex-col navbar-drop-container w-[500px] gap-2 left-1/2 -translate-x-1/2;
   }
-  .antrian-menu-container-hidden {
+  .jadwal-menu-container-hidden {
     @apply flex-center-between flex-col navbar-drop-hidden w-[500px] gap-2 left-1/2 -translate-x-1/2;
   }
 
