@@ -6,6 +6,7 @@ import { ConsultationMenuTypes, DoctorType } from "../../types";
 
 import Image from "next/image";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
+import { toast } from "react-toastify";
 
 type Props = {};
 const randomizeDoctor = () => {
@@ -16,6 +17,7 @@ const TelemedicineDoctor = () => {
   const {
     openModal,
     state: { modalValue, filtered_doctor },
+    patientState: { patient },
   } = useGlobalContext();
 
   const consultationInfo: ConsultationMenuTypes = modalValue;
@@ -44,7 +46,38 @@ const TelemedicineDoctor = () => {
           return (
             <button
               onClick={() =>
-                openModal("doctordetail", { item, image, consultationInfo })
+                /* -------------- TELEMEDICINE CAN ONLY BE ONCE A DAY ------------- */
+
+                {
+                  if (patient.medical_record_number !== "US4234123398") {
+                    const findTelemedicine =
+                      patient.scheduled_appointments.find(
+                        (item) => item.appointment_type === "telemedicine"
+                      );
+
+                    if (findTelemedicine) {
+                      toast.error(
+                        `Anda sudah terdaftar untuk Telemedicine dengan ${
+                          dataDoctor.find(
+                            (item) => item.id === findTelemedicine.tujuan[0]
+                          )?.nama
+                        } Anda hanya bisa melakukan Telemedicine satu kali sehari`
+                      );
+                    } else {
+                      openModal("doctordetail", {
+                        item,
+                        image,
+                        consultationInfo,
+                      });
+                    }
+                  } else {
+                    openModal("doctordetail", {
+                      item,
+                      image,
+                      consultationInfo,
+                    });
+                  }
+                }
               }
               key={index}
               className="standard-border flex flex-col md:flex-row items-center p-1 md:p-0 gap-2"

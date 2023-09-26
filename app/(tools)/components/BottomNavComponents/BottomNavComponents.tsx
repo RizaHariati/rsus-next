@@ -16,7 +16,7 @@ import Link from "next/link";
 import { DaruratContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkEmergency";
 
 import { PatientProfileContent } from "../NavbarComponents/NavbarComponentsItem/PatientProfile";
-import { MenuAntrianContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkAntrian";
+import { MenuAntrianContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkSchedule";
 import { LoginFormContent } from "../NavbarComponents/NavbarComponentsItem/UserLogin";
 import { AnimatePresence, motion, useDragControls } from "framer-motion";
 import { popBottomVariant } from "../../framervariants/bottomvariants";

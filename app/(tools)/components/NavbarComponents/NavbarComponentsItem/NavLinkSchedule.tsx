@@ -19,7 +19,7 @@ import { faQq } from "@fortawesome/free-brands-svg-icons";
 
 type Props = {};
 
-const NavLinkAntrian = () => {
+const NavLinkSchedule = () => {
   const {
     toggleMenuNavbar,
     state: { menu_id },
@@ -44,7 +44,15 @@ const NavLinkAntrian = () => {
         className="navbar-link  "
       >
         <FontAwesomeIcon icon={faPeopleGroup} className="navbar-link-icon" />
-        <p className="text-link">Antrian</p>
+        <p
+          className={
+            patient.scheduled_appointments.length > 0
+              ? "text-link font-bold"
+              : "text-link"
+          }
+        >
+          Jadwal
+        </p>
       </button>
 
       {/* DROP MENU ANTRIAN */}
@@ -63,7 +71,7 @@ const NavLinkAntrian = () => {
   );
 };
 
-export default NavLinkAntrian;
+export default NavLinkSchedule;
 
 export const MenuAntrianContent = () => {
   const {
@@ -74,7 +82,7 @@ export const MenuAntrianContent = () => {
   faQq;
   return (
     <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none flex flex-col gap-2">
-      <h4>Jadwal Antrian Anda</h4>
+      <h4>Jadwal Anda</h4>
       {schedule
         .slice()
         .reverse()

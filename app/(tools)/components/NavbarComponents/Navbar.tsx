@@ -11,7 +11,7 @@ import { enterOpacity } from "../../framervariants/variants";
 import MainLogoImage from "../../modal/MainLogoImage";
 import NavLinkEmergency from "./NavbarComponentsItem/NavLinkEmergency";
 import NavLinkProfile from "./NavbarComponentsItem/NavLinkProfile";
-import NavLinkAntrian from "./NavbarComponentsItem/NavLinkAntrian";
+import NavLinkAntrian from "./NavbarComponentsItem/NavLinkSchedule";
 import NavLinkMainMenu from "./NavbarComponentsItem/NavLinkMainMenu";
 import NavLinkNotification from "./NavbarComponentsItem/NavLinkNotification";
 type Props = {};
