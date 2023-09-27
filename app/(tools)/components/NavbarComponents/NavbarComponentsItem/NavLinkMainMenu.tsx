@@ -6,7 +6,11 @@ import { datamenu } from "@/app/(tools)/data/datamenu";
 import { DataMenuType, SubDataType } from "@/app/(tools)/types";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faBars, faSignOut } from "@fortawesome/free-solid-svg-icons";
+import {
+  faBars,
+  faSignOut,
+  faStopwatch,
+} from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
@@ -71,8 +75,14 @@ const NavLinkMainMenu = (props: Props) => {
               className="h-8 text-fuchsia-700 hover:text-fuchsia-800 transition-all"
             />
           </a>
+          <Link
+            href="/timer"
+            className=" text-greenUrip hover:text-greenUripOpacity transition-all"
+          >
+            <FontAwesomeIcon icon={faStopwatch} className="h-8" />
+          </Link>
         </div>
-        <div className="flex flex-col">
+        <div className="flex flex-col ">
           {datamenu.map((menu: DataMenuType) => {
             if (menu.subdata.length > 0) {
               return (
