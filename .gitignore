@@ -4,7 +4,8 @@
 /node_modules
 /.pnp
 .pnp.js
-
+/.sanity
+/dist
 # testing
 /coverage
 
@@ -33,10 +34,11 @@ yarn-error.log*
 
 # typescript
 *.tsbuildinfo
+*.ndjson
 next-env.d.ts
 
 /public/images/*
-
+/public/sounds/*
 **/data/*
 # Local Netlify folder
 .netlify

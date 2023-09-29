@@ -15,6 +15,7 @@ import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
 import dataConsultation from "@/app/(tools)/data/data_consultation.json";
 import { toast } from "react-toastify";
+import { faUser } from "@fortawesome/free-regular-svg-icons";
 
 type Props = {};
 
@@ -61,7 +62,7 @@ const NavLinkMainMenu = (props: Props) => {
           >
             <FontAwesomeIcon
               icon={faFacebook}
-              className="h-8 text-blue-600 hover:text-blue-700 transition-all"
+              className="h-8 text-blue-600 hover:text-greyMed1  transition-all"
             />
           </a>
           <a
@@ -72,14 +73,23 @@ const NavLinkMainMenu = (props: Props) => {
           >
             <FontAwesomeIcon
               icon={faInstagram}
-              className="h-8 text-fuchsia-700 hover:text-fuchsia-800 transition-all"
+              className="h-8 text-fuchsia-700 hover:text-greyMed1 transition-all"
             />
           </a>
           <Link
             href="/timer"
-            className=" text-greenUrip hover:text-greenUripOpacity transition-all"
+            className="bg-greyBorder hover:bg-greyMed1 transition-all border rounded-full flex-center-center h-8 w-8"
           >
-            <FontAwesomeIcon icon={faStopwatch} className="h-8" />
+            <FontAwesomeIcon icon={faStopwatch} className="h-5 text-white" />
+          </Link>
+          <Link
+            href="/admin"
+            className="bg-white hover:border-greyMed1 transiti`on-all border border-accent1 rounded-full flex-center-center h-8 w-8  group"
+          >
+            <FontAwesomeIcon
+              icon={faUser}
+              className="h-5 text-accent1  group-hover:text-greyMed1"
+            />
           </Link>
         </div>
         <div className="flex flex-col ">
