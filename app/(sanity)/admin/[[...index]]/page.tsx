@@ -1,5 +1,3 @@
-"use client";
-
 import Admin from "./Admin";
 
 export const dynamic = "force-static";

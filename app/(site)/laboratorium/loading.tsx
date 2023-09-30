@@ -1,6 +1,4 @@
-"use client";
 import React from "react";
-
 import { PageGreenAccentLoading } from "@/app/(tools)/components/PageGreenAccent";
 import MainImageSmallLoadingB from "@/app/(tools)/components/PageComponents/MainImageSmallLoadingB";
 import MainImageAnimatedLeftLoading from "@/app/(tools)/components/PageComponents/MainImageAnimatedLeftLoading";
@@ -30,24 +28,10 @@ const Loading = (props: Props) => {
           {unit.description}
         </p>
         <div className="h-1/4 p-2 md:h-fit  relative md:absolute pt-8 md:bottom-14 md:right-16 z-10 flex gap-2 md:gap-5 mt-5 animate-pulse">
-          <button
-            className="button-lg animate-pulse"
-            onClick={() => {
-              const access = document?.getElementById("satuan");
-              access?.scrollIntoView({ behavior: "smooth" });
-            }}
-          >
+          <button className="button-lg animate-pulse">
             Pilih Test Sendiri
           </button>
-          <button
-            onClick={() => {
-              const access = document?.getElementById("paket");
-              access?.scrollIntoView({ behavior: "smooth" });
-            }}
-            className="button-lg  animate-pulse"
-          >
-            Pilih Paket
-          </button>
+          <button className="button-lg  animate-pulse">Pilih Paket</button>
         </div>
       </section>
     </div>

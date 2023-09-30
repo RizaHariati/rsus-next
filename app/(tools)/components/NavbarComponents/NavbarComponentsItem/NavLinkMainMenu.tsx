@@ -82,8 +82,13 @@ const NavLinkMainMenu = (props: Props) => {
           >
             <FontAwesomeIcon icon={faStopwatch} className="h-5 text-white" />
           </Link>
+
           <Link
-            href="/admin"
+            href={
+              process.env.NODE_ENV === "production"
+                ? "https://rsus.sanity.studio/"
+                : "/admin"
+            }
             className="bg-white hover:border-greyMed1 transiti`on-all border border-accent1 rounded-full flex-center-center h-8 w-8  group"
           >
             <FontAwesomeIcon

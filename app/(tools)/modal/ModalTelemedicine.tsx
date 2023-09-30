@@ -49,7 +49,7 @@ const ModalTelemedicine = (props: Props) => {
             <div>
               {consultationInfo.intro.map((item: string, index: number) => {
                 return (
-                  <p className="body-3 md:body-2" key={index}>
+                  <p className="body-3  " key={index}>
                     {item}
                   </p>
                 );

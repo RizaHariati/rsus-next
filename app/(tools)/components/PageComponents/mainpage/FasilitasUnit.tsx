@@ -1,10 +1,11 @@
 import React from "react";
-import { FacilityType } from "../../../types";
+import { FacilitySanityType, FacilityType } from "../../../types";
 import Image from "next/image";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import { sanityLoader } from "../../../../../loader";
 
 type Props = {
-  facility: FacilityType;
+  facility: FacilitySanityType;
 };
 
 const FasilitasUnit = ({ facility }: Props) => {
@@ -17,10 +18,11 @@ const FasilitasUnit = ({ facility }: Props) => {
     >
       <div className=" facility-unit-img-container  ">
         <Image
+          loader={sanityLoader}
           rel="preload"
           placeholder="empty"
-          src={`/images/pelayanan-fasilitas/small/${facility.img}.jpg`}
-          alt={facility.img}
+          src={facility.img.src}
+          alt={facility.img.alt}
           height={200}
           width={200}
           className="facility-unit-img"
@@ -49,10 +51,11 @@ export const FasilitasUnitwide = ({ facility }: Props) => {
     >
       <div className=" facility-unit-img-container ">
         <Image
+          loader={sanityLoader}
           rel="preload"
           placeholder="empty"
-          src={`/images/pelayanan-fasilitas/small/${facility.img}.jpg`}
-          alt={facility.img}
+          src={facility.img.src}
+          alt={facility.img.alt}
           height={200}
           width={200}
           className="facility-unit-img"

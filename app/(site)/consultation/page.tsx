@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import MainImageAnimatedLeft from "../../(tools)/components/PageComponents/MainImageAnimatedLeft";
 import ConsultationMenu from "@/app/(tools)/components/PageComponents/consultation/ConsultationMenu";
@@ -8,7 +7,7 @@ import PageGreenAccent from "@/app/(tools)/components/PageGreenAccent";
 
 type Props = {};
 
-const Consultation = (props: Props) => {
+function Consultation(params: Props) {
   return (
     <div className="page-main-container pb-20">
       <section
@@ -22,6 +21,6 @@ const Consultation = (props: Props) => {
       </section>
     </div>
   );
-};
+}
 
 export default Consultation;

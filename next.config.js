@@ -9,9 +9,11 @@ const nextConfig = {
           loader: "custom",
           loaderFile: "./loader.ts",
           path: "https://rsuripsumoharjo-model.netlify.app/",
+          domains: ["cdn.sanity.io"],
         }
       : {
           loader: "default",
+          domains: ["cdn.sanity.io"],
         },
 
   // Optional: Change links `/me` -> `/me/` and emit `/me.html` -> `/me/index.html`

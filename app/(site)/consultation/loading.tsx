@@ -1,9 +1,5 @@
-"use client";
 import React from "react";
-import MainImageAnimatedLeft from "../../(tools)/components/PageComponents/MainImageAnimatedLeft";
 import ConsultationMenu from "@/app/(tools)/components/PageComponents/consultation/ConsultationMenu";
-
-import MainImageSmall from "@/app/(tools)/components/PageComponents/MainImageSmallB";
 import MainImageSmallLoadingB from "@/app/(tools)/components/PageComponents/MainImageSmallLoadingB";
 import MainImageAnimatedLeftLoading from "@/app/(tools)/components/PageComponents/MainImageAnimatedLeftLoading";
 import { PageGreenAccentLoading } from "@/app/(tools)/components/PageGreenAccent";

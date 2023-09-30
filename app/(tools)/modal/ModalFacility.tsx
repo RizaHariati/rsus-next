@@ -3,7 +3,8 @@ import { useGlobalContext } from "../context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
-import { FacilityType } from "../types";
+import { FacilitySanityType } from "../types";
+import { sanityLoader } from "@/loader";
 
 type Props = {};
 
@@ -12,7 +13,7 @@ const ModalFacility = (props: Props) => {
     state: { modalValue },
     closeModal,
   } = useGlobalContext();
-  const facility: FacilityType = modalValue;
+  const facility: FacilitySanityType = modalValue;
   if (!facility && Object.keys(facility).length < 1) {
     return <div></div>;
   } else {
@@ -50,9 +51,10 @@ const ModalFacility = (props: Props) => {
           </div>
           <div className=" w-full aspect-square md:h-[400px] md:w-fit overflow-hidden rounded-sm order-first md:order-none">
             <Image
+              loader={sanityLoader}
               rel="preload"
-              src={`/images/pelayanan-fasilitas/${facility.img}.jpg`}
-              alt={facility.img}
+              src={facility.img.src}
+              alt={facility.img.alt}
               height={400}
               width={500}
               placeholder="empty"

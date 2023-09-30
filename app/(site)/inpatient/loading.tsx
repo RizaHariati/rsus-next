@@ -1,4 +1,3 @@
-"use client";
 import Image from "next/image";
 import React from "react";
 import dataBed from "@/app/(tools)/data/data_inap.json";
@@ -50,15 +49,12 @@ const Loading = (props: Props) => {
 export default Loading;
 
 const ImageGallery = () => {
-  const { openModal } = useGlobalContext();
-
   return (
     <div className="w-full max-w-6xl grid grid-cols-4 mx-auto  mt-4 gap-2 p-0 md:p-5">
       {dataBed.map((item: InpatientType, index) => {
         return (
           <div
             id={item.kelas}
-            onClick={() => openModal("inpatient", item)}
             key={index}
             className=" col-span-2 md:col-span-1 standard-border cursor-pointer opacity-100 relative  hover:opacity-70 h-52 overflow-hidden z-0 animate-pulse"
           >

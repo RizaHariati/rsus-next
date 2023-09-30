@@ -1,6 +1,10 @@
-import { CategoryFacilityType, FacilityType } from "../types";
+import {
+  CategoryFacilityType,
+  FacilityType,
+  FacilitySanityType,
+} from "../types";
 
-export const groupCategoryFacility = (dataFacility: FacilityType[]) => {
+export const groupCategoryFacility = (dataFacility: FacilitySanityType[]) => {
   let newData: CategoryFacilityType = {};
   const data = dataFacility.map((item) => {
     const category: string = item.category;

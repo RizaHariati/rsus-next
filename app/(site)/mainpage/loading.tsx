@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import "../../styles/mainpage.css";
 import MainImageSmallLoading from "@/app/(tools)/components/PageComponents/mainpage/mainpageSmall/MainImageSmallLoading";

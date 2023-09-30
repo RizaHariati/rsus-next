@@ -3,10 +3,10 @@ import React from "react";
 import { motion } from "framer-motion";
 import { enterTitleVariants } from "@/app/(tools)/framervariants/titlevariants";
 
-import { FacilityType } from "@/app/(tools)/types";
+import { FacilitySanityType } from "@/app/(tools)/types";
 import FasilitasUnit, { FasilitasUnitwide } from "./FasilitasUnit";
 type Props = {
-  facilityGroup: FacilityType[];
+  facilityGroup: FacilitySanityType[];
   facilityTitle: string;
 };
 
@@ -30,7 +30,7 @@ const FasilitasGroup = ({ facilityGroup, facilityTitle }: Props) => {
           {facilityTitle}
         </motion.h2>
         <div className="w-full md:w-modal_xl standard-border mx-auto grid grid-cols-2 p-3 px-2 md:px-10 gap-2 relative">
-          {facilityGroup.map((facility: FacilityType, index: number) => {
+          {facilityGroup.map((facility: FacilitySanityType, index: number) => {
             if (
               index === facilityGroup.length - 1 &&
               facilityGroup.length % 2 === 1

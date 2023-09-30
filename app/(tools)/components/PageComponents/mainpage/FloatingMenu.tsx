@@ -51,7 +51,7 @@ const FloatingMenu = () => {
           konsultasi Doktor jarak jauh, TeleMedicine awal lewat WhatsApp.
         </p>
         <p className="body-3 leading-5   ">
-          Jika data anda valid, admin kami akan mengkonfirmasi pendaftara pada
+          Jika data anda valid, admin kami akan mengkonfirmasi pendaftaran pada
           jam kerja melalui WhatsApp.
         </p>
         <Link
