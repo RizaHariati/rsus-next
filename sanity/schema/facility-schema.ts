@@ -8,7 +8,7 @@ export const facility: SchemaTypeDefinition = {
   fields: [
     {
       name: "id",
-      title: "ID",
+      title: "Id",
       type: "string",
       validation: (rule: Rule) => rule.required(),
     },

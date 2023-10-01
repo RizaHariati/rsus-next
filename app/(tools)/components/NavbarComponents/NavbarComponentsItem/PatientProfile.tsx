@@ -1,3 +1,4 @@
+"use client";
 import { getMedicalRecord } from "@/app/(tools)/data/sample";
 import { patientFormInput } from "@/app/(tools)/utils/forms/patientFormInput";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";

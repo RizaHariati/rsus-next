@@ -59,6 +59,7 @@ const BottomNavComponents = (props: Props) => {
               <p className="nav-b-txt">Profil </p>
             </button>
           )}
+
           {!user.login && (
             <button
               type="button"
@@ -112,7 +113,7 @@ const BottomNavComponents = (props: Props) => {
         <BottomNavContent>
           {menu_id === "darurat" && <DaruratContent />}
           {menu_id === "login" && <LoginFormContent />}
-          {menu_id === "profile" && <PatientProfileContent />}
+          {user.login && menu_id === "profile" && <PatientProfileContent />}
           {menu_id === "jadwal" && <MenuJadwalContent />}
         </BottomNavContent>
       )}

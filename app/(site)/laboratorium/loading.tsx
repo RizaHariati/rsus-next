@@ -15,7 +15,7 @@ const Loading = (props: Props) => {
     <div className="page-main-container">
       <section
         id="laboratorium-top"
-        className=" h-full md:min-h-screen w-full z-0 overflow-hidden flex flex-col md:flex-row relative  md:bg-accent1 bg-white snap-none  md:snap-center pb-2 animate-pulse        "
+        className=" h-full md:min-h-screen w-full z-0 overflow-hidden flex flex-col md:flex-row relative  md:bg-accent1 bg-white snap-none  md:snap-center pb-2 animate-pulse  "
       >
         <MainImageSmallLoadingB img={unit.img} title={unit.title} />
         <MainImageAnimatedLeftLoading

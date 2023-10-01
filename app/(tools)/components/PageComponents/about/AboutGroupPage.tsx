@@ -57,7 +57,7 @@ function AboutGroupPage(props: Props) {
       </motion.section>
 
       <section
-        id="one"
+        id="about-us-content"
         className=" bg-greyLit h-fit min-h-screen w-full z-0 pt-3 pb-[150px] "
       >
         <h2> Tentang Kami</h2>

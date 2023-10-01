@@ -1,13 +1,13 @@
 "use client";
 
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
+// import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-import { enterOpacity } from "../../framervariants/variants";
+// import { enterOpacity } from '../../framervariants/variants';
 import MainLogoImage from "../../modal/MainLogoImage";
 import NavLinkEmergency from "./NavbarComponentsItem/NavLinkEmergency";
 import NavLinkProfile from "./NavbarComponentsItem/NavLinkProfile";
@@ -19,18 +19,24 @@ type MainProps = {};
 
 const Navbar = (props: MainProps) => {
   const { scrollTop } = useGlobalContext();
+  const [enterOpacity, setenterOpacity] = useState(false);
+  const [nowPathname, setNowPathname] = useState<any>();
+  const pathname = usePathname();
+  useEffect(() => {
+    setTimeout(() => {
+      setNowPathname(pathname);
+      setenterOpacity(true);
+    }, 1000);
+  }, [pathname]);
 
-  const path = usePathname();
   return (
-    <motion.div
-      key={path}
-      variants={enterOpacity}
-      initial="initial"
-      animate="animate"
+    <div
       className={
-        scrollTop
-          ? "navbar-container bg-opacity-100 shadow-md"
-          : "navbar-container shadow-sm bg-opacity-60 fixed top-0"
+        nowPathname !== pathname
+          ? "navbar-container shadow-sm opacity-0 fixed -top-14  "
+          : scrollTop
+          ? "navbar-container bg-opacity-100 shadow-md opacity-100 top-0"
+          : "navbar-container shadow-sm bg-opacity-60 fixed top-0 opacity-100"
       }
     >
       <nav className="navbar">
@@ -38,7 +44,7 @@ const Navbar = (props: MainProps) => {
         <NavbarLinks />
         <NavbarMenu />
       </nav>
-    </motion.div>
+    </div>
   );
 };
 
@@ -76,11 +82,14 @@ const NavbarMenu = (props: Props) => {
 };
 
 const NavbarLinks = (props: Props) => {
-  const { toggleMenuNavbar } = useGlobalContext();
+  const {
+    toggleMenuNavbar,
+    patientState: { user },
+  } = useGlobalContext();
   return (
     <div className="navbar-links-container">
       <NavLinkEmergency />
-      <NavLinkProfile />
+      {user.login && <NavLinkProfile />}
       <NavLinkAntrian />
       <Link
         href="/mainpage"

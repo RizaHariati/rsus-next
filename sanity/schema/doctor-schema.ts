@@ -1,5 +1,4 @@
 import { SchemaTypeDefinition } from "sanity";
-import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 
 export const doctor: SchemaTypeDefinition = {
   name: "doctor",

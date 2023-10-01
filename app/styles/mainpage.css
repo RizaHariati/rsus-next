@@ -39,7 +39,7 @@
     @apply modal w-modal_md;
   }
   .modal-phone {
-    @apply modal w-[95%] standard-border rounded-md  top-[calc(25%-20px)] -translate-y-1/4 h-fit max-h-[calc(100%-150px)] scrollbar-none pt-0;
+    @apply modal w-[95%] standard-border rounded-md  top-[calc(25%-20px)] -translate-y-1/4 h-fit max-h-[calc(100%-170px)] scrollbar-none pt-0;
   }
   .modal-title {
     @apply col-span-full w-full border-b border-greyBorder  font-light mb-2 bg-white sticky top-0 py-2 z-30;

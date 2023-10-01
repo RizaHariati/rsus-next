@@ -49,7 +49,7 @@ const ModalFacility = (props: Props) => {
               </div>
             )}
           </div>
-          <div className=" w-full aspect-square md:h-[400px] md:w-fit overflow-hidden rounded-sm order-first md:order-none">
+          <div className=" w-full aspect-[4/3] h-auto md:h-[375px]  overflow-hidden rounded-sm order-first md:order-none">
             <Image
               loader={sanityLoader}
               rel="preload"
@@ -58,12 +58,12 @@ const ModalFacility = (props: Props) => {
               height={400}
               width={500}
               placeholder="empty"
-              className="object-center object-cover w-full h-full rounded-sm aspect-[5/4]"
+              className="object-center object-cover w-full h-full rounded-sm"
               priority
             />
           </div>
         </section>
-        <section className="bg-white border-none w-full flex">
+        <section className="bg-white border-none w-full flex mt-2">
           <button
             onClick={() => closeModal()}
             className="button-greenUrip ml-auto"

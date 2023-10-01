@@ -1,13 +1,14 @@
 "use client";
 import dayjs from "dayjs";
 import React, { useEffect, useState } from "react";
-
+import moment from "moment";
 type Props = {};
 
 const TimerComponent = (props: Props) => {
   const [timer, setTimer] = useState<Date>(
     dayjs().startOf("d").subtract(0, "h").toDate()
   );
+
   const [start, setStart] = useState(false);
   const [changePose, setChangePose] = useState("Start Pose");
 

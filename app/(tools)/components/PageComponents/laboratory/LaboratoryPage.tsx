@@ -27,7 +27,7 @@ function LaboratoryPage(props: Props) {
   } = useGlobalContext();
   return (
     <div className="page-main-container">
-      {labCart.length > 0 && <Keranjang />}
+      {labCart?.length > 0 && <Keranjang />}
       <section
         id="laboratorium-top"
         className=" h-full md:min-h-screen w-full z-0 overflow-hidden flex flex-col md:flex-row relative  md:bg-accent1 bg-white snap-none  md:snap-center pb-2"
