@@ -24,11 +24,6 @@ export const facility: SchemaTypeDefinition = {
       type: "image",
       fields: [
         {
-          name: "src",
-          title: "Src",
-          type: "string",
-        },
-        {
           name: "alt",
           title: "Alt",
           type: "string",

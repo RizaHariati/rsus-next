@@ -4,10 +4,16 @@ export const doctor: SchemaTypeDefinition = {
   name: "doctor",
   title: "Doctors",
   type: "document",
+  preview: {
+    select: {
+      subtitle: "name",
+      title: "id",
+    },
+  },
   fields: [
     {
       name: "id",
-      title: "ID",
+      title: "Id",
       type: "string",
     },
     {

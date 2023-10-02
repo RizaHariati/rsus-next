@@ -13,6 +13,7 @@ export const initialPatientState: PatientState = {
 
   patient: {
     medical_record_number: "",
+    name: "string",
     patient_profile: {
       name: "",
       NIK: "",
@@ -33,6 +34,7 @@ export const initialPatientState: PatientState = {
   allPatients: [
     {
       medical_record_number: "US4234123398",
+      name: "Purwanto",
       patient_profile: sampleProfile,
       scheduled_appointments: sampleSchedule,
       medical_records: [],

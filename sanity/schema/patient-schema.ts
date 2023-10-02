@@ -4,6 +4,19 @@ export const patient: SchemaTypeDefinition = {
   name: "patient",
   title: "Patients",
   type: "document",
+  orderings: [
+    {
+      title: "Patient Profile",
+      name: "patient_profile",
+      by: [{ field: "patient_profile", direction: "asc" }],
+    },
+  ],
+  preview: {
+    select: {
+      title: "patient_profile.name",
+      subtitle: "medical_record_number",
+    },
+  },
   fields: [
     {
       name: "medical_record_number",
@@ -11,6 +24,7 @@ export const patient: SchemaTypeDefinition = {
       type: "string",
       validation: (rule: Rule) => rule.required(),
     },
+
     {
       name: "patient_profile",
       title: "Profil Pasien",
@@ -43,7 +57,7 @@ export const patient: SchemaTypeDefinition = {
         {
           name: "birthdate",
           title: "Tanggal Lahir",
-          type: "datetime",
+          type: "date",
           validation: (rule: Rule) => rule.required(),
         },
         {
@@ -55,7 +69,7 @@ export const patient: SchemaTypeDefinition = {
         {
           name: "register_date",
           title: "Tanggal Mendaftar",
-          type: "datetime",
+          type: "date",
           validation: (rule: Rule) => rule.required(),
         },
         {
@@ -67,7 +81,7 @@ export const patient: SchemaTypeDefinition = {
         {
           name: "bpjs_number",
           title: "Nomor BPJS",
-          type: "datetime",
+          type: "number",
         },
       ],
     },
@@ -93,7 +107,28 @@ export const patient: SchemaTypeDefinition = {
             {
               name: "tujuan",
               title: "Tujuan Kunjungan",
-              type: "string",
+              type: "array",
+              of: [
+                {
+                  name: "pick_destination",
+                  title: "pilih satu",
+                  type: "reference",
+                  to: [
+                    {
+                      type: "facility",
+                      preview: {
+                        select: { title: "title" },
+                      },
+                    },
+                    {
+                      type: "doctor",
+                      preview: {
+                        select: { title: "nama" },
+                      },
+                    },
+                  ],
+                },
+              ],
             },
             {
               name: "appointment_type",
@@ -129,7 +164,7 @@ export const patient: SchemaTypeDefinition = {
             {
               name: "nomor_antrian",
               title: "Nomor Antrian yang didapat saat mendaftar",
-              type: "datetime",
+              type: "number",
             },
           ],
         },
@@ -139,7 +174,6 @@ export const patient: SchemaTypeDefinition = {
       name: "medical_record",
       title: "List Rekam Medis",
       type: "array",
-
       of: [
         {
           type: "object",
@@ -177,8 +211,12 @@ export const patient: SchemaTypeDefinition = {
               name: "notification_code",
               title: "Referensi Notifikasi",
               type: "reference",
-              to: [{ type: "ref_notification" }],
-              options: {},
+              to: [
+                {
+                  type: "ref_notification",
+                  title: "judul",
+                },
+              ],
             },
             {
               name: "schedule_code",

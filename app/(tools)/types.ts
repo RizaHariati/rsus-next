@@ -121,7 +121,7 @@ export type HariType = {
 
 export type DoctorType = {
   id: string;
-  nama: string;
+  name: string;
   waktu: string;
   poliklinik: { poli_id: string; title: string };
   hari: HariType[];
