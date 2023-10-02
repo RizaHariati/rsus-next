@@ -211,6 +211,7 @@ export const patient: SchemaTypeDefinition = {
               name: "notification_code",
               title: "Referensi Notifikasi",
               type: "reference",
+
               to: [
                 {
                   type: "ref_notification",
@@ -224,7 +225,8 @@ export const patient: SchemaTypeDefinition = {
               type: "reference",
               to: [
                 {
-                  type: "patient",
+                  type: "this.schedule_code",
+                  title: "medical_record_number",
                 },
               ],
             },

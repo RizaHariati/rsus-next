@@ -4,6 +4,19 @@ export const refnotification: SchemaTypeDefinition = {
   name: "ref_notification",
   title: "Notification Reference",
   type: "document",
+  preview: {
+    select: {
+      title: "id",
+      subtitle: "title",
+    },
+  },
+  orderings: [
+    {
+      title: "Order by Id",
+      name: "Id",
+      by: [{ field: "id", direction: "asc" }],
+    },
+  ],
   fields: [
     {
       name: "id",
