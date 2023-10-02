@@ -39,8 +39,8 @@ const NavLinkProfile = () => {
           <p>Login</p>
         </button>
       )}
-      <PatientProfile />
-      <UserLogin />
+      {user.login && <PatientProfile />}
+      {!user.login && <UserLogin />}
     </div>
   );
 };

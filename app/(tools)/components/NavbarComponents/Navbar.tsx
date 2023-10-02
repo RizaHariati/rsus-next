@@ -89,7 +89,7 @@ const NavbarLinks = (props: Props) => {
   return (
     <div className="navbar-links-container">
       <NavLinkEmergency />
-      {user.login && <NavLinkProfile />}
+      <NavLinkProfile />
       <NavLinkAntrian />
       <Link
         href="/mainpage"

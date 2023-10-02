@@ -109,7 +109,7 @@ const SloganImageBig = ({ img }: SloganProps) => {
         rel="preload"
         placeholder="empty"
         loading="lazy"
-        src={`/images/mainpage-gallery/${img ? img : "img-gallery (1)"}.jpg`}
+        src={`/images/mainpage-gallery/${img ? img : "img-gallery-(1)"}.jpg`}
         alt="img-gallery"
         height={300}
         width={300}

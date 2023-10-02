@@ -101,7 +101,7 @@ export const floatingMenu: FloatingMenuType[] = [
     name: "facility",
     title: "fasilitas",
     link: "/facility",
-    image: "CT Scanner.jpg",
+    image: "ct-scanner.jpg",
   },
   {
     name: "poliklinik",
