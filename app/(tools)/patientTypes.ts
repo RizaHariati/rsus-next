@@ -27,7 +27,7 @@ export type PatientProfileType = {
   name: string;
   NIK: string;
   address: string;
-  sex: boolean;
+  sex: 0 | 1;
   birthdate: Date;
   phone: string;
   register_date: Date;
@@ -59,10 +59,11 @@ export type MedicalRecordDataType = {
 };
 export type NotificationType = {
   id: string;
+  title?: string;
   notification_code: string;
-  schedule_code?: string;
   notification_date: Date;
   seen: boolean;
+  message?: string[];
 };
 
 export type NotificationLibraryType = {
@@ -72,6 +73,7 @@ export type NotificationLibraryType = {
   category: string;
   message: string[];
 };
+
 export type PatientType = {
   medical_record_number: string;
   patient_profile: PatientProfileType;

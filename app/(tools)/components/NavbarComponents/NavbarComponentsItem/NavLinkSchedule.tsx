@@ -160,7 +160,7 @@ const getScheduleType = (appointment_type: string, tujuan: string[]) => {
   if (appointment_type !== "test") {
     const findDoctor = dataDokter.find((item) => item.id === tujuan[0])!;
 
-    tujuanSchedule = `dengan ${findDoctor.nama} dari Poli ${findDoctor.poliklinik.title}`;
+    tujuanSchedule = `dengan ${findDoctor.name} dari Poli ${findDoctor.poliklinik.title}`;
   } else {
     tujuanSchedule = tujuan
       .map((itemTujuan) => {

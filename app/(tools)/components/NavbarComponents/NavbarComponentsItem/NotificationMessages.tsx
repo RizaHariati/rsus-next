@@ -25,12 +25,12 @@ const NotificationMessages = ({
   } = useGlobalContext();
   const patientprofile: PatientProfileType = patient.patient_profile;
   const patientSchedules: ScheduledType[] = patient.scheduled_appointments;
-  const schedule: ScheduledType = patientSchedules.find(
-    (scheduleItem) =>
-      scheduleItem.schedule_id === notificationItem.schedule_code || ""
-  )!;
+  // const schedule: ScheduledType = patientSchedules.find(
+  //   (scheduleItem) =>
+  //     scheduleItem.schedule_id === notificationItem.schedule_code || ""
+  // )!;
 
-  const activities = getActivities(schedule);
+  // const activities = getActivities(schedule);
 
   if (findNotif.category === "admin") {
     return (
@@ -48,7 +48,7 @@ const NotificationMessages = ({
     if (findNotif.type === "success") {
       return (
         <div className="inline body-3 leading-4">
-          {`${messages[0]} ${
+          {/* {`${messages[0]} ${
             activities.testActivities.length > 0
               ? activities.testActivities.map((item) => item.title).join(", ")
               : `${activities.doctorActivities.name}-poli ${activities.doctorActivities.poli}`
@@ -56,18 +56,18 @@ const NotificationMessages = ({
         ${messages[1]}  ${
             dayjs(schedule.scheduled_date).format("DD-MM-YYYY [jam] HH:mm") ||
             ""
-          }.   ${messages[2] || ""}`}
+          }.   ${messages[2] || ""}`} */}
         </div>
       );
     } else {
       return (
         <div className="inline body-3 leading-4">
-          {`${messages[0]} ${
+          {/* {`${messages[0]} ${
             activities.testActivities.length > 0
               ? activities.testActivities.map((item) => item.title).join(", ")
               : `${activities.doctorActivities.name}-poli ${activities.doctorActivities.poli}`
           }.
-        ${messages[1]}  ${messages[2] || ""}`}
+        ${messages[1]}  ${messages[2] || ""}`} */}
         </div>
       );
     }

@@ -13,6 +13,7 @@ export const patient: SchemaTypeDefinition = {
   ],
   preview: {
     select: {
+      type: "patient",
       title: "patient_profile.name",
       subtitle: "medical_record_number",
     },
@@ -50,9 +51,16 @@ export const patient: SchemaTypeDefinition = {
         },
         {
           name: "sex",
-          title: "Jenis Kelamin",
-          type: "boolean",
+          title: "Jenis Kelamin ",
+          type: "number",
+          initialValue: "pick one",
           validation: (rule: Rule) => rule.required(),
+          options: {
+            list: [
+              { title: "pria", value: 1 },
+              { title: "wanita", value: 0 },
+            ],
+          },
         },
         {
           name: "birthdate",
@@ -113,17 +121,30 @@ export const patient: SchemaTypeDefinition = {
                   name: "pick_destination",
                   title: "pilih satu",
                   type: "reference",
+
                   to: [
                     {
                       type: "facility",
                       preview: {
-                        select: { title: "title" },
+                        select: { title: "id", subtitle: "title" },
                       },
                     },
                     {
                       type: "doctor",
                       preview: {
-                        select: { title: "nama" },
+                        select: { title: "id", subtitle: "nama" },
+                      },
+                    },
+                    {
+                      type: "lab_satuan",
+                      preview: {
+                        select: { title: "id", subtitle: "title" },
+                      },
+                    },
+                    {
+                      type: "lab_paket",
+                      preview: {
+                        select: { title: "id", subtitle: "title" },
                       },
                     },
                   ],
@@ -134,7 +155,6 @@ export const patient: SchemaTypeDefinition = {
               name: "appointment_type",
               title: "Jenis Kunjungan",
               type: "string",
-
               options: {
                 list: [
                   { title: "Konsultasi Tatap Muka", value: "tatap_muka" },
@@ -196,6 +216,7 @@ export const patient: SchemaTypeDefinition = {
     {
       name: "notification",
       title: "Notifikasi",
+
       type: "array",
       of: [
         {
@@ -204,31 +225,30 @@ export const patient: SchemaTypeDefinition = {
           fields: [
             {
               name: "id",
-              title: "ID",
+              title: "Id",
               type: "string",
             },
             {
               name: "notification_code",
               title: "Referensi Notifikasi",
               type: "reference",
-
               to: [
                 {
                   type: "ref_notification",
-                  title: "judul",
+                  title: "title",
                 },
               ],
             },
             {
-              name: "schedule_code",
-              title: "Referensi Jadwal",
-              type: "reference",
-              to: [
-                {
-                  type: "this.schedule_code",
-                  title: "medical_record_number",
-                },
-              ],
+              name: "title",
+              title: "Judul",
+              type: "string",
+            },
+            {
+              name: "message",
+              title: "Isi notifikasi",
+              type: "array",
+              of: [{ type: "string" }],
             },
             {
               name: "notification_date",
@@ -241,6 +261,12 @@ export const patient: SchemaTypeDefinition = {
               type: "boolean",
             },
           ],
+          preview: {
+            select: {
+              title: "id",
+              subtitle: "title",
+            },
+          },
         },
       ],
     },
