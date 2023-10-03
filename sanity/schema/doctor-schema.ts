@@ -17,7 +17,7 @@ export const doctor: SchemaTypeDefinition = {
       type: "string",
     },
     {
-      name: "nama",
+      name: "name",
       title: "Nama Dokter",
       type: "string",
     },
