@@ -10,7 +10,7 @@ type Props = {
 
 const FasilitasUnit = ({ facility }: Props) => {
   const { openModal } = useGlobalContext();
-  console.log({ facility: facility.img.src === null, facilityID: facility.id });
+
   return (
     <button
       key={facility.id}

@@ -53,6 +53,16 @@ const NavLinkSchedule = () => {
         >
           Jadwal
         </p>
+        {patient.scheduled_appointments.length > 0 && (
+          <div
+            className="absolute bg-redBase w-5 min-w-fit aspect-square rounded-full
+          top-2 -right-2 flex-center-center p-0.5"
+          >
+            <p className="text-white font-oswald text-xs text-center">
+              {patient.scheduled_appointments.length}
+            </p>
+          </div>
+        )}
       </button>
 
       {/* DROP MENU JADWAL */}
@@ -99,7 +109,8 @@ export const MenuJadwalContent = () => {
                   className="menu-icon text-blue-700"
                 />
                 <p>
-                  Anda terjadwal untuk melakukan {detailSchedule.type}&nbsp;
+                  Anda terjadwal untuk melakukan {detailSchedule.type}
+                  &nbsp;dengan &nbsp;
                   <span className="font-bold">
                     {detailSchedule.tujuanSchedule}
                   </span>
@@ -117,7 +128,8 @@ export const MenuJadwalContent = () => {
                     className="menu-icon text-blue-700"
                   />
                   <p>
-                    Anda terjadwal untuk melakukan {detailSchedule.type}&nbsp;
+                    Anda terjadwal untuk melakukan {detailSchedule.type}
+                    &nbsp;dengan &nbsp;
                     <span className="font-bold">
                       {detailSchedule.tujuanSchedule}
                     </span>
@@ -160,7 +172,7 @@ const getScheduleType = (appointment_type: string, tujuan: string[]) => {
   if (appointment_type !== "test") {
     const findDoctor = dataDokter.find((item) => item.id === tujuan[0])!;
 
-    tujuanSchedule = `dengan ${findDoctor.name} dari Poli ${findDoctor.poliklinik.title}`;
+    tujuanSchedule = `dr.${findDoctor.name} dari Poli ${findDoctor.poliklinik.title}`;
   } else {
     tujuanSchedule = tujuan
       .map((itemTujuan) => {

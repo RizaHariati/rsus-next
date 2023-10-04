@@ -17,42 +17,11 @@ export const patientReducer = (
   action: OpenModalAction
 ) => {
   if (action.type === "REGISTER_USER") {
-    let patient: PatientType = {
-      medical_record_number: "",
-      patient_profile: {
-        name: "",
-        NIK: "",
-        address: "",
-        sex: 1,
-        birthdate: new Date(),
-        phone: "",
-        register_date: new Date(),
-        password: "",
-        bpjs_number: "",
-      },
-      scheduled_appointments: [],
-      medical_records: [],
-      notifications: [],
-    };
-    const newPatientPersonal: PatientInitialValueType =
-      action.payload.newPatientPersonal;
-    Object.entries(newPatientPersonal).map(([key, values]) => {
-      if (key === "medical_record_number") {
-        patient = { ...patient, [key]: values.value };
-      } else {
-        patient = {
-          ...patient,
-          patient_profile: {
-            ...patient["patient_profile"],
-            [key]: values.value,
-          },
-        };
-      }
-      return "";
-    });
-    const allPatients: PatientType[] = patientState.allPatients;
-    allPatients.push(patient);
+    const newPatient: PatientType = action.payload.newPatient;
 
+    const allPatients: PatientType[] = patientState.allPatients;
+    allPatients.push(newPatient);
+    console.log({ allPatients });
     return {
       ...patientState,
       allPatients,
@@ -85,35 +54,8 @@ export const patientReducer = (
   }
 
   if (action.type === "LOGIN_USER") {
-    const allPatients = patientState.allPatients;
-    const loginData = action.payload;
-    let notificationList: NotificationType[] = [];
-    let newNotification = {
-      id: "ntf-001",
-      notification_code: "ncat-001",
-      schedule_code: "",
-      notification_date: new Date(),
-      seen: false,
-    };
-    const findPatient: PatientType | undefined = allPatients.find(
-      (item) => item.medical_record_number === loginData.medical_record_number
-    );
+    const patient = action.payload;
 
-    let patient = patientState.patient;
-
-    if (findPatient) {
-      notificationList = findPatient.notifications;
-      if (notificationList.length > 0) {
-        newNotification = {
-          ...newNotification,
-          id: addZeroString(notificationList[notificationList.length - 1].id),
-        };
-      }
-      patient = {
-        ...findPatient,
-        notifications: [...findPatient.notifications, newNotification],
-      };
-    }
     let user = {
       ...action.payload,
       login: true,

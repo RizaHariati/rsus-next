@@ -2,7 +2,7 @@ import { createContext } from "react";
 import { AppState, PatientState } from "./interfaces";
 import {
   NotificationType,
-  PatientInitialValueType,
+  PatientType,
   ScheduledType,
   UserType,
 } from "../patientTypes";
@@ -29,12 +29,13 @@ export type AppContextProps = {
   login: (loginData: Partial<UserType>) => Promise<void>;
   checkUser: (loginData: Partial<UserType>) => void;
   logout: () => void;
-  register: (newPatientPersonal: PatientInitialValueType) => void;
+  register: (newPatient: PatientType) => void;
   handleScroll: (e: React.UIEvent<HTMLDivElement, UIEvent>) => void;
   scrollTop: boolean;
   scrollingUp: boolean;
   showFooter: boolean;
   addingSchedule: (newSchedule: ScheduledType) => void;
+  addingNotification: (newNotification: NotificationType) => void;
   clearNotifBackground: (notificationID: string) => void;
   deleteNotification: (notificationID: string) => void;
 };

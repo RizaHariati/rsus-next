@@ -143,7 +143,6 @@ const NotificationLogin = () => {
                             )}
                           </p>
                           <NotificationMessages
-                            messages={findNotif.message}
                             findNotif={findNotif}
                             notificationItem={notificationItem}
                           />

@@ -69,7 +69,7 @@ const ModalRegister = (props: Props) => {
     const findError = Object.values(patientObject).find((item) => item.error);
     const findEmptyValue = Object.entries(patientObject).find(
       ([key, values]) => {
-        if (key === "password" || key === "bpjs_number") {
+        if (key === "password" || key === "bpjs_number" || key === "sex") {
           return;
         } else {
           return !values.value;
@@ -80,9 +80,17 @@ const ModalRegister = (props: Props) => {
       if (!findError) {
         return;
       } else {
-        toast.error("semua kolom harus diisi", { position: "top-center" });
+        return toast.error("semua kolom harus diisi", {
+          position: "top-center",
+        });
       }
     } else {
+      if (
+        newPatientPersonal.NIK.value.length < 10 ||
+        newPatientPersonal.phone.value.length < 10
+      ) {
+        return toast.error("nomor terlalu pendek");
+      }
       openModal("registerpassword", { newPatientPersonal });
       setNewPatientPersonal(initialPatient);
     }
@@ -94,7 +102,13 @@ const ModalRegister = (props: Props) => {
     patientKey: string
   ) => {
     e.preventDefault();
-
+    if (
+      patientKey === "phone" ||
+      patientKey === "NIK" ||
+      patientKey === "bpjs_number"
+    ) {
+      if (e.target.value.length > 14) return;
+    }
     let newData = {
       ...newPatientPersonal,
       [patientKey]: { value: e.target.value, error: false },

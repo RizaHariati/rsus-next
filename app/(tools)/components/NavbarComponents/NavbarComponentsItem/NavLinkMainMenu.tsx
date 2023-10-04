@@ -205,8 +205,7 @@ const SubMenu = ({ menu, toggleItem, itemId, link }: SubProps) => {
                     openModal(
                       item.name,
                       dataAppointment.filter(
-                        (consultationItem) =>
-                          consultationItem.name === item.name
+                        (appointmentItem) => appointmentItem.name === item.name
                       )[0]
                     );
                   }

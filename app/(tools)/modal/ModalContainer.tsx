@@ -62,7 +62,7 @@ const ModalContent = () => {
   if (modalTitle === "poliklinik") {
     return <ModalPoliklinik />;
   }
-  if (modalTitle === "appointment") {
+  if (modalTitle === "hospital-appointment") {
     return <ModalAppointment />;
   }
   if (modalTitle === "telemedicine") {

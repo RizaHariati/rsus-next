@@ -3,7 +3,7 @@ import React from "react";
 import Link from "next/link";
 import { floatingMenu } from "@/app/(tools)/data/datamenu";
 import { FloatingMenuType } from "@/app/(tools)/types";
-import dataConsultation from "@/app/(tools)/data/data_consultation.json";
+import dataAppointment from "@/app/(tools)/data/data_appointment.json";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import Image from "next/image";
 
@@ -47,10 +47,10 @@ const FloatingMenuLoading = () => {
           jam kerja melalui WhatsApp.
         </p>
         <Link
-          href="/consultation/"
+          href="/appointment/"
           onClick={() => {
             toggleMenuNavbar(null);
-            openModal("telemedicine", dataConsultation[1]);
+            openModal("telemedicine", dataAppointment[1]);
           }}
           className="btn-2 w-full bg-greenUrip hover:bg-greenUripOpacity border border-greenUrip text-white hover:text-greenUrip transition-all mt-2 text-center"
         >

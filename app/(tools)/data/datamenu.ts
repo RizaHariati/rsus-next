@@ -36,12 +36,12 @@ export const datamenu: DataMenuType[] = [
   },
   {
     id: 3,
-    name: "consultation",
-    title: "konsultasi dokter",
-    link: "/consultation",
+    name: "appointment",
+    title: "Mendaftar Pemeriksaan dokter",
+    link: "/appointment",
     subdata: [
       {
-        name: "appointment",
+        name: "hospital-appointment",
         title: "Janji Temu Dokter",
         link: "",
         type: "modal",
@@ -92,9 +92,9 @@ export const datamenu: DataMenuType[] = [
 
 export const floatingMenu: FloatingMenuType[] = [
   {
-    name: "consultation",
+    name: "appointment",
     title: "Janji temu dokter",
-    link: "/consultation",
+    link: "/appointment",
     image: "Timesheet.jpg",
   },
   {

@@ -46,7 +46,7 @@ const InputFormatReguler = ({
           patientKey === "phone" ||
           patientKey === "bpjs_number" ||
           patientKey === "NIK"
-            ? 16
+            ? 14
             : 50
         }
         placeholder={values.placeholder}

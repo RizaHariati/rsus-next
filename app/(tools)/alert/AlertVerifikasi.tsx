@@ -5,6 +5,8 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { toast } from "react-toastify";
 import MainLogoImage from "../modal/MainLogoImage";
+import { PatientType } from "../patientTypes";
+import { getNotificationID } from "../utils/getNotificationID";
 type CheckType = { id: number; value: string };
 type Props = {};
 const placehoder_values: CheckType[] = [
@@ -16,6 +18,7 @@ const placehoder_values: CheckType[] = [
 const AlertVerifikasi = (props: Props) => {
   const {
     state: { alertValue },
+    patientState: { patient, allPatients },
     closeAlert,
     openAlert,
     login,
@@ -60,10 +63,33 @@ const AlertVerifikasi = (props: Props) => {
   };
 
   useEffect(() => {
-    if (checking) {
+    if (!checking) return;
+    else {
+      let newPatient: PatientType = patient;
+      let newNotification = {
+        id: "ntf-001",
+        notification_code: "ncat-001",
+        notification_date: new Date(),
+        seen: false,
+      };
       if (type === "login") {
+        const findPatient: PatientType | undefined = allPatients.find(
+          (item) => item.medical_record_number === data.medical_record_number
+        );
+
+        newPatient = {
+          ...findPatient!,
+          notifications: [
+            ...findPatient!.notifications,
+            {
+              ...newNotification,
+              id: getNotificationID(findPatient!.notifications),
+            },
+          ],
+        };
+
         const loginUser = async () => {
-          await login(data);
+          await login(newPatient);
           setTimeout(() => {
             closeAlert();
             toggleMenuNavbar("profile");
@@ -75,13 +101,37 @@ const AlertVerifikasi = (props: Props) => {
           success: "Selamat Datang di Urip Sumoharjo ",
         });
       } else if (type === "registration") {
+        Object.entries(data).map(([key, values]: any) => {
+          if (key === "medical_record_number") {
+            newPatient = { ...newPatient, [key]: values.value };
+          } else {
+            newPatient = {
+              ...newPatient,
+              patient_profile: {
+                ...newPatient["patient_profile"],
+                [key]: values.value,
+              },
+            };
+          }
+          return "";
+        });
+        newPatient = {
+          ...newPatient,
+          notifications: [
+            { ...newNotification, notification_code: "ncat-002" },
+          ],
+        };
+
         openAlert("registrasisukses", {
           newPatientPersonal: data,
         });
-        register(data);
+        register(newPatient);
+      } else {
+        console.log(type);
       }
     }
-    // eslint-disable-next-line
+
+    return () => {};
   }, [checking]);
 
   if (!verification_number || verification_number < 1000) return <div></div>;

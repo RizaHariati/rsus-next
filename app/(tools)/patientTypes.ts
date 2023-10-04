@@ -1,5 +1,3 @@
-import { patientFormInput } from "./utils/forms/patientFormInput";
-
 export type UserType = {
   login: boolean;
   password?: string;

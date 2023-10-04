@@ -12,7 +12,7 @@ const AppointmentMenuLoading = () => {
   return (
     <div className="relative md:absolute w-full md:w-[600px] h-1/2 md:h-fit md:place-content-end-auto  md:top-1/3  z-20 right-0 md:right-[10%] flex flex-col gap-2 p-3 md:p-0 pb-10 md:pb-0">
       <h1
-        key="consultation-title"
+        key="appointment-title"
         className="hidden md:block z-30 text-white text-right w-full leading-6 tracking-[5px] mb-5   font-light uppercase"
       >
         Janji Temu Dokter
@@ -21,7 +21,6 @@ const AppointmentMenuLoading = () => {
         return (
           <button
             key={index}
-            onClick={() => openModal(item.modal, item)}
             className="grid grid-cols-6 w-full h-full md:h-fit bg-white bg-opacity-100 hover:bg-opacity-80 place-items-center p-1 standard-border cursor-pointer group overflow-hidden animate-pulse"
           >
             <div className=" col-span-1 w-16 md:w-20 aspect-square p-1">

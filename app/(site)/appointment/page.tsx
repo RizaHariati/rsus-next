@@ -7,11 +7,11 @@ import AppointmentMenu from "@/app/(tools)/components/PageComponents/appointment
 
 type Props = {};
 
-function Consultation(params: Props) {
+function Appointment(params: Props) {
   return (
     <div className="page-main-container pb-20">
       <section
-        id="consultation-top"
+        id="appointment-top"
         className="h-[calc(100vh-80px)] md:h-full md:min-h-screen  w-full z-0 overflow-hidden flex flex-col md:flex-row relative snap-center md:bg-accent1  bg-white"
       >
         <MainImageSmall img="consultation-small" title="Janji Temu Dokter" />
@@ -23,4 +23,4 @@ function Consultation(params: Props) {
   );
 }
 
-export default Consultation;
+export default Appointment;

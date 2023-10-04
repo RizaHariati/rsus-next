@@ -9,6 +9,7 @@ import { AppState, PatientState } from "./interfaces";
 import { getLabCartItem } from "../utils/getLabCartItem";
 import { patientReducer } from "../reducers/patientReducer";
 import { initialPatientState } from "./initialPatientState";
+import { NotificationType, PatientType } from "../patientTypes";
 import {
   PatientInitialValueType,
   ScheduledType,
@@ -117,8 +118,8 @@ export const AppProvider = ({ children }: Props) => {
     }
   };
 
-  const register = (newPatientPersonal: PatientInitialValueType) => {
-    patientDispatch({ type: "REGISTER_USER", payload: { newPatientPersonal } });
+  const register = (newPatient: PatientType) => {
+    patientDispatch({ type: "REGISTER_USER", payload: { newPatient } });
   };
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
@@ -163,7 +164,12 @@ export const AppProvider = ({ children }: Props) => {
       payload: { notificationID },
     });
   };
-
+  const addingNotification = (newNotification: NotificationType) => {
+    patientDispatch({
+      type: "ADD_SCHEDULE",
+      payload: { newNotification },
+    });
+  };
   const value = {
     patientState,
     patientDispatch,
@@ -172,6 +178,7 @@ export const AppProvider = ({ children }: Props) => {
     checkUser,
     register,
     addingSchedule,
+    addingNotification,
     clearNotifBackground,
     deleteNotification,
     state,

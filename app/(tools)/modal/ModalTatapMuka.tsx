@@ -7,12 +7,10 @@ import { AppointmentMenuTypes, DoctorType } from "../types";
 import dayjs from "dayjs";
 import { getMedicalRecord } from "../data/sample";
 import AppointmentCalendarIcon from "./modalAppointment/AppointmentCalendarIcon";
-import { NotificationType, ScheduledType } from "../patientTypes";
+import { ScheduledType } from "../patientTypes";
 import { toast } from "react-toastify";
 import { getScheduleID } from "../utils/getScheduleID";
-import { getNotificationID } from "../utils/getNotificationID";
 import { checkExistingSchedule } from "../utils/checkExistingSchedule";
-import dataNotification from "@/app/(tools)/data/data_notifications.json";
 
 type Props = {};
 
