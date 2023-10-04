@@ -10,6 +10,7 @@ type Props = {
 
 const FasilitasUnit = ({ facility }: Props) => {
   const { openModal } = useGlobalContext();
+  console.log({ facility: facility.img.src === null, facilityID: facility.id });
   return (
     <button
       key={facility.id}
@@ -17,17 +18,19 @@ const FasilitasUnit = ({ facility }: Props) => {
       className=" facility-unit-container group"
     >
       <div className=" facility-unit-img-container  ">
-        <Image
-          loader={sanityLoader}
-          rel="preload"
-          placeholder="empty"
-          src={facility.img.src}
-          alt={facility.img.alt}
-          height={200}
-          width={200}
-          className="facility-unit-img"
-          loading="lazy"
-        />
+        {facility.img.src && (
+          <Image
+            loader={sanityLoader}
+            rel="preload"
+            placeholder="empty"
+            src={facility.img.src}
+            alt={facility.img.alt}
+            height={200}
+            width={200}
+            className="facility-unit-img"
+            loading="lazy"
+          />
+        )}
       </div>
       <div className=" facility-unit-info ">
         <h4 className=" facility-unit-title  ">{facility.title}</h4>

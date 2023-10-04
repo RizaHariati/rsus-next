@@ -34,6 +34,7 @@ export const facility: SchemaTypeDefinition = {
       name: "img",
       title: "Foto Fasilitas",
       type: "image",
+      validation: (rule: Rule) => rule.required(),
       fields: [
         {
           name: "alt",

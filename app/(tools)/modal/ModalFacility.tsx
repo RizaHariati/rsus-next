@@ -50,17 +50,19 @@ const ModalFacility = (props: Props) => {
             )}
           </div>
           <div className=" w-full aspect-[4/3] h-auto md:h-[375px]  overflow-hidden rounded-sm order-first md:order-none">
-            <Image
-              loader={sanityLoader}
-              rel="preload"
-              src={facility.img.src}
-              alt={facility.img.alt}
-              height={400}
-              width={500}
-              placeholder="empty"
-              className="object-center object-cover w-full h-full rounded-sm"
-              priority
-            />
+            {facility.img.src && (
+              <Image
+                loader={sanityLoader}
+                rel="preload"
+                src={facility.img.src}
+                alt={facility.img.alt}
+                height={400}
+                width={500}
+                placeholder="empty"
+                className="object-center object-cover w-full h-full rounded-sm"
+                priority
+              />
+            )}
           </div>
         </section>
         <section className="bg-white border-none w-full flex mt-2">
