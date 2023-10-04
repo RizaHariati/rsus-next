@@ -10,7 +10,6 @@ import { getLabCartItem } from "../utils/getLabCartItem";
 import { patientReducer } from "../reducers/patientReducer";
 import { initialPatientState } from "./initialPatientState";
 import {
-  NotificationType,
   PatientInitialValueType,
   ScheduledType,
   UserType,
@@ -145,13 +144,10 @@ export const AppProvider = ({ children }: Props) => {
     }
   };
 
-  const addingSchedule = (
-    newSchedule: ScheduledType,
-    newNotif: NotificationType
-  ) => {
+  const addingSchedule = (newSchedule: ScheduledType) => {
     patientDispatch({
       type: "ADD_SCHEDULE",
-      payload: { newSchedule, newNotif },
+      payload: { newSchedule },
     });
   };
   const clearNotifBackground = (notificationID: string) => {

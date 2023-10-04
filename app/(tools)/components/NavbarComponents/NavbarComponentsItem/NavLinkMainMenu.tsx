@@ -13,7 +13,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { faFacebook, faInstagram } from "@fortawesome/free-brands-svg-icons";
 import Link from "next/link";
-import dataConsultation from "@/app/(tools)/data/data_consultation.json";
+import dataAppointment from "@/app/(tools)/data/data_appointment.json";
 import { toast } from "react-toastify";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 
@@ -204,7 +204,7 @@ const SubMenu = ({ menu, toggleItem, itemId, link }: SubProps) => {
                   if (!item.link) {
                     openModal(
                       item.name,
-                      dataConsultation.filter(
+                      dataAppointment.filter(
                         (consultationItem) =>
                           consultationItem.name === item.name
                       )[0]

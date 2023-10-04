@@ -5,11 +5,8 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import Image from "next/image";
-import { ConsultationMenuTypes, DoctorType } from "../../types";
-import {
-  checkExistingDoctor,
-  checkExistingSchedule,
-} from "../../utils/checkExistingSchedule";
+import { AppointmentMenuTypes, DoctorType } from "../../types";
+import { checkExistingDoctor } from "../../utils/checkExistingSchedule";
 import { toast } from "react-toastify";
 
 type Props = {};
@@ -23,7 +20,7 @@ const AppointmentDoctor = () => {
     patientState: { patient },
   } = useGlobalContext();
 
-  const consultationInfo: ConsultationMenuTypes = modalValue;
+  const appointmentInfo: AppointmentMenuTypes = modalValue;
 
   const value = filtered_doctor.value;
   const category = filtered_doctor.category;
@@ -56,7 +53,7 @@ const AppointmentDoctor = () => {
       if (!check.passChecking) {
         return toast.error(check.message);
       } else {
-        openModal("doctordetail", { doctorInfo, image, consultationInfo });
+        openModal("doctordetail", { doctorInfo, image, appointmentInfo });
       }
     }
   };
@@ -120,7 +117,7 @@ const AppointmentDoctor = () => {
                       }
                     />
                   ) : null}
-                  <p className="body-2">{item.nama}</p>
+                  <p className="body-2">{item.name}</p>
                 </div>
                 <p>Poliklinik</p>
                 <p className=" col-span-2">: {item.poliklinik.title}</p>

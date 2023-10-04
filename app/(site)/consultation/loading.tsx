@@ -1,5 +1,5 @@
 import React from "react";
-import ConsultationMenu from "@/app/(tools)/components/PageComponents/consultation/ConsultationMenu";
+import ConsultationMenu from "@/app/(tools)/components/PageComponents/appointment/AppointmentMenu";
 import MainImageSmallLoadingB from "@/app/(tools)/components/PageComponents/MainImageSmallLoadingB";
 import MainImageAnimatedLeftLoading from "@/app/(tools)/components/PageComponents/MainImageAnimatedLeftLoading";
 import { PageGreenAccentLoading } from "@/app/(tools)/components/PageGreenAccent";

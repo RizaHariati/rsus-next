@@ -2,10 +2,9 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ConsultationMenuTypes, DoctorType } from "../types";
+import { AppointmentMenuTypes, DoctorType } from "../types";
 
 import dayjs from "dayjs";
-import RegisterSuggestion from "./RegisterSuggestion";
 import { getMedicalRecord } from "../data/sample";
 import AppointmentCalendarIcon from "./modalAppointment/AppointmentCalendarIcon";
 import { NotificationType, ScheduledType } from "../patientTypes";
@@ -13,6 +12,7 @@ import { toast } from "react-toastify";
 import { getScheduleID } from "../utils/getScheduleID";
 import { getNotificationID } from "../utils/getNotificationID";
 import { checkExistingSchedule } from "../utils/checkExistingSchedule";
+import dataNotification from "@/app/(tools)/data/data_notifications.json";
 
 type Props = {};
 
@@ -25,7 +25,7 @@ const ModalTatapMuka = (props: Props) => {
     addingSchedule,
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.doctorInfo;
-  const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
+  const appointmentInfo: AppointmentMenuTypes = modalValue.appointmentInfo;
   const [bpjs, setBpjs] = useState(true);
   const [newPhoneNumber, setNewPhoneNumber] = useState(
     patient.patient_profile.phone
@@ -83,23 +83,16 @@ const ModalTatapMuka = (props: Props) => {
         using_bpjs: bpjs,
         nomor_antrian: Math.floor(Math.random() * doctorInfo.kuota + 1),
       };
-      const newNotif: NotificationType = {
-        id: getNotificationID(patient.notifications),
-        notification_code: "ncat-002",
-        schedule_code: newScheduleID,
-        notification_date: new Date(),
-        seen: false,
-      };
 
       const promiseTatapMuka = new Promise((resolve) => {
-        addingSchedule(schedule, newNotif);
+        addingSchedule(schedule);
         setTimeout(() => {
           resolve(closeModal());
         }, 1000);
       });
       toast.promise(promiseTatapMuka, {
         pending: "Mendaftarkan Jadwal",
-        success: `Pertemuan tatap muka dengan ${doctorInfo.nama} berhasil dijadwalkan`,
+        success: `Pertemuan tatap muka dengan ${doctorInfo.name} berhasil dijadwalkan`,
         error: "Schedule rejected ",
       });
     }
@@ -108,7 +101,7 @@ const ModalTatapMuka = (props: Props) => {
     <div className="modal-phone md:modal-lg">
       <button
         className="modal-close-btn"
-        onClick={() => openModal(consultationInfo.modal, consultationInfo)}
+        onClick={() => openModal(appointmentInfo.modal, appointmentInfo)}
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
@@ -117,7 +110,7 @@ const ModalTatapMuka = (props: Props) => {
         <mark className=" flex flex-col gap-2 ">
           <div>
             <p>Konsultasi dengan:</p>
-            <p className="dark-input">{doctorInfo.nama}</p>
+            <p className="dark-input">{doctorInfo.name}</p>
           </div>
           <div>
             <p>Nomor WhatsApp untuk nomor antrian</p>

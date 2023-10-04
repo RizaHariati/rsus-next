@@ -27,7 +27,7 @@ export type PatientProfileType = {
   name: string;
   NIK: string;
   address: string;
-  sex: 0 | 1;
+  sex: number;
   birthdate: Date;
   phone: string;
   register_date: Date;

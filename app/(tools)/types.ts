@@ -19,7 +19,7 @@ export type FloatingMenuType = {
   image: string;
 };
 
-export type ConsultationMenuTypes = {
+export type AppointmentMenuTypes = {
   name: string;
   title: string;
   description: string;

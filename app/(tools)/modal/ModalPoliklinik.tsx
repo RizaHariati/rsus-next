@@ -6,9 +6,7 @@ import { DoctorType, PoliklinikType } from "../types";
 import Image from "next/image";
 import { findSupportingFacility } from "../utils/findSupportingFacility";
 import { getDoctorPoli } from "../utils/getDoctorPoli";
-import { motion } from "framer-motion";
-import { enterTop } from "../framervariants/variants";
-import dataConsultation from "@/app/(tools)/data/data_consultation.json";
+import dataAppointment from "@/app/(tools)/data/data_appointment.json";
 type Props = {};
 
 const ModalPoliklinik = (props: Props) => {
@@ -67,7 +65,7 @@ const ModalPoliklinik = (props: Props) => {
             <button
               onClick={async () => {
                 filteringDoctor(poliInfo.id, "spesialisasi");
-                openModal("appointment", dataConsultation[0]);
+                openModal("appointment", dataAppointment[0]);
               }}
               className="button-greenUrip"
             >
@@ -111,7 +109,7 @@ const FindSupportingFacility = ({ poliInfo }: FacilityProps) => {
                     rel="preload"
                     placeholder="empty"
                     src={`/images/pelayanan-fasilitas/small/${item.img}.jpg`}
-                    alt={item.img}
+                    alt={item.img.alt}
                     width={30}
                     height={30}
                     className="object-center object-cover w-10 h-10 standard-border overflow-hidden "
@@ -156,7 +154,7 @@ const FindSupportingDoctors = ({ poliInfo }: FacilityProps) => {
                 loading="lazy"
               />
               <p className="body-4 w-20 flex flex-wrap text-center">
-                {item.nama}
+                {item.name}
               </p>
             </div>
           );

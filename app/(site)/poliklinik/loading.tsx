@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import ConsultationOptions, {
   ConsultationOptionsContent,
-} from "../../(tools)/components/PageComponents/poliklinik/ConsultationOptions";
+} from "../../(tools)/components/PageComponents/poliklinik/AppointmentOptions";
 import { PoliklinikType } from "@/app/(tools)/types";
 import dataPoliklinik from "@/app/(tools)/data/data_poliklinik.json";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";

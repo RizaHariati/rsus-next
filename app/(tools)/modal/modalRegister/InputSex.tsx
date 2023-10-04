@@ -12,29 +12,16 @@ type Props = {
 
 const InputSex = ({ newPatientPersonal, setNewPatientPersonal }: Props) => {
   const [openSelection, setOpenSelection] = useState(false);
-  const [selectedSex, setSelectedSex] = useState(true);
+  const [selectedSex, setSelectedSex] = useState<1 | 0>(1);
 
-  const handleSelect = (sex: boolean) => {
-    const a = false;
-    const patientGender = newPatientPersonal?.sex ? true : false;
-    const addFemale = {
-      ...newPatientPersonal,
-      sex: { value: a, error: false },
-    };
-    const addMale = {
-      ...newPatientPersonal,
-      sex: { value: true, error: false },
-    };
-    if (sex) {
-      setSelectedSex(true);
-      if (!patientGender) {
-        setNewPatientPersonal(addFemale);
-      }
-    } else {
-      setSelectedSex(false);
-      if (patientGender) {
-        setNewPatientPersonal(addMale);
-      }
+  const handleSelect = (sexInput: number) => {
+    if (sexInput !== 1 && sexInput !== 0) return;
+    else {
+      setSelectedSex(sexInput);
+      setNewPatientPersonal({
+        ...newPatientPersonal,
+        sex: { value: sexInput, error: false },
+      });
     }
     setOpenSelection(false);
   };
@@ -57,7 +44,7 @@ const InputSex = ({ newPatientPersonal, setNewPatientPersonal }: Props) => {
       >
         <button
           type="button"
-          onClick={() => handleSelect(true)}
+          onClick={() => handleSelect(1)}
           className="flex-center-left gap-2 body-3"
         >
           <FontAwesomeIcon
@@ -70,7 +57,7 @@ const InputSex = ({ newPatientPersonal, setNewPatientPersonal }: Props) => {
         </button>
         <button
           type="button"
-          onClick={() => handleSelect(false)}
+          onClick={() => handleSelect(0)}
           className="flex-center-left gap-2 body-3 "
         >
           <FontAwesomeIcon

@@ -5,15 +5,13 @@ import { motion } from "framer-motion";
 import {
   enterLeftVariant,
   enterLeftVariantChild,
-  enterOpacity,
-  enterOpacityChildren,
 } from "@/app/(tools)/framervariants/variants";
-import dataConsultation from "@/app/(tools)/data/data_consultation.json";
-import { ConsultationMenuTypes } from "@/app/(tools)/types";
+import dataAppointment from "@/app/(tools)/data/data_appointment.json";
+import { AppointmentMenuTypes } from "@/app/(tools)/types";
 
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
-const ConsultationMenu = () => {
+const AppointmentMenu = () => {
   const { openModal } = useGlobalContext();
   return (
     <motion.div
@@ -29,7 +27,7 @@ const ConsultationMenu = () => {
       >
         Janji Temu Dokter
       </motion.h1>
-      {dataConsultation.map((item: ConsultationMenuTypes, index: number) => {
+      {dataAppointment.map((item: AppointmentMenuTypes, index: number) => {
         return (
           <motion.button
             variants={enterLeftVariantChild}
@@ -61,4 +59,4 @@ const ConsultationMenu = () => {
     </motion.div>
   );
 };
-export default ConsultationMenu;
+export default AppointmentMenu;

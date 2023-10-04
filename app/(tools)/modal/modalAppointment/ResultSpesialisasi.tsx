@@ -1,17 +1,17 @@
 import React from "react";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import Image from "next/image";
-import { ConsultationMenuTypes, PoliklinikType } from "@/app/(tools)/types";
+import { AppointmentMenuTypes, PoliklinikType } from "@/app/(tools)/types";
 
 type ResultProps = {
   searchKeyword: string;
-  consultationInfo: ConsultationMenuTypes;
+  appointmentInfo: AppointmentMenuTypes;
   specializationList: PoliklinikType[];
   searchCategory: "spesialisasi" | "dokter";
 };
 const ResultSpesialisasi = ({
   searchKeyword,
-  consultationInfo,
+  appointmentInfo,
   specializationList,
   searchCategory,
 }: ResultProps) => {
@@ -28,8 +28,8 @@ const ResultSpesialisasi = ({
           : "h-40 md:h-64 custom-scrollbar md:border-none standard-border "
       }
     >
-      {!searchKeyword && consultationInfo.modal_img && (
-        <ImageSearch consultationInfo={consultationInfo!} />
+      {!searchKeyword && appointmentInfo.modal_img && (
+        <ImageSearch appointmentInfo={appointmentInfo!} />
       )}
       {searchKeyword && specializationList.length > 0 && (
         <div className="w-full h-full h-max-40 my-auto flex flex-col gap-2 px-2">
@@ -64,8 +64,8 @@ const ResultSpesialisasi = ({
             Tidak ditemukan Spesialisasi dengan kata kunci seperti itu
           </p>
 
-          {consultationInfo.modal_img && (
-            <ImageSearch consultationInfo={consultationInfo!} />
+          {appointmentInfo.modal_img && (
+            <ImageSearch appointmentInfo={appointmentInfo!} />
           )}
         </div>
       )}
@@ -76,18 +76,18 @@ const ResultSpesialisasi = ({
 export default ResultSpesialisasi;
 
 type ImageProps = {
-  consultationInfo: ConsultationMenuTypes;
+  appointmentInfo: AppointmentMenuTypes;
 };
 
-const ImageSearch = ({ consultationInfo }: ImageProps) => {
+const ImageSearch = ({ appointmentInfo }: ImageProps) => {
   return (
     <div className="w-auto h-40 my-auto ">
-      {consultationInfo && (
+      {appointmentInfo && (
         <Image
           rel="preload"
           placeholder="empty"
-          src={`/images/pages/${consultationInfo.modal_img}.jpg`}
-          alt={consultationInfo.modal_img || "consul_img"}
+          src={`/images/pages/${appointmentInfo.modal_img}.jpg`}
+          alt={appointmentInfo.modal_img || "consul_img"}
           width={400}
           height={400}
           className="w-auto h-40 m-auto"

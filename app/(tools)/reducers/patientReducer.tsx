@@ -23,7 +23,7 @@ export const patientReducer = (
         name: "",
         NIK: "",
         address: "",
-        sex: true,
+        sex: 1,
         birthdate: new Date(),
         phone: "",
         register_date: new Date(),
@@ -138,7 +138,7 @@ export const patientReducer = (
         name: "",
         NIK: "",
         address: "",
-        sex: true,
+        sex: 1,
         birthdate: new Date(),
         phone: "",
         register_date: new Date(),
@@ -158,14 +158,12 @@ export const patientReducer = (
   }
 
   if (action.type === "ADD_SCHEDULE") {
-    const newNotif: NotificationType = action.payload.newNotif;
     const newSchedule: ScheduledType = action.payload.newSchedule;
 
     let patient: PatientType = patientState.patient;
 
     patient = {
       ...patient,
-      notifications: [...patient.notifications, newNotif],
       scheduled_appointments: [...patient.scheduled_appointments, newSchedule],
     };
     return {

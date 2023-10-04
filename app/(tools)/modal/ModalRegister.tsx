@@ -9,8 +9,7 @@ import InputSex from "./modalRegister/InputSex";
 import InputBirthDate from "./modalRegister/InputBirthDate";
 import InputFormatReguler from "./modalRegister/InputFormatReguler";
 import { toast } from "react-toastify";
-
-import dataConsultation from "@/app/(tools)/data/data_consultation.json";
+import dataAppointment from "@/app/(tools)/data/data_appointment.json";
 import { PatientInitialValueType } from "../patientTypes";
 
 type Props = {};
@@ -31,7 +30,7 @@ const ModalRegister = (props: Props) => {
     name: { value: "", error: false },
     NIK: { value: "", error: false },
     address: { value: "", error: false },
-    sex: { value: true, error: false },
+    sex: { value: 1, error: false },
     birthdate: { value: "", error: false },
     phone: { value: "", error: false },
     password: { value: "", error: false },
@@ -45,8 +44,6 @@ const ModalRegister = (props: Props) => {
         ? state.modalValue.newPatientPersonal
         : initialPatient
     );
-
-  useEffect(() => {}, [newPatientPersonal]);
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -108,14 +105,14 @@ const ModalRegister = (props: Props) => {
   return (
     <div className="modal-phone md:h-fit md:modal-lg p-3  md:px-10 pt-0  md:rounded-sm ">
       <h3 className=" modal-title ">
-        {dataConsultation[2].title}
-        {/* dataConsultation[2] adalah data untuk menu registrasi */}
+        {dataAppointment[2].title}
+        {/* dataAppointment[2] adalah data untuk menu registrasi */}
       </h3>
       <button className="modal-close-btn" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
       <article className="bg-white">
-        {dataConsultation[2].intro.map((item: string, index: number) => {
+        {dataAppointment[2].intro.map((item: string, index: number) => {
           return (
             <p className="body-3" key={index}>
               {item}

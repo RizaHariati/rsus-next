@@ -1,19 +1,13 @@
 "use client";
 import Image from "next/image";
 import React from "react";
-import { motion } from "framer-motion";
-import {
-  enterLeftVariant,
-  enterLeftVariantChild,
-  enterOpacity,
-  enterOpacityChildren,
-} from "@/app/(tools)/framervariants/variants";
-import dataConsultation from "@/app/(tools)/data/data_consultation.json";
-import { ConsultationMenuTypes } from "@/app/(tools)/types";
+
+import dataAppointment from "@/app/(tools)/data/data_appointment.json";
+import { AppointmentMenuTypes } from "@/app/(tools)/types";
 
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
-const ConsultationMenuLoading = () => {
+const AppointmentMenuLoading = () => {
   const { openModal } = useGlobalContext();
   return (
     <div className="relative md:absolute w-full md:w-[600px] h-1/2 md:h-fit md:place-content-end-auto  md:top-1/3  z-20 right-0 md:right-[10%] flex flex-col gap-2 p-3 md:p-0 pb-10 md:pb-0">
@@ -23,7 +17,7 @@ const ConsultationMenuLoading = () => {
       >
         Janji Temu Dokter
       </h1>
-      {dataConsultation.map((item: ConsultationMenuTypes, index: number) => {
+      {dataAppointment.map((item: AppointmentMenuTypes, index: number) => {
         return (
           <button
             key={index}
@@ -54,4 +48,4 @@ const ConsultationMenuLoading = () => {
     </div>
   );
 };
-export default ConsultationMenuLoading;
+export default AppointmentMenuLoading;

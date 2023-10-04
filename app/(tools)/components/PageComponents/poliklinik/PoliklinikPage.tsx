@@ -12,7 +12,7 @@ import PageGreenAccent from "@/app/(tools)/components/PageGreenAccent";
 import MainImageSmall from "@/app/(tools)/components/PageComponents/MainImageSmallB";
 import ConsultationOptions, {
   ConsultationOptionsContent,
-} from "./ConsultationOptions";
+} from "./AppointmentOptions";
 import MainImageAnimatedLeft from "../MainImageAnimatedLeft";
 import { enterOpacity } from "../../../framervariants/variants";
 

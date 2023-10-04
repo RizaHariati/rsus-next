@@ -13,16 +13,15 @@ const ModalBayarLaboratorium = (props: Props) => {
   const {
     closeModal,
     openModal,
-    clearLabCart,
     addingSchedule,
     state: { modalValue },
     patientState: { patient },
   } = useGlobalContext();
 
-  const { schedule, newNotif } = modalValue;
+  const { schedule } = modalValue;
   const handleBayar = () => {
     const promiseTelemedicine = new Promise((resolve) => {
-      addingSchedule(schedule, newNotif);
+      addingSchedule(schedule);
 
       setTimeout(() => {
         resolve(openModal("inconstruction", {}));

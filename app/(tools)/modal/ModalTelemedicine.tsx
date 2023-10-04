@@ -1,29 +1,20 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faClose,
-  faMagnifyingGlass,
-  faCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faClose, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ConsultationMenuTypes, DoctorType, PoliklinikType } from "../types";
+import { AppointmentMenuTypes, PoliklinikType } from "../types";
 
-import Image from "next/image";
-import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import dataPoliklinik from "@/app/(tools)/data/data_poliklinik.json";
 import TelemedicineDoctor from "./modalTelemedicine/TelemedicineDoctor";
 import ResultSpesialisasi from "./modalAppointment/ResultSpesialisasi";
 type Props = {};
-const randomizeDoctor = () => {
-  const newDataDoctor = dataDoctor.filter((item) => item.telemedicine === 1);
-  return [...newDataDoctor].sort(() => 0.5 - Math.random()).slice(0, 4);
-};
+
 const ModalTelemedicine = (props: Props) => {
   const {
     state: { modalValue },
     closeModal,
   } = useGlobalContext();
-  const consultationInfo: ConsultationMenuTypes = modalValue;
+  const appointmentInfo: AppointmentMenuTypes = modalValue;
   const [searchKeyword, setSearchKeyword] = useState("");
   const [specializationList, setSpecializationList] = useState<
     PoliklinikType[]
@@ -39,7 +30,7 @@ const ModalTelemedicine = (props: Props) => {
   };
   return (
     <div className="modal-phone md:modal-xl ">
-      <h3 className=" modal-title">{consultationInfo.title}</h3>
+      <h3 className=" modal-title">{appointmentInfo.title}</h3>
       <button className="modal-close-btn" onClick={() => closeModal()}>
         <FontAwesomeIcon icon={faClose} />
       </button>
@@ -47,7 +38,7 @@ const ModalTelemedicine = (props: Props) => {
         <section className="w-full grid grid-cols-1 md:grid-cols-2 gap-5 bg-white border-none">
           <mark className="h-full w-full ">
             <div>
-              {consultationInfo.intro.map((item: string, index: number) => {
+              {appointmentInfo.intro.map((item: string, index: number) => {
                 return (
                   <p className="body-3  " key={index}>
                     {item}
@@ -73,7 +64,7 @@ const ModalTelemedicine = (props: Props) => {
           <mark>
             <ResultSpesialisasi
               searchKeyword={searchKeyword}
-              consultationInfo={consultationInfo}
+              appointmentInfo={appointmentInfo}
               specializationList={specializationList}
               searchCategory="spesialisasi"
             />

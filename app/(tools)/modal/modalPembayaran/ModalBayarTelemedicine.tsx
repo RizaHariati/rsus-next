@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ConsultationMenuTypes, DoctorType } from "../../types";
+import { AppointmentMenuTypes, DoctorType } from "../../types";
 import { getMedicalRecord } from "../../data/sample";
 import PaymentMethods from "./PaymentMethods";
 import { getScheduleID } from "../../utils/getScheduleID";
@@ -20,7 +20,7 @@ const ModalBayarTelemedicine = (props: Props) => {
     addingSchedule,
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.doctorInfo;
-  const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
+  const appointmentInfo: AppointmentMenuTypes = modalValue.appointmentInfo;
 
   const handleTelemedicine = async () => {
     const newScheduleID = getScheduleID(patient.scheduled_appointments);
@@ -34,16 +34,9 @@ const ModalBayarTelemedicine = (props: Props) => {
       using_bpjs: false,
       nomor_antrian: 0,
     };
-    const newNotif: NotificationType = {
-      id: getNotificationID(patient.notifications),
-      notification_code: "ncat-003",
-      schedule_code: newScheduleID,
-      notification_date: new Date(),
-      seen: false,
-    };
 
     const promiseTelemedicine = new Promise((resolve) => {
-      addingSchedule(schedule, newNotif);
+      addingSchedule(schedule);
 
       setTimeout(() => {
         resolve(openModal("inconstruction", {}));
@@ -52,7 +45,7 @@ const ModalBayarTelemedicine = (props: Props) => {
 
     toast.promise(promiseTelemedicine, {
       pending: "Menunggu pembayaran",
-      success: `Jadwal Telemedicine dengan ${doctorInfo.nama} berhasil ditambahkan`,
+      success: `Jadwal Telemedicine dengan ${doctorInfo.name} berhasil ditambahkan`,
       error: "Schedule rejected ",
     });
   };
@@ -61,7 +54,7 @@ const ModalBayarTelemedicine = (props: Props) => {
     <div className="modal-phone md:modal-md overflow-hidden bg-white">
       <button
         className="modal-close-btn"
-        onClick={() => openModal(consultationInfo.modal, consultationInfo)}
+        onClick={() => openModal(appointmentInfo.modal, appointmentInfo)}
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
@@ -74,7 +67,7 @@ const ModalBayarTelemedicine = (props: Props) => {
         </p>
         <div className="body-3 sub-form">
           <p className="body-3">Chat sekarang dengan: </p>
-          <p className="dark-input">{doctorInfo.nama}</p>
+          <p className="dark-input">{doctorInfo.name}</p>
         </div>
         <TelemedicineInfo doctorInfo={doctorInfo} />
         <PaymentMethods />

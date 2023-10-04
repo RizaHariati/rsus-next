@@ -54,15 +54,8 @@ const ModalLabCarts = (props: Props) => {
           using_bpjs: false,
           nomor_antrian: 0,
         };
-        const newNotif: NotificationType = {
-          id: getNotificationID(patient.notifications),
-          notification_code: "ncat-005",
-          schedule_code: newScheduleID,
-          notification_date: new Date(),
-          seen: false,
-        };
 
-        openModal("bayarlab", { schedule, newNotif });
+        openModal("bayarlab", { schedule });
       }
     }
   };

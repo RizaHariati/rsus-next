@@ -8,12 +8,12 @@ import {
   enterTop,
 } from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import dataConsultation from "@/app/(tools)/data/data_consultation.json";
+import dataAppointment from "@/app/(tools)/data/data_appointment.json";
 import Link from "next/link";
 
 type Props = {};
 
-const ConsultationOptions = () => {
+const AppointmentOptions = () => {
   return (
     <motion.div
       key="consultation"
@@ -22,14 +22,14 @@ const ConsultationOptions = () => {
       animate="animate"
       className="hidden md:block absolute z-20 bg-white bottom-10 w-[450px] right-10 h-fit standard-border p-2 "
     >
-      <ConsultationOptionsContent />
+      <AppointmentOptionsContent />
     </motion.div>
   );
 };
 
-export default ConsultationOptions;
+export default AppointmentOptions;
 
-export const ConsultationOptionsContent = () => {
+export const AppointmentOptionsContent = () => {
   const { toggleMenuNavbar, openModal } = useGlobalContext();
   return (
     <>
@@ -51,8 +51,8 @@ export const ConsultationOptionsContent = () => {
             toggleMenuNavbar(null);
             openModal(
               "appointment",
-              dataConsultation.filter(
-                (consultationItem) => consultationItem.name === "appointment"
+              dataAppointment.filter(
+                (appointmentItem) => appointmentItem.name === "appointment"
               )[0]
             );
           }}
@@ -78,8 +78,8 @@ export const ConsultationOptionsContent = () => {
             toggleMenuNavbar(null);
             openModal(
               "telemedicine",
-              dataConsultation.filter(
-                (consultationItem) => consultationItem.name === "telemedicine"
+              dataAppointment.filter(
+                (appointmentItem) => appointmentItem.name === "telemedicine"
               )[0]
             );
           }}

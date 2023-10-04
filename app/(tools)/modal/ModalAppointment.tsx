@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ConsultationMenuTypes, DoctorType } from "../types";
+import { AppointmentMenuTypes } from "../types";
 import AppointmentSelect from "./modalAppointment/AppointmentSelect";
 import AppointmentDoctor from "./modalAppointment/AppointmentDoctor";
 
@@ -13,11 +13,11 @@ const ModalAppointment = (props: Props) => {
     state: { modalValue },
     closeModal,
   } = useGlobalContext();
-  const consultationInfo: ConsultationMenuTypes = modalValue;
+  const appointmentInfo: AppointmentMenuTypes = modalValue;
 
   return (
     <div className=" modal-phone md:modal-xl ">
-      <h3 className="modal-title">{consultationInfo.title}</h3>
+      <h3 className="modal-title">{appointmentInfo.title}</h3>
 
       <button
         className="modal-close-btn"
@@ -29,7 +29,7 @@ const ModalAppointment = (props: Props) => {
       </button>
       <article className="flex flex-col gap-2 bg-white ">
         <mark>
-          {consultationInfo.intro.map((item: string, index: number) => {
+          {appointmentInfo.intro.map((item: string, index: number) => {
             return (
               <p className="body-3 md:body-2" key={index}>
                 {item}

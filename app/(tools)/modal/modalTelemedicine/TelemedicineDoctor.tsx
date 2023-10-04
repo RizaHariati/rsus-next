@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCircle } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ConsultationMenuTypes, DoctorType } from "../../types";
+import { AppointmentMenuTypes, DoctorType } from "../../types";
 
 import Image from "next/image";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
@@ -20,7 +20,7 @@ const TelemedicineDoctor = () => {
     patientState: { patient },
   } = useGlobalContext();
 
-  const consultationInfo: ConsultationMenuTypes = modalValue;
+  const appointmentInfo: AppointmentMenuTypes = modalValue;
   const [doctorList, setdoctorList] = useState<DoctorType[]>(randomizeDoctor());
   const [title, setTitle] = useState("Dokter kami yang melayani Telemedicine");
 
@@ -56,21 +56,21 @@ const TelemedicineDoctor = () => {
           `Anda sudah terdaftar untuk Telemedicine dengan ${
             dataDoctor.find(
               (doctorInfo) => doctorInfo.id === findTelemedicine.tujuan[0]
-            )?.nama
+            )?.name
           } Anda hanya bisa melakukan Telemedicine satu kali sehari`
         );
       } else {
         openModal("doctordetail", {
           doctorInfo,
           image,
-          consultationInfo,
+          appointmentInfo,
         });
       }
     } else {
       openModal("doctordetail", {
         doctorInfo,
         image,
-        consultationInfo,
+        appointmentInfo,
       });
     }
   };
@@ -117,7 +117,7 @@ const TelemedicineDoctor = () => {
                       }
                     />
                   ) : null}
-                  <p className="body-2">{doctorInfo.nama}</p>
+                  <p className="body-2">{doctorInfo.name}</p>
                 </div>
                 <p>Poliklinik</p>
                 <p className=" col-span-2">: {doctorInfo.poliklinik.title}</p>

@@ -2,7 +2,7 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ConsultationMenuTypes, DoctorType } from "../types";
+import { AppointmentMenuTypes, DoctorType } from "../types";
 import Image from "next/image";
 import { getDoctorDetailedInfo } from "../utils/forms/getDoctorDetailedInfo";
 
@@ -17,7 +17,7 @@ const ModalDoctorDetail = (props: Props) => {
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.doctorInfo;
   const image: string = modalValue.image;
-  const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
+  const appointmentInfo: AppointmentMenuTypes = modalValue.appointmentInfo;
 
   if (!doctorInfo || !image) return <div></div>;
   else {
@@ -25,7 +25,7 @@ const ModalDoctorDetail = (props: Props) => {
       <div className="modal-phone md:modal-md p-3 md:px-10 overflow-hidden bg-white ">
         <button
           className="absolute top-2 right-4"
-          onClick={() => openModal(consultationInfo.modal, consultationInfo)}
+          onClick={() => openModal(appointmentInfo.modal, appointmentInfo)}
         >
           <FontAwesomeIcon icon={faClose} />
         </button>
@@ -54,7 +54,7 @@ const ModalDoctorDetail = (props: Props) => {
           </div>
           <div className="w-full border-t border-greyBorder ">
             <p className="body-1-bold tracking-normal">
-              {doctorInfo?.nama}&nbsp;
+              {doctorInfo?.name}&nbsp;
               {doctorInfo.telemedicine ? (
                 doctorInfo.sedang_online ? (
                   <span className=" text-greenUrip body-3">
@@ -87,7 +87,7 @@ const ModalDoctorDetail = (props: Props) => {
                 if (user.login) {
                   openModal("chattelemedicine", {
                     doctorInfo,
-                    consultationInfo,
+                    appointmentInfo,
                   });
                 } else {
                   openAlert("notlogin", {});
@@ -101,9 +101,7 @@ const ModalDoctorDetail = (props: Props) => {
             </button>
           ) : (
             <button
-              onClick={() =>
-                openModal(consultationInfo.modal, consultationInfo)
-              }
+              onClick={() => openModal(appointmentInfo.modal, appointmentInfo)}
               className="button-greenUrip"
             >
               kembali
@@ -113,7 +111,7 @@ const ModalDoctorDetail = (props: Props) => {
             onClick={() => {
               //check login
               if (user.login) {
-                openModal("tatapmuka", { doctorInfo, consultationInfo });
+                openModal("tatapmuka", { doctorInfo, appointmentInfo });
               } else {
                 openAlert("notlogin", {});
               }

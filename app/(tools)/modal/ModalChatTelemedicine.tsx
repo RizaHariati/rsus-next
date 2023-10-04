@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ConsultationMenuTypes, DoctorType } from "../types";
+import { AppointmentMenuTypes, DoctorType } from "../types";
 import MainLogoImage from "./MainLogoImage";
 
 type Props = {};
@@ -13,12 +13,12 @@ const ModalChatTelemedicine = (props: Props) => {
     openModal,
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.doctorInfo;
-  const consultationInfo: ConsultationMenuTypes = modalValue.consultationInfo;
+  const appointmentInfo: AppointmentMenuTypes = modalValue.appointmentInfo;
   return (
     <div className="modal-phone md:modal-md py-5 overflow-hidden bg-white">
       <button
         className="absolute top-2 right-4"
-        onClick={() => openModal(consultationInfo.modal, consultationInfo)}
+        onClick={() => openModal(appointmentInfo.modal, appointmentInfo)}
       >
         <FontAwesomeIcon icon={faClose} />
       </button>
@@ -31,7 +31,7 @@ const ModalChatTelemedicine = (props: Props) => {
         </p>
         <div className="body-2 sub-form">
           <p>Chat sekarang dengan: </p>
-          <p className="dark-input">{doctorInfo.nama}</p>
+          <p className="dark-input">{doctorInfo.name}</p>
         </div>
         <div className="w-full">
           <p className="body-2">Spesialis</p>
@@ -41,7 +41,7 @@ const ModalChatTelemedicine = (props: Props) => {
         <div className="w-full flex-center-center">
           <button
             onClick={() =>
-              openModal("bayartelemedicine", { doctorInfo, consultationInfo })
+              openModal("bayartelemedicine", { doctorInfo, appointmentInfo })
             }
             className="button-greenUrip w-fit mx-auto px-3"
           >

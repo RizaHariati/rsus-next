@@ -7,7 +7,7 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import Image from "next/image";
-import { ConsultationMenuTypes, PoliklinikType } from "@/app/(tools)/types";
+import { AppointmentMenuTypes, PoliklinikType } from "@/app/(tools)/types";
 import SelectDate from "./SelectDate";
 import { appointmentState, AppointmentState } from "./appointmentState";
 import { appointmentReducer } from "@/app/(tools)/reducers/appointmentReducer";
@@ -21,7 +21,7 @@ const AppointmentSelect = () => {
     setDate,
     clearDate,
   } = useGlobalContext();
-  const consultationInfo: ConsultationMenuTypes = modalValue;
+  const appointmentInfo: AppointmentMenuTypes = modalValue;
   const [{ searchCategory, searchKeyword, specializationList }, dispatch]: [
     AppointmentState,
     Dispatch<any>
@@ -127,7 +127,7 @@ const AppointmentSelect = () => {
       {searchCategory === "spesialisasi" && (
         <ResultSpesialisasi
           searchKeyword={searchKeyword}
-          consultationInfo={consultationInfo}
+          appointmentInfo={appointmentInfo}
           specializationList={specializationList}
           searchCategory={searchCategory}
         />
@@ -135,7 +135,7 @@ const AppointmentSelect = () => {
       {searchCategory === "dokter" && (
         <ResultDokter
           searchKeyword={searchKeyword}
-          consultationInfo={consultationInfo}
+          appointmentInfo={appointmentInfo}
           specializationList={specializationList}
           searchCategory={searchCategory}
         />
@@ -147,12 +147,12 @@ export default AppointmentSelect;
 
 type ResultProps = {
   searchKeyword: string;
-  consultationInfo: ConsultationMenuTypes;
+  appointmentInfo: AppointmentMenuTypes;
   specializationList: PoliklinikType[];
   searchCategory: "spesialisasi" | "dokter";
 };
 
-const ResultDokter = ({ searchKeyword, consultationInfo }: ResultProps) => {
+const ResultDokter = ({ searchKeyword, appointmentInfo }: ResultProps) => {
   const {
     state: { filtered_doctor },
   } = useGlobalContext();
@@ -169,13 +169,13 @@ const ResultDokter = ({ searchKeyword, consultationInfo }: ResultProps) => {
           Hasil terlalu banyak, tolong tambah kata kunci
         </p>
       )}
-      {consultationInfo.modal_img && (
+      {appointmentInfo.modal_img && (
         <div className="w-full h-40 my-auto">
           <Image
             rel="preload"
             placeholder="empty"
-            src={`/images/pages/${consultationInfo.modal_img}.jpg`}
-            alt={consultationInfo.modal_img}
+            src={`/images/pages/${appointmentInfo.modal_img}.jpg`}
+            alt={appointmentInfo.modal_img}
             width={400}
             height={400}
             className="w-auto h-full m-auto"

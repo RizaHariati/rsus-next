@@ -123,7 +123,7 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
       }
     } else {
       const filterDoctor = selectData.filter((item) =>
-        item.nama.toLowerCase().includes(keyword.toLowerCase())
+        item.name.toLowerCase().includes(keyword.toLowerCase())
       );
       if (filterDoctor.length > 0) {
         filtered_doctor = { category, value: filterDoctor, keyword };

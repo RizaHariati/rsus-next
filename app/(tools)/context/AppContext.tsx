@@ -34,10 +34,7 @@ export type AppContextProps = {
   scrollTop: boolean;
   scrollingUp: boolean;
   showFooter: boolean;
-  addingSchedule: (
-    newSchedule: ScheduledType,
-    newNotif: NotificationType
-  ) => void;
+  addingSchedule: (newSchedule: ScheduledType) => void;
   clearNotifBackground: (notificationID: string) => void;
   deleteNotification: (notificationID: string) => void;
 };
