@@ -1,12 +1,6 @@
 import { PatientState } from "../context/interfaces";
 
-import {
-  NotificationType,
-  PatientInitialValueType,
-  PatientType,
-  ScheduledType,
-} from "../patientTypes";
-import { addZeroString } from "../utils/addZeroString";
+import { PatientType, ScheduledType } from "../patientTypes";
 
 interface OpenModalAction {
   type: string;
@@ -16,6 +10,14 @@ export const patientReducer = (
   patientState: PatientState,
   action: OpenModalAction
 ) => {
+  if (action.type === "LOAD_USER") {
+    const { patient, user } = action.payload;
+    return {
+      ...patientState,
+      patient,
+      user,
+    };
+  }
   if (action.type === "REGISTER_USER") {
     const newPatient: PatientType = action.payload.newPatient;
 
@@ -25,31 +27,6 @@ export const patientReducer = (
     return {
       ...patientState,
       allPatients,
-    };
-  }
-
-  if (action.type === "CHECK_USER") {
-    const allPatients = patientState.allPatients;
-    const loginData = action.payload;
-    let verification_number =
-      patientState.verification_number > 999
-        ? 0
-        : patientState.verification_number;
-    const findPatient = allPatients.find(
-      (item) =>
-        item.medical_record_number === loginData.medical_record_number &&
-        item.patient_profile.password === loginData.password
-    );
-
-    if (findPatient) {
-      verification_number = Math.floor(Math.random() * 9000 + 1000);
-    } else {
-      verification_number = verification_number + 1;
-    }
-
-    return {
-      ...patientState,
-      verification_number,
     };
   }
 

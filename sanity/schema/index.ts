@@ -5,16 +5,7 @@ import { patient } from "./patient-schema";
 import { refnotification } from "./ref-notification-schema";
 import { labSatuan } from "./lab-satuan-schema";
 import { labPaket } from "./lab-paket-schema";
-import { user } from "./user-schema";
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-  types: [
-    doctor,
-    facility,
-    patient,
-    refnotification,
-    labSatuan,
-    labPaket,
-    user,
-  ],
+  types: [doctor, facility, patient, refnotification, labSatuan, labPaket],
 };

@@ -1,4 +1,4 @@
-import React, { useState, CSSProperties, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
@@ -68,11 +68,7 @@ const Apology = () => {
     </motion.section>
   );
 };
-const override: CSSProperties = {
-  display: "block",
-  margin: "0 auto",
-  borderColor: "#007814",
-};
+
 const Spinner = () => {
   return (
     <div className="modal-md p-10 py-5 overflow-hidden flex items-center justify-center flex-col gap-5 bg-white mx-auto h-[370px] border-none">

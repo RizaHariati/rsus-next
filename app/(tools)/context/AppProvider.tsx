@@ -1,6 +1,6 @@
 "use client";
 
-import { useContext, useReducer, Dispatch, useState } from "react";
+import { useContext, useReducer, Dispatch, useState, useEffect } from "react";
 import { AppContext } from "./AppContext";
 import { initialState } from "./initialState";
 import { appReducer } from "../reducers/appReducer";
@@ -11,6 +11,7 @@ import { patientReducer } from "../reducers/patientReducer";
 import { initialPatientState } from "./initialPatientState";
 import { NotificationType, PatientType } from "../patientTypes";
 import { ScheduledType, UserType } from "../patientTypes";
+import { getUser } from "../utils/localData/getStorageData";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -27,6 +28,20 @@ export const AppProvider = ({ children }: Props) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollingUp, setscrollingUp] = useState(true);
   const [showFooter, setShowFooter] = useState(false);
+
+  useEffect(() => {
+    let mountItem = true;
+    if (mountItem) {
+      const { patient, user } = getUser();
+      return patientDispatch({
+        type: "LOAD_USER",
+        payload: { patient, user },
+      });
+    }
+    return () => {
+      mountItem = false;
+    };
+  }, []);
 
   const toggleMenuNavbar = (id: string | null) => {
     dispatch({ type: "TOGGLE_MENU", payload: id });

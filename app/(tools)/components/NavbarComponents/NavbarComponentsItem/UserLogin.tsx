@@ -7,6 +7,7 @@ import { toast } from "react-toastify";
 import InputMedicalRecord from "../../InputMedicalRecord";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeLowVision } from "@fortawesome/free-solid-svg-icons";
+import { getPatients } from "@/sanity/sanityUtils/getPatients";
 type Props = {};
 
 const UserLogin = (props: Props) => {
@@ -55,50 +56,37 @@ export const LoginFormContent = () => {
       });
       return;
     } else {
-      checkUser(loginData);
+      const checkingPatient = new Promise((resolve) => {
+        resolve(
+          getPatients(loginData.medical_record_number, loginData.password)
+        );
+      });
+      checkingPatient.then((res) => {
+        if (!res || Object.keys(res).length < 1) {
+          toast.error("Nomor Rekam Medis/Password salah", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        } else {
+          const verification_number = Math.floor(Math.random() * 9000 + 1000);
+          toast.info(
+            "harap tunggu sebentar kami akan mengirimkan nomor verifikasi"
+          );
+
+          setTimeout(() => {
+            openAlert("verifikasi", {
+              verification_number,
+              data: loginData,
+              type: "login",
+            });
+          }, 1200);
+          setLoginData({
+            medical_record_number: "",
+            password: "",
+          });
+        }
+      });
     }
   };
-
-  useEffect(() => {
-    if (verification_number === 0) return;
-    if (loginData.password !== "" && loginData.medical_record_number !== "") {
-      if (verification_number < 1000) {
-        if (verification_number < 10) {
-          toast.error(
-            "Tidak ditemukan pasien dengan nomor dan password tersebut",
-            {
-              position: toast.POSITION.TOP_CENTER,
-            }
-          );
-        } else if (verification_number >= 10) {
-          toggleMenuNavbar(null);
-          toast.error(
-            "Anda sudah terlalu banyak memasukkan data yang salah, harap reload kembali",
-            {
-              position: toast.POSITION.TOP_CENTER,
-            }
-          );
-        }
-      } else {
-        toast.info(
-          "harap tunggu sebentar kami akan mengirimkan nomor verifikasi"
-        );
-        setTimeout(() => {
-          openAlert("verifikasi", {
-            verification_number,
-            data: loginData,
-            type: "login",
-          });
-        }, 1200);
-        setLoginData({
-          medical_record_number: "",
-          password: "",
-        });
-      }
-    }
-
-    // eslint-disable-next-line
-  }, [verification_number]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,

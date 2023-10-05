@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import MainLogoImage from "../modal/MainLogoImage";
 import { PatientType } from "../patientTypes";
 import { getNotificationID } from "../utils/getNotificationID";
+import { getPatients } from "@/sanity/sanityUtils/getPatients";
 type CheckType = { id: number; value: string };
 type Props = {};
 const placehoder_values: CheckType[] = [
@@ -72,33 +73,37 @@ const AlertVerifikasi = (props: Props) => {
         seen: false,
       };
       if (type === "login") {
-        const findPatient: PatientType | undefined = allPatients.find(
-          (item) => item.medical_record_number === data.medical_record_number
-        );
-
-        newPatient = {
-          ...findPatient!,
-          notifications: [
-            ...findPatient!.notifications,
-            {
-              ...newNotification,
-              id: getNotificationID(findPatient!.notifications),
-            },
-          ],
-        };
-
-        const loginUser = async () => {
-          await login(newPatient);
-          setTimeout(() => {
-            closeAlert();
-            toggleMenuNavbar("profile");
-          }, 1000);
-        };
-
-        toast.promise(loginUser, {
-          pending: "Promise is pending",
-          success: "Selamat Datang di Urip Sumoharjo ",
+        const gettingPatient = new Promise((resolve) => {
+          resolve(getPatients(data.medical_record_number, data.password));
         });
+        gettingPatient.then((res) => console.log(res));
+        // const findPatient: PatientType | undefined = allPatients.find(
+        //   (item) => item.medical_record_number === data.medical_record_number
+        // );
+
+        // newPatient = {
+        //   ...findPatient!,
+        //   notifications: [
+        //     ...findPatient!.notifications,
+        //     {
+        //       ...newNotification,
+        //       id: getNotificationID(findPatient!.notifications),
+        //     },
+        //   ],
+        // };
+
+        // const loginUser = async () => {
+        //   await login(newPatient);
+        //   setTimeout(() => {
+        //     closeAlert();
+        //     toggleMenuNavbar("profile");
+        //   }, 1000);
+        // };
+
+        // toast.promise(loginUser, {
+        //   pending: "Promise is pending",
+        //   success: "Selamat Datang di Urip Sumoharjo ",
+        // });
       } else if (type === "registration") {
         /* -------------- PLACING DATA INTO NEW PATIENT RECORD -------------- */
         Object.entries(data).map(([key, values]: any) => {
