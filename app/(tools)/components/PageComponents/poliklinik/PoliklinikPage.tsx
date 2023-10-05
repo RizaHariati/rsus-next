@@ -10,11 +10,12 @@ import { motion } from "framer-motion";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import PageGreenAccent from "@/app/(tools)/components/PageGreenAccent";
 import MainImageSmall from "@/app/(tools)/components/PageComponents/MainImageSmallB";
-import ConsultationOptions, {
-  ConsultationOptionsContent,
-} from "./AppointmentOptions";
+
 import MainImageAnimatedLeft from "../MainImageAnimatedLeft";
 import { enterOpacity } from "../../../framervariants/variants";
+import AppointmentOptions, {
+  AppointmentOptionsContent,
+} from "./AppointmentOptions";
 
 type Props = {};
 
@@ -61,7 +62,7 @@ function PoliklinikPage(props: Props) {
         id="poliklinik-top"
         className=" h-full md:min-h-screen w-full z-0 overflow-hidden flex flex-col md:flex-row relative  md:bg-accent1 bg-white snap-none  md:snap-center pb-2"
       >
-        <ConsultationOptions />
+        <AppointmentOptions />
         <MainImageSmall img={unit.img} title={unit.title} />
         <MainImageAnimatedLeft
           img={unit.img}
@@ -75,7 +76,7 @@ function PoliklinikPage(props: Props) {
             {unit.description}
           </p>
           <div className="p-2 flex flex-col standard-border gap-y-2">
-            <ConsultationOptionsContent />
+            <AppointmentOptionsContent />
           </div>
         </div>
       </section>

@@ -23,9 +23,9 @@ const ResultSpesialisasi = ({
   return (
     <div
       className={
-        modalTitle === "appointment"
-          ? "h-40 custom-scrollbar standard-border  "
-          : "h-40 md:h-64 custom-scrollbar md:border-none standard-border "
+        modalTitle === "hospital-appointment"
+          ? "h-40 custom-scrollbar standard-border md:border-none"
+          : "h-40 md:h-60 custom-scrollbar md:border-none standard-border"
       }
     >
       {!searchKeyword && appointmentInfo.modal_img && (
@@ -81,7 +81,7 @@ type ImageProps = {
 
 const ImageSearch = ({ appointmentInfo }: ImageProps) => {
   return (
-    <div className="w-auto h-40 my-auto ">
+    <div className="w-auto h-full my-auto ">
       {appointmentInfo && (
         <Image
           rel="preload"
@@ -90,7 +90,7 @@ const ImageSearch = ({ appointmentInfo }: ImageProps) => {
           alt={appointmentInfo.modal_img || "consul_img"}
           width={400}
           height={400}
-          className="w-auto h-40 m-auto"
+          className="w-auto h-full m-auto"
           loading="lazy"
         />
       )}

@@ -17,8 +17,6 @@ import dataFacility from "@/app/(tools)/data/data_facility.json";
 import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
 import { faQq } from "@fortawesome/free-brands-svg-icons";
 
-type Props = {};
-
 const NavLinkSchedule = () => {
   const {
     toggleMenuNavbar,
@@ -56,7 +54,7 @@ const NavLinkSchedule = () => {
         {patient.scheduled_appointments.length > 0 && (
           <div
             className="absolute bg-redBase w-5 min-w-fit aspect-square rounded-full
-          top-2 -right-2 flex-center-center p-0.5"
+          top-2 -right-1 flex-center-center p-0.5"
           >
             <p className="text-white font-oswald text-xs text-center">
               {patient.scheduled_appointments.length}
@@ -105,8 +103,8 @@ export const MenuJadwalContent = () => {
             return (
               <div key={scheduleItem.schedule_id} className="menu-alert">
                 <FontAwesomeIcon
-                  icon={faInfoCircle}
-                  className="menu-icon text-blue-700"
+                  icon={faTriangleExclamation}
+                  className="menu-icon text-greenUrip "
                 />
                 <p>
                   Anda terjadwal untuk melakukan {detailSchedule.type}

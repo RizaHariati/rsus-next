@@ -38,7 +38,7 @@ function FacilityPage({ dataFacility }: Props) {
         <p className="h-1/4 p-2 text-center leading-normal md:hidden">
           {unit.description}
         </p>
-        <FindFacility />
+        <FindFacility dataFacility={dataFacility} />
       </section>
 
       <div className="pb-[150px] bg-greyLit z-10">

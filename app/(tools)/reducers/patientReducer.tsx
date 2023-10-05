@@ -21,7 +21,7 @@ export const patientReducer = (
 
     const allPatients: PatientType[] = patientState.allPatients;
     allPatients.push(newPatient);
-    console.log({ allPatients });
+
     return {
       ...patientState,
       allPatients,

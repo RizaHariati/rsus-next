@@ -22,7 +22,7 @@ export const checkExistingDoctor = (
   if (findDoctorInSchedule) {
     return {
       passChecking: false,
-      message: `Anda sudah terjadwal dengan ${doctorInfo.nama}`,
+      message: `Anda sudah terjadwal dengan ${doctorInfo.name}`,
     };
   }
   if (findPoliInSchedule) {
@@ -33,13 +33,13 @@ export const checkExistingDoctor = (
   }
   return {
     passChecking: true,
-    message: `Konsultasi dengan ${doctorInfo.nama} berhasil dijadwalkan`,
+    message: `Konsultasi dengan ${doctorInfo.name} berhasil dijadwalkan`,
   };
 };
 export const checkExistingSchedule = (
-  doctorInfo: DoctorType,
+  selected_date: Date,
   schedule: ScheduledType[],
-  selected_date?: Date
+  doctorInfo?: DoctorType
 ) => {
   const findDateInSchedule = schedule.filter((item) => {
     return (
@@ -49,24 +49,30 @@ export const checkExistingSchedule = (
   });
 
   if (findDateInSchedule.length > 0) {
-    if (findDateInSchedule.length >= 2) {
+    if (!doctorInfo) {
       return {
         passChecking: false,
-        message: `Maksimal jadwal perhari adalah 2 poliklinik`,
+        message: `Di tanggal ini anda sudah ada jadwal ditempat lain, silahkan pilih jadwal yang kosong`,
       };
     } else {
-      const findDoctor = dataDoctor.find(
-        (item) => item.id === findDateInSchedule[0].tujuan[0]
-      );
-
-      if (findDoctor) {
-        if (doctorInfo.waktu === findDoctor.waktu) {
-          return {
-            passChecking: false,
-            message: `Anda sudah punya jadwal ditanggal ${dayjs(
-              selected_date
-            ).format("DD-MM-YYYY)")} ${doctorInfo.waktu}`,
-          };
+      if (findDateInSchedule.length >= 2) {
+        return {
+          passChecking: false,
+          message: `Maksimal jadwal perhari adalah 2 poliklinik`,
+        };
+      } else {
+        const findDoctor = dataDoctor.find(
+          (item) => item.id === findDateInSchedule[0].tujuan[0]
+        );
+        if (findDoctor) {
+          if (doctorInfo.waktu === findDoctor.waktu) {
+            return {
+              passChecking: false,
+              message: `Anda sudah punya jadwal ditanggal ${dayjs(
+                selected_date
+              ).format("DD-MM-YYYY)")} ${doctorInfo.waktu}`,
+            };
+          }
         }
       }
     }
@@ -74,6 +80,6 @@ export const checkExistingSchedule = (
 
   return {
     passChecking: true,
-    message: `Konsultasi dengan ${doctorInfo.nama} berhasil dijadwalkan`,
+    message: `Pilihan Anda berhasil dijadwalkan`,
   };
 };

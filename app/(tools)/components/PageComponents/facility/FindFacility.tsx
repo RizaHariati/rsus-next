@@ -5,18 +5,19 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faMaximize, faMinimize } from "@fortawesome/free-solid-svg-icons";
 import { motion } from "framer-motion";
 import { enterOpacity } from "@/app/(tools)/framervariants/variants";
-import { FacilityType } from "@/app/(tools)/types";
-import dataFacility from "@/app/(tools)/data/data_facility.json";
+import { FacilitySanityType, FacilityType } from "@/app/(tools)/types";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import Image from "next/image";
 
-type Props = {};
+type Props = {
+  dataFacility: FacilitySanityType[];
+};
 
-const FindFacility = () => {
+const FindFacility = ({ dataFacility }: Props) => {
   const { openModal } = useGlobalContext();
   const [resize, setResize] = useState(true);
   const [keyword, setKeyword] = useState<string>("");
-  const [fasList, setfasList] = useState<FacilityType[]>([]);
+  const [fasList, setfasList] = useState<FacilitySanityType[]>([]);
   const [windowIsBig, setwindowIsBig] = useState<boolean>(false);
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();

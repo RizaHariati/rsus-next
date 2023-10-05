@@ -54,7 +54,7 @@ export type InpatientType = {
 export type FacilityType = {
   id: string;
   title: string;
-  img: string;
+  img: { alt: string };
   description: string;
   function: string;
   poliklinik: string[];

@@ -11,6 +11,7 @@ import SelectDate from "../modalAppointment/SelectDate";
 import { NotificationType, ScheduledType } from "../../patientTypes";
 import { getScheduleID } from "../../utils/getScheduleID";
 import { getNotificationID } from "../../utils/getNotificationID";
+import { checkExistingSchedule } from "../../utils/checkExistingSchedule";
 
 type Props = {};
 
@@ -40,22 +41,29 @@ const ModalLabCarts = (props: Props) => {
     if (!selected_date) {
       openAlert("datenotselected", {});
     } else {
-      const labType: string[] = labCart.map((item) => item.id);
+      const check = checkExistingSchedule(
+        selected_date,
+        patient.scheduled_appointments
+      );
 
-      const newScheduleID = getScheduleID(patient.scheduled_appointments);
-      if (labCart.length > 0) {
-        const schedule: ScheduledType = {
-          current_phone: patient.patient_profile.phone,
-          schedule_id: newScheduleID,
-          tujuan: labType,
-          appointment_type: "test",
-          scheduled_date: selected_date,
-          register_date: new Date(),
-          using_bpjs: false,
-          nomor_antrian: 0,
-        };
-
-        openModal("bayarlab", { schedule });
+      if (!check.passChecking) {
+        return toast.error(check.message);
+      } else {
+        const labType: string[] = labCart.map((item) => item.id);
+        const newScheduleID = getScheduleID(patient.scheduled_appointments);
+        if (labCart.length > 0) {
+          const schedule: ScheduledType = {
+            current_phone: patient.patient_profile.phone,
+            schedule_id: newScheduleID,
+            tujuan: labType,
+            appointment_type: "test",
+            scheduled_date: selected_date,
+            register_date: new Date(),
+            using_bpjs: false,
+            nomor_antrian: 2,
+          };
+          openModal("bayarlab", { schedule });
+        }
       }
     }
   };

@@ -59,16 +59,17 @@ const ModalTatapMuka = (props: Props) => {
       });
     }
     const check = checkExistingSchedule(
-      doctorInfo,
+      selected_date,
       patient.scheduled_appointments,
-      selected_date
+      doctorInfo
     );
     if (!check.passChecking) {
       return toast.error(check.message);
     } else {
       const date =
         dayjs(selected_date).format("MM/DD/YYYY") +
-        doctorInfo.jam.slice(3, 9).replace(".", ":");
+        " " +
+        doctorInfo.jam.slice(0, 5).replace(".", ":");
 
       const newScheduleID = getScheduleID(patient.scheduled_appointments);
       const schedule: ScheduledType = {
@@ -104,7 +105,7 @@ const ModalTatapMuka = (props: Props) => {
         <FontAwesomeIcon icon={faClose} />
       </button>
       <h3 className=" modal-title">cek antrian tatap muka</h3>
-      <section className="bg-white  border-0 grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5 ">
+      <section className="bg-white border-0 grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-5 ">
         <mark className=" flex flex-col gap-2 ">
           <div>
             <p>Konsultasi dengan:</p>

@@ -2,7 +2,7 @@ import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
 import dataPaketKesehatan from "@/app/(tools)/data/data_paketkesehatan.json";
 import dataFacility from "@/app/(tools)/data/data_facility.json";
-import { NotificationType, ScheduledType } from "../patientTypes";
+import { ScheduledType } from "../patientTypes";
 import { DoctorType } from "../types";
 
 export const getActivities = (schedule: ScheduledType) => {
@@ -26,7 +26,7 @@ export const getActivities = (schedule: ScheduledType) => {
       if (findDoctor) {
         doctorActivities = {
           poli: findDoctor.poliklinik.title,
-          name: findDoctor.nama,
+          name: findDoctor.name,
           doctor: findDoctor,
         };
       } else {

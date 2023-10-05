@@ -10,11 +10,7 @@ import { getLabCartItem } from "../utils/getLabCartItem";
 import { patientReducer } from "../reducers/patientReducer";
 import { initialPatientState } from "./initialPatientState";
 import { NotificationType, PatientType } from "../patientTypes";
-import {
-  PatientInitialValueType,
-  ScheduledType,
-  UserType,
-} from "../patientTypes";
+import { ScheduledType, UserType } from "../patientTypes";
 
 interface Props {
   children: JSX.Element | JSX.Element[];

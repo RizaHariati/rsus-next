@@ -29,7 +29,7 @@ const BottomNavComponents = (props: Props) => {
     scrollingUp,
     scrollTop,
     state: { menu_id },
-    patientState: { user },
+    patientState: { user, patient },
   } = useGlobalContext();
 
   return (
@@ -81,10 +81,20 @@ const BottomNavComponents = (props: Props) => {
                 toggleMenuNavbar(e.currentTarget.id);
               }
             }}
-            className="nav-b-link"
+            className="nav-b-link  relative"
           >
             <FontAwesomeIcon icon={faPeopleGroup} className="nav-b-icon" />
             <p className="nav-b-txt">Jadwal</p>
+            {patient.scheduled_appointments.length > 0 && (
+              <div
+                className="absolute bg-redBase w-5 min-w-fit aspect-square rounded-full
+          top-0 right-0 flex-center-center p-0.5"
+              >
+                <p className="text-white font-oswald text-xs text-center">
+                  {patient.scheduled_appointments.length}
+                </p>
+              </div>
+            )}
           </button>
           <Link
             href="/mainpage"

@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
@@ -101,6 +100,7 @@ const AlertVerifikasi = (props: Props) => {
           success: "Selamat Datang di Urip Sumoharjo ",
         });
       } else if (type === "registration") {
+        /* -------------- PLACING DATA INTO NEW PATIENT RECORD -------------- */
         Object.entries(data).map(([key, values]: any) => {
           if (key === "medical_record_number") {
             newPatient = { ...newPatient, [key]: values.value };

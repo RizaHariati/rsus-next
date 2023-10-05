@@ -1,13 +1,10 @@
 import React, { useState } from "react";
-import ConsultationOptions, {
-  ConsultationOptionsContent,
-} from "../../(tools)/components/PageComponents/poliklinik/AppointmentOptions";
-import { PoliklinikType } from "@/app/(tools)/types";
-import dataPoliklinik from "@/app/(tools)/data/data_poliklinik.json";
-import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+
 import { PageGreenAccentLoading } from "@/app/(tools)/components/PageGreenAccent";
 import MainImageSmallLoadingB from "@/app/(tools)/components/PageComponents/MainImageSmallLoadingB";
 import MainImageAnimatedLeftLoading from "@/app/(tools)/components/PageComponents/MainImageAnimatedLeftLoading";
+import AppointmentOptions from "../../(tools)/components/PageComponents/poliklinik/AppointmentOptions";
+import { AppointmentOptionsContent } from "../../(tools)/components/PageComponents/poliklinik/AppointmentOptions";
 type Props = {};
 const unit = {
   img: "poliklinik",
@@ -22,7 +19,7 @@ const Loading = (props: Props) => {
         id="poliklinik-top"
         className=" h-full md:min-h-screen w-full z-0 overflow-hidden flex flex-col md:flex-row relative  md:bg-accent1 bg-white snap-none  md:snap-center pb-2 animate-pulse"
       >
-        <ConsultationOptions />
+        <AppointmentOptions />
         <MainImageSmallLoadingB img={unit.img} title={unit.title} />
         <MainImageAnimatedLeftLoading
           img={unit.img}
@@ -36,7 +33,7 @@ const Loading = (props: Props) => {
             {unit.description}
           </p>
           <div className="p-2 flex flex-col standard-border gap-y-2">
-            <ConsultationOptionsContent />
+            <AppointmentOptionsContent />
           </div>
         </div>
       </section>

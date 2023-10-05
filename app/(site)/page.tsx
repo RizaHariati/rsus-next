@@ -1,10 +1,8 @@
 // import { getDoctors } from "@/sanity/sanityUtils/getDoctors";
 
+import { getUser } from "@/sanity/sanityUtils/getUser";
 import WelcomePage from "../(tools)/components/PageComponents/mainpage/WelcomePage";
 
-export default function Home() {
-  // const data = await getDoctors();
-  // console.log({ data });
-
+export default async function Home() {
   return <WelcomePage />;
 }
