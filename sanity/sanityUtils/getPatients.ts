@@ -1,6 +1,8 @@
 import { groq } from "next-sanity";
-import { client } from "../lib/client";
+
 import { PatientType } from "@/app/(tools)/patientTypes";
+import moment from "moment";
+import client from "./sanity-utils";
 
 export async function getPatients(
   medicalRecordNumber?: string,
@@ -15,9 +17,9 @@ export async function getPatients(
           NIK: "",
           address: "",
           sex: 1,
-          birthdate: new Date(),
+          birthdate: moment().format("YYYY-MM-DD[T]HH:mm"),
           phone: "",
-          register_date: new Date(),
+          register_date: moment().format("YYYY-MM-DD[T]HH:mm"),
           password: "",
           bpjs_number: "",
         },
@@ -30,30 +32,59 @@ export async function getPatients(
     return client.fetch(groq`*[_type=='patient'
   && medical_record_number =='${medicalRecordNumber}'
   && patient_profile.password=='${password}'
-  ]{
-  medical_record_number,
-    "patient_profile":{
-     "name": patient_profile.name,
-    "NIK":patient_profile.NIK,
-  "address": patient_profile.address,
-  "sex": patient_profile.sex,
-  "birthdate": patient_profile.birthdate,
-  "phone": patient_profile.phone,
-  "register_date": patient_profile.register_date,
-  "password": patient_profile.password,
-  "bpjs_number": patient_profile.bpjs_number    },
+  ]{ medical_record_number,
+    patient_profile,
 
-  "scheduled_appointments":scheduled_appointments[]{
+    "scheduled_appointments":scheduled_appointments[]{
        schedule_id,
        current_phone,
-       "tujuan":tujuan[]->{id},
+       tujuan,
        appointment_type,
        scheduled_date,
        register_date,
        using_bpjs,
        nomor_antrian},
-    medical_records,
-    notification
+
+     medical_records,
+
+    "notifications" : notifications[]{
+        id,
+        notification_code,
+        title,
+        message,
+        notification_date,
+        seen
+   }
 }`);
   }
+}
+
+export async function getPatient(medicalRecordNumber: string) {
+  return client.fetch(groq`*[_type=='patient'
+  && medical_record_number =='${medicalRecordNumber}'
+
+  ]{ medical_record_number,
+    patient_profile,
+
+    "scheduled_appointments":scheduled_appointments[]{
+       schedule_id,
+       current_phone,
+       tujuan,
+       appointment_type,
+       scheduled_date,
+       register_date,
+       using_bpjs,
+       nomor_antrian},
+
+     medical_records,
+
+    "notifications" : notifications[]{
+        id,
+        notification_code,
+        title,
+        message,
+        notification_date,
+        seen
+   }
+}`);
 }

@@ -1,8 +1,8 @@
-import dayjs from "dayjs";
 import React, { useEffect } from "react";
 import ReactDatePicker, { registerLocale } from "react-datepicker";
 import id from "date-fns/locale/id";
 import { useGlobalContext } from "../../context/AppProvider";
+import moment from "moment";
 
 registerLocale("id", id);
 type Props = {
@@ -29,7 +29,7 @@ const SelectDate = ({ searchCategory }: Props) => {
           disabled={searchCategory === "dokter" ? true : false}
           placeholderText={
             selected_date
-              ? dayjs(selected_date).format("DD MMMM YYYY HH:MM")
+              ? moment(selected_date).format("DD MMMM YYYY HH:MM")
               : searchCategory === "dokter"
               ? "Pilihan tanggal untuk Spesialisasi"
               : "Biarkan kosong atau pilih tanggal yang diinginkan"
@@ -41,11 +41,13 @@ const SelectDate = ({ searchCategory }: Props) => {
           className="react-datepicker w-full md:w-[350px] h-10 p-2 text-greyMed1 font-nunito text-base"
           locale="id"
           dateFormat={`eeee, dd MMMM yyyy`}
-          selected={selected_date}
+          selected={selected_date ? new Date(selected_date) : null}
           // onSelect={(date: Date) => handleSelectedDate(date)} //when day is clicked
-          onChange={(date: Date) => setDate(date)} //only when value has changed
-          minDate={new Date(dayjs().toString())}
-          maxDate={new Date(dayjs().add(6, "d").toString())}
+          onChange={(date: Date) =>
+            setDate(moment(date).format("YYYY-MM-DD[T]08:30"))
+          } //only when value has changed
+          minDate={new Date()}
+          maxDate={new Date(moment().add(6, "d").toString())}
         />
 
         <button

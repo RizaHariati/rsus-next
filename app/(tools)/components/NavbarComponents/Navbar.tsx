@@ -18,14 +18,13 @@ type Props = {};
 type MainProps = {};
 
 const Navbar = (props: MainProps) => {
-  const { scrollTop } = useGlobalContext();
-  const [enterOpacity, setenterOpacity] = useState(false);
+  const { scrollTop, toggleMenuNavbar } = useGlobalContext();
+
   const [nowPathname, setNowPathname] = useState<any>();
   const pathname = usePathname();
   useEffect(() => {
     setTimeout(() => {
       setNowPathname(pathname);
-      setenterOpacity(true);
     }, 1000);
   }, [pathname]);
 

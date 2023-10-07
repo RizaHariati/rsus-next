@@ -16,6 +16,7 @@ import Link from "next/link";
 import dataAppointment from "@/app/(tools)/data/data_appointment.json";
 import { toast } from "react-toastify";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
+import { clearStorageData } from "@/app/(tools)/utils/localData/clearStorageDate";
 
 type Props = {};
 
@@ -135,6 +136,7 @@ const NavLinkMainMenu = (props: Props) => {
             <button
               onClick={() => {
                 logout();
+                clearStorageData();
                 toggleMenuNavbar(null);
                 toast.success(
                   `Terimakasih ${patient.patient_profile.name}, anda berhasil Logout`

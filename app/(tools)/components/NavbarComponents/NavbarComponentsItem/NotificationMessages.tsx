@@ -2,12 +2,10 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import {
   NotificationLibraryType,
   NotificationType,
-  ScheduledType,
 } from "@/app/(tools)/patientTypes";
 import React from "react";
 import { PatientProfileType } from "../../../patientTypes";
-import dayjs from "dayjs";
-import { getActivities } from "@/app/(tools)/utils/getActivities";
+import moment from "moment";
 
 type Props = {
   findNotif: NotificationLibraryType;
@@ -26,7 +24,7 @@ const NotificationMessages = ({ findNotif, notificationItem }: Props) => {
         {`${findNotif.message[0]} ${patientprofile.name}.
         ${findNotif.message[1]}
         ${
-          dayjs(notificationItem?.notification_date).format(
+          moment(notificationItem?.notification_date).format(
             "DD-MM-YYYY [jam] HH:mm"
           ) || ""
         }.`}

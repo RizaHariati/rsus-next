@@ -1,3 +1,4 @@
+import moment from "moment";
 import { AppState } from "./interfaces";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 
@@ -7,7 +8,7 @@ export const initialState: AppState = {
   modalTitle: "",
   modalValue: {},
   filtered_doctor: { category: "spesialisasi", value: dataDoctor, keyword: "" },
-  selected_date: new Date(),
+  selected_date: moment().format("YYYY-MM-DD[T]HH:mm"),
   showAlert: false,
   alertTitle: "",
   alertValue: {},

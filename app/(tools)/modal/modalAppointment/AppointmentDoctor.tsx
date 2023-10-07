@@ -57,6 +57,7 @@ const AppointmentDoctor = () => {
       }
     }
   };
+
   useEffect(() => {
     if (!value) return;
     if (!keyword) {

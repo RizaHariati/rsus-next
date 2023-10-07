@@ -89,7 +89,7 @@ export const patient: SchemaTypeDefinition = {
         {
           name: "bpjs_number",
           title: "Nomor BPJS",
-          type: "number",
+          type: "string",
         },
       ],
     },
@@ -116,40 +116,7 @@ export const patient: SchemaTypeDefinition = {
               name: "tujuan",
               title: "Tujuan Kunjungan",
               type: "array",
-              of: [
-                {
-                  name: "pick_destination",
-                  title: "pilih satu",
-                  type: "reference",
-
-                  to: [
-                    {
-                      type: "facility",
-                      preview: {
-                        select: { title: "id", subtitle: "title" },
-                      },
-                    },
-                    {
-                      type: "doctor",
-                      preview: {
-                        select: { title: "id", subtitle: "nama" },
-                      },
-                    },
-                    {
-                      type: "lab_satuan",
-                      preview: {
-                        select: { title: "id", subtitle: "title" },
-                      },
-                    },
-                    {
-                      type: "lab_paket",
-                      preview: {
-                        select: { title: "id", subtitle: "title" },
-                      },
-                    },
-                  ],
-                },
-              ],
+              of: [{ type: "string" }],
             },
             {
               name: "appointment_type",
@@ -191,7 +158,7 @@ export const patient: SchemaTypeDefinition = {
       ],
     },
     {
-      name: "medical_record",
+      name: "medical_records",
       title: "List Rekam Medis",
       type: "array",
       of: [
@@ -214,9 +181,8 @@ export const patient: SchemaTypeDefinition = {
       ],
     },
     {
-      name: "notification",
+      name: "notifications",
       title: "Notifikasi",
-
       type: "array",
       of: [
         {
@@ -231,13 +197,7 @@ export const patient: SchemaTypeDefinition = {
             {
               name: "notification_code",
               title: "Referensi Notifikasi",
-              type: "reference",
-              to: [
-                {
-                  type: "ref_notification",
-                  title: "title",
-                },
-              ],
+              type: "string",
             },
             {
               name: "title",

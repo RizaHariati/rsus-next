@@ -1,3 +1,5 @@
+/* ----------- FORMATTING date String using moment YYYY-MM-DD[T]HH:mm ---------- */
+
 export type UserType = {
   login: boolean;
   password?: string;
@@ -26,9 +28,9 @@ export type PatientProfileType = {
   NIK: string;
   address: string;
   sex: number;
-  birthdate: Date;
+  birthdate: string;
   phone: string;
-  register_date: Date;
+  register_date: string;
   password: string;
   bpjs_number?: string;
 };
@@ -38,8 +40,8 @@ export type ScheduledType = {
   schedule_id: string;
   tujuan: string[];
   appointment_type: "tatap_muka" | "telemedicine" | "test";
-  scheduled_date: Date;
-  register_date: Date;
+  scheduled_date: string;
+  register_date: string;
   using_bpjs: boolean;
   nomor_antrian: number;
 };
@@ -47,8 +49,8 @@ export type ScheduledType = {
 export type MedicalRecordDataType = {
   med_id: string;
   appointment_type: string;
-  incoming_date: Date;
-  discharge_date: Date;
+  incoming_date: string;
+  discharge_date: string;
   riwayat: string;
   pemeriksaan: string;
   hasil_lab: string;
@@ -59,7 +61,7 @@ export type NotificationType = {
   id: string;
   title?: string;
   notification_code: string;
-  notification_date: Date;
+  notification_date: string;
   seen: boolean;
   message?: string[];
 };

@@ -1,4 +1,4 @@
-import dayjs from "dayjs";
+import moment from "moment";
 import { ScheduledType } from "../patientTypes";
 import { DoctorType } from "../types";
 import dataDoctor from "@/app/(tools)/data/data_dokter.json";
@@ -37,14 +37,14 @@ export const checkExistingDoctor = (
   };
 };
 export const checkExistingSchedule = (
-  selected_date: Date,
+  selected_date: string,
   schedule: ScheduledType[],
   doctorInfo?: DoctorType
 ) => {
   const findDateInSchedule = schedule.filter((item) => {
     return (
-      dayjs(item.scheduled_date).format("DD-MM-YYYY") ===
-      dayjs(selected_date).format("DD-MM-YYYY")
+      moment(item.scheduled_date).format("DD-MM-YYYY") ===
+      moment(selected_date).format("DD-MM-YYYY")
     );
   });
 
@@ -68,7 +68,7 @@ export const checkExistingSchedule = (
           if (doctorInfo.waktu === findDoctor.waktu) {
             return {
               passChecking: false,
-              message: `Anda sudah punya jadwal ditanggal ${dayjs(
+              message: `Anda sudah punya jadwal ditanggal ${moment(
                 selected_date
               ).format("DD-MM-YYYY)")} ${doctorInfo.waktu}`,
             };

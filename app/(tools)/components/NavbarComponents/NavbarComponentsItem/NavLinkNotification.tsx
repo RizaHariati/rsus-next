@@ -13,9 +13,9 @@ import {
 import dataNotification from "@/app/(tools)/data/data_notifications.json";
 import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import MainLogoImage from "@/app/(tools)/modal/MainLogoImage";
-import dayjs from "dayjs";
 import NotificationMessages from "./NotificationMessages";
 import { toast } from "react-toastify";
+import moment from "moment";
 type Props = {};
 
 const NavLinkNotification = (props: Props) => {
@@ -138,7 +138,7 @@ const NotificationLogin = () => {
                           className=" col-span-10 inline leading-4 text-left"
                         >
                           <p className=" footnote-1 text-greyMed2">
-                            {dayjs(notificationItem.notification_date).format(
+                            {moment(notificationItem.notification_date).format(
                               "DD MMMM YYYY"
                             )}
                           </p>

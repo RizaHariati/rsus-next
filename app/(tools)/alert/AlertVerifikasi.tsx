@@ -4,9 +4,13 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { toast } from "react-toastify";
 import MainLogoImage from "../modal/MainLogoImage";
-import { PatientType } from "../patientTypes";
+import { PatientType, UserType } from "../patientTypes";
 import { getNotificationID } from "../utils/getNotificationID";
-import { getPatients } from "@/sanity/sanityUtils/getPatients";
+import { getPatient, getPatients } from "@/sanity/sanityUtils/getPatients";
+import { setUser } from "../utils/localData/setStorageData";
+import moment from "moment";
+import { postPatient } from "@/sanity/sanityUtils/postPatient";
+import { NextResponse } from "next/server";
 type CheckType = { id: number; value: string };
 type Props = {};
 const placehoder_values: CheckType[] = [
@@ -18,12 +22,11 @@ const placehoder_values: CheckType[] = [
 const AlertVerifikasi = (props: Props) => {
   const {
     state: { alertValue },
-    patientState: { patient, allPatients },
+    patientState: { patient },
     closeAlert,
     openAlert,
     login,
     toggleMenuNavbar,
-    register,
   } = useGlobalContext();
   const verification_number = alertValue.verification_number;
   const data = alertValue.data;
@@ -61,50 +64,61 @@ const AlertVerifikasi = (props: Props) => {
       }
     }
   };
+  const createLoginUser = () => {
+    let newNotification = {
+      id: "ntf-001",
+      notification_code: "ncat-001",
+      notification_date: moment().format("YYYY-MM-DD[T]HH:mm"),
+      seen: false,
+    };
+    const gettingPatient = new Promise((resolve) => {
+      resolve(getPatients(data.medical_record_number, data.password));
+    });
+    gettingPatient.then((res: any) => {
+      let patient: PatientType = res[0];
+      let user: UserType = {
+        login: true,
+        password: patient.patient_profile.password,
+        medical_record_number: patient.medical_record_number,
+      };
+      patient = {
+        ...patient,
+        notifications: [
+          ...(patient.notifications || []),
+          {
+            ...newNotification,
+            id: getNotificationID(patient.notifications || []),
+          },
+        ],
+      };
+      const loginUser = async () => {
+        await login(patient);
+        setTimeout(() => {
+          setUser(user, patient);
+          closeAlert();
+          toggleMenuNavbar("profile");
+        }, 1000);
+      };
+      toast.promise(loginUser, {
+        pending: "Promise is pending",
+        success: "Selamat Datang di Urip Sumoharjo ",
+      });
+    });
+  };
 
   useEffect(() => {
     if (!checking) return;
     else {
-      let newPatient: PatientType = patient;
-      let newNotification = {
-        id: "ntf-001",
-        notification_code: "ncat-001",
-        notification_date: new Date(),
-        seen: false,
-      };
       if (type === "login") {
-        const gettingPatient = new Promise((resolve) => {
-          resolve(getPatients(data.medical_record_number, data.password));
-        });
-        gettingPatient.then((res) => console.log(res));
-        // const findPatient: PatientType | undefined = allPatients.find(
-        //   (item) => item.medical_record_number === data.medical_record_number
-        // );
-
-        // newPatient = {
-        //   ...findPatient!,
-        //   notifications: [
-        //     ...findPatient!.notifications,
-        //     {
-        //       ...newNotification,
-        //       id: getNotificationID(findPatient!.notifications),
-        //     },
-        //   ],
-        // };
-
-        // const loginUser = async () => {
-        //   await login(newPatient);
-        //   setTimeout(() => {
-        //     closeAlert();
-        //     toggleMenuNavbar("profile");
-        //   }, 1000);
-        // };
-
-        // toast.promise(loginUser, {
-        //   pending: "Promise is pending",
-        //   success: "Selamat Datang di Urip Sumoharjo ",
-        // });
+        createLoginUser();
       } else if (type === "registration") {
+        let newNotification = {
+          id: "ntf-001",
+          notification_code: "ncat-002",
+          notification_date: moment().format("YYYY-MM-DD[T]HH:mm"),
+          seen: false,
+        };
+        let newPatient: PatientType = patient;
         /* -------------- PLACING DATA INTO NEW PATIENT RECORD -------------- */
         Object.entries(data).map(([key, values]: any) => {
           if (key === "medical_record_number") {
@@ -122,15 +136,33 @@ const AlertVerifikasi = (props: Props) => {
         });
         newPatient = {
           ...newPatient,
-          notifications: [
-            { ...newNotification, notification_code: "ncat-002" },
-          ],
+          notifications: [{ ...newNotification }],
+          medical_record_number: "US4234123398",
         };
-
-        openAlert("registrasisukses", {
-          newPatientPersonal: data,
+        const patientExist = new Promise((resolve) => {
+          return resolve(getPatient(newPatient.medical_record_number));
         });
-        register(newPatient);
+
+        patientExist.then((res) => {
+          if (res) {
+            closeAlert();
+            return toast.error("Medical Record Exist");
+          } else {
+            const posting = new Promise((resolve) => {
+              return resolve(postPatient(newPatient));
+            });
+            posting
+              .then((res: any) => {
+                if (res && res.status === 200) {
+                  console.log(res.status);
+                  openAlert("registrasisukses", {
+                    newPatientPersonal: data,
+                  });
+                }
+              })
+              .catch((err) => console.log(err));
+          }
+        });
       } else {
         console.log(type);
       }

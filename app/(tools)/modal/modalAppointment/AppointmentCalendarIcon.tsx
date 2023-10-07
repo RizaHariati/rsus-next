@@ -1,9 +1,10 @@
 import React, { useState } from "react";
-import dayjs from "dayjs";
+
 import { useGlobalContext } from "../../context/AppProvider";
 import { DoctorType } from "../../types";
 import { DoctorHariType, getHariOrder } from "../../utils/getHariOrder";
 import SelectDateIcon from "./SelectDateIcon";
+import moment from "moment";
 
 type Props = {};
 export const gridColumn = [
@@ -20,7 +21,7 @@ const AppointmentCalendarIcon = ({}: Props) => {
   } = useGlobalContext();
   const doctorInfo: DoctorType = modalValue.doctorInfo;
   const [toggleKuota, setToggleKuota] = useState<number | null>(
-    selected_date ? dayjs(selected_date).day() : null
+    selected_date ? moment(selected_date).day() : null
   );
   const handleToggle = (date: number) => {
     return setToggleKuota(date);
@@ -41,6 +42,7 @@ const AppointmentCalendarIcon = ({}: Props) => {
                 <SelectDateIcon
                   key={index}
                   item={item}
+                  jam={doctorInfo.jam}
                   toggleKuota={toggleKuota}
                   handleToggle={handleToggle}
                 />

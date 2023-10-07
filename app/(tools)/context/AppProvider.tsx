@@ -12,6 +12,7 @@ import { initialPatientState } from "./initialPatientState";
 import { NotificationType, PatientType } from "../patientTypes";
 import { ScheduledType, UserType } from "../patientTypes";
 import { getUser } from "../utils/localData/getStorageData";
+import { Moment } from "moment";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -61,7 +62,7 @@ export const AppProvider = ({ children }: Props) => {
   const filteringDoctor = (
     keyword: string,
     category: "spesialisasi" | "dokter",
-    selected_date?: Date | undefined
+    selected_date?: Date | Moment | undefined
   ) => {
     dispatch({
       type: "FILTER_DOCTORS",
@@ -70,7 +71,7 @@ export const AppProvider = ({ children }: Props) => {
   };
 
   /* ------------------ menentukan hari pemeriksaan ----------------- */
-  const setDate = (date: Date) => {
+  const setDate = (date: string) => {
     dispatch({ type: "SET_DATE", payload: { date } });
   };
 

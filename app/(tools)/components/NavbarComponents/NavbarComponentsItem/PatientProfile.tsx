@@ -5,7 +5,8 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { getAge } from "@/app/(tools)/utils/getAge";
-import dayjs from "dayjs";
+import "moment/locale/id";
+import moment from "moment";
 type Props = {};
 
 const PatientProfile = (props: Props) => {
@@ -96,17 +97,10 @@ export const PatientProfileContent = () => {
               )}
               {key === "birthdate" && (
                 <div className="active-input capitalize flex-center-between">
+                  <p>{moment(value).locale("id").format("DD MMMM YYYY")}</p>
                   <p>
-                    {typeof value === "object"
-                      ? dayjs(value).locale("id").format("DD MMMM YYYY")
-                      : ""}
-                  </p>
-                  <p>
-                    {typeof value === "object"
-                      ? `${getAge(value).ageyear} thn/ ${
-                          getAge(value).agemonth
-                        } bln`
-                      : ""}
+                    {`${getAge(value).ageyear} thn/ ${getAge(value).agemonth}
+                    bln`}
                   </p>
                 </div>
               )}

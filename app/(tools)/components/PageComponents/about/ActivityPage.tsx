@@ -2,9 +2,9 @@
 
 import dataArticle from "@/app/(tools)/data/data_article.json";
 import { ArticleType } from "@/app/(tools)/types";
-import dayjs from "dayjs";
 
 import ArticleContainer from "./ArticleContainer";
+import moment from "moment";
 
 type Props = {};
 function ActivityPage(props: Props) {
@@ -32,7 +32,7 @@ function ActivityPage(props: Props) {
                       key={index}
                       className="body-3 leading-normal text-greyMed1"
                     >
-                      {dayjs(item).format("DD MMMM YYYY")}
+                      {moment(item).format("DD MMMM YYYY")}
                     </p>
                   );
                 })}

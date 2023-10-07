@@ -3,14 +3,14 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { AppointmentMenuTypes, DoctorType } from "../types";
-
-import dayjs from "dayjs";
 import { getMedicalRecord } from "../data/sample";
 import AppointmentCalendarIcon from "./modalAppointment/AppointmentCalendarIcon";
 import { ScheduledType } from "../patientTypes";
 import { toast } from "react-toastify";
 import { getScheduleID } from "../utils/getScheduleID";
 import { checkExistingSchedule } from "../utils/checkExistingSchedule";
+import moment from "moment";
+import { setPatient } from "../utils/localData/setStorageData";
 
 type Props = {};
 
@@ -31,7 +31,7 @@ const ModalTatapMuka = (props: Props) => {
 
   const matchSelectedDate = doctorInfo.hari.find((doctorHari) => {
     const day =
-      dayjs(selected_date).day() === 0 ? 7 : dayjs(selected_date).day();
+      moment(selected_date).day() === 0 ? 7 : moment(selected_date).day();
     return doctorHari.id_hari === day;
   });
 
@@ -66,25 +66,24 @@ const ModalTatapMuka = (props: Props) => {
     if (!check.passChecking) {
       return toast.error(check.message);
     } else {
-      const date =
-        dayjs(selected_date).format("MM/DD/YYYY") +
-        " " +
-        doctorInfo.jam.slice(0, 5).replace(".", ":");
-
       const newScheduleID = getScheduleID(patient.scheduled_appointments);
       const schedule: ScheduledType = {
         current_phone: newPhoneNumber,
         schedule_id: newScheduleID,
         tujuan: [doctorInfo.id],
         appointment_type: "tatap_muka",
-        scheduled_date: new Date(date),
-        register_date: new Date(),
+        scheduled_date: selected_date,
+        register_date: moment().format("YYYY-MM-DD[T]HH:mm"),
         using_bpjs: bpjs,
         nomor_antrian: Math.floor(Math.random() * doctorInfo.kuota + 1),
       };
 
       const promiseTatapMuka = new Promise((resolve) => {
         addingSchedule(schedule);
+        setPatient({
+          ...patient,
+          scheduled_appointments: [...patient.scheduled_appointments, schedule],
+        });
         setTimeout(() => {
           resolve(closeModal());
         }, 1000);
@@ -135,7 +134,7 @@ const ModalTatapMuka = (props: Props) => {
             <p>Hari yang anda pilih</p>
             <p className="active-input">
               {selected_date && matchSelectedDate
-                ? dayjs(selected_date).format("DD MMMM YYYY")
+                ? moment(selected_date).format("DD MMMM YYYY")
                 : "anda belum memilih hari"}
             </p>
           </div>

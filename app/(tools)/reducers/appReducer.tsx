@@ -54,12 +54,12 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
   }
   if (action.type === "SET_DATE") {
     const selected_date = action.payload.date;
-
+    console.log({ selected_date });
     return { ...state, selected_date };
   }
 
   if (action.type === "CLEAR_DATE") {
-    let selected_date;
+    let selected_date = "";
     return { ...state, selected_date };
   }
   if (action.type === "TOGGLE_MENU") {

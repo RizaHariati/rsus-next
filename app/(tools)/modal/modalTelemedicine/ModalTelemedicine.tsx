@@ -2,11 +2,11 @@ import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { AppointmentMenuTypes, PoliklinikType } from "../types";
+import { AppointmentMenuTypes, PoliklinikType } from "../../types";
 
 import dataPoliklinik from "@/app/(tools)/data/data_poliklinik.json";
-import TelemedicineDoctor from "./modalTelemedicine/TelemedicineDoctor";
-import ResultSpesialisasi from "./modalAppointment/ResultSpesialisasi";
+import TelemedicineDoctor from "./TelemedicineDoctor";
+import ResultSpesialisasi from "../modalAppointment/ResultSpesialisasi";
 type Props = {};
 
 const ModalTelemedicine = (props: Props) => {

@@ -7,11 +7,22 @@ const clientConfig: ClientConfig = {
   projectId,
   dataset,
   apiVersion,
-  token:
-    "skAXdT1hbbOUmgPZ8h3DOu9ETXgS7cNzXQwzI2sI8CW8psHaP9ueLX9Wjn2b5pWrORB8bRCgeYXzmPRYw3RAak4JDR3295NBCUFrY09M375Cl2qQr9Lwi6ODCwB6E7o0TYEzT0YAXh6Cb54lOyTQ19KuxlbYcYMb6wcz6YKso2LzWWkk7QGK",
+  token: process.env.SANITY_TOKEN,
   // https://www.sanity.io/docs/api-versioning
   useCdn: true, // if you're using ISR or only static generation at build time then you can set this to `false` to guarantee no stale content
 };
 const client = createClient(clientConfig);
 
 export default client;
+
+const writeConfig: ClientConfig = {
+  projectId,
+  dataset,
+  apiVersion,
+  token:
+    "skkn8gXWWJMw1xI64QNk6AFSEedyFcthEmoWAOAmhvoMPT7xa6lO26oomOl898c6J8q5NXMAxsma0UNb30loUuZ6y885JuZvUe1VYU2j6BUr11clojnk13XCI8ZFefZNJnFq7cedomTP47Tyr4BOSaGdIdzRJ0PI0gZq5W5nqHo7SSyQKult",
+  // https://www.sanity.io/docs/api-versioning
+  useCdn: true, // if you're using ISR or only static generation at build time then you can set this to `false` to guarantee no stale content
+};
+
+export const writeClient = createClient(writeConfig);

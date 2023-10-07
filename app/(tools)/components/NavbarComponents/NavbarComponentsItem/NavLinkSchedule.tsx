@@ -10,12 +10,12 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { ScheduledType } from "@/app/(tools)/patientTypes";
 import { toast } from "react-toastify";
-import dayjs from "dayjs";
 import dataDokter from "@/app/(tools)/data/data_dokter.json";
 import dataPaketKesehatan from "@/app/(tools)/data/data_paketkesehatan.json";
 import dataFacility from "@/app/(tools)/data/data_facility.json";
 import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
 import { faQq } from "@fortawesome/free-brands-svg-icons";
+import moment from "moment";
 
 const NavLinkSchedule = () => {
   const {
@@ -118,7 +118,7 @@ export const MenuJadwalContent = () => {
               </div>
             );
           } else {
-            if (scheduleItem.scheduled_date > new Date()) {
+            if (moment(scheduleItem.scheduled_date.slice(0, 10)) > moment()) {
               return (
                 <div key={scheduleItem.schedule_id} className="menu-alert">
                   <FontAwesomeIcon
@@ -132,7 +132,7 @@ export const MenuJadwalContent = () => {
                       {detailSchedule.tujuanSchedule}
                     </span>
                     &nbsp;untuk tanggal&nbsp;
-                    {dayjs(scheduleItem.scheduled_date).format(
+                    {moment(scheduleItem.scheduled_date).format(
                       "DD MMMM YYYY [jam] HH:mm"
                     )}
                   </p>

@@ -1,6 +1,50 @@
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `\app\admin\[[...index]]\page.tsx` route
  */
+import { buildLegacyTheme } from "sanity";
+
+const props = {
+  "--my-white": "#fafaf9",
+  "--my-black": "#404040",
+  "--my-blue": "#007814",
+  "--my-red": "#FF0202",
+  "--my-yellow": "#f4b400",
+  "--my-green": "#0f9d58",
+};
+
+export const myTheme = buildLegacyTheme({
+  /* Base theme colors */
+  "--black": props["--my-black"],
+  "--white": props["--my-white"],
+
+  "--gray": "#5C5A5A",
+  "--gray-base": "#5C5A5A",
+
+  "--component-bg": props["--my-white"],
+  "--component-text-color": props["--my-black"],
+
+  /* Brand */
+  "--brand-primary": props["--my-blue"],
+
+  // Default button
+  "--default-button-color": "#5C5A5A",
+  "--default-button-primary-color": props["--my-blue"],
+  "--default-button-success-color": props["--my-green"],
+  "--default-button-warning-color": props["--my-yellow"],
+  "--default-button-danger-color": props["--my-red"],
+
+  /* State */
+  "--state-info-color": props["--my-blue"],
+  "--state-success-color": props["--my-green"],
+  "--state-warning-color": props["--my-yellow"],
+  "--state-danger-color": props["--my-red"],
+
+  /* Navbar */
+  "--main-navigation-color": props["--my-black"],
+  "--main-navigation-color--inverted": props["--my-white"],
+
+  "--focus-color": props["--my-blue"],
+});
 
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
@@ -11,6 +55,7 @@ import { apiVersion, dataset, projectId } from "./sanity/env";
 import { schema } from "./sanity/schema";
 
 export default defineConfig({
+  theme: myTheme,
   basePath: "/admin",
   projectId,
   dataset,

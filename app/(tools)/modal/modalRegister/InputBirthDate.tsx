@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import ReactDatePicker from "react-datepicker";
-import dayjs from "dayjs";
+
 import { PatientInitialValueType, PersonalItemType } from "../../patientTypes";
+import moment from "moment";
 type Props = {
   newPatientPersonal: PatientInitialValueType;
   setNewPatientPersonal: React.Dispatch<
@@ -25,7 +26,7 @@ const InputBirthDate = ({
     const patientBirthDate = {
       ...newPatientPersonal,
       birthdate: {
-        value: selectedDate ? selectedDate : null,
+        value: selectedDate ? moment(selectedDate).format("YYYY-MM-DD") : null,
         error: false,
       },
     };
@@ -52,8 +53,8 @@ const InputBirthDate = ({
         placeholderText={values.placeholder}
         calendarClassName="text-md font-light outline-none h-fit w-full text-left cursor-pointer"
         className="react-datepicker w-full h-10 text-greyMed1 font-nunito text-base cursor-pointer "
-        minDate={new Date(dayjs().subtract(110, "y").toString())}
-        maxDate={new Date(dayjs().toString())}
+        minDate={new Date(moment().subtract(110, "y").toString())}
+        maxDate={new Date(moment().toString())}
         openToDate={new Date("09/09/1990")}
       />
       <p className="footnote-1 text-redBase h-5">

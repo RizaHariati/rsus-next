@@ -1,6 +1,6 @@
-import dayjs from "dayjs";
 import React from "react";
-import id from "dayjs/locale/id";
+import "moment/locale/id";
+import moment from "moment";
 
 type Props = {};
 
@@ -10,7 +10,7 @@ const InputRegisterDate = (props: Props) => {
       <p className="btn-3-bold">Register Date</p>
       <div className="dark-input">
         <p className="btn-3 ">
-          {dayjs().locale(id).format("dddd, DD MMMM YYYY")}
+          {moment().locale("id").format("dddd, DD MMMM YYYY")}
         </p>
       </div>
     </article>

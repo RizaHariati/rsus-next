@@ -2,7 +2,7 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import RegisterSuggestion from "@/app/(tools)/modal/RegisterSuggestion";
 import { UserType } from "@/app/(tools)/patientTypes";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { toast } from "react-toastify";
 import InputMedicalRecord from "../../InputMedicalRecord";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -79,6 +79,7 @@ export const LoginFormContent = () => {
               type: "login",
             });
           }, 1200);
+
           setLoginData({
             medical_record_number: "",
             password: "",

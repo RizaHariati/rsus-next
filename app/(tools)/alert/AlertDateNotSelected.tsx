@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import MainLogoImage from "../modal/MainLogoImage";
-import dayjs from "dayjs";
+import moment from "moment";
 
 type Props = {};
 const AlertDateNotSelected = (props: Props) => {
@@ -14,7 +14,6 @@ const AlertDateNotSelected = (props: Props) => {
     closeAlert,
 
     openModal,
-    toggleMenuNavbar,
     setDate,
   } = useGlobalContext();
   const handleSelectingDate = () => {
@@ -22,7 +21,7 @@ const AlertDateNotSelected = (props: Props) => {
     const promiseDate = new Promise((resolve) => {
       closeAlert();
       resolve(openModal("keranjang", {}));
-      setDate(dayjs().add(randomNumber, "d").toDate());
+      setDate(moment().add(randomNumber, "d").format("YYYY-MM-DD[T]10:00"));
     });
     promiseDate;
   };

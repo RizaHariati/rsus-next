@@ -1,3 +1,4 @@
+import moment from "moment";
 import {
   sampleNotifications,
   sampleProfile,
@@ -18,9 +19,9 @@ export const initialPatientState: PatientState = {
       NIK: "",
       address: "",
       sex: 1,
-      birthdate: new Date(),
+      birthdate: moment().format("YYYY-MM-DD[T]HH:mm"),
       phone: "",
-      register_date: new Date(),
+      register_date: moment().format("YYYY-MM-DD[T]HH:mm"),
       password: "",
       bpjs_number: "",
     },

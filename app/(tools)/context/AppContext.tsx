@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { AppState, PatientState } from "./interfaces";
+import { Moment } from "moment";
 import {
   NotificationType,
   PatientType,
@@ -18,9 +19,9 @@ export type AppContextProps = {
   filteringDoctor: (
     keyword: string,
     category: "spesialisasi" | "dokter",
-    pickDate?: Date | undefined
+    pickDate?: Date | Moment | undefined
   ) => void;
-  setDate: (date: Date) => void;
+  setDate: (date: string) => void;
   clearDate: () => void;
   openAlert: (alertTitle: string, alertValue: any) => void;
   closeAlert: () => void;

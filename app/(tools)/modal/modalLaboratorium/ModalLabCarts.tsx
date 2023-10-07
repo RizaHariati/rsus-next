@@ -12,6 +12,7 @@ import { NotificationType, ScheduledType } from "../../patientTypes";
 import { getScheduleID } from "../../utils/getScheduleID";
 import { getNotificationID } from "../../utils/getNotificationID";
 import { checkExistingSchedule } from "../../utils/checkExistingSchedule";
+import moment from "moment";
 
 type Props = {};
 
@@ -58,7 +59,7 @@ const ModalLabCarts = (props: Props) => {
             tujuan: labType,
             appointment_type: "test",
             scheduled_date: selected_date,
-            register_date: new Date(),
+            register_date: moment().format("YYYY-MM-DD[T]HH:mm"),
             using_bpjs: false,
             nomor_antrian: 2,
           };
@@ -167,7 +168,7 @@ const ModalLabCarts = (props: Props) => {
           }}
           className="button-greenUrip w-full text-sm md:text-base p-1 md:px-3"
         >
-          Hapus Daftar
+          Hapus
         </button>
         <button
           disabled={labCart.length > 0 ? false : true}
@@ -181,6 +182,17 @@ const ModalLabCarts = (props: Props) => {
           }
         >
           Bayar
+        </button>
+        <button
+          disabled={labCart.length > 0 ? false : true}
+          onClick={() => closeModal()}
+          className={
+            labCart.length > 0
+              ? "button-greenUrip w-full text-sm md:text-base p-1"
+              : "button-grey w-full text-sm md:text-base p-1"
+          }
+        >
+          Tambah
         </button>
       </div>
     </div>

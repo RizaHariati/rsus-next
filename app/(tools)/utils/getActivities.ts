@@ -37,3 +37,39 @@ export const getActivities = (schedule: ScheduledType) => {
   }
   return { doctorActivities, testActivities };
 };
+
+export const findActivityCode = (code: string) => {
+  const findDoctor = dataDoctor.find((item) => item.id === code);
+  const findLab = dataLabSatuan.find((item) => item.id === code);
+  const findPaket = dataPaketKesehatan.find((item) => item.id === code);
+  const findFas = dataFacility.find((item) => item.id === code);
+  if (findDoctor)
+    return {
+      _type: "pick_destination",
+      to: code,
+      ...findDoctor,
+      _key: Math.floor(Math.random() * 13231).toString(),
+    };
+  else if (findLab)
+    return {
+      _type: "pick_destination",
+      to: "lab_satuan",
+      ...findLab,
+      _key: Math.floor(Math.random() * 13231).toString(),
+    };
+  else if (findPaket)
+    return {
+      _type: "pick_destination",
+      to: "lab_paket",
+      ...findPaket,
+      _key: Math.floor(Math.random() * 13231).toString(),
+    };
+  else if (findFas)
+    return {
+      _type: "pick_destination",
+      to: "facility",
+      ...findFas,
+      _key: Math.floor(Math.random() * 13231).toString(),
+    };
+  else return {};
+};

@@ -2,15 +2,15 @@ import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { patientFormInput } from "../utils/forms/patientFormInput";
-import dayjs from "dayjs";
-import InputRegisterDate from "./modalRegister/InputRegisterDate";
-import InputSex from "./modalRegister/InputSex";
-import InputBirthDate from "./modalRegister/InputBirthDate";
-import InputFormatReguler from "./modalRegister/InputFormatReguler";
+import { patientFormInput } from "../../utils/forms/patientFormInput";
+import InputRegisterDate from "./InputRegisterDate";
+import InputSex from "./InputSex";
+import InputBirthDate from "./InputBirthDate";
+import InputFormatReguler from "./InputFormatReguler";
 import { toast } from "react-toastify";
 import dataAppointment from "@/app/(tools)/data/data_appointment.json";
-import { PatientInitialValueType } from "../patientTypes";
+import { PatientInitialValueType } from "../../patientTypes";
+import moment from "moment";
 
 type Props = {};
 export const getNumber = () => {
@@ -26,7 +26,10 @@ const ModalRegister = (props: Props) => {
       value: "US" + getNumber(),
       error: false,
     },
-    register_date: { value: dayjs().toDate(), error: false },
+    register_date: {
+      value: moment().format("YYYY-MM-DD"),
+      error: false,
+    },
     name: { value: "", error: false },
     NIK: { value: "", error: false },
     address: { value: "", error: false },

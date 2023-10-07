@@ -2,9 +2,9 @@ import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { AppointmentMenuTypes } from "../types";
-import AppointmentSelect from "./modalAppointment/AppointmentSelect";
-import AppointmentDoctor from "./modalAppointment/AppointmentDoctor";
+import { AppointmentMenuTypes } from "../../types";
+import AppointmentSelect from "./AppointmentSelect";
+import AppointmentDoctor from "./AppointmentDoctor";
 
 type Props = {};
 

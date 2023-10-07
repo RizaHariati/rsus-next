@@ -1,6 +1,6 @@
 "use client";
-import dayjs from "dayjs";
-import React, { useEffect, useState } from "react";
+
+import React, { useState } from "react";
 
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -20,6 +20,7 @@ import { LoginFormContent } from "../NavbarComponents/NavbarComponentsItem/UserL
 import { AnimatePresence, motion, useDragControls } from "framer-motion";
 import { popBottomVariant } from "../../framervariants/bottomvariants";
 import { MenuJadwalContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkSchedule";
+import moment from "moment";
 
 type Props = {};
 
@@ -115,7 +116,8 @@ const BottomNavComponents = (props: Props) => {
           rel="noopener noreferrer"
           className="text-greenUrip footnote-1 m-auto underline"
         >
-          by Riza Hariati for Ichacodes copyright &copy;{dayjs().format("YYYY")}
+          by Riza Hariati for Ichacodes copyright &copy;
+          {moment().format("YYYY")}
         </a>
       </div>
 
@@ -141,7 +143,6 @@ const BottomNavContent = ({ children }: BottomProps) => {
     toggleMenuNavbar,
     state: { menu_id },
   } = useGlobalContext();
-  const controls = useDragControls();
 
   const [dragging, setDragging] = useState<false | "y">("y");
   function startDrag(event: any) {

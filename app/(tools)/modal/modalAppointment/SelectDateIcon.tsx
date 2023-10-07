@@ -1,19 +1,21 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faCalendarDays } from "@fortawesome/free-solid-svg-icons";
-import dayjs from "dayjs";
+
 import { useGlobalContext } from "../../context/AppProvider";
 import { DoctorType } from "../../types";
 import { numberToDay } from "../../utils/forms/getDoctorDetailedInfo";
 import { DoctorHariType } from "../../utils/getHariOrder";
+import moment from "moment";
 
 type Props = {
   item: DoctorHariType;
   toggleKuota: number | null;
+  jam: string;
   handleToggle: (date: number) => void;
 };
 
-const SelectDateIcon = ({ item, toggleKuota, handleToggle }: Props) => {
+const SelectDateIcon = ({ item, jam, toggleKuota, handleToggle }: Props) => {
   const {
     state: { modalValue },
     setDate,
@@ -36,7 +38,11 @@ const SelectDateIcon = ({ item, toggleKuota, handleToggle }: Props) => {
       disabled={item?.kuota_terisi >= doctorInfo.kuota ? true : false}
       onClick={() => {
         handleToggle(item.id_hari);
-        setDate(item.date);
+        setDate(
+          moment(item.date).format("YYYY-MM-DD") +
+            "T" +
+            doctorInfo.jam.slice(0, 5).replace(".", ":")
+        );
       }}
       className="flex-center-center flex-col standard-border gap-1 p-1 cursor-pointer bg-white hover:bg-greyLit transition-all w-20"
     >
@@ -44,7 +50,7 @@ const SelectDateIcon = ({ item, toggleKuota, handleToggle }: Props) => {
         {numberToDay.find((itemKonsul) => itemKonsul.id === item.id_hari)
           ?.hari || ""}
       </p>
-      <p className="footnote-1">{dayjs(item.date).format("DD/MM/YYYY")}</p>
+      <p className="footnote-1">{moment(item.date).format("DD/MM/YYYY")}</p>
       <div>
         <FontAwesomeIcon
           icon={faCalendarDays}

@@ -1,6 +1,6 @@
 import { groq } from "next-sanity";
-import { client } from "../lib/client";
 import { FacilitySanityType } from "@/app/(tools)/types";
+import client from "./sanity-utils";
 
 export async function getFacility(): Promise<FacilitySanityType[]> {
   return client.fetch(groq`*[_type=='facility']| order(id asc)

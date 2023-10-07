@@ -12,7 +12,6 @@ import { config } from "@fortawesome/fontawesome-svg-core";
 
 import LayoutWrapper from "./layoutwrapper";
 import { AppProvider } from "./(tools)/context/AppProvider";
-import Head from "next/head";
 import Footer from "./(tools)/components/Footer";
 import Navbar from "./(tools)/components/NavbarComponents/Navbar";
 
