@@ -12,7 +12,7 @@ import { initialPatientState } from "./initialPatientState";
 import { NotificationType, PatientType } from "../patientTypes";
 import { ScheduledType, UserType } from "../patientTypes";
 import { getUser } from "../utils/localData/getStorageData";
-import { Moment } from "moment";
+import moment, { Moment } from "moment";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -62,7 +62,7 @@ export const AppProvider = ({ children }: Props) => {
   const filteringDoctor = (
     keyword: string,
     category: "spesialisasi" | "dokter",
-    selected_date?: Date | Moment | undefined
+    selected_date?: string
   ) => {
     dispatch({
       type: "FILTER_DOCTORS",
@@ -132,6 +132,11 @@ export const AppProvider = ({ children }: Props) => {
 
   const register = (newPatient: PatientType) => {
     patientDispatch({ type: "REGISTER_USER", payload: { newPatient } });
+  };
+
+  const showBottomNavbar = () => {
+    setShowFooter(true);
+    setScrollTop(false);
   };
 
   const handleScroll = (e: React.UIEvent<HTMLDivElement, UIEvent>) => {
@@ -205,6 +210,7 @@ export const AppProvider = ({ children }: Props) => {
     closeAlert,
     toggleCart,
     clearLabCart,
+    showBottomNavbar,
     handleScroll,
     scrollingUp,
     scrollTop,

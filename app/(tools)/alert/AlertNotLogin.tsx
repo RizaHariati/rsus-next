@@ -12,6 +12,7 @@ const AlertNotLogin = (props: Props) => {
     closeAlert,
     closeModal,
     toggleMenuNavbar,
+    showBottomNavbar,
   } = useGlobalContext();
 
   return (
@@ -39,6 +40,7 @@ const AlertNotLogin = (props: Props) => {
               closeModal();
               if (!user.login) {
                 toggleMenuNavbar("login");
+                showBottomNavbar();
               }
             }}
             className="button-greenUrip w-full"

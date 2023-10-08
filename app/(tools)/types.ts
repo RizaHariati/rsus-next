@@ -31,7 +31,7 @@ export type AppointmentMenuTypes = {
 
 export type ArticleType = {
   id: string;
-  date: Date;
+  date: Date | string;
   title: string;
   text: string[];
   newspaper: string;

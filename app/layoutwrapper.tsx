@@ -20,6 +20,7 @@ const LayoutWrapper = ({ children }: Props) => {
     if (pathname !== "home") {
       toggleMenuNavbar(null);
     }
+    // eslint-disable-next-line
   }, [pathname]);
 
   return (

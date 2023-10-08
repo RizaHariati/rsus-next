@@ -35,9 +35,11 @@ const BottomNavComponents = (props: Props) => {
 
   return (
     <div className="nav-b-container ">
-      <div className={scrollingUp || !scrollTop ? "nav-b-show" : "nav-b-hide"}>
+      <div className={scrollingUp || !scrollTop ? "nav-b-show " : "nav-b-hide"}>
         <div
-          className={scrollingUp ? "nav-b-pattern-show " : "nav-b-pattern-hide"}
+          className={
+            scrollingUp ? "nav-b-pattern-show  " : "nav-b-pattern-hide"
+          }
         ></div>
         <div className=" absolute top-0 w-full h-full z-40 flex-center-center pt-2">
           <button

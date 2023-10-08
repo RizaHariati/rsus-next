@@ -137,14 +137,13 @@ const AlertVerifikasi = (props: Props) => {
         newPatient = {
           ...newPatient,
           notifications: [{ ...newNotification }],
-          medical_record_number: "US4234123398",
         };
         const patientExist = new Promise((resolve) => {
           return resolve(getPatient(newPatient.medical_record_number));
         });
 
-        patientExist.then((res) => {
-          if (res) {
+        patientExist.then((res: any) => {
+          if (res && res.length > 0) {
             closeAlert();
             return toast.error("Medical Record Exist");
           } else {
@@ -169,6 +168,7 @@ const AlertVerifikasi = (props: Props) => {
     }
 
     return () => {};
+    // eslint-disable-next-line
   }, [checking]);
 
   if (!verification_number || verification_number < 1000) return <div></div>;

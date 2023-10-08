@@ -1,6 +1,6 @@
 import { createContext } from "react";
 import { AppState, PatientState } from "./interfaces";
-import { Moment } from "moment";
+
 import {
   NotificationType,
   PatientType,
@@ -19,7 +19,7 @@ export type AppContextProps = {
   filteringDoctor: (
     keyword: string,
     category: "spesialisasi" | "dokter",
-    pickDate?: Date | Moment | undefined
+    pickDate?: string
   ) => void;
   setDate: (date: string) => void;
   clearDate: () => void;
@@ -31,6 +31,7 @@ export type AppContextProps = {
   checkUser: (loginData: Partial<UserType>) => void;
   logout: () => void;
   register: (newPatient: PatientType) => void;
+  showBottomNavbar: () => void;
   handleScroll: (e: React.UIEvent<HTMLDivElement, UIEvent>) => void;
   scrollTop: boolean;
   scrollingUp: boolean;
