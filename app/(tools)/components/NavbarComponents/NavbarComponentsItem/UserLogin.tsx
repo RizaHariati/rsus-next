@@ -31,8 +31,6 @@ export default UserLogin;
 
 export const LoginFormContent = () => {
   const {
-    checkUser,
-    toggleMenuNavbar,
     openAlert,
     patientState: { verification_number },
   } = useGlobalContext();
@@ -149,7 +147,7 @@ export const LoginFormContent = () => {
             <FontAwesomeIcon icon={showValue ? faEyeLowVision : faEye} />
           </button>
         </div>
-        <RegisterSuggestion />
+        <RegisterSuggestion setLoginData={setLoginData} />
         <button
           type="submit"
           className="button-greenUrip mx-auto md:ml-auto mt-2"

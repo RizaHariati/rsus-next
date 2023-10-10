@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 import { getScheduleID } from "../utils/getScheduleID";
 import { checkExistingSchedule } from "../utils/checkExistingSchedule";
 import moment from "moment";
-import { setPatient } from "../utils/localData/setStorageData";
 
 type Props = {};
 
@@ -80,10 +79,11 @@ const ModalTatapMuka = (props: Props) => {
 
       const promiseTatapMuka = new Promise((resolve) => {
         addingSchedule(schedule);
-        setPatient({
-          ...patient,
-          scheduled_appointments: [...patient.scheduled_appointments, schedule],
-        });
+        /* -------------- REPLACE THIS WITH SETTING TO SANITY ------------- */
+        // setPatient({
+        //   ...patient,
+        //   scheduled_appointments: [...patient.scheduled_appointments, schedule],
+        // });
         setTimeout(() => {
           resolve(closeModal());
         }, 1000);

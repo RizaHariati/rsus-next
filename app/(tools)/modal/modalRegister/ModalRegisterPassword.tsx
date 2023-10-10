@@ -58,6 +58,7 @@ const ModalRegisterPassword = (props: Props) => {
               error: false,
             },
           };
+
           const verification_number = Math.floor(Math.random() * 9000 + 1000);
           toast.info(
             "harap tunggu sebentar kami akan mengirimkan nomor verifikasi"

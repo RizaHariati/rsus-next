@@ -1,8 +1,11 @@
-import React from "react";
+import React, { SetStateAction } from "react";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-type Props = {};
+import { UserType } from "../patientTypes";
+type Props = {
+  setLoginData: React.Dispatch<SetStateAction<Partial<UserType>>>;
+};
 
-const RegisterSuggestion = (props: Props) => {
+const RegisterSuggestion = ({ setLoginData }: Props) => {
   const { openModal } = useGlobalContext();
   return (
     <div className="body-3 leading-5 text-center">
@@ -12,6 +15,10 @@ const RegisterSuggestion = (props: Props) => {
         type="button"
         onClick={() => {
           openModal("registration", { newPatientPersonal: null });
+          setLoginData({
+            medical_record_number: "",
+            password: "",
+          });
         }}
         className=" text-redBase font-medium ml-3 hover:font-bold transition-all text-center"
       >

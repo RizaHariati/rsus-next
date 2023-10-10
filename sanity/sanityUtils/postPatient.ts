@@ -25,9 +25,7 @@ export const postPatient = async (patient: PatientType) => {
     body: JSON.stringify(body),
   };
 
-  const response = await fetch(URL, options)
-    .then((res) => res)
-    .catch((err) => console.log(err));
+  const response = await fetch(URL, options);
 
   return response;
 };

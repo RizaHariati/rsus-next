@@ -28,7 +28,6 @@ export type AppContextProps = {
   toggleCart: (item: any, gender: "all" | "pria" | "wanita") => void;
   clearLabCart: () => void;
   login: (loginData: Partial<UserType>) => Promise<void>;
-  checkUser: (loginData: Partial<UserType>) => void;
   logout: () => void;
   register: (newPatient: PatientType) => void;
   showBottomNavbar: () => void;

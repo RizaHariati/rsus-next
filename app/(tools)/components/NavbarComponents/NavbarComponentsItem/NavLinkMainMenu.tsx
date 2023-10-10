@@ -17,6 +17,7 @@ import dataAppointment from "@/app/(tools)/data/data_appointment.json";
 import { toast } from "react-toastify";
 import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { clearStorageData } from "@/app/(tools)/utils/localData/clearStorageDate";
+import { deleteNotificationDatabase } from "@/sanity/sanityUtils/deleteNotificationDatabase";
 
 type Props = {};
 
@@ -135,12 +136,27 @@ const NavLinkMainMenu = (props: Props) => {
           {user.login && (
             <button
               onClick={() => {
-                logout();
-                clearStorageData();
-                toggleMenuNavbar(null);
+                const loginNotification = patient.notifications.filter(
+                  (item) => item.notification_code === "ncat-001"
+                );
                 toast.success(
                   `Terimakasih ${patient.patient_profile.name}, anda berhasil Logout`
                 );
+                if (loginNotification.length > 1) {
+                  const deleting = new Promise((resolve) => {
+                    resolve(
+                      deleteNotificationDatabase(
+                        patient.medical_record_number,
+                        loginNotification[0].id
+                      )
+                    );
+                  });
+                  deleting.then((res) => res);
+                }
+
+                logout();
+                clearStorageData();
+                toggleMenuNavbar(null);
               }}
               className="flex-center-center gap-2 standard-border p-2 px-3  ml-auto bg-white hover:bg-greyLit active:bg-greyMed1 transition-all"
             >

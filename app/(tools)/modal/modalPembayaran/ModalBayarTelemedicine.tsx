@@ -10,7 +10,6 @@ import { ScheduledType, NotificationType } from "../../patientTypes";
 import { getNotificationID } from "../../utils/getNotificationID";
 import { toast } from "react-toastify";
 import moment from "moment";
-import { setPatient } from "../../utils/localData/setStorageData";
 
 type Props = {};
 
@@ -39,10 +38,12 @@ const ModalBayarTelemedicine = (props: Props) => {
 
     const promiseTelemedicine = new Promise((resolve) => {
       addingSchedule(schedule);
-      setPatient({
-        ...patient,
-        scheduled_appointments: [...patient.scheduled_appointments, schedule],
-      });
+
+      /* -------------- REPLACE THIS WITH SETTING TO SANITY ------------- */
+      // setPatient({
+      //   ...patient,
+      //   scheduled_appointments: [...patient.scheduled_appointments, schedule],
+      // });
       setTimeout(() => {
         resolve(openModal("inconstruction", {}));
       }, 1500);

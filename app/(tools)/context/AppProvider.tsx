@@ -33,10 +33,13 @@ export const AppProvider = ({ children }: Props) => {
   useEffect(() => {
     let mountItem = true;
     if (mountItem) {
-      const { patient, user } = getUser();
-      return patientDispatch({
-        type: "LOAD_USER",
-        payload: { patient, user },
+      getUser().then((res: any) => {
+        const { patient, user } = res;
+
+        return patientDispatch({
+          type: "LOAD_USER",
+          payload: { patient, user },
+        });
       });
     }
     return () => {
@@ -102,10 +105,6 @@ export const AppProvider = ({ children }: Props) => {
 
   const clearLabCart = () => {
     dispatch({ type: "CLEAR_ITEM" });
-  };
-
-  const checkUser = (loginData: Partial<UserType>) => {
-    patientDispatch({ type: "CHECK_USER", payload: loginData });
   };
 
   const login = async (loginData: Partial<UserType>) => {
@@ -192,7 +191,6 @@ export const AppProvider = ({ children }: Props) => {
     patientDispatch,
     login,
     logout,
-    checkUser,
     register,
     addingSchedule,
     addingNotification,

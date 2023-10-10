@@ -11,11 +11,10 @@ import {
   NotificationType,
 } from "@/app/(tools)/patientTypes";
 import dataNotification from "@/app/(tools)/data/data_notifications.json";
-import { faTrashAlt } from "@fortawesome/free-regular-svg-icons";
 import MainLogoImage from "@/app/(tools)/modal/MainLogoImage";
-import NotificationMessages from "./NotificationMessages";
 import { toast } from "react-toastify";
-import moment from "moment";
+import NotificationItem from "./NotificationItem";
+import { deleteNotificationDatabase } from "@/sanity/sanityUtils/deleteNotificationDatabase";
 type Props = {};
 
 const NavLinkNotification = (props: Props) => {
@@ -36,11 +35,27 @@ const NotificationLogin = () => {
     patientState: { patient },
     state: { menu_id },
     toggleMenuNavbar,
-    clearNotifBackground,
     deleteNotification,
   } = useGlobalContext();
   const notification: NotificationType[] = patient.notifications;
 
+  const handleDeleteNotification = (
+    medical_record_number: string,
+    notificationItem: string
+  ) => {
+    const deleting = new Promise((resolve) => {
+      resolve(
+        deleteNotificationDatabase(medical_record_number, notificationItem)
+      );
+    });
+
+    deleting.then((res: any) => {
+      if (res && res.status === 200) {
+        toast.success("pesan berhasil dihapus");
+      }
+      deleteNotification(notificationItem);
+    });
+  };
   return (
     <div className=" flex-center-center text-link w-12  h-full ">
       <div className="relative">
@@ -84,8 +99,10 @@ const NotificationLogin = () => {
               </div>
               <button
                 onClick={() => {
-                  deleteNotification("all");
-                  toast.success("pesan berhasil dihapus");
+                  handleDeleteNotification(
+                    patient.medical_record_number,
+                    "all"
+                  );
                 }}
                 className=" standard-border btn-3 px-2 hover:text-black transition-all active:bg-greyMed2 active:text-white"
               >
@@ -107,56 +124,12 @@ const NotificationLogin = () => {
                     return <div key={index}></div>;
                   } else {
                     return (
-                      <div
+                      <NotificationItem
                         key={index}
-                        className={
-                          notificationItem.seen
-                            ? "notification-item "
-                            : "notification-item bg-greyLit"
-                        }
-                      >
-                        <FontAwesomeIcon
-                          icon={
-                            findNotif.type === "success"
-                              ? faCheckCircle
-                              : faInfoCircle
-                          }
-                          className={
-                            findNotif.type === "success"
-                              ? "text-greenUrip col-span-1 p-1"
-                              : "text-blue-300 p-1"
-                          }
-                        />
-                        <button
-                          onPointerEnter={() => {
-                            if (notificationItem.seen) {
-                              return;
-                            } else {
-                              clearNotifBackground(notificationItem.id);
-                            }
-                          }}
-                          className=" col-span-10 inline leading-4 text-left"
-                        >
-                          <p className=" footnote-1 text-greyMed2">
-                            {moment(notificationItem.notification_date).format(
-                              "DD MMMM YYYY"
-                            )}
-                          </p>
-                          <NotificationMessages
-                            findNotif={findNotif}
-                            notificationItem={notificationItem}
-                          />
-                        </button>
-                        <button
-                          onClick={() => {
-                            deleteNotification(notificationItem.id);
-                            toast.success("pesan berhasil dihapus");
-                          }}
-                          className="col-span-1 hover:text-redBase active:text-redOpacity transition-all"
-                        >
-                          <FontAwesomeIcon icon={faTrashAlt} />
-                        </button>
-                      </div>
+                        notificationItem={notificationItem}
+                        findNotif={findNotif}
+                        handleDeleteNotification={handleDeleteNotification}
+                      />
                     );
                   }
                 })}

@@ -11,6 +11,7 @@ import { setUser } from "../utils/localData/setStorageData";
 import moment from "moment";
 import { postPatient } from "@/sanity/sanityUtils/postPatient";
 import { NextResponse } from "next/server";
+import { createNotification } from "@/sanity/sanityUtils/createNotification";
 type CheckType = { id: number; value: string };
 type Props = {};
 const placehoder_values: CheckType[] = [
@@ -33,6 +34,8 @@ const AlertVerifikasi = (props: Props) => {
   const type = alertValue.type;
   const [verified, setVerified] = useState<CheckType[]>(placehoder_values);
   const [checking, setChecking] = useState(false);
+
+  /* ----------------- CHECKING VERIFICATION NUMBER ----------------- */
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     item: CheckType,
@@ -64,13 +67,8 @@ const AlertVerifikasi = (props: Props) => {
       }
     }
   };
+
   const createLoginUser = () => {
-    let newNotification = {
-      id: "ntf-001",
-      notification_code: "ncat-001",
-      notification_date: moment().format("YYYY-MM-DD[T]HH:mm"),
-      seen: false,
-    };
     const gettingPatient = new Promise((resolve) => {
       resolve(getPatients(data.medical_record_number, data.password));
     });
@@ -81,20 +79,34 @@ const AlertVerifikasi = (props: Props) => {
         password: patient.patient_profile.password,
         medical_record_number: patient.medical_record_number,
       };
+
+      let newNotification = {
+        id: getNotificationID(patient.notifications || []),
+        notification_code: "ncat-001",
+        notification_date: moment().format("YYYY-MM-DD[T]HH:mm"),
+        seen: false,
+      };
+
       patient = {
         ...patient,
         notifications: [
           ...(patient.notifications || []),
           {
             ...newNotification,
-            id: getNotificationID(patient.notifications || []),
           },
         ],
       };
+      /* ------------------- CREATE LOGIN NOTIFICATION ------------------ */
+      createNotification(patient.medical_record_number, {
+        ...newNotification,
+        _type: "array_of_notifications",
+        _key: Math.floor(Math.random() * 1000000).toString(),
+      });
+
       const loginUser = async () => {
         await login(patient);
         setTimeout(() => {
-          setUser(user, patient);
+          setUser(user);
           closeAlert();
           toggleMenuNavbar("profile");
         }, 1000);
@@ -106,62 +118,68 @@ const AlertVerifikasi = (props: Props) => {
     });
   };
 
+  const registerNewUser = () => {
+    let newNotification = {
+      id: "ntf-001",
+      notification_code: "ncat-002",
+      notification_date: moment().format("YYYY-MM-DD[T]HH:mm"),
+      seen: false,
+    };
+    let newPatient: PatientType = patient;
+
+    /* -------------- PLACING DATA INTO NEW PATIENT RECORD -------------- */
+    Object.entries(data).map(([key, values]: any) => {
+      if (key === "medical_record_number") {
+        newPatient = { ...newPatient, [key]: values.value };
+      } else {
+        newPatient = {
+          ...newPatient,
+          patient_profile: {
+            ...newPatient["patient_profile"],
+            [key]: values.value,
+          },
+        };
+      }
+      return "";
+    });
+
+    newPatient = {
+      ...newPatient,
+      notifications: [{ ...newNotification }],
+    };
+
+    const patientExist = new Promise((resolve) => {
+      return resolve(getPatient(newPatient.medical_record_number));
+    });
+
+    patientExist.then((res: any) => {
+      if (res && res.length > 0) {
+        closeAlert();
+        return toast.error("Medical Record Exist");
+      } else {
+        const posting = new Promise((resolve) => {
+          return resolve(postPatient(newPatient));
+        });
+        posting
+          .then((res: any) => {
+            if (res && res.status === 200) {
+              openAlert("registrasisukses", {
+                newPatientPersonal: data,
+              });
+            }
+          })
+          .catch((err) => console.log(err));
+      }
+    });
+  };
+
   useEffect(() => {
     if (!checking) return;
     else {
       if (type === "login") {
         createLoginUser();
       } else if (type === "registration") {
-        let newNotification = {
-          id: "ntf-001",
-          notification_code: "ncat-002",
-          notification_date: moment().format("YYYY-MM-DD[T]HH:mm"),
-          seen: false,
-        };
-        let newPatient: PatientType = patient;
-        /* -------------- PLACING DATA INTO NEW PATIENT RECORD -------------- */
-        Object.entries(data).map(([key, values]: any) => {
-          if (key === "medical_record_number") {
-            newPatient = { ...newPatient, [key]: values.value };
-          } else {
-            newPatient = {
-              ...newPatient,
-              patient_profile: {
-                ...newPatient["patient_profile"],
-                [key]: values.value,
-              },
-            };
-          }
-          return "";
-        });
-        newPatient = {
-          ...newPatient,
-          notifications: [{ ...newNotification }],
-        };
-        const patientExist = new Promise((resolve) => {
-          return resolve(getPatient(newPatient.medical_record_number));
-        });
-
-        patientExist.then((res: any) => {
-          if (res && res.length > 0) {
-            closeAlert();
-            return toast.error("Medical Record Exist");
-          } else {
-            const posting = new Promise((resolve) => {
-              return resolve(postPatient(newPatient));
-            });
-            posting
-              .then((res: any) => {
-                if (res && res.status === 200) {
-                  console.log(res.status);
-                  openAlert("registrasisukses", {
-                    newPatientPersonal: data,
-                  });
-                }
-              })
-              .catch((err) => console.log(err));
-          }
-        });
+        registerNewUser();
       } else {
         console.log(type);
       }
