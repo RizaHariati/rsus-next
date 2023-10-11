@@ -30,10 +30,7 @@ const UserLogin = (props: Props) => {
 export default UserLogin;
 
 export const LoginFormContent = () => {
-  const {
-    openAlert,
-    patientState: { verification_number },
-  } = useGlobalContext();
+  const { openAlert } = useGlobalContext();
   const [loginData, setLoginData] = useState<Partial<UserType>>({
     medical_record_number: "",
     password: "",

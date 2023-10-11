@@ -1,9 +1,5 @@
 import React from "react";
-import {
-  faBell,
-  faCheckCircle,
-  faInfoCircle,
-} from "@fortawesome/free-solid-svg-icons";
+import { faBell } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import {
@@ -44,6 +40,7 @@ const NotificationLogin = () => {
     notificationItem: string
   ) => {
     const deleting = new Promise((resolve) => {
+      toast.info("menghapus notifikasi");
       resolve(
         deleteNotificationDatabase(medical_record_number, notificationItem)
       );
@@ -51,7 +48,7 @@ const NotificationLogin = () => {
 
     deleting.then((res: any) => {
       if (res && res.status === 200) {
-        toast.success("pesan berhasil dihapus");
+        toast.success("notifikasi berhasil dihapus");
       }
       deleteNotification(notificationItem);
     });

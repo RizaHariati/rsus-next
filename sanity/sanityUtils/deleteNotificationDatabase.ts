@@ -2,7 +2,7 @@ import { writeClient } from "./sanity-utils";
 
 import { NotificationType } from "../../app/(tools)/patientTypes";
 
-const URL = "/api/patient";
+const URL = "/api/notification";
 
 export async function deleteNotificationDatabase(
   medicalRecordNumber: string,
@@ -24,7 +24,7 @@ export async function deleteNotificationDatabase(
       _id: sendData._id,
       data: {
         ...sendData,
-        notifications: notificationID === "all" ? [] : [...filterNotification],
+        notifications: notificationID === "all" ? [] : filterNotification,
       },
     };
 

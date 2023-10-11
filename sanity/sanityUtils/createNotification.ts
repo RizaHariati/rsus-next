@@ -1,7 +1,7 @@
 import { writeClient } from "./sanity-utils";
 import { NotificationType } from "@/app/(tools)/patientTypes";
 
-const URL = "/api/patient";
+const URL = "/api/notification";
 
 export async function createNotification(
   medicalRecordNumber: string,

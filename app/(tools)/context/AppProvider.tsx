@@ -12,7 +12,6 @@ import { initialPatientState } from "./initialPatientState";
 import { NotificationType, PatientType } from "../patientTypes";
 import { ScheduledType, UserType } from "../patientTypes";
 import { getUser } from "../utils/localData/getStorageData";
-import moment, { Moment } from "moment";
 
 interface Props {
   children: JSX.Element | JSX.Element[];

@@ -1,5 +1,5 @@
 import { writeClient } from "./sanity-utils";
-import PatientProfile from "../../app/(tools)/components/NavbarComponents/NavbarComponentsItem/PatientProfile";
+
 import { NotificationType } from "../../app/(tools)/patientTypes";
 
 const URL = "/api/patient";

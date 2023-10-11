@@ -18,16 +18,6 @@ export async function updateNotification(
 
     const body = {
       _id: sendData._id,
-      //   data: {
-      //     ...sendData,
-      //     notifications: [
-      //       ...sendData.notifications.map((notif: any) => {
-      //         if (notif.id === notificationID) {
-      //           return { ...notif, seen: true };
-      //         }
-      //       }),
-      //     ],
-      //   },
     };
 
     const options: RequestInit = {

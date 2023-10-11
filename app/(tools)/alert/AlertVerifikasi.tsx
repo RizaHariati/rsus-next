@@ -12,6 +12,8 @@ import moment from "moment";
 import { postPatient } from "@/sanity/sanityUtils/postPatient";
 import { NextResponse } from "next/server";
 import { createNotification } from "@/sanity/sanityUtils/createNotification";
+import Loading from "../../(site)/about-group/activity/loading";
+import { PropagateLoader, RingLoader } from "react-spinners";
 type CheckType = { id: number; value: string };
 type Props = {};
 const placehoder_values: CheckType[] = [
@@ -34,7 +36,7 @@ const AlertVerifikasi = (props: Props) => {
   const type = alertValue.type;
   const [verified, setVerified] = useState<CheckType[]>(placehoder_values);
   const [checking, setChecking] = useState(false);
-
+  const [Loading, setLoading] = useState(false);
   /* ----------------- CHECKING VERIFICATION NUMBER ----------------- */
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -70,6 +72,7 @@ const AlertVerifikasi = (props: Props) => {
 
   const createLoginUser = () => {
     const gettingPatient = new Promise((resolve) => {
+      setLoading(true);
       resolve(getPatients(data.medical_record_number, data.password));
     });
     gettingPatient.then((res: any) => {
@@ -106,6 +109,7 @@ const AlertVerifikasi = (props: Props) => {
       const loginUser = async () => {
         await login(patient);
         setTimeout(() => {
+          setLoading(false);
           setUser(user);
           closeAlert();
           toggleMenuNavbar("profile");
@@ -158,10 +162,12 @@ const AlertVerifikasi = (props: Props) => {
         return toast.error("Medical Record Exist");
       } else {
         const posting = new Promise((resolve) => {
+          setLoading(true);
           return resolve(postPatient(newPatient));
         });
         posting
           .then((res: any) => {
+            setLoading(false);
             if (res && res.status === 200) {
               openAlert("registrasisukses", {
                 newPatientPersonal: data,
@@ -229,9 +235,20 @@ const AlertVerifikasi = (props: Props) => {
               <span className="font-bold">{verification_number}</span>
             </p>
           </div>
+
+          <div className="h-10 bg-white flex-center-center w-full">
+            <PropagateLoader
+              color="#007814"
+              loading={Loading}
+              size={10}
+              aria-label="Loading Spinner"
+              data-testid="loader"
+            />
+          </div>
         </section>
       </div>
     );
+    ``;
   }
 };
 
