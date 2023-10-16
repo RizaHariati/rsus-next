@@ -35,6 +35,7 @@ export const PatientProfileContent = () => {
     patientState: { patient },
   } = useGlobalContext();
 
+  if (!patient) return <div></div>;
   return (
     <>
       <h3>Profil Pasien</h3>

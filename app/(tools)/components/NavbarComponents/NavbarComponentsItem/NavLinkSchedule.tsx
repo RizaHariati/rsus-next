@@ -14,7 +14,7 @@ import dataDokter from "@/app/(tools)/data/data_dokter.json";
 import dataPaketKesehatan from "@/app/(tools)/data/data_paketkesehatan.json";
 import dataFacility from "@/app/(tools)/data/data_facility.json";
 import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
-import { faQq } from "@fortawesome/free-brands-svg-icons";
+
 import moment from "moment";
 
 const NavLinkSchedule = () => {
@@ -23,60 +23,63 @@ const NavLinkSchedule = () => {
     state: { menu_id },
     patientState: { user, patient },
   } = useGlobalContext();
-  return (
-    <div className="relative h-full ">
-      <button
-        type="button"
-        id="jadwal"
-        onClick={(e) => {
-          if (!user.login) {
-            toast.error("Anda harus login terlebih dahulu");
-          } else {
-            if (patient.scheduled_appointments.length < 1) {
-              return toast.info("Anda belum menjadwalkan kegiatan apapun");
+  if (!patient) return <div></div>;
+  else {
+    return (
+      <div className="relative h-full ">
+        <button
+          type="button"
+          id="jadwal"
+          onClick={(e) => {
+            if (!user.login) {
+              toast.error("Anda harus login terlebih dahulu");
             } else {
-              toggleMenuNavbar(e.currentTarget.id);
+              if (patient.scheduled_appointments?.length < 1) {
+                return toast.info("Anda belum menjadwalkan kegiatan apapun");
+              } else {
+                toggleMenuNavbar(e.currentTarget.id);
+              }
             }
-          }
-        }}
-        className="navbar-link  "
-      >
-        <FontAwesomeIcon icon={faPeopleGroup} className="navbar-link-icon" />
-        <p
-          className={
-            patient.scheduled_appointments.length > 0
-              ? "text-link font-bold"
-              : "text-link"
-          }
+          }}
+          className="navbar-link  "
         >
-          Jadwal
-        </p>
-        {patient.scheduled_appointments.length > 0 && (
-          <div
-            className="absolute bg-redBase w-5 min-w-fit aspect-square rounded-full
-          top-2 -right-1 flex-center-center p-0.5"
+          <FontAwesomeIcon icon={faPeopleGroup} className="navbar-link-icon" />
+          <p
+            className={
+              patient.scheduled_appointments?.length > 0
+                ? "text-link font-bold"
+                : "text-link"
+            }
           >
-            <p className="text-white font-oswald text-xs text-center">
-              {patient.scheduled_appointments.length}
-            </p>
+            Jadwal
+          </p>
+          {patient!.scheduled_appointments?.length > 0 && (
+            <div
+              className="absolute bg-redBase w-5 min-w-fit aspect-square rounded-full
+          top-2 -right-1 flex-center-center p-0.5"
+            >
+              <p className="text-white font-oswald text-xs text-center">
+                {patient.scheduled_appointments?.length}
+              </p>
+            </div>
+          )}
+        </button>
+
+        {/* DROP MENU JADWAL */}
+        {user?.login && (
+          <div
+            className={
+              menu_id != "jadwal"
+                ? "jadwal-menu-container-hidden "
+                : "jadwal-menu-container "
+            }
+          >
+            <MenuJadwalContent />
           </div>
         )}
-      </button>
-
-      {/* DROP MENU JADWAL */}
-      {user.login && (
-        <div
-          className={
-            menu_id != "jadwal"
-              ? "jadwal-menu-container-hidden "
-              : "jadwal-menu-container "
-          }
-        >
-          <MenuJadwalContent />
-        </div>
-      )}
-    </div>
-  );
+      </div>
+    );
+  }
 };
 
 export default NavLinkSchedule;
@@ -86,59 +89,21 @@ export const MenuJadwalContent = () => {
     patientState: { patient },
   } = useGlobalContext();
 
-  const schedule: ScheduledType[] = patient.scheduled_appointments;
-  faQq;
+  if (!patient) return <div></div>;
+  const schedule: ScheduledType[] = patient.scheduled_appointments || [];
   return (
     <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none flex flex-col gap-2">
       <h4>Jadwal Anda</h4>
-      {schedule
-        .slice()
-        .reverse()
-        .map((scheduleItem) => {
-          const detailSchedule = getScheduleType(
-            scheduleItem.appointment_type,
-            scheduleItem.tujuan
-          );
-          if (scheduleItem.appointment_type === "telemedicine") {
-            return (
-              <div key={scheduleItem.schedule_id} className="menu-alert">
-                <FontAwesomeIcon
-                  icon={faTriangleExclamation}
-                  className="menu-icon text-greenUrip "
-                />
-                <p>
-                  Anda terjadwal untuk melakukan {detailSchedule.type}
-                  &nbsp;dengan &nbsp;
-                  <span className="font-bold">
-                    {detailSchedule.tujuanSchedule}
-                  </span>
-                  &nbsp;Anda akan segera dihubungi lewat WhatApp. Harap anda
-                  bersiap-siap
-                </p>
-              </div>
+      {schedule &&
+        schedule
+          .slice()
+          .reverse()
+          .map((scheduleItem) => {
+            const detailSchedule = getScheduleType(
+              scheduleItem.appointment_type,
+              scheduleItem.tujuan
             );
-          } else {
-            if (moment(scheduleItem.scheduled_date.slice(0, 10)) > moment()) {
-              return (
-                <div key={scheduleItem.schedule_id} className="menu-alert">
-                  <FontAwesomeIcon
-                    icon={faInfoCircle}
-                    className="menu-icon text-blue-700"
-                  />
-                  <p>
-                    Anda terjadwal untuk melakukan {detailSchedule.type}
-                    &nbsp;dengan &nbsp;
-                    <span className="font-bold">
-                      {detailSchedule.tujuanSchedule}
-                    </span>
-                    &nbsp;untuk tanggal&nbsp;
-                    {moment(scheduleItem.scheduled_date).format(
-                      "DD MMMM YYYY [jam] HH:mm"
-                    )}
-                  </p>
-                </div>
-              );
-            } else {
+            if (scheduleItem.appointment_type === "telemedicine") {
               return (
                 <div key={scheduleItem.schedule_id} className="menu-alert">
                   <FontAwesomeIcon
@@ -146,18 +111,58 @@ export const MenuJadwalContent = () => {
                     className="menu-icon text-greenUrip "
                   />
                   <p>
-                    Hari ini Anda memiliki jadwal {detailSchedule.type}&nbsp;
+                    Anda terjadwal untuk melakukan {detailSchedule.type}
+                    &nbsp;dengan &nbsp;
                     <span className="font-bold">
                       {detailSchedule.tujuanSchedule}
                     </span>
-                    . nomor Antrian anda adalah : {scheduleItem.nomor_antrian}.
-                    Jangan lupa untuk melunasi pembayaran 1 jam sebelum jadwal.
+                    &nbsp;Anda akan segera dihubungi lewat WhatApp. Harap anda
+                    bersiap-siap
                   </p>
                 </div>
               );
+            } else {
+              if (moment(scheduleItem.scheduled_date.slice(0, 10)) > moment()) {
+                return (
+                  <div key={scheduleItem.schedule_id} className="menu-alert">
+                    <FontAwesomeIcon
+                      icon={faInfoCircle}
+                      className="menu-icon text-blue-700"
+                    />
+                    <p>
+                      Anda terjadwal untuk melakukan {detailSchedule.type}
+                      &nbsp;dengan &nbsp;
+                      <span className="font-bold">
+                        {detailSchedule.tujuanSchedule}
+                      </span>
+                      &nbsp;untuk tanggal&nbsp;
+                      {moment(scheduleItem.scheduled_date).format(
+                        "DD MMMM YYYY [jam] HH:mm"
+                      )}
+                    </p>
+                  </div>
+                );
+              } else {
+                return (
+                  <div key={scheduleItem.schedule_id} className="menu-alert">
+                    <FontAwesomeIcon
+                      icon={faTriangleExclamation}
+                      className="menu-icon text-greenUrip "
+                    />
+                    <p>
+                      Hari ini Anda memiliki jadwal {detailSchedule.type}&nbsp;
+                      <span className="font-bold">
+                        {detailSchedule.tujuanSchedule}
+                      </span>
+                      . nomor Antrian anda adalah : {scheduleItem.nomor_antrian}
+                      . Jangan lupa untuk melunasi pembayaran 1 jam sebelum
+                      jadwal.
+                    </p>
+                  </div>
+                );
+              }
             }
-          }
-        })}
+          })}
     </div>
   );
 };

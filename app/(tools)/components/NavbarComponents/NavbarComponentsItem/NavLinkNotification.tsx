@@ -53,89 +53,92 @@ const NotificationLogin = () => {
       deleteNotification(notificationItem);
     });
   };
-  return (
-    <div className=" flex-center-center text-link w-12  h-full ">
-      <div className="relative">
-        {/* ---------------------- Notification button --------------------- */}
-        <button
-          type="button"
-          id="nav-notification"
-          onClick={(e) => {
-            toggleMenuNavbar(e.currentTarget.id);
-            if (notification.length < 1) {
-              toast.info("belum ada pesan baru untuk anda");
-            }
-          }}
-        >
-          <FontAwesomeIcon icon={faBell} className="navbar-reg-icon" />
-          {notification.filter((item) => item.seen === false).length > 0 && (
-            <div className="absolute bg-redBase w-5 min-w-fit aspect-square rounded-full -top-2 -right-3 flex-center-center p-0.5">
-              <p className="text-white font-oswald text-xs text-center">
-                {notification.filter((item) => item.seen === false).length}
-              </p>
+  if (!patient) return <div></div>;
+  else {
+    return (
+      <div className=" flex-center-center text-link w-12  h-full ">
+        <div className="relative">
+          {/* ---------------------- Notification button --------------------- */}
+          <button
+            type="button"
+            id="nav-notification"
+            onClick={(e) => {
+              toggleMenuNavbar(e.currentTarget.id);
+              if (notification.length < 1) {
+                toast.info("belum ada pesan baru untuk anda");
+              }
+            }}
+          >
+            <FontAwesomeIcon icon={faBell} className="navbar-reg-icon" />
+            {notification.filter((item) => item.seen === false).length > 0 && (
+              <div className="absolute bg-redBase w-5 min-w-fit aspect-square rounded-full -top-2 -right-3 flex-center-center p-0.5">
+                <p className="text-white font-oswald text-xs text-center">
+                  {notification.filter((item) => item.seen === false).length}
+                </p>
+              </div>
+            )}
+          </button>
+
+          {/* ----------------------- Notiication List ----------------------- */}
+
+          {notification.length > 0 && (
+            <div
+              className={
+                menu_id != "nav-notification"
+                  ? "notification-container-hidden "
+                  : "notification-container  "
+              }
+            >
+              <div className="flex-center-between ">
+                <div className="flex-center-left">
+                  <div className=" scale-50 origin-left">
+                    <MainLogoImage />
+                  </div>
+                  <h5>Notifikasi</h5>
+                </div>
+                <button
+                  onClick={() => {
+                    handleDeleteNotification(
+                      patient.medical_record_number,
+                      "all"
+                    );
+                  }}
+                  className=" standard-border btn-3 px-2 hover:text-black transition-all active:bg-greyMed2 active:text-white"
+                >
+                  hapus semua
+                </button>
+              </div>
+              <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none scrollbar-track-greyLit scrollbar-thumb-greyBorder standard-border border-greyBorder p-2 ">
+                {notification
+                  .slice()
+                  .reverse()
+                  .map((notificationItem, index) => {
+                    const findNotif: NotificationLibraryType | undefined =
+                      dataNotification.find(
+                        (itemNotif: NotificationLibraryType) =>
+                          itemNotif.id === notificationItem.notification_code
+                      );
+
+                    if (!findNotif) {
+                      return <div key={index}></div>;
+                    } else {
+                      return (
+                        <NotificationItem
+                          key={index}
+                          notificationItem={notificationItem}
+                          findNotif={findNotif}
+                          handleDeleteNotification={handleDeleteNotification}
+                        />
+                      );
+                    }
+                  })}
+              </div>
             </div>
           )}
-        </button>
-
-        {/* ----------------------- Notiication List ----------------------- */}
-
-        {notification.length > 0 && (
-          <div
-            className={
-              menu_id != "nav-notification"
-                ? "notification-container-hidden "
-                : "notification-container  "
-            }
-          >
-            <div className="flex-center-between ">
-              <div className="flex-center-left">
-                <div className=" scale-50 origin-left">
-                  <MainLogoImage />
-                </div>
-                <h5>Notifikasi</h5>
-              </div>
-              <button
-                onClick={() => {
-                  handleDeleteNotification(
-                    patient.medical_record_number,
-                    "all"
-                  );
-                }}
-                className=" standard-border btn-3 px-2 hover:text-black transition-all active:bg-greyMed2 active:text-white"
-              >
-                hapus semua
-              </button>
-            </div>
-            <div className=" h-fit max-h-[400px] overflow-y-scroll scrollbar-none scrollbar-track-greyLit scrollbar-thumb-greyBorder standard-border border-greyBorder p-2 ">
-              {notification
-                .slice()
-                .reverse()
-                .map((notificationItem, index) => {
-                  const findNotif: NotificationLibraryType | undefined =
-                    dataNotification.find(
-                      (itemNotif: NotificationLibraryType) =>
-                        itemNotif.id === notificationItem.notification_code
-                    );
-
-                  if (!findNotif) {
-                    return <div key={index}></div>;
-                  } else {
-                    return (
-                      <NotificationItem
-                        key={index}
-                        notificationItem={notificationItem}
-                        findNotif={findNotif}
-                        handleDeleteNotification={handleDeleteNotification}
-                      />
-                    );
-                  }
-                })}
-            </div>
-          </div>
-        )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 const NotificationLogout = () => {

@@ -7,7 +7,7 @@ import { toast } from "react-toastify";
 import InputMedicalRecord from "../../InputMedicalRecord";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeLowVision } from "@fortawesome/free-solid-svg-icons";
-import { getPatients } from "@/sanity/sanityUtils/getPatients";
+import { getPatient } from "@/sanity/sanityUtils/getPatient";
 type Props = {};
 
 const UserLogin = (props: Props) => {
@@ -37,7 +37,7 @@ export const LoginFormContent = () => {
   });
   const [showValue, setShowValue] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (loginData.password === "" || loginData.medical_record_number === "") {
@@ -51,13 +51,14 @@ export const LoginFormContent = () => {
       });
       return;
     } else {
-      const checkingPatient = new Promise((resolve) => {
-        resolve(
-          getPatients(loginData.medical_record_number, loginData.password)
-        );
-      });
-      checkingPatient.then((res) => {
-        if (!res || Object.keys(res).length < 1) {
+      const checkingPatient = await getPatient(
+        loginData.medical_record_number!,
+        loginData.password
+      );
+
+      if (!checkingPatient) return toast.error("terjadi kesalahan sistem");
+      else {
+        if (checkingPatient.length < 1) {
           toast.error("Nomor Rekam Medis/Password salah", {
             position: toast.POSITION.TOP_CENTER,
           });
@@ -80,7 +81,7 @@ export const LoginFormContent = () => {
             password: "",
           });
         }
-      });
+      }
     }
   };
 

@@ -1,13 +1,13 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 
-import ModalContainer from "./(tools)/modal/ModalContainer";
-import "./styles/navbar.css";
-import AlertContainer from "./(tools)/alert/AlertContainer";
 import { ToastContainer } from "react-toastify";
-import BottomNavComponents from "./(tools)/components/BottomNavComponents/BottomNavComponents";
-import { useGlobalContext } from "./(tools)/context/AppProvider";
+
 import { usePathname } from "next/navigation";
+import ModalContainer from "@/app/(tools)/modal/ModalContainer";
+import AlertContainer from "@/app/(tools)/alert/AlertContainer";
+import BottomNavComponents from "@/app/(tools)/components/BottomNavComponents/BottomNavComponents";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 type Props = {
   children: React.ReactNode;

@@ -12,7 +12,10 @@ export const patientReducer = (
   action: OpenModalAction
 ) => {
   if (action.type === "LOAD_USER") {
-    const { patient, user } = action.payload;
+    const { user } = action.payload;
+
+    const patientArray = action.payload.patient;
+    const patient = patientArray[0];
     return {
       ...patientState,
       patient,
@@ -82,10 +85,15 @@ export const patientReducer = (
 
     let patient: PatientType = patientState.patient;
 
-    patient = {
-      ...patient,
-      scheduled_appointments: [...patient.scheduled_appointments, newSchedule],
-    };
+    if (patient && patient.scheduled_appointments) {
+      patient = {
+        ...patient,
+        scheduled_appointments: [
+          ...patient.scheduled_appointments,
+          newSchedule,
+        ],
+      };
+    }
     return {
       ...patientState,
       patient,

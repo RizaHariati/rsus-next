@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import MainLogoImage from "../modal/MainLogoImage";
 import { PatientType, UserType } from "../patientTypes";
 import { getNotificationID } from "../utils/getNotificationID";
-import { getPatient, getPatients } from "@/sanity/sanityUtils/getPatients";
+import { getPatient } from "@/sanity/sanityUtils/getPatient";
 import { setUser } from "../utils/localData/setStorageData";
 import moment from "moment";
 import { postPatient } from "@/sanity/sanityUtils/postPatient";
@@ -27,9 +27,10 @@ const AlertVerifikasi = (props: Props) => {
     state: { alertValue },
     patientState: { patient },
     closeAlert,
-    openAlert,
+
     login,
     toggleMenuNavbar,
+    addingNotification,
   } = useGlobalContext();
   const verification_number = alertValue.verification_number;
   const data = alertValue.data;
@@ -73,53 +74,64 @@ const AlertVerifikasi = (props: Props) => {
   const createLoginUser = () => {
     const gettingPatient = new Promise((resolve) => {
       setLoading(true);
-      resolve(getPatients(data.medical_record_number, data.password));
+      resolve(getPatient(data.medical_record_number, data.password));
     });
-    gettingPatient.then((res: any) => {
-      let patient: PatientType = res[0];
-      let user: UserType = {
-        login: true,
-        password: patient.patient_profile.password,
-        medical_record_number: patient.medical_record_number,
-      };
-
-      let newNotification = {
-        id: getNotificationID(patient.notifications || []),
-        notification_code: "ncat-001",
-        notification_date: moment().format("YYYY-MM-DD[T]HH:mm"),
-        seen: false,
-      };
-
-      patient = {
-        ...patient,
-        notifications: [
-          ...(patient.notifications || []),
-          {
+    toast.promise(gettingPatient, {
+      pending: "Loading Patient",
+      success: "Selamat Datang di Urip Sumoharjo ",
+    });
+    gettingPatient
+      .then((res: any) => {
+        if (!res || res.length < 1)
+          return toast.error("terjadi kesalahan sistem");
+        else {
+          let patient: PatientType = res[0];
+          let newNotification = {
+            id: getNotificationID(patient.notifications || []),
+            notification_code: "ncat-001",
+            notification_date: moment().format("YYYY-MM-DD[T]HH:mm"),
+            seen: false,
+          };
+          patient = {
+            ...patient,
+            notifications: [
+              ...(patient.notifications || []),
+              {
+                ...newNotification,
+              },
+            ],
+          };
+          /* ------------------- CREATE LOGIN NOTIFICATION ------------------ */
+          createNotification(patient.medical_record_number, {
             ...newNotification,
-          },
-        ],
-      };
-      /* ------------------- CREATE LOGIN NOTIFICATION ------------------ */
-      createNotification(patient.medical_record_number, {
-        ...newNotification,
-        _type: "array_of_notifications",
-        _key: Math.floor(Math.random() * 1000000).toString(),
-      });
-
-      const loginUser = async () => {
-        await login(patient);
-        setTimeout(() => {
+            _type: "array_of_notifications",
+            _key: Math.floor(Math.random() * 1000000).toString(),
+          }).then((res) => {
+            if (res === "sample data") {
+              addingNotification(newNotification);
+            }
+          });
+          return patient;
+        }
+      })
+      .then((patient) => {
+        if (typeof patient === "string" || typeof patient === "number")
+          return console.log(patient);
+        else {
+          let user: UserType = {
+            login: true,
+            password: patient.patient_profile.password,
+            medical_record_number: patient.medical_record_number,
+          };
           setLoading(false);
-          setUser(user);
           closeAlert();
-          toggleMenuNavbar("profile");
-        }, 1000);
-      };
-      toast.promise(loginUser, {
-        pending: "Promise is pending",
-        success: "Selamat Datang di Urip Sumoharjo ",
+          setTimeout(() => {
+            login(patient);
+            setUser(user);
+            toggleMenuNavbar("profile");
+          }, 1000);
+        }
       });
-    });
   };
 
   const registerNewUser = () => {
@@ -157,25 +169,31 @@ const AlertVerifikasi = (props: Props) => {
     });
 
     patientExist.then((res: any) => {
-      if (res && res.length > 0) {
-        closeAlert();
-        return toast.error("Medical Record Exist");
-      } else {
-        const posting = new Promise((resolve) => {
-          setLoading(true);
-          return resolve(postPatient(newPatient));
-        });
-        posting
-          .then((res: any) => {
-            setLoading(false);
-            if (res && res.status === 200) {
-              openAlert("registrasisukses", {
-                newPatientPersonal: data,
-              });
-            }
-          })
-          .catch((err) => console.log(err));
-      }
+      console.log({ res });
+      // if (!res) {
+      //   closeAlert();
+      //   return toast.error("terjadi kesalahan sistem");
+      // } else {
+      //   if (res.length > 0) {
+      //     closeAlert();
+      //     return toast.error("Medical Record Exist");
+      //   } else {
+      //     const posting = new Promise((resolve) => {
+      //       setLoading(true);
+      //       return resolve(postPatient(newPatient));
+      //     });
+      //     posting
+      //       .then((res: any) => {
+      //         setLoading(false);
+      //         if (res && res.status === 200) {
+      //           openAlert("registrasisukses", {
+      //             newPatientPersonal: data,
+      //           });
+      //         }
+      //       })
+      //       .catch((err) => console.log(err));
+      //   }
+      // }
     });
   };
 

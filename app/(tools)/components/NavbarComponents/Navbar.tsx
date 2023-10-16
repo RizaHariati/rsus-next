@@ -14,11 +14,12 @@ import NavLinkProfile from "./NavbarComponentsItem/NavLinkProfile";
 import NavLinkAntrian from "./NavbarComponentsItem/NavLinkSchedule";
 import NavLinkMainMenu from "./NavbarComponentsItem/NavLinkMainMenu";
 import NavLinkNotification from "./NavbarComponentsItem/NavLinkNotification";
+
 type Props = {};
 type MainProps = {};
 
 const Navbar = (props: MainProps) => {
-  const { scrollTop, toggleMenuNavbar } = useGlobalContext();
+  const { scrollTop, toggleMenuNavbar, patientDispatch } = useGlobalContext();
 
   const [nowPathname, setNowPathname] = useState<any>();
   const pathname = usePathname();

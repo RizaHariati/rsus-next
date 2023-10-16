@@ -10,6 +10,7 @@ import { toast } from "react-toastify";
 import { getScheduleID } from "../utils/getScheduleID";
 import { checkExistingSchedule } from "../utils/checkExistingSchedule";
 import moment from "moment";
+import { createScheduleDatabase } from "@/sanity/sanityUtils/createScheduleDatabase";
 
 type Props = {};
 
@@ -59,13 +60,13 @@ const ModalTatapMuka = (props: Props) => {
     }
     const check = checkExistingSchedule(
       selected_date,
-      patient.scheduled_appointments,
+      patient.scheduled_appointments || [],
       doctorInfo
     );
     if (!check.passChecking) {
       return toast.error(check.message);
     } else {
-      const newScheduleID = getScheduleID(patient.scheduled_appointments);
+      const newScheduleID = getScheduleID(patient.scheduled_appointments || []);
       const schedule: ScheduledType = {
         current_phone: newPhoneNumber,
         schedule_id: newScheduleID,
@@ -78,16 +79,17 @@ const ModalTatapMuka = (props: Props) => {
       };
 
       const promiseTatapMuka = new Promise((resolve) => {
-        addingSchedule(schedule);
-        /* -------------- REPLACE THIS WITH SETTING TO SANITY ------------- */
-        // setPatient({
-        //   ...patient,
-        //   scheduled_appointments: [...patient.scheduled_appointments, schedule],
-        // });
-        setTimeout(() => {
-          resolve(closeModal());
-        }, 1000);
+        resolve(
+          createScheduleDatabase(patient.medical_record_number, [schedule])
+        );
       });
+
+      promiseTatapMuka.then((res: any) => {
+        addingSchedule(schedule);
+        closeModal();
+        return res;
+      });
+
       toast.promise(promiseTatapMuka, {
         pending: "Mendaftarkan Jadwal",
         success: `Pertemuan tatap muka dengan ${doctorInfo.name} berhasil dijadwalkan`,

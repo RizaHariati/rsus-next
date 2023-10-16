@@ -10,6 +10,7 @@ import { ScheduledType, NotificationType } from "../../patientTypes";
 import { getNotificationID } from "../../utils/getNotificationID";
 import { toast } from "react-toastify";
 import moment from "moment";
+import { createScheduleDatabase } from "@/sanity/sanityUtils/createScheduleDatabase";
 
 type Props = {};
 
@@ -37,18 +38,15 @@ const ModalBayarTelemedicine = (props: Props) => {
     };
 
     const promiseTelemedicine = new Promise((resolve) => {
-      addingSchedule(schedule);
-
-      /* -------------- REPLACE THIS WITH SETTING TO SANITY ------------- */
-      // setPatient({
-      //   ...patient,
-      //   scheduled_appointments: [...patient.scheduled_appointments, schedule],
-      // });
-      setTimeout(() => {
-        resolve(openModal("inconstruction", {}));
-      }, 1500);
+      resolve(
+        createScheduleDatabase(patient.medical_record_number, [schedule])
+      );
     });
-
+    promiseTelemedicine.then((res: any) => {
+      addingSchedule(schedule);
+      openModal("inconstruction", {});
+      return res;
+    });
     toast.promise(promiseTelemedicine, {
       pending: "Menunggu pembayaran",
       success: `Jadwal Telemedicine dengan ${doctorInfo.name} berhasil ditambahkan`,

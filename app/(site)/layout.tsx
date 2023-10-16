@@ -1,7 +1,7 @@
-import "./styles/globals.css";
-import "./styles/navbar.css";
-import "./styles/mainpage.css";
-import "./styles/bottomnav.css";
+import "../styles/globals.css";
+import "../styles/navbar.css";
+import "../styles/mainpage.css";
+import "../styles/bottomnav.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/dist/ReactToastify.css";
@@ -9,11 +9,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import type { Metadata } from "next";
 import { Oswald, Nunito } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
-
+import { AppProvider } from "../(tools)/context/AppProvider";
+import Navbar from "../(tools)/components/NavbarComponents/Navbar";
 import LayoutWrapper from "./layoutwrapper";
-import { AppProvider } from "./(tools)/context/AppProvider";
-import Footer from "./(tools)/components/Footer";
-import Navbar from "./(tools)/components/NavbarComponents/Navbar";
+import Footer from "../(tools)/components/Footer";
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
 const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });

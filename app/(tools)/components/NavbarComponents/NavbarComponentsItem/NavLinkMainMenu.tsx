@@ -19,6 +19,7 @@ import { faUser } from "@fortawesome/free-regular-svg-icons";
 import { clearStorageData } from "@/app/(tools)/utils/localData/clearStorageDate";
 
 import { writeClient } from "@/sanity/sanityUtils/sanity-utils";
+import { getPatient } from "@/sanity/sanityUtils/getPatient";
 
 type Props = {};
 const URL = "/api/notification";
@@ -53,6 +54,7 @@ const NavLinkMainMenu = (props: Props) => {
            && medical_record_number =='${patient.medical_record_number}']`)
         );
       });
+
       return promiseFetch.then((res: any) => {
         if (res && res.length > 0) {
           const _id = res[0]._id;

@@ -3,6 +3,7 @@
  */
 const nextConfig = {
   output: process.env.NODE_ENV === "production" ? "export" : "standalone",
+  // crossOrigin: "use-credentials",
   images:
     process.env.NODE_ENV === "production"
       ? {

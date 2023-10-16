@@ -37,13 +37,14 @@ export const AppProvider = ({ children }: Props) => {
 
         return patientDispatch({
           type: "LOAD_USER",
-          payload: { patient, user },
+          payload: { patient: patient, user },
         });
       });
     }
     return () => {
       mountItem = false;
     };
+    // eslint-disable-next-line
   }, []);
 
   const toggleMenuNavbar = (id: string | null) => {
@@ -163,7 +164,7 @@ export const AppProvider = ({ children }: Props) => {
   const addingSchedule = (newSchedule: ScheduledType) => {
     patientDispatch({
       type: "ADD_SCHEDULE",
-      payload: { newSchedule },
+      payload: { newSchedule: newSchedule || [] },
     });
   };
   const clearNotifBackground = (notificationID: string) => {

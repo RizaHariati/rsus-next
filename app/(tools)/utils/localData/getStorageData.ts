@@ -1,58 +1,30 @@
 import moment from "moment";
 import { PatientType, UserType } from "../../patientTypes";
-import { getPatients } from "@/sanity/sanityUtils/getPatients";
+import { getPatient } from "@/sanity/sanityUtils/getPatient";
+import { initialPatientState } from "../../context/initialPatientState";
 
-export const getUser = () => {
-  let user: UserType = {
-    login: false,
-    password: "",
-    medical_record_number: "",
-  };
+export const getUser = async () => {
+  let user: UserType = initialPatientState.user;
+  let patient: PatientType = initialPatientState.patient;
 
-  let patient: PatientType = {
-    medical_record_number: "",
-    patient_profile: {
-      name: "",
-      NIK: "",
-      address: "",
-      sex: 1,
-      birthdate: moment().format("YYYY-MM-DD[T]HH:mm"),
-      phone: "",
-      register_date: moment().format("YYYY-MM-DD[T]HH:mm"),
-      password: "",
-      bpjs_number: "",
-    },
-    scheduled_appointments: [],
-    medical_records: [],
-    notifications: [],
-  };
+  const getUserFromStorage: UserType | null = localStorage.getItem("user")
+    ? await JSON.parse(localStorage.getItem("user") || "")
+    : "";
 
-  const getUserFromStorage = new Promise((resolve) => {
-    return resolve(localStorage.getItem("user"));
-  });
+  if (
+    getUserFromStorage &&
+    getUserFromStorage.login &&
+    getUserFromStorage.medical_record_number
+  ) {
+    const { medical_record_number, password } = getUserFromStorage;
+    const gettingPatient = await getPatient(medical_record_number, password);
 
-  const data = getUserFromStorage.then((res) => {
-    if (res) {
-      const data = JSON.parse(res.toString() || "");
-      if (data && data.login) {
-        const getPatientSanity = new Promise((resolve) => {
-          resolve(getPatients(data.medical_record_number, data.password));
-        });
-        return getPatientSanity.then((res: any) => {
-          if (!res || res.length < 1) {
-            return { user, patient };
-          } else {
-            const patientSanity = res[0];
-            user = data;
-            patient = patientSanity;
-            return { user, patient };
-          }
-        });
-      }
+    if (gettingPatient && gettingPatient.length > 0) {
+      return { user: getUserFromStorage, patient: gettingPatient };
     } else {
       return { user, patient };
     }
-  });
-
-  return data.then((res) => res);
+  } else {
+    return { user, patient };
+  }
 };

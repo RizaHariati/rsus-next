@@ -1,6 +1,6 @@
 import { PatientType } from "../../app/(tools)/patientTypes";
 
-const URL = "/api/patient";
+const URL_PATIENT = "/api/patient";
 export const postPatient = async (patient: PatientType) => {
   const body = {
     _type: "patient",
@@ -25,7 +25,7 @@ export const postPatient = async (patient: PatientType) => {
     body: JSON.stringify(body),
   };
 
-  const response = await fetch(URL, options);
-
+  const response = await fetch(URL_PATIENT, options);
+  console.log({ response });
   return response;
 };

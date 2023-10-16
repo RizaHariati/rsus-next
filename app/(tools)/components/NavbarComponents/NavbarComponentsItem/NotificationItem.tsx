@@ -9,8 +9,9 @@ import {
   NotificationLibraryType,
   NotificationType,
 } from "@/app/(tools)/patientTypes";
-import { updateNotification } from "@/sanity/sanityUtils/deletePatient";
+
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import { updateNotification } from "@/sanity/sanityUtils/updateNotification";
 
 type Props = {
   notificationItem: NotificationType;

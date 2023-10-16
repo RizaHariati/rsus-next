@@ -6,6 +6,7 @@ import { LabCartType } from "../../types";
 import PaymentMethods from "./PaymentMethods";
 import { getMedicalRecord } from "../../data/sample";
 import { toast } from "react-toastify";
+import { createScheduleDatabase } from "@/sanity/sanityUtils/createScheduleDatabase";
 
 type Props = {};
 
@@ -21,20 +22,19 @@ const ModalBayarLaboratorium = (props: Props) => {
 
   const { schedule } = modalValue;
   const handleBayar = () => {
-    const promiseTelemedicine = new Promise((resolve) => {
+    const promiseLaboratorium = new Promise((resolve) => {
+      resolve(
+        createScheduleDatabase(patient.medical_record_number, [schedule])
+      );
+    });
+    promiseLaboratorium.then((res: any) => {
       addingSchedule(schedule);
-      /* -------------- REPLACE THIS WITH SETTING TO SANITY ------------- */
-      // setPatient({
-      //   ...patient,
-      //   scheduled_appointments: [...patient.scheduled_appointments, schedule],
-      // });
+      openModal("inconstruction", {});
       clearLabCart();
-      setTimeout(() => {
-        resolve(openModal("inconstruction", {}));
-      }, 1500);
+      return res;
     });
 
-    toast.promise(promiseTelemedicine, {
+    toast.promise(promiseLaboratorium, {
       pending: "Menunggu pembayaran",
       success: `Jadwal test berhasil ditambahkan`,
       error: "Schedule rejected ",

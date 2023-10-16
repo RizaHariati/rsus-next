@@ -45,7 +45,7 @@ export const AppointmentOptionsContent = () => {
         className="flex gap-2 order-2"
       >
         <Link
-          href="/consultation"
+          href="/appointment"
           className="floating-link group p-1 h-24"
           onClick={() => {
             toggleMenuNavbar(null);
@@ -73,7 +73,7 @@ export const AppointmentOptionsContent = () => {
         </Link>
         <Link
           className="floating-link group p-1 h-24"
-          href="/consultation"
+          href="/appointment"
           onClick={() => {
             toggleMenuNavbar(null);
             openModal(

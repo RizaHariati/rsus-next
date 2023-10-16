@@ -1,21 +1,19 @@
-import { writeClient } from "./sanity-utils";
-import { NotificationType } from "@/app/(tools)/patientTypes";
+import { toast } from "react-toastify";
+import { getPatient } from "./getPatient";
 
-const URL = "/api/notification";
+import { NotificationType } from "@/app/(tools)/patientTypes";
 
 export async function createNotification(
   medicalRecordNumber: string,
   newNotification: NotificationType & { _type: string; _key: string }
 ) {
+  const URL_NOTIFICATION = "/api/notification";
   if (medicalRecordNumber === "US4234123398") return "sample data";
   else {
-    const fetchPatient: () => Promise<any[]> = () => {
-      return writeClient.fetch(`*[_type=='patient'
-  && medical_record_number =='${medicalRecordNumber}']`);
-    };
-    const data = await fetchPatient();
+    const data = await getPatient(medicalRecordNumber, "");
+    if (!data || data.length < 1)
+      return toast.error("terjadi kesalahan sistem");
     const sendData = await data[0];
-
     const body = {
       _id: sendData._id,
       data: {
@@ -32,7 +30,7 @@ export async function createNotification(
       },
       body: JSON.stringify(body),
     };
-    const response = await fetch(URL, options);
+    const response = await fetch(URL_NOTIFICATION, options);
     return response;
   }
 }

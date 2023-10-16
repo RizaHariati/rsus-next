@@ -1,19 +1,13 @@
-import { writeClient } from "./sanity-utils";
-import PatientProfile from "../../app/(tools)/components/NavbarComponents/NavbarComponentsItem/PatientProfile";
+import { toast } from "react-toastify";
+import { getPatient } from "./getPatient";
 
-const URL = "/api/patient";
-
-export async function updateNotification(
-  medicalRecordNumber: string,
-  notificationID: string
-) {
+export async function deletePatient(medicalRecordNumber: string) {
+  const URL_PATIENT = "/api/patient";
   if (medicalRecordNumber === "US4234123398") return "sample data";
   else {
-    const fetchPatient: () => Promise<any[]> = () => {
-      return writeClient.fetch(`*[_type=='patient'
-  && medical_record_number =='${medicalRecordNumber}']`);
-    };
-    const data = await fetchPatient();
+    const data = await getPatient(medicalRecordNumber, "");
+    if (!data || data.length < 1)
+      return toast.error("terjadi kesalahan sistem");
     const sendData = await data[0];
 
     const body = {
@@ -28,7 +22,7 @@ export async function updateNotification(
       },
       body: JSON.stringify(body),
     };
-    const response = await fetch(URL, options);
+    const response = await fetch(URL_PATIENT, options);
     return response;
   }
 }

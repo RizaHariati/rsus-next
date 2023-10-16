@@ -38,7 +38,7 @@ const AppointmentDoctor = () => {
   const handleDoctor = (doctorInfo: DoctorType, image: string) => {
     if (
       patient.medical_record_number !== "US4234123398" &&
-      patient.scheduled_appointments.length > 6
+      patient.scheduled_appointments?.length > 6
     ) {
       return toast.error(
         "Anda sudah mencapai kuota pendaftaran online minggu ini"
@@ -48,7 +48,7 @@ const AppointmentDoctor = () => {
     else {
       const check = checkExistingDoctor(
         doctorInfo,
-        patient.scheduled_appointments
+        patient.scheduled_appointments || []
       );
       if (!check.passChecking) {
         return toast.error(check.message);

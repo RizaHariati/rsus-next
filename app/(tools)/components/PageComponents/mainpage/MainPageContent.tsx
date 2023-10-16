@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import KegiatanRSUS from "@/app/(tools)/components/PageComponents/mainpage/KegiatanRSUS";
 
 import FloatingMenu from "@/app/(tools)/components/PageComponents/mainpage/FloatingMenu";
@@ -14,12 +14,21 @@ import SloganGallery from "@/app/(tools)/components/PageComponents/mainpage/Slog
 import BackToTop from "@/app/(tools)/components/BackToTop";
 import MainImageSmall from "@/app/(tools)/components/PageComponents/mainpage/mainpageSmall/MainImageSmall";
 import { FacilitySanityType } from "@/app/(tools)/types";
+import { getPatient } from "@/sanity/sanityUtils/getPatient";
 
 type Props = {
   dataFacility: FacilitySanityType[];
 };
 
 function MainPageContent({ dataFacility }: Props) {
+  // const data = new Promise((resolve) => {
+  //   resolve(getPatient("US4234123398"));
+  // });
+  // useEffect(() => {
+  //   data.then((res) => console.log(res));
+  //   //eslint-disable-next-line
+  // }, []);
+
   return (
     <div className=" page-main-container ">
       <BackToTop sectionID="main-page-top" />
