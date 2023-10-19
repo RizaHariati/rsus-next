@@ -37,7 +37,7 @@ export const AppProvider = ({ children }: Props) => {
 
         return patientDispatch({
           type: "LOAD_USER",
-          payload: { patient: patient, user },
+          payload: { patient, user },
         });
       });
     }
@@ -186,6 +186,7 @@ export const AppProvider = ({ children }: Props) => {
       payload: { newNotification },
     });
   };
+
   const value = {
     patientState,
     patientDispatch,

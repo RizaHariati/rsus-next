@@ -51,37 +51,44 @@ export const LoginFormContent = () => {
       });
       return;
     } else {
-      const checkingPatient = await getPatient(
-        loginData.medical_record_number!,
-        loginData.password
-      );
+      const checkingPatient = new Promise((resolve) => {
+        return resolve(
+          getPatient(loginData.medical_record_number!, loginData.password)
+        );
+      });
 
-      if (!checkingPatient) return toast.error("terjadi kesalahan sistem");
-      else {
-        if (checkingPatient.length < 1) {
-          toast.error("Nomor Rekam Medis/Password salah", {
-            position: toast.POSITION.TOP_CENTER,
-          });
-        } else {
-          const verification_number = Math.floor(Math.random() * 9000 + 1000);
-          toast.info(
-            "harap tunggu sebentar kami akan mengirimkan nomor verifikasi"
-          );
+      checkingPatient
+        .then((res: any) => {
+          if (!res || Object.keys(res).length < 1) {
+            return toast.error("Nomor Rekam Medis/Password salah", {
+              position: toast.POSITION.TOP_CENTER,
+            });
+          } else {
+            const verification_number = Math.floor(Math.random() * 9000 + 1000);
 
-          setTimeout(() => {
             openAlert("verifikasi", {
               verification_number,
               data: loginData,
               type: "login",
             });
-          }, 1200);
-
+          }
+          return res;
+        })
+        .then((res) => {
           setLoginData({
             medical_record_number: "",
             password: "",
           });
-        }
-      }
+          return res;
+        })
+        .catch((err) => err);
+
+      toast.promise(checkingPatient, {
+        pending: "harap tunggu sebentar kami akan mengirimkan nomor verifikasi",
+        success:
+          "Silahkan mengisi nomor verifikasi sesuai nomor yang kami kirim",
+        error: "Promise rejected 🤯",
+      });
     }
   };
 

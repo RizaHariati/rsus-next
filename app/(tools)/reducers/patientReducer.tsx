@@ -14,8 +14,7 @@ export const patientReducer = (
   if (action.type === "LOAD_USER") {
     const { user } = action.payload;
 
-    const patientArray = action.payload.patient;
-    const patient = patientArray[0];
+    const patient = action.payload.patient;
     return {
       ...patientState,
       patient,

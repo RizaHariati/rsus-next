@@ -11,26 +11,27 @@ export async function deleteNotificationDatabase(
   const URL_NOTIFICATION = "/api/notification";
   if (medicalRecordNumber === "US4234123398") return "sample data";
   else {
-    const data = await getPatient(medicalRecordNumber, "");
-    if (!data || data.length < 1)
+    const { data }: any = await getPatient(medicalRecordNumber, "");
+    if (!data || Object.keys(data).length < 1) {
       return toast.error("terjadi kesalahan sistem");
-    const sendData = await data[0];
-    const filterNotification = sendData.notifications.filter(
+    }
+
+    const filterNotification = data.notifications.filter(
       (item: NotificationType) => item.id !== notificationID
     );
 
     const body1 = {
-      _id: sendData._id,
+      _id: data._id,
       data: {
-        ...sendData,
+        ...data,
         notifications: filterNotification,
       },
     };
 
     const body2 = {
-      _id: sendData._id,
+      _id: data._id,
       data: {
-        ...sendData,
+        ...data,
         notifications: [],
       },
     };
@@ -42,6 +43,7 @@ export async function deleteNotificationDatabase(
         "Content-Type": "application/json",
       },
       body: JSON.stringify(notificationID === "all" ? body2 : body1),
+      cache: "no-store",
     };
     const response = await fetch(URL_NOTIFICATION, options);
     return response;

@@ -11,11 +11,12 @@ export async function updateNotification(
   const URL_NOTIFICATION = "/api/notification";
   if (medicalRecordNumber === "US4234123398") return "sample data";
   else {
-    const data = await getPatient(medicalRecordNumber, "");
-    if (!data || data.length < 1)
+    const { data }: any = await getPatient(medicalRecordNumber, "");
+    if (!data || Object.keys(data).length < 1) {
       return toast.error("terjadi kesalahan sistem");
-    const sendData = await data[0];
-    const findNotification = sendData.notifications.find(
+    }
+
+    const findNotification = data.notifications.find(
       (item: NotificationType) => item.id === notificationID
     );
 
@@ -24,15 +25,15 @@ export async function updateNotification(
       const newNotification = { ...findNotification, seen: true };
 
       const body = {
-        _id: sendData._id,
+        _id: data._id,
         data: {
-          ...sendData,
+          ...data,
           notifications: [
-            ...sendData.notifications.map((data: NotificationType) => {
-              if (data.id === notificationID) {
+            ...data.notifications.map((dataNotif: NotificationType) => {
+              if (dataNotif.id === notificationID) {
                 return newNotification;
               } else {
-                return data;
+                return dataNotif;
               }
             }),
           ],
@@ -44,6 +45,7 @@ export async function updateNotification(
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
+          cache: "no-store",
         },
         body: JSON.stringify(body),
       };

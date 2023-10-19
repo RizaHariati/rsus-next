@@ -12,31 +12,14 @@ export async function getPatient(
   password?: string
 ): Promise<any[] | null> {
   const URL_PATIENT = "/api/patient/?";
-  // process.env.NODE_ENV === "production"
-  //   ? "https://rsuripsumoharjo-model.netlify.app/api?"
-  //   : "/api?";
-  // const res1 = await fetch("/api/");
-  // console.log({ res1 });
+
   const res = await fetch(
-    `${URL_PATIENT}search=${medicalRecordNumber}&password=${password}`
+    `${URL_PATIENT}search=${medicalRecordNumber}&password=${password}`,
+    { cache: "no-store" }
   );
-
-  console.log({ res });
-  // const body = {
-  //   medicalRecordNumber,
-  //   password,
-  // };
-
-  // const options: RequestInit = {
-  //   method: "PUT",
-  //   body: JSON.stringify(body),
-  // };
-
-  // const res = await fetch(URL_PATIENT, options);
 
   if (res && res.status === 200) {
     const data = await res.json();
-
     return data;
   } else if (res.status === 404 || res.status === 403 || res.status === 405) {
     if (medicalRecordNumber === "US4234123398") {
@@ -56,20 +39,3 @@ export async function getPatient(
     return [];
   }
 }
-
-// const body = {
-//   medicalRecordNumber,
-//   password,
-// };
-
-// const options: RequestInit = {
-//   method: "PUT",
-//   headers: {
-//     Accept: "application/json",
-//     "Content-Type": "application/json",
-//   },
-//   body: JSON.stringify(body),
-//   cache: "force-cache",
-// };
-
-// const res = await fetch(URL_PATIENT, options);

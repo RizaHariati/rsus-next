@@ -36,6 +36,7 @@ const AppointmentDoctor = () => {
   );
 
   const handleDoctor = (doctorInfo: DoctorType, image: string) => {
+    if (!patient) return toast.error("terjadi kesalahan teknis");
     if (
       patient.medical_record_number !== "US4234123398" &&
       patient.scheduled_appointments?.length > 6

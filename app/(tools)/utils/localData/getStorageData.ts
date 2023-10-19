@@ -1,4 +1,3 @@
-import moment from "moment";
 import { PatientType, UserType } from "../../patientTypes";
 import { getPatient } from "@/sanity/sanityUtils/getPatient";
 import { initialPatientState } from "../../context/initialPatientState";
@@ -17,10 +16,10 @@ export const getUser = async () => {
     getUserFromStorage.medical_record_number
   ) {
     const { medical_record_number, password } = getUserFromStorage;
-    const gettingPatient = await getPatient(medical_record_number, password);
+    const { data }: any = await getPatient(medical_record_number, password);
 
-    if (gettingPatient && gettingPatient.length > 0) {
-      return { user: getUserFromStorage, patient: gettingPatient };
+    if (data && Object.keys(data).length > 0) {
+      return { user: getUserFromStorage, patient: data };
     } else {
       return { user, patient };
     }

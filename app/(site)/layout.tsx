@@ -11,8 +11,9 @@ import { Oswald, Nunito } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { AppProvider } from "../(tools)/context/AppProvider";
 import Navbar from "../(tools)/components/NavbarComponents/Navbar";
-import LayoutWrapper from "./layoutwrapper";
+
 import Footer from "../(tools)/components/Footer";
+import LayoutWrapper from "./layoutwrapper";
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
 const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });

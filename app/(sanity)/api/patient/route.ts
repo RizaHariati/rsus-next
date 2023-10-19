@@ -4,13 +4,21 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { groq } from "next-sanity";
 
 import { NextRequest, NextResponse } from "next/server";
-export const dynamic = "force-static";
+
 export async function GET(req: NextRequest) {
   const medicalRecordNumber = req.nextUrl.searchParams.get("search");
   const password = req.nextUrl.searchParams.get("password");
 
-  const data = await writeClient.fetch(
-    groq`*[_type=='patient'
+  if (!password) {
+    const data = await writeClient.fetch(
+      groq`*[_type=='patient'
+          && medical_record_number =='${medicalRecordNumber}'
+          ]`
+    );
+    return NextResponse.json({ data: data[0] });
+  } else {
+    const data = await writeClient.fetch(
+      groq`*[_type=='patient'
           && medical_record_number =='${medicalRecordNumber}'
           && patient_profile.password=='${password}'
           ]{ medical_record_number,
@@ -34,21 +42,7 @@ export async function GET(req: NextRequest) {
                 seen
            }
         }`
-  );
-
-  return NextResponse.json({ data: data[0] });
+    );
+    return NextResponse.json({ data: data[0] });
+  }
 }
-
-// export async function DELETE(req: Request) {
-//   const body = await req.json();
-
-//   if (req.method === "DELETE") {
-//     const data = await writeClient
-//       .delete(body._id)
-//       .then((res) => NextResponse.json(res))
-//       .catch((err) => NextResponse.json(err));
-//     return data;
-//   } else {
-//     return;
-//   }
-// }

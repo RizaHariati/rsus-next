@@ -82,10 +82,12 @@ const AlertVerifikasi = (props: Props) => {
     });
     gettingPatient
       .then((res: any) => {
-        if (!res || res.length < 1)
-          return toast.error("terjadi kesalahan sistem");
-        else {
-          let patient: PatientType = res[0];
+        if (!res || Object.keys(res).length < 1) {
+          return toast.error("Nomor Rekam Medis/Password salah", {
+            position: toast.POSITION.TOP_CENTER,
+          });
+        } else {
+          let patient: PatientType = res.data;
           let newNotification = {
             id: getNotificationID(patient.notifications || []),
             notification_code: "ncat-001",
@@ -123,14 +125,17 @@ const AlertVerifikasi = (props: Props) => {
             password: patient.patient_profile.password,
             medical_record_number: patient.medical_record_number,
           };
-          setLoading(false);
-          closeAlert();
-          setTimeout(() => {
-            login(patient);
-            setUser(user);
-            toggleMenuNavbar("profile");
-          }, 1000);
+
+          login(patient);
+          setUser(user);
         }
+        return patient;
+      })
+      .then((res) => {
+        toggleMenuNavbar("profile");
+        setLoading(false);
+        closeAlert();
+        return res;
       });
   };
 
