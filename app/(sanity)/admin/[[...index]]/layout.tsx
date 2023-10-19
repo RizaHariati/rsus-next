@@ -11,9 +11,10 @@ import { Oswald, Nunito } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
 
 import { AppProvider } from "@/app/(tools)/context/AppProvider";
-import Navbar from "@/app/(tools)/components/NavbarComponents/Navbar";
-import Footer from "@/app/(tools)/components/Footer";
+
 import LayoutWrapper from "./layoutwrapper";
+import Navbar from "@/app/(tools)/components/components/NavbarComponents/Navbar";
+import Footer from "@/app/(tools)/components/components/Footer";
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
 const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });
@@ -52,6 +53,7 @@ export default function RootLayout({
       >
         <AppProvider>
           <Navbar />
+
           <LayoutWrapper>{children}</LayoutWrapper>
           <Footer />
         </AppProvider>

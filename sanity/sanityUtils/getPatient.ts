@@ -4,6 +4,7 @@ import {
   sampleProfile,
   sampleSchedule,
 } from "@/app/(tools)/data/sample";
+import { NEXT_PUBLIC_BASE_URL } from "../env";
 
 export const runtime = "edge";
 
@@ -11,7 +12,7 @@ export async function getPatient(
   medicalRecordNumber: string,
   password?: string
 ): Promise<any[] | null> {
-  const URL_PATIENT = "/api/patient/?";
+  const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/?`;
 
   const res = await fetch(
     `${URL_PATIENT}search=${medicalRecordNumber}&password=${password}`,

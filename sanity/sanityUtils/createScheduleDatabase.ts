@@ -2,12 +2,13 @@ import { ScheduledType } from "@/app/(tools)/patientTypes";
 
 import { getPatient } from "./getPatient";
 import { toast } from "react-toastify";
+import { NEXT_PUBLIC_BASE_URL } from "../env";
 
 export async function createScheduleDatabase(
   medicalRecordNumber: string,
   newSchedule: ScheduledType[]
 ) {
-  const URL_SCHEDULE = "/api/schedule";
+  const URL_SCHEDULE = `${NEXT_PUBLIC_BASE_URL}/api/schedule`;
   if (medicalRecordNumber === "US4234123398") return "sample data";
   const newSanitySchedule = newSchedule.map((item) => {
     return {

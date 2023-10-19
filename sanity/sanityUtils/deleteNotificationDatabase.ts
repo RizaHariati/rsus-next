@@ -3,12 +3,13 @@ import { writeClient } from "./sanity-utils";
 import { NotificationType } from "../../app/(tools)/patientTypes";
 import { getPatient } from "./getPatient";
 import { toast } from "react-toastify";
+import { NEXT_PUBLIC_BASE_URL } from "../env";
 
 export async function deleteNotificationDatabase(
   medicalRecordNumber: string,
   notificationID: string
 ) {
-  const URL_NOTIFICATION = "/api/notification";
+  const URL_NOTIFICATION = `${NEXT_PUBLIC_BASE_URL}/api/notification`;
   if (medicalRecordNumber === "US4234123398") return "sample data";
   else {
     const { data }: any = await getPatient(medicalRecordNumber, "");

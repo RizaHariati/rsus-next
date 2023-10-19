@@ -14,8 +14,8 @@ import { AppProvider } from "../(tools)/context/AppProvider";
 
 // import Footer from "../(tools)/components/Footer";
 import LayoutWrapper from "./layoutwrapper";
-import NavbarAPI from "../(tools)/componentsAPI/NavbarAPI";
-import FooterAPI from "../(tools)/componentsAPI/FooterAPI";
+import Navbar from "../(tools)/components/components/NavbarComponents/Navbar";
+import Footer from "../(tools)/components/components/Footer";
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
 const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });
@@ -53,10 +53,9 @@ export default function RootLayout({
         style={{ touchAction: "auto" }}
       >
         <AppProvider>
-          <NavbarAPI />
+          <Navbar />
           <LayoutWrapper>{children}</LayoutWrapper>
-          {/* <Footer /> */}
-          <FooterAPI />
+          <Footer />
         </AppProvider>
       </body>
     </html>

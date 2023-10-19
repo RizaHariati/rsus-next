@@ -1,8 +1,9 @@
 import { toast } from "react-toastify";
 import { getPatient } from "./getPatient";
+import { NEXT_PUBLIC_BASE_URL } from "../env";
 
 export async function deletePatient(medicalRecordNumber: string) {
-  const URL_PATIENT = "/api/patient";
+  const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient`;
   if (medicalRecordNumber === "US4234123398") return "sample data";
   else {
     const data = await getPatient(medicalRecordNumber, "");

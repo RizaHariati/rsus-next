@@ -1,5 +1,5 @@
-import { AppointmentState } from "../modal/modalAppointment/appointmentState";
 import dataPoliklinik from "@/app/(tools)/data/data_poliklinik.json";
+import { AppointmentState } from "./appointmentState";
 
 interface OpenModalAction {
   type: string;

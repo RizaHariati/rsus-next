@@ -2,12 +2,13 @@ import { toast } from "react-toastify";
 import { getPatient } from "./getPatient";
 
 import { NotificationType } from "@/app/(tools)/patientTypes";
+import { NEXT_PUBLIC_BASE_URL } from "../env";
 
 export async function createNotification(
   medicalRecordNumber: string,
   newNotification: NotificationType & { _type: string; _key: string }
 ) {
-  const URL_NOTIFICATION = "/api/notification";
+  const URL_NOTIFICATION = `${NEXT_PUBLIC_BASE_URL}/api/notification`;
   if (medicalRecordNumber === "US4234123398") return "sample data";
   else {
     const { data }: any = await getPatient(medicalRecordNumber, "");
