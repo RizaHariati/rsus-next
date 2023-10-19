@@ -1,4 +1,4 @@
-import { DoctorType, PoliklinikType } from "../../types";
+import { PoliklinikType } from "../types";
 
 export interface AppointmentState {
   searchCategory: "spesialisasi" | "dokter";
