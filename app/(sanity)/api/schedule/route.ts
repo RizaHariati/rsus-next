@@ -1,7 +1,7 @@
 import client, { writeClient } from "@/sanity/sanityUtils/sanity-utils";
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 export const runtime = "edge";
-export async function PUT(req: Request) {
+export async function PUT(req: NextRequest) {
   const { _id, scheduled_appointments } = await req.json();
 
   if (req.method === "PUT") {

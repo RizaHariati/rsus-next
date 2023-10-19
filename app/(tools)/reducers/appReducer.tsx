@@ -16,10 +16,9 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
     };
   }
   if (action.type === "ADD_ITEM") {
-    const labCart = state.labCart;
+    let labCart = state.labCart;
     const newLabItem: LabCartType = action.payload.newLabItem;
-    labCart.push(newLabItem);
-
+    labCart = [...(labCart || []), newLabItem];
     return {
       ...state,
       labCart,

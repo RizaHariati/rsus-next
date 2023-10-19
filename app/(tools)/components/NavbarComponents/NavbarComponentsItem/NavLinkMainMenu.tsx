@@ -22,7 +22,7 @@ import { writeClient } from "@/sanity/sanityUtils/sanity-utils";
 import { getPatient } from "@/sanity/sanityUtils/getPatient";
 
 type Props = {};
-const URL = "/api/notification";
+const URL_NOTIFICATION = "/api/notification";
 const NavLinkMainMenu = (props: Props) => {
   const {
     toggleMenuNavbar,
@@ -44,61 +44,85 @@ const NavLinkMainMenu = (props: Props) => {
     const loginNotification = patient.notifications.filter(
       (item) => item.notification_code === "ncat-001"
     );
-    toast.success(
-      `Terimakasih ${patient.patient_profile.name}, anda berhasil Logout`
-    );
+
     if (loginNotification.length > 1) {
-      const promiseFetch = new Promise((resolve) => {
-        resolve(
-          writeClient.fetch(`*[_type=='patient'
-           && medical_record_number =='${patient.medical_record_number}']`)
-        );
+      const logoutPatient = new Promise((resolve) => {
+        console.log(patient.medical_record_number);
+        return resolve(getPatient(patient.medical_record_number, ""));
       });
 
-      return promiseFetch.then((res: any) => {
-        if (res && res.length > 0) {
-          const _id = res[0]._id;
-          const notifications = res[0].notifications;
+      const dataLogout = logoutPatient
+        .then((res: any) => {
+          console.log({ res });
+          const patientData = res.data;
+          console.log({ patientData });
+          if (!patientData || Object.keys(patientData).length < 1) {
+            return toast.error("terjadi kesalahan sistem");
+          }
+          const _id = patientData._id;
+          const notifications = patientData.notifications;
           const filterNotifications = notifications.filter((item: any) => {
             const findNotif = loginNotification.find(
               (notifItem) => notifItem.id === item.id
             );
             if (!findNotif) return item;
           });
+          console.log({ filterNotifications });
           const body = {
             _id: _id,
             data: {
-              ...res,
+              ...patientData,
               notifications: [...filterNotifications],
             },
           };
-
           const options: RequestInit = {
             method: "PUT",
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
+              cache: "no-store",
             },
             body: JSON.stringify(body),
           };
-          const editPromise = new Promise((resolve) => {
-            resolve(fetch(URL, options));
+          console.log({ options });
+          const removingNotification = new Promise((resolve) => {
+            resolve(fetch(URL_NOTIFICATION, options));
           });
+          removingNotification.then((response: any) => {
+            return response;
+          });
+          return res;
+        })
+        .then((res) => {
+          logout();
+          clearStorageData();
+          toggleMenuNavbar(null);
+          return res;
+        });
+      toast.promise(dataLogout, {
+        pending: "logging out patient...",
+        success: "Terima kasih, semoga sehat selalu ",
+      });
+    } else {
+      const processLogout = new Promise((resolve) => {
+        resolve(
+          setTimeout(() => {
+            console.log("logging out");
+          }, 1000)
+        );
+      });
+      processLogout.then((res) => {
+        logout();
+        clearStorageData();
+        toggleMenuNavbar(null);
+        return res;
+      });
 
-          return editPromise.then((res: any) => {
-            if (res && res.status === 200) {
-              logout();
-              clearStorageData();
-              toggleMenuNavbar(null);
-            }
-            return res;
-          });
-        }
+      toast.promise(processLogout, {
+        pending: "logging out patient...",
+        success: "Terima kasih, semoga sehat selalu ",
       });
     }
-    logout();
-    clearStorageData();
-    toggleMenuNavbar(null);
   };
   return (
     <div className="flex-center-center text-link w-10 h-full relative ">

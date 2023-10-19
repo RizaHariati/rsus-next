@@ -8,9 +8,8 @@ import { LabCartType } from "../../types";
 import { toast } from "react-toastify";
 import { getAge } from "../../utils/getAge";
 import SelectDate from "../modalAppointment/SelectDate";
-import { NotificationType, ScheduledType } from "../../patientTypes";
+import { ScheduledType } from "../../patientTypes";
 import { getScheduleID } from "../../utils/getScheduleID";
-import { getNotificationID } from "../../utils/getNotificationID";
 import { checkExistingSchedule } from "../../utils/checkExistingSchedule";
 import moment from "moment";
 

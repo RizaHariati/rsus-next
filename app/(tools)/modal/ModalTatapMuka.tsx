@@ -84,11 +84,16 @@ const ModalTatapMuka = (props: Props) => {
         );
       });
 
-      promiseTatapMuka.then((res: any) => {
-        addingSchedule(schedule);
-        closeModal();
-        return res;
-      });
+      promiseTatapMuka
+        .then((res: any) => {
+          const response = addingSchedule(schedule);
+
+          return response;
+        })
+        .then((res) => {
+          closeModal();
+          return res;
+        });
 
       toast.promise(promiseTatapMuka, {
         pending: "Mendaftarkan Jadwal",

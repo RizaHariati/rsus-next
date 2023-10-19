@@ -27,12 +27,16 @@ const ModalBayarLaboratorium = (props: Props) => {
         createScheduleDatabase(patient.medical_record_number, [schedule])
       );
     });
-    promiseLaboratorium.then((res: any) => {
-      addingSchedule(schedule);
-      openModal("inconstruction", {});
-      clearLabCart();
-      return res;
-    });
+    promiseLaboratorium
+      .then((res: any) => {
+        const response = addingSchedule(schedule);
+        return response;
+      })
+      .then((res) => {
+        openModal("inconstruction", {});
+        clearLabCart();
+        return res;
+      });
 
     toast.promise(promiseLaboratorium, {
       pending: "Menunggu pembayaran",

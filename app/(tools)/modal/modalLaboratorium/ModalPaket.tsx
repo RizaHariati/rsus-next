@@ -66,6 +66,7 @@ const ModalPaket = (props: Props) => {
         findLabItem
           ? toast(`${paketLab.title} berhasil dihapus`)
           : toast(`${paketLab.title} berhasil ditambahkan`);
+
         toggleCart(
           paketLab,
           paketLab.price[0].type === "all" ? "all" : selectGender!

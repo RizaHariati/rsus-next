@@ -16,15 +16,18 @@ export async function createScheduleDatabase(
       _key: Math.floor(Math.random() * 1000000).toString(),
     };
   });
-  const data = await getPatient(medicalRecordNumber, "");
-  if (!data || data.length < 1) return toast.error("terjadi kesalahan sistem");
-  const sendData = await data[0];
+  const { data }: any = await getPatient(medicalRecordNumber, "");
+
+  if (!data || Object.keys(data).length < 1) {
+    return toast.error("terjadi kesalahan sistem");
+  }
+
   const scheduled_appointments: any[] = [
-    ...(sendData.scheduled_appointments || []),
+    ...(data.scheduled_appointments || []),
     ...newSanitySchedule,
   ];
   const body = {
-    _id: sendData._id,
+    _id: data._id,
     scheduled_appointments,
   };
 

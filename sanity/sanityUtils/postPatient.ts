@@ -26,6 +26,6 @@ export const postPatient = async (patient: PatientType) => {
   };
 
   const response = await fetch(URL_PATIENT, options);
-  console.log({ response });
+
   return response;
 };

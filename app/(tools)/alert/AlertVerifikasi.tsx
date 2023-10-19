@@ -27,7 +27,7 @@ const AlertVerifikasi = (props: Props) => {
     state: { alertValue },
     patientState: { patient },
     closeAlert,
-
+    openAlert,
     login,
     toggleMenuNavbar,
     addingNotification,
@@ -174,31 +174,32 @@ const AlertVerifikasi = (props: Props) => {
     });
 
     patientExist.then((res: any) => {
-      console.log({ res });
-      // if (!res) {
-      //   closeAlert();
-      //   return toast.error("terjadi kesalahan sistem");
-      // } else {
-      //   if (res.length > 0) {
-      //     closeAlert();
-      //     return toast.error("Medical Record Exist");
-      //   } else {
-      //     const posting = new Promise((resolve) => {
-      //       setLoading(true);
-      //       return resolve(postPatient(newPatient));
-      //     });
-      //     posting
-      //       .then((res: any) => {
-      //         setLoading(false);
-      //         if (res && res.status === 200) {
-      //           openAlert("registrasisukses", {
-      //             newPatientPersonal: data,
-      //           });
-      //         }
-      //       })
-      //       .catch((err) => console.log(err));
-      //   }
-      // }
+      if (!res) {
+        closeAlert();
+        return toast.error("terjadi kesalahan sistem");
+      } else {
+        if (Object.keys(res).length > 0) {
+          closeAlert();
+          return toast.error("Medical Record Exist");
+        } else {
+          const posting = new Promise((resolve) => {
+            setLoading(true);
+            return resolve(postPatient(newPatient));
+          });
+          posting
+            .then((res: any) => {
+              setLoading(false);
+              if (res && res.status === 200) {
+                openAlert("registrasisukses", {
+                  newPatientPersonal: data,
+                });
+              } else {
+                return toast.error("terjadi kesalahan teknis");
+              }
+            })
+            .catch((err) => console.log(err));
+        }
+      }
     });
   };
 
