@@ -5,15 +5,14 @@ import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-// import { motion } from "framer-motion";
 import { usePathname } from "next/navigation";
-// import { enterOpacity } from '../../framervariants/variants';
-import MainLogoImage from "../../modal/MainLogoImage";
+
 import NavLinkEmergency from "./NavbarComponentsItem/NavLinkEmergency";
 import NavLinkProfile from "./NavbarComponentsItem/NavLinkProfile";
 import NavLinkAntrian from "./NavbarComponentsItem/NavLinkSchedule";
 import NavLinkMainMenu from "./NavbarComponentsItem/NavLinkMainMenu";
 import NavLinkNotification from "./NavbarComponentsItem/NavLinkNotification";
+import MainLogoImage from "../../modal/MainLogoImage";
 
 type Props = {};
 type MainProps = {};

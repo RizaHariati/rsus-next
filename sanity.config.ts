@@ -51,14 +51,19 @@ import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
-import { apiVersion, dataset, projectId } from "./sanity/env";
+
 import { schema } from "./sanity/schema";
+import {
+  NEXT_PUBLIC_SANITY_API_VERSION,
+  NEXT_PUBLIC_SANITY_DATASET,
+  NEXT_PUBLIC_SANITY_PROJECT_ID,
+} from "./sanity/env";
 
 export default defineConfig({
   theme: myTheme,
   basePath: "/admin",
-  projectId,
-  dataset,
+  projectId: NEXT_PUBLIC_SANITY_PROJECT_ID,
+  dataset: NEXT_PUBLIC_SANITY_DATASET,
 
   // Add and edit the content schema in the './sanity/schema' folder
   schema,
@@ -66,6 +71,6 @@ export default defineConfig({
     deskTool(),
     // Vision is a tool that lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
-    visionTool({ defaultApiVersion: apiVersion }),
+    visionTool({ defaultApiVersion: NEXT_PUBLIC_SANITY_API_VERSION }),
   ],
 });

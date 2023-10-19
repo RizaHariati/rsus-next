@@ -14,8 +14,8 @@ import { AppProvider } from "../(tools)/context/AppProvider";
 
 // import Footer from "../(tools)/components/Footer";
 import LayoutWrapper from "./layoutwrapper";
-import Navbar from "../(tools)/components/components/NavbarComponents/Navbar";
-import Footer from "../(tools)/components/components/Footer";
+import Navbar from "../(tools)/components/NavbarComponents/Navbar";
+import Footer from "../(tools)/components/Footer";
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
 const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });
