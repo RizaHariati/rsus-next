@@ -3,9 +3,9 @@
 import { usePathname } from "next/navigation";
 import { useGlobalContext } from "../(tools)/context/AppProvider";
 import { ToastContainer } from "react-toastify";
-import ModalContainer from "../(tools)/modal/ModalContainer";
-import AlertContainer from "../(tools)/alert/AlertContainer";
-import BottomNavComponents from "../(tools)/components/BottomNavComponents/BottomNavComponents";
+// import ModalContainer from "../(tools)/modal/ModalContainer";
+// import AlertContainer from "../(tools)/alert/AlertContainer";
+// import BottomNavComponents from "../(tools)/components/BottomNavComponents/BottomNavComponents";
 import { useEffect } from "react";
 
 type Props = {
@@ -30,11 +30,11 @@ const LayoutWrapper = ({ children }: Props) => {
       className="main-layout-container "
     >
       <ToastContainer position="top-right" theme="light" autoClose={1000} />
-      <ModalContainer />
-      <AlertContainer />
+      {/* <ModalContainer />
+      <AlertContainer /> */}
 
       {children}
-      <BottomNavComponents />
+      {/* <BottomNavComponents /> */}
     </div>
   );
 };

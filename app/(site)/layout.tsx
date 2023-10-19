@@ -10,10 +10,12 @@ import type { Metadata } from "next";
 import { Oswald, Nunito } from "next/font/google";
 import { config } from "@fortawesome/fontawesome-svg-core";
 import { AppProvider } from "../(tools)/context/AppProvider";
-import Navbar from "../(tools)/components/NavbarComponents/Navbar";
+// import Navbar from "../(tools)/components/NavbarComponents/Navbar";
 
-import Footer from "../(tools)/components/Footer";
+// import Footer from "../(tools)/components/Footer";
 import LayoutWrapper from "./layoutwrapper";
+import NavbarAPI from "../(tools)/componentsAPI/NavbarAPI";
+import FooterAPI from "../(tools)/componentsAPI/FooterAPI";
 
 const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
 const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });
@@ -51,9 +53,10 @@ export default function RootLayout({
         style={{ touchAction: "auto" }}
       >
         <AppProvider>
-          <Navbar />
+          <NavbarAPI />
           <LayoutWrapper>{children}</LayoutWrapper>
-          <Footer />
+          {/* <Footer /> */}
+          <FooterAPI />
         </AppProvider>
       </body>
     </html>
