@@ -181,8 +181,7 @@ const getScheduleType = (
   let tujuanSchedule = "";
   if (appointment_type !== "test") {
     const findDoctor = dataDoctor.find((item) => item.id === tujuan[0])!;
-
-    tujuanSchedule = `dr.${findDoctor.name} dari Poli ${findDoctor.poliklinik.title}`;
+    tujuanSchedule = `dr.${findDoctor?.name} dari Poli ${findDoctor?.poliklinik.title}`;
   } else {
     tujuanSchedule = tujuan
       .map((itemTujuan) => {
@@ -191,9 +190,9 @@ const getScheduleType = (
         );
         const findFas = dataFacility.find((item) => item.id === itemTujuan);
         const findLab = dataLabSatuan.find((item) => item.id === itemTujuan);
-        if (findPaket) return findPaket.title;
+        if (findPaket) return findPaket?.title;
         else if (findFas) return findFas?.title;
-        else if (findLab) return findLab.title;
+        else if (findLab) return findLab?.title;
         else return "";
       })
       .join(", ");
