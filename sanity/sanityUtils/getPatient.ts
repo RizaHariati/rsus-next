@@ -1,5 +1,4 @@
-import { initialPatientState } from "@/app/(tools)/context/initialPatientState";
-("use server");
+"use server";
 import {
   sampleNotifications,
   sampleProfile,
