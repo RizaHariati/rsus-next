@@ -39,7 +39,6 @@ export default async function revalidate(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  console.log({ req });
   try {
     const { body, isValidSignature } = await parseBody(
       req,
@@ -48,14 +47,13 @@ export default async function revalidate(
     if (!isValidSignature) {
       const message = "Invalid signature";
       console.log(message);
-      return res.status(405).send(message);
+      return res.status(403).send(message);
     }
-    console.log(req);
-    // if (typeof body?._id !== "string" || !body?._id) {
-    //   const invalidId = "Invalid _id";
-    //   console.error(invalidId, { body });
-    //   return res.status(400).send(invalidId);
-    // }
+    if (typeof body?._id !== "string" || !body?._id) {
+      const invalidId = "Invalid _id";
+      console.error(invalidId, { body });
+      return res.status(405).send(invalidId);
+    }
 
     // const staleRoutes = await queryStaleRoutes(body as any);
     // await Promise.all(staleRoutes.map((route) => res.revalidate(route)));
@@ -63,7 +61,7 @@ export default async function revalidate(
     // const updatedRoutes = `Updated routes: ${staleRoutes.join(", ")}`;
     // console.log(updatedRoutes);
     // return res.status(200).send(updatedRoutes);
-    return res.status(200);
+    return res.status(200).send(body);
   } catch (err: any) {
     console.error(err);
     return res.status(500).send(err.message);
