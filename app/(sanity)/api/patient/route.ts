@@ -14,44 +14,45 @@ export async function PUT(req: NextRequest) {
   );
 
   console.log({ req });
-  const { medicalRecordNumber, password } = await req.json();
+  return NextResponse.json({ body });
+  // const { medicalRecordNumber, password } = await req.json();
 
-  if (!password) {
-    const data = await writeClient.fetch(
-      groq`*[_type=='patient'
-          && medical_record_number =='${medicalRecordNumber}'
-          ]`
-    );
-    return NextResponse.json({ data: data[0] });
-  } else {
-    const data = await writeClient.fetch(
-      groq`*[_type=='patient'
-          && medical_record_number =='${medicalRecordNumber}'
-          && patient_profile.password=='${password}'
-          ]{ medical_record_number,
-            patient_profile,
-            "scheduled_appointments":scheduled_appointments[]{
-               schedule_id,
-               current_phone,
-               tujuan,
-               appointment_type,
-               scheduled_date,
-               register_date,
-               using_bpjs,
-               nomor_antrian},
-             medical_records,
-            "notifications" : notifications[]{
-                id,
-                notification_code,
-                title,
-                message,
-                notification_date,
-                seen
-           }
-        }`
-    );
-    return NextResponse.json({ data: data[0] });
-  }
+  // if (!password) {
+  //   const data = await writeClient.fetch(
+  //     groq`*[_type=='patient'
+  //         && medical_record_number =='${medicalRecordNumber}'
+  //         ]`
+  //   );
+  //   return NextResponse.json({ data: data[0] });
+  // } else {
+  //   const data = await writeClient.fetch(
+  //     groq`*[_type=='patient'
+  //         && medical_record_number =='${medicalRecordNumber}'
+  //         && patient_profile.password=='${password}'
+  //         ]{ medical_record_number,
+  //           patient_profile,
+  //           "scheduled_appointments":scheduled_appointments[]{
+  //              schedule_id,
+  //              current_phone,
+  //              tujuan,
+  //              appointment_type,
+  //              scheduled_date,
+  //              register_date,
+  //              using_bpjs,
+  //              nomor_antrian},
+  //            medical_records,
+  //           "notifications" : notifications[]{
+  //               id,
+  //               notification_code,
+  //               title,
+  //               message,
+  //               notification_date,
+  //               seen
+  //          }
+  //       }`
+  //   );
+  //   return NextResponse.json({ data: data[0] });
+  // }
 }
 
 export async function GET(req: NextRequest) {
