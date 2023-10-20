@@ -15,20 +15,14 @@ import BackToTop from "@/app/(tools)/components/BackToTop";
 import MainImageSmall from "@/app/(tools)/components/PageComponents/mainpage/mainpageSmall/MainImageSmall";
 import { FacilitySanityType } from "@/app/(tools)/types";
 import { getPatient } from "@/sanity/sanityUtils/getPatient";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
-type Props = {
-  dataFacility: FacilitySanityType[];
-};
+type Props = {};
 
-function MainPageContent({ dataFacility }: Props) {
-  // const data = new Promise((resolve) => {
-  //   resolve(getPatient("US4234123398"));
-  // });
-  // useEffect(() => {
-  //   data.then((res) => console.log(res));
-  //   //eslint-disable-next-line
-  // }, []);
-
+function MainPageContent(props: Props) {
+  const {
+    state: { dataFacility },
+  } = useGlobalContext();
   return (
     <div className=" page-main-container ">
       <BackToTop sectionID="main-page-top" />

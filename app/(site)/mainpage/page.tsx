@@ -9,9 +9,7 @@ import { getPatient } from "@/sanity/sanityUtils/getPatient";
 type Props = {};
 
 async function MainPage(props: Props) {
-  const dataFacility: FacilitySanityType[] = await getFacility();
-
-  return <MainPageContent dataFacility={dataFacility} />;
+  return <MainPageContent />;
 }
 
 export default MainPage;
