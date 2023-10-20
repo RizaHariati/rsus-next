@@ -49,7 +49,10 @@ export default async function revalidate(
       console.log(message);
       return res.status(403).send(message);
     }
-    if (typeof body?._id !== "string" || !body?._id) {
+    if (
+      typeof body?.medical_record_number !== "string" ||
+      !body?.medical_record_number
+    ) {
       const invalidId = "Invalid _id";
       console.error(invalidId, { body });
       return res.status(405).send(invalidId);
