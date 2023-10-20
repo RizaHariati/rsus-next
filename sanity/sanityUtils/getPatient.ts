@@ -11,14 +11,11 @@ export async function getPatient(
   medicalRecordNumber: string,
   password?: string
 ): Promise<any> {
-  console.log(
-    `${URL_PATIENT}search=${medicalRecordNumber}&password=${password}`
-  );
   const res = await fetch(
     `${URL_PATIENT}search=${medicalRecordNumber}&password=${password}`,
     { cache: "no-store" }
   );
-
+  console.log({ res });
   if (res && res.status === 200) {
     const data = await res.json();
     return data;
