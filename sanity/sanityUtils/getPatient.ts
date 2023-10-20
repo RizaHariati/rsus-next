@@ -5,14 +5,14 @@ import {
 } from "@/app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 
-const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/?`;
+const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
 export async function getPatient(
   medicalRecordNumber: string,
   password?: string
 ): Promise<any> {
   const res = await fetch(
     URL_PATIENT,
-    // `${URL_PATIENT}search=${medicalRecordNumber}&password=${password}`,
+    // `${URL_PATIENT}?search=${medicalRecordNumber}&password=${password}`,
     { cache: "no-store" }
   );
   console.log({ res: await res.json() });
