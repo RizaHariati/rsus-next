@@ -39,6 +39,7 @@ export default async function revalidate(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log({ req });
   try {
     const { body, isValidSignature } = await parseBody(
       req,

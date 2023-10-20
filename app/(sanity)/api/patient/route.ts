@@ -19,8 +19,8 @@ export async function GET(req: NextRequest) {
   } else {
     const data = await writeClient.fetch(
       groq`*[_type=='patient'
-          && medical_record_number =='${medicalRecordNumber}'
-          && patient_profile.password=='${password}'
+          // && medical_record_number =='${medicalRecordNumber}'
+          // && patient_profile.password=='${password}'
           ]{ medical_record_number,
             patient_profile,
             "scheduled_appointments":scheduled_appointments[]{
@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
            }
         }`
     );
-    return NextResponse.json({ message: req.url });
+    return NextResponse.json({ data: data[0] });
   }
 }
 
