@@ -5,6 +5,7 @@ import { groq } from "next-sanity";
 import { parseBody } from "next-sanity/webhook";
 
 import { NextRequest, NextResponse } from "next/server";
+import revalidate from "./revalidate";
 
 export async function PUT(req: NextRequest) {
   const { body, isValidSignature } = await parseBody(
@@ -12,7 +13,7 @@ export async function PUT(req: NextRequest) {
     process.env.SANITY_REVALIDATE_SECRET
   );
 
-  console.log({ body, isValidSignature });
+  console.log({ req });
   const { medicalRecordNumber, password } = await req.json();
 
   if (!password) {
