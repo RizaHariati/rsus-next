@@ -56,32 +56,43 @@ export const LoginFormContent = () => {
           getPatient(loginData.medical_record_number!, loginData.password)
         );
       });
-
-      checkingPatient
-        .then((res: any) => {
-          if (!res || Object.keys(res).length < 1) {
-            return toast.error("Nomor Rekam Medis/Password salah", {
-              position: toast.POSITION.TOP_CENTER,
-            });
+      checkingPatient.then((res: any) => {
+        console.log({ resFromUserLogin: res });
+        new Promise((resolve, reject) => {
+          if (!res || res?.status !== 200) {
+            return reject(console.log("failed fetched"));
           } else {
-            const verification_number = Math.floor(Math.random() * 9000 + 1000);
-
-            openAlert("verifikasi", {
-              verification_number,
-              data: loginData,
-              type: "login",
-            });
+            return resolve(console.log("successfully fethced"));
           }
-          return res;
-        })
-        .then((res) => {
-          setLoginData({
-            medical_record_number: "",
-            password: "",
+        });
+
+        if (!res || Object.keys(res).length < 1) {
+          return toast.error("Nomor Rekam Medis/Password salah", {
+            position: toast.POSITION.TOP_CENTER,
           });
-          return res;
-        })
-        .catch((err) => err);
+        } else {
+          const verification_number = Math.floor(Math.random() * 9000 + 1000);
+
+          // openAlert("verifikasi", {
+          //   verification_number,
+          //   data: loginData,
+          //   type: "login",
+          // });
+        }
+        console.log("babi");
+        return res;
+      });
+      // .then((res) => {
+      //   setLoginData({
+      //     medical_record_number: "",
+      //     password: "",
+      //   });
+
+      //   return res;
+      // })
+      // .catch((err) => {
+      //   return err;
+      // });
 
       toast.promise(checkingPatient, {
         pending: "harap tunggu sebentar kami akan mengirimkan nomor verifikasi",

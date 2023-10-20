@@ -25,7 +25,7 @@ export async function getPatient(
 
   const res = await fetch(URL_PATIENT, options);
   console.log({ res });
-  console.log({ res: await res.json() });
+  // console.log({ res: await res.json() });
   if (res && res.status === 200) {
     const data = await res.json();
 
@@ -40,10 +40,10 @@ export async function getPatient(
         notifications: sampleNotifications,
       };
     } else {
-      return {};
+      return res;
     }
   } else {
-    return {};
+    return res;
   }
 }
 

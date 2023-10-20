@@ -35,10 +35,7 @@ import { parseBody, type ParsedBody } from "next-sanity/webhook";
 
 export { config } from "next-sanity/webhook";
 
-export default async function revalidate(
-  req: NextApiRequest,
-  res: NextApiResponse
-) {
+export default async function GET(req: NextApiRequest, res: NextApiResponse) {
   try {
     const { body, isValidSignature } = await parseBody(
       req,
