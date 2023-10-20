@@ -1,4 +1,4 @@
-import { Rule, SchemaTypeDefinition } from "sanity";
+import { SchemaTypeDefinition } from "sanity";
 
 export const refnotification: SchemaTypeDefinition = {
   name: "ref_notification",
