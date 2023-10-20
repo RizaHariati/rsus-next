@@ -18,9 +18,7 @@ export async function GET(req: NextRequest) {
   //   return NextResponse.json({ data: data[0] });
   // } else {
   const data = await writeClient.fetch(
-    groq`*[_type=='patient'
-
-          ]{ medical_record_number,
+    groq`*[_type=='patient'][0]{ medical_record_number,
             patient_profile,
             "scheduled_appointments":scheduled_appointments[]{
                schedule_id,
@@ -42,7 +40,7 @@ export async function GET(req: NextRequest) {
            }
         }`
   );
-  return NextResponse.json({ data: data[0] });
+  return NextResponse.json(data);
   // }
 }
 
