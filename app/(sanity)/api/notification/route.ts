@@ -1,6 +1,6 @@
 import client, { writeClient } from "@/sanity/sanityUtils/sanity-utils";
 import { NextRequest, NextResponse } from "next/server";
-export const runtime = "edge";
+
 export async function PUT(req: NextRequest) {
   const { _id, data } = await req.json();
 

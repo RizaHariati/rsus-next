@@ -1,7 +1,7 @@
 import { writeClient } from "@/sanity/sanityUtils/sanity-utils";
 import { groq } from "next-sanity";
 import { NextRequest, NextResponse } from "next/server";
-export const runtime = "edge";
+
 export async function GET(req: NextRequest) {
   const data = await writeClient.fetch(
     groq`*[_type=='doctor']| order(id asc){
