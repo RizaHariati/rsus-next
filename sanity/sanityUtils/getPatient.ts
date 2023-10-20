@@ -5,17 +5,14 @@ import {
 } from "@/app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 
-const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
+const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/revalidate?=`;
 export async function getPatient(
   medicalRecordNumber: string,
   password?: string
 ): Promise<any> {
   const body = {
-    _id: "basjdfbsadf",
     medicalRecordNumber,
     password,
-    isValidSignature:
-      "Ocn8ei1UjgDKnDGHUv8iDSCdH4RwDXTUFbVZaIuosoguVI9lJCt5gxjbsc16u0zgb",
   };
   const options: RequestInit = {
     method: "PUT",
