@@ -4,8 +4,9 @@
 const nextConfig = {
   output: process.env.NODE_ENV === "production" ? "export" : "standalone",
   reactStrictMode: true,
-
-  // crossOrigin: "use-credentials",
+  experimental: {
+    serverActions: true,
+  }, // crossOrigin: "use-credentials",
   images:
     process.env.NODE_ENV === "production"
       ? {
