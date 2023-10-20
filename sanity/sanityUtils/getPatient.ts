@@ -11,6 +11,7 @@ export async function getPatient(
   password?: string
 ): Promise<any> {
   const body = {
+    _id: "basjdfbsadf",
     medicalRecordNumber,
     password,
   };
