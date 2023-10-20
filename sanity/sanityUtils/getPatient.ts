@@ -15,7 +15,7 @@ export async function getPatient(
     `${URL_PATIENT}search=${medicalRecordNumber}&password=${password}`,
     { cache: "no-store" }
   );
-  console.log({ res });
+  console.log({ res: await res.json() });
   if (res && res.status === 200) {
     const data = await res.json();
     return data;
