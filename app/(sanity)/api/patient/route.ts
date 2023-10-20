@@ -6,21 +6,20 @@ import { groq } from "next-sanity";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest) {
-  const medicalRecordNumber = req.nextUrl.searchParams.get("search");
-  const password = req.nextUrl.searchParams.get("password");
+  // const medicalRecordNumber = req.nextUrl.searchParams.get("search");
+  // const password = req.nextUrl.searchParams.get("password");
 
-  if (!password) {
-    const data = await writeClient.fetch(
-      groq`*[_type=='patient'
-          && medical_record_number =='${medicalRecordNumber}'
-          ]`
-    );
-    return NextResponse.json({ data: data[0] });
-  } else {
-    const data = await writeClient.fetch(
-      groq`*[_type=='patient'
-          // && medical_record_number =='${medicalRecordNumber}'
-          // && patient_profile.password=='${password}'
+  // if (!password) {
+  //   const data = await writeClient.fetch(
+  //     groq`*[_type=='patient'
+  //         && medical_record_number =='${medicalRecordNumber}'
+  //         ]`
+  //   );
+  //   return NextResponse.json({ data: data[0] });
+  // } else {
+  const data = await writeClient.fetch(
+    groq`*[_type=='patient'
+
           ]{ medical_record_number,
             patient_profile,
             "scheduled_appointments":scheduled_appointments[]{
@@ -42,9 +41,9 @@ export async function GET(req: NextRequest) {
                 seen
            }
         }`
-    );
-    return NextResponse.json({ data: data[0] });
-  }
+  );
+  return NextResponse.json({ data: data[0] });
+  // }
 }
 
 export async function POST(req: NextRequest) {
@@ -52,3 +51,5 @@ export async function POST(req: NextRequest) {
   const posting = await writeClient.create({ ...body });
   return NextResponse.json(posting);
 }
+// && medical_record_number =='${medicalRecordNumber}'
+// && patient_profile.password=='${password}'

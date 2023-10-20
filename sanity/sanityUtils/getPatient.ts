@@ -11,7 +11,8 @@ export async function getPatient(
   password?: string
 ): Promise<any> {
   const res = await fetch(
-    `${URL_PATIENT}search=${medicalRecordNumber}&password=${password}`,
+    URL_PATIENT,
+    // `${URL_PATIENT}search=${medicalRecordNumber}&password=${password}`,
     { cache: "no-store" }
   );
   console.log({ res: await res.json() });
