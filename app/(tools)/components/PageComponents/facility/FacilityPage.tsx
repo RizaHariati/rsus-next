@@ -9,17 +9,19 @@ import MainImageSmallB from "@/app/(tools)/components/PageComponents/MainImageSm
 import MainImageAnimatedLeft from "../MainImageAnimatedLeft";
 import { groupCategoryFacility } from "@/app/(tools)/utils/groupCategoryFacility";
 import { FacilitySanityType } from "@/app/(tools)/types";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
-type Props = {
-  dataFacility: FacilitySanityType[];
-};
+type Props = {};
 const unit = {
   img: "facility",
   title: "FACILITY",
   description:
     "RS Urip Sumoharjo berusaha untuk terus meningkatkan  fasilitas dan mutu layanan kami dengan melengkapi tenaga medis yang profesional dan perlengkapan penunjang medis yang mengikuti perkembangan teknologi yang semakin maju dan canggih.",
 };
-function FacilityPage({ dataFacility }: Props) {
+function FacilityPage(props: Props) {
+  const {
+    state: { dataFacility },
+  } = useGlobalContext();
   return (
     <div className="page-main-container ">
       <BackToTop sectionID="facility-top" />
@@ -38,7 +40,7 @@ function FacilityPage({ dataFacility }: Props) {
         <p className="h-1/4 p-2 text-center leading-normal md:hidden">
           {unit.description}
         </p>
-        <FindFacility dataFacility={dataFacility} />
+        <FindFacility />
       </section>
 
       <div className="pb-[150px] bg-greyLit z-10">

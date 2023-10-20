@@ -1,0 +1,164 @@
+[
+    {
+        "id": "poli_001",
+        "title": "Spesialis Fisik dan Rehabilitasi",
+        "img": "RehabMedik",
+        "description": [
+            "Dokter rehabilitasi medis (Sp.RM) adalah dokter spesialis yang berperan membantu memulihkan fungsi tubuh pasien yang mengalami gangguan atau kecacatan. Dengan bantuan dokter rehabilitasi medis, pasien diharapkan dapat memiliki kualitas hidup yang lebih baik.",
+            "Dokter rehabilitasi medis dapat menentukan rencana tatalaksana atau program perawatan dan pengobatan sesuai dengan riwayat kesehatan pasien. "
+        ]
+    },
+    {
+        "id": "poli_002",
+        "title": "Spesialis Kandungan",
+        "img": "Embryo",
+        "description": [
+            "Dokter spesialis Obstetri dan Ginekologi atau dikenal juga Obgyn serta dokter kandungan adalah seorang dokter yang mengkhususkan diri dalam kesehatan reproduksi wanita, termasuk menstruasi, kehamilan, persalinan, dan menopause. ",
+            "Artinya, selain memeriksakan kandungan, Obgyn juga memiliki keahlian untuk mendiagnosis dan merawat wanita dari segala usia dan profil, mulai dari pubertas hingga dewasa."
+        ]
+    },
+    {
+        "id": "poli_003",
+        "title": "Spesialis Patologi Anatomi",
+        "img": "patologi",
+        "description": [
+            "Patologi anatomi adalah suatu cabang spesialisasi untuk menilai mekanisme suatu penyakit. Sehingga perannya kebanyakan adalah untuk mendiagnosis penyakit.",
+            "Patologi anatomi juga dapat memberikan penentuan prognosis atau prediksi suatu penyakit. Patologi anatomi akan melihat apakah suatu sel merupakan suatu sel yang sehat ataukah ganas, penyakit tersebut sudah sejauh apa, apakah memiliki potensi untuk menginvasi dan menyebar ke organ jauh."
+        ]
+    },
+    {
+        "id": "poli_004",
+        "title": "Spesialis Penyakit Paru",
+        "img": "Lung",
+        "description": [
+            "Dokter spesialis paru adalah dokter ahli yang mendiagnosis dan merawat pasien yang mengalami gangguan kesehatan pada saluran pernapasan, paru-paru, hingga organ lain yang membantu pernapasan. ",
+            "Jika keluhan kesehatan pada bagian pernapasan tidak membaik meskipun telah diobati oleh dokter umum, sebaiknya segera kunjungi dokter spesialis ini untuk memastikan kondisi kesehatan."
+        ]
+    },
+    {
+        "id": "poli_006",
+        "title": "Spesialis Anak",
+        "img": "Child",
+        "description": [
+            "Dokter anak atau spesialis pediatri adalah dokter yang berfokus pada perawatan kesehatan fisik, mental, serta perkembangan sosial anak, mulai dari usia anak 0–18 tahun. Selain melakukan pemeriksaan dan perawatan, dokter anak juga dapat memberikan tindakan pencegahan penyakit pada bayi, anak, maupun remaja yang sehat.",
+            "Secara umum, tugas dokter spesialis pediatri adalah memeriksa, mendiagnosis, dan memberikan perawatan atau pengobatan kepada anak atau remaja."
+        ]
+    },
+    {
+        "id": "poli_007",
+        "title": "Spesialis Bedah Mulut",
+        "img": "bedahmulut",
+        "description": [
+            "Bedah mulut dan maksilofasial adalah pelayanan kedokteran gigi spesialis yang melakukan tindakan operasi yang dilakukan untuk memperbaiki masalah gigi, mulut, rahang akibat penyakit infeksi, tumor atau trauma gangguan tumbuh dan mengembalikan fungsi pengunyahan dan estetik.",
+            "Dokter bedah ini perlu menguasai ilmu kedokteran gigi sekaligus ilmu bedah umum."
+        ]
+    },
+    {
+        "id": "poli_008",
+        "title": "Spesialis Bedah Syaraf",
+        "img": "bedahsyaraf",
+        "description": [
+            "Dokter spesialis bedah saraf atau dikenal juga sebagai neurosurgeon, memiliki keahlian untuk melakukan perawatan sistem saraf, termasuk otak, sumsum tulang belakang, dan seluruh saraf yang memanjang dari sumsum tulang belakang.",
+            "Selain melakukan tindakan operasi pada sistem saraf, neurosurgeon juga dapat memberikan perawatan non-bedah seperti pemberian obat-obatan hingga terapi fisik."
+        ]
+    },
+    {
+        "id": "poli_009",
+        "title": "Spesialis Bedah Umum",
+        "img": "general",
+        "description": [
+            "Dokter bedah umum adalah dokter yang memiliki spesialisasi dalam prosedur pembedahan. Pembedahan adalah setiap prosedur yang mengubah jaringan tubuh untuk mendiagnosis atau mengobati kondisi medis.",
+            "Dokter bedah umum memiliki pengetahuan dan pengalaman khusus terkait dengan diagnosis, manajemen sebelum operasi, selama operasi, dan paska operasi, termasuk manajemen komplikasi. "
+        ]
+    },
+    {
+        "id": "poli_010",
+        "title": "Spesialis Jantung dan Pembuluh Darah",
+        "img": "Cardiogram",
+        "description": [
+            "Dokter spesialis jantung adalah dokter yang menangani masalah penyakit jantung dan pembuluh darah atau kardiovaskular. Dokter tersebut mengkhususskan diri dalam mengobati kondisi dan penyakit jantung serta membantu pasien mengelola kondisi jantung mereka sebaik mungkin.",
+            "Seorang dokter ahli jantung juga dapat membantu pasien mencegah sejumlah masalah kardiovaskular."
+        ]
+    },
+    {
+        "id": "poli_011",
+        "title": "Spesialis Kulit Kelamin",
+        "img": "Skin",
+        "description": [
+            "Dokter spesialis kulit dan kelamin (SpKK) merupakan dokter yang fokus menangani beragam masalah pada kesehatan kulit dan kelamin, baik pria maupun wanita.",
+            "Seorang dokter kulit dan kelamin memiliki pengetahuan dan keterampilan klinis untuk menangani penyakit kulit dan kelamin."
+        ]
+    },
+    {
+        "id": "poli_012",
+        "title": "Spesialis Onkologi",
+        "img": "onkologi",
+        "description": [
+            "Onkologi adalah bidang kedokteran yang khusus menangani pengobatan dan pencegahan terhadap penyakit kanker. ",
+            " Selain memberikan pengobatan, dokter spesialis onkologi juga bertanggung jawab mulai dari memberikan rekomendasi penanganan medis yang dibutuhkan pasien, mengevaluasi hasil pengobatan, dan merawat kondisi pasien setelah pengobatan."
+        ]
+    },
+    {
+        "id": "poli_013",
+        "title": "Spesialis Ortopedi",
+        "img": "ortopedi",
+        "description": [
+            "Ortopedi adalah cabang ilmu kedokteran yang berfokus pada perawatan sistem kerangka dan bagian-bagian yang saling berhubungan seperti tulang, sendi, otot, tendon dan ligamen. Gangguan kesehatan pada bagian tubuh di atas biasanya disebabkan oleh banyak faktor, mulai dari cedera atau luka",
+            "Dokter yang juga disebut sebagai ahli ortopedi ini harus menguasai seluruh sistem muskuloskeletal serta memahami berbagai jenis persendian dan cara kerjanya."
+        ]
+    },
+    {
+        "id": "poli_014",
+        "title": "Spesialis Penyakit Dalam",
+        "img": "internist",
+        "description": [
+            "Dokter spesialis penyakit dalam (internis) menangani berbagai gangguan yang muncul pada organ dalam tubuh. Namun, pekerjaan internis tidak hanya sebatas itu saja. Dokter spesialis ini juga bisa membantu mencegah dan mengobati gangguan pada kulit hingga infeksi telinga.",
+            "Dokter spesialis penyakit dalam bisa membantu pasien yang memiliki gangguan pada organ penting di dalam tubuh. Sebut saja jantung, ginjal, hati, dan paru-paru. Di samping itu, internis juga bisa berhubungan dengan sistem imunitas, tekanan darah, hingga metabolisme tubuh."
+        ]
+    },
+    {
+        "id": "poli_015",
+        "title": "Spesialis Penyakit Mata",
+        "img": "mata",
+        "description": [
+            "Dokter spesialis mata memiliki keahlian khusus dalam mendiagnosis, mencegah, dan mengobati penyakit mata serta gangguan penglihatan. Tak hanya itu, dokter spesialis mata juga memiliki kompetensi dalam melakukan berbagai prosedur medis, termasuk operasi mata.",
+            "Dokter akan melakukan tes penglihatan untuk memeriksa jarak dan lapang pandang, mulai dari kemampuan membaca huruf atau mengenali benda pada jarak tertentu hingga persepsi warna"
+        ]
+    },
+    {
+        "id": "poli_016",
+        "title": "Spesialis Syaraf",
+        "img": "syaraf",
+        "description": [
+            "Dokter spesialis neurologi atau spesialis saraf merupakan dokter yang bertugas menangani berbagai keluhan terkait dengan gangguan otak dan saraf, seperti penyakit Parkinson, penyakit Alzheimer, kejang, demensia, cedera otak, stroke, dan lain-lain.",
+            "Dokter spesialis saraf dapat menangani keluhan pasien melalui tindakan medis yang sesuai, perawatan lanjutan, hingga evaluasi hasil pengobatan."
+        ]
+    },
+    {
+        "id": "poli_017",
+        "title": "Spesialis THT",
+        "img": "tht",
+        "description": [
+            "Dokter spesialis THT adalah dokter yang memiliki keahlian khusus dalam mengobati penyakit yang berkaitan dengan telinga, hidung, dan tenggorokan. Selain itu, dokter spesialis ini juga bertugas untuk mengatasi sejumlah penyakit yang terjadi di kepala dan leher.",
+            "Dokter THT memiliki pengetahuan mendalam tentang pencegahan, diagnosis, dan pengobatan berbagai penyakit yang berhubungan dengan telinga, hidung, dan tenggorokan pada pasien dari berbagai usia, mulai dari bayi sampai lanjut usia."
+        ]
+    },
+    {
+        "id": "poli_018",
+        "title": "Spesialis Urologi",
+        "img": "urologi",
+        "description": [
+            "Dokter urologi adalah dokter spesialis yang mempelajari ilmu tentang sistem saluran kemih (urologi). Ilmu urologi adalah bidang kedokteran yang fokus pada diagnosis dan pengobatan penyakit saluran kemih, baik pria maupun wanita.",
+            "Dokter spesialis urologi dapat mendiagnosis dan menangani gangguan pada saluran kemih, baik melalui pemberian obat-obatan maupun dengan prosedur operasi."
+        ]
+    },
+    {
+        "id": "poli_019",
+        "title": "Umum",
+        "img": "umum",
+        "description": [
+            "Dokter umum adalah seorang dokter yang berfokus untuk menangani gejala dan penyakit pada pasien secara umum. Dokter ini juga dikenal sebagai dokter layanan tingkat pertama yang berperan dalam memberikan pencegahan, diagnosis, penanganan awal, dan rujukan ke dokter spesialis jika diperlukan",
+            "dokter umum juga memegang peranan penting dalam memberikan perawatan medis awal dan berkelanjutan kepada pasien dari segala kelompok usia."
+        ]
+    }
+]

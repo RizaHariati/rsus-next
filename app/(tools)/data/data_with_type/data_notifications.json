@@ -1,0 +1,40 @@
+[
+    {
+        "_type": "ref_notification",
+        "id": "ncat-001",
+        "type": "success",
+        "title": "berhasil login",
+        "category": "admin",
+        "message": [
+            "Assalamualaikum. Selamat datang, ",
+            "Anda melakukan login pada tanggal"
+        ]
+    },
+    {
+        "_type": "ref_notification",
+        "id": "ncat-002",
+        "type": "success",
+        "title": "berhasil registrasi",
+        "category": "admin",
+        "message": [
+            "Anda berhasil melakukan pendaftaran registrasi. Ahlan wa sahlan, ",
+            "Semoga RS Urip Sumoharjo dapat memberikan pelayanan yang anda butuhkan."
+        ]
+    },
+    {
+        "_type": "ref_notification",
+        "id": "ncat-003",
+        "type": "info",
+        "title": "Penawaran Produk",
+        "category": "infomercial",
+        "message": []
+    },
+    {
+        "_type": "ref_notification",
+        "id": "ncat-004",
+        "type": "info",
+        "category": "amal",
+        "title": "Kegiatan Amal",
+        "message": []
+    }
+]

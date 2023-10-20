@@ -1,8 +1,7 @@
-import dataFacility from "@/app/(tools)/data/data_facility.json";
 import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
-import { FacilityType, LabItemType } from "../types";
+import { FacilitySanityType, FacilityType, LabItemType } from "../types";
 
-export const getCompleteTests = () => {
+export const getCompleteTests = (dataFacility: FacilitySanityType[]) => {
   const testWithoutDoctorRef = dataFacility.filter((test) => !test.doctorref);
   let newData: LabItemType[] = dataLabSatuan;
 

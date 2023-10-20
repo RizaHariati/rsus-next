@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import dataFacility from "@/app/(tools)/data/data_facility.json";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faClose,
@@ -16,7 +15,7 @@ type Props = {};
 
 const ModalPaket = (props: Props) => {
   const {
-    state: { modalValue, labCart },
+    state: { modalValue, labCart, dataFacility },
     patientState: { user },
     closeModal,
     openModal,
@@ -43,12 +42,12 @@ const ModalPaket = (props: Props) => {
     if (selectGender === "pria") {
       const newLab = getLabGender(paketLab, "pria");
       setLaboratorium(newLab);
-      const newPemeriksaan = getFasGender(paketLab, "pria");
+      const newPemeriksaan = getFasGender(paketLab, "pria", dataFacility);
       setPemeriksaan(newPemeriksaan);
     } else if (selectGender === "wanita") {
       const newLab = getLabGender(paketLab, "wanita");
       setLaboratorium(newLab);
-      const newPemeriksaan = getFasGender(paketLab, "wanita");
+      const newPemeriksaan = getFasGender(paketLab, "wanita", dataFacility);
       setPemeriksaan(newPemeriksaan);
     }
     // eslint-disable-next-line

@@ -1,0 +1,38 @@
+[
+    {
+        "name": "hospital-appointment",
+        "title": "janji temu dokter",
+        "description": "Cek dokter yang paling sesuai dengan kebutuhan anda. Termasuk cek jadwal, cek antrian hari ini, ketersediaan BPJS dan ketersediaan Telemedicine",
+        "image": "doctor.jpg",
+        "modal": "hospital-appointment",
+        "intro": [
+            "Janji temu untuk pertemuan tatap muka di RS Urip Sumoharjo pada jadwal yang anda pilih sendiri, silahkan pilih poli yang anda ingin tuju, kemudian memilih dokter yang anda sukai.",
+            "Selain itu kami sudah menyediakan TeleMedicine, yaitu pelayanan konsultasi jarak jauh lewat WhatsApp. "
+        ],
+        "modal_img": "appointment"
+    },
+    {
+        "name": "telemedicine",
+        "title": "daftar telemedicine",
+        "description": "Pelayanan dari dokter berpengalaman khusus untuk konsultasi jarak jauh via WhatsApp",
+        "image": "online-medical-consultation.jpg",
+        "modal": "telemedicine",
+        "intro": [
+            "TeleMedicine, yaitu pelayanan konsultasi jarak jauh lewat WhatsApp merupakan jawaban untuk kebutuhan pasien yang tidak ingin antri, hanya ingin menanyakan hal-hal dasar. Cocok untuk pasien yang lokasinya jauh dari gedung RS Urip Sumoharjo atau dalam keadaan cukup mendesak.",
+            "Dengan pemeriksaan awal, dokter kemudian dapat menyarankan pemeriksaan lebih lanjut, seperti membeli obat, pemeriksaan laboratorium, konsultasi tatap muka, atau rawat inap."
+        ],
+        "modal_img": "telemedicine"
+    },
+    {
+        "name": "registration",
+        "title": "daftar pasien baru",
+        "description": "Daftarkan diri anda untuk mendapatkan pelayanan terbaik RS Urip Sumoharjo",
+        "image": "sick.jpg",
+        "modal": "registration",
+        "intro": [
+            "Setelah mengisi formulir pendaftaran, Anda akan mendapatkan nomor Rekam Medis (MR), yaitu berkas yang berisikan catatan dan dokumen tentang identitas Anda, pemeriksaan, pengobatan, tindakan, dan pelayanan lain selama di RS Urip Sumoharjo. ",
+            "Nomor Rekam Medis ini akan Anda perlukan saat mendaftar untuk berobat nanti, karenanya harap dicatat dengan baik."
+        ],
+        "modal_img": ""
+    }
+]

@@ -1,5 +1,4 @@
 import { AppState } from "../context/interfaces";
-import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import { DoctorType, FilterDoctorType, LabCartType } from "../types";
 import moment from "moment";
 interface OpenModalAction {
@@ -98,12 +97,26 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
       selected_date,
     };
   }
-
+  if (action.type === "POPULATE_FACILITY") {
+    const dataFacility = action.payload.dataFacility;
+    return {
+      ...state,
+      dataFacility,
+    };
+  }
+  if (action.type === "POPULATE_DOCTOR") {
+    const dataDoctor = action.payload.dataDoctor;
+    return {
+      ...state,
+      dataDoctor,
+    };
+  }
   if (action.type === "FILTER_DOCTORS") {
     const modal = state.modalTitle;
     const category: "spesialisasi" | "dokter" = action.payload.category;
     const keyword = action.payload.keyword;
     const selected_date = action.payload.selected_date;
+    const dataDoctor = state.dataDoctor;
     const selectData =
       modal === "telemedicine"
         ? dataDoctor.filter((item) => item.telemedicine)

@@ -1,0 +1,32 @@
+[
+    {
+        "id": "app-001",
+        "title": "IGD",
+        "code": "icu",
+        "description": "Instalasi Gawat Darurat"
+    },
+    {
+        "id": "app-002",
+        "title": "rawat jalan",
+        "code": "poli",
+        "description": "Pelayanan kedokteran tatap muka"
+    },
+    {
+        "id": "app-003",
+        "title": "rawat inap",
+        "code": "inp",
+        "description": "Pasien diinapkan sekurang-kurangnya satu hari "
+    },
+    {
+        "id": "app-004",
+        "title": "Laboratorium",
+        "code": "labfas",
+        "description": "Pemeriksaan laboratorium atas permintaan pasien"
+    },
+    {
+        "id": "app-005",
+        "title": "telemedicine",
+        "code": "tele",
+        "description": "Pelayanan kedokteran jarak jauh"
+    }
+]

@@ -6,10 +6,14 @@ import { LabItemType } from "@/app/(tools)/types";
 import { getCompleteTests } from "@/app/(tools)/utils/getCompleteTests";
 
 import SingleTestGroup from "./SingleTestGroup";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 type Props = {};
 
 const PilihSatuan = (props: Props) => {
+  const {
+    state: { dataFacility },
+  } = useGlobalContext();
   return (
     <section id="satuan" className=" h-fit w-full z-0 pb-[150px] bg-white ">
       <motion.h2
@@ -23,9 +27,9 @@ const PilihSatuan = (props: Props) => {
       </motion.h2>
       <div className="w-full max-w-4xl mx-auto bg-white p-3 md:p-5 ">
         <div>
-          {Object.keys(getCompleteTests()).map(
+          {Object.keys(getCompleteTests(dataFacility)).map(
             (item: string, index: number) => {
-              const tests: LabItemType[] = getCompleteTests()[item];
+              const tests: LabItemType[] = getCompleteTests(dataFacility)[item];
 
               return <SingleTestGroup key={index} item={item} tests={tests} />;
             }

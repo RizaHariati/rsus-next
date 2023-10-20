@@ -22,7 +22,7 @@ const ModalLabCarts = (props: Props) => {
     clearLabCart,
     openModal,
     openAlert,
-    state: { selected_date },
+    state: { selected_date, dataDoctor },
     patientState: { patient },
   } = useGlobalContext();
   const labCart: LabCartType[] = state.labCart;
@@ -43,7 +43,8 @@ const ModalLabCarts = (props: Props) => {
     } else {
       const check = checkExistingSchedule(
         selected_date,
-        patient.scheduled_appointments
+        patient.scheduled_appointments,
+        dataDoctor
       );
 
       if (!check.passChecking) {

@@ -1,8 +1,8 @@
-import { PaketLabType } from "../types";
-import dataFacility from "@/app/(tools)/data/data_facility.json";
+import { FacilitySanityType, PaketLabType } from "../types";
 export const getFasGender = (
   paketLab: PaketLabType,
-  gender: "pria" | "wanita"
+  gender: "pria" | "wanita",
+  dataFacility: FacilitySanityType[]
 ) => {
   const newFas = paketLab.pemeriksaan.filter((item) => {
     if (item.id.includes("std")) return item;

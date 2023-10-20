@@ -12,6 +12,9 @@ import { initialPatientState } from "./initialPatientState";
 import { NotificationType, PatientType } from "../patientTypes";
 import { ScheduledType, UserType } from "../patientTypes";
 import { getUser } from "../utils/localData/getStorageData";
+import { getDoctors } from "@/sanity/sanityUtils/getDoctors";
+import { FilterDoctorType } from "../types";
+import { getFacility } from "@/sanity/sanityUtils/getFacility";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -35,10 +38,37 @@ export const AppProvider = ({ children }: Props) => {
       getUser().then((res: any) => {
         const { patient, user } = res;
 
-        return patientDispatch({
+        patientDispatch({
           type: "LOAD_USER",
           payload: { patient, user },
         });
+      });
+      getDoctors()
+        .then((res) => {
+          if (res.length > 0) {
+            dispatch({
+              type: "POPULATE_DOCTOR",
+              payload: { dataDoctor: res },
+            });
+          }
+          return res;
+        })
+        .then((res) => {
+          dispatch({
+            type: "FILTER_DOCTORS",
+            payload: { keyword: "", category: "spesialisasi", value: res },
+          });
+          return res;
+        });
+
+      getFacility().then((res) => {
+        if (res.length > 0) {
+          dispatch({
+            type: "POPULATE_FACILITY",
+            payload: { dataFacility: res },
+          });
+        }
+        return res;
       });
     }
     return () => {
@@ -67,6 +97,19 @@ export const AppProvider = ({ children }: Props) => {
     category: "spesialisasi" | "dokter",
     selected_date?: string
   ) => {
+    const filtered_doctor: any = getDoctors().then((dataDoctor) => {
+      const modal = state.modalTitle;
+      let filteringDoctor: FilterDoctorType = {
+        category: "spesialisasi",
+        value: [],
+        keyword,
+      };
+      if (dataDoctor.length < 0) return filteringDoctor;
+      else {
+        return filteringDoctor;
+      }
+    });
+
     dispatch({
       type: "FILTER_DOCTORS",
       payload: { keyword, category, selected_date },

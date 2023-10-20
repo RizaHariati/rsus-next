@@ -10,12 +10,11 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { ScheduledType } from "@/app/(tools)/patientTypes";
 import { toast } from "react-toastify";
-import dataDokter from "@/app/(tools)/data/data_dokter.json";
 import dataPaketKesehatan from "@/app/(tools)/data/data_paketkesehatan.json";
-import dataFacility from "@/app/(tools)/data/data_facility.json";
 import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
 
 import moment from "moment";
+import { DoctorType, FacilitySanityType } from "../../../types";
 
 const NavLinkSchedule = () => {
   const {
@@ -86,6 +85,7 @@ export default NavLinkSchedule;
 
 export const MenuJadwalContent = () => {
   const {
+    state: { dataDoctor, dataFacility },
     patientState: { patient },
   } = useGlobalContext();
 
@@ -101,7 +101,9 @@ export const MenuJadwalContent = () => {
           .map((scheduleItem) => {
             const detailSchedule = getScheduleType(
               scheduleItem.appointment_type,
-              scheduleItem.tujuan
+              scheduleItem.tujuan,
+              dataDoctor,
+              dataFacility
             );
             if (scheduleItem.appointment_type === "telemedicine") {
               return (
@@ -166,14 +168,19 @@ export const MenuJadwalContent = () => {
     </div>
   );
 };
-const getScheduleType = (appointment_type: string, tujuan: string[]) => {
+const getScheduleType = (
+  appointment_type: string,
+  tujuan: string[],
+  dataDoctor: DoctorType[],
+  dataFacility: FacilitySanityType[]
+) => {
   const translateType =
     appointment_type === "tatap_muka" ? "tatap muka" : "telemedicine";
   let type =
     appointment_type !== "test" ? `konsultasi ${translateType}` : `test `;
   let tujuanSchedule = "";
   if (appointment_type !== "test") {
-    const findDoctor = dataDokter.find((item) => item.id === tujuan[0])!;
+    const findDoctor = dataDoctor.find((item) => item.id === tujuan[0])!;
 
     tujuanSchedule = `dr.${findDoctor.name} dari Poli ${findDoctor.poliklinik.title}`;
   } else {

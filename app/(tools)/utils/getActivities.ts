@@ -1,11 +1,13 @@
-import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
 import dataPaketKesehatan from "@/app/(tools)/data/data_paketkesehatan.json";
-import dataFacility from "@/app/(tools)/data/data_facility.json";
 import { ScheduledType } from "../patientTypes";
-import { DoctorType } from "../types";
+import { DoctorType, FacilitySanityType } from "../types";
 
-export const getActivities = (schedule: ScheduledType) => {
+export const getActivities = (
+  schedule: ScheduledType,
+  dataDoctor: DoctorType[],
+  dataFacility: FacilitySanityType[]
+) => {
   let doctorActivities: {
     poli: string;
     name: string;
@@ -38,7 +40,11 @@ export const getActivities = (schedule: ScheduledType) => {
   return { doctorActivities, testActivities };
 };
 
-export const findActivityCode = (code: string) => {
+export const findActivityCode = (
+  code: string,
+  dataDoctor: DoctorType[],
+  dataFacility: FacilitySanityType[]
+) => {
   const findDoctor = dataDoctor.find((item) => item.id === code);
   const findLab = dataLabSatuan.find((item) => item.id === code);
   const findPaket = dataPaketKesehatan.find((item) => item.id === code);

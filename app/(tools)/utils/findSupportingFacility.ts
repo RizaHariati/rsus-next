@@ -1,8 +1,9 @@
-import dataFacility from "@/app/(tools)/data/data_facility.json";
+import { FacilitySanityType, PoliklinikType } from "../types";
 
-import { PoliklinikType } from "../types";
-
-export const findSupportingFacility = (poliInfo: PoliklinikType) => {
+export const findSupportingFacility = (
+  poliInfo: PoliklinikType,
+  dataFacility: FacilitySanityType[]
+) => {
   const findImage = dataFacility.filter((item) => {
     const findItem = item.poliklinik.find(
       (poli) => poli.toLowerCase() === poliInfo.title.toLowerCase()

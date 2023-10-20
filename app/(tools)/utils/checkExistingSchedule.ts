@@ -1,11 +1,11 @@
 import moment from "moment";
 import { ScheduledType } from "../patientTypes";
 import { DoctorType } from "../types";
-import dataDoctor from "@/app/(tools)/data/data_dokter.json";
 
 export const checkExistingDoctor = (
   doctorInfo: DoctorType,
-  schedule: ScheduledType[]
+  schedule: ScheduledType[],
+  dataDoctor: DoctorType[]
 ) => {
   const findDoctorInSchedule = schedule.find(
     (item) => item.tujuan[0] === doctorInfo.id
@@ -39,6 +39,7 @@ export const checkExistingDoctor = (
 export const checkExistingSchedule = (
   selected_date: string,
   schedule: ScheduledType[],
+  dataDoctor: DoctorType[],
   doctorInfo?: DoctorType
 ) => {
   const findDateInSchedule = schedule.filter((item) => {

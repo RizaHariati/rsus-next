@@ -1,0 +1,614 @@
+[
+  {
+    "id": "pak-001",
+    "title": "Paket Karyawan",
+    "price": [
+      {
+        "type": "all",
+        "value": 550000
+      }
+    ],
+    "img": "karyawan",
+    "pemeriksaan": [
+      {
+        "id": "std-1",
+        "title": "Riwayat kesehatan (anamnesis)",
+        "description": "wawancara medis dengan pasien/keluarga pasien "
+      },
+      {
+        "id": "std-2",
+        "title": "Pemeriksaan fisik standar",
+        "description": " visus, buta warna, indeks massa tubuh, tekanan darah"
+      },
+      {
+        "id": "fas-011",
+        "title": "General purpose X-Ray/Thorax"
+      }
+    ],
+    "laboratorium": [
+      {
+        "id": "lab-001",
+        "title": "Darah Rutin"
+      },
+      {
+        "id": "lab-025",
+        "title": "Urine rutin"
+      }
+    ]
+  },
+  {
+    "id": "pak-002",
+    "title": "Paket Dasar",
+    "price": [
+      {
+        "type": "all",
+        "value": 850000
+      }
+    ],
+    "img": "dasar",
+    "pemeriksaan": [
+      {
+        "id": "std-1",
+        "title": "Riwayat kesehatan (anamnesis)",
+        "description": "wawancara medis dengan pasien/keluarga pasien "
+      },
+      {
+        "id": "std-2",
+        "title": "Pemeriksaan fisik standar",
+        "description": " visus, buta warna, indeks massa tubuh, tekanan darah"
+      },
+      {
+        "id": "fas-011",
+        "title": "General purpose X-Ray/Thorax"
+      },
+      {
+        "id": "fas-027",
+        "title": "Electrocardio EKG"
+      }
+    ],
+    "laboratorium": [
+      {
+        "id": "lab-001",
+        "title": "Darah Rutin"
+      },
+      {
+        "id": "lab-026",
+        "title": "Urine Lengkap"
+      },
+      {
+        "id": "lab-009",
+        "title": "Fungsi hati"
+      }
+    ]
+  },
+  {
+    "id": "pak-003",
+    "title": "Paket Luar Negeri",
+    "price": [
+      {
+        "type": "all",
+        "value": 1550000
+      }
+    ],
+    "img": "luar-negeri",
+    "pemeriksaan": [
+      {
+        "id": "std-1",
+        "title": "Riwayat kesehatan (anamnesis)",
+        "description": "wawancara medis dengan pasien/keluarga pasien "
+      },
+      {
+        "id": "std-2",
+        "title": "Pemeriksaan fisik standar",
+        "description": " visus, buta warna, indeks massa tubuh, tekanan darah"
+      },
+      {
+        "id": "fas-011",
+        "title": "General purpose X-Ray/Thorax"
+      },
+      {
+        "id": "fas-027",
+        "title": "Electrocardio EKG"
+      }
+    ],
+    "laboratorium": [
+      {
+        "id": "lab-001",
+        "title": "Darah Rutin"
+      },
+      {
+        "id": "lab-026",
+        "title": "Urine Lengkap"
+      },
+      {
+        "id": "lab-004",
+        "title": "Gula darah sewaktu"
+      },
+      {
+        "id": "lab-019",
+        "title": "Serologi Dasar"
+      }
+    ]
+  },
+  {
+    "id": "pak-004",
+    "title": "Paket Silver",
+    "price": [
+      {
+        "type": "all",
+        "value": 2600000
+      }
+    ],
+    "img": "silver",
+    "pemeriksaan": [
+      {
+        "id": "std-1",
+        "title": "Riwayat kesehatan (anamnesis)",
+        "description": "wawancara medis dengan pasien/keluarga pasien "
+      },
+      {
+        "id": "std-2",
+        "title": "Pemeriksaan fisik standar",
+        "description": " visus, buta warna, indeks massa tubuh, tekanan darah"
+      },
+      {
+        "id": "fas-011",
+        "title": "General purpose X-Ray/Thorax"
+      },
+      {
+        "id": "fas-027",
+        "title": "Electrocardio EKG"
+      }
+    ],
+    "laboratorium": [
+      {
+        "id": "lab-001",
+        "title": "Darah Rutin"
+      },
+      {
+        "id": "lab-026",
+        "title": "Urine Lengkap"
+      },
+      {
+        "id": "lab-003",
+        "title": "Gula darah Puasa"
+      },
+      {
+        "id": "lab-010",
+        "title": "Fungsi Hati lengkap"
+      },
+      {
+        "id": "lab-007",
+        "title": "Fungsi Ginjal"
+      },
+      {
+        "id": "lab-011",
+        "title": "Profil Lemak "
+      },
+      {
+        "id": "lab-017",
+        "title": "VDRL"
+      },
+      {
+        "id": "lab-005",
+        "title": "Faeces Rutin"
+      },
+      {
+        "id": "lab-012",
+        "title": "Patologi Dasar "
+      }
+    ]
+  },
+  {
+    "id": "pak-005",
+    "title": "Paket Gold",
+    "price": [
+      {
+        "type": "pria",
+        "value": 3800000
+      },
+      {
+        "type": "wanita",
+        "value": 4000000
+      }
+    ],
+    "img": "gold",
+    "pemeriksaan": [
+      {
+        "id": "std-1",
+        "title": "Riwayat kesehatan (anamnesis)",
+        "description": "wawancara medis dengan pasien/keluarga pasien "
+      },
+      {
+        "id": "std-2",
+        "title": "Pemeriksaan fisik standar",
+        "description": " visus, buta warna, indeks massa tubuh, tekanan darah"
+      },
+      {
+        "id": "std-3",
+        "title": "Pemeriksaan gigi",
+        "description": "Pemeriksaan gigi rutin"
+      },
+      {
+        "id": "fas-011",
+        "title": "General purpose X-Ray/Thorax"
+      },
+      {
+        "id": "fas-027",
+        "title": "Electrocardio EKG"
+      },
+      {
+        "id": "fas-028",
+        "title": "Test Treadmill Jantung"
+      },
+      {
+        "id": "fas-019",
+        "title": "Audiometri"
+      },
+      {
+        "id": "fas-030",
+        "title": "Pap Smear"
+      }
+    ],
+    "laboratorium": [
+      {
+        "id": "lab-002",
+        "title": "Darah Lengkap"
+      },
+      {
+        "id": "lab-026",
+        "title": "Urine Lengkap"
+      },
+      {
+        "id": "lab-003",
+        "title": "Gula darah Puasa"
+      },
+      {
+        "id": "lab-010",
+        "title": "Fungsi Hati lengkap"
+      },
+      {
+        "id": "lab-007",
+        "title": "Fungsi Ginjal"
+      },
+      {
+        "id": "lab-011",
+        "title": "Profil Lemak "
+      },
+      {
+        "id": "lab-017",
+        "title": "VDRL"
+      },
+      {
+        "id": "lab-006",
+        "title": "Faeces Lengkap "
+      },
+      {
+        "id": "lab-012",
+        "title": "Patologi Dasar "
+      }
+    ]
+  },
+  {
+    "id": "pak-006",
+    "title": "Paket Platinum",
+    "price": [
+      {
+        "type": "pria",
+        "value": 7100000
+      },
+      {
+        "type": "wanita",
+        "value": 7800000
+      }
+    ],
+    "img": "platinum",
+    "pemeriksaan": [
+      {
+        "id": "std-1",
+        "title": "Riwayat kesehatan (anamnesis)",
+        "description": "wawancara medis dengan pasien/keluarga pasien "
+      },
+      {
+        "id": "std-2",
+        "title": "Pemeriksaan fisik standar",
+        "description": " visus, buta warna, indeks massa tubuh, tekanan darah"
+      },
+      {
+        "id": "std-3",
+        "title": "Pemeriksaan gigi",
+        "description": "Pemeriksaan gigi rutin"
+      },
+      {
+        "id": "fas-011",
+        "title": "General purpose X-Ray/Thorax"
+      },
+      {
+        "id": "fas-027",
+        "title": "Electrocardio EKG"
+      },
+      {
+        "id": "fas-028",
+        "title": "Test Treadmill Jantung"
+      },
+      {
+        "id": "fas-019",
+        "title": "Audiometri"
+      },
+      {
+        "id": "fas-030",
+        "title": "Pap Smear"
+      },
+      {
+        "id": "fas-032",
+        "title": "USG Abdomen"
+      },
+      {
+        "id": "fas-06",
+        "title": "USG 4 dimensi "
+      },
+      {
+        "id": "fas-031",
+        "title": "Mammografi"
+      },
+      {
+        "id": "fas-029",
+        "title": "Uroflowmetri"
+      },
+      {
+        "id": "fas-033",
+        "title": "Spirometri"
+      }
+    ],
+    "laboratorium": [
+      {
+        "id": "lab-002",
+        "title": "Darah Lengkap"
+      },
+      {
+        "id": "lab-026",
+        "title": "Urine Lengkap"
+      },
+      {
+        "id": "lab-003",
+        "title": "Gula darah Puasa"
+      },
+      {
+        "id": "lab-010",
+        "title": "Fungsi Hati lengkap"
+      },
+      {
+        "id": "lab-007",
+        "title": "Fungsi Ginjal"
+      },
+      {
+        "id": "lab-011",
+        "title": "Profil Lemak "
+      },
+      {
+        "id": "lab-020",
+        "title": "Serologi Lengkap"
+      },
+      {
+        "id": "lab-006",
+        "title": "Faeces Lengkap "
+      },
+      {
+        "id": "lab-015",
+        "title": "Fibrinogen"
+      },
+      {
+        "id": "lab-016",
+        "title": "hs-CRP"
+      },
+      {
+        "id": "lab-008",
+        "title": "Mikroalbumin urin"
+      }
+    ]
+  },
+  {
+    "id": "pak-007",
+    "title": "Paket Pra Nikah",
+    "price": [
+      {
+        "type": "pria",
+        "value": 2800000
+      },
+      {
+        "type": "wanita",
+        "value": 3300000
+      }
+    ],
+    "img": "pernikahan",
+    "pemeriksaan": [
+      {
+        "id": "std-1",
+        "title": "Riwayat kesehatan (anamnesis)",
+        "description": "wawancara medis dengan pasien/keluarga pasien "
+      },
+      {
+        "id": "std-2",
+        "title": "Pemeriksaan fisik standar",
+        "description": " visus, buta warna, indeks massa tubuh, tekanan darah"
+      },
+      {
+        "id": "fas-011",
+        "title": "General purpose X-Ray/Thorax"
+      }
+    ],
+    "laboratorium": [
+      {
+        "id": "lab-002",
+        "title": "Darah Lengkap"
+      },
+      {
+        "id": "lab-026",
+        "title": "Urine Lengkap"
+      },
+      {
+        "id": "lab-003",
+        "title": "Gula darah Puasa"
+      },
+      {
+        "id": "lab-020",
+        "title": "Serologi Lengkap"
+      },
+      {
+        "id": "lab-022",
+        "title": "Serologi Darah Wanita"
+      },
+      {
+        "id": "lab-014",
+        "title": "Analisa Sperma"
+      }
+    ]
+  },
+  {
+    "id": "pak-008",
+    "title": "Paket Kesehatan Jantung",
+    "price": [
+      {
+        "type": "all",
+        "value": 3600000
+      }
+    ],
+    "img": "jantung",
+    "pemeriksaan": [
+      {
+        "id": "std-1",
+        "title": "Riwayat kesehatan (anamnesis)",
+        "description": "wawancara medis dengan pasien/keluarga pasien "
+      },
+      {
+        "id": "std-2",
+        "title": "Pemeriksaan fisik standar",
+        "description": " visus, buta warna, indeks massa tubuh, tekanan darah"
+      },
+      {
+        "id": "fas-011",
+        "title": "General purpose X-Ray/Thorax"
+      },
+      {
+        "id": "fas-027",
+        "title": "Electrocardio EKG"
+      },
+      {
+        "id": "fas-028",
+        "title": "Test Treadmill Jantung"
+      },
+      {
+        "id": "fas-013",
+        "title": "Electroencephalography "
+      }
+    ],
+    "laboratorium": [
+      {
+        "id": "lab-001",
+        "title": "Darah Rutin"
+      },
+      {
+        "id": "lab-003",
+        "title": "Gula darah Puasa"
+      },
+      {
+        "id": "lab-007",
+        "title": "Fungsi Ginjal"
+      },
+      {
+        "id": "lab-011",
+        "title": "Profil Lemak "
+      },
+      {
+        "id": "lab-015",
+        "title": "Fibrinogen"
+      },
+      {
+        "id": "lab-016",
+        "title": "hs-CRP"
+      }
+    ]
+  },
+  {
+    "id": "pak-009",
+    "title": "Paket Kesehatan Hati & Saluran Cerna",
+    "price": [
+      {
+        "type": "all",
+        "value": 5600000
+      }
+    ],
+    "img": "hati",
+    "pemeriksaan": [
+      {
+        "id": "std-1",
+        "title": "Riwayat kesehatan (anamnesis)",
+        "description": "wawancara medis dengan pasien/keluarga pasien "
+      },
+      {
+        "id": "std-2",
+        "title": "Pemeriksaan fisik standar",
+        "description": " visus, buta warna, indeks massa tubuh, tekanan darah"
+      },
+      {
+        "id": "fas-032",
+        "title": "USG Abdomen"
+      }
+    ],
+    "laboratorium": [
+      {
+        "id": "lab-001",
+        "title": "Darah Rutin"
+      },
+      {
+        "id": "lab-010",
+        "title": "Fungsi Hati lengkap"
+      },
+      {
+        "id": "lab-003",
+        "title": "Gula darah Puasa"
+      },
+      {
+        "id": "lab-020",
+        "title": "Serologi Lengkap"
+      },
+      {
+        "id": "fas-07",
+        "title": "Endoskopi/Gatroskopi"
+      }
+    ]
+  },
+  {
+    "id": "pak-10",
+    "title": "Paket Sexual Transmitted Disease",
+    "price": [
+      {
+        "type": "all",
+        "value": 2350000
+      }
+    ],
+    "img": "std",
+    "pemeriksaan": [
+      {
+        "id": "std-1",
+        "title": "Riwayat kesehatan (anamnesis)",
+        "description": "wawancara medis dengan pasien/keluarga pasien "
+      },
+      {
+        "id": "std-2",
+        "title": "Pemeriksaan fisik standar",
+        "description": " visus, buta warna, indeks massa tubuh, tekanan darah"
+      }
+    ],
+    "laboratorium": [
+      {
+        "id": "lab-002",
+        "title": "Darah Lengkap"
+      },
+      {
+        "id": "lab-023",
+        "title": "STD"
+      }
+    ]
+  }
+]

@@ -6,8 +6,6 @@ import {
 } from "@/app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 
-export const runtime = "edge";
-
 export async function getPatient(
   medicalRecordNumber: string,
   password?: string

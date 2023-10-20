@@ -11,7 +11,7 @@ type Props = {};
 
 const ModalPoliklinik = (props: Props) => {
   const {
-    state: { modalValue },
+    state: { modalValue, dataFacility },
     closeModal,
     filteringDoctor,
     openModal,
@@ -45,9 +45,9 @@ const ModalPoliklinik = (props: Props) => {
               rel="preload"
               placeholder="empty"
               src={
-                findSupportingFacility(poliInfo).length > 0
+                findSupportingFacility(poliInfo, dataFacility).length > 0
                   ? `/images/pelayanan-fasilitas/${
-                      findSupportingFacility(poliInfo)[0].img
+                      findSupportingFacility(poliInfo, dataFacility)[0].img
                     }.jpg`
                   : `/images/pelayanan-fasilitas/lab-pcr.jpg`
               }
@@ -92,9 +92,12 @@ type FacilityProps = {
   poliInfo: PoliklinikType;
 };
 const FindSupportingFacility = ({ poliInfo }: FacilityProps) => {
+  const {
+    state: { modalValue, dataFacility },
+  } = useGlobalContext();
   return (
     <div>
-      {findSupportingFacility(poliInfo).length > 0 && (
+      {findSupportingFacility(poliInfo, dataFacility).length > 0 && (
         <div className="w-full ">
           <p>
             Fasilitas pendukung Poliklinik&nbsp;
@@ -102,7 +105,7 @@ const FindSupportingFacility = ({ poliInfo }: FacilityProps) => {
             &nbsp; yang kini tersedia di RS Urip Sumoharjo :
           </p>
           <div className="grid sm:grid-cols-1 md:grid-cols-2 gap-2">
-            {findSupportingFacility(poliInfo).map((item) => {
+            {findSupportingFacility(poliInfo, dataFacility).map((item) => {
               return (
                 <div key={item.id} className="w-full flex-center-left gap-2">
                   <Image
@@ -127,6 +130,9 @@ const FindSupportingFacility = ({ poliInfo }: FacilityProps) => {
 };
 
 const FindSupportingDoctors = ({ poliInfo }: FacilityProps) => {
+  const {
+    state: { dataDoctor },
+  } = useGlobalContext();
   return (
     <div>
       <p>
@@ -135,30 +141,34 @@ const FindSupportingDoctors = ({ poliInfo }: FacilityProps) => {
         &nbsp; kami :
       </p>
       <div className="w-full grid grid-cols-3 md:flex gap-5 ">
-        {getDoctorPoli(poliInfo.id).map((item: DoctorType, index: number) => {
-          const image: string =
-            item.gender === 1 ? "male-" + (index + 1) : "female-" + (index + 1);
-          return (
-            <div
-              key={item.id}
-              className="flex flex-col items-center justify-start"
-            >
-              <Image
-                rel="preload"
-                placeholder="empty"
-                src={`/images/doctors/${image}.jpg`}
-                alt={image}
-                width={50}
-                height={50}
-                className="w-20 h-20 rounded-full"
-                loading="lazy"
-              />
-              <p className="body-4 w-20 flex flex-wrap text-center">
-                {item.name}
-              </p>
-            </div>
-          );
-        })}
+        {getDoctorPoli(poliInfo.id, dataDoctor).map(
+          (item: DoctorType, index: number) => {
+            const image: string =
+              item.gender === 1
+                ? "male-" + (index + 1)
+                : "female-" + (index + 1);
+            return (
+              <div
+                key={item.id}
+                className="flex flex-col items-center justify-start"
+              >
+                <Image
+                  rel="preload"
+                  placeholder="empty"
+                  src={`/images/doctors/${image}.jpg`}
+                  alt={image}
+                  width={50}
+                  height={50}
+                  className="w-20 h-20 rounded-full"
+                  loading="lazy"
+                />
+                <p className="body-4 w-20 flex flex-wrap text-center">
+                  {item.name}
+                </p>
+              </div>
+            );
+          }
+        )}
       </div>
     </div>
   );

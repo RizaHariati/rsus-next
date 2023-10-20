@@ -39,7 +39,7 @@ next-env.d.ts
 
 /public/images/*
 /public/sounds/*
-**/data/*
+# **/data/*
 # Local Netlify folder
 .netlify
 

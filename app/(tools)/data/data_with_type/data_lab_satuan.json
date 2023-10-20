@@ -1,0 +1,226 @@
+[
+    {
+        "_type": "lab_satuan",
+        "id": "lab-001",
+        "title": "Darah Rutin",
+        "category": "Darah",
+        "description": "Hemoglobin, Hematokrit, Lekosit, Trombosit,Eritrosit, LED",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-002",
+        "title": "Darah Lengkap",
+        "category": "Darah",
+        "description": "Hemoglobin , Hematokrit, Lekosit, Trombosit, Eritrosit, LED, Retikulosit, Diff, MCV, MCH, MCHC",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-003",
+        "title": "Gula darah Puasa",
+        "category": "Darah",
+        "description": "Puasa dan 2 Jam setelah makan",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-004",
+        "title": "Gula darah sewaktu",
+        "category": "Darah",
+        "description": "Tanpa puasa",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-005",
+        "title": "Faeces Rutin",
+        "category": "Faeces (tinja)",
+        "description": "Makroskopik (Warna, Konsistensi, Lendir, Pus, Darah ) dan Mikroskopik (Eritrosit, Lekosit, Amuba, Telur Cacing)",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-006",
+        "title": "Faeces Lengkap ",
+        "category": "Faeces (tinja)",
+        "description": "Makroskopik (Warna, Konsistensi, Lendir, Pus, Darah); Mikroskopik (Eritrosit, Lekosit, Amuba, Telur Cacing), Tumbuhan Amilum, Lemak + Darah Samar (Benzidin\/Feaces)",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-007",
+        "title": "Fungsi Ginjal",
+        "category": "Ginjal",
+        "description": "Ureum, Kreatinin, Asam Urat",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-008",
+        "title": "Mikroalbumin urin",
+        "category": "Ginjal",
+        "description": "mengidentifikasi albumin dalam urine",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-009",
+        "title": "Fungsi hati",
+        "category": "Hati",
+        "description": "SGOT, SGPT",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-010",
+        "title": "Fungsi Hati lengkap",
+        "category": "Hati",
+        "description": "SGOT, SGPT, Gamma GT, Alkali Fosfatase, Protein total, Albumin, Globulin, Bilirubin Total – direk – indirek",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-011",
+        "title": "Profil Lemak ",
+        "category": "Lemak",
+        "description": "Kolesterol Total, HDL, LDL, Trigliseride",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-012",
+        "title": "Patologi Dasar",
+        "category": "Patologi",
+        "description": "HBsAg, Anti HBs",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-013",
+        "title": "Patologi Madya",
+        "category": "Patologi",
+        "description": "Hbs Ag, Anti HBs, HIV, TPHA, VDRL",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-014",
+        "title": "Analisa Sperma",
+        "category": "Pria",
+        "description": "jumlah sperma, bentuk dan motilitas sperma",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-015",
+        "title": "Fibrinogen",
+        "category": "Protein",
+        "description": "Cek Pembekuan darah",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-016",
+        "title": "hs-CRP",
+        "category": "Protein",
+        "description": "High sensivity C-Reactive Protein",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-017",
+        "title": "VDRL",
+        "category": "Serologi Darah",
+        "description": "Test Sipilis",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-018",
+        "title": "Hepatitis B",
+        "category": "Serologi Darah",
+        "description": "HBsAg, Anti HBs",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-019",
+        "title": "Serologi Dasar",
+        "category": "Serologi Darah",
+        "description": "Hbs Ag, Anti HBs, HIV, TPHA, VDRL",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-020",
+        "title": "Serologi Lengkap",
+        "category": "Serologi Darah",
+        "description": "Hbs Ag, Anti HBs, HIV, TPHA, VDRL, TPHA, Anti HCV",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-021",
+        "title": "PSA",
+        "category": "Pria",
+        "description": "Prostate Specific Antigen pemeriksaan ini dapat digunakan untuk mendeteksi lebih awal risiko kanker prostat",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-022",
+        "title": "Serologi Darah Wanita",
+        "category": "Wanita",
+        "description": "AFP,CEA,Ca 19-9,Ca 12-5",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-023",
+        "title": "STD",
+        "category": "Serologi Darah",
+        "description": "VDRL, TPHA, Gonorhe, Jmur, Herpes type I IgG, Herpes type I, Igm, Herves type II IgG, Herves II IgM, anti HIV, HBaAg, AntiHbs, Anti HCV",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-025",
+        "title": "Urine rutin",
+        "category": "Urine",
+        "description": "Protein, Glukosa, Bilirubin, Urobilin, Sedimen",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-026",
+        "title": "Urine Lengkap",
+        "category": "Urine",
+        "description": "Protein, Glukosa, Bilirubin, Urobilin, Sedimen,Reduksi, Urobilinogen, Warna, Kejernihan, Berat Jenis, Darah Samar, PH, Nitrit",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-027",
+        "title": "PCR",
+        "category": "Covid",
+        "description": "metode pemeriksaan virus SARS Co-2 dengan mendeteksi DNA virus",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-028",
+        "title": "rapid test antibodi",
+        "category": "Covid",
+        "description": "Pemeriksaan ini menggunakan alat catridge untuk melihat adanya  antibodi yang ada dalam tubuh ketika ada infeksi virus",
+        "price": 10000
+    },
+    {
+        "_type": "lab_satuan",
+        "id": "lab-029",
+        "title": "swab antigen",
+        "category": "Covid",
+        "description": "pemeriksaan imun yang berfungsi untuk mendeteksi keberadaan antigen virus tertentu",
+        "price": 10000
+    }
+]

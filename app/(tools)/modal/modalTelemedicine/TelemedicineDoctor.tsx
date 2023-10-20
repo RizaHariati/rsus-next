@@ -5,24 +5,36 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { AppointmentMenuTypes, DoctorType } from "../../types";
 
 import Image from "next/image";
-import dataDoctor from "@/app/(tools)/data/data_dokter.json";
+
 import { toast } from "react-toastify";
 
 type Props = {};
-const randomizeDoctor = () => {
-  const newDataDoctor = dataDoctor.filter((item) => item.telemedicine === 1);
-  return [...newDataDoctor].sort(() => 0.5 - Math.random()).slice(0, 4);
-};
+
 const TelemedicineDoctor = () => {
   const {
     openModal,
-    state: { modalValue, filtered_doctor },
+    state: { modalValue, filtered_doctor, dataDoctor },
     patientState: { patient },
   } = useGlobalContext();
 
   const appointmentInfo: AppointmentMenuTypes = modalValue;
-  const [doctorList, setdoctorList] = useState<DoctorType[]>(randomizeDoctor());
+  const [doctorList, setdoctorList] = useState<DoctorType[]>([]);
   const [title, setTitle] = useState("Dokter kami yang melayani Telemedicine");
+
+  useEffect(() => {
+    if (dataDoctor.length > 0) {
+      const randomizeDoctor = () => {
+        const newDataDoctor = dataDoctor.filter(
+          (item) => item.telemedicine === 1
+        );
+        return [...newDataDoctor].sort(() => 0.5 - Math.random()).slice(0, 4);
+      };
+      setdoctorList(randomizeDoctor());
+    } else {
+      return;
+    }
+    // eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     const value = filtered_doctor.value;
@@ -35,6 +47,7 @@ const TelemedicineDoctor = () => {
         setTitle("Dokter kami yang melayani Telemedicine");
       }
     }
+    // eslint-disable-next-line
   }, [filtered_doctor]);
 
   const handleClick = (doctorInfo: DoctorType, image: string) => {

@@ -9,12 +9,13 @@ import { FacilitySanityType, FacilityType } from "@/app/(tools)/types";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import Image from "next/image";
 
-type Props = {
-  dataFacility: FacilitySanityType[];
-};
+type Props = {};
 
-const FindFacility = ({ dataFacility }: Props) => {
-  const { openModal } = useGlobalContext();
+const FindFacility = (props: Props) => {
+  const {
+    openModal,
+    state: { dataFacility },
+  } = useGlobalContext();
   const [resize, setResize] = useState(true);
   const [keyword, setKeyword] = useState<string>("");
   const [fasList, setfasList] = useState<FacilitySanityType[]>([]);

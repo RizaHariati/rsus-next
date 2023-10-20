@@ -1,5 +1,11 @@
 import { PatientType, UserType } from "../patientTypes";
-import { FilterDoctorType, LabCartType } from "../types";
+import {
+  FilterDoctorType,
+  LabCartType,
+  DoctorType,
+  FacilitySanityType,
+} from "../types";
+
 export interface AppState {
   menu_id: string | null;
   showModal: boolean;
@@ -11,6 +17,8 @@ export interface AppState {
   alertTitle: string;
   alertValue: any;
   labCart: LabCartType[];
+  dataDoctor: DoctorType[];
+  dataFacility: FacilitySanityType[];
 }
 
 export interface PatientState {

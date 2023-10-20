@@ -16,7 +16,7 @@ type Props = {};
 
 const ModalTatapMuka = (props: Props) => {
   const {
-    state: { modalValue, selected_date },
+    state: { modalValue, selected_date, dataDoctor },
     patientState: { patient },
     openModal,
     closeModal,
@@ -61,6 +61,7 @@ const ModalTatapMuka = (props: Props) => {
     const check = checkExistingSchedule(
       selected_date,
       patient.scheduled_appointments || [],
+      dataDoctor,
       doctorInfo
     );
     if (!check.passChecking) {
