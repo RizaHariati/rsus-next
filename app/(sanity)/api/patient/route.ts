@@ -4,7 +4,7 @@ import { NextApiRequest, NextApiResponse } from "next";
 import { groq } from "next-sanity";
 
 import { NextRequest, NextResponse } from "next/server";
-
+export const runtime = "edge";
 export async function GET(req: NextRequest) {
   const medicalRecordNumber = req.nextUrl.searchParams.get("search");
   const password = req.nextUrl.searchParams.get("password");
