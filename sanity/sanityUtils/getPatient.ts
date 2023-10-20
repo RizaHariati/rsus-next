@@ -14,6 +14,8 @@ export async function getPatient(
     _id: "basjdfbsadf",
     medicalRecordNumber,
     password,
+    isValidSignature:
+      "Ocn8ei1UjgDKnDGHUv8iDSCdH4RwDXTUFbVZaIuosoguVI9lJCt5gxjbsc16u0zgb",
   };
   const options: RequestInit = {
     method: "PUT",
