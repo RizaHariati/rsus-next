@@ -43,6 +43,6 @@ next-env.d.ts
 # Local Netlify folder
 .netlify
 
-**/schema/*
-**/sanity/schema/*
+# **/schema/*
+# **/sanity/schema/*
 **/out/*
