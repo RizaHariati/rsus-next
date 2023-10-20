@@ -5,13 +5,14 @@ import {
   sampleSchedule,
 } from "@/app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
-
+const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/?`;
 export async function getPatient(
   medicalRecordNumber: string,
   password?: string
 ): Promise<any[] | null> {
-  const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/?`;
-
+  console.log(
+    `${URL_PATIENT}search=${medicalRecordNumber}&password=${password}`
+  );
   const res = await fetch(
     `${URL_PATIENT}search=${medicalRecordNumber}&password=${password}`,
     { cache: "no-store" }
@@ -32,7 +33,7 @@ export async function getPatient(
         },
       ];
     } else {
-      return null;
+      return [];
     }
   } else {
     return [];
