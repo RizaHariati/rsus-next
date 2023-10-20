@@ -43,7 +43,7 @@ export async function GET(req: NextRequest) {
            }
         }`
     );
-    return NextResponse.json({ data: data[0], message: req.url });
+    return NextResponse.json({ message: req.url });
   }
 }
 
