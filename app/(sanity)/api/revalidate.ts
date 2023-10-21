@@ -23,7 +23,7 @@ export default async function revalidate(request: any, res: NextApiResponse) {
   //   const jsonBody = JSON.parse(body);
   //   console.log({ jsonBody });
   //   res.json({ success: true });
-  return NextResponse.json({ valid });
+  return NextResponse.next();
 }
 
 // Next.js will by default parse the body, which can lead to invalid signatures
