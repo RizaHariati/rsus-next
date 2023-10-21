@@ -13,7 +13,7 @@ export async function PUT(req: NextRequest) {
   // );
 
   console.log("ENTER ROUTE API");
-  return NextResponse.json({ body: "this is the response from API" });
+  // return NextResponse.json({ body: "this is the response from API" });
   const { medicalRecordNumber, password } = await req.json();
 
   if (!password) {
