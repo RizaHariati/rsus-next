@@ -1,3 +1,4 @@
+import { NEXT_PUBLIC_BASE_URL } from "@/sanity/env";
 import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 import { NextApiRequest, NextApiResponse } from "next";
 import { NextRequest, NextResponse } from "next/server";
@@ -8,14 +9,15 @@ export default async function handler(request: any, res: NextApiResponse) {
   console.log("enter header");
 
   const signature = request.headers.get(SIGNATURE_HEADER_NAME) as string;
-  const body = JSON.stringify(await request.json());
+  const jsonBody = await request.json();
+  const body = JSON.stringify(jsonBody);
   const valid = isValidSignature(body, signature, secret);
   //   const body = await readBody(req); // Read the body into a string
   //   if (!isValidSignature(body, signature, secret)) {
   //     res.status(401).json({ success: false, message: "Invalid signature" });
   //     return;
   //   }
-
+  res.revalidate(`${NEXT_PUBLIC_BASE_URL}/api/`);
   //   const jsonBody = JSON.parse(body);
   //   console.log({ jsonBody });
   //   res.json({ success: true });
