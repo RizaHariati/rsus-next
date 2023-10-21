@@ -25,35 +25,26 @@ export async function getPatient(
   };
 
   const res = await fetch(URL_PATIENT, options);
+
   console.log({ res });
+  // console.log({ res: await res.json() });
+  if (res && res.status === 200) {
+    const data = await res.json();
 
-  return res;
+    return data;
+  } else if (res.status === 404 || res.status === 403 || res.status === 405) {
+    if (medicalRecordNumber === "US4234123398") {
+      return {
+        medical_record_number: "US4234123398",
+        patient_profile: sampleProfile,
+        scheduled_appointments: sampleSchedule,
+        medical_records: [],
+        notifications: sampleNotifications,
+      };
+    } else {
+      return res;
+    }
+  } else {
+    return res;
+  }
 }
-
-// const res = await fetch(
-//   URL_PATIENT,
-//   // `${URL_PATIENT}?search=${medicalRecordNumber}&password=${password}`,
-//   { cache: "no-store" }
-// );
-
-// console.log({ res });
-// // console.log({ res: await res.json() });
-// if (res && res.status === 200) {
-//   const data = await res.json();
-
-//   return data;
-// } else if (res.status === 404 || res.status === 403 || res.status === 405) {
-//   if (medicalRecordNumber === "US4234123398") {
-//     return {
-//       medical_record_number: "US4234123398",
-//       patient_profile: sampleProfile,
-//       scheduled_appointments: sampleSchedule,
-//       medical_records: [],
-//       notifications: sampleNotifications,
-//     };
-//   } else {
-//     return res;
-//   }
-// } else {
-//   return res;
-// }
