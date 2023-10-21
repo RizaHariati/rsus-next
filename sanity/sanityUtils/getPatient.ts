@@ -4,6 +4,7 @@ import {
   sampleSchedule,
 } from "@/app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
+import { SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 
 const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/`;
 export async function getPatient(
@@ -18,7 +19,9 @@ export async function getPatient(
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      "sanity-webhook-signature": "sanity-webhook-signature",
+      SIGNATURE_HEADER_NAME,
+      Authorization:
+        "Bearer skOuTPWYzAeqk7ISYYWNtxpmhpbzmmDh1e1VZPLA1VWpSGufmcHLXtbSwrgHRboQu706ofMkRfApPVF2nUMEAnkaKu3lsuvnDDQTSuALJ7DmuXL3zUVOcn8ei1UjgDKnDGHUv8iDSCdH4RwDXTUFbVZaIuosoguVI9lJCt5gxjbsc16u0zgb",
     },
     body: JSON.stringify(body),
   };
