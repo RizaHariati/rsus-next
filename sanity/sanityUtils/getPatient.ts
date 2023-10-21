@@ -11,6 +11,7 @@ export async function getPatient(
   medicalRecordNumber: string,
   password?: string
 ): Promise<any> {
+  console.log({ SIGNATURE_HEADER_NAME });
   const body = {
     medicalRecordNumber,
     password,
@@ -19,6 +20,7 @@ export async function getPatient(
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
+      SIGNATURE_HEADER_NAME,
     },
     body: JSON.stringify(body),
   };

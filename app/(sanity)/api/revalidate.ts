@@ -8,7 +8,7 @@ const secret = process.env.SANITY_REVALIDATE_SECRET || "";
 export default async function handler(request: any, res: NextApiResponse) {
   console.log("enter header");
 
-  const signature = request.headers.get(SIGNATURE_HEADER_NAME) as string;
+  const signature = request.headers[SIGNATURE_HEADER_NAME] as string;
   const jsonBody = await request.json();
   const body = JSON.stringify(jsonBody);
   const valid = isValidSignature(body, signature, secret);
