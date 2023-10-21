@@ -6,7 +6,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 const secret = process.env.SANITY_REVALIDATE_SECRET || "";
 
-export async function revalidate(request: any, response: NextApiResponse) {
+export default async function handler(request: any, response: NextApiResponse) {
   console.log("enter header");
 
   const signature = request.headers[SIGNATURE_HEADER_NAME] as string;
