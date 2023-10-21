@@ -18,7 +18,7 @@ export const postPatient = async (patient: PatientType) => {
   };
 
   const options: RequestInit = {
-    method: "POST",
+    method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

@@ -17,14 +17,14 @@ export async function getPatient(
   const options: RequestInit = {
     method: "PUT",
     headers: {
-      Accept: "application/json",
       "Content-Type": "application/json",
+      SIGNATURE_HEADER_NAME: "sanity-webhook-signature",
     },
     body: JSON.stringify(body),
   };
 
   const res = await fetch(URL_PATIENT, options);
-  console.log({ resInGetPatient: res.json() });
+  console.log({ resInGetPatient: await res.json() });
 
   return res;
 }
