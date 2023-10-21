@@ -57,10 +57,10 @@ export const LoginFormContent = () => {
         );
       });
       checkingPatient.then((res: any) => {
-        console.log({ resFromUserLogin: res });
+        // console.log({ resFromUserLogin: res });
         new Promise((resolve, reject) => {
           if (!res || res?.status !== 200) {
-            return reject(console.log("failed fetched"));
+            return reject(console.log(""));
           } else {
             return resolve(console.log("successfully fethced"));
           }
