@@ -18,7 +18,7 @@ export async function getPatient(
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
-      SIGNATURE_HEADER_NAME: "sanity-webhook-signature",
+      "sanity-webhook-signature": "sanity-webhook-signature",
     },
     body: JSON.stringify(body),
   };
