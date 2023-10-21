@@ -1,3 +1,4 @@
+import { NEXT_PUBLIC_BASE_URL } from "@/sanity/env";
 import client, { writeClient } from "@/sanity/sanityUtils/sanity-utils";
 import { NextApiRequest, NextApiResponse } from "next";
 
@@ -6,7 +7,7 @@ import { parseBody } from "next-sanity/webhook";
 
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(req: NextRequest) {
+export async function PUT(req: NextRequest, res: NextApiResponse) {
   // const { body, isValidSignature } = await parseBody(
   //   req,
   //   process.env.SANITY_REVALIDATE_SECRET

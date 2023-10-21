@@ -11,13 +11,14 @@ export default async function revalidate(request: any, res: NextApiResponse) {
   const signature = request.headers[SIGNATURE_HEADER_NAME] as string;
   const jsonBody = await request.json();
   const body = JSON.stringify(jsonBody);
-  const valid = isValidSignature(body, signature, secret);
+  const valid = isValidSignature(body, SIGNATURE_HEADER_NAME, secret);
   //   const body = await readBody(req); // Read the body into a string
   //   if (!isValidSignature(body, signature, secret)) {
   //     res.status(401).json({ success: false, message: "Invalid signature" });
   //     return;
   //   }
   res.revalidate(`${NEXT_PUBLIC_BASE_URL}/api/`);
+  res.revalidate(`${NEXT_PUBLIC_BASE_URL}/api/patient`);
   console.log(`${NEXT_PUBLIC_BASE_URL}/api/`);
   //   const jsonBody = JSON.parse(body);
   //   console.log({ jsonBody });

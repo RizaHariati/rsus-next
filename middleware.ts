@@ -13,12 +13,10 @@ import { NextApiResponse } from "next";
 const secret = process.env.SANITY_REVALIDATE_SECRET || "";
 export async function middleware(request: any, response: NextApiResponse) {
   if (!request.body) return NextResponse.next();
-  const signature = request.headers[SIGNATURE_HEADER_NAME] as string;
+  const signature = request.headers[SIGNATURE_HEADER_NAME];
   const body = JSON.stringify(await request.json());
-  const valid = isValidSignature(body, signature, secret);
-  console.log({ validInMiddleWare: valid });
-  response.revalidate(`${NEXT_PUBLIC_BASE_URL}/api/`);
-  console.log(`${NEXT_PUBLIC_BASE_URL}/api/`);
+  const valid = isValidSignature(body, SIGNATURE_HEADER_NAME, secret);
+
   return NextResponse.next();
 }
 
