@@ -6,15 +6,19 @@ import {
   ConnectLikeRequest,
 } from "@sanity/webhook";
 import { parseBody } from "next-sanity/webhook";
+import { NEXT_PUBLIC_BASE_URL } from "./sanity/env";
+import { NextApiResponse } from "next";
 // This function can be marked `async` if using `await` inside
 
 const secret = process.env.SANITY_REVALIDATE_SECRET || "";
-export async function middleware(request: any) {
+export async function middleware(request: any, response: NextApiResponse) {
   if (!request.body) return NextResponse.next();
   const signature = request.headers[SIGNATURE_HEADER_NAME] as string;
   const body = JSON.stringify(await request.json());
   const valid = isValidSignature(body, signature, secret);
   console.log({ validInMiddleWare: valid });
+  response.revalidate(`${NEXT_PUBLIC_BASE_URL}/api/`);
+  console.log(`${NEXT_PUBLIC_BASE_URL}/api/`);
   return NextResponse.next();
 }
 
