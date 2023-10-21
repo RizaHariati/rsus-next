@@ -11,7 +11,7 @@ export async function PUT(req: NextRequest) {
     req,
     process.env.SANITY_REVALIDATE_SECRET
   );
-
+  return NextResponse.json({ body });
   const { medicalRecordNumber, password } = await req.json();
 
   if (!password) {

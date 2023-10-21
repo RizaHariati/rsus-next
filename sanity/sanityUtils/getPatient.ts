@@ -24,7 +24,8 @@ export async function getPatient(
   };
 
   const res = await fetch(URL_PATIENT, options);
-  console.log({ resInGetPatient: res });
+  console.log({ resInGetPatient: res.json() });
+
   return res;
 }
 
