@@ -26,11 +26,8 @@ export async function getPatient(
 
   const res = await fetch(URL_PATIENT, options);
 
-  console.log({ res });
-  // console.log({ res: await res.json() });
   if (res && res.status === 200) {
     const data = await res.json();
-
     return data;
   } else if (res.status === 404 || res.status === 403 || res.status === 405) {
     if (medicalRecordNumber === "US4234123398") {
@@ -42,9 +39,9 @@ export async function getPatient(
         notifications: sampleNotifications,
       };
     } else {
-      return res;
+      return null;
     }
   } else {
-    return res;
+    return null;
   }
 }

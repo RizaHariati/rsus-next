@@ -56,49 +56,40 @@ export const LoginFormContent = () => {
           getPatient(loginData.medical_record_number!, loginData.password)
         );
       });
-      checkingPatient.then((res: any) => {
-        // console.log({ resFromUserLogin: res });
-        new Promise((resolve, reject) => {
-          if (!res || res?.status !== 200) {
-            return reject(console.log(""));
+      checkingPatient
+        .then((res: any) => {
+          if (!res || Object.keys(res).length < 1) {
+            return toast.error("Nomor Rekam Medis/Password salah", {
+              position: toast.POSITION.TOP_CENTER,
+            });
           } else {
-            return resolve(console.log("successfully fethced"));
+            const verification_number = Math.floor(Math.random() * 9000 + 1000);
+            openAlert("verifikasi", {
+              verification_number,
+              data: loginData,
+              type: "login",
+            });
           }
-        });
 
-        if (!res || Object.keys(res).length < 1) {
-          return toast.error("Nomor Rekam Medis/Password salah", {
-            position: toast.POSITION.TOP_CENTER,
+          return res;
+        })
+        .then((res) => {
+          setLoginData({
+            medical_record_number: "",
+            password: "",
           });
-        } else {
-          const verification_number = Math.floor(Math.random() * 9000 + 1000);
-          console.log("sukses");
-          // openAlert("verifikasi", {
-          //   verification_number,
-          //   data: loginData,
-          //   type: "login",
-          // });
-        }
-        console.log("babi");
-        return res;
-      });
-      // .then((res) => {
-      //   setLoginData({
-      //     medical_record_number: "",
-      //     password: "",
-      //   });
 
-      //   return res;
-      // })
-      // .catch((err) => {
-      //   return err;
-      // });
+          return res;
+        })
+        .catch((err) => {
+          return err;
+        });
 
       toast.promise(checkingPatient, {
         pending: "harap tunggu sebentar kami akan mengirimkan nomor verifikasi",
         success:
           "Silahkan mengisi nomor verifikasi sesuai nomor yang kami kirim",
-        error: "Promise rejected 🤯",
+        error: "Terjadi kesalahan teknis",
       });
     }
   };
