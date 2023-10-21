@@ -1,6 +1,7 @@
 import { NEXT_PUBLIC_BASE_URL } from "@/sanity/env";
 import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 import { NextApiRequest, NextApiResponse } from "next";
+import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 
 const secret = process.env.SANITY_REVALIDATE_SECRET || "";
@@ -17,8 +18,8 @@ export default async function revalidate(request: any, res: NextApiResponse) {
   //     res.status(401).json({ success: false, message: "Invalid signature" });
   //     return;
   //   }
-  res.revalidate(`${NEXT_PUBLIC_BASE_URL}/api/`);
-  res.revalidate(`${NEXT_PUBLIC_BASE_URL}/api/patient`);
+  revalidatePath(`${NEXT_PUBLIC_BASE_URL}/api/`);
+  revalidatePath(`${NEXT_PUBLIC_BASE_URL}/api/patient`);
   console.log(`${NEXT_PUBLIC_BASE_URL}/api/`);
   //   const jsonBody = JSON.parse(body);
   //   console.log({ jsonBody });
