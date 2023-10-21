@@ -23,7 +23,7 @@ const nextConfig = {
       },
     ];
   },
-  output: process.env.NODE_ENV === "production" ? "export" : "standalone",
+  // output: process.env.NODE_ENV === "production" ? "export" : "standalone",
   reactStrictMode: true,
   // experimental: {
   //   serverActions: true,
