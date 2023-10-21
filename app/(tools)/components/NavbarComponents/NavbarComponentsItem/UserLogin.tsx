@@ -72,7 +72,7 @@ export const LoginFormContent = () => {
           });
         } else {
           const verification_number = Math.floor(Math.random() * 9000 + 1000);
-
+          console.log("sukses");
           // openAlert("verifikasi", {
           //   verification_number,
           //   data: loginData,
