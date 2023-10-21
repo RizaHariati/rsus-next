@@ -18,6 +18,7 @@ export default async function handler(request: any, res: NextApiResponse) {
   //     return;
   //   }
   res.revalidate(`${NEXT_PUBLIC_BASE_URL}/api/`);
+  console.log(`${NEXT_PUBLIC_BASE_URL}/api/`);
   //   const jsonBody = JSON.parse(body);
   //   console.log({ jsonBody });
   //   res.json({ success: true });
