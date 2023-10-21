@@ -5,7 +5,7 @@ import {
 } from "@/app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 
-const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/revalidate`;
+const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient`;
 export async function getPatient(
   medicalRecordNumber: string,
   password?: string
@@ -15,7 +15,7 @@ export async function getPatient(
     password,
   };
   const options: RequestInit = {
-    method: "POST",
+    method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
