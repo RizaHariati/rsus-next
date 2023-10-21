@@ -54,7 +54,7 @@ export async function PUT(req: NextRequest) {
 }
 
 export async function GET(req: NextRequest) {
-  const medicalRecordNumber = req.nextUrl.searchParams.get("search");
+  const medicalRecordNumber = req.nextUrl.searchParams.get("id");
   const password = req.nextUrl.searchParams.get("password");
 
   if (!password) {

@@ -8,13 +8,6 @@ import { parseBody } from "next-sanity/webhook";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PUT(req: NextRequest, res: NextApiResponse) {
-  // const { body, isValidSignature } = await parseBody(
-  //   req,
-  //   process.env.SANITY_REVALIDATE_SECRET
-  // );
-
-  console.log("ENTER ROUTE API");
-  // return NextResponse.json({ body: "this is the response from API" });
   const { medicalRecordNumber, password } = await req.json();
 
   if (!password) {
