@@ -4,6 +4,7 @@ import { isValidSignature, SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
   console.log("enter middleware");
+  console.log({ message: SIGNATURE_HEADER_NAME });
   NextResponse.json({ message: isValidSignature });
   return NextResponse.next();
   return NextResponse.redirect(new URL("/home", request.url));
@@ -11,5 +12,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-  matcher: "/api/:path*",
+  matcher: "/api/:function*",
 };

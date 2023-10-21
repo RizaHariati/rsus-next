@@ -8,6 +8,7 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  console.log("enter header");
   return NextResponse.json({ message: SIGNATURE_HEADER_NAME });
   const signature: any = req.headers[SIGNATURE_HEADER_NAME];
   const body = await readBody(req); // Read the body into a string
