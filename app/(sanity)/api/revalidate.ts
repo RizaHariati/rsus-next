@@ -22,6 +22,16 @@ export default async function handler(request: any, response: NextApiResponse) {
   response.revalidate(`${NEXT_PUBLIC_BASE_URL}/api/`);
   response.revalidate(`${NEXT_PUBLIC_BASE_URL}/api/patient`);
   console.log(`${NEXT_PUBLIC_BASE_URL}/api/`);
+  response.setHeader("Access-Control-Allow-Credentials", "true");
+  response.setHeader("Access-Control-Allow-Origin", "*");
+  response.setHeader(
+    "Access-Control-Allow-Methods",
+    "GET,OPTIONS,PATCH,DELETE,POST,PUT"
+  );
+  response.setHeader(
+    "Authorization",
+    "Bearer  skOuTPWYzAeqk7ISYYWNtxpmhpbzmmDh1e1VZPLA1VWpSGufmcHLXtbSwrgHRboQu706ofMkRfApPVF2nUMEAnkaKu3lsuvnDDQTSuALJ7DmuXL3zUVOcn8ei1UjgDKnDGHUv8iDSCdH4RwDXTUFbVZaIuosoguVI9lJCt5gxjbsc16u0zgb"
+  );
   //   const jsonBody = JSON.parse(body);
   //   console.log({ jsonBody });
   //   res.json({ success: true });
