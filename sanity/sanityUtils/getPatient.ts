@@ -5,7 +5,7 @@ import {
 } from "@/app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 
-const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient`;
+const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/`;
 export async function getPatient(
   medicalRecordNumber: string,
   password?: string
