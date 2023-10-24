@@ -16,7 +16,7 @@ export const getUser = async () => {
     getUserFromStorage.medical_record_number
   ) {
     const { medical_record_number, password } = getUserFromStorage;
-    const { data }: any = await getPatient(medical_record_number, password);
+    const data: any = await getPatient(medical_record_number, password);
 
     if (data && Object.keys(data).length > 0) {
       return { user: getUserFromStorage, patient: data };

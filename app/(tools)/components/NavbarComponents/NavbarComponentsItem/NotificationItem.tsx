@@ -29,9 +29,7 @@ const NotificationItem = ({
 }: Props) => {
   const {
     patientState: { patient },
-
     clearNotifBackground,
-    deleteNotification,
   } = useGlobalContext();
 
   const handleMouseEnter = (notificationItem: NotificationType) => {

@@ -15,9 +15,13 @@ export async function PUT(req: NextRequest) {
         .then((res) => NextResponse.json(res))
         .catch((err) => NextResponse.json(err));
 
-      return responseData;
+      return NextResponse.json({
+        status: 200,
+        message: "notification added",
+        data,
+      });
     } else {
-      return NextResponse.json({ message: "notification failed" });
+      return NextResponse.json({ status: 404, message: "notification failed" });
     }
   }
 }

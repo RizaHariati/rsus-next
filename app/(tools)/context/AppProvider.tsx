@@ -150,8 +150,8 @@ export const AppProvider = ({ children }: Props) => {
     dispatch({ type: "CLEAR_ITEM" });
   };
 
-  const login = async (loginData: Partial<UserType>) => {
-    await patientDispatch({ type: "LOGIN_USER", payload: loginData });
+  const login = (user: UserType, patient: PatientType) => {
+    patientDispatch({ type: "LOGIN_USER", payload: { user, patient } });
   };
 
   const logout = () => {

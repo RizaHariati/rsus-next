@@ -14,23 +14,10 @@ export async function getPatient(
   const res = await fetch(
     `${URL_PATIENT}id=${medicalRecordNumber}&password=${password}`
   );
-  // const body = {
-  //   medicalRecordNumber,
-  //   password,
-  // };
-  // const options: RequestInit = {
-  //   method: "PUT",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //     SIGNATURE_HEADER_NAME: "sanity-webhook-signature",
-  //   },
-  //   body: JSON.stringify(body),
-  // };
-
-  // const res = await fetch(URL_PATIENT, options);
 
   if (res && res.status === 200) {
-    const data = await res.json();
+    const { data } = await res.json();
+
     return data;
   } else if (res.status === 404 || res.status === 403 || res.status === 405) {
     if (medicalRecordNumber === "US4234123398") {

@@ -8,6 +8,7 @@ import InputMedicalRecord from "../../InputMedicalRecord";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeLowVision } from "@fortawesome/free-solid-svg-icons";
 import { getPatient } from "@/sanity/sanityUtils/getPatient";
+import Error from "next/error";
 type Props = {};
 
 const UserLogin = (props: Props) => {
@@ -55,41 +56,34 @@ export const LoginFormContent = () => {
         return resolve(
           getPatient(loginData.medical_record_number!, loginData.password)
         );
-      });
-      checkingPatient
-        .then((res: any) => {
+      }).then((res: any) => {
+        const response = new Promise((resolve, reject) => {
           if (!res || Object.keys(res).length < 1) {
-            return toast.error("Nomor Rekam Medis/Password salah", {
-              position: toast.POSITION.TOP_CENTER,
-            });
+            return reject(console.log("password/nomor rekam medis salah"));
           } else {
             const verification_number = Math.floor(Math.random() * 9000 + 1000);
-            openAlert("verifikasi", {
-              verification_number,
-              data: loginData,
-              type: "login",
+            setLoginData({
+              medical_record_number: "",
+              password: "",
             });
+
+            return resolve(
+              openAlert("verifikasi", {
+                verification_number,
+                data: loginData,
+                type: "login",
+              })
+            );
           }
-
-          return res;
-        })
-        .then((res) => {
-          setLoginData({
-            medical_record_number: "",
-            password: "",
-          });
-
-          return res;
-        })
-        .catch((err) => {
-          return err;
         });
+        return response;
+      });
 
       toast.promise(checkingPatient, {
-        pending: "harap tunggu sebentar kami akan mengirimkan nomor verifikasi",
+        pending: "Mengecek database...",
         success:
           "Silahkan mengisi nomor verifikasi sesuai nomor yang kami kirim",
-        error: "Terjadi kesalahan teknis",
+        error: "Nomor Rekam Medis/Password salah",
       });
     }
   };

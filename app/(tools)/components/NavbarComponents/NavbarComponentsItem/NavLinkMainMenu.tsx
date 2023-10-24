@@ -47,15 +47,13 @@ const NavLinkMainMenu = (props: Props) => {
 
     if (loginNotification.length > 1) {
       const logoutPatient = new Promise((resolve) => {
-        console.log(patient.medical_record_number);
         return resolve(getPatient(patient.medical_record_number, ""));
       });
 
       const dataLogout = logoutPatient
         .then((res: any) => {
-          console.log({ res });
-          const patientData = res.data;
-          console.log({ patientData });
+          const patientData = res;
+
           if (!patientData || Object.keys(patientData).length < 1) {
             return toast.error("terjadi kesalahan sistem");
           }
@@ -67,7 +65,7 @@ const NavLinkMainMenu = (props: Props) => {
             );
             if (!findNotif) return item;
           });
-          console.log({ filterNotifications });
+
           const body = {
             _id: _id,
             data: {
@@ -84,7 +82,7 @@ const NavLinkMainMenu = (props: Props) => {
             },
             body: JSON.stringify(body),
           };
-          console.log({ options });
+
           const removingNotification = new Promise((resolve) => {
             resolve(fetch(URL_NOTIFICATION, options));
           });

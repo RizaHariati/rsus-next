@@ -34,12 +34,8 @@ export const patientReducer = (
   }
 
   if (action.type === "LOGIN_USER") {
-    const patient = action.payload;
-
-    let user = {
-      ...action.payload,
-      login: true,
-    };
+    const patient = action.payload.patient;
+    const user = action.payload.user;
 
     return {
       ...patientState,

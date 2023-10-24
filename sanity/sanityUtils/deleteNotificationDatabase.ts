@@ -12,7 +12,7 @@ export async function deleteNotificationDatabase(
   const URL_NOTIFICATION = `${NEXT_PUBLIC_BASE_URL}/api/notification`;
   if (medicalRecordNumber === "US4234123398") return "sample data";
   else {
-    const { data }: any = await getPatient(medicalRecordNumber, "");
+    const data: any = await getPatient(medicalRecordNumber, "");
     if (!data || Object.keys(data).length < 1) {
       return toast.error("terjadi kesalahan sistem");
     }

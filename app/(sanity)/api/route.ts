@@ -10,16 +10,21 @@ import { NextRequest, NextResponse } from "next/server";
 export async function PUT(req: NextRequest, res: NextApiResponse) {
   const { medicalRecordNumber, password } = await req.json();
 
-  if (!password) {
-    const data = await writeClient.fetch(
-      groq`*[_type=='patient'
+  try {
+    if (!password) {
+      const data = await writeClient.fetch(
+        groq`*[_type=='patient'
           && medical_record_number =='${medicalRecordNumber}'
           ]`
-    );
-    return NextResponse.json({ data: data[0] });
-  } else {
-    const data = await writeClient.fetch(
-      groq`*[_type=='patient'
+      );
+      if (!data || data.length < 1) {
+        return NextResponse.json({ status: 200, data: [] });
+      } else {
+        return NextResponse.json({ status: 200, data: data[0] });
+      }
+    } else {
+      const data = await writeClient.fetch(
+        groq`*[_type=='patient'
           && medical_record_number =='${medicalRecordNumber}'
           && patient_profile.password=='${password}'
           ]{ medical_record_number,
@@ -43,7 +48,14 @@ export async function PUT(req: NextRequest, res: NextApiResponse) {
                 seen
            }
         }`
-    );
-    return NextResponse.json({ data: data[0] });
+      );
+      if (!data || data.length < 1) {
+        return NextResponse.json({ status: 200, data: [] });
+      } else {
+        return NextResponse.json({ status: 200, data: data[0] });
+      }
+    }
+  } catch (error) {
+    return NextResponse.json({ status: 404, data: [] });
   }
 }
