@@ -1,7 +1,7 @@
 import { PatientType } from "../../app/(tools)/patientTypes";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 
-const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient`;
+const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
 export const postPatient = async (patient: PatientType) => {
   const body = {
     _type: "patient",
@@ -18,7 +18,7 @@ export const postPatient = async (patient: PatientType) => {
   };
 
   const options: RequestInit = {
-    method: "PUT",
+    method: "POST",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",

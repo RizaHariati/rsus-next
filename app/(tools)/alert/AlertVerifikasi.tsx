@@ -15,6 +15,7 @@ import { createNotification } from "@/sanity/sanityUtils/createNotification";
 import Loading from "../../(site)/about-group/activity/loading";
 import { PropagateLoader, RingLoader } from "react-spinners";
 import Error from "next/error";
+import { loadingPatient, loginUser } from "./alertVerifikasiUtils/loginUser";
 type CheckType = { id: number; value: string };
 type Props = {};
 const placehoder_values: CheckType[] = [
@@ -73,20 +74,7 @@ const AlertVerifikasi = (props: Props) => {
   };
 
   const createLoginUser = () => {
-    const loginUser = new Promise((resolve) => {
-      let newNotification: NotificationType & { _type: string; _key: string } =
-        {
-          id: getNotificationID(patient.notifications || []),
-          notification_code: "ncat-001",
-          notification_date: moment().format("YYYY-MM-DD[T]HH:mm"),
-          seen: false,
-          _type: "array_of_notifications",
-          _key: Math.floor(Math.random() * 1000000).toString(),
-        };
-      return resolve(
-        createNotification(data.medical_record_number, newNotification)
-      );
-    }).then((resNotif: any) => {
+    loginUser(patient, data).then((resNotif: any) => {
       const loggingUser = new Promise((resolve, reject) => {
         if (!resNotif || !resNotif.status) {
           return reject("new notification is not registered");
@@ -94,34 +82,7 @@ const AlertVerifikasi = (props: Props) => {
           const gettingPatient = new Promise((resolve) => {
             resolve(getPatient(data.medical_record_number, data.password));
           }).then((patient: any) => {
-            if (patient && Object.keys(patient).length > 0) {
-              let user: UserType = {
-                login: true,
-                password: patient.patient_profile.password,
-                medical_record_number: patient.medical_record_number,
-              };
-              if (resNotif.status === 204) {
-                const { id, notification_code, notification_date, seen } =
-                  resNotif.data;
-                const newNotification = {
-                  id,
-                  notification_code,
-                  notification_date,
-                  seen,
-                };
-                patient = {
-                  ...patient,
-                  notifications: [
-                    ...(patient.notifications || []),
-                    {
-                      ...newNotification,
-                    },
-                  ],
-                };
-              }
-              return { user, patient };
-            }
-            return console.log("patient not found");
+            return loadingPatient(patient, resNotif);
           });
           return resolve(gettingPatient);
         }
@@ -139,7 +100,7 @@ const AlertVerifikasi = (props: Props) => {
         });
     });
 
-    toast.promise(loginUser, {
+    toast.promise(loginUser(patient, data), {
       pending: "Loading data pasien..",
       success: "Selamat datang di RS Urip Sumoharjo ",
       error: "Nomor Rekam Medis/Password salah",
@@ -177,7 +138,7 @@ const AlertVerifikasi = (props: Props) => {
     };
 
     const patientExist = new Promise((resolve) => {
-      return resolve(getPatient(newPatient.medical_record_number));
+      return resolve(getPatient(newPatient.medical_record_number, ""));
     });
 
     patientExist.then((res: any) => {
@@ -185,7 +146,7 @@ const AlertVerifikasi = (props: Props) => {
         closeAlert();
         return toast.error("terjadi kesalahan sistem");
       } else {
-        if (Object.keys(res).length > 0) {
+        if (res.length > 0) {
           closeAlert();
           return toast.error("Medical Record Exist");
         } else {
