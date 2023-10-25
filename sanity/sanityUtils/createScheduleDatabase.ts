@@ -17,7 +17,7 @@ export async function createScheduleDatabase(
       _key: Math.floor(Math.random() * 1000000).toString(),
     };
   });
-  const { data }: any = await getPatient(medicalRecordNumber, "");
+  const data: any = await getPatient(medicalRecordNumber, "");
 
   if (!data || Object.keys(data).length < 1) {
     return toast.error("terjadi kesalahan sistem");
