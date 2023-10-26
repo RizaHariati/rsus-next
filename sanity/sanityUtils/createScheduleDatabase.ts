@@ -8,7 +8,7 @@ export async function createScheduleDatabase(
   medicalRecordNumber: string,
   newSchedule: ScheduledType[]
 ) {
-  const URL_SCHEDULE = `${NEXT_PUBLIC_BASE_URL}/api/schedule`;
+  const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
   if (medicalRecordNumber === "US4234123398") return "sample data";
   const newSanitySchedule = newSchedule.map((item) => {
     return {
@@ -29,7 +29,8 @@ export async function createScheduleDatabase(
   ];
   const body = {
     _id: data._id,
-    scheduled_appointments,
+    key: "scheduled_appointments",
+    data: scheduled_appointments,
   };
 
   const options: RequestInit = {
@@ -41,7 +42,7 @@ export async function createScheduleDatabase(
     body: JSON.stringify(body),
   };
 
-  const response = await fetch(URL_SCHEDULE, options);
+  const response = await fetch(URL_PATIENT, options);
 
   return response;
 }

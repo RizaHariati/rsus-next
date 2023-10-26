@@ -28,6 +28,7 @@ export async function updateNotification(
 
       const body = {
         _id: data._id,
+        key: "notifications",
         data: {
           ...data,
           notifications: [

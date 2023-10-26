@@ -9,7 +9,7 @@ export async function deleteNotificationDatabase(
   medicalRecordNumber: string,
   notificationID: string
 ) {
-  const URL_NOTIFICATION = `${NEXT_PUBLIC_BASE_URL}/api/notification`;
+  const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
   if (medicalRecordNumber === "US4234123398") return "sample data";
   else {
     const data: any = await getPatient(medicalRecordNumber, "");
@@ -23,6 +23,7 @@ export async function deleteNotificationDatabase(
 
     const body1 = {
       _id: data._id,
+      key: "notifications",
       data: {
         ...data,
         notifications: filterNotification,
@@ -46,7 +47,7 @@ export async function deleteNotificationDatabase(
       body: JSON.stringify(notificationID === "all" ? body2 : body1),
       cache: "no-store",
     };
-    const response = await fetch(URL_NOTIFICATION, options);
+    const response = await fetch(URL_PATIENT, options);
     return response;
   }
 }

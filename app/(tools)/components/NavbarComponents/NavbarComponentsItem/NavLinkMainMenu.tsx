@@ -20,9 +20,10 @@ import { clearStorageData } from "@/app/(tools)/utils/localData/clearStorageDate
 
 import { writeClient } from "@/sanity/sanityUtils/sanity-utils";
 import { getPatient } from "@/sanity/sanityUtils/getPatient";
+import { NEXT_PUBLIC_BASE_URL } from "@/sanity/env";
 
 type Props = {};
-const URL_NOTIFICATION = "/api/patient/";
+const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/?`;
 const NavLinkMainMenu = (props: Props) => {
   const {
     toggleMenuNavbar,
@@ -68,6 +69,7 @@ const NavLinkMainMenu = (props: Props) => {
 
           const body = {
             _id: _id,
+            key: "notifications",
             data: {
               ...patientData,
               notifications: [...filterNotifications],
@@ -84,7 +86,7 @@ const NavLinkMainMenu = (props: Props) => {
           };
 
           const removingNotification = new Promise((resolve) => {
-            resolve(fetch(URL_NOTIFICATION, options));
+            resolve(fetch(URL_PATIENT, options));
           });
           removingNotification.then((response: any) => {
             return response;

@@ -68,11 +68,15 @@ export async function POST(req: NextRequest) {
 }
 
 export async function PUT(req: NextRequest, res: NextResponse) {
-  const { _id, data } = await req.json();
+  const { _id, key, data } = await req.json();
 
   const responseData = await writeClient
     .patch(_id)
-    .set({ notifications: [...data.notifications] })
+    .set(
+      key === "notification"
+        ? { notifications: [...data.notifications] }
+        : { scheduled_appointments: [...data] }
+    )
     .commit();
 
   return NextResponse.json(responseData);

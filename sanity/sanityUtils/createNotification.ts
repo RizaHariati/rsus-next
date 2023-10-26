@@ -9,7 +9,7 @@ export async function createNotification(
   medicalRecordNumber: string,
   newNotification: NotificationType & { _type: string; _key: string }
 ) {
-  const URL_NOTIFICATION = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
+  const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
   if (medicalRecordNumber === "US4234123398") {
     return { status: 204, message: "sample data", data: newNotification };
   } else {
@@ -22,8 +22,10 @@ export async function createNotification(
     const notification = { ...newNotification, id: newID };
     const body = {
       _id: data._id,
+
       data: {
         ...data,
+        key: "notifications",
         notifications: [...(data.notifications || []), notification],
       },
     };
@@ -37,15 +39,8 @@ export async function createNotification(
       },
       body: JSON.stringify(body),
     };
-    const response = await fetch(URL_NOTIFICATION, options);
-    console.log({ response });
-    // if (response.status === 200) {
-    //   return {
-    //     status: 200,
-    //     message: "notification added",
-    //     data: newNotification,
-    //   };
-    // }
+    const response = await fetch(URL_PATIENT, options);
+
     return response;
   }
 }
