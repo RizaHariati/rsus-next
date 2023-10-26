@@ -75,8 +75,9 @@ const AlertVerifikasi = (props: Props) => {
 
   const createLoginUser = () => {
     loginUser(patient, data).then((resNotif: any) => {
+      console.log({ resNotif });
       const loggingUser = new Promise((resolve, reject) => {
-        if (!resNotif || !resNotif.status) {
+        if (!resNotif || resNotif.status !== 200) {
           return reject("new notification is not registered");
         } else {
           const gettingPatient = new Promise((resolve) => {

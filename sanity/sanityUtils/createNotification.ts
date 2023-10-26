@@ -34,18 +34,20 @@ export async function createNotification(
         Accept: "application/json",
         "Content-Type": "application/json",
         cache: "no-store",
+        Authorization:
+          "Bearer skOuTPWYzAeqk7ISYYWNtxpmhpbzmmDh1e1VZPLA1VWpSGufmcHLXtbSwrgHRboQu706ofMkRfApPVF2nUMEAnkaKu3lsuvnDDQTSuALJ7DmuXL3zUVOcn8ei1UjgDKnDGHUv8iDSCdH4RwDXTUFbVZaIuosoguVI9lJCt5gxjbsc16u0zgb",
       },
       body: JSON.stringify(body),
     };
     const response = await fetch(URL_NOTIFICATION, options);
-
-    if (response.status === 200) {
-      return {
-        status: 200,
-        message: "notification added",
-        data: newNotification,
-      };
-    }
+    console.log({ response });
+    // if (response.status === 200) {
+    //   return {
+    //     status: 200,
+    //     message: "notification added",
+    //     data: newNotification,
+    //   };
+    // }
     return response;
   }
 }

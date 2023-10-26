@@ -4,7 +4,10 @@ import "../../../styles/mainpage.css";
 import "../../../styles/bottomnav.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
-import "react-toastify/dist/ReactToastify.css";
+import "react-toastify/ReactToastify.css";
+// import "react-toastify/ReactToastify.css.map";
+// import "react-toastify/dist/ReactToastify.css";
+// import "react-toastify/dist/ReactToastify.css.map";
 import "react-datepicker/dist/react-datepicker.css";
 import type { Metadata } from "next";
 import { Oswald, Nunito } from "next/font/google";
@@ -53,7 +56,6 @@ export default function RootLayout({
       >
         <AppProvider>
           <Navbar />
-
           <LayoutWrapper>{children}</LayoutWrapper>
           <Footer />
         </AppProvider>
