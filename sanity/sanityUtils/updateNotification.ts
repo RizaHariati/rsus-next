@@ -43,7 +43,7 @@ export async function updateNotification(
       };
 
       const options: RequestInit = {
-        method: "PUT",
+        method: "POST",
         headers: {
           Accept: "application/json",
           "Content-Type": "application/json",
