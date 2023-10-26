@@ -17,6 +17,7 @@ export async function GET(req: NextRequest) {
     on_call,
     telemedicine,
     biaya_telemedicine,
+    sedang_online,
     biaya_tatapmuka,
     kuota,
     note,

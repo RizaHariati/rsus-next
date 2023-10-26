@@ -5,14 +5,12 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { toast } from "react-toastify";
 import MainLogoImage from "../modal/MainLogoImage";
 import { NotificationType, PatientType, UserType } from "../patientTypes";
-import { getNotificationID } from "../utils/getNotificationID";
+
 import { getPatient } from "@/sanity/sanityUtils/getPatient";
 import { setUser } from "../utils/localData/setStorageData";
 import moment from "moment";
 import { postPatient } from "@/sanity/sanityUtils/postPatient";
-import { NextResponse } from "next/server";
-import { createNotification } from "@/sanity/sanityUtils/createNotification";
-import Loading from "../../(site)/about-group/activity/loading";
+
 import { PropagateLoader, RingLoader } from "react-spinners";
 import Error from "next/error";
 import { loadingPatient, loginUser } from "./alertVerifikasiUtils/loginUser";
@@ -32,7 +30,6 @@ const AlertVerifikasi = (props: Props) => {
     openAlert,
     login,
     toggleMenuNavbar,
-    addingNotification,
   } = useGlobalContext();
   const verification_number = alertValue.verification_number;
   const data = alertValue.data;

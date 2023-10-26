@@ -70,10 +70,7 @@ const NavLinkMainMenu = (props: Props) => {
           const body = {
             _id: _id,
             key: "notifications",
-            data: {
-              ...patientData,
-              notifications: [...filterNotifications],
-            },
+            data: [...filterNotifications],
           };
           const options: RequestInit = {
             method: "PUT",

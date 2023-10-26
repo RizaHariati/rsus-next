@@ -13,23 +13,19 @@ export async function createNotification(
   if (medicalRecordNumber === "US4234123398") {
     return { status: 204, message: "sample data", data: newNotification };
   } else {
-    const data: any = await getPatient(medicalRecordNumber, "");
+    const patientData: any = await getPatient(medicalRecordNumber, "");
 
-    if (!data || Object.keys(data).length < 1) {
+    if (!patientData || Object.keys(patientData).length < 1) {
       return toast.error("terjadi kesalahan sistem");
     }
-    const newID = getNotificationID(data.notifications || []);
+    const newID = getNotificationID(patientData.notifications || []);
     const notification = { ...newNotification, id: newID };
     const body = {
-      _id: data._id,
-
-      data: {
-        ...data,
-        key: "notifications",
-        notifications: [...(data.notifications || []), notification],
-      },
+      _id: patientData._id,
+      key: "notifications",
+      data: [...(patientData.notifications || []), notification],
     };
-
+    console.log({ data: body.data });
     const options: RequestInit = {
       method: "PUT",
       headers: {

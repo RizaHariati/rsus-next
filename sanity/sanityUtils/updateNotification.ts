@@ -29,18 +29,15 @@ export async function updateNotification(
       const body = {
         _id: data._id,
         key: "notifications",
-        data: {
-          ...data,
-          notifications: [
-            ...data.notifications.map((dataNotif: NotificationType) => {
-              if (dataNotif.id === notificationID) {
-                return newNotification;
-              } else {
-                return dataNotif;
-              }
-            }),
-          ],
-        },
+        data: [
+          ...data.notifications.map((dataNotif: NotificationType) => {
+            if (dataNotif.id === notificationID) {
+              return newNotification;
+            } else {
+              return dataNotif;
+            }
+          }),
+        ],
       };
 
       const options: RequestInit = {

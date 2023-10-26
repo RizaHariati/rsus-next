@@ -24,18 +24,12 @@ export async function deleteNotificationDatabase(
     const body1 = {
       _id: data._id,
       key: "notifications",
-      data: {
-        ...data,
-        notifications: filterNotification,
-      },
+      data: [...filterNotification],
     };
 
     const body2 = {
       _id: data._id,
-      data: {
-        ...data,
-        notifications: [],
-      },
+      data: [],
     };
 
     const options: RequestInit = {

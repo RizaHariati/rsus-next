@@ -73,8 +73,8 @@ export async function PUT(req: NextRequest, res: NextResponse) {
   const responseData = await writeClient
     .patch(_id)
     .set(
-      key === "notification"
-        ? { notifications: [...data.notifications] }
+      key === "notifications"
+        ? { notifications: [...data] }
         : { scheduled_appointments: [...data] }
     )
     .commit();
