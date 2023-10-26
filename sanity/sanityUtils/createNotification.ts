@@ -9,7 +9,7 @@ export async function createNotification(
   medicalRecordNumber: string,
   newNotification: NotificationType & { _type: string; _key: string }
 ) {
-  const URL_NOTIFICATION = `${NEXT_PUBLIC_BASE_URL}/api/notification/`;
+  const URL_NOTIFICATION = `${NEXT_PUBLIC_BASE_URL}/api/patient`;
   if (medicalRecordNumber === "US4234123398") {
     return { status: 204, message: "sample data", data: newNotification };
   } else {
