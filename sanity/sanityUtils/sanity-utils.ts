@@ -30,10 +30,22 @@ const writeConfig: ClientConfig = {
   dataset,
   apiVersion,
   withCredentials: true,
-
   token: SANITY_READ_WRITE_TOKEN,
   // https://www.sanity.io/docs/api-versioning
   useCdn: process.env.NODE_ENV === "production", // if you're using ISR or only static generation at build time then you can set this to `false` to guarantee no stale content
 };
 
 export const writeClient = createClient(writeConfig);
+
+const updateConfig: ClientConfig = {
+  projectId,
+  dataset,
+  apiVersion,
+  // token: SANITY_DEPLOY_TOKEN,
+  withCredentials: true,
+  // https://www.sanity.io/docs/api-versioning,
+
+  useCdn: false,
+  // if you're using ISR or only static generation at build time then you can set this to `false` to guarantee no stale content
+};
+export const updateClient = createClient(updateConfig);

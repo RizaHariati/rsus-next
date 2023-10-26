@@ -1,4 +1,7 @@
-import client, { writeClient } from "@/sanity/sanityUtils/sanity-utils";
+import client, {
+  updateClient,
+  writeClient,
+} from "@/sanity/sanityUtils/sanity-utils";
 import { NextApiRequest, NextApiResponse } from "next";
 
 import { groq } from "next-sanity";
@@ -67,7 +70,7 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest, res: NextResponse) {
   const { _id, data } = await req.json();
 
-  const responseData = await writeClient
+  const responseData = await updateClient
     .patch(_id)
     .set({ notifications: [...data.notifications] })
     .commit();

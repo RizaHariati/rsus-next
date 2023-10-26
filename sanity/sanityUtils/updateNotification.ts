@@ -9,7 +9,7 @@ export async function updateNotification(
   medicalRecordNumber: string,
   notificationID: string
 ) {
-  const URL_NOTIFICATION = `${NEXT_PUBLIC_BASE_URL}/api/patient`;
+  const URL_NOTIFICATION = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
   if (medicalRecordNumber === "US4234123398") return "sample data";
   else {
     const data: any = await getPatient(medicalRecordNumber, "");
