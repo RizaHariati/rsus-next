@@ -70,7 +70,7 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest, res: NextResponse) {
   const { _id, data } = await req.json();
 
-  const responseData = await updateClient
+  const responseData = await writeClient
     .patch(_id)
     .set({ notifications: [...data.notifications] })
     .commit();
