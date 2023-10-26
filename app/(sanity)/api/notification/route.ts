@@ -1,7 +1,7 @@
 import client, { writeClient } from "@/sanity/sanityUtils/sanity-utils";
 import { NextRequest, NextResponse } from "next/server";
 
-export async function PUT(req: NextRequest, res: NextResponse) {
+export async function PATCH(req: NextRequest, res: NextResponse) {
   const { _id, data } = await req.json();
 
   const responseData = await writeClient

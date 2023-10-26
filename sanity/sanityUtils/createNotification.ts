@@ -29,7 +29,7 @@ export async function createNotification(
     };
 
     const options: RequestInit = {
-      method: "PUT",
+      method: "PATCH",
       headers: {
         Accept: "application/json",
         "Content-Type": "application/json",
