@@ -25,7 +25,7 @@ export async function createNotification(
       key: "notifications",
       data: [...(patientData.notifications || []), notification],
     };
-    console.log({ data: body.data });
+
     const options: RequestInit = {
       method: "PUT",
       headers: {

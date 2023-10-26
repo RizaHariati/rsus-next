@@ -30,6 +30,7 @@ const AlertVerifikasi = (props: Props) => {
     openAlert,
     login,
     toggleMenuNavbar,
+    addingNotification,
   } = useGlobalContext();
   const verification_number = alertValue.verification_number;
   const data = alertValue.data;
@@ -72,7 +73,6 @@ const AlertVerifikasi = (props: Props) => {
 
   const createLoginUser = () => {
     loginUser(patient, data).then((resNotif: any) => {
-      console.log({ resNotif });
       const loggingUser = new Promise((resolve, reject) => {
         if (!resNotif || resNotif.status !== 200) {
           return reject("new notification is not registered");

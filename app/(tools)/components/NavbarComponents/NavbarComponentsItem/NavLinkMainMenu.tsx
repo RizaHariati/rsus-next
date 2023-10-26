@@ -46,7 +46,7 @@ const NavLinkMainMenu = (props: Props) => {
       (item) => item.notification_code === "ncat-001"
     );
 
-    if (loginNotification.length > 1) {
+    if (loginNotification.length > 0) {
       const logoutPatient = new Promise((resolve) => {
         return resolve(getPatient(patient.medical_record_number, ""));
       });
