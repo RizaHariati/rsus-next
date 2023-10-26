@@ -22,7 +22,7 @@ import { writeClient } from "@/sanity/sanityUtils/sanity-utils";
 import { getPatient } from "@/sanity/sanityUtils/getPatient";
 
 type Props = {};
-const URL_NOTIFICATION = "/api/notification";
+const URL_NOTIFICATION = "/api/patient/";
 const NavLinkMainMenu = (props: Props) => {
   const {
     toggleMenuNavbar,
