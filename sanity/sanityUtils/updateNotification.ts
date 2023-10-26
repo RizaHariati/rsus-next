@@ -48,8 +48,6 @@ export async function updateNotification(
           Accept: "application/json",
           "Content-Type": "application/json",
           cache: "no-store",
-          Authorization:
-            "Bearer skOuTPWYzAeqk7ISYYWNtxpmhpbzmmDh1e1VZPLA1VWpSGufmcHLXtbSwrgHRboQu706ofMkRfApPVF2nUMEAnkaKu3lsuvnDDQTSuALJ7DmuXL3zUVOcn8ei1UjgDKnDGHUv8iDSCdH4RwDXTUFbVZaIuosoguVI9lJCt5gxjbsc16u0zgb",
         },
         body: JSON.stringify(body),
       };
