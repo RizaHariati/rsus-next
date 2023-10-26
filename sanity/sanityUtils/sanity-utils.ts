@@ -30,6 +30,7 @@ const writeConfig: ClientConfig = {
   dataset,
   apiVersion,
   withCredentials: true,
+
   token: SANITY_READ_WRITE_TOKEN,
   // https://www.sanity.io/docs/api-versioning
   useCdn: process.env.NODE_ENV === "production", // if you're using ISR or only static generation at build time then you can set this to `false` to guarantee no stale content

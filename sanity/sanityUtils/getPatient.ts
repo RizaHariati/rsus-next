@@ -12,7 +12,17 @@ export async function getPatient(
   password?: string
 ): Promise<any> {
   const res = await fetch(
-    `${URL_PATIENT}id=${medicalRecordNumber}&password=${password}`
+    `${URL_PATIENT}id=${medicalRecordNumber}&password=${password}`,
+    {
+      method: "GET",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+        cache: "no-store",
+        Authorization:
+          "Bearer skOuTPWYzAeqk7ISYYWNtxpmhpbzmmDh1e1VZPLA1VWpSGufmcHLXtbSwrgHRboQu706ofMkRfApPVF2nUMEAnkaKu3lsuvnDDQTSuALJ7DmuXL3zUVOcn8ei1UjgDKnDGHUv8iDSCdH4RwDXTUFbVZaIuosoguVI9lJCt5gxjbsc16u0zgb",
+      },
+    }
   );
 
   if (res && res.status === 200) {

@@ -1,7 +1,7 @@
 import { NextApiRequest } from "next";
 import { NextRequest, NextResponse } from "next/server";
 
-export default async function handler(req: NextRequest, res: NextRequest) {
+export default async function middleware(req: NextRequest, res: NextRequest) {
   res.headers.set("Access-Control-Allow-Credentials", "true");
   res.headers.set("Access-Control-Allow-Origin", "*");
   res.headers.set(
@@ -18,3 +18,6 @@ export default async function handler(req: NextRequest, res: NextRequest) {
   );
   NextResponse.next();
 }
+export const config = {
+  matcher: ["/api/:path*"],
+};
