@@ -167,4 +167,13 @@
   .footer-hide {
     @apply footer h-0;
   }
+  .thanks {
+    @apply bg-white h-fit max-h-[80vh] w-full absolute bottom-12 origin-bottom z-[60] cursor-pointer standard-border overflow-hidden;
+  }
+  .thanks-hide {
+    @apply thanks h-[0vh];
+  }
+  .thanks-btn {
+    @apply h-10 w-10 bg-greenUripOpacity mix-blend-screen hover:mix-blend-multiply standard-border overflow-hidden absolute right-2 top-1  cursor-pointer z-[60];
+  }
 }

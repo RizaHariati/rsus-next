@@ -7,6 +7,7 @@ import { faClose } from "@fortawesome/free-solid-svg-icons";
 import { getAge } from "@/app/(tools)/utils/getAge";
 import "moment/locale/id";
 import moment from "moment";
+import { PatientProfileType, PatientType } from "@/app/(tools)/patientTypes";
 type Props = {};
 
 const PatientProfile = (props: Props) => {
@@ -30,11 +31,8 @@ const PatientProfile = (props: Props) => {
 export default PatientProfile;
 
 export const PatientProfileContent = () => {
-  const {
-    toggleMenuNavbar,
-    patientState: { patient },
-  } = useGlobalContext();
-
+  const { toggleMenuNavbar, patientState } = useGlobalContext();
+  const patient: PatientType = patientState.patient;
   if (!patient) return <div></div>;
   return (
     <>
@@ -63,6 +61,11 @@ export const PatientProfileContent = () => {
       </div>
       <div className="grid grid-cols-1 md:grid-cols-3 col-start-1 gap-1 md:gap-2 mb-1 md:mb-2  px-5 md:px-0">
         {Object.entries(patientFormInput).map(([patientKey, patientValues]) => {
+          const typePatient: string = patientKey;
+
+          const profile: PatientProfileType = patient.patient_profile;
+          //@ts-ignore
+
           const findPatient = Object.entries(patient.patient_profile).find(
             (item) => {
               return item[0] === patientKey;
