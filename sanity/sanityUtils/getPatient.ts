@@ -1,3 +1,4 @@
+"use server";
 import {
   sampleNotifications,
   sampleProfile,
@@ -5,7 +6,7 @@ import {
 } from "@/app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 
-const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/patientdata`;
+const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/patientdata/`;
 export async function getPatient(
   medicalRecordNumber: string,
   password?: string

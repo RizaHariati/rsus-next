@@ -67,7 +67,7 @@ export async function POST(req: NextRequest) {
 
 export async function PUT(req: NextRequest, res: NextResponse) {
   const { _id, key, data } = await req.json();
-  console.log({ body: await req.json() });
+
   const responseData = await writeClient
     .patch(_id)
     .set(
