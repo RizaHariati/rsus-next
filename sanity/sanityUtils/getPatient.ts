@@ -5,7 +5,7 @@ import {
 } from "@/app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 
-const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
+const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/patientdata`;
 export async function getPatient(
   medicalRecordNumber: string,
   password?: string
@@ -18,8 +18,6 @@ export async function getPatient(
       cache: "no-store",
     },
     body: JSON.stringify({
-      _id: "",
-      key: "patientdata",
       data: { medicalRecordNumber, password },
     }),
   });
