@@ -1,3 +1,4 @@
+import { NEXT_PUBLIC_BASE_URL } from "@/sanity/env";
 import client, {
   updateClient,
   writeClient,
@@ -57,4 +58,14 @@ export async function PUT(req: NextRequest, res: NextResponse) {
       return NextResponse.json({ status: 200, data: data[0] });
     }
   }
+}
+
+export async function generateStaticParams() {
+  const patientData = await fetch(
+    `${NEXT_PUBLIC_BASE_URL}/api/patient/patientData`
+  ).then((res) => res.json());
+
+  return patientData.map((patient: any) => ({
+    slug: patient.slug,
+  }));
 }
