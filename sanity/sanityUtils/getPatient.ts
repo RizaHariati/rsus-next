@@ -5,12 +5,12 @@ import {
 } from "@/app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 
-const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/patientdata/`;
+const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
 export async function getPatient(
   medicalRecordNumber: string,
   password?: string
 ): Promise<any> {
-  const res = await fetch(`${URL_PATIENT}`, {
+  const options = {
     method: "PUT",
     headers: {
       Accept: "application/json",
@@ -18,9 +18,12 @@ export async function getPatient(
       cache: "no-store",
     },
     body: JSON.stringify({
+      _id: "xxxxx",
+      key: "patientData",
       data: { medicalRecordNumber, password },
     }),
-  });
+  };
+  const res = await fetch(`${URL_PATIENT}`, options);
 
   if (res && res.status === 200) {
     const { data } = await res.json();

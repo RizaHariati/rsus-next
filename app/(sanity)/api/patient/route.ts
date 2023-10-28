@@ -8,54 +8,7 @@ import { groq } from "next-sanity";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(req: NextRequest, res: NextResponse) {
-  console.log(await req.json());
-  const medicalRecordNumber = req.nextUrl.searchParams.get("id");
-  const password = req.nextUrl.searchParams.get("password");
-  // if (!password || password === "") {
-  //   const data = await writeClient.fetch(
-  //     groq`*[_type=='patient'
-  //         && medical_record_number =='${medicalRecordNumber}'
-  //         ]`
-  //   );
-  //   if (!data || data.length < 1) {
-  //     return NextResponse.json({ status: 400, data: [] });
-  //   } else {
-  //     return NextResponse.json({ status: 200, data: data[0] });
-  //   }
-  // } else {
-  //   const data = await writeClient.fetch(
-  //     groq`*[_type=='patient'
-  //         && medical_record_number =='${medicalRecordNumber}'
-  //         && patient_profile.password=='${password}'
-  //         ]{ medical_record_number,
-  //           patient_profile,
-  //           "scheduled_appointments":scheduled_appointments[]{
-  //              schedule_id,
-  //              current_phone,
-  //              tujuan,
-  //              appointment_type,
-  //              scheduled_date,
-  //              register_date,
-  //              using_bpjs,
-  //              nomor_antrian},
-  //            medical_records,
-  //           "notifications" : notifications[]{
-  //               id,
-  //               notification_code,
-  //               title,
-  //               message,
-  //               notification_date,
-  //               seen
-  //          }
-  //       }`
-  //   );
-
-  //   if (!data || data.length < 1) {
-  //     return NextResponse.json({ status: 400, data: [] });
-  //   } else {
-  //     return NextResponse.json({ status: 200, data: data[0] });
-  //   }
-  // }
+  return NextResponse.json({ message: "You got it!" });
 }
 
 export async function POST(req: NextRequest) {
@@ -68,14 +21,85 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest, res: NextResponse) {
   const { _id, key, data } = await req.json();
 
-  const responseData = await writeClient
-    .patch(_id)
-    .set(
-      key === "notifications"
-        ? { notifications: [...data] }
-        : { scheduled_appointments: [...data] }
-    )
-    .commit();
+  if (key === "patientData") {
+    const { medicalRecordNumber, password }: any = data;
 
-  return NextResponse.json(responseData);
+    const patientData =
+      !password || password === ""
+        ? await writeClient.fetch(
+            groq`*[_type=='patient'
+          && medical_record_number =='${medicalRecordNumber}'
+          ]`
+          )
+        : await writeClient.fetch(
+            groq`*[_type=='patient'
+          && medical_record_number =='${medicalRecordNumber}'
+          && patient_profile.password=='${password}'
+          ]{ medical_record_number,
+            patient_profile,
+            "scheduled_appointments":scheduled_appointments[]{
+               schedule_id,
+               current_phone,
+               tujuan,
+               appointment_type,
+               scheduled_date,
+               register_date,
+               using_bpjs,
+               nomor_antrian},
+             medical_records,
+            "notifications" : notifications[]{
+                id,
+                notification_code,
+                title,
+                message,
+                notification_date,
+                seen
+           }
+        }`
+          );
+
+    if (!patientData || patientData.length < 1) {
+      return NextResponse.json({ status: 400, data: [] });
+    } else {
+      return NextResponse.json({ status: 200, data: patientData[0] });
+    }
+  } else {
+    const responseData = await writeClient
+      .patch(_id)
+      .set(
+        key === "notifications"
+          ? { notifications: [...data] }
+          : { scheduled_appointments: [...data] }
+      )
+      .commit();
+
+    return NextResponse.json(responseData);
+  }
 }
+
+const groqGetPatient = (medicalRecordNumber: string, password: string) => {
+  return groq`*[_type=='patient'
+          && medical_record_number =='${medicalRecordNumber}'
+          && patient_profile.password=='${password}'
+          ]{ medical_record_number,
+            patient_profile,
+            "scheduled_appointments":scheduled_appointments[]{
+               schedule_id,
+               current_phone,
+               tujuan,
+               appointment_type,
+               scheduled_date,
+               register_date,
+               using_bpjs,
+               nomor_antrian},
+             medical_records,
+            "notifications" : notifications[]{
+                id,
+                notification_code,
+                title,
+                message,
+                notification_date,
+                seen
+           }
+        }`;
+};
