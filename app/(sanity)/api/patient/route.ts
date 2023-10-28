@@ -2,14 +2,12 @@ import client, {
   updateClient,
   writeClient,
 } from "@/sanity/sanityUtils/sanity-utils";
-import { NextApiRequest, NextApiResponse } from "next";
 
 import { groq } from "next-sanity";
-import { parseBody } from "next-sanity/webhook";
 
 import { NextRequest, NextResponse } from "next/server";
 
-export async function GET(req: NextRequest, res: NextResponse) {
+export async function PATCH(req: NextRequest, res: NextResponse) {
   const medicalRecordNumber = req.nextUrl.searchParams.get("id");
   const password = req.nextUrl.searchParams.get("password");
 

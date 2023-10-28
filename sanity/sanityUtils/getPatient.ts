@@ -12,7 +12,8 @@ export async function getPatient(
   password?: string
 ): Promise<any> {
   const res = await fetch(
-    `${URL_PATIENT}id=${medicalRecordNumber}&password=${password}`
+    `${URL_PATIENT}id=${medicalRecordNumber}&password=${password}`,
+    { method: "PATCH" }
   );
 
   if (res && res.status === 200) {
