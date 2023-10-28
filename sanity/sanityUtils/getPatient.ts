@@ -4,17 +4,21 @@ import {
   sampleSchedule,
 } from "@/app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
-import { SIGNATURE_HEADER_NAME } from "@sanity/webhook";
 
-const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/?`;
+const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
 export async function getPatient(
   medicalRecordNumber: string,
   password?: string
 ): Promise<any> {
-  const res = await fetch(
-    `${URL_PATIENT}id=${medicalRecordNumber}&password=${password}`,
-    { method: "PATCH" }
-  );
+  const res = await fetch(`${URL_PATIENT}`, {
+    method: "PATCH",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+      cache: "no-store",
+    },
+    body: JSON.stringify({ medicalRecordNumber, password }),
+  });
 
   if (res && res.status === 200) {
     const { data } = await res.json();

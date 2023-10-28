@@ -4,6 +4,7 @@ import { getPatient } from "./getPatient";
 import { NotificationType } from "@/app/(tools)/patientTypes";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 import { getNotificationID } from "@/app/(tools)/utils/getNotificationID";
+import { NextResponse } from "next/server";
 
 export async function createNotification(
   medicalRecordNumber: string,
@@ -11,7 +12,11 @@ export async function createNotification(
 ) {
   const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;
   if (medicalRecordNumber === "US4234123398") {
-    return { status: 204, message: "sample data", data: newNotification };
+    return NextResponse.json({
+      status: 204,
+      message: "sample data",
+      data: newNotification,
+    });
   } else {
     const patientData: any = await getPatient(medicalRecordNumber, "");
 

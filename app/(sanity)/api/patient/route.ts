@@ -8,8 +8,7 @@ import { groq } from "next-sanity";
 import { NextRequest, NextResponse } from "next/server";
 
 export async function PATCH(req: NextRequest, res: NextResponse) {
-  const medicalRecordNumber = req.nextUrl.searchParams.get("id");
-  const password = req.nextUrl.searchParams.get("password");
+  const { medicalRecordNumber, password }: any = await req.json();
 
   if (!password || password === "") {
     const data = await writeClient.fetch(
@@ -68,6 +67,7 @@ export async function POST(req: NextRequest) {
 export async function PUT(req: NextRequest, res: NextResponse) {
   const { _id, key, data } = await req.json();
 
+  console.log(req.method === "PUT");
   const responseData = await writeClient
     .patch(_id)
     .set(
