@@ -11,13 +11,17 @@ export async function getPatient(
   password?: string
 ): Promise<any> {
   const res = await fetch(`${URL_PATIENT}`, {
-    method: "PATCH",
+    method: "PUT",
     headers: {
       Accept: "application/json",
       "Content-Type": "application/json",
       cache: "no-store",
     },
-    body: JSON.stringify({ medicalRecordNumber, password }),
+    body: JSON.stringify({
+      _id: "",
+      key: "patientdata",
+      data: { medicalRecordNumber, password },
+    }),
   });
 
   if (res && res.status === 200) {
