@@ -9,7 +9,7 @@ const MainLogoImage = (props: Props) => {
       <Image
         rel="preload"
         placeholder="empty"
-        src="/images/navbar/main-logo.png"
+        src="https://rsuripsumoharjo-model.netlify.app//images/navbar/main-logo.png?w=64&q=75"
         width={50}
         height={50}
         className=" object-covers rounded-full overflow-hidden"

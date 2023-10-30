@@ -21,7 +21,7 @@ function MyCustomNavbar(props: Props) {
           <a
             href={
               process.env.NODE_ENV === "production"
-                ? `${process.env.NEXT_PUBLIC_BASE_CONSUMER}/mainpage`
+                ? `https://rsuripsumoharjo-model.netlify.app/mainpage`
                 : `http://localhost:3000/mainpage`
             }
             className="flex-center-center ml-auto h-full w-fit"
@@ -45,11 +45,7 @@ export const MainLogo = (props: Props) => {
   return (
     <div id="home" onClick={(e) => toggleMenuNavbar(null)}>
       <a
-        href={
-          process.env.NODE_ENV === "production"
-            ? `${process.env.NEXT_PUBLIC_BASE_CONSUMER}/`
-            : `http://localhost:3000/`
-        }
+        href={`https://rsuripsumoharjo-model.netlify.app/`}
         className="flex-center-center ml-auto h-full w-fit"
         id="mainpage"
       >
