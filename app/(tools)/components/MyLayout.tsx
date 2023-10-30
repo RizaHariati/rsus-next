@@ -12,7 +12,7 @@ const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });
 
 type Props = {};
 config.autoAddCss = false;
-const CustomLayout = (props: LayoutProps) => {
+const MyLayout = (props: LayoutProps) => {
   return (
     <AppProvider>
       <div
@@ -24,4 +24,4 @@ const CustomLayout = (props: LayoutProps) => {
   );
 };
 
-export default CustomLayout;
+export default MyLayout;

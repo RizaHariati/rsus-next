@@ -58,18 +58,30 @@ import {
   NEXT_PUBLIC_SANITY_DATASET,
   NEXT_PUBLIC_SANITY_PROJECT_ID,
 } from "./sanity/env";
-import CustomLayout from "./app/(tools)/components/CustomLayout";
-import CustomNavbar from "./app/(tools)/components/CustomNavbar";
 
+import { LayoutProps } from "framer-motion";
+import { DashboardIcon } from "@sanity/icons";
+import MyNavbar from "./app/(tools)/components/MyNavbar";
+import MyLayout from "./app/(tools)/components/MyLayout";
+
+export const myCustomLayout: any = () => {
+  return {
+    title: "My Custom Layout",
+    name: "my-custom-layout",
+    icon: DashboardIcon,
+    component: (props: LayoutProps) => MyLayout,
+  };
+};
 export default defineConfig({
   theme: myTheme,
   basePath: "/admin",
   projectId: NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: NEXT_PUBLIC_SANITY_DATASET,
+  tools: [myCustomLayout()],
   studio: {
     components: {
-      // layout: CustomLayout,
-      navbar: CustomNavbar,
+      layout: MyLayout,
+      navbar: MyNavbar,
     },
   },
   // Add and edit the content schema in the './sanity/schema' folder
