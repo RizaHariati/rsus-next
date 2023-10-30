@@ -12,7 +12,7 @@ import MainLogoImage from "../modal/MainLogoImage";
 import { useGlobalContext } from "../context/AppProvider";
 type Props = {};
 
-const MyNavbar = (props: Props) => {
+function MyCustomNavbar(props: Props) {
   return (
     <div className="flex flex-col w-full top-0 fixed h-32">
       <div className="navbar-container bg-opacity-100 shadow-md opacity-100 top-0">
@@ -35,9 +35,9 @@ const MyNavbar = (props: Props) => {
       <StudioNavbar />
     </div>
   );
-};
+}
 
-export default MyNavbar;
+export default MyCustomNavbar;
 
 export const MainLogo = (props: Props) => {
   const { toggleMenuNavbar } = useGlobalContext();

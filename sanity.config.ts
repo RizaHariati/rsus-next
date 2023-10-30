@@ -1,7 +1,7 @@
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `\app\admin\[[...index]]\page.tsx` route
  */
-import { StudioNavbar, buildLegacyTheme } from "sanity";
+import { StudioNavbar, buildLegacyTheme, definePlugin } from "sanity";
 
 const props = {
   "--my-white": "#fafaf9",
@@ -61,33 +61,46 @@ import {
 
 import { LayoutProps } from "framer-motion";
 import { DashboardIcon } from "@sanity/icons";
-import MyNavbar from "./app/(tools)/components/MyNavbar";
-import MyLayout from "./app/(tools)/components/MyLayout";
 
-export const myCustomLayout: any = () => {
-  return {
-    title: "My Custom Layout",
-    name: "my-custom-layout",
-    icon: DashboardIcon,
-    component: (props: LayoutProps) => MyLayout,
-  };
-};
+import MyCustomLayout from "./app/(tools)/components/MyCustomLayout";
+import MyCustomNavbar from "./app/(tools)/components/MyCustomNavbar";
+
+export const MyStudio: any = definePlugin({
+  name: "my-navbar",
+  studio: {
+    components: {
+      navbar: MyCustomNavbar,
+      layout: MyCustomLayout,
+    },
+  },
+});
+
+// export const MyLogo: any = () => {
+//   return {
+//     title: "My Layout",
+//     name: "my-layout",
+//     icon: DashboardIcon,
+//     component: (props: LayoutProps) => MainLogo,
+//   };
+// };
 export default defineConfig({
   theme: myTheme,
   basePath: "/admin",
   projectId: NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: NEXT_PUBLIC_SANITY_DATASET,
-  tools: [myCustomLayout()],
+  // tools: [MyLayout(), MyNavbar()],
+
   studio: {
     components: {
-      layout: MyLayout,
-      navbar: MyNavbar,
+      layout: MyCustomLayout,
+      navbar: MyCustomNavbar,
     },
   },
   // Add and edit the content schema in the './sanity/schema' folder
   schema,
   plugins: [
     deskTool(),
+    MyStudio(),
     // Vision is a tool that lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: NEXT_PUBLIC_SANITY_API_VERSION }),
