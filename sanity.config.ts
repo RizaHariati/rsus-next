@@ -68,7 +68,7 @@ export default defineConfig({
   dataset: NEXT_PUBLIC_SANITY_DATASET,
   studio: {
     components: {
-      layout: CustomLayout,
+      // layout: CustomLayout,
       navbar: CustomNavbar,
     },
   },
