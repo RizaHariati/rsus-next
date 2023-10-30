@@ -11,8 +11,8 @@ import {
   Oswald,
 } from "../../../node_modules/next/dist/compiled/@next/font/dist/google";
 
-const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
-const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });
+// const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
+// const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });
 
 type Props = {};
 config.autoAddCss = false;
@@ -20,7 +20,7 @@ const MyCustomLayout = (props: LayoutProps) => {
   return (
     <AppProvider>
       <div
-        className={`h-[calc(100vh-112px)]  w-full fixed top-28 overflow-y-scroll ${nunito.variable} ${oswald.variable}`}
+        className={`h-[calc(100vh-112px)]  w-full fixed top-28 overflow-y-scroll `}
       >
         {props.renderDefault(props)}
       </div>
