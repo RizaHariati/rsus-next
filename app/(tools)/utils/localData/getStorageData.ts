@@ -1,5 +1,5 @@
 import { PatientType, UserType } from "../../patientTypes";
-import { getPatient } from "@/sanity/sanityUtils/getPatient";
+import { getPatient } from "../../../../sanity/sanityUtils/getPatient";
 import { initialPatientState } from "../../context/initialPatientState";
 
 export const getUser = async () => {

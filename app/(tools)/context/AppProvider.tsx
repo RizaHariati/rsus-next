@@ -12,9 +12,11 @@ import { initialPatientState } from "./initialPatientState";
 import { NotificationType, PatientType } from "../patientTypes";
 import { ScheduledType, UserType } from "../patientTypes";
 import { getUser } from "../utils/localData/getStorageData";
-import { getDoctors } from "@/sanity/sanityUtils/getDoctors";
+
 import { FilterDoctorType } from "../types";
-import { getFacility } from "@/sanity/sanityUtils/getFacility";
+
+import { getDoctors } from "../../../sanity/sanityUtils/getDoctors";
+import { getFacility } from "../../../sanity/sanityUtils/getFacility";
 
 interface Props {
   children: JSX.Element | JSX.Element[];

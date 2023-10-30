@@ -1,12 +1,16 @@
 import React from "react";
 import { LayoutProps } from "sanity";
 import { AppProvider } from "../context/AppProvider";
-import { config } from "@fortawesome/fontawesome-svg-core";
+import { config } from "../../../node_modules/@fortawesome/fontawesome-svg-core/";
 import "../../styles/globals.css";
 import "../../styles/navbar.css";
 import "../../styles/mainpage.css";
 import "../../styles/bottomnav.css";
-import { Oswald, Nunito } from "next/font/google";
+import {
+  Nunito,
+  Oswald,
+} from "../../../node_modules/next/dist/compiled/@next/font/dist/google";
+
 const oswald = Oswald({ subsets: ["latin"], variable: "--oswald" });
 const nunito = Nunito({ subsets: ["latin"], variable: "--nunito" });
 

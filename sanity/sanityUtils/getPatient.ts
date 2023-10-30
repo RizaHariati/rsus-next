@@ -2,7 +2,7 @@ import {
   sampleNotifications,
   sampleProfile,
   sampleSchedule,
-} from "@/app/(tools)/data/sample";
+} from "../../app/(tools)/data/sample";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 
 const URL_PATIENT = `${NEXT_PUBLIC_BASE_URL}/api/patient/`;

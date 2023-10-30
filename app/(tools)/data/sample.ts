@@ -1,5 +1,5 @@
 import moment from "moment";
-import dataNotification from "@/app/(tools)/data/data_notifications.json";
+
 import {
   NotificationType,
   PatientProfileType,

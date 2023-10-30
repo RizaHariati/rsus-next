@@ -77,7 +77,6 @@ export default defineConfig({
     components: {
       layout: MyCustomLayout,
       navbar: MyCustomNavbar,
-      logo: MainLogo,
     },
   },
   // Add and edit the content schema in the './sanity/schema' folder
