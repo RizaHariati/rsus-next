@@ -60,10 +60,11 @@ import {
 } from "./sanity/env";
 
 import { LayoutProps } from "framer-motion";
-import { DashboardIcon } from "@sanity/icons";
+import { DashboardIcon, HomeIcon } from "@sanity/icons";
 
 import MyCustomLayout from "./app/(tools)/components/MyCustomLayout";
 import MyCustomNavbar, {
+  LinkHome,
   MainLogo,
 } from "./app/(tools)/components/MyCustomNavbar";
 

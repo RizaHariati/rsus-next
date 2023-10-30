@@ -5,11 +5,12 @@ import "../../styles/globals.css";
 import "../../styles/navbar.css";
 import "../../styles/mainpage.css";
 import "../../styles/bottomnav.css";
-import Link from "next/link";
+
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
 import MainLogoImage from "../modal/MainLogoImage";
-import { useGlobalContext } from "../context/AppProvider";
+import { Card, Text } from "@sanity/ui";
+
 type Props = {};
 
 function MyCustomNavbar(props: Props) {
@@ -19,11 +20,7 @@ function MyCustomNavbar(props: Props) {
         <nav className="navbar">
           <MainLogo />
           <a
-            href={
-              process.env.NODE_ENV === "production"
-                ? `https://rsuripsumoharjo-model.netlify.app/mainpage`
-                : `http://localhost:3000/mainpage`
-            }
+            href={`https://rsuripsumoharjo-model.netlify.app/mainpage`}
             className="flex-center-center ml-auto h-full w-fit"
             id="mainpage"
           >
@@ -40,25 +37,33 @@ function MyCustomNavbar(props: Props) {
 export default MyCustomNavbar;
 
 export const MainLogo = (props: Props) => {
-  const { toggleMenuNavbar } = useGlobalContext();
-
   return (
-    <div id="home" onClick={(e) => toggleMenuNavbar(null)}>
-      <a
-        href={`https://rsuripsumoharjo-model.netlify.app/`}
+    <a
+      href={`https://rsuripsumoharjo-model.netlify.app/`}
+      className="flex-center-center mr-auto h-full w-fit"
+    >
+      <div className="h-8 w-8">
+        <MainLogoImage />
+      </div>
+      <div className=" text-greenUrip hidden md:block">
+        <h6 className="text-sm tracking-normal leading-3 font-sans ">
+          Rumah Sakit
+        </h6>
+        <h6 className="text-xl font-bold tracking-wide">Urip Sumoharjo</h6>
+      </div>
+    </a>
+  );
+};
+
+export const LinkHome = () => {
+  return (
+    <Card padding={4}>
+      <Text
+        href={`https://rsuripsumoharjo-model.netlify.app/mainpage`}
         className="flex-center-center ml-auto h-full w-fit"
-        id="mainpage"
       >
-        <div className="h-8 w-8">
-          <MainLogoImage />
-        </div>
-        <div className=" text-greenUrip">
-          <h6 className="text-sm tracking-[7px] leading-3 font-oswald ">
-            Rumah Sakit
-          </h6>
-          <h6 className="text-xl font-bold tracking-wide">Urip Sumoharjo</h6>
-        </div>
-      </a>
-    </div>
+        Beranda
+      </Text>
+    </Card>
   );
 };

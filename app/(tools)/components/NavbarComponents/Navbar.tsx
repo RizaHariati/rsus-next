@@ -53,19 +53,22 @@ export const MainLogo = (props: Props) => {
   const { toggleMenuNavbar } = useGlobalContext();
 
   return (
-    <div id="home" onClick={(e) => toggleMenuNavbar(null)}>
-      <Link href="/" className="navbar-logo-container">
-        <div className="h-8 w-8">
-          <MainLogoImage />
-        </div>
-        <div className=" text-greenUrip">
-          <h6 className="text-sm tracking-[7px] leading-3 font-oswald ">
-            Rumah Sakit
-          </h6>
-          <h6 className="text-xl font-bold tracking-wide">Urip Sumoharjo</h6>
-        </div>
-      </Link>
-    </div>
+    <Link
+      id="home"
+      href="/"
+      className="navbar-logo-container"
+      onClick={(e) => toggleMenuNavbar(null)}
+    >
+      <div className="h-8 w-8">
+        <MainLogoImage />
+      </div>
+      <div className=" text-greenUrip">
+        <h6 className="text-sm tracking-[7px] leading-3 font-oswald ">
+          Rumah Sakit
+        </h6>
+        <h6 className="text-xl font-bold tracking-wide">Urip Sumoharjo</h6>
+      </div>
+    </Link>
   );
 };
 

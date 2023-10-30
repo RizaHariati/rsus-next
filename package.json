@@ -20,6 +20,7 @@
     "@sanity/icons": "^2.6.0",
     "@sanity/image-url": "^1.0.2",
     "@sanity/preview-kit": "^3.2.1",
+    "@sanity/ui": "^1.8.3",
     "@sanity/vision": "^3.16.7",
     "@types/node": "20.4.8",
     "@types/react": "18.2.18",
