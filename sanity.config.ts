@@ -1,7 +1,7 @@
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `\app\admin\[[...index]]\page.tsx` route
  */
-import { buildLegacyTheme } from "sanity";
+import { StudioNavbar, buildLegacyTheme } from "sanity";
 
 const props = {
   "--my-white": "#fafaf9",
@@ -58,13 +58,20 @@ import {
   NEXT_PUBLIC_SANITY_DATASET,
   NEXT_PUBLIC_SANITY_PROJECT_ID,
 } from "./sanity/env";
+import CustomLayout from "./app/(tools)/components/CustomLayout";
+import CustomNavbar from "./app/(tools)/components/CustomNavbar";
 
 export default defineConfig({
   theme: myTheme,
   basePath: "/admin",
   projectId: NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: NEXT_PUBLIC_SANITY_DATASET,
-
+  studio: {
+    components: {
+      layout: CustomLayout,
+      navbar: CustomNavbar,
+    },
+  },
   // Add and edit the content schema in the './sanity/schema' folder
   schema,
   plugins: [

@@ -49,7 +49,7 @@ const Navbar = (props: MainProps) => {
 
 export default Navbar;
 
-const MainLogo = (props: Props) => {
+export const MainLogo = (props: Props) => {
   const { toggleMenuNavbar } = useGlobalContext();
 
   return (
@@ -69,7 +69,7 @@ const MainLogo = (props: Props) => {
   );
 };
 
-const NavbarMenu = (props: Props) => {
+export const NavbarMenu = (props: Props) => {
   return (
     <div className="h-full ">
       <div className="navbar-menu-container ">
@@ -80,7 +80,7 @@ const NavbarMenu = (props: Props) => {
   );
 };
 
-const NavbarLinks = (props: Props) => {
+export const NavbarLinks = (props: Props) => {
   const {
     toggleMenuNavbar,
     patientState: { user },
