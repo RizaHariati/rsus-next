@@ -63,44 +63,28 @@ import { LayoutProps } from "framer-motion";
 import { DashboardIcon } from "@sanity/icons";
 
 import MyCustomLayout from "./app/(tools)/components/MyCustomLayout";
-import MyCustomNavbar from "./app/(tools)/components/MyCustomNavbar";
+import MyCustomNavbar, {
+  MainLogo,
+} from "./app/(tools)/components/MyCustomNavbar";
 
-export const MyStudio: any = definePlugin({
-  name: "my-navbar",
-  studio: {
-    components: {
-      navbar: MyCustomNavbar,
-      layout: MyCustomLayout,
-    },
-  },
-});
-
-// export const MyLogo: any = () => {
-//   return {
-//     title: "My Layout",
-//     name: "my-layout",
-//     icon: DashboardIcon,
-//     component: (props: LayoutProps) => MainLogo,
-//   };
-// };
 export default defineConfig({
   theme: myTheme,
   basePath: "/admin",
   projectId: NEXT_PUBLIC_SANITY_PROJECT_ID,
   dataset: NEXT_PUBLIC_SANITY_DATASET,
-  // tools: [MyLayout(), MyNavbar()],
 
   studio: {
     components: {
       layout: MyCustomLayout,
       navbar: MyCustomNavbar,
+      logo: MainLogo,
     },
   },
   // Add and edit the content schema in the './sanity/schema' folder
   schema,
   plugins: [
     deskTool(),
-    MyStudio(),
+
     // Vision is a tool that lets you query your content with GROQ in the studio
     // https://www.sanity.io/docs/the-vision-plugin
     visionTool({ defaultApiVersion: NEXT_PUBLIC_SANITY_API_VERSION }),
