@@ -59,14 +59,8 @@ import {
   NEXT_PUBLIC_SANITY_PROJECT_ID,
 } from "./sanity/env";
 
-import { LayoutProps } from "framer-motion";
-import { DashboardIcon, HomeIcon } from "@sanity/icons";
-
 import MyCustomLayout from "./app/(tools)/components/MyCustomLayout";
-import MyCustomNavbar, {
-  LinkHome,
-  MainLogo,
-} from "./app/(tools)/components/MyCustomNavbar";
+import MyCustomNavbar from "./app/(tools)/components/MyCustomNavbar";
 
 export default defineConfig({
   theme: myTheme,

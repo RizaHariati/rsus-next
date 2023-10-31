@@ -8,7 +8,7 @@ import "../../styles/bottomnav.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome } from "@fortawesome/free-solid-svg-icons";
-import MainLogoImage from "../modal/MainLogoImage";
+
 import { Card, Text } from "@sanity/ui";
 
 type Props = {};
@@ -52,6 +52,23 @@ export const MainLogo = (props: Props) => {
         <h6 className="text-xl font-bold tracking-wide">Urip Sumoharjo</h6>
       </div>
     </a>
+  );
+};
+
+const MainLogoImage = (props: Props) => {
+  return (
+    <>
+      <img
+        rel="preload"
+        placeholder="empty"
+        src="https://rsuripsumoharjo-model.netlify.app/images/navbar/main-logo.png?w=64&q=75"
+        width={50}
+        height={50}
+        className=" object-covers rounded-full overflow-hidden"
+        alt="main-logo"
+        loading="lazy"
+      />
+    </>
   );
 };
 

@@ -6,17 +6,17 @@ import { useEffect } from "react";
 type Props = {};
 
 function WelcomePage(props: Props) {
-  const router = useRouter();
-  useEffect(() => {
-    setTimeout(() => {
-      router.push("/mainpage");
-    }, 50);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // const router = useRouter();
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     router.push("/mainpage");
+  //   }, 50);
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, []);
 
   return (
     <main className="h-screen w-full bg-greenUripOpacity flex-center-center flex-col p-5 text-center">
-      <h1>Selamat Datang di Website RS.Urip Sumoharjo </h1>
+      <h1>Login Berhasil, selamat datang Riza </h1>
     </main>
   );
 }
