@@ -10,15 +10,17 @@ import { PatientInitialValueType, UserType } from "../patientTypes";
 import { Text } from "@sanity/ui";
 import { toast } from "react-toastify";
 import { getPatient } from "@/sanity/sanityUtils/getPatient";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 const AlertInputMedicalRecord = (props: Props) => {
-  const { closeAlert, closeModal } = useGlobalContext();
+  const { closeAlert, closeModal, loadingPatient } = useGlobalContext();
   const [loginData, setLoginData] = useState<Partial<UserType>>({
     medical_record_number: "",
     password: "admin",
   });
 
+  const Route = useRouter();
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -36,22 +38,33 @@ const AlertInputMedicalRecord = (props: Props) => {
       const checkingPatient = new Promise((resolve) => {
         return resolve(getPatient(loginData.medical_record_number!, "admin"));
       }).then((res: any) => {
-        const response = new Promise((resolve, reject) => {
-          if (!res || Object.keys(res).length < 1) {
-            return reject(console.log("nomor rekam medis salah"));
-          } else {
-            console.log("put the patient data here");
-
-            resolve(console.log({ res }));
-          }
-        });
-        return response;
+        if (!res) {
+          closeAlert();
+          toast.error("terjadi kesalahan sistem");
+        } else {
+          const patientExist = new Promise((resolve, reject) => {
+            if (Object.keys(res).length < 1) {
+              return reject(console.log("nomor rekam medis salah"));
+            } else {
+              return resolve(loadingPatient(res));
+            }
+          });
+          patientExist
+            .then((res) => {
+              closeAlert();
+              return res;
+            })
+            .then((res) => {
+              Route.push("/patient");
+              return res;
+            });
+          return patientExist;
+        }
       });
 
       toast.promise(checkingPatient, {
         pending: "Mengecek database...",
-        success:
-          "Silahkan mengisi nomor verifikasi sesuai nomor yang kami kirim",
+        success: "Data pasien disajikan",
         error: "Nomor Rekam Medis/Password salah",
       });
     }

@@ -11,7 +11,7 @@ const NotFoundPage = (props: Props) => {
   useEffect(() => {
     setTimeout(() => {
       setloading(false);
-      router.push("/mainpage");
+      router.push("/");
     }, 1000);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

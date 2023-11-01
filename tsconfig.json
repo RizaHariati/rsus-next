@@ -33,7 +33,8 @@
     ".next/types/**/*.ts",
     "loader.ts",
     "**/*.d.ts",
-    "app/**/*.d.ts"
+    "app/**/*.d.ts",
+    "app/(site)/patient"
   ],
   "exclude": ["node_modules"]
 }

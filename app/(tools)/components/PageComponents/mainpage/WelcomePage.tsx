@@ -9,7 +9,7 @@ type Props = {};
 function WelcomePage(props: Props) {
   const { openAlert } = useGlobalContext();
   return (
-    <main className="h-screen w-full bg-hoverBG flex-center-center flex-col p-5 text-center">
+    <main className=" flex-center-center flex-col p-5 text-center">
       <h1>Login Berhasil, selamat datang Riza </h1>
       <div className="grid grid-cols-2 gap-5 w-full max-w-2xl">
         <button

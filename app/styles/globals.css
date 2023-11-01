@@ -54,10 +54,16 @@ body {
     @apply w-full h-fit bg-greyLit;
   }
   p {
-    @apply font-nunito text-[16px]  font-normal tracking-normal text-greyDrk leading-5;
+    @apply font-nunito text-[18px]  font-normal tracking-normal text-greyDrk leading-5;
+  }
+  small {
+    @apply font-nunito text-[14px]  font-normal tracking-normal text-greyDrk leading-5;
   }
   .test {
     /* color: #ffffff00; //color opacity =0// */
+  }
+  main {
+    @apply h-full min-h-screen w-full bg-hoverBG pt-14;
   }
   article {
     @apply bg-greyLit;

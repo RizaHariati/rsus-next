@@ -39,6 +39,7 @@ export type AppContextProps = {
   addingNotification: (newNotification: NotificationType) => void;
   clearNotifBackground: (notificationID: string) => void;
   deleteNotification: (notificationID: string) => void;
+  loadingPatient: (patient: PatientType) => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

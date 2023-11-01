@@ -37,14 +37,6 @@ export const AppProvider = ({ children }: Props) => {
   useEffect(() => {
     let mountItem = true;
     if (mountItem) {
-      getUser().then((res: any) => {
-        const { patient, user } = res;
-
-        patientDispatch({
-          type: "LOAD_USER",
-          payload: { patient, user },
-        });
-      });
       getDoctors()
         .then((res) => {
           if (res.length > 0) {
@@ -232,9 +224,16 @@ export const AppProvider = ({ children }: Props) => {
     });
   };
 
+  const loadingPatient = (patient: PatientType) => {
+    patientDispatch({
+      type: "LOAD_PATIENT",
+      payload: { patient },
+    });
+  };
   const value = {
     patientState,
     patientDispatch,
+    loadingPatient,
     login,
     logout,
     register,
