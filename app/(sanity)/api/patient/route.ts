@@ -6,6 +6,10 @@ import client, {
 import { groq } from "next-sanity";
 
 import { NextRequest, NextResponse } from "next/server";
+import {
+  putByMRandAdminQuery,
+  putByMRandPasswordQuery,
+} from "../../components/patients.queries";
 
 export async function GET(req: NextRequest, res: NextResponse) {
   return NextResponse.json({ message: "You got it!" });
@@ -25,38 +29,20 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     const { medicalRecordNumber, password }: any = data;
 
     const patientData =
-      !password || password === "" || password === "admin"
+      !password || password === ""
         ? await client.fetch(
             groq`*[_type=='patient'
           && medical_record_number =='${medicalRecordNumber}'
           ]`
           )
-        : await writeClient.fetch(
-            groq`*[_type=='patient'
-          && medical_record_number =='${medicalRecordNumber}'
-          && patient_profile.password=='${password}'
-          ]{ medical_record_number,
-            patient_profile,
-            "scheduled_appointments":scheduled_appointments[]{
-               schedule_id,
-               current_phone,
-               tujuan,
-               appointment_type,
-               scheduled_date,
-               register_date,
-               using_bpjs,
-               nomor_antrian},
-             medical_records,
-            "notifications" : notifications[]{
-                id,
-                notification_code,
-                title,
-                message,
-                notification_date,
-                seen
-           }
-        }`
-          );
+        : password === "admin"
+        ? await client.fetch(putByMRandAdminQuery, {
+            medicalRecordNumber,
+          })
+        : await writeClient.fetch(putByMRandPasswordQuery, {
+            medicalRecordNumber,
+            password,
+          });
 
     if (!patientData || patientData.length < 1) {
       return NextResponse.json({ status: 400, data: [] });
