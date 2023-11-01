@@ -25,8 +25,12 @@
   .navbar-reg-icon {
     @apply h-6 mr-1;
   }
+
+  .navbar-menu-btn {
+    @apply flex-center-center ml-auto h-10 w-fit standard-border border-white hover:border-greyBorder px-3 gap-2;
+  }
   .navbar-menu-container {
-    @apply flex items-center justify-end h-full gap-1 md:w-52;
+    @apply flex items-center justify-end h-full gap-1 md:w-40;
   }
   .navbar-drop-container {
     @apply border border-greyBorder rounded-sm bg-white overflow-hidden fixed md:absolute top-12 md:top-16 transition-all h-fit p-5 opacity-100 w-full;

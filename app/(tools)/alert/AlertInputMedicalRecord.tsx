@@ -44,20 +44,19 @@ const AlertInputMedicalRecord = (props: Props) => {
         } else {
           const patientExist = new Promise((resolve, reject) => {
             if (Object.keys(res).length < 1) {
-              return reject(console.log("nomor rekam medis salah"));
+              return reject("nomor rekam medis salah");
             } else {
               return resolve(loadingPatient(res));
             }
-          });
-          patientExist
-            .then((res) => {
+          }).then((patientRes: any) => {
+            if (patientRes.medical_record_number) {
               closeAlert();
-              return res;
-            })
-            .then((res) => {
               Route.push("/patient");
-              return res;
-            });
+              return patientRes;
+            }
+            return res;
+          });
+
           return patientExist;
         }
       });

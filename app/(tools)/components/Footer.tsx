@@ -16,7 +16,9 @@ const Footer = (props: Props) => {
   if (showModal) return <div></div>;
 
   return (
-    <div className={showFooter ? "footer overflow-visible" : "footer-hide "}>
+    <div
+      className={showFooter ? "footer overflow-visible hidden" : "footer-hide "}
+    >
       <a
         href="https://www.ichacodes.com/"
         target="_blank"

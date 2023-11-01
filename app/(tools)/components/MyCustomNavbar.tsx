@@ -7,7 +7,7 @@ import "../../styles/mainpage.css";
 import "../../styles/bottomnav.css";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 
 import { Card, Text } from "@sanity/ui";
 
@@ -19,14 +19,18 @@ function MyCustomNavbar(props: Props) {
       <div className="navbar-container bg-opacity-100 shadow-md opacity-100 top-0">
         <nav className="navbar">
           <MainLogo />
-          <a
-            href={`https://rsuripsumoharjo-model.netlify.app/mainpage`}
-            className="flex-center-center ml-auto h-full w-fit"
-            id="mainpage"
-          >
-            <FontAwesomeIcon icon={faHome} className=" w-6 h-6" />
-            <p className="text-link">Beranda</p>
-          </a>
+          <div className=" flex items-center justify-end gap-4">
+            <a
+              href={`https://rsus-api.vercel.app/`}
+              className="navbar-menu-btn"
+            >
+              <FontAwesomeIcon icon={faHome} className=" w-6 h-6" />
+            </a>
+
+            <a href={`https://rsus.sanity.studio/`} className="navbar-menu-btn">
+              <FontAwesomeIcon icon={faUserCircle} className=" w-6 h-6" />
+            </a>
+          </div>
         </nav>
       </div>
       <StudioNavbar />

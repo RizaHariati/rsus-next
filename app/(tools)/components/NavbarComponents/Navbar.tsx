@@ -4,7 +4,7 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome } from "@fortawesome/free-solid-svg-icons";
+import { faHome, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
 
 import NavLinkEmergency from "./NavbarComponentsItem/NavLinkEmergency";
@@ -13,6 +13,7 @@ import NavLinkAntrian from "./NavbarComponentsItem/NavLinkSchedule";
 import NavLinkMainMenu from "./NavbarComponentsItem/NavLinkMainMenu";
 import NavLinkNotification from "./NavbarComponentsItem/NavLinkNotification";
 import MainLogoImage from "../../modal/MainLogoImage";
+import { toast } from "react-toastify";
 
 type Props = {};
 type MainProps = {};
@@ -76,8 +77,18 @@ export const NavbarMenu = (props: Props) => {
   return (
     <div className="h-full ">
       <div className="navbar-menu-container ">
-        <NavLinkNotification />
-        <NavLinkMainMenu />
+        <a href="https://rsus-api.vercel.app/" className="navbar-menu-btn">
+          <FontAwesomeIcon icon={faHome} className=" w-6 h-6" />
+        </a>
+        <Link
+          href="/admin"
+          // href="https://rsus.sanity.studio/"
+          className="navbar-menu-btn"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <FontAwesomeIcon icon={faUserCircle} className=" w-6 h-6" />
+        </Link>
       </div>
     </div>
   );
@@ -86,21 +97,30 @@ export const NavbarMenu = (props: Props) => {
 export const NavbarLinks = (props: Props) => {
   const {
     toggleMenuNavbar,
-    patientState: { user },
+    openAlert,
+    patientState: { patient },
   } = useGlobalContext();
   return (
     <div className="navbar-links-container">
-      <NavLinkEmergency />
-      <NavLinkProfile />
-      <NavLinkAntrian />
       <Link
-        href="/mainpage"
         className="navbar-link"
-        id="mainpage"
+        href={!patient.medical_record_number ? "/" : "/patient"}
+        onClick={() => {
+          if (!patient.medical_record_number) {
+            openAlert("inputmedicalrecord", {});
+          }
+        }}
+      >
+        <p className="text-link"> PASIEN</p>
+      </Link>
+
+      <Link
+        href="/facility"
+        className="navbar-link"
         onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
       >
         <FontAwesomeIcon icon={faHome} className="navbar-link-icon" />
-        <p className="text-link">Beranda</p>
+        <p className="text-link">RumahSakit</p>
       </Link>
     </div>
   );

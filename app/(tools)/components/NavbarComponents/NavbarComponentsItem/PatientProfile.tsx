@@ -59,59 +59,6 @@ export const PatientProfileContent = () => {
           </p>
         </div>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-3 col-start-1 gap-1 md:gap-2 mb-1 md:mb-2  px-5 md:px-0">
-        {Object.entries(patientFormInput).map(([patientKey, patientValues]) => {
-          const typePatient: string = patientKey;
-
-          const profile: PatientProfileType = patient.patient_profile;
-          //@ts-ignore
-
-          const findPatient = Object.entries(patient.patient_profile).find(
-            (item) => {
-              return item[0] === patientKey;
-            }
-          )!;
-          const [key, value] = findPatient;
-
-          return (
-            <div
-              key={patientValues.id}
-              className={
-                patientValues.id === "profil_1"
-                  ? "w-full flex flex-col"
-                  : "w-full flex flex-col"
-              }
-            >
-              <p className="body-3 md:body-2 ">{patientValues.title}</p>
-              {key !== "sex" && key !== "birthdate" && (
-                <p
-                  className={
-                    key === "bpjs_number"
-                      ? "dark-input capitalize "
-                      : "active-input capitalize "
-                  }
-                >
-                  {value.toString()}
-                </p>
-              )}
-              {key === "sex" && (
-                <p className="active-input capitalize ">
-                  {!value ? "wanita" : "pria"}
-                </p>
-              )}
-              {key === "birthdate" && (
-                <div className="active-input capitalize flex-center-between">
-                  <p>{moment(value).locale("id").format("DD MMMM YYYY")}</p>
-                  <p>
-                    {`${getAge(value).ageyear} thn/ ${getAge(value).agemonth}
-                    bln`}
-                  </p>
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
     </>
   );
 };

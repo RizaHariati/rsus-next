@@ -5,6 +5,12 @@
 
 @layer components {
   .btn-base {
-    @apply h-14 border border-greyBorder hover:border-greenUripOpacity active:border-greenUrip rounded-sm bg-white hover:bg-greenUripOpacity active:bg-greenUrip text-greyDrk hover:text-greenUrip active:text-white  w-full transition-all;
+    @apply h-12 border border-greyBorder hover:border-greenUripOpacity active:border-greenUrip rounded-sm bg-white hover:bg-greenUripOpacity active:bg-greenUrip text-greyDrk hover:text-greenUrip active:text-white  w-full transition-all;
+  }
+  .data-container {
+    @apply grid grid-cols-8 w-full h-full border-t border-greyBorder;
+  }
+  .sidebar-btn {
+    @apply flex-center-between w-full h-fit bg-hoverBG hover:bg-greenUripOpacity focus:bg-greenUrip rounded-sm p-2  transition-all;
   }
 }

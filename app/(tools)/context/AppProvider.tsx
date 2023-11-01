@@ -229,6 +229,7 @@ export const AppProvider = ({ children }: Props) => {
       type: "LOAD_PATIENT",
       payload: { patient },
     });
+    return patient;
   };
   const value = {
     patientState,

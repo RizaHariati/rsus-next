@@ -12,9 +12,10 @@ export const patientReducer = (
   action: OpenModalAction
 ) => {
   if (action.type === "LOAD_PATIENT") {
-    console.log(action.payload);
+    const patient = action.payload.patient;
     return {
       ...patientState,
+      patient,
     };
   }
   if (action.type === "LOAD_USER") {
