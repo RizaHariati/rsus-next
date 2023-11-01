@@ -9,6 +9,7 @@ import AlertVerifikasi from "./AlertVerifikasi";
 import AlertNotLogin from "./AlertNotLogin";
 import AlertRegistrasiSukses from "./AlertRegistrasiSukses";
 import AlertDateNotSelected from "./AlertDateNotSelected";
+import AlertInputMedicalRecord from "./AlertInputMedicalRecord";
 
 type Props = {};
 
@@ -50,6 +51,9 @@ const AlertContent = () => {
   }
   if (alertTitle === "datenotselected") {
     return <AlertDateNotSelected />;
+  }
+  if (alertTitle === "inputmedicalrecord") {
+    return <AlertInputMedicalRecord />;
   }
   return <div></div>;
 };

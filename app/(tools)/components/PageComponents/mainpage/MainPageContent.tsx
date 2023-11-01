@@ -14,7 +14,6 @@ import SloganGallery from "@/app/(tools)/components/PageComponents/mainpage/Slog
 import BackToTop from "@/app/(tools)/components/BackToTop";
 import MainImageSmall from "@/app/(tools)/components/PageComponents/mainpage/mainpageSmall/MainImageSmall";
 import { FacilitySanityType } from "@/app/(tools)/types";
-import { getPatient } from "@/sanity/sanityUtils/getPatient";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 type Props = {};

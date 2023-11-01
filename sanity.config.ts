@@ -1,6 +1,7 @@
 /**
  * This configuration is used to for the Sanity Studio that’s mounted on the `\app\admin\[[...index]]\page.tsx` route
  */
+
 import { StudioNavbar, buildLegacyTheme, definePlugin } from "sanity";
 
 const props = {
@@ -9,7 +10,7 @@ const props = {
   "--my-blue": "#007814",
   "--my-red": "#FF0202",
   "--my-yellow": "#f4b400",
-  "--my-green": "#0f9d58",
+  "--my-green": "#007814",
 };
 
 export const myTheme = buildLegacyTheme({
@@ -44,6 +45,10 @@ export const myTheme = buildLegacyTheme({
   "--main-navigation-color--inverted": props["--my-white"],
 
   "--focus-color": props["--my-blue"],
+
+  /* Typography */
+  "--font-family-monospace": "Nunito",
+  "--font-family-base": "18px",
 });
 
 import { visionTool } from "@sanity/vision";

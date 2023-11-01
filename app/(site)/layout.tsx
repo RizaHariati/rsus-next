@@ -2,6 +2,7 @@ export const runtime = "nodejs";
 import "../styles/globals.css";
 import "../styles/navbar.css";
 import "../styles/mainpage.css";
+import "../styles/homepage.css";
 import "../styles/bottomnav.css";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
@@ -27,7 +28,6 @@ export const metadata: Metadata = {
   description:
     "Study Case Website untuk RS Urip Sumoharjo, sebuah Rumah Sakit Islami di Bandarlampung",
   verification: { google: "I8DmG1jddxeDUsS2GRJ9alc89wW6vffSEFuFo3J8PiQ" },
-  creator: "Riza Hariati for Ichacodes@2023",
 };
 config.autoAddCss = false;
 export default function RootLayout({
@@ -37,19 +37,6 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <head>
-        <link
-          rel="stylesheet"
-          type="text/css"
-          charSet="UTF-8"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick.min.css"
-        />
-        <link
-          rel="stylesheet"
-          type="text/css"
-          href="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.6.0/slick-theme.min.css"
-        />
-      </head>
       <body
         className={`${nunito.variable} ${oswald.variable}`}
         style={{ touchAction: "auto" }}

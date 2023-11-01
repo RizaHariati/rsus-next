@@ -1,15 +1,12 @@
 import React from "react";
 import "../../styles/mainpage.css";
 
-import MainPageContent from "@/app/(tools)/components/PageComponents/mainpage/MainPageContent";
-import { FacilitySanityType } from "@/app/(tools)/types";
-import { getFacility } from "@/sanity/sanityUtils/getFacility";
-import { getPatient } from "@/sanity/sanityUtils/getPatient";
+import HomePageComponent from "@/app/(tools)/components/HomePageComponents/HomePageComponent";
 
 type Props = {};
 
-async function MainPage(props: Props) {
-  return <MainPageContent />;
+async function HomePage(props: Props) {
+  return <HomePageComponent />;
 }
 
-export default MainPage;
+export default HomePage;

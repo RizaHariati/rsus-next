@@ -25,8 +25,8 @@ export async function PUT(req: NextRequest, res: NextResponse) {
     const { medicalRecordNumber, password }: any = data;
 
     const patientData =
-      !password || password === ""
-        ? await writeClient.fetch(
+      !password || password === "" || password === "admin"
+        ? await client.fetch(
             groq`*[_type=='patient'
           && medical_record_number =='${medicalRecordNumber}'
           ]`

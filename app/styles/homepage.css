@@ -1,0 +1,10 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "./globals.css";
+
+@layer components {
+  .btn-base {
+    @apply h-14 border border-greyBorder hover:border-greenUripOpacity active:border-greenUrip rounded-sm bg-white hover:bg-greenUripOpacity active:bg-greenUrip text-greyDrk hover:text-greenUrip active:text-white  w-full transition-all;
+  }
+}
