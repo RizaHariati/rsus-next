@@ -1,80 +1,119 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import moment from "moment";
 import { getAge } from "../../utils/getAge";
-import { PatientProfileType } from "../../patientTypes";
+import {
+  PatientInitialValueType,
+  PatientProfileType,
+} from "../../patientTypes";
 import { patientFormInput } from "../../utils/forms/patientFormInput";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import PatientProfileContent from "./PatientProfileContent";
 type Props = {};
 
 const PatientProfile = (props: Props) => {
   const {
-    patientState: { patient },
+    patientState: {
+      patient: { patient_profile, medical_record_number },
+    },
   } = useGlobalContext();
+  const initialPatient: PatientInitialValueType = {
+    medical_record_number: {
+      value: medical_record_number,
+      error: false,
+    },
+    register_date: {
+      value: patient_profile.register_date,
+      error: false,
+    },
+    name: { value: patient_profile.name, error: false },
+    NIK: { value: patient_profile.NIK, error: false },
+    address: { value: patient_profile.address, error: false },
+    sex: { value: patient_profile.sex, error: false },
+    birthdate: { value: patient_profile.birthdate, error: false },
+    phone: { value: patient_profile.phone, error: false },
+    password: { value: patient_profile.password, error: false },
+    bpjs_number: { value: patient_profile.bpjs_number, error: false },
+  };
+
+  const [editable, setEditable] = useState(false);
+  const [patientPersonal, setPatientPersonal] =
+    useState<PatientInitialValueType>(initialPatient);
+
+  useEffect(() => {
+    if (!editable) setPatientPersonal(initialPatient);
+    //eslint-disable-next-line
+  }, [editable]);
+
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    patientKey: string
+  ) => {
+    e.preventDefault();
+    let value = e.target.value;
+    if (
+      patientKey === "bpjs_number" ||
+      patientKey === "phone" ||
+      patientKey === "NIK"
+    ) {
+      if (value.length > 12) {
+        value = value.slice(0, 12);
+      }
+      console.log(typeof value);
+    }
+
+    const newPersonal = {
+      ...patientPersonal,
+      [patientKey]: { value, error: false },
+    };
+
+    setPatientPersonal(newPersonal);
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+  };
   return (
-    <div className=" col-span-6">
-      <div className="h-14 w-full flex-center-between p-4 border-b border-greyBorder">
-        <div>
-          <p className="font-bold">{patient.patient_profile.name}</p>
+    <form className=" col-span-6" onSubmit={(e) => handleSubmit(e)}>
+      <div className="h-14 w-full flex-center-between p-4 border-b border-greyBorder gap-5">
+        <div className="w-full">
+          <p>{patientPersonal["name"].value}</p>
         </div>
         <div className="flex items-center gap-2">
-          <button className="btn-base w-28 h-10">Edit</button>
-          <button className="btn-base w-28 h-10">Delete</button>
+          <button
+            onClick={() => {
+              setEditable(!editable);
+            }}
+            type="button"
+            className={editable ? "btn-base-focus " : "btn-base-small"}
+          >
+            Edit
+          </button>
+          <button
+            onClick={() => setEditable(false)}
+            type="button"
+            className="btn-base-small"
+          >
+            Delete
+          </button>
         </div>
       </div>
-      <PatientProfileContent patientProfile={patient.patient_profile} />
-    </div>
+      <PatientProfileContent
+        patientPersonal={patientPersonal}
+        editable={editable}
+        handleChange={handleChange}
+      />
+      <div className="w-full h-14  p-2 flex-center-center">
+        <button
+          type="submit"
+          className={
+            editable ? "btn-base-focus ml-auto" : "btn-base-small ml-auto"
+          }
+        >
+          Submit
+        </button>
+      </div>
+    </form>
   );
 };
 
 export default PatientProfile;
-
-type PatientProps = {
-  patientProfile: PatientProfileType;
-};
-const PatientProfileContent = ({ patientProfile }: PatientProps) => {
-  const {
-    patientState: { patient },
-  } = useGlobalContext();
-  const formInputArray = Object.entries(patientFormInput);
-  return (
-    <div className="w-full h-[calc(100vh-112px)] grid grid-cols-1 col-start-1 gap-1  max-w-2xl p-10 mx-auto">
-      {formInputArray
-        .slice(1, formInputArray.length)
-        .map(([patientKey, patientValue], index) => {
-          //@ts-ignore
-          const profileItem = patientProfile[patientKey];
-
-          return (
-            <div key={index} className="w-full">
-              <small className="">{patientValue.title}</small>
-              {patientKey !== "sex" && patientKey !== "birthdate" && (
-                <input
-                  value={profileItem}
-                  disabled
-                  className="active-input capitalize"
-                />
-              )}
-              {patientKey === "sex" && (
-                <p className="active-input capitalize ">
-                  {!profileItem ? "wanita" : "pria"}
-                </p>
-              )}
-              {patientKey === "birthdate" && (
-                <div className="active-input capitalize flex-center-between">
-                  <p>
-                    {moment(profileItem).locale("id").format("DD MMMM YYYY")}
-                  </p>
-                  <p>
-                    {`${getAge(profileItem).ageyear} thn/ ${
-                      getAge(profileItem).agemonth
-                    }
-                    bln`}
-                  </p>
-                </div>
-              )}
-            </div>
-          );
-        })}
-    </div>
-  );
-};

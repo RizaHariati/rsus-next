@@ -91,7 +91,7 @@ const AlertInputMedicalRecord = (props: Props) => {
           <input
             maxLength={12}
             id="input_mr"
-            className="w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2"
+            className="admin-input"
             placeholder="Nomor Rekam Medis "
             value={loginData.medical_record_number}
             onChange={(e) => handleChange(e)}

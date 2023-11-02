@@ -7,10 +7,24 @@
   .btn-base {
     @apply h-12 border border-greyBorder hover:border-greenUripOpacity active:border-greenUrip rounded-sm bg-white hover:bg-greenUripOpacity active:bg-greenUrip text-greyDrk hover:text-greenUrip active:text-white  w-full transition-all;
   }
+  .btn-base-focus {
+    @apply btn-base w-28 h-10 bg-greenUrip border-greenUrip text-white !important;
+  }
+
+  .btn-base-small {
+    @apply btn-base w-28 h-10;
+  }
+
   .data-container {
     @apply grid grid-cols-8 w-full h-full border-t border-greyBorder;
   }
   .sidebar-btn {
     @apply flex-center-between w-full h-fit bg-hoverBG hover:bg-greenUripOpacity focus:bg-greenUrip rounded-sm p-2  transition-all;
+  }
+  .admin-input {
+    @apply w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2 text-greyDrk;
+  }
+  .admin-input-disabled {
+    @apply w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2 text-greyMed1;
   }
 }
