@@ -27,4 +27,7 @@
   .admin-input-disabled {
     @apply w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2 text-greyMed1;
   }
+  .column-detail-full {
+    @apply w-full h-[calc(100vh-168px)] grid grid-cols-1 col-start-1 gap-1  max-w-2xl p-2 mx-auto overflow-y-scroll;
+  }
 }

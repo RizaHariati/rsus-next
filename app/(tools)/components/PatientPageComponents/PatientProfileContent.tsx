@@ -1,10 +1,7 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import moment from "moment";
 import { getAge } from "../../utils/getAge";
-import {
-  PatientInitialValueType,
-  PatientProfileType,
-} from "../../patientTypes";
+import { PatientInitialValueType } from "../../patientTypes";
 import { patientFormInput } from "../../utils/forms/patientFormInput";
 
 type PatientProps = {
@@ -23,7 +20,7 @@ const PatientProfileContent = ({
   const formInputArray = Object.entries(patientFormInput);
 
   return (
-    <div className="w-full h-[calc(100vh-168px)] grid grid-cols-1 col-start-1 gap-1  max-w-2xl p-2 mx-auto overflow-y-scroll scrollbar-none">
+    <div className="column-detail-full">
       {formInputArray
         .slice(1, formInputArray.length)
         .map(([patientKey, patientValue], index) => {

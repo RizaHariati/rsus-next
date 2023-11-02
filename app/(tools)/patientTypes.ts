@@ -23,6 +23,16 @@ export type FormProfileType = {
   bpjs_number?: PersonalItemType;
 };
 
+export type FormScheduleType = {
+  schedule_id: PersonalItemType;
+  current_phone: PersonalItemType;
+  tujuan: PersonalItemType;
+  appointment_type: PersonalItemType;
+  scheduled_date: PersonalItemType;
+  register_date: PersonalItemType;
+  using_bpjs: PersonalItemType;
+  nomor_antrian: PersonalItemType;
+};
 export type PatientProfileType = {
   name: string;
   NIK: string;
