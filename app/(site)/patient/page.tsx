@@ -59,7 +59,7 @@ const PatientPage = (props: Props) => {
   return (
     <div className="page-main-container  ">
       <main className="data-container ">
-        <div className=" col-span-2 h-full w-full  border-r border-greyBorder">
+        <div className=" col-span-2 h-full w-1/4  border-r border-greyBorder ">
           <div className="h-14 w-full flex-center-start p-4 border-b border-greyBorder">
             <p>{patient.medical_record_number}</p>
           </div>
@@ -68,15 +68,29 @@ const PatientPage = (props: Props) => {
               return (
                 <div key={index} className="h-14 w-full">
                   <button
-                    className="sidebar-btn group"
+                    className={
+                      item.key === showDetail
+                        ? "sidebar-btn-focus group"
+                        : "sidebar-btn group"
+                    }
                     onClick={() => setshowDetail(item.key)}
                   >
-                    <p className="text-left group-focus:text-white h-10 flex-center-start">
+                    <p
+                      className={
+                        item.key === showDetail
+                          ? "sidebar-btn-text text-white"
+                          : "sidebar-btn-text"
+                      }
+                    >
                       {item.name}
                     </p>
                     <FontAwesomeIcon
                       icon={faChevronRight}
-                      className="text-greyMed1 group-focus:text-white"
+                      className={
+                        item.key === showDetail
+                          ? "sidebar-btn-icon text-white"
+                          : "sidebar-btn-icon"
+                      }
                     />
                   </button>
                 </div>
@@ -87,7 +101,7 @@ const PatientPage = (props: Props) => {
         {showDetail === "patient_profile" && <PatientProfile />}
         {showDetail === "scheduled_appointments" && <PatientSchedule />}
         {showDetail === "medical_records" && (
-          <div className="col-span-6  h-full w-full flex-center-center ">
+          <div className=" h-full w-3/4 flex-center-center ">
             <h4>Masih dalam konstruksi</h4>
           </div>
         )}

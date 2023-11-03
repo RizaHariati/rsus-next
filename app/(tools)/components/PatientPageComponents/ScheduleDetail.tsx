@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
-import { PatientInitialValueType } from "../../patientTypes";
+import {
+  AppointmentListType,
+  PatientInitialValueType,
+} from "../../patientTypes";
 import { scheduleFormInput } from "../../utils/forms/scheduleFormInput";
 import moment from "moment";
 import { useGlobalContext } from "../../context/AppProvider";
 
 type Props = {
-  scheduled_appointments: {
-    id: string;
-    value: any[];
-  } | null;
+  scheduled_appointments: AppointmentListType | null;
 };
 
 const ScheduleDetail = ({ scheduled_appointments }: Props) => {
@@ -37,7 +37,7 @@ const ScheduleDetail = ({ scheduled_appointments }: Props) => {
   const [initalSchedule, setinitalSchedule] = useState(emptySchedule);
   const [patientSchedule, setpatientSchedule] =
     useState<PatientInitialValueType>({});
-
+  const [tujuanList, setTujuanList] = useState(null);
   useEffect(() => {
     if (!scheduled_appointments) return;
     const findSchedule = patient.scheduled_appointments.find(
@@ -63,8 +63,8 @@ const ScheduleDetail = ({ scheduled_appointments }: Props) => {
   if (!scheduled_appointments || !patientSchedule) return <div></div>;
   else {
     return (
-      <div className="col-span-4 w-full">
-        <div className="h-14 w-full flex-center-between p-4 border-b border-greyBorder gap-5">
+      <div className=" w-2/3 h-full ">
+        <div className="h-14  flex-center-between p-4 border-b border-greyBorder gap-5">
           <div className="w-full"></div>
           <div className="flex items-center gap-2">
             <button
@@ -91,25 +91,57 @@ const ScheduleDetail = ({ scheduled_appointments }: Props) => {
             Object.entries(scheduleFormInput).map(
               ([scheduleKey, scheduleValue], scheduleIndex) => {
                 //@ts-ignore
-                const value = patientSchedule[scheduleKey]?.value;
+                let value = patientSchedule[scheduleKey]?.value;
                 if (!value) return <div key={scheduleIndex}></div>;
                 else {
-                  return (
-                    <div key={scheduleIndex}>
-                      <small>{scheduleValue.title}</small>
-                      <input
-                        value={
-                          scheduleKey.includes("date")
-                            ? moment(value).format("DD MMMM YYYY")
-                            : value
-                        }
-                        disabled={!editable}
-                        className={
-                          editable ? "admin-input " : "admin-input-disabled"
-                        }
-                      />
-                    </div>
-                  );
+                  if (scheduleKey.includes("scheduled_date")) {
+                    value = moment(value).format("DD MMMM YYYY");
+                    return (
+                      <div key={scheduleIndex}>
+                        <small>{scheduleValue.title}</small>
+                        <input
+                          value={value}
+                          disabled={!editable}
+                          className={
+                            editable ? "admin-input " : "admin-input-disabled"
+                          }
+                        />
+                      </div>
+                    );
+                  } else if (scheduleKey === "tujuan") {
+                    value = scheduled_appointments.value
+                      ?.map((item: any) => {
+                        return item.name || item.title || "";
+                      })
+                      .join(", ");
+                    return (
+                      <div key={scheduleIndex}>
+                        <small>{scheduleValue.title}</small>
+                        <input
+                          value={value}
+                          disabled={!editable}
+                          className={
+                            editable ? "admin-input " : "admin-input-disabled"
+                          }
+                        />
+                      </div>
+                    );
+                  } else {
+                    return (
+                      <div key={scheduleIndex}>
+                        <small>{scheduleValue.title}</small>
+                        <input
+                          value={
+                            scheduleKey.includes("date")
+                              ? moment(value).format("DD MMMM YYYY")
+                              : value
+                          }
+                          disabled={true}
+                          className="admin-input-disabled"
+                        />
+                      </div>
+                    );
+                  }
                 }
               }
             )

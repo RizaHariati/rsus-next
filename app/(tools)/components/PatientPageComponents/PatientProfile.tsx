@@ -68,7 +68,7 @@ const PatientProfile = (props: Props) => {
     e.preventDefault();
   };
   return (
-    <form className=" col-span-6" onSubmit={(e) => handleSubmit(e)}>
+    <form className=" w-3/4" onSubmit={(e) => handleSubmit(e)}>
       <div className="h-14 w-full flex-center-between p-4 border-b border-greyBorder gap-5">
         <div className="w-full">
           <p>{patientPersonal["name"].value}</p>

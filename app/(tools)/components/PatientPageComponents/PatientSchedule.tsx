@@ -8,14 +8,12 @@ import { AppointmentListType, ScheduledType } from "@/app/(tools)/patientTypes";
 
 import moment from "moment";
 import ScheduleDetail from "./ScheduleDetail";
-import { getTujuan } from "../../utils/patientUtils/getTujuan";
 
 type Props = {};
 
 const PatientSchedule = (props: Props) => {
   const {
     patientState: { patient, appointmentList },
-    state: { dataDoctor, dataFacility },
   } = useGlobalContext();
   const scheduled_appointments: ScheduledType[] =
     patient.scheduled_appointments;
@@ -33,8 +31,8 @@ const PatientSchedule = (props: Props) => {
   if (!appointmentList || appointmentList.length < 1) return <div></div>;
   else {
     return (
-      <div className="col-span-6 grid grid-cols-6  h-full w-full ">
-        <div className="h-full max-h-[calc(100vh-56px)] col-span-2 w-full border-r border-r-greyBorder p-2 overflow-y-scroll scrollbar-none flex flex-col gap-2">
+      <div className=" h-full w-3/4  flex">
+        <div className="h-full max-h-[calc(100vh-56px)] col-span-2 w-1/3 border-r border-r-greyBorder p-2 overflow-y-scroll scrollbar-none flex flex-col gap-2">
           {scheduled_appointments.map(
             (schedule_appointment: ScheduledType, index: number) => {
               const dataSchedule = appointmentList?.find((item) => {
@@ -48,7 +46,11 @@ const PatientSchedule = (props: Props) => {
                   <button
                     key={index}
                     // className="h-fit min-h-14 w-full"
-                    className="sidebar-btn group"
+                    className={
+                      scheduleDetail?.id === schedule_appointment.schedule_id
+                        ? "sidebar-btn-focus group"
+                        : "sidebar-btn group"
+                    }
                     onClick={() => setScheduleDetail(dataSchedule)}
                   >
                     <div>
@@ -57,13 +59,25 @@ const PatientSchedule = (props: Props) => {
                         return (
                           <p
                             key={tujuanIndex}
-                            className="text-left group-focus:text-white"
+                            className={
+                              scheduleDetail?.id ===
+                              schedule_appointment.schedule_id
+                                ? "sidebar-btn-text h-5 text-white "
+                                : "sidebar-btn-text h-5 "
+                            }
                           >
                             {tujuan.title || tujuan.name}
                           </p>
                         );
                       })}
-                      <small className="text-left group-focus:text-white flex-center-start">
+                      <small
+                        className={
+                          scheduleDetail?.id ===
+                          schedule_appointment.schedule_id
+                            ? "sidebar-btn-text h-4 text-white"
+                            : "sidebar-btn-text h-4"
+                        }
+                      >
                         {moment(schedule_appointment.scheduled_date).format(
                           "DD MMMM YYYY"
                         )}
@@ -71,7 +85,11 @@ const PatientSchedule = (props: Props) => {
                     </div>
                     <FontAwesomeIcon
                       icon={faChevronRight}
-                      className="text-greyMed1 group-focus:text-white"
+                      className={
+                        scheduleDetail?.id === schedule_appointment.schedule_id
+                          ? "sidebar-btn-icon text-white"
+                          : "sidebar-btn-icon"
+                      }
                     />
                   </button>
                 );

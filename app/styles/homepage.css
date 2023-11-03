@@ -16,10 +16,22 @@
   }
 
   .data-container {
-    @apply grid grid-cols-8 w-full h-full border-t border-greyBorder;
+    @apply flex flex-row w-full h-full border-t border-greyBorder;
   }
   .sidebar-btn {
-    @apply flex-center-between w-full h-fit bg-hoverBG hover:bg-greenUripOpacity focus:bg-greenUrip rounded-sm p-2  transition-all;
+    @apply flex-center-between w-full h-fit bg-hoverBG hover:bg-greenUripOpacity text-greyDrk focus:bg-greenUrip focus:text-white rounded-sm p-2  transition-all;
+  }
+
+  .sidebar-btn-focus {
+    @apply sidebar-btn bg-greenUrip text-white;
+  }
+
+  .sidebar-btn-text {
+    @apply text-left group-focus:text-white h-10 flex-center-start;
+  }
+
+  .sidebar-btn-icon {
+    @apply text-greyMed1 group-focus:text-white;
   }
   .admin-input {
     @apply w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2 text-greyDrk;
