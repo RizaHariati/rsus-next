@@ -8,6 +8,8 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import PatientSchedule from "@/app/(tools)/components/PatientPageComponents/PatientSchedule";
 
 import PatientProfile from "@/app/(tools)/components/PatientPageComponents/PatientProfile";
+import { ScheduledType } from "@/app/(tools)/patientTypes";
+import { getTujuan } from "@/app/(tools)/utils/patientUtils/getTujuan";
 
 type Props = {};
 const patientDetail = [
@@ -17,6 +19,7 @@ const patientDetail = [
 ];
 const PatientPage = (props: Props) => {
   const {
+    loadingPatientDetail,
     patientState: { patient },
   } = useGlobalContext();
   const Router = useRouter();
@@ -24,6 +27,26 @@ const PatientPage = (props: Props) => {
   useEffect(() => {
     if (!patient || !patient.medical_record_number) {
       return Router.push("/");
+    } else {
+      let detail: any;
+      const schedulePromise = () => {
+        detail = patient.scheduled_appointments.map(
+          (schedule: ScheduledType) => {
+            const promise = schedule.tujuan.map((item) => {
+              return new Promise((resolve) => {
+                return resolve(getTujuan(item));
+              });
+            });
+            return Promise.all(promise).then((res: any) => {
+              return { id: schedule.schedule_id, value: res };
+            });
+          }
+        );
+        return detail;
+      };
+      Promise.all(schedulePromise()).then((res) => {
+        loadingPatientDetail([...res]);
+      });
     }
   }, []);
   if (!patient || !patient.medical_record_number)
@@ -64,9 +87,8 @@ const PatientPage = (props: Props) => {
         {showDetail === "patient_profile" && <PatientProfile />}
         {showDetail === "scheduled_appointments" && <PatientSchedule />}
         {showDetail === "medical_records" && (
-          <div className="col-span-6 grid grid-cols-6  h-full w-full bg-yellow-100">
-            <div className="h-full max-h-[calc(100vh-56px)] col-span-2 w-full border-r border-r-greyBorder"></div>
-            <div></div>
+          <div className="col-span-6  h-full w-full flex-center-center ">
+            <h4>Masih dalam konstruksi</h4>
           </div>
         )}
       </main>

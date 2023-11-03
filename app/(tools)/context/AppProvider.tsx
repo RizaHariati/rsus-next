@@ -5,15 +5,10 @@ import { AppContext } from "./AppContext";
 import { initialState } from "./initialState";
 import { appReducer } from "../reducers/appReducer";
 import { AppState, PatientState } from "./interfaces";
-
-import { getLabCartItem } from "../utils/getLabCartItem";
 import { patientReducer } from "../reducers/patientReducer";
 import { initialPatientState } from "./initialPatientState";
-import { NotificationType, PatientType } from "../patientTypes";
-import { ScheduledType, UserType } from "../patientTypes";
-import { getUser } from "../utils/localData/getStorageData";
-
-import { FilterDoctorType } from "../types";
+import { AppointmentListType, PatientType } from "../patientTypes";
+import { UserType } from "../patientTypes";
 
 import { getDoctors } from "../../../sanity/sanityUtils/getDoctors";
 import { getFacility } from "../../../sanity/sanityUtils/getFacility";
@@ -37,33 +32,6 @@ export const AppProvider = ({ children }: Props) => {
   useEffect(() => {
     let mountItem = true;
     if (mountItem) {
-      getDoctors()
-        .then((res) => {
-          if (res.length > 0) {
-            dispatch({
-              type: "POPULATE_DOCTOR",
-              payload: { dataDoctor: res },
-            });
-          }
-          return res;
-        })
-        .then((res) => {
-          dispatch({
-            type: "FILTER_DOCTORS",
-            payload: { keyword: "", category: "spesialisasi", value: res },
-          });
-          return res;
-        });
-
-      getFacility().then((res) => {
-        if (res.length > 0) {
-          dispatch({
-            type: "POPULATE_FACILITY",
-            payload: { dataFacility: res },
-          });
-        }
-        return res;
-      });
     }
     return () => {
       mountItem = false;
@@ -85,39 +53,7 @@ export const AppProvider = ({ children }: Props) => {
     dispatch({ type: "CLOSE_MODAL", payload: "" });
   };
 
-  /* ------ Memfilter dokter berdasarkan nama atau spesialisasi ----- */
-  const filteringDoctor = (
-    keyword: string,
-    category: "spesialisasi" | "dokter",
-    selected_date?: string
-  ) => {
-    const filtered_doctor: any = getDoctors().then((dataDoctor) => {
-      const modal = state.modalTitle;
-      let filteringDoctor: FilterDoctorType = {
-        category: "spesialisasi",
-        value: [],
-        keyword,
-      };
-      if (dataDoctor.length < 0) return filteringDoctor;
-      else {
-        return filteringDoctor;
-      }
-    });
-
-    dispatch({
-      type: "FILTER_DOCTORS",
-      payload: { keyword, category, selected_date },
-    });
-  };
-
   /* ------------------ menentukan hari pemeriksaan ----------------- */
-  const setDate = (date: string) => {
-    dispatch({ type: "SET_DATE", payload: { date } });
-  };
-
-  const clearDate = () => {
-    dispatch({ type: "CLEAR_DATE" });
-  };
 
   const openAlert = (alertTitle: string, alertValue: any) => {
     toggleMenuNavbar(null);
@@ -129,46 +65,6 @@ export const AppProvider = ({ children }: Props) => {
   };
 
   /* -------- menambah dan mengurangi  test laboratorium item ------- */
-  const toggleCart = (item: any, gender: "all" | "pria" | "wanita") => {
-    const newLabItem = getLabCartItem(item, gender);
-    const findLabItem = state.labCart.find((labItem) => labItem.id === item.id);
-
-    if (findLabItem) {
-      dispatch({ type: "REMOVE_ITEM", payload: { id: item.id } });
-    } else {
-      dispatch({ type: "ADD_ITEM", payload: { newLabItem } });
-    }
-  };
-
-  const clearLabCart = () => {
-    dispatch({ type: "CLEAR_ITEM" });
-  };
-
-  const login = (user: UserType, patient: PatientType) => {
-    patientDispatch({ type: "LOGIN_USER", payload: { user, patient } });
-  };
-
-  const logout = () => {
-    patientDispatch({ type: "LOGOUT_USER" });
-    dispatch({ type: "CLOSE_MODAL", payload: "" });
-    if (patientState.patient.notifications.length > 0) {
-      const findNotifID = patientState.patient.notifications.find(
-        (item) => item.notification_code === "ncat-001"
-      );
-      if (findNotifID) {
-        patientDispatch({
-          type: "DELETE_NOTIFICATION",
-          payload: {
-            notificationID: findNotifID.id,
-          },
-        });
-      }
-    }
-  };
-
-  const register = (newPatient: PatientType) => {
-    patientDispatch({ type: "REGISTER_USER", payload: { newPatient } });
-  };
 
   const showBottomNavbar = () => {
     setShowFooter(true);
@@ -198,32 +94,6 @@ export const AppProvider = ({ children }: Props) => {
     }
   };
 
-  const addingSchedule = (newSchedule: ScheduledType) => {
-    patientDispatch({
-      type: "ADD_SCHEDULE",
-      payload: { newSchedule: newSchedule || [] },
-    });
-  };
-  const clearNotifBackground = (notificationID: string) => {
-    patientDispatch({
-      type: "CLEAR_BACKGROUND_NOTIFICATION",
-      payload: { notificationID },
-    });
-  };
-
-  const deleteNotification = (notificationID: string) => {
-    patientDispatch({
-      type: "DELETE_NOTIFICATION",
-      payload: { notificationID },
-    });
-  };
-  const addingNotification = (newNotification: NotificationType) => {
-    patientDispatch({
-      type: "ADD_SCHEDULE",
-      payload: { newNotification },
-    });
-  };
-
   const loadingPatient = (patient: PatientType) => {
     patientDispatch({
       type: "LOAD_PATIENT",
@@ -231,29 +101,27 @@ export const AppProvider = ({ children }: Props) => {
     });
     return patient;
   };
+
+  const loadingPatientDetail = (
+    appointmentList: AppointmentListType[] | null
+  ) => {
+    patientDispatch({
+      type: "LOAD_PATIENT_DETAIL",
+      payload: { appointmentList },
+    });
+  };
   const value = {
     patientState,
     patientDispatch,
     loadingPatient,
-    login,
-    logout,
-    register,
-    addingSchedule,
-    addingNotification,
-    clearNotifBackground,
-    deleteNotification,
+    loadingPatientDetail,
     state,
     dispatch,
     toggleMenuNavbar,
     openModal,
     closeModal,
-    filteringDoctor,
-    setDate,
-    clearDate,
     openAlert,
     closeAlert,
-    toggleCart,
-    clearLabCart,
     showBottomNavbar,
     handleScroll,
     scrollingUp,

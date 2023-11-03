@@ -1,19 +1,15 @@
 import { writeClient } from "@/sanity/sanityUtils/sanity-utils";
-import { groq } from "next-sanity";
 import { NextRequest, NextResponse } from "next/server";
+import {
+  getFacilityByIDQuery,
+  getFacilityQuery,
+} from "../../components/facility.queries";
 
 export async function GET(req: NextRequest) {
-  const data = await writeClient.fetch(groq`*[_type=='facility']| order(id asc)
-  {  id,
-  title,
-  "img":{"src":img.asset->url,"alt":img.alt},
-  description,
-  function,
-  poliklinik,
-  category,
-  featured,
-  doctorref,
-  price,
-  }`);
+  const id = req.nextUrl.searchParams.get("id");
+
+  const data = id
+    ? await writeClient.fetch(getFacilityByIDQuery, { id })
+    : await writeClient.fetch(getFacilityQuery);
   return NextResponse.json(data);
 }

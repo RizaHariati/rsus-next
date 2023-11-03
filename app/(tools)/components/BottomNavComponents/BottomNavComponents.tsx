@@ -13,13 +13,8 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
 import Link from "next/link";
-import { DaruratContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkEmergency";
-
-import { PatientProfileContent } from "../NavbarComponents/NavbarComponentsItem/PatientProfile";
-import { LoginFormContent } from "../NavbarComponents/NavbarComponentsItem/UserLogin";
 import { AnimatePresence, motion } from "framer-motion";
 import { popBottomVariant } from "../../framervariants/bottomvariants";
-import { MenuJadwalContent } from "../NavbarComponents/NavbarComponentsItem/NavLinkSchedule";
 import moment from "moment";
 
 type Props = {};
@@ -130,10 +125,8 @@ const BottomNavComponents = (props: Props) => {
 
         {menu_id !== "main-menu" && menu_id !== "nav-notification" && (
           <BottomNavContent>
-            {menu_id === "darurat" && <DaruratContent />}
-            {menu_id === "login" && <LoginFormContent />}
-            {user.login && menu_id === "profile" && <PatientProfileContent />}
-            {menu_id === "jadwal" && <MenuJadwalContent />}
+            {/* {user.login && menu_id === "profile" && <PatientProfileContent />}
+            {menu_id === "jadwal" && <MenuJadwalContent />} */}
           </BottomNavContent>
         )}
       </div>

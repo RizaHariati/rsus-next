@@ -1,4 +1,4 @@
-import { PatientType, UserType } from "../patientTypes";
+import { AppointmentListType, PatientType, UserType } from "../patientTypes";
 import {
   FilterDoctorType,
   LabCartType,
@@ -26,4 +26,5 @@ export interface PatientState {
   verification_number: number;
   patient: PatientType;
   allPatients: PatientType[];
+  appointmentList: AppointmentListType[] | null;
 }

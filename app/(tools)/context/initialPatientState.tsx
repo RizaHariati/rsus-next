@@ -40,4 +40,6 @@ export const initialPatientState: PatientState = {
       notifications: sampleNotifications,
     },
   ],
+
+  appointmentList: null,
 };

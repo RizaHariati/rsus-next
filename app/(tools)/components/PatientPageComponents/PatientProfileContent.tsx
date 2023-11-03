@@ -1,8 +1,8 @@
 import React from "react";
 import moment from "moment";
-import { getAge } from "../../utils/getAge";
 import { PatientInitialValueType } from "../../patientTypes";
 import { patientFormInput } from "../../utils/forms/patientFormInput";
+import { getAge } from "../../utils/patientUtils/getAge";
 
 type PatientProps = {
   patientPersonal: PatientInitialValueType;

@@ -5,10 +5,7 @@ import { AnimatePresence, motion } from "framer-motion";
 
 import { enterOpacity } from "@/app/(tools)/framervariants/variants";
 import { useGlobalContext } from "../context/AppProvider";
-import AlertVerifikasi from "./AlertVerifikasi";
-import AlertNotLogin from "./AlertNotLogin";
-import AlertRegistrasiSukses from "./AlertRegistrasiSukses";
-import AlertDateNotSelected from "./AlertDateNotSelected";
+
 import AlertInputMedicalRecord from "./AlertInputMedicalRecord";
 
 type Props = {};
@@ -40,18 +37,7 @@ const AlertContent = () => {
   const {
     state: { alertTitle },
   } = useGlobalContext();
-  if (alertTitle === "notlogin") {
-    return <AlertNotLogin />;
-  }
-  if (alertTitle === "verifikasi") {
-    return <AlertVerifikasi />;
-  }
-  if (alertTitle === "registrasisukses") {
-    return <AlertRegistrasiSukses />;
-  }
-  if (alertTitle === "datenotselected") {
-    return <AlertDateNotSelected />;
-  }
+
   if (alertTitle === "inputmedicalrecord") {
     return <AlertInputMedicalRecord />;
   }

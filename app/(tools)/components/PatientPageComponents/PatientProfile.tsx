@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
-import moment from "moment";
-import { getAge } from "../../utils/getAge";
-import {
-  PatientInitialValueType,
-  PatientProfileType,
-} from "../../patientTypes";
-import { patientFormInput } from "../../utils/forms/patientFormInput";
+
+import { PatientInitialValueType } from "../../patientTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import PatientProfileContent from "./PatientProfileContent";
 type Props = {};
@@ -102,7 +97,7 @@ const PatientProfile = (props: Props) => {
         editable={editable}
         handleChange={handleChange}
       />
-      <div className="w-full h-14  p-2 flex-center-center">
+      <div className="w-full h-14  p-2 flex-center-center  border-t border-greyBorder">
         <button
           type="submit"
           className={

@@ -95,3 +95,8 @@ export type PatientType = {
 export type PatientInitialValueType = {
   [key: string]: { value: any; error: boolean };
 };
+
+export type AppointmentListType = {
+  id: string;
+  value: any[];
+};

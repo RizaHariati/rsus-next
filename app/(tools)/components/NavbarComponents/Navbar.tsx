@@ -7,19 +7,13 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faHome, faUserCircle } from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
 
-import NavLinkEmergency from "./NavbarComponentsItem/NavLinkEmergency";
-import NavLinkProfile from "./NavbarComponentsItem/NavLinkProfile";
-import NavLinkAntrian from "./NavbarComponentsItem/NavLinkSchedule";
-import NavLinkMainMenu from "./NavbarComponentsItem/NavLinkMainMenu";
-import NavLinkNotification from "./NavbarComponentsItem/NavLinkNotification";
 import MainLogoImage from "../../modal/MainLogoImage";
-import { toast } from "react-toastify";
 
 type Props = {};
 type MainProps = {};
 
 const Navbar = (props: MainProps) => {
-  const { scrollTop, toggleMenuNavbar, patientDispatch } = useGlobalContext();
+  const { scrollTop } = useGlobalContext();
 
   const [nowPathname, setNowPathname] = useState<any>();
   const pathname = usePathname();
