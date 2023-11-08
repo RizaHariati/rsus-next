@@ -63,5 +63,21 @@ export const appReducer = (state: AppState, action: OpenModalAction) => {
     };
   }
 
+  if (action.type === "COLUMN_ASSIGNMENT") {
+    const columnAssignment = action.payload.columnAssignment;
+    return {
+      ...state,
+      columnAssignment,
+    };
+  }
+
+  if (action.type === "SET_WINDOW") {
+    const currentWindow = action.payload.currentWindow;
+
+    return {
+      ...state,
+      currentWindow,
+    };
+  }
   return state;
 };

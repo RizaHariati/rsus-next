@@ -1,8 +1,8 @@
-@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@200;300;400;500;600;700;800&family=Oswald:wght@200;300;400;500;600;700&display=swap");
 body {
   font-family: "Nunito", arial;
-}
+} */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,9 +19,6 @@ body {
   *::before {
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
-    text-decoration: none;
-    scroll-behavior: smooth;
   }
   input[type="number"] {
     -moz-appearance: textfield;
@@ -92,6 +89,9 @@ body {
   }
   .flex-center-start {
     @apply flex items-center justify-start;
+  }
+  .flex-center-end {
+    @apply flex items-center justify-end;
   }
   .flex-center-between {
     @apply flex items-center justify-between;

@@ -3,10 +3,8 @@ import { AppState, PatientState } from "./interfaces";
 
 import {
   AppointmentListType,
-  NotificationType,
+  ColumnAssignmentType,
   PatientType,
-  ScheduledType,
-  UserType,
 } from "../patientTypes";
 
 export type AppContextProps = {
@@ -19,7 +17,7 @@ export type AppContextProps = {
   closeModal: () => void;
   openAlert: (alertTitle: string, alertValue: any) => void;
   closeAlert: () => void;
-
+  assignColumn: (columnAssignment: ColumnAssignmentType) => void;
   showBottomNavbar: () => void;
   handleScroll: (e: React.UIEvent<HTMLDivElement, UIEvent>) => void;
   scrollTop: boolean;
@@ -27,6 +25,9 @@ export type AppContextProps = {
   showFooter: boolean;
   loadingPatient: (patient: PatientType) => void;
   loadingPatientDetail: (appointmentList: AppointmentListType[] | null) => void;
+  getWindow: (currentWindow: number) => void;
+  handleShowTujuan: (tujuan: string | null) => void;
+  showTujuan: string | null;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

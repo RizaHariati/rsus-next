@@ -1,6 +1,7 @@
 import { DoctorType, HariType } from "../../types";
-export const getDoctorDetailedInfo = (doctorInfo: DoctorType) => {
+export const doctorDetailedForm = (doctorInfo: DoctorType) => {
   const detail = [
+    { id: 0, title: "Nama", value: doctorInfo.name },
     { id: 1, title: "Poliklinik", value: doctorInfo.poliklinik.title },
     { id: 2, title: "Pengalaman", value: `${doctorInfo.pengalaman} tahun` },
     {

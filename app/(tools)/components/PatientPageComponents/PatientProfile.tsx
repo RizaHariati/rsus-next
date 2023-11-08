@@ -3,13 +3,16 @@ import React, { useEffect, useState } from "react";
 import { PatientInitialValueType } from "../../patientTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import PatientProfileContent from "./PatientProfileContent";
+import PatientSubMenu from "./PatientSubMenu";
 type Props = {};
 
 const PatientProfile = (props: Props) => {
   const {
+    state: { columnAssignment },
     patientState: {
       patient: { patient_profile, medical_record_number },
     },
+    assignColumn,
   } = useGlobalContext();
   const initialPatient: PatientInitialValueType = {
     medical_record_number: {
@@ -53,7 +56,6 @@ const PatientProfile = (props: Props) => {
       if (value.length > 12) {
         value = value.slice(0, 12);
       }
-      console.log(typeof value);
     }
 
     const newPersonal = {
@@ -68,45 +70,29 @@ const PatientProfile = (props: Props) => {
     e.preventDefault();
   };
   return (
-    <form className=" w-3/4" onSubmit={(e) => handleSubmit(e)}>
-      <div className="h-14 w-full flex-center-between p-4 border-b border-greyBorder gap-5">
-        <div className="w-full">
-          <p>{patientPersonal["name"].value}</p>
-        </div>
-        <div className="flex items-center gap-2">
-          <button
-            onClick={() => {
-              setEditable(!editable);
-            }}
-            type="button"
-            className={editable ? "btn-base-focus " : "btn-base-small"}
-          >
-            Edit
-          </button>
-          <button
-            onClick={() => setEditable(false)}
-            type="button"
-            className="btn-base-small"
-          >
-            Delete
-          </button>
-        </div>
-      </div>
-      <PatientProfileContent
-        patientPersonal={patientPersonal}
+    <form className="w-fit h-full " onSubmit={(e) => handleSubmit(e)}>
+      <PatientSubMenu
         editable={editable}
-        handleChange={handleChange}
+        setEditable={setEditable}
+        title="Profil Pasien"
       />
-      <div className="w-full h-14  p-2 flex-center-center  border-t border-greyBorder">
-        <button
-          type="submit"
-          className={
-            editable ? "btn-base-focus ml-auto" : "btn-base-small ml-auto"
-          }
-        >
-          Submit
-        </button>
-      </div>
+      {columnAssignment.column3 && (
+        <PatientProfileContent
+          patientPersonal={patientPersonal}
+          editable={editable}
+          handleChange={handleChange}
+        />
+      )}
+      {columnAssignment.column3 && (
+        <div className="content-menu border-t">
+          <button
+            type="submit"
+            className={!editable ? "btn-base-focus  " : "btn-base-small "}
+          >
+            Submit
+          </button>
+        </div>
+      )}
     </form>
   );
 };

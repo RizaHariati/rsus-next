@@ -1,4 +1,9 @@
-import { AppointmentListType, PatientType, UserType } from "../patientTypes";
+import {
+  AppointmentListType,
+  ColumnAssignmentType,
+  PatientType,
+  UserType,
+} from "../patientTypes";
 import {
   FilterDoctorType,
   LabCartType,
@@ -19,6 +24,8 @@ export interface AppState {
   labCart: LabCartType[];
   dataDoctor: DoctorType[];
   dataFacility: FacilitySanityType[];
+  columnAssignment: ColumnAssignmentType;
+  currentWindow: number;
 }
 
 export interface PatientState {

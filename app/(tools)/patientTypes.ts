@@ -100,3 +100,9 @@ export type AppointmentListType = {
   id: string;
   value: any[];
 };
+
+export type ColumnAssignmentType = {
+  column1: boolean;
+  column2: boolean;
+  column3: boolean;
+};

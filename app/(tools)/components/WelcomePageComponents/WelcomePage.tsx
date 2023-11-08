@@ -10,7 +10,7 @@ function WelcomePage(props: Props) {
   return (
     <div className="page-main-container">
       <main className=" flex-center-center flex-col p-5 text-center">
-        <h1>Login Berhasil, selamat datang Riza </h1>
+        <h1 className=" font-oswald">Login Berhasil, selamat datang Riza </h1>
         <div className="grid grid-cols-2 gap-5 w-full max-w-2xl">
           <button
             onClick={() => openAlert("inputmedicalrecord", {})}

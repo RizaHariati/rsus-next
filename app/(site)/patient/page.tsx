@@ -10,20 +10,33 @@ import PatientSchedule from "@/app/(tools)/components/PatientPageComponents/Pati
 import PatientProfile from "@/app/(tools)/components/PatientPageComponents/PatientProfile";
 import { ScheduledType } from "@/app/(tools)/patientTypes";
 import { getTujuan } from "@/app/(tools)/utils/patientUtils/getTujuan";
+import PatientMedicalRecord from "@/app/(tools)/components/PatientPageComponents/PatientMedicalRecord";
+import { CCO, OCC, OCO, OOC, COO } from "@/app/(tools)/column/columnPattern";
+import { OOO } from "../../(tools)/column/columnPattern";
+import useAssignColumn from "@/app/(tools)/utils/useAssignColumn";
+import { maxWidth, minWidth } from "@/app/(tools)/context/initialState";
 
 type Props = {};
 const patientDetail = [
-  { name: "Profil Pasien", key: "patient_profile" },
-  { name: "Jadwal", key: "scheduled_appointments" },
-  { name: "Rekam Medis", key: "medical_records" },
+  { name: "Profil Pasien", key: "patient_profile", column_category: "profile" },
+  {
+    name: "Jadwal",
+    key: "scheduled_appointments",
+    column_category: "schedule",
+  },
+  { name: "Rekam Medis", key: "medical_records", column_category: "medical" },
 ];
 const PatientPage = (props: Props) => {
   const {
     loadingPatientDetail,
+    assignColumn,
+    state: { columnAssignment, currentWindow },
     patientState: { patient },
   } = useGlobalContext();
   const Router = useRouter();
   const [showDetail, setshowDetail] = useState("patient_profile");
+  useAssignColumn();
+
   useEffect(() => {
     if (!patient || !patient.medical_record_number) {
       return Router.push("/");
@@ -57,55 +70,105 @@ const PatientPage = (props: Props) => {
     );
 
   return (
-    <div className="page-main-container  ">
-      <main className="data-container ">
-        <div className=" col-span-2 h-full w-1/4  border-r border-greyBorder ">
-          <div className="h-14 w-full flex-center-start p-4 border-b border-greyBorder">
-            <p>{patient.medical_record_number}</p>
+    <div className="page-main-container ">
+      <div className="cl-lvl-1">
+        <div
+          className={
+            columnAssignment.column1
+              ? "cl-lv-2-sidebar "
+              : "cl-lv-2-sidebar-rotate "
+          }
+        >
+          <div
+            className={
+              columnAssignment.column1 ? "column-title" : "column-title-rotate "
+            }
+            onClick={() => {
+              const fromClose =
+                currentWindow < minWidth
+                  ? OCC
+                  : currentWindow >= minWidth && currentWindow <= maxWidth
+                  ? OCC
+                  : OOO;
+              const fromOpen =
+                currentWindow < minWidth
+                  ? CCO
+                  : currentWindow >= minWidth && currentWindow <= maxWidth
+                  ? COO
+                  : OOO;
+              assignColumn(!columnAssignment.column1 ? fromClose : fromOpen);
+            }}
+          >
+            <p
+              className={
+                columnAssignment.column1
+                  ? "sidebar-title "
+                  : "sidebar-title-rotate"
+              }
+            >
+              {patient.medical_record_number}
+            </p>
           </div>
-          <div className="h-fit w-full flex-center-start flex-col p-2 ">
-            {patientDetail.map((item, index) => {
-              return (
-                <div key={index} className="h-14 w-full">
-                  <button
-                    className={
-                      item.key === showDetail
-                        ? "sidebar-btn-focus group"
-                        : "sidebar-btn group"
-                    }
-                    onClick={() => setshowDetail(item.key)}
-                  >
-                    <p
+          <div
+            className={
+              columnAssignment.column1
+                ? "sidebar-content "
+                : "sidebar-content-rotate "
+            }
+          >
+            {columnAssignment.column1 &&
+              patientDetail.map((item, index) => {
+                return (
+                  <div key={index} className="h-14 w-full bg-red-400">
+                    <button
                       className={
                         item.key === showDetail
-                          ? "sidebar-btn-text text-white"
-                          : "sidebar-btn-text"
+                          ? "sidebar-btn-focus group"
+                          : "sidebar-btn group"
                       }
+                      onClick={() => {
+                        setshowDetail(item.key);
+                        if (currentWindow < minWidth) {
+                          assignColumn(OCC);
+                        } else if (
+                          currentWindow >= minWidth &&
+                          currentWindow <= maxWidth
+                        ) {
+                          assignColumn(OCO);
+                        } else {
+                          assignColumn(OOO);
+                        }
+                      }}
                     >
-                      {item.name}
-                    </p>
-                    <FontAwesomeIcon
-                      icon={faChevronRight}
-                      className={
-                        item.key === showDetail
-                          ? "sidebar-btn-icon text-white"
-                          : "sidebar-btn-icon"
-                      }
-                    />
-                  </button>
-                </div>
-              );
-            })}
+                      <p
+                        className={
+                          item.key === showDetail
+                            ? "sidebar-btn-text text-white"
+                            : "sidebar-btn-text"
+                        }
+                      >
+                        {item.name}
+                      </p>
+                      <FontAwesomeIcon
+                        icon={faChevronRight}
+                        className={
+                          item.key === showDetail
+                            ? "sidebar-btn-icon text-white"
+                            : "sidebar-btn-icon"
+                        }
+                      />
+                    </button>
+                  </div>
+                );
+              })}
           </div>
         </div>
-        {showDetail === "patient_profile" && <PatientProfile />}
-        {showDetail === "scheduled_appointments" && <PatientSchedule />}
-        {showDetail === "medical_records" && (
-          <div className=" h-full w-3/4 flex-center-center ">
-            <h4>Masih dalam konstruksi</h4>
-          </div>
-        )}
-      </main>
+        <div className="cl-lv-2-content ml-auto">
+          {showDetail === "patient_profile" && <PatientProfile />}
+          {showDetail === "scheduled_appointments" && <PatientSchedule />}
+          {showDetail === "medical_records" && <PatientMedicalRecord />}
+        </div>
+      </div>
     </div>
   );
 };

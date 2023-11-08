@@ -2,16 +2,21 @@
 
 import { useContext, useReducer, Dispatch, useState, useEffect } from "react";
 import { AppContext } from "./AppContext";
-import { initialState } from "./initialState";
+import { initialState, maxWidth, minWidth } from "./initialState";
 import { appReducer } from "../reducers/appReducer";
 import { AppState, PatientState } from "./interfaces";
 import { patientReducer } from "../reducers/patientReducer";
 import { initialPatientState } from "./initialPatientState";
-import { AppointmentListType, PatientType } from "../patientTypes";
+import {
+  AppointmentListType,
+  ColumnAssignmentType,
+  PatientType,
+} from "../patientTypes";
 import { UserType } from "../patientTypes";
 
 import { getDoctors } from "../../../sanity/sanityUtils/getDoctors";
 import { getFacility } from "../../../sanity/sanityUtils/getFacility";
+import { OCC, OCO, OOC, OOO } from "../column/columnPattern";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -28,15 +33,22 @@ export const AppProvider = ({ children }: Props) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollingUp, setscrollingUp] = useState(true);
   const [showFooter, setShowFooter] = useState(false);
-
+  const [showTujuan, setShowTujuan] = useState<string | null>(null);
+  const handleShowTujuan = (tujuan: string | null) => {
+    setShowTujuan(tujuan);
+  };
   useEffect(() => {
-    let mountItem = true;
-    if (mountItem) {
+    if (typeof window !== "object") return;
+
+    const windowWidth = window!.innerWidth!;
+    if (windowWidth < minWidth) {
+      assignColumn(OCC);
+    } else if (windowWidth >= minWidth && windowWidth <= maxWidth) {
+      assignColumn(OCO);
+    } else {
+      assignColumn(OOO);
     }
-    return () => {
-      mountItem = false;
-    };
-    // eslint-disable-next-line
+    dispatch({ type: "SET_WINDOW", payload: { currentWindow: windowWidth } });
   }, []);
 
   const toggleMenuNavbar = (id: string | null) => {
@@ -110,6 +122,17 @@ export const AppProvider = ({ children }: Props) => {
       payload: { appointmentList },
     });
   };
+
+  const assignColumn = (columnAssignment: ColumnAssignmentType) => {
+    dispatch({
+      type: "COLUMN_ASSIGNMENT",
+      payload: { columnAssignment },
+    });
+  };
+
+  const getWindow = (currentWindow: number) => {
+    dispatch({ type: "SET_WINDOW", payload: { currentWindow } });
+  };
   const value = {
     patientState,
     patientDispatch,
@@ -124,9 +147,13 @@ export const AppProvider = ({ children }: Props) => {
     closeAlert,
     showBottomNavbar,
     handleScroll,
+    assignColumn,
+    getWindow,
+    handleShowTujuan,
     scrollingUp,
     scrollTop,
     showFooter,
+    showTujuan,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

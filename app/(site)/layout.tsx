@@ -3,7 +3,10 @@ import "../styles/globals.css";
 import "../styles/navbar.css";
 import "../styles/mainpage.css";
 import "../styles/homepage.css";
+import "../styles/adminpatient.css";
 import "../styles/bottomnav.css";
+import "../styles/columnsetting.css";
+
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/ReactToastify.css";

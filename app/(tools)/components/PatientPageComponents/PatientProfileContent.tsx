@@ -20,16 +20,16 @@ const PatientProfileContent = ({
   const formInputArray = Object.entries(patientFormInput);
 
   return (
-    <div className="column-detail-full">
-      {formInputArray
-        .slice(1, formInputArray.length)
-        .map(([patientKey, patientValue], index) => {
+    <div className="column-detail-container">
+      <div className="column-detail-content">
+        {formInputArray.map(([patientKey, patientValue], index) => {
           //@ts-ignore
           const profileItem = patientPersonal[patientKey].value;
 
           return (
             <div key={index} className="w-full">
               <small className="">{patientValue.title}</small>
+
               {patientKey !== "sex" && patientKey !== "birthdate" && (
                 <input
                   type={
@@ -47,7 +47,7 @@ const PatientProfileContent = ({
                       : 50
                   }
                   value={profileItem}
-                  disabled={!editable}
+                  disabled={patientKey === "name" ? true : !editable}
                   onChange={(e) => handleChange(e, patientKey)}
                   className={editable ? "admin-input" : "admin-input-disabled"}
                 />
@@ -59,10 +59,10 @@ const PatientProfileContent = ({
               )}
               {patientKey === "birthdate" && (
                 <div className="admin-input-disabled capitalize flex-center-between">
-                  <p>
+                  <p className=" text-greyMed2">
                     {moment(profileItem).locale("id").format("DD MMMM YYYY")}
                   </p>
-                  <p>
+                  <p className=" text-greyMed1">
                     {`${getAge(profileItem).ageyear} thn/ ${
                       getAge(profileItem).agemonth
                     }
@@ -73,6 +73,7 @@ const PatientProfileContent = ({
             </div>
           );
         })}
+      </div>
     </div>
   );
 };

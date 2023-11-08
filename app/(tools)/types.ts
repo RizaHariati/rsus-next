@@ -75,18 +75,7 @@ export type FacilitySanityType = {
   doctorref: boolean;
   price: number;
 };
-// *[_type=="facility"]| order(id asc){
-//   id,
-//   title,
-//   img,
-//   description,
-//   function,
-//   poliklinik,
-//   category,
-//   featured,
-//   doctorref,
-//   price,
-// }
+
 export type CategoryFacilityType = {
   [key: string]: FacilitySanityType[];
 };

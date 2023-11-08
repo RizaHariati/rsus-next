@@ -1,24 +1,24 @@
 import { FormProfileType, FormScheduleType } from "../../patientTypes";
 
 export const scheduleFormInput: FormScheduleType = {
-  schedule_id: {
+  tujuan: {
     id: "schedule_1",
+    title: "Tujuan",
+    placeholder: "Tujuan penjadwalan",
+    col_width: 2,
+    error: "Tujuan wajib dimasukkan",
+  },
+  schedule_id: {
+    id: "schedule_2",
     title: "ID Jadwal",
     placeholder: "Jadwal pemeriksaan",
     error: "Jadwal pemeriksaan wajib dimasukkan",
   },
   current_phone: {
-    id: "schedule_2",
+    id: "schedule_3",
     title: "Nomor Telpon yang digunakan ",
     placeholder: "Nomor Telpon Anda",
     error: "Nomor Telpon wajib dimasukkan",
-  },
-  tujuan: {
-    id: "schedule_3",
-    title: "Tujuan",
-    placeholder: "Tujuan penjadwalan",
-    col_width: 2,
-    error: "Tujuan wajib dimasukkan",
   },
   appointment_type: {
     id: "schedule_4",

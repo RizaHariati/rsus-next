@@ -1,0 +1,13 @@
+@import "tailwindcss/base";
+@import "tailwindcss/components";
+@import "tailwindcss/utilities";
+@import "./globals.css";
+
+@layer components {
+  .ptn-container {
+    @apply w-full h-full max-h-screen bg-pink-500 pt-14 pb-8;
+  }
+  .ptn-content {
+    @apply w-full h-full bg-blue-200 flex flex-row flex-shrink-0;
+  }
+}
