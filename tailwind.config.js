@@ -13,6 +13,7 @@ module.exports = {
 
     extend: {
       width: {
+        column: "300px",
         modal_xl: "1240px",
         modal_lg: "1000px",
         modal_md: "500px",
@@ -22,6 +23,7 @@ module.exports = {
         uripMax: "1440px",
         modal_xl: "1240px",
         modal_lg: "1000px",
+        column: "300px",
       },
       backgroundImage: {
         pattern: "url('/images/pages/pattern.jpg')",
