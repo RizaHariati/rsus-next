@@ -164,9 +164,9 @@ const PatientPage = (props: Props) => {
           </div>
         </div>
         <div className="cl-lv-2-content ml-auto">
-          {showDetail === "patient_profile" && <PatientProfile />}
+          {/* {showDetail === "patient_profile" && <PatientProfile />}
           {showDetail === "scheduled_appointments" && <PatientSchedule />}
-          {showDetail === "medical_records" && <PatientMedicalRecord />}
+          {showDetail === "medical_records" && <PatientMedicalRecord />} */}
         </div>
       </div>
     </div>

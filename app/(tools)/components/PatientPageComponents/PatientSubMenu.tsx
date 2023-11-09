@@ -1,5 +1,5 @@
 import React from "react";
-import PatientEditDelete from "./PatientEditDelete";
+import PatientEditDelete from "../adminpatientComponents/GeneralComponents/PatientEditDelete";
 import { useGlobalContext } from "../../context/AppProvider";
 import { CCO, OCC, OCO, OOC, OOO } from "../../column/columnPattern";
 import { maxWidth, minWidth } from "../../context/initialState";

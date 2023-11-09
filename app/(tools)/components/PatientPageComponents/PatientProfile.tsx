@@ -8,7 +8,7 @@ type Props = {};
 
 const PatientProfile = (props: Props) => {
   const {
-    state: { columnAssignment },
+    state: { columnAssignment, editable },
     patientState: {
       patient: { patient_profile, medical_record_number },
     },
@@ -33,14 +33,8 @@ const PatientProfile = (props: Props) => {
     bpjs_number: { value: patient_profile.bpjs_number, error: false },
   };
 
-  const [editable, setEditable] = useState(false);
   const [patientPersonal, setPatientPersonal] =
     useState<PatientInitialValueType>(initialPatient);
-
-  useEffect(() => {
-    if (!editable) setPatientPersonal(initialPatient);
-    //eslint-disable-next-line
-  }, [editable]);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
@@ -70,16 +64,13 @@ const PatientProfile = (props: Props) => {
     e.preventDefault();
   };
   return (
-    <form className="w-fit h-full " onSubmit={(e) => handleSubmit(e)}>
-      <PatientSubMenu
-        editable={editable}
-        setEditable={setEditable}
-        title="Profil Pasien"
-      />
+    <form
+      className="w-full h-[calc(100vh-112px)] "
+      onSubmit={(e) => handleSubmit(e)}
+    >
       {columnAssignment.column3 && (
         <PatientProfileContent
           patientPersonal={patientPersonal}
-          editable={editable}
           handleChange={handleChange}
         />
       )}
@@ -87,7 +78,9 @@ const PatientProfile = (props: Props) => {
         <div className="content-menu border-t">
           <button
             type="submit"
-            className={!editable ? "btn-base-focus  " : "btn-base-small "}
+            className={
+              editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
+            }
           >
             Submit
           </button>

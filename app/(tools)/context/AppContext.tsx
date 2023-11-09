@@ -1,5 +1,6 @@
 import { createContext } from "react";
 import { AppState, PatientState } from "./interfaces";
+import { SidebarBtnType } from "../column/sidebarColumn";
 
 import {
   AppointmentListType,
@@ -27,7 +28,10 @@ export type AppContextProps = {
   loadingPatientDetail: (appointmentList: AppointmentListType[] | null) => void;
   getWindow: (currentWindow: number) => void;
   handleShowTujuan: (tujuan: string | null) => void;
+  handleShowDetail: (key: SidebarBtnType) => void;
   showTujuan: string | null;
+  showDetail: SidebarBtnType;
+  settingEditable: (editable: boolean) => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

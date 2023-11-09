@@ -7,7 +7,7 @@ type Props = {};
 
 const useAssignColumn = () => {
   const { assignColumn, getWindow } = useGlobalContext();
-  if (!window || typeof window !== "object") return;
+  if (typeof window === "undefined" && typeof window !== "object") return;
 
   useEffect(() => {
     // only execute all the code below in client side

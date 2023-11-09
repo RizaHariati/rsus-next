@@ -12,11 +12,9 @@ import {
   ColumnAssignmentType,
   PatientType,
 } from "../patientTypes";
-import { UserType } from "../patientTypes";
 
-import { getDoctors } from "../../../sanity/sanityUtils/getDoctors";
-import { getFacility } from "../../../sanity/sanityUtils/getFacility";
-import { OCC, OCO, OOC, OOO } from "../column/columnPattern";
+import { OCC, OCO, OOO } from "../column/columnPattern";
+import { SidebarBtnType, patientBtnDetail } from "../column/sidebarColumn";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -34,8 +32,16 @@ export const AppProvider = ({ children }: Props) => {
   const [scrollingUp, setscrollingUp] = useState(true);
   const [showFooter, setShowFooter] = useState(false);
   const [showTujuan, setShowTujuan] = useState<string | null>(null);
+  const [showDetail, setshowDetail] = useState<SidebarBtnType>(
+    patientBtnDetail[0]
+  );
+
   const handleShowTujuan = (tujuan: string | null) => {
     setShowTujuan(tujuan);
+  };
+
+  const handleShowDetail = (key: SidebarBtnType) => {
+    setshowDetail(key);
   };
   useEffect(() => {
     if (typeof window !== "object") return;
@@ -133,11 +139,18 @@ export const AppProvider = ({ children }: Props) => {
   const getWindow = (currentWindow: number) => {
     dispatch({ type: "SET_WINDOW", payload: { currentWindow } });
   };
+
+  const settingEditable = (editable: boolean) => {
+    dispatch({ type: "SET_EDITABLE", payload: { editable } });
+  };
   const value = {
+    showDetail,
+    handleShowDetail,
     patientState,
     patientDispatch,
     loadingPatient,
     loadingPatientDetail,
+    settingEditable,
     state,
     dispatch,
     toggleMenuNavbar,

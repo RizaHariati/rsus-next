@@ -3,10 +3,11 @@ import moment from "moment";
 import { PatientInitialValueType } from "../../patientTypes";
 import { patientFormInput } from "../../utils/forms/patientFormInput";
 import { getAge } from "../../utils/patientUtils/getAge";
+import { useGlobalContext } from "../../context/AppProvider";
 
 type PatientProps = {
   patientPersonal: PatientInitialValueType;
-  editable: boolean;
+
   handleChange: (
     e: React.ChangeEvent<HTMLInputElement>,
     patientKey: string
@@ -14,14 +15,16 @@ type PatientProps = {
 };
 const PatientProfileContent = ({
   patientPersonal,
-  editable,
   handleChange,
 }: PatientProps) => {
+  const {
+    state: { editable },
+  } = useGlobalContext();
   const formInputArray = Object.entries(patientFormInput);
 
   return (
-    <div className="column-detail-container">
-      <div className="column-detail-content">
+    <div className="column-description-container ">
+      <div className="column-description-content">
         {formInputArray.map(([patientKey, patientValue], index) => {
           //@ts-ignore
           const profileItem = patientPersonal[patientKey].value;

@@ -3,7 +3,7 @@ import "../styles/globals.css";
 import "../styles/navbar.css";
 import "../styles/mainpage.css";
 import "../styles/homepage.css";
-import "../styles/adminpatient.css";
+import "../styles/admin.css";
 import "../styles/bottomnav.css";
 import "../styles/columnsetting.css";
 

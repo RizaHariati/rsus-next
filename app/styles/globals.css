@@ -170,7 +170,7 @@ body {
     @apply standard-border bg-white w-full h-10 outline-none p-2 cursor-pointer body-3;
   }
   .dark-input {
-    @apply standard-border bg-greyLit w-full h-10 outline-none p-2 cursor-pointer body-3;
+    @apply standard-border bg-hoverBG w-full h-10 outline-none p-2 cursor-pointer body-3;
   }
   .form-line {
     @apply body-3 grid grid-cols-2  w-full gap-2 pb-2;
@@ -180,14 +180,5 @@ body {
   }
   .footer-hide {
     @apply footer h-0;
-  }
-  .thanks {
-    @apply bg-white h-fit max-h-[80vh] w-full absolute bottom-12 origin-bottom z-[60] cursor-pointer standard-border overflow-hidden;
-  }
-  .thanks-hide {
-    @apply thanks h-[0vh];
-  }
-  .thanks-btn {
-    @apply h-10 w-10 bg-greenUripOpacity mix-blend-screen hover:mix-blend-multiply standard-border overflow-hidden absolute right-2 top-1  cursor-pointer z-[60];
   }
 }

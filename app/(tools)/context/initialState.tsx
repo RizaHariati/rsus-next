@@ -1,7 +1,6 @@
 import moment from "moment";
 import { AppState } from "./interfaces";
 import { OCC, OCO, OOO } from "../column/columnPattern";
-
 export const maxWidth = 1024;
 export const minWidth = 768;
 export const initialState: AppState = {
@@ -27,4 +26,5 @@ export const initialState: AppState = {
       ? OCO
       : OOO) || maxWidth,
   currentWindow: typeof window === "object" ? window.innerWidth : maxWidth,
+  editable: false,
 };

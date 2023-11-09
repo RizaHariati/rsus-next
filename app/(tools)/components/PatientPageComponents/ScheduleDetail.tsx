@@ -5,7 +5,7 @@ import {
 } from "../../patientTypes";
 
 import { useGlobalContext } from "../../context/AppProvider";
-import PatientEditDelete from "./PatientEditDelete";
+import PatientEditDelete from "../adminpatientComponents/GeneralComponents/PatientEditDelete";
 import ScheduleDetailContent from "./ScheduleDetailContent";
 import PatientSubMenu from "./PatientSubMenu";
 

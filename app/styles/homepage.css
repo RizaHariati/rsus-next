@@ -4,32 +4,6 @@
 @import "./globals.css";
 
 @layer components {
-  .btn-base {
-    @apply h-12 border border-greyBorder hover:border-greenUripOpacity active:border-greenUrip rounded-sm bg-white hover:bg-greenUripOpacity active:bg-greenUrip text-greyDrk hover:text-greenUrip active:text-white  w-full transition-all;
-  }
-  .btn-base-focus {
-    @apply btn-base w-28 h-10 bg-greenUrip border-greenUrip text-white !important;
-  }
-
-  .btn-base-small {
-    @apply btn-base w-28 h-10;
-  }
-
-  .sidebar-btn {
-    @apply flex-center-between w-full h-fit bg-hoverBG hover:bg-greenUripOpacity text-greyDrk focus:bg-greenUrip focus:text-white rounded-sm p-2  transition-all;
-  }
-
-  .sidebar-btn-focus {
-    @apply sidebar-btn bg-greenUrip text-white;
-  }
-
-  .sidebar-btn-text {
-    @apply text-left group-focus:text-white h-10 flex-center-start;
-  }
-
-  .sidebar-btn-icon {
-    @apply text-greyMed1 group-focus:text-white;
-  }
   /* .admin-input {
     @apply w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2 text-greyDrk bg-white;
   }
@@ -52,9 +26,6 @@
 
   .column-detail-sub-content {
     @apply w-full h-fit flex flex-col gap-2 max-w-2xl;
-  }
-  .content-menu {
-    @apply h-14 w-full flex-center-end border-b border-greyBorder gap-5 px-3  border-collapse;
   }
 
   .submenu {

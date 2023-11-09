@@ -26,6 +26,7 @@ export interface AppState {
   dataFacility: FacilitySanityType[];
   columnAssignment: ColumnAssignmentType;
   currentWindow: number;
+  editable: false;
 }
 
 export interface PatientState {
