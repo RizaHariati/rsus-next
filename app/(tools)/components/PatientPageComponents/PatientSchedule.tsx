@@ -4,7 +4,10 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import React, { useEffect, useState } from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { AppointmentListType, ScheduledType } from "@/app/(tools)/patientTypes";
+import {
+  ScheduleDestinationsListType,
+  ScheduledType,
+} from "@/app/(tools)/patientTypes";
 
 import moment from "moment";
 import ScheduleDetail from "./ScheduleDetail";
@@ -16,19 +19,20 @@ const PatientSchedule = (props: Props) => {
     assignColumn,
 
     state: { columnAssignment },
-    patientState: { appointmentList },
+    patientState: { scheduleDestinationList },
   } = useGlobalContext();
 
   const [scheduleDetail, setScheduleDetail] =
-    useState<AppointmentListType | null>(null);
+    useState<ScheduleDestinationsListType | null>(null);
   useEffect(() => {
-    if (!appointmentList || appointmentList.length < 1) return;
+    if (!scheduleDestinationList || scheduleDestinationList.length < 1) return;
     else {
-      setScheduleDetail(appointmentList[0]);
+      setScheduleDetail(scheduleDestinationList[0]);
     }
   }, []);
 
-  if (!appointmentList || appointmentList.length < 1) return <div></div>;
+  if (!scheduleDestinationList || scheduleDestinationList.length < 1)
+    return <div></div>;
   else {
     return (
       <>
@@ -67,7 +71,7 @@ const PatientSchedule = (props: Props) => {
             />
           )}
         </div>
-        <ScheduleDetail scheduled_appointments={scheduleDetail} />
+        <ScheduleDetail />
       </>
     );
   }
@@ -76,23 +80,21 @@ const PatientSchedule = (props: Props) => {
 export default PatientSchedule;
 
 type SubProps = {
-  scheduleDetail: AppointmentListType | null;
+  scheduleDetail: ScheduleDestinationsListType | null;
   setScheduleDetail: React.Dispatch<
-    React.SetStateAction<AppointmentListType | null>
+    React.SetStateAction<ScheduleDestinationsListType | null>
   >;
 };
 const ScheduleSubTitle = ({ scheduleDetail, setScheduleDetail }: SubProps) => {
   const {
-    patientState: { patient, appointmentList },
-    handleShowTujuan,
+    patientState: { patient, scheduleDestinationList, scheduleAppointments },
   } = useGlobalContext();
-  const scheduled_appointments: ScheduledType[] =
-    patient.scheduled_appointments;
+
   return (
     <div className="midbar-content">
-      {scheduled_appointments.map(
+      {scheduleAppointments?.map(
         (schedule_appointment: ScheduledType, index: number) => {
-          const dataSchedule = appointmentList?.find((item) => {
+          const dataSchedule = scheduleDestinationList?.find((item) => {
             return item.id === schedule_appointment.schedule_id;
           });
           const value = dataSchedule?.value;
@@ -109,7 +111,6 @@ const ScheduleSubTitle = ({ scheduleDetail, setScheduleDetail }: SubProps) => {
                     : "sidebar-btn group"
                 }
                 onClick={() => {
-                  handleShowTujuan(null);
                   setScheduleDetail(dataSchedule);
                 }}
               >

@@ -37,7 +37,7 @@
     @apply text-white text-sm;
   }
   .content-menu {
-    @apply h-14 w-full flex-center-end gap-1  sm:gap-3 px-2 sm:px-3  border-collapse;
+    @apply h-14 w-full flex-center-end gap-1  sm:gap-3 px-2 sm:px-3;
   }
   .admin-input {
     @apply w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2 text-greyDrk bg-white;

@@ -8,9 +8,10 @@ import { AppState, PatientState } from "./interfaces";
 import { patientReducer } from "../reducers/patientReducer";
 import { initialPatientState } from "./initialPatientState";
 import {
-  AppointmentListType,
   ColumnAssignmentType,
   PatientType,
+  ScheduleDestinationsListType,
+  ScheduledType,
 } from "../patientTypes";
 
 import { OCC, OCO, OOO } from "../column/columnPattern";
@@ -31,13 +32,34 @@ export const AppProvider = ({ children }: Props) => {
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollingUp, setscrollingUp] = useState(true);
   const [showFooter, setShowFooter] = useState(false);
-  const [showTujuan, setShowTujuan] = useState<string | null>(null);
   const [showDetail, setshowDetail] = useState<SidebarBtnType>(
     patientBtnDetail[0]
   );
 
-  const handleShowTujuan = (tujuan: string | null) => {
-    setShowTujuan(tujuan);
+  const loadingPatientScheduleDestination = (
+    scheduleDestinationList: ScheduleDestinationsListType[] | null
+  ) => {
+    patientDispatch({
+      type: "LOAD_PATIENT_DESTINATION",
+      payload: { scheduleDestinationList },
+    });
+  };
+
+  const selectPatientDestination = (
+    selectedScheduleAppointment: ScheduledType | null,
+    selectedScheduleDestination: ScheduleDestinationsListType | null
+  ) => {
+    patientDispatch({
+      type: "SELECT_PATIENT_DESTINATION",
+      payload: { selectedScheduleAppointment, selectedScheduleDestination },
+    });
+  };
+  const loadingPatient = (patient: PatientType) => {
+    patientDispatch({
+      type: "LOAD_PATIENT",
+      payload: { patient },
+    });
+    return patient;
   };
 
   const handleShowDetail = (key: SidebarBtnType) => {
@@ -71,8 +93,6 @@ export const AppProvider = ({ children }: Props) => {
     dispatch({ type: "CLOSE_MODAL", payload: "" });
   };
 
-  /* ------------------ menentukan hari pemeriksaan ----------------- */
-
   const openAlert = (alertTitle: string, alertValue: any) => {
     toggleMenuNavbar(null);
     dispatch({ type: "OPEN_ALERT", payload: { alertTitle, alertValue } });
@@ -81,8 +101,6 @@ export const AppProvider = ({ children }: Props) => {
   const closeAlert = () => {
     dispatch({ type: "CLOSE_ALERT", payload: "" });
   };
-
-  /* -------- menambah dan mengurangi  test laboratorium item ------- */
 
   const showBottomNavbar = () => {
     setShowFooter(true);
@@ -112,23 +130,6 @@ export const AppProvider = ({ children }: Props) => {
     }
   };
 
-  const loadingPatient = (patient: PatientType) => {
-    patientDispatch({
-      type: "LOAD_PATIENT",
-      payload: { patient },
-    });
-    return patient;
-  };
-
-  const loadingPatientDetail = (
-    appointmentList: AppointmentListType[] | null
-  ) => {
-    patientDispatch({
-      type: "LOAD_PATIENT_DETAIL",
-      payload: { appointmentList },
-    });
-  };
-
   const assignColumn = (columnAssignment: ColumnAssignmentType) => {
     dispatch({
       type: "COLUMN_ASSIGNMENT",
@@ -149,7 +150,6 @@ export const AppProvider = ({ children }: Props) => {
     patientState,
     patientDispatch,
     loadingPatient,
-    loadingPatientDetail,
     settingEditable,
     state,
     dispatch,
@@ -162,11 +162,11 @@ export const AppProvider = ({ children }: Props) => {
     handleScroll,
     assignColumn,
     getWindow,
-    handleShowTujuan,
+    loadingPatientScheduleDestination,
+    selectPatientDestination,
     scrollingUp,
     scrollTop,
     showFooter,
-    showTujuan,
   };
   return <AppContext.Provider value={value}>{children}</AppContext.Provider>;
 };

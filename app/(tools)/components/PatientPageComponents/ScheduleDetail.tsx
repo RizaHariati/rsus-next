@@ -1,22 +1,18 @@
 import React, { useEffect, useState } from "react";
 import {
-  AppointmentListType,
   PatientInitialValueType,
+  ScheduleDestinationsListType,
 } from "../../patientTypes";
 
 import { useGlobalContext } from "../../context/AppProvider";
 import PatientEditDelete from "../adminpatientComponents/GeneralComponents/PatientEditDelete";
-import ScheduleDetailContent from "./ScheduleDetailContent";
+import ScheduleDetailContent from "../adminpatientComponents/DescriptionComponents/ScheduleDetailContent";
 import PatientSubMenu from "./PatientSubMenu";
-
-type Props = {
-  scheduled_appointments: AppointmentListType | null;
-};
-
-const ScheduleDetail = ({ scheduled_appointments }: Props) => {
+type Props = {};
+const ScheduleDetail = (props: Props) => {
   const {
     state: { columnAssignment, currentWindow },
-    patientState: { patient },
+    patientState: { patient, scheduleAppointments },
   } = useGlobalContext();
 
   const emptySchedule: PatientInitialValueType = {
@@ -42,9 +38,9 @@ const ScheduleDetail = ({ scheduled_appointments }: Props) => {
     useState<PatientInitialValueType>({});
 
   useEffect(() => {
-    if (!scheduled_appointments) return;
-    const findSchedule = patient.scheduled_appointments.find(
-      (item) => item.schedule_id === scheduled_appointments.id
+    if (!scheduleAppointments) return;
+    const findSchedule = patient.scheduled_appointments?.find(
+      (item) => item.schedule_id === scheduleAppointments[0].schedule_id
     );
     if (!findSchedule) return;
     let newSchedule: PatientInitialValueType = {};
@@ -57,13 +53,13 @@ const ScheduleDetail = ({ scheduled_appointments }: Props) => {
     });
     setpatientSchedule(newSchedule);
     setinitialSchedule(newSchedule);
-  }, [scheduled_appointments]);
+  }, [scheduleAppointments]);
 
   useEffect(() => {
     if (!editable) setpatientSchedule({ ...initialSchedule });
     //eslint-disable-next-line
   }, [editable]);
-  if (!scheduled_appointments || !patientSchedule) return <div></div>;
+  if (!scheduleAppointments || !patientSchedule) return <div></div>;
   else {
     return (
       <div className="cl-lv-3-content ">
@@ -83,7 +79,6 @@ const ScheduleDetail = ({ scheduled_appointments }: Props) => {
           <ScheduleDetailContent
             editable={editable}
             patientSchedule={patientSchedule}
-            scheduled_appointments={scheduled_appointments}
           />
         </div>
         <div

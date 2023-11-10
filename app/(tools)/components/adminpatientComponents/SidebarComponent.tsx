@@ -13,6 +13,7 @@ const SidebarComponent = (props: Props) => {
     assignColumn,
     showDetail,
     handleShowDetail,
+    settingEditable,
     state: {
       currentWindow,
       columnAssignment: { column1, column3 },
@@ -67,6 +68,7 @@ const SidebarComponent = (props: Props) => {
                   }
                   onClick={() => {
                     handleShowDetail(item);
+                    settingEditable(false);
                     // if (currentWindow < minWidth) {
                     //   assignColumn(OCC);
                     // } else if (

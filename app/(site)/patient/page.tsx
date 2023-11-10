@@ -28,7 +28,7 @@ const patientDetail = [
 ];
 const PatientPage = (props: Props) => {
   const {
-    loadingPatientDetail,
+    loadingPatientScheduleDestination,
     assignColumn,
     state: { columnAssignment, currentWindow },
     patientState: { patient },
@@ -58,7 +58,7 @@ const PatientPage = (props: Props) => {
         return detail;
       };
       Promise.all(schedulePromise()).then((res) => {
-        loadingPatientDetail([...res]);
+        loadingPatientScheduleDestination([...res]);
       });
     }
   }, []);

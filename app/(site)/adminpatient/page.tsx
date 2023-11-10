@@ -7,17 +7,48 @@ import SidebarComponent from "@/app/(tools)/components/adminpatientComponents/Si
 import MidbarComponent from "@/app/(tools)/components/adminpatientComponents/MidbarComponent";
 import DescriptionComponent from "@/app/(tools)/components/adminpatientComponents/DescriptionComponent";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import { ScheduledType } from "@/app/(tools)/patientTypes";
+import { getTujuan } from "@/app/(tools)/utils/patientUtils/getTujuan";
 
 type Props = {};
 
 const PatientPage = (props: Props) => {
-  const { showDetail } = useGlobalContext();
+  const {
+    loadingPatientScheduleDestination,
+    showDetail,
+    patientState: { patient },
+  } = useGlobalContext();
   const [showMidbar, setShowMidbar] = useState(
     showDetail.column_open === "all"
   );
   const Router = useRouter();
 
   useAssignColumn();
+  useEffect(() => {
+    if (!patient || !patient.medical_record_number) {
+      return Router.push("/");
+    } else {
+      let detail: any;
+      const schedulePromise = () => {
+        detail = patient.scheduled_appointments.map(
+          (schedule: ScheduledType) => {
+            const promise = schedule.tujuan.map((item) => {
+              return new Promise((resolve) => {
+                return resolve(getTujuan(item));
+              });
+            });
+            return Promise.all(promise).then((res: any) => {
+              return { id: schedule.schedule_id, value: res };
+            });
+          }
+        );
+        return detail;
+      };
+      Promise.all(schedulePromise()).then((res) => {
+        loadingPatientScheduleDestination([...res]);
+      });
+    }
+  }, []);
 
   useEffect(() => {
     setShowMidbar(showDetail.column_open === "all");

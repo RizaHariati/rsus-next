@@ -41,9 +41,7 @@ const PatientSubMenu = ({ editable, setEditable, title }: Props) => {
       >
         <p className="sidebar-title ">{title}</p>
       </button>
-      {columnAssignment.column3 && (
-        <PatientEditDelete editable={editable} setEditable={setEditable} />
-      )}
+      {columnAssignment.column3 && <PatientEditDelete />}
     </div>
   );
 };

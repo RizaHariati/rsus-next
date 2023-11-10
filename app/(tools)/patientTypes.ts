@@ -96,7 +96,7 @@ export type PatientInitialValueType = {
   [key: string]: { value: any; error: boolean };
 };
 
-export type AppointmentListType = {
+export type ScheduleDestinationsListType = {
   id: string;
   value: any[];
 };

@@ -12,9 +12,9 @@ import "slick-carousel/slick/slick-theme.css";
 import "react-toastify/ReactToastify.css";
 
 import "react-datepicker/dist/react-datepicker.css";
+import { config } from "@fortawesome/fontawesome-svg-core";
 import type { Metadata } from "next";
 import { Oswald, Nunito } from "next/font/google";
-import { config } from "@fortawesome/fontawesome-svg-core";
 import { AppProvider } from "../(tools)/context/AppProvider";
 // import Navbar from "../(tools)/components/NavbarComponents/Navbar";
 

@@ -3,9 +3,10 @@ import { AppState, PatientState } from "./interfaces";
 import { SidebarBtnType } from "../column/sidebarColumn";
 
 import {
-  AppointmentListType,
   ColumnAssignmentType,
   PatientType,
+  ScheduleDestinationsListType,
+  ScheduledType,
 } from "../patientTypes";
 
 export type AppContextProps = {
@@ -25,11 +26,15 @@ export type AppContextProps = {
   scrollingUp: boolean;
   showFooter: boolean;
   loadingPatient: (patient: PatientType) => void;
-  loadingPatientDetail: (appointmentList: AppointmentListType[] | null) => void;
+  loadingPatientScheduleDestination: (
+    scheduleDestinationList: ScheduleDestinationsListType[] | null
+  ) => void;
+  selectPatientDestination: (
+    selectedScheduleAppointment: ScheduledType | null,
+    selectedScheduleDestination: ScheduleDestinationsListType | null
+  ) => void;
   getWindow: (currentWindow: number) => void;
-  handleShowTujuan: (tujuan: string | null) => void;
   handleShowDetail: (key: SidebarBtnType) => void;
-  showTujuan: string | null;
   showDetail: SidebarBtnType;
   settingEditable: (editable: boolean) => void;
 };

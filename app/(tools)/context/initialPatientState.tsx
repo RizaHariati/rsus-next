@@ -46,6 +46,8 @@ export const initialPatientState: PatientState = {
       notifications: sampleNotifications,
     },
   ],
-
-  appointmentList: null,
+  scheduleAppointments: sampleSchedule,
+  selectedScheduleAppointment: sampleSchedule[0],
+  scheduleDestinationList: null,
+  selectedScheduleDestination: null,
 };

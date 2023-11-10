@@ -3,6 +3,8 @@ import { useGlobalContext } from "../../context/AppProvider";
 import { closeDescription, openDescription } from "../../column/columnCodes";
 import PatientEditDelete from "./GeneralComponents/PatientEditDelete";
 import PatientProfile from "../PatientPageComponents/PatientProfile";
+import PatientDescription from "./DescriptionComponents/PatientDescription";
+import ScheduleDescription from "./DescriptionComponents/ScheduleDescription";
 
 type Props = {};
 
@@ -15,6 +17,7 @@ const DescriptionComponent = (props: Props) => {
       columnAssignment: { column3 },
     },
   } = useGlobalContext();
+
   const handleDescriptionButton = () => {
     assignColumn(
       !column3
@@ -48,7 +51,10 @@ const DescriptionComponent = (props: Props) => {
       </div>
       {column3 && (
         <div className="h-[calc(100vh-112px)] w-full">
-          {showDetail.key === "patient_profile" && <PatientProfile />}
+          {showDetail.key === "patient_profile" && <PatientDescription />}
+          {showDetail.key === "scheduled_appointments" && (
+            <ScheduleDescription />
+          )}
         </div>
       )}
     </div>

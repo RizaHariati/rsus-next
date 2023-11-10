@@ -1,7 +1,8 @@
 import {
-  AppointmentListType,
+  ScheduleDestinationsListType,
   ColumnAssignmentType,
   PatientType,
+  ScheduledType,
   UserType,
 } from "../patientTypes";
 import {
@@ -34,5 +35,8 @@ export interface PatientState {
   verification_number: number;
   patient: PatientType;
   allPatients: PatientType[];
-  appointmentList: AppointmentListType[] | null;
+  scheduleAppointments: ScheduledType[] | null;
+  selectedScheduleAppointment: ScheduledType | null;
+  scheduleDestinationList: ScheduleDestinationsListType[] | null;
+  selectedScheduleDestination: ScheduleDestinationsListType | null;
 }
