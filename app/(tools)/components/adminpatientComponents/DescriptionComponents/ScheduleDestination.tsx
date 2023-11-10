@@ -25,14 +25,14 @@ const ScheduleDestination = ({
   } = useGlobalContext();
   if (!selectedScheduleDestination) return <div></div>;
   return (
-    <div className="column-description-sub-content  mt-2 ">
+    <div className="column-description-sub-content  ">
       {selectedScheduleDestination.value.map(
         (destination: any, scheduleIndex: number) => {
           if (destination.id.includes("dr")) {
             return (
               <div
                 key={scheduleIndex}
-                className="w-full p-2 h-fit standard-border "
+                className="w-full p-2 h-fit standard-border   bg-hoverBG"
               >
                 {doctorDetailedForm(destination).map((item) => {
                   return (
@@ -48,7 +48,7 @@ const ScheduleDestination = ({
             return (
               <div
                 key={scheduleIndex}
-                className="w-full p-2 h-fit standard-border shrink-0 relative"
+                className="w-full p-2 h-fit standard-border shrink-0 relative  bg-hoverBG"
               >
                 <button
                   onClick={() => setShowDestination(destination.id)}

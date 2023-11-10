@@ -63,6 +63,6 @@
   }
 
   .column-description-sub-content {
-    @apply w-full h-fit flex flex-col gap-2 max-w-2xl standard-border p-2;
+    @apply w-full h-fit flex flex-col gap-2 max-w-2xl p-5 bg-hoverBG;
   }
 }

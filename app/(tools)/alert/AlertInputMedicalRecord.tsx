@@ -14,7 +14,7 @@ import { useRouter } from "next/navigation";
 
 type Props = {};
 const AlertInputMedicalRecord = (props: Props) => {
-  const { closeAlert, closeModal, loadingPatient } = useGlobalContext();
+  const { closeAlert, loadingPatient } = useGlobalContext();
   const [loginData, setLoginData] = useState<Partial<UserType>>({
     medical_record_number: "",
     password: "admin",
@@ -51,7 +51,7 @@ const AlertInputMedicalRecord = (props: Props) => {
           }).then((patientRes: any) => {
             if (patientRes.medical_record_number) {
               closeAlert();
-              Route.push("/patient");
+              Route.push("/adminpatient");
               return patientRes;
             }
             return res;
