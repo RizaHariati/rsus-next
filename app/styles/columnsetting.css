@@ -30,7 +30,7 @@
     @apply w-full h-[calc(100vh-112px)] p-3 flex flex-col gap-2;
   }
   .sidebar-btn {
-    @apply flex-center-between w-full h-fit bg-hoverBG hover:bg-greenUripOpacity text-greyDrk rounded-sm overflow-hidden focus:bg-greenUrip focus:text-white p-2 transition-all overflow-hidden;
+    @apply flex-center-between w-full h-fit bg-hoverBG hover:bg-greenUripOpacity text-greyDrk rounded-sm  focus:bg-greenUrip focus:text-white p-2 transition-all overflow-hidden shrink-0;
   }
 
   .sidebar-btn-container {
@@ -51,12 +51,18 @@
 
   /* ---------------------------- midbar ---------------------------- */
   .midbar-container {
-    @apply w-full h-[calc(100vh-112px)]  p-2 flex flex-col gap-2 overflow-y-scroll scrollbar-none;
+    @apply w-full h-[calc(100vh-112px)]  p-3 flex flex-col gap-2 overflow-y-scroll scrollbar-none;
   }
   /* -------------------------- description ------------------------- */
+  .midbar-btn {
+    @apply h-full w-full rounded-sm flex bg-pink-200;
+  }
 
+  .midbar-btn-focus {
+    @apply midbar-btn;
+  }
   .column-description-container {
-    @apply w-full h-[calc(100vh-112px)]  mx-auto flex flex-col items-start;
+    @apply w-full h-[calc(100vh-112px)]  mx-auto flex flex-col items-center;
   }
   .column-description-content {
     @apply w-full h-[calc(100vh-168px)] overflow-y-scroll  max-w-2xl scrollbar-thin p-2;

@@ -1,4 +1,104 @@
-import { DoctorType, HariType } from "../../types";
+import { DoctorType, FormDoctorType, HariType } from "../../HospitalTypes";
+export const doctorForm: FormDoctorType = {
+  name: {
+    id: "doctor_00",
+    title: "Nama Dokter",
+    placeholder: "masukkan name",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  id: {
+    id: "doctor_01",
+    title: "ID",
+    placeholder: "masukkan id",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  poliklinik: {
+    id: "doctor_02",
+    title: "Poliklinik",
+    placeholder: "masukkan poliklinik",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  waktu: {
+    id: "doctor_03",
+    title: "Waktu Praktek",
+    placeholder: "masukkan waktu",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  hari: {
+    id: "doctor_04",
+    title: "Hari Praktek",
+    placeholder: "masukkan hari",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  jam: {
+    id: "doctor_05",
+    title: "Jam Praktek",
+    placeholder: "masukkan jam",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  gender: {
+    id: "doctor_06",
+    title: "Gender",
+    placeholder: "masukkan gender",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  on_call: {
+    id: "doctor_07",
+    title: "On Call",
+    placeholder: "masukkan on call",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  telemedicine: {
+    id: "doctor_08",
+    title: "Menyediakan Telemedicine",
+    placeholder: "masukkan telemedicine",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  biaya_telemedicine: {
+    id: "doctor_09",
+    title: "Biaya Telemedicine",
+    placeholder: "masukkan biaya telemedicine",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  sedang_online: {
+    id: "doctor_10",
+    title: "Sedang Online",
+    placeholder: "masukkan sedang online",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  biaya_tatapmuka: {
+    id: "doctor_11",
+    title: "Biaya Tatap Muka",
+    placeholder: "masukkan biaya tatapmuka",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  kuota: {
+    id: "doctor_12",
+    title: "Kuota Pasien Per hari",
+    placeholder: "masukkan kuota",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+  pengalaman: {
+    id: "doctor_13",
+    title: "Pengalaman",
+    placeholder: "masukkan pengalaman",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+};
 export const doctorDetailedForm = (doctorInfo: DoctorType) => {
   const detail = [
     { id: 0, title: "Nama", value: doctorInfo.name },

@@ -1,14 +1,13 @@
 import React from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeSideBar, openSidebar } from "../../column/columnCodes";
-
+import { hospitalBtnDetail } from "../../column/sidebarColumnKeys";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-import { patientBtnDetail } from "../../column/sidebarColumnKeys";
 
 type Props = {};
 
-const SidebarComponent = (props: Props) => {
+const HospitalSidebarComponent = (props: Props) => {
   const {
     assignColumn,
     showDetail,
@@ -26,7 +25,6 @@ const SidebarComponent = (props: Props) => {
       !column1 ? openSidebar(currentWindow) : closeSideBar(currentWindow)
     );
   };
-
   return (
     <div
       className={
@@ -52,12 +50,12 @@ const SidebarComponent = (props: Props) => {
               : "column-navbar-main-btn"
           }
         >
-          {patient.medical_record_number}
+          Kategori
         </button>
       </div>
       {column1 && (
         <div className="column-sidebar-menu-container">
-          {patientBtnDetail.map((item, index) => {
+          {hospitalBtnDetail.map((item, index) => {
             return (
               <div key={index} className="sidebar-btn-container">
                 <button
@@ -98,4 +96,4 @@ const SidebarComponent = (props: Props) => {
   );
 };
 
-export default SidebarComponent;
+export default HospitalSidebarComponent;

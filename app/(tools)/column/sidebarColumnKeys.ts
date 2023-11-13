@@ -1,7 +1,6 @@
 export type SidebarBtnType = {
   name: string;
   key: string;
-  column_category: string;
   column_open: string;
 };
 
@@ -23,5 +22,33 @@ export const patientBtnDetail = [
     key: "medical_records",
     column_category: "medical",
     column_open: "one",
+  },
+];
+
+export const hospitalBtnDetail = [
+  {
+    name: "Dokter",
+    key: "doctor",
+    column_open: "all",
+  },
+  {
+    name: "Fasilitas",
+    key: "facility",
+    column_open: "all",
+  },
+  {
+    name: "Laboratorium",
+    key: "lab_test",
+    column_open: "all",
+  },
+  {
+    name: "Paket Test",
+    key: "package_test",
+    column_open: "all",
+  },
+  {
+    name: "Rawat Inap",
+    key: "inpatient",
+    column_open: "all",
   },
 ];

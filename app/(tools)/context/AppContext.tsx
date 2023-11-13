@@ -1,15 +1,18 @@
 import { createContext } from "react";
-import { AppState, PatientState } from "./interfaces";
-import { SidebarBtnType } from "../column/sidebarColumn";
+import { AppState, HospitalState, PatientState } from "./interfaces";
+import { SidebarBtnType } from "../column/sidebarColumnKeys";
 
 import {
-  ColumnAssignmentType,
   PatientType,
   ScheduleDestinationsListType,
   ScheduledType,
 } from "../patientTypes";
+import { ColumnAssignmentType } from "../types";
+import { DoctorType } from "../HospitalTypes";
 
 export type AppContextProps = {
+  hospitalState: HospitalState;
+  hospitalDispatch: ({ type }: { type: string; payload?: any }) => void;
   patientState: PatientState;
   patientDispatch: ({ type }: { type: string; payload?: any }) => void;
   state: AppState;
@@ -37,6 +40,7 @@ export type AppContextProps = {
   handleShowDetail: (key: SidebarBtnType) => void;
   showDetail: SidebarBtnType;
   settingEditable: (editable: boolean) => void;
+  selectDoctor: (doctor: DoctorType) => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

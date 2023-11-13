@@ -1,5 +1,5 @@
+import { DoctorType } from "@/app/(tools)/HospitalTypes";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
-import { DoctorType } from "@/app/(tools)/types";
 const URL_DOCTOR = `${NEXT_PUBLIC_BASE_URL}/api/doctor/?`;
 
 export const getDoctors: (code?: string) => Promise<DoctorType[]> = async (

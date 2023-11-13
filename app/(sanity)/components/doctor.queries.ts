@@ -1,6 +1,7 @@
 import { groq } from "next-sanity";
 
 export const getDoctorQuery = groq`*[_type=='doctor']| order(id asc){
+    _id,
     id,
     name,
     waktu,
@@ -21,6 +22,7 @@ export const getDoctorQuery = groq`*[_type=='doctor']| order(id asc){
     }`;
 
 export const getDoctorByIDQuery = groq`*[_type=='doctor'&& id==$id]| order(id asc){
+    _id,
     id,
     name,
     waktu,

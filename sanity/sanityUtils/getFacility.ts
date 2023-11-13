@@ -1,5 +1,4 @@
-import { FacilitySanityType } from "@/app/(tools)/types";
-
+import { FacilitySanityType } from "@/app/(tools)/HospitalTypes";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
 
 const URL_FACILITY = `${NEXT_PUBLIC_BASE_URL}/api/facility/?`;

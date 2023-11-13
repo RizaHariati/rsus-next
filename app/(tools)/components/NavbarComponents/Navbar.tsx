@@ -109,7 +109,7 @@ export const NavbarLinks = (props: Props) => {
       </Link>
 
       <Link
-        href="/facility"
+        href="/adminhospital/"
         className="navbar-link"
         onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
       >

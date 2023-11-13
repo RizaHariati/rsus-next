@@ -8,34 +8,81 @@ import { AppState, PatientState } from "./interfaces";
 import { patientReducer } from "../reducers/patientReducer";
 import { initialPatientState } from "./initialPatientState";
 import {
-  ColumnAssignmentType,
   PatientType,
   ScheduleDestinationsListType,
   ScheduledType,
 } from "../patientTypes";
 
 import { OCC, OCO, OOO } from "../column/columnPattern";
-import { SidebarBtnType, patientBtnDetail } from "../column/sidebarColumn";
+import {
+  SidebarBtnType,
+  hospitalBtnDetail,
+  patientBtnDetail,
+} from "../column/sidebarColumnKeys";
+import { ColumnAssignmentType } from "../types";
+import { getDoctors } from "@/sanity/sanityUtils/getDoctors";
+import { getFacility } from "@/sanity/sanityUtils/getFacility";
+import { initialHospitalState } from "./initialHospitalState";
+import { hospitalReducer } from "../reducers/hospitalReducer";
+import { usePathname } from "next/navigation";
+import { DoctorType } from "../HospitalTypes";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
 }
 
 export const AppProvider = ({ children }: Props) => {
+  const pathName = usePathname();
+
   const [state, dispatch]: [AppState, Dispatch<any>] = useReducer(
     appReducer,
     initialState
   );
   const [patientState, patientDispatch]: [PatientState, Dispatch<any>] =
     useReducer(patientReducer, initialPatientState);
+
+  const [hospitalState, hospitalDispatch] = useReducer(
+    hospitalReducer,
+    initialHospitalState
+  );
   const [scrollTop, setScrollTop] = useState<boolean>(false);
   const [scrollPosition, setScrollPosition] = useState(0);
   const [scrollingUp, setscrollingUp] = useState(true);
   const [showFooter, setShowFooter] = useState(false);
   const [showDetail, setshowDetail] = useState<SidebarBtnType>(
-    patientBtnDetail[0]
+    pathName === "/adminhospital/" ? hospitalBtnDetail[0] : patientBtnDetail[0]
   );
 
+  useEffect(() => {
+    const setDoctors = new Promise((resolve) => {
+      return resolve(getDoctors());
+    }).then((doctor) => doctor);
+    const setFacility = new Promise((resolve) => {
+      return resolve(getFacility());
+    });
+    Promise.all([setDoctors, setFacility]).then(
+      ([dataDoctor, dataFacility]) => {
+        hospitalDispatch({
+          type: "LOAD_HOSPITAL_DATA",
+          payload: { dataDoctor, dataFacility },
+        });
+      }
+    );
+    if (typeof window !== "object") return;
+    const windowWidth = window!.innerWidth!;
+    if (windowWidth < minWidth) {
+      assignColumn(OCC);
+    } else if (windowWidth >= minWidth && windowWidth <= maxWidth) {
+      assignColumn(OCO);
+    } else {
+      assignColumn(OOO);
+    }
+    dispatch({ type: "SET_WINDOW", payload: { currentWindow: windowWidth } });
+  }, []);
+
+  const selectDoctor = (selectedDoctor: DoctorType) => {
+    hospitalDispatch({ type: "SELECT_DOCTOR", payload: { selectedDoctor } });
+  };
   const loadingPatientScheduleDestination = (
     scheduleDestinationList: ScheduleDestinationsListType[] | null
   ) => {
@@ -65,19 +112,6 @@ export const AppProvider = ({ children }: Props) => {
   const handleShowDetail = (key: SidebarBtnType) => {
     setshowDetail(key);
   };
-  useEffect(() => {
-    if (typeof window !== "object") return;
-
-    const windowWidth = window!.innerWidth!;
-    if (windowWidth < minWidth) {
-      assignColumn(OCC);
-    } else if (windowWidth >= minWidth && windowWidth <= maxWidth) {
-      assignColumn(OCO);
-    } else {
-      assignColumn(OOO);
-    }
-    dispatch({ type: "SET_WINDOW", payload: { currentWindow: windowWidth } });
-  }, []);
 
   const toggleMenuNavbar = (id: string | null) => {
     dispatch({ type: "TOGGLE_MENU", payload: id });
@@ -145,6 +179,9 @@ export const AppProvider = ({ children }: Props) => {
     dispatch({ type: "SET_EDITABLE", payload: { editable } });
   };
   const value = {
+    hospitalState,
+    selectDoctor,
+    hospitalDispatch,
     showDetail,
     handleShowDetail,
     patientState,

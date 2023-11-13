@@ -7,11 +7,10 @@ type Props = {};
 
 const PatientDescription = (props: Props) => {
   const {
-    state: { columnAssignment, editable },
+    state: { editable },
     patientState: {
       patient: { patient_profile, medical_record_number },
     },
-    assignColumn,
   } = useGlobalContext();
   const initialPatient: PatientInitialValueType = {
     medical_record_number: {
@@ -64,27 +63,24 @@ const PatientDescription = (props: Props) => {
   };
   return (
     <form
-      className="column-description-container"
+      className="column-description-container "
       onSubmit={(e) => handleSubmit(e)}
     >
-      {columnAssignment.column3 && (
-        <PatientProfileContent
-          patientPersonal={patientPersonal}
-          handleChange={handleChange}
-        />
-      )}
-      {columnAssignment.column3 && (
-        <div className="content-menu border-t">
-          <button
-            type="submit"
-            className={
-              editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
-            }
-          >
-            Submit
-          </button>
-        </div>
-      )}
+      <PatientProfileContent
+        patientPersonal={patientPersonal}
+        handleChange={handleChange}
+      />
+
+      <div className="content-menu border-t">
+        <button
+          type="submit"
+          className={
+            editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
+          }
+        >
+          Submit
+        </button>
+      </div>
     </form>
   );
 };

@@ -11,13 +11,7 @@ export const initialPatientState: PatientState = {
     password: "",
     medical_record_number: "",
   },
-  // patient: {
-  //   medical_record_number: "US4234123398",
-  //   patient_profile: sampleProfile,
-  //   scheduled_appointments: sampleSchedule,
-  //   medical_records: [],
-  //   notifications: sampleNotifications,
-  // },
+
   patient: {
     medical_record_number: "",
     patient_profile: {

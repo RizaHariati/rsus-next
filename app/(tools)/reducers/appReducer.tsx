@@ -1,6 +1,4 @@
 import { AppState } from "../context/interfaces";
-import { DoctorType, FilterDoctorType, LabCartType } from "../types";
-import moment from "moment";
 interface OpenModalAction {
   type: string;
   payload?: any;

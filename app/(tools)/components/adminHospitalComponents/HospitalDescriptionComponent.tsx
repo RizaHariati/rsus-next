@@ -1,25 +1,23 @@
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeDescription, openDescription } from "../../column/columnCodes";
-import PatientEditDelete from "./GeneralComponents/PatientEditDelete";
-import PatientDescription from "./DescriptionComponents/PatientDescription";
-import ScheduleDescription from "./DescriptionComponents/ScheduleDescription";
-import MedicalRecordDescription from "./DescriptionComponents/MedicalRecordDescription";
+import PatientEditDelete from "../adminpatientComponents/GeneralComponents/PatientEditDelete";
+import DoctorDescription from "./HospitalDescriptionComponents/DoctorDescription";
 
 type Props = {};
 
-const DescriptionComponent = (props: Props) => {
+const HospitalDescriptionComponent = (props: Props) => {
   const {
     assignColumn,
     showDetail,
-    patientState: { selectedScheduleAppointment },
+    hospitalState: { selectedDoctor },
     state: {
       currentWindow,
       columnAssignment: { column3 },
     },
   } = useGlobalContext();
-
   const [columnTitle, setColumnTitle] = useState<string>("detailed part");
+
   const handleDescriptionButton = () => {
     assignColumn(
       !column3
@@ -27,16 +25,11 @@ const DescriptionComponent = (props: Props) => {
         : closeDescription(currentWindow)
     );
   };
-
   useEffect(() => {
-    if (showDetail.key === "scheduled_appointments") {
-      setColumnTitle(
-        selectedScheduleAppointment?.appointment_type.replace("_", " ") ||
-          "detailed part"
-      );
+    if (showDetail.key === "doctor") {
+      setColumnTitle(`Dr.${selectedDoctor?.name}` || "detailed part");
     }
-  }, [selectedScheduleAppointment]);
-
+  }, [selectedDoctor]);
   return (
     <div className={!column3 ? "column-container-rotate" : "column-container"}>
       <div
@@ -60,15 +53,15 @@ const DescriptionComponent = (props: Props) => {
       </div>
       {column3 && (
         <div className="h-[calc(100vh-112px)] w-full">
-          {showDetail.key === "patient_profile" && <PatientDescription />}
-          {showDetail.key === "scheduled_appointments" && (
+          {showDetail.key === "doctor" && <DoctorDescription />}
+          {/* {showDetail.key === "scheduled_appointments" && (
             <ScheduleDescription />
           )}
-          {showDetail.key === "medical_records" && <MedicalRecordDescription />}
+          {showDetail.key === "medical_records" && <MedicalRecordDescription />} */}
         </div>
       )}
     </div>
   );
 };
 
-export default DescriptionComponent;
+export default HospitalDescriptionComponent;

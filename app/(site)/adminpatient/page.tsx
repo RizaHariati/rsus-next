@@ -12,15 +12,11 @@ import { getTujuan } from "@/app/(tools)/utils/patientUtils/getTujuan";
 
 type Props = {};
 
-const PatientPage = (props: Props) => {
+const AdminPatientPage = (props: Props) => {
   const {
     loadingPatientScheduleDestination,
     showDetail,
-    patientState: {
-      patient,
-      selectedScheduleAppointment,
-      selectedScheduleDestination,
-    },
+    patientState: { patient },
   } = useGlobalContext();
   const [showMidbar, setShowMidbar] = useState(
     showDetail.column_open === "all"
@@ -72,4 +68,4 @@ const PatientPage = (props: Props) => {
   );
 };
 
-export default PatientPage;
+export default AdminPatientPage;
