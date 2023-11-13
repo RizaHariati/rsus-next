@@ -16,7 +16,11 @@ const PatientPage = (props: Props) => {
   const {
     loadingPatientScheduleDestination,
     showDetail,
-    patientState: { patient },
+    patientState: {
+      patient,
+      selectedScheduleAppointment,
+      selectedScheduleDestination,
+    },
   } = useGlobalContext();
   const [showMidbar, setShowMidbar] = useState(
     showDetail.column_open === "all"

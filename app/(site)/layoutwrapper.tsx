@@ -13,9 +13,6 @@ import {
   useRef,
   useState,
 } from "react";
-import { OCO, OOO, OCC } from "../(tools)/column/columnPattern";
-import useWindowSize from "../(tools)/utils/useWindowSize";
-import useAssignColumn from "../(tools)/utils/useAssignColumn";
 
 type Props = {
   children: React.ReactNode;

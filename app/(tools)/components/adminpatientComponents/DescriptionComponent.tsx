@@ -2,9 +2,9 @@ import React from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeDescription, openDescription } from "../../column/columnCodes";
 import PatientEditDelete from "./GeneralComponents/PatientEditDelete";
-import PatientProfile from "../PatientPageComponents/PatientProfile";
 import PatientDescription from "./DescriptionComponents/PatientDescription";
 import ScheduleDescription from "./DescriptionComponents/ScheduleDescription";
+import MedicalRecordDescription from "./DescriptionComponents/MedicalRecordDescription";
 
 type Props = {};
 
@@ -55,6 +55,7 @@ const DescriptionComponent = (props: Props) => {
           {showDetail.key === "scheduled_appointments" && (
             <ScheduleDescription />
           )}
+          {showDetail.key === "medical_records" && <MedicalRecordDescription />}
         </div>
       )}
     </div>
