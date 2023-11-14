@@ -3,8 +3,8 @@ import { getPatient } from "./getPatient";
 
 import { NotificationType } from "@/app/(tools)/patientTypes";
 import { NEXT_PUBLIC_BASE_URL } from "../env";
-import { getNotificationID } from "@/app/(tools)/utils/getNotificationID";
 import { NextResponse } from "next/server";
+import { getNotificationID } from "@/app/(tools)/utils/getNotificationID";
 
 export async function createNotification(
   medicalRecordNumber: string,

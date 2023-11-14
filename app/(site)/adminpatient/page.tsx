@@ -51,6 +51,7 @@ const AdminPatientPage = (props: Props) => {
         loadingPatientScheduleDestination([...res]);
       });
     }
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {

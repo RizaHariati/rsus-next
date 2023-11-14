@@ -9,7 +9,6 @@ import {
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "../../../context/AppProvider";
-import { ScheduleDestinationsListType } from "@/app/(tools)/patientTypes";
 
 type Props = {
   showDestination: any;

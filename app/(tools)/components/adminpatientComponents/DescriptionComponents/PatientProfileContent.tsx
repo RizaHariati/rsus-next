@@ -1,9 +1,9 @@
 import React from "react";
 import moment from "moment";
-import { PatientInitialValueType } from "../../patientTypes";
-import { patientFormInput } from "../../utils/forms/patientFormInput";
-import { getAge } from "../../utils/patientUtils/getAge";
-import { useGlobalContext } from "../../context/AppProvider";
+import { patientFormInput } from "@/app/(tools)/utils/forms/patientFormInput";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import { getAge } from "@/app/(tools)/utils/patientUtils/getAge";
+import { PatientInitialValueType } from "@/app/(tools)/patientTypes";
 
 type PatientProps = {
   patientPersonal: PatientInitialValueType;

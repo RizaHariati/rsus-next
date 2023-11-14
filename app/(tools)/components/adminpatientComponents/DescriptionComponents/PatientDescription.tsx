@@ -1,7 +1,7 @@
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { PatientInitialValueType } from "@/app/(tools)/patientTypes";
 import React, { useEffect, useState } from "react";
-import PatientProfileContent from "../../PatientPageComponents/PatientProfileContent";
+import PatientProfileContent from "./PatientProfileContent";
 
 type Props = {};
 

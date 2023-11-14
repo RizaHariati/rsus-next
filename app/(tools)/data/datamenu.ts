@@ -1,4 +1,4 @@
-import { DataMenuType, FloatingMenuType } from "../types";
+import { DataMenuType } from "../types";
 
 export const datamenu: DataMenuType[] = [
   {
@@ -87,32 +87,5 @@ export const datamenu: DataMenuType[] = [
     title: "Rawat Inap",
     link: "/inpatient",
     subdata: [],
-  },
-];
-
-export const floatingMenu: FloatingMenuType[] = [
-  {
-    name: "appointment",
-    title: "Janji temu dokter",
-    link: "/appointment",
-    image: "Timesheet.jpg",
-  },
-  {
-    name: "facility",
-    title: "fasilitas",
-    link: "/facility",
-    image: "ct-scanner.jpg",
-  },
-  {
-    name: "poliklinik",
-    title: "Poliklinik",
-    link: "/poliklinik",
-    image: "Examination.jpg",
-  },
-  {
-    name: "laboratorium",
-    title: "Lab&check up",
-    link: "/laboratorium",
-    image: "Laboratory.jpg",
   },
 ];

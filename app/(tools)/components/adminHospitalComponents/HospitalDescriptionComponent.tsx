@@ -33,6 +33,7 @@ const HospitalDescriptionComponent = (props: Props) => {
     if (showDetail.key === "facility") {
       setColumnTitle(selectedFacility?.title || "detailed part");
     }
+    // eslint-disable-next-line
   }, [selectedDoctor, selectedFacility]);
   return (
     <div className={!column3 ? "column-container-rotate" : "column-container"}>

@@ -23,10 +23,12 @@ const AdminHospitalPage = (props: Props) => {
 
   useEffect(() => {
     handleShowDetail(hospitalBtnDetail[0]);
+    // eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     setShowMidbar(showDetail.column_open === "all");
+    // eslint-disable-next-line
   }, [showDetail]);
 
   return (

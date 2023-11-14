@@ -35,6 +35,7 @@ const DescriptionComponent = (props: Props) => {
           "detailed part"
       );
     }
+    // eslint-disable-next-line
   }, [selectedScheduleAppointment]);
 
   return (

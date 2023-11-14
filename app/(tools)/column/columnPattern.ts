@@ -1,6 +1,6 @@
 // this is the pattern for column changes
 
-import { ColumnAssignmentType } from "../patientTypes";
+import { ColumnAssignmentType } from "../types";
 
 // three small open one close or two large open two close pattern
 export const OOO: ColumnAssignmentType = {

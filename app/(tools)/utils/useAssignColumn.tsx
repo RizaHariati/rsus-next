@@ -7,7 +7,7 @@ type Props = {};
 
 const useAssignColumn = () => {
   const { assignColumn, getWindow } = useGlobalContext();
-  if (typeof window === "undefined" && typeof window !== "object") return;
+  // if (typeof window === "undefined" && typeof window !== "object") return;
 
   useEffect(() => {
     // only execute all the code below in client side
@@ -35,6 +35,7 @@ const useAssignColumn = () => {
 
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
+    // eslint-disable-next-line
   }, []); // Empty array ensures that effect is only run on mount
   return "nama";
 };

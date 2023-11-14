@@ -40,6 +40,7 @@ const updateConfig: ClientConfig = {
   projectId,
   dataset,
   apiVersion,
+  token: SANITY_READ_WRITE_TOKEN,
   // token: SANITY_DEPLOY_TOKEN,
   withCredentials: true,
   // https://www.sanity.io/docs/api-versioning,

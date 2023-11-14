@@ -9,7 +9,7 @@ const useWindowSize = () => {
     assignColumn,
     state: { columnAssignment },
   } = useGlobalContext();
-  if (!window || typeof window !== "object") return;
+  // if (!window || typeof window !== "object") return;
   const [windowSize, setWindowSize] = useState({
     width: window?.innerWidth! || 0,
     height: window?.innerHeight! || 0,
@@ -40,6 +40,8 @@ const useWindowSize = () => {
 
     // Remove event listener on cleanup
     return () => window.removeEventListener("resize", handleResize);
+
+    // eslint-disable-next-line
   }, []); // Empty array ensures that effect is only run on mount
   return windowSize;
 };
