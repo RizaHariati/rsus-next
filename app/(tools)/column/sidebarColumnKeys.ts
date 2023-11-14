@@ -38,12 +38,12 @@ export const hospitalBtnDetail: SidebarBtnType[] = [
   },
   {
     name: "Laboratorium",
-    key: "lab_test",
+    key: "lab_satuan",
     column_open: "all",
   },
   {
     name: "Paket Test",
-    key: "package_test",
+    key: "lab_paket",
     column_open: "all",
   },
   {

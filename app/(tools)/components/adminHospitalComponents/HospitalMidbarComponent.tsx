@@ -3,6 +3,7 @@ import { useGlobalContext } from "../../context/AppProvider";
 import { closeMidbar, openMidbar } from "../../column/columnCodes";
 import DoctorMenu from "./HospitalMidbarComponents/DoctorMenu";
 import FacilityMenu from "./HospitalMidbarComponents/FacitlityMenu";
+import LabSatuanMenu from "./HospitalMidbarComponents/LabSatuanMenu";
 type Props = {};
 
 const HospitalMidbarComponent = (props: Props) => {
@@ -53,6 +54,7 @@ const HospitalMidbarComponent = (props: Props) => {
         <div>
           {showDetail.key === "doctor" && <DoctorMenu />}
           {showDetail.key === "facility" && <FacilityMenu />}
+          {showDetail.key === "lab_satuan" && <LabSatuanMenu />}
         </div>
       )}
     </div>

@@ -8,7 +8,7 @@ import {
   ScheduledType,
 } from "../patientTypes";
 import { ColumnAssignmentType } from "../types";
-import { DoctorType, FacilitySanityType } from "../HospitalTypes";
+import { DoctorType, FacilitySanityType, LabItemType } from "../HospitalTypes";
 
 export type AppContextProps = {
   hospitalState: HospitalState;
@@ -42,6 +42,7 @@ export type AppContextProps = {
   settingEditable: (editable: boolean) => void;
   selectDoctor: (doctor: DoctorType) => void;
   selectFacility: (selectedFacility: FacilitySanityType) => void;
+  selectLabSatuan: (selectedLabSatuan: LabItemType) => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

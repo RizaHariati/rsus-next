@@ -25,7 +25,8 @@ import { getFacility } from "@/sanity/sanityUtils/getFacility";
 import { initialHospitalState } from "./initialHospitalState";
 import { hospitalReducer } from "../reducers/hospitalReducer";
 import { usePathname } from "next/navigation";
-import { DoctorType, FacilitySanityType } from "../HospitalTypes";
+import { DoctorType, FacilitySanityType, LabItemType } from "../HospitalTypes";
+import { getLabSatuan } from "@/sanity/sanityUtils/getLabSatuan";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -60,11 +61,15 @@ export const AppProvider = ({ children }: Props) => {
     const setFacility = new Promise((resolve) => {
       return resolve(getFacility());
     });
-    Promise.all([setDoctors, setFacility]).then(
-      ([dataDoctor, dataFacility]) => {
+    const setLabSatuan = new Promise((resolve) => {
+      return resolve(getLabSatuan());
+    });
+
+    Promise.all([setDoctors, setFacility, setLabSatuan]).then(
+      ([dataDoctor, dataFacility, dataLabSatuan]) => {
         hospitalDispatch({
           type: "LOAD_HOSPITAL_DATA",
-          payload: { dataDoctor, dataFacility },
+          payload: { dataDoctor, dataFacility, dataLabSatuan },
         });
       }
     );
@@ -90,6 +95,14 @@ export const AppProvider = ({ children }: Props) => {
       payload: { selectedFacility },
     });
   };
+
+  const selectLabSatuan = (selectedLabSatuan: LabItemType) => {
+    hospitalDispatch({
+      type: "SELECT_LAB_SATUAN",
+      payload: { selectedLabSatuan },
+    });
+  };
+
   const loadingPatientScheduleDestination = (
     scheduleDestinationList: ScheduleDestinationsListType[] | null
   ) => {
@@ -189,6 +202,7 @@ export const AppProvider = ({ children }: Props) => {
     hospitalState,
     selectDoctor,
     selectFacility,
+    selectLabSatuan,
     hospitalDispatch,
     showDetail,
     handleShowDetail,

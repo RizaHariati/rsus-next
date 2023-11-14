@@ -42,8 +42,8 @@ export interface HospitalState {
   selectedDoctor: DoctorType | null;
   dataFacility: FacilitySanityType[];
   selectedFacility: FacilitySanityType | null;
-  dataLaboratorium: [];
-  selectedLaboratorium: null;
+  dataLabSatuan: LabItemType[] | [];
+  selectedLabSatuan: LabItemType | null;
   dataPackage: [];
   selectedPackage: null;
   dataInpatient: [];

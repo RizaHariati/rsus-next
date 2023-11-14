@@ -18,12 +18,12 @@ const HospitalSidebarComponent = (props: Props) => {
     settingEditable,
     selectDoctor,
     selectFacility,
+    selectLabSatuan,
     state: {
       currentWindow,
       columnAssignment: { column1, column3 },
     },
-    hospitalState: { dataDoctor, dataFacility },
-    patientState: { patient },
+    hospitalState: { dataDoctor, dataFacility, dataLabSatuan },
   } = useGlobalContext();
 
   const handleSidebarColumn = () => {
@@ -36,6 +36,7 @@ const HospitalSidebarComponent = (props: Props) => {
     handleShowDetail(key);
     if (key.key === "doctor") selectDoctor(dataDoctor?.[0]);
     if (key.key === "facility") selectFacility(dataFacility?.[0]);
+    if (key.key === "lab_satuan") selectLabSatuan(dataLabSatuan?.[0]);
     settingEditable(false);
   };
   return (

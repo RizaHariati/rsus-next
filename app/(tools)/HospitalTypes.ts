@@ -29,6 +29,7 @@ export type FacilitySanityType = {
 };
 
 export type LabItemType = {
+  _id: string;
   id: string;
   title: string;
   description?: string;
@@ -104,10 +105,10 @@ export type FormDoctorType = {
   hari: HospitalItemType;
   jam: HospitalItemType;
   gender: HospitalItemType;
-  on_call?: HospitalItemType;
+  on_call: HospitalItemType;
   telemedicine: HospitalItemType;
-  biaya_telemedicine?: HospitalItemType;
-  sedang_online?: HospitalItemType;
+  biaya_telemedicine: HospitalItemType;
+  sedang_online: HospitalItemType;
   biaya_tatapmuka: HospitalItemType;
   kuota: HospitalItemType;
   pengalaman: HospitalItemType;
@@ -124,6 +125,14 @@ export type FormFacilityType = {
   featured: HospitalItemType;
   doctorref: HospitalItemType;
   price: HospitalItemType;
+};
+
+export type FormLabSatuanType = {
+  id: HospitalItemType;
+  title: HospitalItemType;
+  description: HospitalItemType;
+  price: HospitalItemType;
+  category: HospitalItemType;
 };
 export type DoctorInitialValueType = {
   [key: string]: { value: any; error: boolean };
