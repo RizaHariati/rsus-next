@@ -4,6 +4,7 @@ import { closeMidbar, openMidbar } from "../../column/columnCodes";
 import DoctorMenu from "./HospitalMidbarComponents/DoctorMenu";
 import FacilityMenu from "./HospitalMidbarComponents/FacitlityMenu";
 import LabSatuanMenu from "./HospitalMidbarComponents/LabSatuanMenu";
+import LabPaketMenu from "./HospitalMidbarComponents/LabPaketMenu";
 type Props = {};
 
 const HospitalMidbarComponent = (props: Props) => {
@@ -55,6 +56,7 @@ const HospitalMidbarComponent = (props: Props) => {
           {showDetail.key === "doctor" && <DoctorMenu />}
           {showDetail.key === "facility" && <FacilityMenu />}
           {showDetail.key === "lab_satuan" && <LabSatuanMenu />}
+          {showDetail.key === "lab_paket" && <LabPaketMenu />}
         </div>
       )}
     </div>

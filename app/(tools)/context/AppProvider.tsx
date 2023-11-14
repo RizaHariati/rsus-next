@@ -25,8 +25,14 @@ import { getFacility } from "@/sanity/sanityUtils/getFacility";
 import { initialHospitalState } from "./initialHospitalState";
 import { hospitalReducer } from "../reducers/hospitalReducer";
 import { usePathname } from "next/navigation";
-import { DoctorType, FacilitySanityType, LabItemType } from "../HospitalTypes";
+import {
+  DoctorType,
+  FacilitySanityType,
+  LabItemType,
+  PaketLabType,
+} from "../HospitalTypes";
 import { getLabSatuan } from "@/sanity/sanityUtils/getLabSatuan";
+import { getLabPaket } from "@/sanity/sanityUtils/getLabPaket";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -64,15 +70,19 @@ export const AppProvider = ({ children }: Props) => {
     const setLabSatuan = new Promise((resolve) => {
       return resolve(getLabSatuan());
     });
+    const setLabPaket = new Promise((resolve) => {
+      return resolve(getLabPaket());
+    });
 
-    Promise.all([setDoctors, setFacility, setLabSatuan]).then(
-      ([dataDoctor, dataFacility, dataLabSatuan]) => {
+    Promise.all([setDoctors, setFacility, setLabSatuan, setLabPaket]).then(
+      ([dataDoctor, dataFacility, dataLabSatuan, dataPaket]) => {
         hospitalDispatch({
           type: "LOAD_HOSPITAL_DATA",
-          payload: { dataDoctor, dataFacility, dataLabSatuan },
+          payload: { dataDoctor, dataFacility, dataLabSatuan, dataPaket },
         });
       }
     );
+
     if (typeof window !== "object") return;
     const windowWidth = window!.innerWidth!;
     if (windowWidth < minWidth) {
@@ -100,6 +110,13 @@ export const AppProvider = ({ children }: Props) => {
     hospitalDispatch({
       type: "SELECT_LAB_SATUAN",
       payload: { selectedLabSatuan },
+    });
+  };
+
+  const selectLabPaket = (selectedPaket: PaketLabType) => {
+    hospitalDispatch({
+      type: "SELECT_LAB_PAKET",
+      payload: { selectedPaket },
     });
   };
 
@@ -203,6 +220,7 @@ export const AppProvider = ({ children }: Props) => {
     selectDoctor,
     selectFacility,
     selectLabSatuan,
+    selectLabPaket,
     hospitalDispatch,
     showDetail,
     handleShowDetail,

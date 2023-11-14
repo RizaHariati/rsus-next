@@ -53,6 +53,7 @@ export type LaboratoriumType = Omit<
   "price" | "category" | "description"
 >;
 export type PaketLabType = {
+  _id: string;
   id: string;
   title: string;
   price: { type: string; value: number }[];
@@ -140,4 +141,13 @@ export type DoctorInitialValueType = {
 
 export type FacilityInitialValueType = {
   [key: string]: { value: any; error: boolean };
+};
+
+export type FormLabPaketType = {
+  title: HospitalItemType;
+  id: HospitalItemType;
+  price: HospitalItemType;
+  img: HospitalItemType;
+  pemeriksaan: HospitalItemType;
+  laboratorium: HospitalItemType;
 };

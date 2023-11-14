@@ -3,6 +3,7 @@ import {
   FacilitySanityType,
   FacilityType,
   LabItemType,
+  PaketLabType,
 } from "../HospitalTypes";
 import {
   ScheduleDestinationsListType,
@@ -44,8 +45,8 @@ export interface HospitalState {
   selectedFacility: FacilitySanityType | null;
   dataLabSatuan: LabItemType[] | [];
   selectedLabSatuan: LabItemType | null;
-  dataPackage: [];
-  selectedPackage: null;
+  dataPaket: PaketLabType[] | [];
+  selectedPaket: PaketLabType | null;
   dataInpatient: [];
   selectedInpatient: null;
 }

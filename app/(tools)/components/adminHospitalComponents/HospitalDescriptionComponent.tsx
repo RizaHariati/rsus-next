@@ -5,6 +5,7 @@ import PatientEditDelete from "../adminpatientComponents/GeneralComponents/Patie
 import DoctorDescription from "./HospitalDescriptionComponents/DoctorDescription";
 import FacilityDescription from "./HospitalDescriptionComponents/FacilityDescription";
 import LabSatuanDescription from "./HospitalDescriptionComponents/LabSatuanDescription";
+import LabPaketDescription from "./HospitalDescriptionComponents/LabPaketDescription";
 
 type Props = {};
 
@@ -12,7 +13,12 @@ const HospitalDescriptionComponent = (props: Props) => {
   const {
     assignColumn,
     showDetail,
-    hospitalState: { selectedDoctor, selectedFacility, selectedLabSatuan },
+    hospitalState: {
+      selectedDoctor,
+      selectedFacility,
+      selectedLabSatuan,
+      selectedPaket,
+    },
     state: {
       currentWindow,
       columnAssignment: { column3 },
@@ -37,8 +43,17 @@ const HospitalDescriptionComponent = (props: Props) => {
     if (showDetail.key === "lab_satuan") {
       setColumnTitle(selectedLabSatuan?.title || "detailed part");
     }
+    if (showDetail.key === "lab_paket") {
+      setColumnTitle(selectedPaket?.title || "detailed part");
+    }
     // eslint-disable-next-line
-  }, [selectedDoctor, selectedFacility, selectedLabSatuan]);
+  }, [
+    selectedDoctor,
+    selectedFacility,
+    selectedLabSatuan,
+    selectedPaket,
+    showDetail,
+  ]);
   return (
     <div className={!column3 ? "column-container-rotate" : "column-container"}>
       <div
@@ -65,6 +80,7 @@ const HospitalDescriptionComponent = (props: Props) => {
           {showDetail.key === "doctor" && <DoctorDescription />}
           {showDetail.key === "facility" && <FacilityDescription />}
           {showDetail.key === "lab_satuan" && <LabSatuanDescription />}
+          {showDetail.key === "lab_paket" && <LabPaketDescription />}
         </div>
       )}
     </div>

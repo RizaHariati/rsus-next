@@ -9,9 +9,9 @@ export async function getLabSatuan(code?: string) {
     : await fetch(URL_LAB_SATUAN);
 
   if (res && res.status === 200) {
-    const facility: LabItemType[] = await res.json();
+    const labSatuan: LabItemType[] = await res.json();
 
-    return facility;
+    return labSatuan;
   }
   return [];
 }

@@ -15,6 +15,13 @@ export const hospitalReducer = (
       selectedLabSatuan,
     };
   }
+  if (action.type === "SELECT_LAB_PAKET") {
+    const selectedPaket = action.payload.selectedPaket;
+    return {
+      ...hospitalState,
+      selectedPaket,
+    };
+  }
   if (action.type === "SELECT_FACILITY") {
     const selectedFacility = action.payload.selectedFacility;
     return {
@@ -30,10 +37,12 @@ export const hospitalReducer = (
     };
   }
   if (action.type === "LOAD_HOSPITAL_DATA") {
-    const { dataDoctor, dataFacility, dataLabSatuan } = action.payload;
+    const { dataDoctor, dataFacility, dataLabSatuan, dataPaket } =
+      action.payload;
     const selectedDoctor = dataDoctor[0];
     const selectedFacility = dataFacility[0];
     const selectedLabSatuan = dataLabSatuan[0];
+    const selectedPaket = dataPaket[0];
     return {
       ...hospitalState,
       dataDoctor,
@@ -42,6 +51,8 @@ export const hospitalReducer = (
       selectedFacility,
       dataLabSatuan,
       selectedLabSatuan,
+      dataPaket,
+      selectedPaket,
     };
   }
 
