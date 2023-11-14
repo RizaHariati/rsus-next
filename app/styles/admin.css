@@ -30,7 +30,7 @@
   }
 
   .btn-icon {
-    @apply text-greyMed1 text-sm;
+    @apply text-greyMed1 text-sm h-5 w-5;
   }
 
   .btn-icon-focus {

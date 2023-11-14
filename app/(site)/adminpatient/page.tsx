@@ -9,12 +9,14 @@ import DescriptionComponent from "@/app/(tools)/components/adminpatientComponent
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ScheduledType } from "@/app/(tools)/patientTypes";
 import { getTujuan } from "@/app/(tools)/utils/patientUtils/getTujuan";
+import { patientBtnDetail } from "../../(tools)/column/sidebarColumnKeys";
 
 type Props = {};
 
 const AdminPatientPage = (props: Props) => {
   const {
     loadingPatientScheduleDestination,
+    handleShowDetail,
     showDetail,
     patientState: { patient },
   } = useGlobalContext();
@@ -25,6 +27,7 @@ const AdminPatientPage = (props: Props) => {
 
   useAssignColumn();
   useEffect(() => {
+    handleShowDetail(patientBtnDetail[0]);
     if (!patient || !patient.medical_record_number) {
       return Router.push("/");
     } else {

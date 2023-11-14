@@ -8,6 +8,13 @@ export const hospitalReducer = (
   hospitalState: HospitalState,
   action: OpenModalAction
 ) => {
+  if (action.type === "SELECT_FACILITY") {
+    const selectedFacility = action.payload.selectedFacility;
+    return {
+      ...hospitalState,
+      selectedFacility,
+    };
+  }
   if (action.type === "SELECT_DOCTOR") {
     const selectedDoctor = action.payload.selectedDoctor;
     return {

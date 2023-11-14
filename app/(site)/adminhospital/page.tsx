@@ -5,12 +5,14 @@ import HospitalSidebarComponent from "@/app/(tools)/components/adminHospitalComp
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import useAssignColumn from "@/app/(tools)/utils/useAssignColumn";
 import React, { useEffect, useState } from "react";
+import { hospitalBtnDetail } from "../../(tools)/column/sidebarColumnKeys";
 
 type Props = {};
 
 const AdminHospitalPage = (props: Props) => {
   const {
     loadingPatientScheduleDestination,
+    handleShowDetail,
     showDetail,
     hospitalState: { dataDoctor, dataFacility },
   } = useGlobalContext();
@@ -18,26 +20,27 @@ const AdminHospitalPage = (props: Props) => {
   const [showMidbar, setShowMidbar] = useState(
     showDetail.column_open === "all"
   );
+
+  useEffect(() => {
+    handleShowDetail(hospitalBtnDetail[0]);
+  }, []);
+
   useEffect(() => {
     setShowMidbar(showDetail.column_open === "all");
   }, [showDetail]);
 
-  if (dataDoctor.length < 1 || dataFacility.length < 1) {
-    return <div>Loading..</div>;
-  } else {
-    return (
-      <div className="ptn-container">
-        <div className="ptn-content">
-          {/* --------------------- COLUMN 1 SIDEBAR MENU -------------------- */}
-          <HospitalSidebarComponent />
-          {/* ----------------------- COLUMN 2 MID MENU ---------------------- */}
-          {showMidbar && <HospitalMidbarComponent />}
-          {/* ----------------- COLUMN 3 DETAILED DESCRIPTION ---------------- */}
-          <HospitalDescriptionComponent />
-        </div>
+  return (
+    <div className="ptn-container">
+      <div className="ptn-content">
+        {/* --------------------- COLUMN 1 SIDEBAR MENU -------------------- */}
+        <HospitalSidebarComponent />
+        {/* ----------------------- COLUMN 2 MID MENU ---------------------- */}
+        {showMidbar && <HospitalMidbarComponent />}
+        {/* ----------------- COLUMN 3 DETAILED DESCRIPTION ---------------- */}
+        <HospitalDescriptionComponent />
       </div>
-    );
-  }
+    </div>
+  );
 };
 
 export default AdminHospitalPage;

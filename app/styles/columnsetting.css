@@ -46,7 +46,7 @@
   }
 
   .sidebar-btn-icon {
-    @apply text-greyMed1 group-focus:text-white;
+    @apply text-greyMed1 group-focus:text-white h-3;
   }
 
   /* ---------------------------- midbar ---------------------------- */

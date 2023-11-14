@@ -113,6 +113,22 @@ export type FormDoctorType = {
   pengalaman: HospitalItemType;
 };
 
+export type FormFacilityType = {
+  id: HospitalItemType;
+  title: HospitalItemType;
+  img: HospitalItemType;
+  description: HospitalItemType;
+  function: HospitalItemType;
+  poliklinik: HospitalItemType;
+  category: HospitalItemType;
+  featured: HospitalItemType;
+  doctorref: HospitalItemType;
+  price: HospitalItemType;
+};
 export type DoctorInitialValueType = {
+  [key: string]: { value: any; error: boolean };
+};
+
+export type FacilityInitialValueType = {
   [key: string]: { value: any; error: boolean };
 };

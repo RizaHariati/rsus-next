@@ -5,5 +5,11 @@ export const initialHospitalState: HospitalState = {
   dataDoctor: [],
   selectedDoctor: null,
   dataFacility: [],
-  dataLaboratorium: dataLabSatuan,
+  selectedFacility: null,
+  dataLaboratorium: [],
+  selectedLaboratorium: null,
+  dataPackage: [],
+  selectedPackage: null,
+  dataInpatient: [],
+  selectedInpatient: null,
 };

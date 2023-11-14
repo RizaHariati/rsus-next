@@ -1,7 +1,10 @@
 import React from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeSideBar, openSidebar } from "../../column/columnCodes";
-import { hospitalBtnDetail } from "../../column/sidebarColumnKeys";
+import {
+  SidebarBtnType,
+  hospitalBtnDetail,
+} from "../../column/sidebarColumnKeys";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 
@@ -13,10 +16,13 @@ const HospitalSidebarComponent = (props: Props) => {
     showDetail,
     handleShowDetail,
     settingEditable,
+    selectDoctor,
+    selectFacility,
     state: {
       currentWindow,
       columnAssignment: { column1, column3 },
     },
+    hospitalState: { dataDoctor, dataFacility },
     patientState: { patient },
   } = useGlobalContext();
 
@@ -24,6 +30,13 @@ const HospitalSidebarComponent = (props: Props) => {
     assignColumn(
       !column1 ? openSidebar(currentWindow) : closeSideBar(currentWindow)
     );
+  };
+
+  const handleClick = (key: SidebarBtnType) => {
+    handleShowDetail(key);
+    if (key.key === "doctor") selectDoctor(dataDoctor?.[0]);
+    if (key.key === "facility") selectFacility(dataFacility?.[0]);
+    settingEditable(false);
   };
   return (
     <div
@@ -42,6 +55,7 @@ const HospitalSidebarComponent = (props: Props) => {
             : "column-navbar-container-rotate "
         }
       >
+        {/* ----------- this button is to change the column size ----------- */}
         <button
           onClick={() => handleSidebarColumn()}
           className={
@@ -55,9 +69,10 @@ const HospitalSidebarComponent = (props: Props) => {
       </div>
       {column1 && (
         <div className="column-sidebar-menu-container">
-          {hospitalBtnDetail.map((item, index) => {
+          {hospitalBtnDetail.map((item: SidebarBtnType, index) => {
             return (
               <div key={index} className="sidebar-btn-container">
+                {/* ---------------- this button is submenu buttons ---------------- */}
                 <button
                   className={
                     item.key === showDetail.key
@@ -65,8 +80,7 @@ const HospitalSidebarComponent = (props: Props) => {
                       : "sidebar-btn group"
                   }
                   onClick={() => {
-                    handleShowDetail(item);
-                    settingEditable(false);
+                    handleClick(item);
                   }}
                 >
                   <p

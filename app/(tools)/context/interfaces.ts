@@ -1,4 +1,9 @@
-import { DoctorType, FacilitySanityType, LabItemType } from "../HospitalTypes";
+import {
+  DoctorType,
+  FacilitySanityType,
+  FacilityType,
+  LabItemType,
+} from "../HospitalTypes";
 import {
   ScheduleDestinationsListType,
   PatientType,
@@ -36,5 +41,11 @@ export interface HospitalState {
   dataDoctor: DoctorType[];
   selectedDoctor: DoctorType | null;
   dataFacility: FacilitySanityType[];
-  dataLaboratorium: LabItemType[];
+  selectedFacility: FacilitySanityType | null;
+  dataLaboratorium: [];
+  selectedLaboratorium: null;
+  dataPackage: [];
+  selectedPackage: null;
+  dataInpatient: [];
+  selectedInpatient: null;
 }

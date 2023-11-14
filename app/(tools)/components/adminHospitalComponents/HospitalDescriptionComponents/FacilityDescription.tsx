@@ -1,42 +1,37 @@
-import { DoctorInitialValueType } from "@/app/(tools)/HospitalTypes";
+import { FacilityInitialValueType } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { doctorForm } from "@/app/(tools)/utils/forms/DoctorDetailedForm";
-import React, { useEffect, useState } from "react";
+import { facilityForm } from "@/app/(tools)/utils/forms/FacilityFormInput";
+import React, { useState } from "react";
 
 type Props = {};
 
-const DoctorDescription = (props: Props) => {
+const FacilityDescription = (props: Props) => {
   const {
     state: { columnAssignment, editable },
-    hospitalState: { selectedDoctor },
+    hospitalState: { selectedFacility },
   } = useGlobalContext();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-  const [doctorValues, setDoctorValues] = useState<DoctorInitialValueType>({});
-  useEffect(() => {}, []);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    patientKey: string
-  ) => {
-    e.preventDefault();
-  };
-  const formInputDoctor = Object.entries(doctorForm);
+  const [facilityValues, setFacilityValues] =
+    useState<FacilityInitialValueType>({});
+
+  const formInputFacility = Object.entries(facilityForm);
   return (
     <form
       className="column-description-container "
       onSubmit={(e) => handleSubmit(e)}
     >
       <div className="column-description-content">
-        {formInputDoctor.map(([doctorKey, doctorValue], index) => {
+        {formInputFacility.map(([facilityKey, facilityValue], index) => {
           //@ts-ignore
-          const doctorDetail = selectedDoctor?.[doctorKey] || "";
+          const facilityDetail = selectedFacility?.[facilityKey] || "";
           return (
             <div key={index} className="w-full">
-              <small className="">{doctorValue.title}</small>
+              <small className="">{facilityValue.title}</small>
               <input
-                value={doctorDetail.toString()}
+                value={facilityDetail.toString()}
                 className={editable ? "admin-input" : "admin-input-disabled"}
               />
             </div>
@@ -57,4 +52,4 @@ const DoctorDescription = (props: Props) => {
   );
 };
 
-export default DoctorDescription;
+export default FacilityDescription;

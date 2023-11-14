@@ -25,7 +25,7 @@ import { getFacility } from "@/sanity/sanityUtils/getFacility";
 import { initialHospitalState } from "./initialHospitalState";
 import { hospitalReducer } from "../reducers/hospitalReducer";
 import { usePathname } from "next/navigation";
-import { DoctorType } from "../HospitalTypes";
+import { DoctorType, FacilitySanityType } from "../HospitalTypes";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -82,6 +82,13 @@ export const AppProvider = ({ children }: Props) => {
 
   const selectDoctor = (selectedDoctor: DoctorType) => {
     hospitalDispatch({ type: "SELECT_DOCTOR", payload: { selectedDoctor } });
+  };
+
+  const selectFacility = (selectedFacility: FacilitySanityType) => {
+    hospitalDispatch({
+      type: "SELECT_FACILITY",
+      payload: { selectedFacility },
+    });
   };
   const loadingPatientScheduleDestination = (
     scheduleDestinationList: ScheduleDestinationsListType[] | null
@@ -181,6 +188,7 @@ export const AppProvider = ({ children }: Props) => {
   const value = {
     hospitalState,
     selectDoctor,
+    selectFacility,
     hospitalDispatch,
     showDetail,
     handleShowDetail,

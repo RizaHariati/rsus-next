@@ -3,6 +3,7 @@ import { useGlobalContext } from "../../context/AppProvider";
 import { closeDescription, openDescription } from "../../column/columnCodes";
 import PatientEditDelete from "../adminpatientComponents/GeneralComponents/PatientEditDelete";
 import DoctorDescription from "./HospitalDescriptionComponents/DoctorDescription";
+import FacilityDescription from "./HospitalDescriptionComponents/FacilityDescription";
 
 type Props = {};
 
@@ -10,7 +11,7 @@ const HospitalDescriptionComponent = (props: Props) => {
   const {
     assignColumn,
     showDetail,
-    hospitalState: { selectedDoctor },
+    hospitalState: { selectedDoctor, selectedFacility },
     state: {
       currentWindow,
       columnAssignment: { column3 },
@@ -29,7 +30,10 @@ const HospitalDescriptionComponent = (props: Props) => {
     if (showDetail.key === "doctor") {
       setColumnTitle(`Dr.${selectedDoctor?.name}` || "detailed part");
     }
-  }, [selectedDoctor]);
+    if (showDetail.key === "facility") {
+      setColumnTitle(selectedFacility?.title || "detailed part");
+    }
+  }, [selectedDoctor, selectedFacility]);
   return (
     <div className={!column3 ? "column-container-rotate" : "column-container"}>
       <div
@@ -54,10 +58,8 @@ const HospitalDescriptionComponent = (props: Props) => {
       {column3 && (
         <div className="h-[calc(100vh-112px)] w-full">
           {showDetail.key === "doctor" && <DoctorDescription />}
-          {/* {showDetail.key === "scheduled_appointments" && (
-            <ScheduleDescription />
-          )}
-          {showDetail.key === "medical_records" && <MedicalRecordDescription />} */}
+          {showDetail.key === "facility" && <FacilityDescription />}
+          {/* {showDetail.key === "medical_records" && <MedicalRecordDescription />} */}
         </div>
       )}
     </div>

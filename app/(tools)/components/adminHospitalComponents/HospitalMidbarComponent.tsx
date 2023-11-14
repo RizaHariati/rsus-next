@@ -2,7 +2,7 @@ import React from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeMidbar, openMidbar } from "../../column/columnCodes";
 import DoctorMenu from "./HospitalMidbarComponents/DoctorMenu";
-import FacitlityMenu from "./HospitalMidbarComponents/FacitlityMenu";
+import FacilityMenu from "./HospitalMidbarComponents/FacitlityMenu";
 type Props = {};
 
 const HospitalMidbarComponent = (props: Props) => {
@@ -52,7 +52,7 @@ const HospitalMidbarComponent = (props: Props) => {
       {column2 && (
         <div>
           {showDetail.key === "doctor" && <DoctorMenu />}
-          {showDetail.key === "facility" && <FacitlityMenu />}
+          {showDetail.key === "facility" && <FacilityMenu />}
         </div>
       )}
     </div>
