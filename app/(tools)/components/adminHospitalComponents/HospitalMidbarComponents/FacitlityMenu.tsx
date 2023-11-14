@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
+import { sanityLoader } from "../../../../../loader";
 
 type Props = {};
 
@@ -31,14 +32,15 @@ const FacilityMenu = (props: Props) => {
             }}
           >
             <Image
-              rel="preload"
+              loader={sanityLoader}
               placeholder="empty"
               src={
                 facility?.img.src || "/images/navbar/main-logo.png?w=64&q=75"
               }
               width={40}
               height={40}
-              className=" object-covers h-10 w-10 rounded-sm overflow-hidden mr-2"
+              quality={75}
+              className=" object-covers h-10 w-10 rounded-sm overflow-hidden mr-2 shrink-0"
               alt={facility?.img.alt || "altimage"}
               loading="lazy"
             />
