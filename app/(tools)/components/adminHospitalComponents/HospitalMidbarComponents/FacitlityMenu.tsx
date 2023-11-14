@@ -30,17 +30,19 @@ const FacilityMenu = (props: Props) => {
               settingEditable(false);
             }}
           >
+            <Image
+              rel="preload"
+              placeholder="empty"
+              src={
+                facility?.img.src || "/images/navbar/main-logo.png?w=64&q=75"
+              }
+              width={40}
+              height={40}
+              className=" object-covers h-10 w-10 rounded-sm overflow-hidden mr-2"
+              alt={facility?.img.alt || "altimage"}
+              loading="lazy"
+            />
             <div className="h-10 w-full flex flex-col">
-              <Image
-                rel="preload"
-                placeholder="empty"
-                src="https://rsuripsumoharjo-model.netlify.app/images/navbar/main-logo.png?w=64&q=75"
-                width={50}
-                height={50}
-                className=" object-covers rounded-full overflow-hidden"
-                alt="main-logo"
-                loading="lazy"
-              />
               <small
                 className={
                   selectedFacility?.id === facility.id
