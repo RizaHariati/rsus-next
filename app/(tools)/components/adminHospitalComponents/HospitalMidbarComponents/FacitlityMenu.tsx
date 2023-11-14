@@ -3,6 +3,7 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+import Image from "next/image";
 
 type Props = {};
 

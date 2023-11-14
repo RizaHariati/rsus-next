@@ -44,7 +44,7 @@ const nextConfig = {
       ? {
           loader: "custom",
           loaderFile: "./loader.ts",
-          path: "https://rsuripsumoharjo-model.netlify.app/",
+          path: "https://rsus-api.vercel.app",
           domains: [
             "cdn.sanity.io",
             "rsuripsumoharjo-model.netlify.app",
