@@ -34,8 +34,8 @@ const InpatientMenu = (props: Props) => {
               rel="preload"
               placeholder="empty"
               src={
-                `/images/inpatient/thumbnails/${inpatient.img}?w=64&q=75` ||
-                "/images/inpatient/thumbnails/kelas3-01.jpg"
+                `images/inpatient/thumbnails/${inpatient.img}?w=64&q=75` ||
+                "images/inpatient/thumbnails/kelas3-01.jpg"
               }
               width={50}
               height={50}
@@ -44,6 +44,7 @@ const InpatientMenu = (props: Props) => {
               alt={inpatient?.img || "altimage"}
               loading="lazy"
             />
+
             <div className="h-10 w-full flex flex-col">
               <small
                 className={
