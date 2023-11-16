@@ -6,6 +6,7 @@ import DoctorDescription from "./HospitalDescriptionComponents/DoctorDescription
 import FacilityDescription from "./HospitalDescriptionComponents/FacilityDescription";
 import LabSatuanDescription from "./HospitalDescriptionComponents/LabSatuanDescription";
 import LabPaketDescription from "./HospitalDescriptionComponents/LabPaketDescription";
+import InpatientDescription from "./HospitalDescriptionComponents/InpatientDescription";
 
 type Props = {};
 
@@ -18,6 +19,7 @@ const HospitalDescriptionComponent = (props: Props) => {
       selectedFacility,
       selectedLabSatuan,
       selectedPaket,
+      selectedInpatient,
     },
     state: {
       currentWindow,
@@ -34,18 +36,27 @@ const HospitalDescriptionComponent = (props: Props) => {
     );
   };
   useEffect(() => {
-    if (showDetail.key === "doctor") {
-      setColumnTitle(`Dr.${selectedDoctor?.name}` || "detailed part");
+    switch (showDetail.key) {
+      case "doctor":
+        setColumnTitle(`Dr.${selectedDoctor?.name}` || "detailed part");
+        break;
+
+      case "facility":
+        setColumnTitle(selectedFacility?.title || "detailed part");
+        break;
+
+      case "lab_satuan":
+        setColumnTitle(selectedLabSatuan?.title || "detailed part");
+        break;
+
+      case "lab_paket":
+        setColumnTitle(selectedPaket?.title || "detailed part");
+        break;
+
+      case "inpatient":
+        setColumnTitle(selectedInpatient?.kelas || "detailed part");
     }
-    if (showDetail.key === "facility") {
-      setColumnTitle(selectedFacility?.title || "detailed part");
-    }
-    if (showDetail.key === "lab_satuan") {
-      setColumnTitle(selectedLabSatuan?.title || "detailed part");
-    }
-    if (showDetail.key === "lab_paket") {
-      setColumnTitle(selectedPaket?.title || "detailed part");
-    }
+
     // eslint-disable-next-line
   }, [
     selectedDoctor,
@@ -53,6 +64,7 @@ const HospitalDescriptionComponent = (props: Props) => {
     selectedLabSatuan,
     selectedPaket,
     showDetail,
+    selectedInpatient,
   ]);
   return (
     <div className={!column3 ? "column-container-rotate" : "column-container"}>
@@ -81,6 +93,7 @@ const HospitalDescriptionComponent = (props: Props) => {
           {showDetail.key === "facility" && <FacilityDescription />}
           {showDetail.key === "lab_satuan" && <LabSatuanDescription />}
           {showDetail.key === "lab_paket" && <LabPaketDescription />}
+          {showDetail.key === "inpatient" && <InpatientDescription />}
         </div>
       )}
     </div>

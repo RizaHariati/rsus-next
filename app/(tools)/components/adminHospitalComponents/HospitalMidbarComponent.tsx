@@ -5,6 +5,7 @@ import DoctorMenu from "./HospitalMidbarComponents/DoctorMenu";
 import FacilityMenu from "./HospitalMidbarComponents/FacitlityMenu";
 import LabSatuanMenu from "./HospitalMidbarComponents/LabSatuanMenu";
 import LabPaketMenu from "./HospitalMidbarComponents/LabPaketMenu";
+import InpatientMenu from "./HospitalMidbarComponents/InpatientMenu";
 type Props = {};
 
 const HospitalMidbarComponent = (props: Props) => {
@@ -57,6 +58,7 @@ const HospitalMidbarComponent = (props: Props) => {
           {showDetail.key === "facility" && <FacilityMenu />}
           {showDetail.key === "lab_satuan" && <LabSatuanMenu />}
           {showDetail.key === "lab_paket" && <LabPaketMenu />}
+          {showDetail.key === "inpatient" && <InpatientMenu />}
         </div>
       )}
     </div>

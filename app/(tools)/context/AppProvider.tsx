@@ -33,6 +33,7 @@ import {
 } from "../HospitalTypes";
 import { getLabSatuan } from "@/sanity/sanityUtils/getLabSatuan";
 import { getLabPaket } from "@/sanity/sanityUtils/getLabPaket";
+import { InpatientType } from "../HospitalTypes";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -117,6 +118,13 @@ export const AppProvider = ({ children }: Props) => {
     hospitalDispatch({
       type: "SELECT_LAB_PAKET",
       payload: { selectedPaket },
+    });
+  };
+
+  const selectInpatient = (selectedInpatient: InpatientType) => {
+    hospitalDispatch({
+      type: "SELECT_INPATIENT",
+      payload: { selectedInpatient },
     });
   };
 
@@ -221,6 +229,7 @@ export const AppProvider = ({ children }: Props) => {
     selectFacility,
     selectLabSatuan,
     selectLabPaket,
+    selectInpatient,
     hospitalDispatch,
     showDetail,
     handleShowDetail,

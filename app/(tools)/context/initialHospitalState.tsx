@@ -1,5 +1,5 @@
 import { HospitalState } from "./interfaces";
-
+import dataInpatient from "../data/data_inap.json";
 export const initialHospitalState: HospitalState = {
   dataDoctor: [],
   selectedDoctor: null,
@@ -9,6 +9,6 @@ export const initialHospitalState: HospitalState = {
   selectedLabSatuan: null,
   dataPaket: [],
   selectedPaket: null,
-  dataInpatient: [],
-  selectedInpatient: null,
+  dataInpatient: dataInpatient,
+  selectedInpatient: dataInpatient[0],
 };

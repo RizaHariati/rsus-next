@@ -151,3 +151,13 @@ export type FormLabPaketType = {
   pemeriksaan: HospitalItemType;
   laboratorium: HospitalItemType;
 };
+
+export type FormInpatientType = {
+  id: HospitalItemType;
+  kelas: HospitalItemType;
+  pasien: HospitalItemType;
+  harga: HospitalItemType;
+  img: HospitalItemType;
+  "img-array": HospitalItemType;
+  fasilitas: HospitalItemType;
+};

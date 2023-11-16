@@ -8,16 +8,16 @@ type Props = {};
 const LoadingPage = (props: Props) => {
   const [Loading, setLoading] = useState(true);
 
-  useEffect(() => {
-    setTimeout(() => {
-      setLoading(false);
-    }, 300);
-  }, []);
+  // useEffect(() => {
+  //   setTimeout(() => {
+  //     setLoading(false);
+  //   }, 300);
+  // }, []);
 
   return (
     <div className="page-main-container">
-      <div className="flex-center-center">
-        <h2>Loading ...</h2>
+      <div className="flex-center-center flex-col gap-10  h-full">
+        <h2>Loading</h2>
         <PropagateLoader
           color="#007814"
           loading={Loading}
