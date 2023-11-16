@@ -40,7 +40,7 @@ const InpatientMenu = (props: Props) => {
               }
               width={50}
               height={50}
-              className=" object-covers h-10 w-10 rounded-sm overflow-hidden mr-2 shrink-0"
+              className=" object-covers rounded-sm overflow-hidden mr-2 shrink-0"
               alt={inpatient?.img.slice(0, -4) || "altimage"}
               loading="lazy"
             />
