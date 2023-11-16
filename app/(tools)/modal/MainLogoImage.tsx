@@ -9,7 +9,7 @@ const MainLogoImage = (props: Props) => {
       <Image
         rel="preload"
         placeholder="empty"
-        src="/images/navbar/main-logo.png"
+        src="/static/images/navbar/main-logo.png?"
         width={50}
         height={50}
         className=" object-covers rounded-full overflow-hidden"

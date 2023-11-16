@@ -35,8 +35,8 @@ const InpatientMenu = (props: Props) => {
               loader={myImageLoader}
               placeholder="empty"
               src={
-                `/images/inpatient/thumbnails/${inpatient.img}?w=50` ||
-                "/images/inpatient/thumbnails/kelas3-01.jpg"
+                `/static/images/inpatient/thumbnails/${inpatient.img}?w=50` ||
+                "/static/images/inpatient/thumbnails/kelas3-01.jpg"
               }
               width={50}
               height={50}
