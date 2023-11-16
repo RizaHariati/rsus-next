@@ -43,7 +43,7 @@ const nextConfig = {
     process.env.NODE_ENV === "production"
       ? {
           loader: "custom",
-          loaderFile: ["./loader.ts", "./imageLoader.ts"],
+          loaderFile: "./loader.ts",
           path: "https://rsus-api.vercel.app",
           domains: [
             "cdn.sanity.io",

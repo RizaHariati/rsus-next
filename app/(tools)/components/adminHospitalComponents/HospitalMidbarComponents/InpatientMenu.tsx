@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { InpatientType } from "@/app/(tools)/HospitalTypes";
 import Image from "next/image";
-import myImageLoader from "@/imageLoader";
+import myImageLoader from "@/loader";
 
 type Props = {};
 
@@ -33,7 +33,6 @@ const InpatientMenu = (props: Props) => {
           >
             <Image
               loader={myImageLoader}
-              rel="preload"
               placeholder="empty"
               src={
                 `/images/inpatient/thumbnails/${inpatient.img}?w=50` ||
