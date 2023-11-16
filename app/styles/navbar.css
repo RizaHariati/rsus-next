@@ -14,7 +14,7 @@
     @apply flex items-center justify-start gap-1 md:w-52 h-full;
   }
   .navbar-links-container {
-    @apply md:flex-center-betwee gap-4 h-full hidden md:visible w-1/3;
+    @apply md:flex-center-between gap-4 h-full hidden md:visible w-1/3;
   }
   .navbar-link {
     @apply flex-center-center text-link uppercase  h-full w-full;
