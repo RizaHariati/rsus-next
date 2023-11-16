@@ -31,7 +31,6 @@ const InpatientMenu = (props: Props) => {
             }}
           >
             <Image
-              loader={myImageLoader}
               rel="preload"
               placeholder="empty"
               src={

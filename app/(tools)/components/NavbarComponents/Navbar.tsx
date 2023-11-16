@@ -95,7 +95,7 @@ export const NavbarLinks = (props: Props) => {
     patientState: { patient },
   } = useGlobalContext();
   return (
-    <div className="navbar-links-container">
+    <div className="navbar-links-container bg-purple-300">
       <Link
         className="navbar-link"
         href={!patient.medical_record_number ? "/" : "/patient"}
