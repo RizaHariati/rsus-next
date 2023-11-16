@@ -31,17 +31,17 @@ const InpatientMenu = (props: Props) => {
             }}
           >
             <Image
+              loader={myImageLoader}
               rel="preload"
               placeholder="empty"
               src={
-                `/images/inpatient/thumbnails/${inpatient.img}?w=64&q=75` ||
+                `/images/inpatient/thumbnails/${inpatient.img}` ||
                 "/images/inpatient/thumbnails/kelas3-01.jpg"
               }
               width={50}
               height={50}
-              quality={75}
               className=" object-covers h-10 w-10 rounded-sm overflow-hidden mr-2 shrink-0"
-              alt={inpatient?.img || "altimage"}
+              alt={inpatient?.img.slice(0, -4) || "altimage"}
               loading="lazy"
             />
 
