@@ -5,7 +5,8 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { InpatientType } from "@/app/(tools)/HospitalTypes";
 import Image from "next/image";
-import myImageLoader from "@/loader";
+import myImageLoader from "@/imageLoader";
+
 type Props = {};
 
 const InpatientMenu = (props: Props) => {
@@ -35,12 +36,12 @@ const InpatientMenu = (props: Props) => {
               rel="preload"
               placeholder="empty"
               src={
-                `/images/inpatient/thumbnails/${inpatient.img}` ||
+                `/images/inpatient/thumbnails/${inpatient.img}?w=50` ||
                 "/images/inpatient/thumbnails/kelas3-01.jpg"
               }
               width={50}
               height={50}
-              className=" object-covers rounded-sm overflow-hidden mr-2 shrink-0"
+              className=" object-covers h-10 w-auto aspect-square rounded-sm overflow-hidden mr-2 shrink-0"
               alt={inpatient?.img.slice(0, -4) || "altimage"}
               loading="lazy"
             />
