@@ -42,7 +42,7 @@ const DoctorDescription = (props: Props) => {
             return (
               <div key={index} className="w-full">
                 <small className="">{doctorValue.title}</small>
-                <div className="grid grid-cols-7 gap-2 place-items-center"></div>
+                <div className="grid grid-cols-7 gap-2 place-items-center">
                   {doctorDetail &&
                     allHari.map((hari: SatuanHariType) => {
                       const detailHari: HariType = selectedHari?.find(``
