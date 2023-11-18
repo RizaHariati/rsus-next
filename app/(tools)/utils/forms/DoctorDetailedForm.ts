@@ -4,14 +4,14 @@ export const doctorForm: FormDoctorType = {
     id: "doctor_00",
     title: "Nama Dokter",
     placeholder: "masukkan name",
-    editable: true,
+    editable: false,
     error: "tidak boleh kosong",
   },
   id: {
     id: "doctor_01",
     title: "ID",
     placeholder: "masukkan id",
-    editable: true,
+    editable: false,
     error: "tidak boleh kosong",
   },
   poliklinik: {
@@ -46,7 +46,7 @@ export const doctorForm: FormDoctorType = {
     id: "doctor_06",
     title: "Gender",
     placeholder: "masukkan gender",
-    editable: true,
+    editable: false,
     error: "tidak boleh kosong",
   },
   on_call: {

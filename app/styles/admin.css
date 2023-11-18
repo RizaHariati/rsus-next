@@ -45,4 +45,11 @@
   .admin-input-disabled {
     @apply w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2 text-greyMed2;
   }
+
+  .hari-btn {
+    @apply standard-border capitalize p-2 w-16 flex-center-center flex-col text-greyMed2 bg-transparent hover:text-white hover:bg-greyMed2 transition-all;
+  }
+  .hari-btn-active {
+    @apply hari-btn text-greyDrk bg-white border-greyMed2;
+  }
 }

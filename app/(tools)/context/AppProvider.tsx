@@ -62,38 +62,47 @@ export const AppProvider = ({ children }: Props) => {
   );
 
   useEffect(() => {
-    const setDoctors = new Promise((resolve) => {
-      return resolve(getDoctors());
-    }).then((doctor) => doctor);
-    const setFacility = new Promise((resolve) => {
-      return resolve(getFacility());
-    });
-    const setLabSatuan = new Promise((resolve) => {
-      return resolve(getLabSatuan());
-    });
-    const setLabPaket = new Promise((resolve) => {
-      return resolve(getLabPaket());
-    });
+    let mount = true;
+    if (mount) {
+      const setDoctors = new Promise((resolve) => {
+        return resolve(getDoctors());
+      }).then((doctor) => doctor);
+      const setFacility = new Promise((resolve) => {
+        return resolve(getFacility());
+      });
+      const setLabSatuan = new Promise((resolve) => {
+        return resolve(getLabSatuan());
+      });
+      const setLabPaket = new Promise((resolve) => {
+        return resolve(getLabPaket());
+      });
 
-    Promise.all([setDoctors, setFacility, setLabSatuan, setLabPaket]).then(
-      ([dataDoctor, dataFacility, dataLabSatuan, dataPaket]) => {
-        hospitalDispatch({
-          type: "LOAD_HOSPITAL_DATA",
-          payload: { dataDoctor, dataFacility, dataLabSatuan, dataPaket },
-        });
+      Promise.all([setDoctors, setFacility, setLabSatuan, setLabPaket]).then(
+        ([dataDoctor, dataFacility, dataLabSatuan, dataPaket]) => {
+          hospitalDispatch({
+            type: "LOAD_HOSPITAL_DATA",
+            payload: { dataDoctor, dataFacility, dataLabSatuan, dataPaket },
+          });
+        }
+      );
+
+      if (typeof window !== "object") return;
+      const windowWidth = window!.innerWidth!;
+      if (windowWidth < minWidth) {
+        assignColumn(OCC);
+      } else if (windowWidth >= minWidth && windowWidth <= maxWidth) {
+        assignColumn(OCO);
+      } else {
+        assignColumn(OOO);
       }
-    );
-
-    if (typeof window !== "object") return;
-    const windowWidth = window!.innerWidth!;
-    if (windowWidth < minWidth) {
-      assignColumn(OCC);
-    } else if (windowWidth >= minWidth && windowWidth <= maxWidth) {
-      assignColumn(OCO);
-    } else {
-      assignColumn(OOO);
+      dispatch({
+        type: "SET_WINDOW",
+        payload: { currentWindow: windowWidth },
+      });
     }
-    dispatch({ type: "SET_WINDOW", payload: { currentWindow: windowWidth } });
+    return () => {
+      mount = false;
+    };
   }, []);
 
   const selectDoctor = (selectedDoctor: DoctorType) => {
