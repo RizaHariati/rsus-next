@@ -18,7 +18,7 @@ export const doctorForm: FormDoctorType = {
     id: "doctor_02",
     title: "Poliklinik",
     placeholder: "masukkan poliklinik",
-    editable: true,
+    editable: false,
     error: "tidak boleh kosong",
   },
   waktu: {

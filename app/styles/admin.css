@@ -43,13 +43,18 @@
     @apply w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2 text-greyDrk bg-white;
   }
   .admin-input-disabled {
-    @apply w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2 text-greyMed2;
+    @apply w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2 text-greyMed2 bg-transparent;
   }
-
+  .hari-btn-container {
+    @apply grid grid-cols-4 md:grid-cols-7 gap-2 place-items-center mt-2 h-20 overflow-hidden transition-all;
+  }
   .hari-btn {
-    @apply standard-border capitalize p-2 w-16 flex-center-center flex-col text-greyMed2 bg-transparent hover:text-white hover:bg-greyMed2 transition-all;
+    @apply standard-border capitalize p-1 w-16 flex-center-center flex-col text-greyMed2 bg-transparent hover:text-white hover:bg-greyMed2 transition-all text-center;
   }
   .hari-btn-active {
-    @apply hari-btn text-greyDrk bg-white border-greyMed2;
+    @apply hari-btn text-greyDrk bg-white border-greenUrip;
+  }
+  .waktu-btn-container {
+    @apply flex-center-between w-full mt-2 gap-2 h-10 overflow-hidden transition-all;
   }
 }

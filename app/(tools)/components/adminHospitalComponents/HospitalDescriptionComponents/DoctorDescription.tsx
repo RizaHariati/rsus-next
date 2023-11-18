@@ -1,29 +1,29 @@
-import { DoctorInitialValueType } from "@/app/(tools)/HospitalTypes";
+import {
+  DoctorInitialValueType,
+  HospitalItemType,
+} from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { doctorForm } from "@/app/(tools)/utils/forms/DoctorDetailedForm";
 import React, { useEffect, useState } from "react";
-import { SatuanHariType, allHari } from "../../../utils/AllHari";
-import { HariType } from "../../../HospitalTypes";
+import DoctorHari from "./DoctorDescriptions.tsx/DoctorHari";
+
+import DoctorWaktu from "./DoctorDescriptions.tsx/DoctorWaktu";
 
 type Props = {};
 
 const DoctorDescription = (props: Props) => {
   const {
     state: { columnAssignment, editable },
-    hospitalState: { selectedDoctor },
+    hospitalState: { selectedDoctor, dataDoctor },
   } = useGlobalContext();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-  const [selectedHari, setSelectedHari] = useState(
-    selectedDoctor ? selectedDoctor.hari : []
-  );
-  const [doctorValues, setDoctorValues] = useState<DoctorInitialValueType>({});
-  // useEffect(() => {}, []);
 
+  const [doctorValues, setDoctorValues] = useState<DoctorInitialValueType>({});
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    patientKey: string
+    doctorKey: string
   ) => {
     e.preventDefault();
   };
@@ -36,55 +36,50 @@ const DoctorDescription = (props: Props) => {
       <div className="column-description-content">
         {formInputDoctor.map(([doctorKey, doctorValue], index) => {
           //@ts-ignore
-          const doctorDetail = selectedDoctor?.[doctorKey] || "";
+          const doctorDetail: any = selectedDoctor?.[doctorKey] || "";
 
           if (doctorKey === "hari") {
             return (
+              <DoctorHari
+                key={index}
+                doctorValue={doctorValue}
+                doctorDetail={doctorDetail}
+              />
+            );
+          }
+          if (doctorKey === "poliklinik") {
+            return (
               <div key={index} className="w-full">
                 <small className="">{doctorValue.title}</small>
-                <div className="grid grid-cols-7 gap-2 place-items-center">
-                  {doctorDetail &&
-                    allHari.map((hari: SatuanHariType) => {
-                      const detailHari: HariType = selectedHari?.find(``
-                        (detail) => detail.id_hari === hari.id_hari
-                      );
-                      console.log(detailHari);
-                      return (
-                        <button
-                          index={hari.id_hari}
-                          className={
-                            detailHari
-                              ? "hari-btn-active group"
-                              : "hari-btn group"
-                          }
-                        >
-                          <p className=" group-hover:text-white">{hari.hari}</p>
-                          <small className=" group-hover:text-white">
-                            kuota :
-                            {detailHari
-                              ? detailHari.kuota_terisi.toString()
-                              : "-"}
-                          </small>
-                        </button>
-                      );
-                    })}
-                </div>
+                <input
+                  value={doctorDetail?.title!}
+                  onChange={(e) => handleChange(e, doctorKey)}
+                  className={
+                    editable && doctorValue.editable
+                      ? "admin-input"
+                      : "admin-input-disabled"
+                  }
+                />
               </div>
             );
           }
-          return (
-            <div key={index} className="w-full">
-              <small className="">{doctorValue.title}</small>
-              <input
-                value={doctorDetail.toString()}
-                onChange={(e) => handleChange(e)}
-                className={
-                  editable && doctorValue.editable
-                    ? "admin-input"
-                    : "admin-input-disabled"
-                }
+          if (doctorKey === "waktu") {
+            return (
+              <DoctorWaktu
+                key={index}
+                doctorValue={doctorValue}
+                doctorDetail={doctorDetail}
               />
-            </div>
+            );
+          }
+          return (
+            <RegularInput
+              key={index}
+              doctorValue={doctorValue}
+              doctorDetail={doctorDetail}
+              handleChange={handleChange}
+              doctorKey={doctorKey}
+            />
           );
         })}
       </div>
@@ -103,3 +98,37 @@ const DoctorDescription = (props: Props) => {
 };
 
 export default DoctorDescription;
+
+type DoctorRegularProps = {
+  doctorValue: HospitalItemType;
+  doctorDetail: any;
+  handleChange: (
+    e: React.ChangeEvent<HTMLInputElement>,
+    doctorKey: string
+  ) => void;
+  doctorKey: string;
+};
+const RegularInput = ({
+  doctorValue,
+  doctorDetail,
+  handleChange,
+  doctorKey,
+}: DoctorRegularProps) => {
+  const {
+    state: { editable },
+  } = useGlobalContext();
+  return (
+    <div className="w-full">
+      <small className="">{doctorValue.title}</small>
+      <input
+        value={doctorDetail.toString()}
+        onChange={(e) => handleChange(e, doctorKey)}
+        className={
+          editable && doctorValue.editable
+            ? "admin-input"
+            : "admin-input-disabled"
+        }
+      />
+    </div>
+  );
+};

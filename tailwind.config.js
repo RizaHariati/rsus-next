@@ -26,7 +26,7 @@ module.exports = {
         column: "300px",
       },
       backgroundImage: {
-        pattern: "url('/images/pages/pattern.jpg')",
+        pattern: "url('/static/images/pages/pattern.jpg')",
       },
       fontFamily: {
         oswald: ["var(--oswald)", "sans-serif"],
