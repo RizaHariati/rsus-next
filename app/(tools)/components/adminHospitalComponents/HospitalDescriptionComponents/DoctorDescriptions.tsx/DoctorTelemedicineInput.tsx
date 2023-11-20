@@ -1,41 +1,59 @@
-import { HospitalItemType } from "@/app/(tools)/HospitalTypes";
+import {
+  DoctorInitialValueType,
+  HospitalItemType,
+} from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import React from "react";
+import React, { useState } from "react";
 import DoctorRegular from "./DoctorRegular";
 
 import BooleanButton from "./BooleanButton";
 
 type Props = {
   doctorKey: string;
-  doctorDetail: any;
+  doctorValues: DoctorInitialValueType;
   doctorValue: HospitalItemType;
+  handleValueChange?: (value: { newValue: any; key: string }[]) => void;
 };
 
 const DoctorTelemedicineInput = ({
   doctorKey,
-  doctorDetail,
+  doctorValues,
   doctorValue,
+  handleValueChange,
 }: Props) => {
-  const {
-    state: { columnAssignment, editable },
-    hospitalState: { selectedDoctor, dataDoctor },
-  } = useGlobalContext();
-
-  if (doctorKey === "biaya_telemedicine") {
-    return (
-      <DoctorRegular
-        doctorValue={doctorValue}
-        doctorDetail={doctorDetail}
-        doctorKey={doctorKey}
-      />
-    );
-  } else {
-    return (
-      <div className="w-full">
-        <small>{doctorKey}</small>
-        <BooleanButton booleanValue={doctorDetail} />
-      </div>
-    );
-  }
+  const doctorDetail: any = doctorValues?.[doctorKey].value || "";
+  return (
+    <>
+      {doctorKey === "telemedicine" && (
+        <div className="w-full ">
+          <small>{doctorKey}</small>
+          <BooleanButton
+            booleanKey={doctorKey}
+            booleanValue={doctorDetail}
+            handleClick={handleValueChange}
+          />
+        </div>
+      )}
+      {doctorKey === "biaya_telemedicine" &&
+        doctorValues?.["telemedicine"].value === 1 && (
+          <DoctorRegular
+            doctorValue={doctorValue}
+            doctorDetail={doctorDetail}
+            doctorKey={doctorKey}
+          />
+        )}
+      {doctorKey === "sedang_online" &&
+        doctorValues?.["telemedicine"].value === 1 && (
+          <div className="w-full">
+            <small>{doctorKey}</small>
+            <BooleanButton
+              booleanKey={doctorKey}
+              booleanValue={doctorDetail}
+              handleClick={handleValueChange}
+            />
+          </div>
+        )}
+    </>
+  );
 };
 export default DoctorTelemedicineInput;

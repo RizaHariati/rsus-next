@@ -9,14 +9,12 @@ import React, { useEffect, useState } from "react";
 type DoctorRegularProps = {
   doctorValue: HospitalItemType;
   doctorDetail: any;
-
   doctorKey: string;
 };
 
 const DoctorRegular = ({
   doctorValue,
   doctorDetail,
-
   doctorKey,
 }: DoctorRegularProps) => {
   const {

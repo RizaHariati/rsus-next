@@ -24,14 +24,53 @@ const DoctorDescription = (props: Props) => {
   };
 
   const [doctorValues, setDoctorValues] = useState<DoctorInitialValueType>({});
+  const [initialValues, setInitialValues] = useState<DoctorInitialValueType>(
+    {}
+  );
+  useEffect(() => {
+    let mount = true;
+    let newDoctorValues = {};
+    if (!selectedDoctor) return;
+    if (mount === true) {
+      Object.entries(selectedDoctor).forEach(([key, value]) => {
+        //@ts-ignore
+        if (!newDoctorValues[key]) {
+          //@ts-ignore
+          newDoctorValues[key] = { value, error: false };
+        }
+      });
+    }
+
+    return () => {
+      setDoctorValues(newDoctorValues);
+      setInitialValues(newDoctorValues);
+      mount = false;
+    };
+  }, [selectedDoctor]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement>,
     doctorKey: string
   ) => {
     e.preventDefault();
   };
+
+  const handleValueChange = (value: { newValue: any; key: string }[]) => {
+    const newDoctorValues: DoctorInitialValueType = {};
+
+    Object.entries(doctorValues).map(([itemKey, itemValue]) => {
+      const findValue = value.find((item) => item.key === itemKey);
+      if (!findValue) {
+        //@ts-ignore
+        newDoctorValues[itemKey] = { ...itemValue };
+      } else {
+        newDoctorValues[itemKey] = { value: findValue.newValue, error: false };
+      }
+    });
+    return setDoctorValues(newDoctorValues);
+  };
   const formInputDoctor = Object.entries(doctorForm);
-  if (!selectedDoctor)
+  if (!doctorValues || Object.keys(doctorValues).length < 1)
     return (
       <div className="flex-center-center">
         <h3>Loading...</h3>
@@ -39,99 +78,101 @@ const DoctorDescription = (props: Props) => {
     );
   else {
     return (
-      <form
-        className="column-description-container "
-        onSubmit={(e) => handleSubmit(e)}
-      >
-        <div className="column-description-content">
-          {formInputDoctor.map(([doctorKey, doctorValue], index) => {
-            //@ts-ignore
-            const doctorDetail: any = selectedDoctor?.[doctorKey] || "";
+      <>
+        <form
+          className="column-description-container "
+          onSubmit={(e) => handleSubmit(e)}
+        >
+          <div className="column-description-content">
+            {formInputDoctor.map(([doctorKey, doctorValue], index) => {
+              //@ts-ignore
+              const doctorDetail: any = doctorValues?.[doctorKey].value || "";
 
-            if (doctorKey === "hari") {
-              return (
-                <DoctorHari
-                  key={index}
-                  doctorValue={doctorValue}
-                  doctorDetail={doctorDetail}
-                />
-              );
-            }
-            if (
-              doctorKey === "telemedicine" ||
-              doctorKey === "biaya_telemedicine" ||
-              doctorKey === "sedang_online"
-            ) {
-              return (
-                <div key={index} className="w-full">
-                  {selectedDoctor.telemedicine === 0 && <div></div>}
-                  {selectedDoctor.telemedicine === 1 && (
-                    <DoctorTelemedicineInput
-                      doctorKey={doctorKey}
-                      doctorDetail={doctorDetail}
-                      doctorValue={doctorValue}
-                    />
-                  )}
-                </div>
-              );
-            }
-            if (doctorKey === "poliklinik") {
-              return (
-                <div key={index} className="w-full">
-                  <small className="">{doctorValue.title}</small>
-                  <input
-                    value={doctorDetail?.title!}
-                    onChange={(e) => handleChange(e, doctorKey)}
-                    className={
-                      editable && doctorValue.editable
-                        ? "admin-input"
-                        : "admin-input-disabled"
-                    }
+              if (doctorKey === "hari") {
+                return (
+                  <DoctorHari
+                    key={index}
+                    doctorValue={doctorValue}
+                    doctorDetail={doctorDetail}
                   />
-                </div>
-              );
-            }
-            if (doctorKey === "waktu") {
+                );
+              }
+              if (
+                doctorKey === "telemedicine" ||
+                doctorKey === "biaya_telemedicine" ||
+                doctorKey === "sedang_online"
+              ) {
+                return (
+                  <DoctorTelemedicineInput
+                    doctorKey={doctorKey}
+                    doctorValues={doctorValues}
+                    doctorValue={doctorValue}
+                    handleValueChange={handleValueChange}
+                  />
+                );
+              }
+              if (doctorKey === "poliklinik") {
+                return (
+                  <div key={index} className="w-full">
+                    <small className="">{doctorValue.title}</small>
+                    <input
+                      value={doctorDetail?.title!}
+                      onChange={(e) => handleChange(e, doctorKey)}
+                      className={
+                        editable && doctorValue.editable
+                          ? "admin-input"
+                          : "admin-input-disabled"
+                      }
+                    />
+                  </div>
+                );
+              }
+              if (doctorKey === "waktu") {
+                return (
+                  <DoctorWaktu
+                    key={index}
+                    doctorValue={doctorValue}
+                    doctorDetail={doctorDetail}
+                  />
+                );
+              }
+              if (doctorKey === "gender") {
+                return <div key={index}> gender</div>;
+              }
+              if (doctorKey === "on_call") {
+                return (
+                  <div className="w-full" key={index}>
+                    <small>{doctorKey}</small>
+                    <BooleanButton
+                      booleanKey={doctorKey}
+                      booleanValue={doctorDetail}
+                      handleClick={handleValueChange}
+                    />
+                  </div>
+                );
+              }
               return (
-                <DoctorWaktu
+                <DoctorRegular
                   key={index}
                   doctorValue={doctorValue}
                   doctorDetail={doctorDetail}
+                  doctorKey={doctorKey}
                 />
               );
-            }
-            if (doctorKey === "gender") {
-              return <div key={index}> gender</div>;
-            }
-            if (doctorKey === "on_call") {
-              return (
-                <div className="w-full" key={index}>
-                  <small>{doctorKey}</small>
-                  <BooleanButton booleanValue={doctorDetail} />
-                </div>
-              );
-            }
-            return (
-              <DoctorRegular
-                key={index}
-                doctorValue={doctorValue}
-                doctorDetail={doctorDetail}
-                doctorKey={doctorKey}
-              />
-            );
-          })}
-        </div>
-        <div className="content-menu border-t">
-          <button
-            type="submit"
-            className={
-              editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
-            }
-          >
-            Submit
-          </button>
-        </div>
-      </form>
+            })}
+          </div>
+          <div className="content-menu border-t">
+            <button
+              type="submit"
+              className={
+                editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
+              }
+            >
+              Submit
+            </button>
+          </div>
+        </form>
+      </>
     );
   }
 };
