@@ -32,7 +32,11 @@ const DoctorRegular = ({
     <div className="w-full">
       <small className="">{doctorValue.title}</small>
       <input
-        value={doctorDetail.toString()}
+        value={
+          doctorKey === "poliklinik"
+            ? doctorDetail?.title!
+            : doctorDetail.toString()
+        }
         onChange={(e) => handleChange(e, doctorKey)}
         className={
           editable && doctorValue.editable

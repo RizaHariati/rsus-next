@@ -11,6 +11,19 @@ import DoctorWaktu from "./DoctorDescriptions.tsx/DoctorWaktu";
 import DoctorRegular from "./DoctorDescriptions.tsx/DoctorRegular";
 import DoctorTelemedicineInput from "./DoctorDescriptions.tsx/DoctorTelemedicineInput";
 import BooleanButton from "./DoctorDescriptions.tsx/BooleanButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faCheckCircle,
+  faCircle,
+  faCircleDot,
+  faCircleH,
+  faCircleNodes,
+  faCircleNotch,
+  faDotCircle,
+  faMobileButton,
+  faRoadCircleCheck,
+} from "@fortawesome/free-solid-svg-icons";
+import DoctorGender from "./DoctorDescriptions.tsx/DoctorGender";
 
 type Props = {};
 
@@ -40,10 +53,9 @@ const DoctorDescription = (props: Props) => {
         }
       });
     }
-
+    setDoctorValues(newDoctorValues);
+    setInitialValues(newDoctorValues);
     return () => {
-      setDoctorValues(newDoctorValues);
-      setInitialValues(newDoctorValues);
       mount = false;
     };
   }, [selectedDoctor]);
@@ -56,6 +68,8 @@ const DoctorDescription = (props: Props) => {
   };
 
   const handleValueChange = (value: { newValue: any; key: string }[]) => {
+    if (!editable) return;
+    if (!doctorValues) return;
     const newDoctorValues: DoctorInitialValueType = {};
 
     Object.entries(doctorValues).map(([itemKey, itemValue]) => {
@@ -87,78 +101,62 @@ const DoctorDescription = (props: Props) => {
             {formInputDoctor.map(([doctorKey, doctorValue], index) => {
               //@ts-ignore
               const doctorDetail: any = doctorValues?.[doctorKey].value || "";
+              switch (doctorKey) {
+                case "hari":
+                  return (
+                    <DoctorHari
+                      key={index}
+                      doctorValue={doctorValue}
+                      doctorDetail={doctorDetail}
+                    />
+                  );
+                case "telemedicine" || "biaya_telemedicine" || "sedang_online":
+                  return (
+                    <DoctorTelemedicineInput
+                      doctorKey={doctorKey}
+                      doctorValues={doctorValues}
+                      doctorValue={doctorValue}
+                      handleValueChange={handleValueChange}
+                    />
+                  );
 
-              if (doctorKey === "hari") {
-                return (
-                  <DoctorHari
-                    key={index}
-                    doctorValue={doctorValue}
-                    doctorDetail={doctorDetail}
-                  />
-                );
-              }
-              if (
-                doctorKey === "telemedicine" ||
-                doctorKey === "biaya_telemedicine" ||
-                doctorKey === "sedang_online"
-              ) {
-                return (
-                  <DoctorTelemedicineInput
-                    doctorKey={doctorKey}
-                    doctorValues={doctorValues}
-                    doctorValue={doctorValue}
-                    handleValueChange={handleValueChange}
-                  />
-                );
-              }
-              if (doctorKey === "poliklinik") {
-                return (
-                  <div key={index} className="w-full">
-                    <small className="">{doctorValue.title}</small>
-                    <input
-                      value={doctorDetail?.title!}
-                      onChange={(e) => handleChange(e, doctorKey)}
-                      className={
-                        editable && doctorValue.editable
-                          ? "admin-input"
-                          : "admin-input-disabled"
-                      }
+                case "waktu":
+                  return (
+                    <DoctorWaktu
+                      key={index}
+                      doctorValue={doctorValue}
+                      doctorDetail={doctorDetail}
                     />
-                  </div>
-                );
-              }
-              if (doctorKey === "waktu") {
-                return (
-                  <DoctorWaktu
-                    key={index}
-                    doctorValue={doctorValue}
-                    doctorDetail={doctorDetail}
-                  />
-                );
-              }
-              if (doctorKey === "gender") {
-                return <div key={index}> gender</div>;
-              }
-              if (doctorKey === "on_call") {
-                return (
-                  <div className="w-full" key={index}>
-                    <small>{doctorKey}</small>
-                    <BooleanButton
-                      booleanKey={doctorKey}
-                      booleanValue={doctorDetail}
-                      handleClick={handleValueChange}
+                  );
+                case "gender":
+                  return (
+                    <DoctorGender
+                      key={index}
+                      doctorValue={doctorValue}
+                      doctorDetail={doctorDetail}
                     />
-                  </div>
-                );
+                  );
+                case "on_call":
+                  return (
+                    <div className="w-full" key={index}>
+                      <small>{doctorKey}</small>
+                      <BooleanButton
+                        booleanKey={doctorKey}
+                        booleanValue={doctorDetail}
+                        handleClick={handleValueChange}
+                      />
+                    </div>
+                  );
+                default:
+                  return (
+                    <DoctorRegular
+                      key={index}
+                      doctorValue={doctorValue}
+                      doctorDetail={doctorDetail}
+                      doctorKey={doctorKey}
+                    />
+                  );
               }
-              return (
-                <DoctorRegular
-                  key={index}
-                  doctorValue={doctorValue}
-                  doctorDetail={doctorDetail}
-                  doctorKey={doctorKey}
-                />
-              );
             })}
           </div>
           <div className="content-menu border-t">

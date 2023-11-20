@@ -18,7 +18,7 @@ const BooleanButton = ({ booleanValue, handleClick, booleanKey }: Props) => {
                   { newValue: booleanValue === 1 ? 0 : 1, key: booleanKey },
                 ])
             : () => {
-                console.log("object");
+                console.log("");
               }
         }
         className="w-12 h-6 bg-white border border-greyBorder flex items-center rounded-full p-1 transition-all"

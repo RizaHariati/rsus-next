@@ -57,4 +57,10 @@
   .waktu-btn-container {
     @apply flex-center-between w-full mt-2 gap-2 h-10 overflow-hidden transition-all;
   }
+  .check-active {
+    @apply h-4 w-4 border border-greenUrip rounded-full text-greenUrip;
+  }
+  .check-empty {
+    @apply w-4 h-4 border border-greyMed2 rounded-full;
+  }
 }
