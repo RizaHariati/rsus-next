@@ -1,7 +1,4 @@
-import {
-  DoctorInitialValueType,
-  HospitalItemType,
-} from "@/app/(tools)/HospitalTypes";
+import { DoctorInitialValueType } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { doctorForm } from "@/app/(tools)/utils/forms/DoctorDetailedForm";
 import React, { useEffect, useState } from "react";
@@ -11,18 +8,7 @@ import DoctorWaktu from "./DoctorDescriptions.tsx/DoctorWaktu";
 import DoctorRegular from "./DoctorDescriptions.tsx/DoctorRegular";
 import DoctorTelemedicineInput from "./DoctorDescriptions.tsx/DoctorTelemedicineInput";
 import BooleanButton from "./DoctorDescriptions.tsx/BooleanButton";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faCheckCircle,
-  faCircle,
-  faCircleDot,
-  faCircleH,
-  faCircleNodes,
-  faCircleNotch,
-  faDotCircle,
-  faMobileButton,
-  faRoadCircleCheck,
-} from "@fortawesome/free-solid-svg-icons";
+
 import DoctorGender from "./DoctorDescriptions.tsx/DoctorGender";
 
 type Props = {};
@@ -60,14 +46,12 @@ const DoctorDescription = (props: Props) => {
     };
   }, [selectedDoctor]);
 
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement>,
-    doctorKey: string
-  ) => {
-    e.preventDefault();
-  };
+  useEffect(() => {
+    if (!editable) setDoctorValues(initialValues);
+  }, [editable]);
 
   const handleValueChange = (value: { newValue: any; key: string }[]) => {
+    console.log(value);
     if (!editable) return;
     if (!doctorValues) return;
     const newDoctorValues: DoctorInitialValueType = {};
@@ -84,95 +68,98 @@ const DoctorDescription = (props: Props) => {
     return setDoctorValues(newDoctorValues);
   };
   const formInputDoctor = Object.entries(doctorForm);
-  if (!doctorValues || Object.keys(doctorValues).length < 1)
-    return (
-      <div className="flex-center-center">
-        <h3>Loading...</h3>
-      </div>
-    );
-  else {
-    return (
-      <>
-        <form
-          className="column-description-container "
-          onSubmit={(e) => handleSubmit(e)}
-        >
-          <div className="column-description-content">
-            {formInputDoctor.map(([doctorKey, doctorValue], index) => {
-              //@ts-ignore
-              const doctorDetail: any = doctorValues?.[doctorKey].value || "";
-              switch (doctorKey) {
-                case "hari":
-                  return (
-                    <DoctorHari
-                      key={index}
-                      doctorValue={doctorValue}
-                      doctorDetail={doctorDetail}
-                    />
-                  );
-                case "telemedicine" || "biaya_telemedicine" || "sedang_online":
-                  return (
-                    <DoctorTelemedicineInput
-                      doctorKey={doctorKey}
-                      doctorValues={doctorValues}
-                      doctorValue={doctorValue}
-                      handleValueChange={handleValueChange}
-                    />
-                  );
+  // if (!doctorValues || Object.keys(doctorValues).length < 1)
+  //   return (
+  //     <div className="flex-center-center">
+  //       <h3>Loading...</h3>
+  //     </div>
+  //   );
+  // else {
+  return (
+    <>
+      <form
+        className="column-description-container "
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <div className="column-description-content">
+          {formInputDoctor.map(([doctorKey, doctorValue], index) => {
+            //@ts-ignore
+            const doctorDetail: any = doctorValues?.[doctorKey]?.value || "";
+            switch (doctorKey) {
+              case "hari":
+                return (
+                  <DoctorHari
+                    key={index}
+                    doctorValue={doctorValue}
+                    doctorDetail={doctorDetail}
+                  />
+                );
+              case "telemedicine" || "biaya_telemedicine" || "sedang_online":
+                return (
+                  <DoctorTelemedicineInput
+                    key={index}
+                    doctorKey={doctorKey}
+                    doctorValues={doctorValues}
+                    doctorValue={doctorValue}
+                    handleValueChange={handleValueChange}
+                  />
+                );
 
-                case "waktu":
-                  return (
-                    <DoctorWaktu
-                      key={index}
-                      doctorValue={doctorValue}
-                      doctorDetail={doctorDetail}
+              case "waktu":
+                return (
+                  <DoctorWaktu
+                    key={index}
+                    doctorKey={doctorKey}
+                    doctorValues={doctorValues}
+                    doctorValue={doctorValue}
+                    handleValueChange={handleValueChange}
+                  />
+                );
+              case "gender":
+                return (
+                  <DoctorGender
+                    key={index}
+                    doctorValue={doctorValue}
+                    doctorDetail={doctorDetail}
+                  />
+                );
+              case "on_call":
+                return (
+                  <div className="w-full" key={index}>
+                    <small>{doctorKey}</small>
+                    <BooleanButton
+                      booleanKey={doctorKey}
+                      booleanValue={doctorDetail}
+                      handleClick={handleValueChange}
                     />
-                  );
-                case "gender":
-                  return (
-                    <DoctorGender
-                      key={index}
-                      doctorValue={doctorValue}
-                      doctorDetail={doctorDetail}
-                    />
-                  );
-                case "on_call":
-                  return (
-                    <div className="w-full" key={index}>
-                      <small>{doctorKey}</small>
-                      <BooleanButton
-                        booleanKey={doctorKey}
-                        booleanValue={doctorDetail}
-                        handleClick={handleValueChange}
-                      />
-                    </div>
-                  );
-                default:
-                  return (
-                    <DoctorRegular
-                      key={index}
-                      doctorValue={doctorValue}
-                      doctorDetail={doctorDetail}
-                      doctorKey={doctorKey}
-                    />
-                  );
-              }
-            })}
-          </div>
-          <div className="content-menu border-t">
-            <button
-              type="submit"
-              className={
-                editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
-              }
-            >
-              Submit
-            </button>
-          </div>
-        </form>
-      </>
-    );
-  }
+                  </div>
+                );
+              default:
+                return (
+                  <DoctorRegular
+                    key={index}
+                    doctorValue={doctorValue}
+                    doctorDetail={doctorDetail}
+                    doctorKey={doctorKey}
+                  />
+                );
+            }
+          })}
+        </div>
+        <div className="content-menu border-t">
+          <button
+            type="submit"
+            className={
+              editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
+            }
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    </>
+  );
 };
+// };
 
 export default DoctorDescription;

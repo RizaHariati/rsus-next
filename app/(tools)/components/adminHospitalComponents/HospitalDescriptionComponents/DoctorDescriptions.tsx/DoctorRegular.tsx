@@ -30,7 +30,7 @@ const DoctorRegular = ({
 
   return (
     <div className="w-full">
-      <small className="">{doctorValue.title}</small>
+      <small className="">{doctorValue?.title}</small>
       <input
         value={
           doctorKey === "poliklinik"

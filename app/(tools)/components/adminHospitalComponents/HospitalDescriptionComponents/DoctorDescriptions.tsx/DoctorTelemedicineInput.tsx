@@ -2,7 +2,6 @@ import {
   DoctorInitialValueType,
   HospitalItemType,
 } from "@/app/(tools)/HospitalTypes";
-import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import React, { useState } from "react";
 import DoctorRegular from "./DoctorRegular";
 
@@ -21,7 +20,7 @@ const DoctorTelemedicineInput = ({
   doctorValue,
   handleValueChange,
 }: Props) => {
-  const doctorDetail: any = doctorValues?.[doctorKey].value || "";
+  const doctorDetail: any = doctorValues?.[doctorKey]?.value || "";
   return (
     <>
       {doctorKey === "telemedicine" && (

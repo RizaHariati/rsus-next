@@ -64,10 +64,10 @@ const DoctorHari = ({ doctorValue, doctorDetail }: DoctorHariProps) => {
   };
   return (
     <div className="w-full">
-      <small className="">{doctorValue.title}</small>
+      <small className="">{doctorValue?.title}</small>
       <p
         className={
-          editable && doctorValue.editable
+          editable && doctorValue?.editable
             ? "admin-input capitalize"
             : "admin-input-disabled"
         }

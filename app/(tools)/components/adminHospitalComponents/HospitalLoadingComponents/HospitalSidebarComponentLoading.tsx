@@ -1,16 +1,15 @@
 import React from "react";
-import { useGlobalContext } from "../../context/AppProvider";
-import { closeSideBar, openSidebar } from "../../column/columnCodes";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import {
   SidebarBtnType,
   hospitalBtnDetail,
-} from "../../column/sidebarColumnKeys";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
+} from "@/app/(tools)/column/sidebarColumnKeys";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 type Props = {};
 
-const HospitalSidebarComponent = (props: Props) => {
+const HospitalSidebarComponentLoading = (props: Props) => {
   const {
     assignColumn,
     showDetail,
@@ -33,22 +32,6 @@ const HospitalSidebarComponent = (props: Props) => {
       dataInpatient,
     },
   } = useGlobalContext();
-
-  const handleSidebarColumn = () => {
-    assignColumn(
-      !column1 ? openSidebar(currentWindow) : closeSideBar(currentWindow)
-    );
-  };
-
-  const handleClick = (key: SidebarBtnType) => {
-    handleShowDetail(key);
-    if (key.key === "doctor") selectDoctor(dataDoctor?.[0]);
-    if (key.key === "facility") selectFacility(dataFacility?.[0]);
-    if (key.key === "lab_satuan") selectLabSatuan(dataLabSatuan?.[0]);
-    if (key.key === "lab_paket") selectLabPaket(dataPaket?.[0]);
-    if (key.key === "inpatient") selectInpatient(dataInpatient?.[0]);
-    settingEditable(false);
-  };
   return (
     <div
       className={
@@ -68,7 +51,6 @@ const HospitalSidebarComponent = (props: Props) => {
       >
         {/* ----------- this button is to change the column size ----------- */}
         <button
-          onClick={() => handleSidebarColumn()}
           className={
             !column1
               ? "column-navbar-main-btn-rotate"
@@ -90,9 +72,6 @@ const HospitalSidebarComponent = (props: Props) => {
                       ? "sidebar-btn-focus group"
                       : "sidebar-btn group"
                   }
-                  onClick={() => {
-                    handleClick(item);
-                  }}
                 >
                   <p
                     className={
@@ -121,4 +100,4 @@ const HospitalSidebarComponent = (props: Props) => {
   );
 };
 
-export default HospitalSidebarComponent;
+export default HospitalSidebarComponentLoading;

@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faClose, faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 import MainLogoImage from "../modal/MainLogoImage";
-import { getMedicalRecord } from "../data/sample";
-import { PatientInitialValueType, UserType } from "../patientTypes";
-import { Text } from "@sanity/ui";
+import { UserType } from "../patientTypes";
 import { toast } from "react-toastify";
 import { getPatient } from "@/sanity/sanityUtils/getPatient";
 import { useRouter } from "next/navigation";

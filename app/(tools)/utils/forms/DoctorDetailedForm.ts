@@ -28,13 +28,6 @@ export const doctorForm: FormDoctorType = {
     editable: true,
     error: "tidak boleh kosong",
   },
-  hari: {
-    id: "doctor_04",
-    title: "Hari Praktek",
-    placeholder: "masukkan hari",
-    editable: true,
-    error: "tidak boleh kosong",
-  },
   jam: {
     id: "doctor_05",
     title: "Jam Praktek",
@@ -42,6 +35,14 @@ export const doctorForm: FormDoctorType = {
     editable: true,
     error: "tidak boleh kosong",
   },
+  hari: {
+    id: "doctor_04",
+    title: "Hari Praktek",
+    placeholder: "masukkan hari",
+    editable: true,
+    error: "tidak boleh kosong",
+  },
+
   gender: {
     id: "doctor_06",
     title: "Gender",

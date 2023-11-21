@@ -14,7 +14,7 @@ type Props = {
 const DoctorGender = ({ doctorValue, doctorDetail }: Props) => {
   return (
     <div className="w-full">
-      <small className="">{doctorValue.title}</small>
+      <small className="">{doctorValue?.title}</small>
       <div className="flex-center-start h-10 p-2 gap-4">
         <div className="flex-center-start gap-2">
           {doctorDetail === 1 ? (
