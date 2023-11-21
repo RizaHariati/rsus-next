@@ -21,38 +21,43 @@ const DoctorTelemedicineInput = ({
   handleValueChange,
 }: Props) => {
   const doctorDetail: any = doctorValues?.[doctorKey]?.value || "";
-  return (
-    <>
-      {doctorKey === "telemedicine" && (
-        <div className="w-full ">
-          <small>{doctorKey}</small>
-          <BooleanButton
-            booleanKey={doctorKey}
-            booleanValue={doctorDetail}
-            handleClick={handleValueChange}
-          />
-        </div>
-      )}
-      {doctorKey === "biaya_telemedicine" &&
-        doctorValues?.["telemedicine"].value === 1 && (
-          <DoctorRegular
-            doctorValue={doctorValue}
-            doctorDetail={doctorDetail}
-            doctorKey={doctorKey}
-          />
-        )}
-      {doctorKey === "sedang_online" &&
-        doctorValues?.["telemedicine"].value === 1 && (
-          <div className="w-full">
-            <small>{doctorKey}</small>
-            <BooleanButton
-              booleanKey={doctorKey}
-              booleanValue={doctorDetail}
-              handleClick={handleValueChange}
+  if (doctorKey === "telemedicine") {
+    return (
+      <div className="w-full ">
+        <small>{doctorKey}</small>
+        <BooleanButton
+          booleanKey={doctorKey}
+          booleanValue={doctorDetail}
+          handleClick={handleValueChange}
+        />
+      </div>
+    );
+  } else {
+    if (doctorValues?.["telemedicine"].value !== 1) {
+      return <div></div>;
+    } else {
+      return (
+        <>
+          {doctorKey === "biaya_telemedicine" && (
+            <DoctorRegular
+              doctorValue={doctorValue}
+              doctorDetail={doctorDetail}
+              doctorKey={doctorKey}
             />
-          </div>
-        )}
-    </>
-  );
+          )}
+          {doctorKey === "sedang_online" && (
+            <div className="w-full">
+              <small>{doctorKey}</small>
+              <BooleanButton
+                booleanKey={doctorKey}
+                booleanValue={doctorDetail}
+                handleClick={handleValueChange}
+              />
+            </div>
+          )}
+        </>
+      );
+    }
+  }
 };
 export default DoctorTelemedicineInput;

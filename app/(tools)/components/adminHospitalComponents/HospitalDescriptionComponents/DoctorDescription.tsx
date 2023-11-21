@@ -51,7 +51,6 @@ const DoctorDescription = (props: Props) => {
   }, [editable]);
 
   const handleValueChange = (value: { newValue: any; key: string }[]) => {
-    console.log(value);
     if (!editable) return;
     if (!doctorValues) return;
     const newDoctorValues: DoctorInitialValueType = {};
@@ -68,13 +67,7 @@ const DoctorDescription = (props: Props) => {
     return setDoctorValues(newDoctorValues);
   };
   const formInputDoctor = Object.entries(doctorForm);
-  // if (!doctorValues || Object.keys(doctorValues).length < 1)
-  //   return (
-  //     <div className="flex-center-center">
-  //       <h3>Loading...</h3>
-  //     </div>
-  //   );
-  // else {
+
   return (
     <>
       <form
@@ -94,7 +87,9 @@ const DoctorDescription = (props: Props) => {
                     doctorDetail={doctorDetail}
                   />
                 );
-              case "telemedicine" || "biaya_telemedicine" || "sedang_online":
+              case "telemedicine":
+              case "biaya_telemedicine":
+              case "sedang_online":
                 return (
                   <DoctorTelemedicineInput
                     key={index}
