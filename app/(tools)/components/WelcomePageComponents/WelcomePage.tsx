@@ -8,11 +8,18 @@ import {
   patientBtnDetail,
 } from "../../column/sidebarColumnKeys";
 import { initialColumn } from "../../context/initialState";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 
 function WelcomePage(props: Props) {
-  const { openAlert, handleShowDetail, assignColumn } = useGlobalContext();
+  const {
+    openAlert,
+    handleShowDetail,
+    assignColumn,
+    hospitalState: { dataDoctor, selectedDoctor },
+  } = useGlobalContext();
+  const router = useRouter();
   return (
     <div className="page-main-container">
       <main className=" flex-center-center flex-col p-5 text-center">
@@ -28,16 +35,23 @@ function WelcomePage(props: Props) {
           >
             Administrasi Pasien
           </button>
-          <Link
+          <button
             onClick={() => {
               handleShowDetail(hospitalBtnDetail[0]);
               assignColumn(initialColumn);
+              new Promise((resolve) => {
+                resolve(selectedDoctor);
+              }).then((res) => {
+                if (res) {
+                  router.push("/adminhospital/");
+                  return res;
+                }
+              });
             }}
-            href="/adminhospital"
             className="btn-base"
           >
             Administrasi Rumah Sakit
-          </Link>
+          </button>
         </div>
       </main>
     </div>

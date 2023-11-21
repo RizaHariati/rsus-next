@@ -3,6 +3,7 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect } from "react";
+import DoctorMenuLoading from "../HospitalLoadingComponents/DoctorMenuLoading";
 
 type Props = {};
 
@@ -13,6 +14,13 @@ const DoctorMenu = (props: Props) => {
     selectDoctor,
   } = useGlobalContext();
 
+  if (!dataDoctor) {
+    return (
+      <div className="h-[calc(100vh-112px)] w-full">
+        <DoctorMenuLoading />
+      </div>
+    );
+  }
   return (
     <div className="midbar-container">
       {dataDoctor.map((doctor: DoctorType, index: number) => {
