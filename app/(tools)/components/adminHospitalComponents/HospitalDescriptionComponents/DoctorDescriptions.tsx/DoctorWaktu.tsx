@@ -142,8 +142,15 @@ const DoctorWaktu = ({
           );
         })}
       </div>
-      {selectedWaktu && (
-        <div className="flex-center-between h-32 standard-border p-2 mt-2">
+
+      <div
+        className={
+          !selectedWaktu
+            ? "flex-center-between h-0 standard-border p-0 px-2 mt-0 border-none transition-all overflow-hidden"
+            : "flex-center-between h-32 standard-border p-2 mt-2 transition-all overflow-hidden"
+        }
+      >
+        {selectedWaktu && (
           <div className="w-full h-full">
             <div className="w-full flex-center-center flex-col gap-1">
               <p className="text-center">awal praktek</p>
@@ -165,28 +172,28 @@ const DoctorWaktu = ({
               </div>
             </div>
           </div>
-          {endWaktu && (
-            <div className="w-full h-full">
-              <div className="w-full flex-center-center flex-col gap-1">
-                <p className="text-center">akhir praktek</p>
-                <div className="w-28 flex flex-col items-center justify-start h-20 overflow-y-scroll border border-greyBorder p-1 gap-1">
-                  {endWaktu.map((item, index) => {
-                    return (
-                      <button
-                        onClick={() => sendingWaktu(item.value)}
-                        className=" h-8 w-24 rounded-sm border border-hoverBG hover:border-greyBorder transition-all"
-                        key={index}
-                      >
-                        {item.text}
-                      </button>
-                    );
-                  })}
-                </div>
+        )}
+        {endWaktu && (
+          <div className="w-full h-full">
+            <div className="w-full flex-center-center flex-col gap-1">
+              <p className="text-center">akhir praktek</p>
+              <div className="w-28 flex flex-col items-center justify-start h-20 overflow-y-scroll border border-greyBorder p-1 gap-1">
+                {endWaktu.map((item, index) => {
+                  return (
+                    <button
+                      onClick={() => sendingWaktu(item.value)}
+                      className=" h-8 w-24 rounded-sm border border-hoverBG hover:border-greyBorder transition-all"
+                      key={index}
+                    >
+                      {item.text}
+                    </button>
+                  );
+                })}
               </div>
             </div>
-          )}
-        </div>
-      )}
+          </div>
+        )}
+      </div>
     </div>
   );
 };

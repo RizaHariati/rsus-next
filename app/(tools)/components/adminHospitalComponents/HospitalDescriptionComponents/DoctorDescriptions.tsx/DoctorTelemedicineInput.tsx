@@ -33,31 +33,33 @@ const DoctorTelemedicineInput = ({
       </div>
     );
   } else {
-    if (doctorValues?.["telemedicine"].value !== 1) {
-      return <div></div>;
-    } else {
-      return (
-        <>
-          {doctorKey === "biaya_telemedicine" && (
-            <DoctorRegular
-              doctorValue={doctorValue}
-              doctorDetail={doctorDetail}
-              doctorKey={doctorKey}
+    return (
+      <div
+        className={
+          doctorValues?.["telemedicine"]?.value === 1
+            ? "h-16 w-full overflow-hidden transition-all"
+            : "h-0 w-full overflow-hidden transition-all"
+        }
+      >
+        {doctorKey === "biaya_telemedicine" && (
+          <DoctorRegular
+            doctorValue={doctorValue}
+            doctorDetail={doctorDetail}
+            doctorKey={doctorKey}
+          />
+        )}
+        {doctorKey === "sedang_online" && (
+          <div className="w-full">
+            <small>{doctorKey}</small>
+            <BooleanButton
+              booleanKey={doctorKey}
+              booleanValue={doctorDetail}
+              handleClick={handleValueChange}
             />
-          )}
-          {doctorKey === "sedang_online" && (
-            <div className="w-full">
-              <small>{doctorKey}</small>
-              <BooleanButton
-                booleanKey={doctorKey}
-                booleanValue={doctorDetail}
-                handleClick={handleValueChange}
-              />
-            </div>
-          )}
-        </>
-      );
-    }
+          </div>
+        )}
+      </div>
+    );
   }
 };
 export default DoctorTelemedicineInput;
