@@ -10,7 +10,7 @@ import DoctorHari from "./DoctorDescriptions.tsx/DoctorHari";
 import DoctorWaktu from "./DoctorDescriptions.tsx/DoctorWaktu";
 import DoctorRegular from "./DoctorDescriptions.tsx/DoctorRegular";
 import DoctorTelemedicineInput from "./DoctorDescriptions.tsx/DoctorTelemedicineInput";
-import BooleanButton from "./DoctorDescriptions.tsx/BooleanButton";
+import BooleanButton from "../BooleanButton";
 
 import DoctorGender from "./DoctorDescriptions.tsx/DoctorGender";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";

@@ -5,7 +5,6 @@ import {
 } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { SatuanHariType, allHari } from "@/app/(tools)/utils/AllHari";
-import { doctorForm } from "@/app/(tools)/utils/forms/DoctorDetailedForm";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
@@ -133,7 +132,11 @@ const DoctorHari = ({
                 })
                 .join(", ")}
         </p>
-        <button onClick={() => handleHari()} disabled={!hariChanged}>
+        <button
+          type="button"
+          onClick={() => handleHari()}
+          disabled={!hariChanged}
+        >
           <FontAwesomeIcon
             icon={faCheckCircle}
             className={
@@ -155,6 +158,7 @@ const DoctorHari = ({
 
             return (
               <button
+                type="button"
                 onClick={() => addRemoveHari(detailHari, hari)}
                 key={hari.id_hari.toString()}
                 className={

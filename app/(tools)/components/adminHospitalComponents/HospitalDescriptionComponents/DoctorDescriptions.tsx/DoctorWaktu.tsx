@@ -105,7 +105,7 @@ const DoctorWaktu = ({
         <p>
           {selectedWaktu ? selectedWaktu.waktu : doctorValues[doctorKey]?.value}
         </p>
-        <button>
+        <button type="button">
           <FontAwesomeIcon icon={editable ? faChevronDown : faChevronUp} />
         </button>
       </div>
@@ -117,6 +117,7 @@ const DoctorWaktu = ({
         {allWaktu.map((item, index) => {
           return (
             <button
+              type="button"
               onClick={() => {
                 if (
                   doctorValues[doctorKey].value.toLowerCase() === item.waktu
@@ -160,6 +161,7 @@ const DoctorWaktu = ({
                     (item, index) => {
                       return (
                         <button
+                          type="button"
                           onClick={() => handleWaktu(item.value)}
                           className=" h-8 w-24 rounded-sm border border-hoverBG hover:border-greyBorder transition-all"
                           key={index}
@@ -181,6 +183,7 @@ const DoctorWaktu = ({
                 {endWaktu.map((item, index) => {
                   return (
                     <button
+                      type="button"
                       onClick={() => sendingWaktu(item.value)}
                       className=" h-8 w-24 rounded-sm border border-hoverBG hover:border-greyBorder transition-all"
                       key={index}

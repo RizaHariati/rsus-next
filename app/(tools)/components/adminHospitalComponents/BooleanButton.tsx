@@ -11,6 +11,7 @@ const BooleanButton = ({ booleanValue, handleClick, booleanKey }: Props) => {
   return (
     <div className="w-full h-10 flex items-center">
       <button
+        type="button"
         onClick={
           handleClick
             ? () =>

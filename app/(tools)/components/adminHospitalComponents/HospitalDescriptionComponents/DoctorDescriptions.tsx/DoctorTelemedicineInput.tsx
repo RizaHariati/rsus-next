@@ -5,7 +5,7 @@ import {
 import React, { useState } from "react";
 import DoctorRegular from "./DoctorRegular";
 
-import BooleanButton from "./BooleanButton";
+import BooleanButton from "../../BooleanButton";
 
 type Props = {
   doctorKey: string;
