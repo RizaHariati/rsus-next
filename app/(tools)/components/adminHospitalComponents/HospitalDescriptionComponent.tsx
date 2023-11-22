@@ -38,23 +38,25 @@ const HospitalDescriptionComponent = (props: Props) => {
   useEffect(() => {
     switch (showDetail.key) {
       case "doctor":
-        setColumnTitle(`Dr.${selectedDoctor?.name}` || "detailed part");
+        setColumnTitle(
+          `Dr.${selectedDoctor?.name || "loading..."}` || "detailed part"
+        );
         break;
 
       case "facility":
-        setColumnTitle(selectedFacility?.title || "detailed part");
+        setColumnTitle(selectedFacility?.title || "loading...");
         break;
 
       case "lab_satuan":
-        setColumnTitle(selectedLabSatuan?.title || "detailed part");
+        setColumnTitle(selectedLabSatuan?.title || "loading...");
         break;
 
       case "lab_paket":
-        setColumnTitle(selectedPaket?.title || "detailed part");
+        setColumnTitle(selectedPaket?.title || "loading...");
         break;
 
       case "inpatient":
-        setColumnTitle(selectedInpatient?.kelas || "detailed part");
+        setColumnTitle(selectedInpatient?.kelas || "loading...");
     }
 
     // eslint-disable-next-line

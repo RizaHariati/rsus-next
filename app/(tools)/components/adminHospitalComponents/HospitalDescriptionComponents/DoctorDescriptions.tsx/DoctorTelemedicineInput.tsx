@@ -43,9 +43,10 @@ const DoctorTelemedicineInput = ({
       >
         {doctorKey === "biaya_telemedicine" && (
           <DoctorRegular
+            doctorValues={doctorValues}
             doctorValue={doctorValue}
-            doctorDetail={doctorDetail}
             doctorKey={doctorKey}
+            handleValueChange={handleValueChange}
           />
         )}
         {doctorKey === "sedang_online" && (

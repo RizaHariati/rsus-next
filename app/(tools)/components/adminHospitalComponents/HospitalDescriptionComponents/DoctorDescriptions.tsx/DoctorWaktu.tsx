@@ -37,7 +37,7 @@ const DoctorWaktu = ({
     setSelectedWaktu(null);
     setEndWaktu(null);
     setResultWaktu(null);
-  }, [doctorValues, editable!]);
+  }, [doctorValues]);
 
   const rangeStart = (min: number, max: number) => {
     let numberArray: { value: number; text: string }[] = [];

@@ -14,13 +14,11 @@ import { v4 as uuidv4 } from "uuid";
 type DoctorHariProps = {
   doctorValue: HospitalItemType;
   doctorValues: DoctorInitialValueType;
-  doctorDetail: any;
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
 
 const DoctorHari = ({
   doctorValue,
-  doctorDetail,
   doctorValues,
   handleValueChange,
 }: DoctorHariProps) => {
@@ -30,6 +28,10 @@ const DoctorHari = ({
   const [selectedHari, setSelectedHari] = useState<HariType[] | null>(null);
 
   useEffect(() => {
+    if (!editable) {
+      setSelectedHari(null);
+      setHariChanged(false);
+    }
     if (Object.keys(doctorValues).length < 1 || !doctorValues["hari"]) return;
     setSelectedHari(doctorValues["hari"]?.value);
     return () => {
@@ -95,6 +97,10 @@ const DoctorHari = ({
     setSelectedHari(isHariChanged ? newAllHari : null);
   };
   const handleHari = () => {
+    if (!editable) {
+      setHariChanged(false);
+      setSelectedHari(null);
+    }
     if (!selectedHari) return;
     else if (selectedHari && selectedHari.length > 0) {
       handleValueChange([{ newValue: selectedHari, key: "hari" }]);
@@ -139,7 +145,7 @@ const DoctorHari = ({
       <div
         className={editable ? "hari-btn-container" : "hari-btn-container h-0"}
       >
-        {doctorDetail &&
+        {doctorValues["hari"] &&
           allHari.map((hari: SatuanHariType) => {
             const detailHari: HariType = selectedHari
               ? selectedHari.find((detail) => detail.id_hari === hari.id_hari)!

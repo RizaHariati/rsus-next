@@ -24,33 +24,37 @@ const DoctorDescription = (props: Props) => {
   };
 
   const [doctorValues, setDoctorValues] = useState<DoctorInitialValueType>({});
-  const [initialValues, setInitialValues] = useState<DoctorInitialValueType>(
-    {}
-  );
+
   useEffect(() => {
     if (!selectedDoctor) return;
-
-    const promiseDoctor = new Promise((resolve) => {
-      let newDoctorValues = {};
-      Object.entries(selectedDoctor).forEach(([key, value]) => {
-        //@ts-ignore
-        if (!newDoctorValues[key]) {
+    else {
+      const promiseDoctor = new Promise((resolve) => {
+        let newDoctorValues = {};
+        Object.entries(selectedDoctor).forEach(([key, value]) => {
           //@ts-ignore
-          newDoctorValues[key] = { value, error: false };
-        }
+          if (!newDoctorValues[key]) {
+            //@ts-ignore
+            newDoctorValues[key] = { value, error: false };
+          }
+        });
+
+        resolve(newDoctorValues);
+      });
+      promiseDoctor.then((newDoctorValues: any) => {
+        setDoctorValues(newDoctorValues);
       });
 
-      resolve(newDoctorValues);
-    });
-    promiseDoctor.then((newDoctorValues: any) => {
-      setDoctorValues(newDoctorValues);
-      setInitialValues(newDoctorValues);
-    });
-  }, [selectedDoctor]);
+      if (!editable) {
+        let a = {};
 
-  useEffect(() => {
-    if (!editable) setDoctorValues(initialValues);
-  }, [editable]);
+        promiseDoctor.then((res: any) => {
+          setDoctorValues(res);
+
+          return res;
+        });
+      }
+    }
+  }, [selectedDoctor, editable]);
 
   const handleValueChange = (value: { newValue: any; key: string }[]) => {
     if (!editable) return;
@@ -109,7 +113,6 @@ const DoctorDescription = (props: Props) => {
                       key={index}
                       doctorValue={doctorValue}
                       doctorValues={doctorValues}
-                      doctorDetail={doctorDetail}
                       handleValueChange={handleValueChange}
                     />
                   );
@@ -159,9 +162,10 @@ const DoctorDescription = (props: Props) => {
                   return (
                     <DoctorRegular
                       key={index}
+                      doctorValues={doctorValues}
                       doctorValue={doctorValue}
-                      doctorDetail={doctorDetail}
                       doctorKey={doctorKey}
+                      handleValueChange={handleValueChange}
                     />
                   );
               }
