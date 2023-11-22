@@ -40,7 +40,7 @@ const FacilityMenu = (props: Props) => {
               width={40}
               height={40}
               quality={75}
-              className=" object-covers h-10 w-10 rounded-sm overflow-hidden mr-2 shrink-0"
+              className=" object-cover h-10 w-10 rounded-sm overflow-hidden mr-2 shrink-0"
               alt={facility?.img.alt || "altimage"}
               loading="lazy"
             />
