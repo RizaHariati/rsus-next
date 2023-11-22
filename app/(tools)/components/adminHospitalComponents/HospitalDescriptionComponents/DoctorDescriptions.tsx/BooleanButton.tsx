@@ -4,7 +4,7 @@ import { faCircle } from "@fortawesome/free-solid-svg-icons";
 type Props = {
   booleanKey: string;
   booleanValue: number;
-  handleClick?: (value: { newValue: any; key: string }[]) => void;
+  handleClick: (value: { newValue: any; key: string }[]) => void;
 };
 
 const BooleanButton = ({ booleanValue, handleClick, booleanKey }: Props) => {

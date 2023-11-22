@@ -11,7 +11,7 @@ type Props = {
   doctorKey: string;
   doctorValues: DoctorInitialValueType;
   doctorValue: HospitalItemType;
-  handleValueChange?: (value: { newValue: any; key: string }[]) => void;
+  handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
 
 const DoctorTelemedicineInput = ({

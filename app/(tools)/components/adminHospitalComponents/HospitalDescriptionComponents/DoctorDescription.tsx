@@ -56,6 +56,20 @@ const DoctorDescription = (props: Props) => {
     if (!editable) return;
     if (!doctorValues) return;
     const newDoctorValues: DoctorInitialValueType = {};
+    const findTelemedicine = value.find((item) => item.key === "telemedicine");
+    if (findTelemedicine) {
+      if (findTelemedicine.newValue !== 1) {
+        value.push(
+          { newValue: 0, key: "biaya_telemedicine" },
+          { newValue: 0, key: "sedang_online" }
+        );
+      } else {
+        value.push(
+          { newValue: 10000, key: "biaya_telemedicine" },
+          { newValue: 0, key: "sedang_online" }
+        );
+      }
+    }
 
     Object.entries(doctorValues).map(([itemKey, itemValue]) => {
       const findValue = value.find((item) => item.key === itemKey);
@@ -66,7 +80,8 @@ const DoctorDescription = (props: Props) => {
         newDoctorValues[itemKey] = { value: findValue.newValue, error: false };
       }
     });
-    return setDoctorValues(newDoctorValues);
+    setDoctorValues(newDoctorValues);
+    return;
   };
   const formInputDoctor = Object.entries(doctorForm);
 
@@ -93,7 +108,9 @@ const DoctorDescription = (props: Props) => {
                     <DoctorHari
                       key={index}
                       doctorValue={doctorValue}
+                      doctorValues={doctorValues}
                       doctorDetail={doctorDetail}
+                      handleValueChange={handleValueChange}
                     />
                   );
                 case "telemedicine":

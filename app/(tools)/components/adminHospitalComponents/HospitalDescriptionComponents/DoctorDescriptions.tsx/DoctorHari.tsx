@@ -6,86 +6,146 @@ import {
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { SatuanHariType, allHari } from "@/app/(tools)/utils/AllHari";
 import { doctorForm } from "@/app/(tools)/utils/forms/DoctorDetailedForm";
+import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
-
+import { toast } from "react-toastify";
+import { v4 as uuidv4 } from "uuid";
 type DoctorHariProps = {
   doctorValue: HospitalItemType;
+  doctorValues: DoctorInitialValueType;
   doctorDetail: any;
+  handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
 
-const DoctorHari = ({ doctorValue, doctorDetail }: DoctorHariProps) => {
+const DoctorHari = ({
+  doctorValue,
+  doctorDetail,
+  doctorValues,
+  handleValueChange,
+}: DoctorHariProps) => {
   const {
     state: { editable },
-    hospitalState: { selectedDoctor },
   } = useGlobalContext();
+  const [selectedHari, setSelectedHari] = useState<HariType[] | null>(null);
 
   useEffect(() => {
-    if (!selectedDoctor) return;
-    setSelectedHari(selectedDoctor.hari);
+    if (Object.keys(doctorValues).length < 1 || !doctorValues["hari"]) return;
+    setSelectedHari(doctorValues["hari"]?.value);
     return () => {
-      selectedDoctor;
+      doctorValues["hari"];
     };
-  }, [selectedDoctor]);
+  }, [doctorValues["hari"]]);
 
-  const [selectedHari, setSelectedHari] = useState<HariType[]>(
-    selectedDoctor ? selectedDoctor.hari : []
-  );
+  const [hariChanged, setHariChanged] = useState(false);
+  const testHariChanged = (newHari: HariType[]) => {
+    let hariChanged = false;
+    if (newHari.length === doctorValues["hari"].value.length) {
+      doctorValues["hari"].value.map((item: HariType) => {
+        const sameItem = newHari.find(
+          (selectedItem) => selectedItem.id_hari === item.id_hari
+        );
+        if (!sameItem) hariChanged = true;
+        return "";
+      });
+    } else {
+      hariChanged = true;
+    }
+    return hariChanged;
+  };
   const addRemoveHari = (detailHari: HariType, hari: SatuanHariType) => {
-    let newAllHari: HariType[] = selectedHari;
+    let newAllHari: HariType[] = selectedHari
+      ? selectedHari
+      : doctorValues["hari"].value;
+
     if (!detailHari) {
-      const findHari = selectedDoctor!.hari.find(
-        (item) => item.id_hari === hari.id_hari
+      const findHari = doctorValues["hari"].value.find(
+        (item: any) => item.id_hari === hari.id_hari
       );
 
       if (!findHari) {
-        return setSelectedHari(
-          [
-            ...selectedHari,
-            {
-              id_hari: hari.id_hari,
-              kuota_terisi: 0,
-            },
-          ].sort((a, b) => a.id_hari - b.id_hari)
-        );
+        newAllHari = [
+          ...newAllHari,
+          {
+            id_hari: hari.id_hari,
+            kuota_terisi: 0,
+            _key: uuidv4().slice(0, 8),
+          },
+        ].sort((a, b) => a.id_hari - b.id_hari);
       } else {
-        return setSelectedHari(
-          [...selectedHari, findHari].sort((a, b) => a.id_hari - b.id_hari)
+        newAllHari = [...newAllHari, findHari].sort(
+          (a, b) => a.id_hari - b.id_hari
         );
       }
+
       /* --------------- find hari in selectedDoctor?.hari -------------- */
       /* --------------------------- add hari --------------------------- */
     } else {
       const filterHari = newAllHari.filter(
         (item) => item.id_hari !== hari.id_hari
       );
-      return setSelectedHari(filterHari.sort((a, b) => a.id_hari - b.id_hari));
+      if (filterHari.length < 1) return toast.error("hari tidak boleh kosong");
+      newAllHari = filterHari.sort((a, b) => a.id_hari - b.id_hari);
+
       /* -------------------------- removehari -------------------------- */
+    }
+    const isHariChanged = testHariChanged(newAllHari);
+
+    setHariChanged(isHariChanged);
+    setSelectedHari(isHariChanged ? newAllHari : null);
+  };
+  const handleHari = () => {
+    if (!selectedHari) return;
+    else if (selectedHari && selectedHari.length > 0) {
+      handleValueChange([{ newValue: selectedHari, key: "hari" }]);
+      setHariChanged(false);
+      setSelectedHari(null);
     }
   };
   return (
     <div className="w-full">
       <small className="">{doctorValue?.title}</small>
-      <p
+      <div
         className={
           editable && doctorValue?.editable
-            ? "admin-input capitalize"
-            : "admin-input-disabled"
+            ? "admin-input capitalize flex-row flex-center-between"
+            : "admin-input-disabled  flex-row flex-center-between"
         }
       >
-        {selectedHari
-          .map((item) => {
-            return allHari.find((hari) => hari.id_hari === item.id_hari)!.hari;
-          })
-          .join(", ")}
-      </p>
+        <p>
+          {selectedHari
+            ? selectedHari
+                .map((item: HariType) => {
+                  return allHari.find((hari) => hari.id_hari === item.id_hari)!
+                    .hari;
+                })
+                .join(", ")
+            : doctorValues["hari"].value
+                .map((item: HariType) => {
+                  return allHari.find((hari) => hari.id_hari === item.id_hari)!
+                    .hari;
+                })
+                .join(", ")}
+        </p>
+        <button onClick={() => handleHari()} disabled={!hariChanged}>
+          <FontAwesomeIcon
+            icon={faCheckCircle}
+            className={
+              hariChanged ? "h-5 w-5 text-greenUrip" : "h-5 w-5 text-greyMed2"
+            }
+          />
+        </button>
+      </div>
       <div
         className={editable ? "hari-btn-container" : "hari-btn-container h-0"}
       >
         {doctorDetail &&
           allHari.map((hari: SatuanHariType) => {
-            const detailHari: HariType = selectedHari?.find(
-              (detail) => detail.id_hari === hari.id_hari
-            )!;
+            const detailHari: HariType = selectedHari
+              ? selectedHari.find((detail) => detail.id_hari === hari.id_hari)!
+              : doctorValues["hari"].value.find(
+                  (detail: HariType) => detail.id_hari === hari.id_hari
+                )!;
 
             return (
               <button
