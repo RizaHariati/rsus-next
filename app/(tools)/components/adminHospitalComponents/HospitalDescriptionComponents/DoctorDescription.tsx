@@ -1,4 +1,7 @@
-import { DoctorInitialValueType } from "@/app/(tools)/HospitalTypes";
+import {
+  DoctorInitialValueType,
+  DoctorType,
+} from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { doctorForm } from "@/app/(tools)/utils/forms/DoctorDetailedForm";
 import React, { useEffect, useState } from "react";
@@ -11,20 +14,30 @@ import BooleanButton from "./DoctorDescriptions.tsx/BooleanButton";
 
 import DoctorGender from "./DoctorDescriptions.tsx/DoctorGender";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
+import { toast } from "react-toastify";
 
 type Props = {};
 
 const DoctorDescription = (props: Props) => {
   const {
+    settingEditable,
     state: { columnAssignment, editable },
     hospitalState: { selectedDoctor, dataDoctor },
   } = useGlobalContext();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
 
   const [doctorValues, setDoctorValues] = useState<DoctorInitialValueType>({});
-
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    let editedDoctor: DoctorType | any = {};
+    Object.entries(doctorValues).forEach(([editedKey, editedValue]) => {
+      if (!editedDoctor[editedKey]) {
+        editedDoctor[editedKey] = editedValue;
+      }
+    });
+    console.log(editedDoctor);
+    settingEditable(false);
+    toast.success(`data Dr.${selectedDoctor!.name} berhasil diubah`);
+  };
   useEffect(() => {
     if (!selectedDoctor) return;
     else {

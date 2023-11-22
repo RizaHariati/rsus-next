@@ -24,38 +24,89 @@ const DoctorRegular = ({
     state: { editable },
   } = useGlobalContext();
   const doctorDetail: any = doctorValues?.[doctorKey]?.value || "";
-  const [text, setText] = useState<string | null>(null);
+  const [text, setText] = useState<string | number>(
+    doctorKey === "poliklinik" ? doctorDetail.title! : doctorDetail.toString()
+  );
 
   useEffect(() => {
-    setText(null);
+    setText(
+      doctorKey === "poliklinik" ? doctorDetail.title! : doctorDetail.toString()
+    );
   }, [doctorValues]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (!editable) {
-      return setText(null);
+      return setText(
+        doctorKey === "poliklinik"
+          ? doctorDetail.title!
+          : doctorDetail.toString()
+      );
     }
     const newText = e.target.value;
     //@ts-ignore
 
-    console.log(typeof newText === "number");
-    if (newText === doctorDetail || newText === doctorDetail.title) {
-      setText(null);
-    } else {
-      setText(newText);
+    if (doctorKey === "biaya_telemedicine" || doctorKey === "biaya_tatapmuka") {
+      if (parseInt(newText) > 1000000) {
+        return toast.error("melebihi batas maximum konsultasi");
+      }
+      if (parseInt(newText) < 0) {
+        return setText(0);
+      }
     }
+    if (doctorKey === "kuota" || doctorKey === "pengalaman") {
+      if (parseInt(newText) > 50) {
+        return toast.error("melebihi batas maksimal");
+      }
+      if (parseInt(newText) < 0) {
+        return setText(1);
+      }
+    }
+
+    setText(newText);
   };
+
+  const registerValue = () => {
+    let sendValue = { newValue: text, key: doctorKey };
+    if (doctorKey === "biaya_telemedicine" || doctorKey === "biaya_tatapmuka") {
+      const newText = parseInt(text.toString());
+      if (newText < 10000) {
+        setText(10000);
+        sendValue = { ...sendValue, newValue: 10000 };
+      } else {
+        const newText = parseInt(text.toString());
+        const round = (num: number) => {
+          return Math.round(num / 500) * 500;
+        };
+        setText(round(newText));
+        sendValue = { ...sendValue, newValue: round(newText) };
+      }
+    }
+    if (doctorKey === "kuota") {
+      const newText = parseInt(text.toString());
+      if (newText < 5) {
+        setText(5);
+        sendValue = { ...sendValue, newValue: 5 };
+      }
+    }
+    handleValueChange([{ ...sendValue }]);
+  };
+
   const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
     e.preventDefault();
     const key = e.key;
 
     if (key === "Escape") {
-      setText(null);
+      setText(
+        doctorKey === "poliklinik"
+          ? doctorDetail.title!
+          : doctorDetail.toString()
+      );
     } else if (key === "Enter") {
       if (!text) {
         return toast.error("tidak boleh kosong");
       } else {
-        console.log({ newValue: text, key: "biaya_telemedicine" });
+        registerValue();
       }
     }
   };
@@ -73,18 +124,12 @@ const DoctorRegular = ({
             ? "number"
             : "string"
         }
-        value={
-          text
-            ? text
-            : doctorKey === "poliklinik"
-            ? doctorDetail.title!
-            : doctorDetail.toString()
-        }
+        value={text}
         onChange={(e) => handleChange(e)}
         onKeyUp={(e) => {
           handleKeyDown(e);
         }}
-        onBlur={() => console.log({ newValue: text, key: doctorKey })}
+        onBlur={() => registerValue()}
         className={
           editable && doctorValue.editable
             ? "admin-input"
