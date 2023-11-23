@@ -11,13 +11,13 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 type DoctorHariProps = {
-  doctorValue: HospitalItemType;
+  doctorFormValue: HospitalItemType;
   doctorValues: DoctorInitialValueType;
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
 
 const DoctorHari = ({
-  doctorValue,
+  doctorFormValue,
   doctorValues,
   handleValueChange,
 }: DoctorHariProps) => {
@@ -109,10 +109,10 @@ const DoctorHari = ({
   };
   return (
     <div className="w-full">
-      <small className="">{doctorValue?.title}</small>
+      <small className="">{doctorFormValue?.title}</small>
       <div
         className={
-          editable && doctorValue?.editable
+          editable && doctorFormValue?.editable
             ? "admin-input capitalize flex-row flex-center-between"
             : "admin-input-disabled  flex-row flex-center-between"
         }

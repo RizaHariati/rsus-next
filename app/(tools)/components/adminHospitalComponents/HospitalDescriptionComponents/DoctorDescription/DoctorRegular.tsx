@@ -8,29 +8,33 @@ import React, { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 
 type DoctorRegularProps = {
-  doctorKey: string;
+  doctorFormKey: string;
   doctorValues: DoctorInitialValueType;
-  doctorValue: HospitalItemType;
+  doctorFormValue: HospitalItemType;
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
 
 const DoctorRegular = ({
-  doctorKey,
+  doctorFormKey,
   doctorValues,
-  doctorValue,
+  doctorFormValue,
   handleValueChange,
 }: DoctorRegularProps) => {
   const {
     state: { editable },
   } = useGlobalContext();
-  const doctorDetail: any = doctorValues?.[doctorKey]?.value || "";
+  const doctorDetail: any = doctorValues?.[doctorFormKey]?.value || "";
   const [text, setText] = useState<string | number>(
-    doctorKey === "poliklinik" ? doctorDetail.title! : doctorDetail.toString()
+    doctorFormKey === "poliklinik"
+      ? doctorDetail.title!
+      : doctorDetail.toString()
   );
 
   useEffect(() => {
     setText(
-      doctorKey === "poliklinik" ? doctorDetail.title! : doctorDetail.toString()
+      doctorFormKey === "poliklinik"
+        ? doctorDetail.title!
+        : doctorDetail.toString()
     );
   }, [doctorValues]);
 
@@ -38,7 +42,7 @@ const DoctorRegular = ({
     e.preventDefault();
     if (!editable) {
       return setText(
-        doctorKey === "poliklinik"
+        doctorFormKey === "poliklinik"
           ? doctorDetail.title!
           : doctorDetail.toString()
       );
@@ -46,7 +50,10 @@ const DoctorRegular = ({
     const newText = e.target.value;
     //@ts-ignore
 
-    if (doctorKey === "biaya_telemedicine" || doctorKey === "biaya_tatapmuka") {
+    if (
+      doctorFormKey === "biaya_telemedicine" ||
+      doctorFormKey === "biaya_tatapmuka"
+    ) {
       if (parseInt(newText) > 1000000) {
         return toast.error("melebihi batas maximum konsultasi");
       }
@@ -54,7 +61,7 @@ const DoctorRegular = ({
         return setText(0);
       }
     }
-    if (doctorKey === "kuota" || doctorKey === "pengalaman") {
+    if (doctorFormKey === "kuota" || doctorFormKey === "pengalaman") {
       if (parseInt(newText) > 50) {
         return toast.error("melebihi batas maksimal");
       }
@@ -67,8 +74,11 @@ const DoctorRegular = ({
   };
 
   const registerValue = () => {
-    let sendValue = { newValue: text, key: doctorKey };
-    if (doctorKey === "biaya_telemedicine" || doctorKey === "biaya_tatapmuka") {
+    let sendValue = { newValue: text, key: doctorFormKey };
+    if (
+      doctorFormKey === "biaya_telemedicine" ||
+      doctorFormKey === "biaya_tatapmuka"
+    ) {
       const newText = parseInt(text.toString());
       if (newText < 10000) {
         setText(10000);
@@ -82,7 +92,7 @@ const DoctorRegular = ({
         sendValue = { ...sendValue, newValue: round(newText) };
       }
     }
-    if (doctorKey === "kuota") {
+    if (doctorFormKey === "kuota") {
       const newText = parseInt(text.toString());
       if (newText < 5) {
         setText(5);
@@ -98,7 +108,7 @@ const DoctorRegular = ({
 
     if (key === "Escape") {
       setText(
-        doctorKey === "poliklinik"
+        doctorFormKey === "poliklinik"
           ? doctorDetail.title!
           : doctorDetail.toString()
       );
@@ -113,14 +123,14 @@ const DoctorRegular = ({
 
   return (
     <div className="w-full">
-      <small className="">{doctorValue?.title}</small>
+      <small className="">{doctorFormValue?.title}</small>
       <input
-        disabled={!doctorValue?.editable}
+        disabled={!doctorFormValue?.editable}
         type={
-          doctorKey === "biaya_telemedicine" ||
-          doctorKey === "biaya_tatapmuka" ||
-          doctorKey === "kuota" ||
-          doctorKey === "pengalaman"
+          doctorFormKey === "biaya_telemedicine" ||
+          doctorFormKey === "biaya_tatapmuka" ||
+          doctorFormKey === "kuota" ||
+          doctorFormKey === "pengalaman"
             ? "number"
             : "string"
         }
@@ -131,7 +141,7 @@ const DoctorRegular = ({
         }}
         onBlur={() => registerValue()}
         className={
-          editable && doctorValue.editable
+          editable && doctorFormValue.editable
             ? "admin-input"
             : "admin-input-disabled"
         }

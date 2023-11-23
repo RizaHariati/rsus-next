@@ -34,7 +34,8 @@
     "loader.ts",
     "**/*.d.ts",
     "app/**/*.d.ts",
-    "app/(site)/patient"
+    "app/(site)/patient",
+    "app/(tools)/components/adminHospitalComponents/HospitalDescriptionComponents/DoctorDescription"
   ],
   "exclude": ["node_modules"]
 }

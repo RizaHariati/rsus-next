@@ -5,14 +5,14 @@ import {
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { doctorForm } from "@/app/(tools)/utils/forms/DoctorDetailedForm";
 import React, { useEffect, useState } from "react";
-import DoctorHari from "./DoctorDescriptions.tsx/DoctorHari";
+import DoctorHari from "./DoctorDescription/DoctorHari";
 
-import DoctorWaktu from "./DoctorDescriptions.tsx/DoctorWaktu";
-import DoctorRegular from "./DoctorDescriptions.tsx/DoctorRegular";
-import DoctorTelemedicineInput from "./DoctorDescriptions.tsx/DoctorTelemedicineInput";
+import DoctorWaktu from "./DoctorDescription/DoctorWaktu";
+import DoctorRegular from "./DoctorDescription/DoctorRegular";
+import DoctorTelemedicineInput from "./DoctorDescription/DoctorTelemedicineInput";
 import BooleanButton from "../BooleanButton";
 
-import DoctorGender from "./DoctorDescriptions.tsx/DoctorGender";
+import DoctorGender from "./DoctorDescription/DoctorGender";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import { toast } from "react-toastify";
 
@@ -26,6 +26,7 @@ const DoctorDescription = (props: Props) => {
   } = useGlobalContext();
 
   const [doctorValues, setDoctorValues] = useState<DoctorInitialValueType>({});
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     let editedDoctor: DoctorType | any = {};
@@ -38,11 +39,12 @@ const DoctorDescription = (props: Props) => {
     settingEditable(false);
     toast.success(`data Dr.${selectedDoctor!.name} berhasil diubah`);
   };
+
   useEffect(() => {
     if (!selectedDoctor) return;
     else {
       const promiseDoctor = new Promise((resolve) => {
-        let newDoctorValues = {};
+        let newDoctorValues: any = {};
         Object.entries(selectedDoctor).forEach(([key, value]) => {
           //@ts-ignore
           if (!newDoctorValues[key]) {
@@ -116,15 +118,16 @@ const DoctorDescription = (props: Props) => {
           onSubmit={(e) => handleSubmit(e)}
         >
           <div className="column-description-content">
-            {formInputDoctor.map(([doctorKey, doctorValue], index) => {
+            {formInputDoctor.map(([doctorFormKey, doctorFormValue], index) => {
               //@ts-ignore
-              const doctorDetail: any = doctorValues?.[doctorKey]?.value || "";
-              switch (doctorKey) {
+              const doctorDetail: any =
+                doctorValues?.[doctorFormKey]?.value || "";
+              switch (doctorFormKey) {
                 case "hari":
                   return (
                     <DoctorHari
                       key={index}
-                      doctorValue={doctorValue}
+                      doctorFormValue={doctorFormValue}
                       doctorValues={doctorValues}
                       handleValueChange={handleValueChange}
                     />
@@ -135,9 +138,9 @@ const DoctorDescription = (props: Props) => {
                   return (
                     <DoctorTelemedicineInput
                       key={index}
-                      doctorKey={doctorKey}
+                      doctorFormKey={doctorFormKey}
                       doctorValues={doctorValues}
-                      doctorValue={doctorValue}
+                      doctorFormValue={doctorFormValue}
                       handleValueChange={handleValueChange}
                     />
                   );
@@ -146,9 +149,9 @@ const DoctorDescription = (props: Props) => {
                   return (
                     <DoctorWaktu
                       key={index}
-                      doctorKey={doctorKey}
+                      doctorFormKey={doctorFormKey}
                       doctorValues={doctorValues}
-                      doctorValue={doctorValue}
+                      doctorFormValue={doctorFormValue}
                       handleValueChange={handleValueChange}
                     />
                   );
@@ -156,16 +159,16 @@ const DoctorDescription = (props: Props) => {
                   return (
                     <DoctorGender
                       key={index}
-                      doctorValue={doctorValue}
+                      doctorFormValue={doctorFormValue}
                       doctorDetail={doctorDetail}
                     />
                   );
                 case "on_call":
                   return (
                     <div className="w-full" key={index}>
-                      <small>{doctorKey}</small>
+                      <small>{doctorFormValue.title}</small>
                       <BooleanButton
-                        booleanKey={doctorKey}
+                        booleanKey={doctorFormKey}
                         booleanValue={doctorDetail}
                         handleClick={handleValueChange}
                       />
@@ -176,8 +179,8 @@ const DoctorDescription = (props: Props) => {
                     <DoctorRegular
                       key={index}
                       doctorValues={doctorValues}
-                      doctorValue={doctorValue}
-                      doctorKey={doctorKey}
+                      doctorFormValue={doctorFormValue}
+                      doctorFormKey={doctorFormKey}
                       handleValueChange={handleValueChange}
                     />
                   );

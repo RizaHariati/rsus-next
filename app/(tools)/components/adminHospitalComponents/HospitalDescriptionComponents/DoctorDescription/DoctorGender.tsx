@@ -7,14 +7,14 @@ import {
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {
-  doctorValue: HospitalItemType;
+  doctorFormValue: HospitalItemType;
   doctorDetail: any;
 };
 
-const DoctorGender = ({ doctorValue, doctorDetail }: Props) => {
+const DoctorGender = ({ doctorFormValue, doctorDetail }: Props) => {
   return (
     <div className="w-full">
-      <small className="">{doctorValue?.title}</small>
+      <small className="">{doctorFormValue?.title}</small>
       <div className="flex-center-start h-10 p-2 gap-4">
         <div className="flex-center-start gap-2">
           {doctorDetail === 1 ? (

@@ -11,15 +11,15 @@ import { allWaktu } from "@/app/(tools)/utils/AllHari";
 import moment from "moment";
 import { SatuanWaktuType } from "../../../../utils/AllHari";
 type DoctorWaktuProps = {
-  doctorKey: string;
+  doctorFormKey: string;
   doctorValues: DoctorInitialValueType;
-  doctorValue: HospitalItemType;
+  doctorFormValue: HospitalItemType;
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
 const DoctorWaktu = ({
-  doctorValue,
+  doctorFormValue,
   doctorValues,
-  doctorKey,
+  doctorFormKey,
   handleValueChange,
 }: DoctorWaktuProps) => {
   const {
@@ -94,16 +94,18 @@ const DoctorWaktu = ({
   };
   return (
     <div className="w-full relative ">
-      <small className="">{doctorValue.title}</small>
+      <small className="">{doctorFormValue.title}</small>
       <div
         className={
-          editable && doctorValue.editable
+          editable && doctorFormValue.editable
             ? "admin-input flex-center-between "
             : "admin-input-disabled flex-center-between "
         }
       >
         <p>
-          {selectedWaktu ? selectedWaktu.waktu : doctorValues[doctorKey]?.value}
+          {selectedWaktu
+            ? selectedWaktu.waktu
+            : doctorValues[doctorFormKey]?.value}
         </p>
         <button type="button">
           <FontAwesomeIcon icon={editable ? faChevronDown : faChevronUp} />
@@ -120,7 +122,7 @@ const DoctorWaktu = ({
               type="button"
               onClick={() => {
                 if (
-                  doctorValues[doctorKey].value.toLowerCase() === item.waktu
+                  doctorValues[doctorFormKey].value.toLowerCase() === item.waktu
                 ) {
                   return setSelectedWaktu(null);
                 } else {
@@ -132,7 +134,7 @@ const DoctorWaktu = ({
               }}
               key={index}
               className={
-                doctorValues[doctorKey]?.value === item.waktu ||
+                doctorValues[doctorFormKey]?.value === item.waktu ||
                 selectedWaktu?.waktu === item.waktu
                   ? "hari-btn-active w-full p-2"
                   : "hari-btn w-full p-2"

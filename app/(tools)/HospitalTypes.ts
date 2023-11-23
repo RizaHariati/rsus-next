@@ -143,6 +143,9 @@ export type FacilityInitialValueType = {
   [key: string]: { value: any; error: boolean };
 };
 
+export type LabPaketInitialValueType = {
+  [key: string]: { value: any; error: boolean };
+};
 export type FormLabPaketType = {
   title: HospitalItemType;
   id: HospitalItemType;

@@ -8,25 +8,25 @@ import DoctorRegular from "./DoctorRegular";
 import BooleanButton from "../../BooleanButton";
 
 type Props = {
-  doctorKey: string;
+  doctorFormKey: string;
   doctorValues: DoctorInitialValueType;
-  doctorValue: HospitalItemType;
+  doctorFormValue: HospitalItemType;
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
 
 const DoctorTelemedicineInput = ({
-  doctorKey,
+  doctorFormKey,
   doctorValues,
-  doctorValue,
+  doctorFormValue,
   handleValueChange,
 }: Props) => {
-  const doctorDetail: any = doctorValues?.[doctorKey]?.value || "";
-  if (doctorKey === "telemedicine") {
+  const doctorDetail: any = doctorValues?.[doctorFormKey]?.value || "";
+  if (doctorFormKey === "telemedicine") {
     return (
       <div className="w-full ">
-        <small>{doctorKey}</small>
+        <small>{doctorFormKey}</small>
         <BooleanButton
-          booleanKey={doctorKey}
+          booleanKey={doctorFormKey}
           booleanValue={doctorDetail}
           handleClick={handleValueChange}
         />
@@ -41,19 +41,19 @@ const DoctorTelemedicineInput = ({
             : "h-0 w-full overflow-hidden transition-all"
         }
       >
-        {doctorKey === "biaya_telemedicine" && (
+        {doctorFormKey === "biaya_telemedicine" && (
           <DoctorRegular
             doctorValues={doctorValues}
-            doctorValue={doctorValue}
-            doctorKey={doctorKey}
+            doctorFormValue={doctorFormValue}
+            doctorFormKey={doctorFormKey}
             handleValueChange={handleValueChange}
           />
         )}
-        {doctorKey === "sedang_online" && (
+        {doctorFormKey === "sedang_online" && (
           <div className="w-full">
-            <small>{doctorKey}</small>
+            <small>{doctorFormKey}</small>
             <BooleanButton
-              booleanKey={doctorKey}
+              booleanKey={doctorFormKey}
               booleanValue={doctorDetail}
               handleClick={handleValueChange}
             />

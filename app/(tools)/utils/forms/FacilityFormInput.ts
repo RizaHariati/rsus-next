@@ -53,8 +53,8 @@ export const facilityForm: FormFacilityType = {
   },
   featured: {
     id: "facility_08",
-    title: "feature",
-    placeholder: "masukkan feature",
+    title: "Unggulan",
+    placeholder: "Fasilitas unggulan",
     editable: true,
     error: "feature wajib diisi",
   },
