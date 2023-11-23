@@ -17,7 +17,7 @@ type Props = {};
 const FacilityDescription = (props: Props) => {
   const {
     state: { columnAssignment, editable },
-    hospitalState: { selectedFacility },
+    hospitalState: { selectedFacility, dataFacility },
   } = useGlobalContext();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -27,6 +27,11 @@ const FacilityDescription = (props: Props) => {
     useState<FacilityInitialValueType>({});
 
   const formInputFacility = Object.entries(facilityForm);
+  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    console.log(e.preventDefault);
+    console.log(e.target.value.slice(12, e.target.value.length));
+  };
+  console.log(Array.from(new Set(dataFacility.map((item) => item.category))));
   return (
     <form
       className="column-description-container "
@@ -55,21 +60,43 @@ const FacilityDescription = (props: Props) => {
           }
           if (facilityKey === "img") {
             return (
-              <div className="w-full h-fit flex-center-center standard-border mt-2">
-                <Image
-                  loader={sanityLoader}
-                  placeholder="empty"
-                  src={
-                    facilityDetail?.src ||
-                    "/images/navbar/main-logo.png?w=64&q=75"
+              <div className="flex flex-col gap-2 mt-2">
+                <small className="">{facilityValue.title}</small>
+                <div className="w-full h-fit flex-center-center flex-col standard-border gap-2 p-2">
+                  <Image
+                    loader={sanityLoader}
+                    placeholder="empty"
+                    src={
+                      facilityDetail?.src ||
+                      "/images/navbar/main-logo.png?w=64&q=75"
+                    }
+                    width={500}
+                    height={400}
+                    quality={75}
+                    className=" object-cover h-44 w-60 rounded-sm overflow-hidden mr-2 shrink-0"
+                    alt={facilityDetail?.alt || "altimage"}
+                    loading="lazy"
+                  />
+                </div>
+
+                <div
+                  className={
+                    editable
+                      ? "admin-input flex-center-between"
+                      : "admin-input-disabled flex-center-between"
                   }
-                  width={500}
-                  height={400}
-                  quality={75}
-                  className=" object-cover h-44 w-60 rounded-sm overflow-hidden mr-2 shrink-0"
-                  alt={facilityDetail?.alt || "altimage"}
-                  loading="lazy"
-                />
+                >
+                  <label htmlFor="facilityImage">Pilih gambar baru</label>
+
+                  <input
+                    type="file"
+                    id="facilityImage"
+                    accept="image/jpeg"
+                    className="opacity-0  h-full"
+                    onChange={(e) => handleFileInput(e)}
+                  />
+                  <FontAwesomeIcon icon={faPlus} className="w-4 h-4" />
+                </div>
               </div>
             );
           }

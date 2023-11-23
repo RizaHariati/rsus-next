@@ -18,10 +18,10 @@ export const facilityForm: FormFacilityType = {
 
   img: {
     id: "facility_03",
-    title: "img",
+    title: "Gambar",
     placeholder: "masukkan img",
     editable: true,
-    error: "img wajib diisi",
+    error: "Gambar wajib diisi",
   },
   description: {
     id: "facility_04",
