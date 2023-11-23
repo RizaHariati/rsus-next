@@ -36,6 +36,7 @@ const DoctorRegular = ({
         ? doctorDetail.title!
         : doctorDetail.toString()
     );
+    // eslint-disable-next-line
   }, [doctorValues]);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

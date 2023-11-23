@@ -4,6 +4,7 @@ import InpatientImageDescription from "./InpatientDescription/InpatientImageDesc
 import { InpatientInitialValueType } from "@/app/(tools)/HospitalTypes";
 import { useEffect, useState } from "react";
 import FacilityPoliklinik from "./FacilityDescription/FacilityPoliklinik";
+import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 
 type Props = {};
 
@@ -33,64 +34,74 @@ const InpatientDescription = (props: Props) => {
     }
   }, [selectedInpatient, editable]);
   const formInputInpatient = Object.entries(inpatientForm);
-
-  return (
-    <form
-      className="column-description-container "
-      onSubmit={(e) => handleSubmit(e)}
-    >
-      <div className="column-description-content">
-        {formInputInpatient.map(
-          ([inpatientFormKey, inpatientFormValue], index) => {
-            //@ts-ignore
-            const inpatientDetail = selectedInpatient?.[inpatientFormKey] || "";
-            if (
-              inpatientFormKey === "img" ||
-              inpatientFormKey === "img-array"
-            ) {
+  if (Object.keys(inpatientValues).length < 1 || !selectedInpatient) {
+    return (
+      <div className="h-[calc(100vh-112px)] w-full">
+        <DoctorDescriptionLoading />
+      </div>
+    );
+  } else {
+    return (
+      <form
+        className="column-description-container "
+        onSubmit={(e) => handleSubmit(e)}
+      >
+        <div className="column-description-content">
+          {formInputInpatient.map(
+            ([inpatientFormKey, inpatientFormValue], index) => {
+              //@ts-ignore
+              const inpatientDetail: any = //@ts-ignore
+                selectedInpatient?.[inpatientFormKey] || "";
+              if (
+                inpatientFormKey === "img" ||
+                inpatientFormKey === "img-array"
+              ) {
+                return (
+                  <InpatientImageDescription
+                    key={index}
+                    inpatientFormKey={inpatientFormKey}
+                    inpatientFormValue={inpatientFormValue}
+                    inpatientValues={inpatientValues}
+                  />
+                );
+              }
+              if (inpatientFormKey === "fasilitas") {
+                return (
+                  <FacilityPoliklinik
+                    key={index}
+                    facilityFormKey={inpatientFormKey}
+                    facilityFormValue={inpatientFormValue}
+                    facilityValues={inpatientValues}
+                  />
+                );
+              }
               return (
-                <InpatientImageDescription
-                  key={index}
-                  inpatientFormKey={inpatientFormKey}
-                  inpatientFormValue={inpatientFormValue}
-                  inpatientValues={inpatientValues}
-                />
+                <div key={index} className="w-full">
+                  <small className="">{inpatientFormValue.title}</small>
+                  <input
+                    value={inpatientDetail.toString()}
+                    className={
+                      editable ? "admin-input" : "admin-input-disabled"
+                    }
+                  />
+                </div>
               );
             }
-            if (inpatientFormKey === "fasilitas") {
-              return (
-                <FacilityPoliklinik
-                  key={index}
-                  facilityFormKey={inpatientFormKey}
-                  facilityFormValue={inpatientFormValue}
-                  facilityValues={inpatientValues}
-                />
-              );
+          )}
+        </div>
+        <div className="content-menu border-t">
+          <button
+            type="submit"
+            className={
+              editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
             }
-            return (
-              <div key={index} className="w-full">
-                <small className="">{inpatientFormValue.title}</small>
-                <input
-                  value={inpatientDetail.toString()}
-                  className={editable ? "admin-input" : "admin-input-disabled"}
-                />
-              </div>
-            );
-          }
-        )}
-      </div>
-      <div className="content-menu border-t">
-        <button
-          type="submit"
-          className={
-            editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
-          }
-        >
-          Submit
-        </button>
-      </div>
-    </form>
-  );
+          >
+            Submit
+          </button>
+        </div>
+      </form>
+    );
+  }
 };
 
 export default InpatientDescription;

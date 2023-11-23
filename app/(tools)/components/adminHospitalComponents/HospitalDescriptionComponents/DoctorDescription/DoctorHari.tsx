@@ -36,6 +36,7 @@ const DoctorHari = ({
     return () => {
       doctorValues["hari"];
     };
+    // eslint-disable-next-line
   }, [doctorValues["hari"]]);
 
   const [hariChanged, setHariChanged] = useState(false);
