@@ -27,7 +27,7 @@ const InpatientImageDescription = ({
     console.log(e.preventDefault);
     console.log(e.target.value.slice(12, e.target.value.length));
   };
-  console.log(inpatientValues?.[inpatientFormKey]?.value);
+
   return (
     <div>
       {inpatientFormKey === "img" && (
