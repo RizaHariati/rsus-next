@@ -31,17 +31,17 @@ export const inpatientForm: FormInpatientType = {
   },
   img: {
     id: "inpatient_05",
-    title: "img",
-    placeholder: "masukkan img",
+    title: "Gambar Utama",
+    placeholder: "Gambar Utama",
     editable: true,
-    error: "img wajib diisi",
+    error: "Gambar wajib diisi",
   },
   "img-array": {
     id: "inpatient_06",
-    title: "image",
-    placeholder: "masukkan image",
+    title: "kumpulan gambar",
+    placeholder: "maksimal masukkan 3 gambar",
     editable: true,
-    error: "image wajib diisi",
+    error: "gambar wajib diisi",
   },
   fasilitas: {
     id: "inpatient_07",
