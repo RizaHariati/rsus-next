@@ -8,6 +8,8 @@ import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescrip
 import BooleanButton from "../BooleanButton";
 import FacilityImage from "./FacilityDescription/FacilityImage";
 import dataPoliklinik from "../../../data/data_poliklinik.json";
+import FacilityCategory from "./FacilityDescription/FacilityCategory";
+import FacilityRegularInput from "./FacilityDescription/FacilityRegularInput";
 type Props = {};
 
 const FacilityDescription = (props: Props) => {
@@ -15,12 +17,14 @@ const FacilityDescription = (props: Props) => {
     state: { columnAssignment, editable },
     hospitalState: { selectedFacility, dataFacility },
   } = useGlobalContext();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
 
   const [facilityValues, setFacilityValues] =
     useState<FacilityInitialValueType>({});
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    console.log(facilityValues);
+  };
 
   useEffect(() => {
     if (!selectedFacility) return;
@@ -79,26 +83,7 @@ const FacilityDescription = (props: Props) => {
             ([facilityFormKey, facilityFormValue], index) => {
               //@ts-ignore
               const facilityDetail = selectedFacility?.[facilityFormKey] || "";
-              if (
-                facilityFormKey === "function" ||
-                facilityFormKey === "description"
-              ) {
-                return (
-                  <div key={index} className="w-full">
-                    <small className="">{facilityFormValue.title}</small>
-                    <textarea
-                      rows={4}
-                      maxLength={500}
-                      value={facilityDetail.toString()}
-                      className={
-                        editable
-                          ? "admin-input h-32 transition-all overflow-hidden"
-                          : "admin-input-disabled transition-all overflow-hidden"
-                      }
-                    />
-                  </div>
-                );
-              }
+
               if (facilityFormKey === "img") {
                 return (
                   <FacilityImage
@@ -127,6 +112,17 @@ const FacilityDescription = (props: Props) => {
                   </div>
                 );
               }
+              if (facilityFormKey === "category") {
+                return (
+                  <FacilityCategory
+                    key={index}
+                    handleChangeValue={handleChangeValue}
+                    FormKey={facilityFormKey}
+                    FormValue={facilityFormValue}
+                    Values={facilityValues}
+                  />
+                );
+              }
               if (facilityFormKey === "poliklinik") {
                 return (
                   <EditListInput
@@ -140,17 +136,13 @@ const FacilityDescription = (props: Props) => {
                 );
               } else {
                 return (
-                  <div key={index} className="w-full">
-                    <small className="">{facilityFormValue.title}</small>
-                    <input
-                      value={facilityDetail.toString()}
-                      className={
-                        editable && facilityFormValue.editable
-                          ? "admin-input"
-                          : "admin-input-disabled"
-                      }
-                    />
-                  </div>
+                  <FacilityRegularInput
+                    key={index}
+                    facilityFormKey={facilityFormKey}
+                    facilityFormValue={facilityFormValue}
+                    facilityValues={facilityValues}
+                    handleChangeValue={handleChangeValue}
+                  />
                 );
               }
             }
