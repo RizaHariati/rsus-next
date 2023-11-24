@@ -35,7 +35,7 @@ const DoctorDescription = (props: Props) => {
         editedDoctor[editedKey] = editedValue;
       }
     });
-    console.log(editedDoctor);
+
     settingEditable(false);
     toast.success(`data Dr.${selectedDoctor!.name} berhasil diubah`);
   };

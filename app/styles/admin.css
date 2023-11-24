@@ -63,4 +63,10 @@
   .check-empty {
     @apply w-4 h-4 border border-greyMed2 rounded-full;
   }
+  .modal-description-btn {
+    @apply shrink-0 w-full standard-border h-8 hover:bg-greyBorder hover:text-white transition-all;
+  }
+  .modal-description-btn-selected {
+    @apply modal-description-btn border-greenUrip;
+  }
 }

@@ -14,6 +14,10 @@ const LabSatuanDescription = (props: Props) => {
   };
 
   const formInputLabSatuan = Object.entries(labSatuanForm);
+
+  const handleChangeValue = (value: { newValue: any; key: string }[]) => {
+    console.log({ value });
+  };
   return (
     <form
       className="column-description-container "

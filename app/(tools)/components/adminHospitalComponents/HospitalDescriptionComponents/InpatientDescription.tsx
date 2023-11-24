@@ -3,7 +3,7 @@ import { inpatientForm } from "@/app/(tools)/utils/forms/InpatientFormInput";
 import InpatientImageDescription from "./InpatientDescription/InpatientImageDescription";
 import { InpatientInitialValueType } from "@/app/(tools)/HospitalTypes";
 import { useEffect, useState } from "react";
-import FacilityPoliklinik from "./FacilityDescription/FacilityPoliklinik";
+import EditListInput from "../EditListInput";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 
 type Props = {};
@@ -11,7 +11,7 @@ type Props = {};
 const InpatientDescription = (props: Props) => {
   const {
     state: { columnAssignment, editable },
-    hospitalState: { selectedInpatient },
+    hospitalState: { selectedInpatient, dataInpatient },
   } = useGlobalContext();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,7 +19,7 @@ const InpatientDescription = (props: Props) => {
 
   const [inpatientValues, setFacilityValues] =
     useState<InpatientInitialValueType>({});
-
+  // console.log(selectedInpatient?.["fasilitas"]);
   useEffect(() => {
     if (!selectedInpatient) return;
     else {
@@ -33,7 +33,33 @@ const InpatientDescription = (props: Props) => {
       setFacilityValues(newFacilityValues);
     }
   }, [selectedInpatient, editable]);
+  const getInpatientFacility = () => {
+    let inpatientFacilityList: { id: number; title: string }[] = [];
+    if (!dataInpatient) return;
+    else {
+      let id = 0;
+      dataInpatient.map((inpatientItem) => {
+        inpatientItem.fasilitas.map((fasilitasItem) => {
+          const findFacility = inpatientFacilityList.find(({ title }) => {
+            // console.log({ title, fasilitasItem });
+            return title === fasilitasItem;
+          });
+          if (!findFacility) {
+            id++;
+            inpatientFacilityList.push({ id, title: fasilitasItem });
+          }
+          return "";
+        });
+        return "";
+      });
+    }
+    return inpatientFacilityList;
+  };
   const formInputInpatient = Object.entries(inpatientForm);
+
+  const handleChangeValue = (value: { newValue: any; key: string }[]) => {
+    console.log({ value });
+  };
   if (Object.keys(inpatientValues).length < 1 || !selectedInpatient) {
     return (
       <div className="h-[calc(100vh-112px)] w-full">
@@ -66,12 +92,16 @@ const InpatientDescription = (props: Props) => {
                 );
               }
               if (inpatientFormKey === "fasilitas") {
+                const dataList: { id: number; title: string }[] =
+                  getInpatientFacility() || [];
                 return (
-                  <FacilityPoliklinik
+                  <EditListInput
                     key={index}
-                    facilityFormKey={inpatientFormKey}
-                    facilityFormValue={inpatientFormValue}
-                    facilityValues={inpatientValues}
+                    handleChangeValue={handleChangeValue}
+                    FormKey={inpatientFormKey}
+                    FormValue={inpatientFormValue}
+                    inputList={inpatientValues[inpatientFormKey].value}
+                    dataList={dataList}
                   />
                 );
               }

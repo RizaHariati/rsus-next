@@ -1,21 +1,13 @@
 import { FacilityInitialValueType } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { facilityForm } from "@/app/(tools)/utils/forms/FacilityFormInput";
-import { sanityLoader } from "@/loader";
-import {
-  faFolderMinus,
-  faMinus,
-  faMinusCircle,
-  faPlus,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import Image from "next/image";
+
 import React, { useEffect, useState } from "react";
-import FacilityPoliklinik from "./FacilityDescription/FacilityPoliklinik";
+import EditListInput from "../EditListInput";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import BooleanButton from "../BooleanButton";
 import FacilityImage from "./FacilityDescription/FacilityImage";
-
+import dataPoliklinik from "../../../data/data_poliklinik.json";
 type Props = {};
 
 const FacilityDescription = (props: Props) => {
@@ -47,7 +39,28 @@ const FacilityDescription = (props: Props) => {
   const formInputFacility = Object.entries(facilityForm);
 
   const handleChangeValue = (value: { newValue: any; key: string }[]) => {
-    console.log({ value });
+    if (!editable) return;
+    if (!facilityValues) return;
+    const newFacility: FacilityInitialValueType = {};
+    const facilityPoli =
+      value[0].key === "poliklinik"
+        ? value[0].newValue.map((item: any) => item.title)
+        : null;
+
+    Object.entries(facilityValues).map(([itemKey, itemValue]) => {
+      const findValue = value.find((item) => item.key === itemKey);
+      if (!findValue) {
+        //@ts-ignore
+        newFacility[itemKey] = { ...itemValue };
+      } else {
+        newFacility[itemKey] = {
+          value:
+            value[0].key === "poliklinik" ? facilityPoli : findValue.newValue,
+          error: false,
+        };
+      }
+    });
+    setFacilityValues(newFacility);
   };
   if (Object.keys(facilityValues).length < 1 || !selectedFacility) {
     return (
@@ -116,11 +129,13 @@ const FacilityDescription = (props: Props) => {
               }
               if (facilityFormKey === "poliklinik") {
                 return (
-                  <FacilityPoliklinik
+                  <EditListInput
                     key={index}
-                    facilityFormKey={facilityFormKey}
-                    facilityFormValue={facilityFormValue}
-                    facilityValues={facilityValues}
+                    handleChangeValue={handleChangeValue}
+                    FormKey={facilityFormKey}
+                    FormValue={facilityFormValue}
+                    inputList={facilityValues[facilityFormKey].value}
+                    dataList={dataPoliklinik}
                   />
                 );
               } else {
