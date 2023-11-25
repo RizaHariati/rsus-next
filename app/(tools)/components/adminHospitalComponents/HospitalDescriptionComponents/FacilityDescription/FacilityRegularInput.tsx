@@ -57,6 +57,8 @@ const FacilityRegularInput = ({
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
+    // console.log("triggered");
+    return;
     e.preventDefault();
     const num = parseInt(e.target.value);
     if (facilityFormKey === "price") {
@@ -97,7 +99,7 @@ const FacilityRegularInput = ({
           // onKeyUp={(e) => {
           //   handleKeyDown(e);
           // }}
-          onBlur={() => registerValue()}
+          // onBlur={() => registerValue()}
           className={
             editable && facilityFormValue.editable
               ? "admin-input h-32 transition-all overflow-hidden"
@@ -108,22 +110,30 @@ const FacilityRegularInput = ({
     );
   }
   return (
-    <div className="w-full">
+    <div className="w-full touch-none" style={{ touchAction: "none" }}>
       <small className="">{facilityFormValue.title}</small>
       <input
         id={facilityFormKey}
         type={facilityFormKey === "price" ? "number" : "string"}
         disabled={!editable || !facilityFormValue.editable}
         value={text}
-        onChange={(e) => handleChange(e)}
-        // onKeyUp={(e) => {
-        //   handleKeyDown(e);
-        // }}
+        onChange={(e) => {
+          console.log("why");
+          e.stopPropagation();
+          e.preventDefault();
+        }}
+        // onChange={(e) => handleChange(e)}
+        onKeyUp={(e) => {
+          console.log("why");
+          e.stopPropagation();
+          e.preventDefault();
+          // handleKeyDown(e);
+        }}
         onBlur={() => registerValue()}
         className={
           editable && facilityFormValue.editable
-            ? "admin-input"
-            : "admin-input-disabled"
+            ? "admin-input touch-none"
+            : "admin-input-disabled  touch-none"
         }
       />
     </div>

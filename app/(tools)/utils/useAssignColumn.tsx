@@ -18,13 +18,14 @@ const useAssignColumn = () => {
       // Set window width/height to state
       const windowWidth = window!.innerWidth!;
       getWindow(windowWidth);
-      if (windowWidth < minWidth) {
-        assignColumn(OCC);
-      } else if (windowWidth >= minWidth && windowWidth <= maxWidth) {
-        assignColumn(OCO);
-      } else {
-        assignColumn(OOO);
-      }
+      console.log(getWindow(windowWidth));
+      // if (windowWidth < minWidth) {
+      //   assignColumn(OCC);
+      // } else if (windowWidth >= minWidth && windowWidth <= maxWidth) {
+      //   assignColumn(OCO);
+      // } else {
+      //   assignColumn(OOO);
+      // }
     }
 
     // Add event listener

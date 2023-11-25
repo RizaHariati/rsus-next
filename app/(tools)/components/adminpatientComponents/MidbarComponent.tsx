@@ -15,6 +15,7 @@ const MidbarComponent = (props: Props) => {
     },
   } = useGlobalContext();
   const handleMidbarButton = () => {
+    console.log("midbar triggeredd");
     assignColumn(
       !column2 ? openMidbar(currentWindow) : closeMidbar(currentWindow)
     );

@@ -21,6 +21,7 @@ const DescriptionComponent = (props: Props) => {
 
   const [columnTitle, setColumnTitle] = useState<string>("detailed part");
   const handleDescriptionButton = () => {
+    console.log("description triggered");
     assignColumn(
       !column3
         ? openDescription(currentWindow)

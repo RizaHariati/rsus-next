@@ -31,9 +31,6 @@ const HospitalDescriptionComponent = (props: Props) => {
   const handleDescriptionButton = (
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
-    e.stopPropagation();
-    e.preventDefault();
-    console.log("triggered");
     assignColumn(
       !column3
         ? openDescription(currentWindow)
@@ -83,6 +80,7 @@ const HospitalDescriptionComponent = (props: Props) => {
         }
       >
         <button
+          id="descriptionTitleBtn"
           onClick={(e) => handleDescriptionButton(e)}
           className={
             !column3

@@ -130,7 +130,4 @@
   .appointment-date-container {
     @apply flex flex-row standard-border  p-2 gap-2 overflow-x-scroll;
   }
-  .appointment-date-container::-webkit-scrollbar {
-    scrollbar-width: 2px;
-  }
 }

@@ -16,6 +16,7 @@ const AdminHospitalPage = (props: Props) => {
     showDetail,
     hospitalState: { dataDoctor, dataFacility },
   } = useGlobalContext();
+
   useAssignColumn();
   const [showMidbar, setShowMidbar] = useState(
     showDetail.column_open === "all"

@@ -11,25 +11,10 @@ type Props = {};
 
 const HospitalSidebarComponentLoading = (props: Props) => {
   const {
-    assignColumn,
     showDetail,
-    handleShowDetail,
-    settingEditable,
-    selectDoctor,
-    selectFacility,
-    selectLabSatuan,
-    selectLabPaket,
-    selectInpatient,
+
     state: {
-      currentWindow,
       columnAssignment: { column1, column3 },
-    },
-    hospitalState: {
-      dataDoctor,
-      dataFacility,
-      dataLabSatuan,
-      dataPaket,
-      dataInpatient,
     },
   } = useGlobalContext();
   return (
