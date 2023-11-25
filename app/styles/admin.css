@@ -5,39 +5,39 @@
 
 @layer components {
   .ptn-container {
-    @apply w-full h-full max-h-screen bg-white pt-14 pb-8 sm:pb-0;
+    @apply w-full h-full max-h-screen bg-white pt-14 pb-8 md:pb-0;
   }
   .ptn-content {
     @apply w-full h-full  flex flex-row flex-shrink-0;
   }
   .btn-base {
-    @apply h-12 border border-greyBorder hover:border-greenUripOpacity active:border-greenUrip rounded-sm bg-white hover:bg-greenUripOpacity active:bg-greenUrip text-greyDrk hover:text-greenUrip active:text-white  w-full transition-all flex-center-center gap-1 sm:gap-3;
+    @apply h-12 border border-hoverBG md:border-greyBorder hover:border-greenUripOpacity active:border-greenUrip rounded-sm bg-white hover:bg-greenUripOpacity active:bg-greenUrip text-greyDrk hover:text-greenUrip active:text-white  w-full transition-all flex-center-center gap-1 md:gap-3;
   }
   .btn-base-focus {
-    @apply btn-base w-12 sm:w-28 h-10 bg-greenUrip border-greenUrip text-white !important;
+    @apply btn-base w-7 md:w-28 h-7 md:h-10 bg-greenUrip border-greenUrip text-white !important;
   }
 
   .btn-base-small {
-    @apply btn-base w-12 sm:w-28 h-10;
+    @apply btn-base w-7 md:w-28 h-7 md:h-10;
   }
 
   .btn-text {
-    @apply text-greyMed1 text-base hidden sm:block;
+    @apply text-greyMed1 text-base hidden md:block;
   }
 
   .btn-text-focus {
-    @apply text-white text-base hidden sm:block;
+    @apply text-white text-base hidden md:block;
   }
 
   .btn-icon {
-    @apply text-greyMed1 text-sm h-5 w-5;
+    @apply text-greyMed1 text-sm h-4 w-4 md:h-5 md:w-5;
   }
 
   .btn-icon-focus {
     @apply text-white text-sm;
   }
   .content-menu {
-    @apply h-14 w-full flex-center-end gap-1  sm:gap-3 px-2 sm:px-3;
+    @apply h-10 md:h-14 w-full flex-center-end gap-1 px-0  md:gap-3 md:px-3 transition-all;
   }
   .admin-input {
     @apply w-full h-10 border border-greyBorder rounded-sm outline-greenUrip p-2 text-greyDrk bg-white;

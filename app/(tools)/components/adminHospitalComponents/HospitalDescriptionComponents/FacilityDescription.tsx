@@ -84,67 +84,67 @@ const FacilityDescription = (props: Props) => {
               //@ts-ignore
               const facilityDetail = selectedFacility?.[facilityFormKey] || "";
 
-              if (facilityFormKey === "img") {
-                return (
-                  <FacilityImage
-                    key={index}
-                    facilityFormKey={facilityFormKey}
-                    facilityFormValue={facilityFormValue}
-                    facilityValues={facilityValues}
-                  />
-                );
-              }
-              if (
-                facilityFormKey === "featured" ||
-                facilityFormKey === "doctorref"
-              ) {
-                return (
-                  <div className="w-full" key={index}>
-                    <small>{facilityFormValue.title}</small>
-                    <BooleanButton
-                      key={index}
-                      booleanKey={facilityFormKey}
-                      booleanValue={
-                        facilityValues[facilityFormKey].value ? 1 : 0
-                      }
-                      handleClick={handleChangeValue}
-                    />
-                  </div>
-                );
-              }
-              if (facilityFormKey === "category") {
-                return (
-                  <FacilityCategory
-                    key={index}
-                    handleChangeValue={handleChangeValue}
-                    FormKey={facilityFormKey}
-                    FormValue={facilityFormValue}
-                    Values={facilityValues}
-                  />
-                );
-              }
-              if (facilityFormKey === "poliklinik") {
-                return (
-                  <EditListInput
-                    key={index}
-                    handleChangeValue={handleChangeValue}
-                    FormKey={facilityFormKey}
-                    FormValue={facilityFormValue}
-                    inputList={facilityValues[facilityFormKey].value}
-                    dataList={dataPoliklinik}
-                  />
-                );
-              } else {
-                return (
-                  <FacilityRegularInput
-                    key={index}
-                    facilityFormKey={facilityFormKey}
-                    facilityFormValue={facilityFormValue}
-                    facilityValues={facilityValues}
-                    handleChangeValue={handleChangeValue}
-                  />
-                );
-              }
+              // if (facilityFormKey === "img") {
+              //   return (
+              //     <FacilityImage
+              //       key={index}
+              //       facilityFormKey={facilityFormKey}
+              //       facilityFormValue={facilityFormValue}
+              //       facilityValues={facilityValues}
+              //     />
+              //   );
+              // }
+              // if (
+              //   facilityFormKey === "featured" ||
+              //   facilityFormKey === "doctorref"
+              // ) {
+              //   return (
+              //     <div className="w-full" key={index}>
+              //       <small>{facilityFormValue.title}</small>
+              //       <BooleanButton
+              //         key={index}
+              //         booleanKey={facilityFormKey}
+              //         booleanValue={
+              //           facilityValues[facilityFormKey].value ? 1 : 0
+              //         }
+              //         handleClick={handleChangeValue}
+              //       />
+              //     </div>
+              //   );
+              // }
+              // if (facilityFormKey === "category") {
+              //   return (
+              //     <FacilityCategory
+              //       key={index}
+              //       handleChangeValue={handleChangeValue}
+              //       FormKey={facilityFormKey}
+              //       FormValue={facilityFormValue}
+              //       Values={facilityValues}
+              //     />
+              //   );
+              // }
+              // if (facilityFormKey === "poliklinik") {
+              //   return (
+              //     <EditListInput
+              //       key={index}
+              //       handleChangeValue={handleChangeValue}
+              //       FormKey={facilityFormKey}
+              //       FormValue={facilityFormValue}
+              //       inputList={facilityValues[facilityFormKey].value}
+              //       dataList={dataPoliklinik}
+              //     />
+              //   );
+              // } else {
+              return (
+                <FacilityRegularInput
+                  key={index}
+                  facilityFormKey={facilityFormKey}
+                  facilityFormValue={facilityFormValue}
+                  facilityValues={facilityValues}
+                  handleChangeValue={handleChangeValue}
+                />
+              );
+              // }
             }
           )}
         </div>

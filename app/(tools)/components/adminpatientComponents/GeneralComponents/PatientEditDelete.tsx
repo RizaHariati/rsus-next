@@ -11,7 +11,7 @@ const PatientEditDelete = ({}: Props) => {
     settingEditable,
   } = useGlobalContext();
   return (
-    <div className="content-menu ">
+    <div className="content-menu order-0 ">
       <button
         onClick={() => settingEditable(!editable)}
         type="button"
@@ -26,9 +26,12 @@ const PatientEditDelete = ({}: Props) => {
       <button
         onClick={() => settingEditable(false)}
         type="button"
-        className="btn-base-small"
+        className="btn-base-small bg=white  group"
       >
-        <FontAwesomeIcon icon={faTrash} className="btn-icon" />
+        <FontAwesomeIcon
+          icon={faTrash}
+          className="btn-icon group-focus:text-white "
+        />
         <p className="btn-text">Delete</p>
       </button>
     </div>

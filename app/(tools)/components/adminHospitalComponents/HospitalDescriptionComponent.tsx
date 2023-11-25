@@ -82,7 +82,7 @@ const HospitalDescriptionComponent = (props: Props) => {
           className={
             !column3
               ? "column-navbar-main-btn-rotate"
-              : "column-navbar-main-btn"
+              : "column-navbar-main-btn text-xs"
           }
         >
           {showDetail.column_open === "all" ? columnTitle : showDetail.name}
