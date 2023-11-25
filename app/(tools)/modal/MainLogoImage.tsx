@@ -12,7 +12,7 @@ const MainLogoImage = (props: Props) => {
         src="/static/images/navbar/main-logo.png?"
         width={50}
         height={50}
-        className=" object-covers rounded-full overflow-hidden"
+        className=" h-7 w-7 md:h-8 md:w-8 object-covers rounded-full overflow-hidden"
         alt="main-logo"
         loading="lazy"
       />

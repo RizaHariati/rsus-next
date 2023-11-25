@@ -58,10 +58,12 @@ export const MainLogo = (props: Props) => {
         <MainLogoImage />
       </div>
       <div className=" text-greenUrip">
-        <h6 className="text-sm tracking-[7px] leading-3 font-oswald ">
+        <h6 className="text-xs md:text-sm tracking-[5px] md:tracking-[7px] leading-3 font-oswald ">
           Rumah Sakit
         </h6>
-        <h6 className="text-xl font-bold tracking-wide">Urip Sumoharjo</h6>
+        <h6 className="text-base md:text-xl font-bold tracking-wide">
+          Urip Sumoharjo
+        </h6>
       </div>
     </Link>
   );
