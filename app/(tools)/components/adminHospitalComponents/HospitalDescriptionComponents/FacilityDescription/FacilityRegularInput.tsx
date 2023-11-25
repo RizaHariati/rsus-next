@@ -89,6 +89,7 @@ const FacilityRegularInput = ({
       <div className="w-full">
         <small className="">{facilityFormValue.title}</small>
         <textarea
+          id={facilityFormKey}
           rows={4}
           maxLength={500}
           value={text}
@@ -110,6 +111,7 @@ const FacilityRegularInput = ({
     <div className="w-full">
       <small className="">{facilityFormValue.title}</small>
       <input
+        id={facilityFormKey}
         type={facilityFormKey === "price" ? "number" : "string"}
         disabled={!editable || !facilityFormValue.editable}
         value={text}

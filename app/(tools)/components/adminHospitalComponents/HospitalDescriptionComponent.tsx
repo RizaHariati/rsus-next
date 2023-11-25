@@ -28,7 +28,10 @@ const HospitalDescriptionComponent = (props: Props) => {
   } = useGlobalContext();
   const [columnTitle, setColumnTitle] = useState<string>("detailed part");
 
-  const handleDescriptionButton = () => {
+  const handleDescriptionButton = (
+    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
+  ) => {
+    e.stopPropagation();
     assignColumn(
       !column3
         ? openDescription(currentWindow)
@@ -78,11 +81,11 @@ const HospitalDescriptionComponent = (props: Props) => {
         }
       >
         <button
-          onClick={() => handleDescriptionButton()}
+          onClick={(e) => handleDescriptionButton(e)}
           className={
             !column3
-              ? "column-navbar-main-btn-rotate bg-redBase"
-              : "column-navbar-main-btn text-xs bg-fuchsia-600"
+              ? "column-navbar-main-btn-rotate "
+              : "column-navbar-main-btn text-xs "
           }
         >
           {showDetail.column_open === "all" ? columnTitle : showDetail.name}
@@ -90,10 +93,7 @@ const HospitalDescriptionComponent = (props: Props) => {
         {column3 && <PatientEditDelete />}
       </div>
       {column3 && (
-        <div
-          className="h-[calc(100vh-112px)] w-full"
-          onClick={() => console.log("")}
-        >
+        <div className="h-[calc(100vh-112px)] w-full">
           {showDetail.key === "doctor" && <DoctorDescription />}
           {showDetail.key === "facility" && <FacilityDescription />}
           {showDetail.key === "lab_satuan" && <LabSatuanDescription />}
