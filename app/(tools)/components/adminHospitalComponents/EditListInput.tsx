@@ -88,11 +88,11 @@ const EditListInput = ({
               key={indexPoli}
               className={
                 editable
-                  ? "admin-input flex-center-between"
+                  ? "admin-input flex-center-between "
                   : "admin-input-disabled flex-center-between"
               }
             >
-              <p>{itemList}</p>
+              <p className="text-sm leading-3">{itemList}</p>
               <button
                 onClick={() => addRemoveListItem(itemList)}
                 className="standard-border h-6 w-6"

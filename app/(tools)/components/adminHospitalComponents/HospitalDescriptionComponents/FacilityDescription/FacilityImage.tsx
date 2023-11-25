@@ -34,7 +34,7 @@ const FacilityImage = ({
   );
 
   return (
-    <div className="flex flex-col gap-2 mt-2">
+    <div className="flex flex-col gap-2 mt-2 w-full">
       <small className="">{facilityFormValue.title}</small>
       <div className="w-full h-fit flex-center-center flex-col standard-border gap-2 p-2">
         <Image
@@ -47,30 +47,21 @@ const FacilityImage = ({
           width={500}
           height={400}
           quality={75}
-          className=" object-cover h-44 w-60 rounded-sm overflow-hidden mr-2 shrink-0"
+          className=" object-cover h-44 w-52 rounded-sm overflow-hidden mr-2 md:shrink-0"
           alt={facilityValues[facilityFormKey].value?.alt || "altimage"}
           loading="lazy"
         />
       </div>
 
-      <div
-        className={
-          editable
-            ? "admin-input flex-center-between cursor-pointer"
-            : "admin-input-disabled flex-center-between"
-        }
-      >
-        <label htmlFor="facilityImage">Pilih gambar baru</label>
-
-        <input
-          type="file"
-          id="facilityImage"
-          accept="image/jpeg"
-          className="opacity-0  h-full"
-          onChange={(e) => handleFileInput(e)}
-        />
-        <FontAwesomeIcon icon={faPlus} className="w-4 h-4" />
-      </div>
+      <input
+        disabled={!editable}
+        type="file"
+        id="facilityImage"
+        accept="image/jpeg"
+        className={editable ? "admin-input" : "admin-input-disabled"}
+        onChange={(e) => handleFileInput(e)}
+      />
+      {/* <FontAwesomeIcon icon={faPlus} className="w-4 h-4" /> */}
     </div>
   );
 };

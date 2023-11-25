@@ -22,7 +22,7 @@
   }
 
   .page-main-container {
-    @apply h-screen  w-full z-0 mx-auto relative bg-white pb-10 md:pb-0  pt-14;
+    @apply h-screen  w-full z-0 mx-auto relative bg-white pb-10 md:pb-0 pt-14;
   }
 
   /* ----------------------------- MODAL ---------------------------- */

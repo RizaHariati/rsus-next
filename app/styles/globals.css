@@ -16,10 +16,10 @@ body {
   }
 
   body {
-    @apply h-screen bg-greyLit text-greyDrk scroll-smooth scrollbar-none overflow-hidden;
+    @apply h-screen w-full bg-hoverBG text-greyDrk scroll-smooth scrollbar-none overflow-hidden;
   }
   mark {
-    @apply bg-white;
+    @apply bg-hoverBG;
   }
   h1 {
     @apply font-oswald text-[30px] md:text-[40px] tracking-[2px] uppercase font-normal shadow-black drop-shadow-sm;
@@ -40,7 +40,7 @@ body {
     @apply font-oswald text-[16px] tracking-[2px] font-medium text-left;
   }
   section {
-    @apply w-full h-fit bg-greyLit;
+    @apply w-full h-fit bg-hoverBG;
   }
   p {
     @apply font-nunito text-[16px]  font-normal tracking-normal text-greyDrk leading-5;
@@ -55,7 +55,7 @@ body {
     @apply h-[calc(100vh-56px)] w-full bg-hoverBG;
   }
   article {
-    @apply bg-greyLit;
+    @apply bg-hoverBG;
   }
   mark {
     @apply bg-white;
@@ -138,13 +138,13 @@ body {
     @apply btn-2-bold w-40 bg-greyMed2 border border-greyMed2  hover:bg-white text-white hover:text-greyMed1   rounded-sm transition-all;
   }
   .button-long {
-    @apply standard-border p-2 w-full text-left overflow-visible hover:bg-greyLit transition-all active:bg-greenUrip;
+    @apply standard-border p-2 w-full text-left overflow-visible hover:bg-hoverBG transition-all active:bg-greenUrip;
   }
   .footnote-1 {
     @apply font-nunito text-[12px] text-greyMed1 leading-4;
   }
   .form-disable {
-    @apply h-10 border flex-center-left p-2 bg-greyLit rounded-sm;
+    @apply h-10 border flex-center-left p-2 bg-hoverBG rounded-sm;
   }
   .form-regular {
     @apply h-8 border flex-center-left p-2  rounded-sm;

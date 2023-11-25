@@ -41,7 +41,7 @@ export default function RootLayout({
     <html lang="en">
       <body
         className={`${nunito.variable} ${oswald.variable}`}
-        style={{ touchAction: "auto" }}
+        style={{ touchAction: "none" }}
       >
         <AppProvider>
           <Navbar />

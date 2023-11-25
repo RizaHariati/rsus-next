@@ -84,11 +84,11 @@ const LabPaketHarga = ({
               <button
                 id={harga.type}
                 onClick={(e) => handleClick(e)}
-                className="text-left w-28 cursor-pointer flex-center-start p-2 gap-2"
+                className="text-left w-32 cursor-pointer flex-center-start p-2 gap-2"
               >
                 <FontAwesomeIcon
                   icon={findHarga?.type === harga.type ? faCircleDot : faCircle}
-                  className="bg-greenUrip text-white rounded-full overflow-hidden border border-greenUrip"
+                  className="w-3 h-3 bg-greenUrip text-white rounded-full overflow-hidden border border-greenUrip"
                 />
                 <p> {harga.type}</p>
               </button>
