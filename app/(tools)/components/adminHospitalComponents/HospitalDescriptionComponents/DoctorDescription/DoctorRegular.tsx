@@ -137,10 +137,10 @@ const DoctorRegular = ({
         }
         value={text}
         onChange={(e) => handleChange(e)}
-        onKeyUp={(e) => {
-          handleKeyDown(e);
-        }}
-        onBlur={() => registerValue()}
+        // onKeyUp={(e) => {
+        //   handleKeyDown(e);
+        // }}
+        // onBlur={() => registerValue()}
         className={
           editable && doctorFormValue.editable
             ? "admin-input"

@@ -32,6 +32,8 @@ const HospitalDescriptionComponent = (props: Props) => {
     e: React.MouseEvent<HTMLButtonElement, MouseEvent>
   ) => {
     e.stopPropagation();
+    e.preventDefault();
+    console.log("triggered");
     assignColumn(
       !column3
         ? openDescription(currentWindow)
