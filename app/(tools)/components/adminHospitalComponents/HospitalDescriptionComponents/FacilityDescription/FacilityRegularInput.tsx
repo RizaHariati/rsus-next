@@ -67,22 +67,22 @@ const FacilityRegularInput = ({
     }
     setText(e.target.value);
   };
-  const handleKeyDown = (
-    e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
-  ) => {
-    e.preventDefault();
-    const key = e.key;
+  // const handleKeyDown = (
+  //   e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
+  // ) => {
+  //   e.preventDefault();
+  //   const key = e.key;
 
-    if (key === "Escape") {
-      setText(facilityValues?.[facilityFormKey].value);
-    } else if (key === "Enter") {
-      if (!text) {
-        return toast.error("tidak boleh kosong");
-      } else {
-        registerValue();
-      }
-    }
-  };
+  //   if (key === "Escape") {
+  //     setText(facilityValues?.[facilityFormKey].value);
+  //   } else if (key === "Enter") {
+  //     if (!text) {
+  //       return toast.error("tidak boleh kosong");
+  //     } else {
+  //       registerValue();
+  //     }
+  //   }
+  // };
 
   if (facilityFormKey === "function" || facilityFormKey === "description") {
     return (
@@ -93,9 +93,9 @@ const FacilityRegularInput = ({
           maxLength={500}
           value={text}
           onChange={(e) => handleChange(e)}
-          onKeyUp={(e) => {
-            handleKeyDown(e);
-          }}
+          // onKeyUp={(e) => {
+          //   handleKeyDown(e);
+          // }}
           onBlur={() => registerValue()}
           className={
             editable && facilityFormValue.editable

@@ -81,8 +81,8 @@ const HospitalDescriptionComponent = (props: Props) => {
           onClick={() => handleDescriptionButton()}
           className={
             !column3
-              ? "column-navbar-main-btn-rotate"
-              : "column-navbar-main-btn text-xs"
+              ? "column-navbar-main-btn-rotate bg-redBase"
+              : "column-navbar-main-btn text-xs bg-fuchsia-600"
           }
         >
           {showDetail.column_open === "all" ? columnTitle : showDetail.name}
@@ -90,7 +90,10 @@ const HospitalDescriptionComponent = (props: Props) => {
         {column3 && <PatientEditDelete />}
       </div>
       {column3 && (
-        <div className="h-[calc(100vh-112px)] w-full">
+        <div
+          className="h-[calc(100vh-112px)] w-full"
+          onClick={() => console.log("")}
+        >
           {showDetail.key === "doctor" && <DoctorDescription />}
           {showDetail.key === "facility" && <FacilityDescription />}
           {showDetail.key === "lab_satuan" && <LabSatuanDescription />}
