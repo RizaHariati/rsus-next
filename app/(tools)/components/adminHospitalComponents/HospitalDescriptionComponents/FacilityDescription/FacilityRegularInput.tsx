@@ -114,9 +114,9 @@ const FacilityRegularInput = ({
         disabled={!editable || !facilityFormValue.editable}
         value={text}
         onChange={(e) => handleChange(e)}
-        onKeyUp={(e) => {
-          handleKeyDown(e);
-        }}
+        // onKeyUp={(e) => {
+        //   handleKeyDown(e);
+        // }}
         onBlur={() => registerValue()}
         className={
           editable && facilityFormValue.editable
