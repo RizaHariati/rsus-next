@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeDescription, openDescription } from "../../column/columnCodes";
 import PatientEditDelete from "../adminpatientComponents/GeneralComponents/PatientEditDelete";
@@ -37,7 +37,7 @@ const HospitalDescriptionComponent = (props: Props) => {
         : closeDescription(currentWindow)
     );
   };
-  useEffect(() => {
+  const handleSelected = useCallback(() => {
     switch (showDetail.key) {
       case "doctor":
         setColumnTitle(
@@ -60,8 +60,6 @@ const HospitalDescriptionComponent = (props: Props) => {
       case "inpatient":
         setColumnTitle(selectedInpatient?.kelas || "loading...");
     }
-
-    // eslint-disable-next-line
   }, [
     selectedDoctor,
     selectedFacility,
@@ -70,6 +68,11 @@ const HospitalDescriptionComponent = (props: Props) => {
     showDetail,
     selectedInpatient,
   ]);
+
+  useEffect(() => {
+    handleSelected();
+    // eslint-disable-next-line
+  }, [handleSelected]);
   return (
     <div className={!column3 ? "column-container-rotate" : "column-container"}>
       <div

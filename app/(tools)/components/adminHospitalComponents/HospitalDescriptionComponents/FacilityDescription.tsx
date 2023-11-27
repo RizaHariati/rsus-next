@@ -15,7 +15,7 @@ type Props = {};
 
 const FacilityDescription = (props: Props) => {
   const {
-    state: { columnAssignment, editable },
+    state: { editable },
     hospitalState: { selectedFacility, dataFacility },
   } = useGlobalContext();
 

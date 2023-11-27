@@ -232,12 +232,9 @@ export const AppProvider = ({ children }: Props) => {
       payload: { columnAssignment },
     });
   };
-
-  const getWindow = useCallback(() => {
-    (currentWindow: number) => {
-      dispatch({ type: "SET_WINDOW", payload: { currentWindow } });
-    };
-  }, []);
+  const getWindow = (currentWindow: number) => {
+    dispatch({ type: "SET_WINDOW", payload: { currentWindow } });
+  };
   const settingEditable = (editable: boolean) => {
     dispatch({ type: "SET_EDITABLE", payload: { editable } });
   };

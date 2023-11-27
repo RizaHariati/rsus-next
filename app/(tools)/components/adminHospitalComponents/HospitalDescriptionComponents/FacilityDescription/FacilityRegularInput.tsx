@@ -21,7 +21,6 @@ const FacilityRegularInput = ({
 }: Props) => {
   const {
     state: { editable },
-    hospitalState: { dataFacility },
   } = useGlobalContext();
 
   const [text, setText] = useState(facilityValues?.[facilityFormKey].value);
@@ -57,8 +56,6 @@ const FacilityRegularInput = ({
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
-    // console.log("triggered");
-    return;
     e.preventDefault();
     const num = parseInt(e.target.value);
     if (facilityFormKey === "price") {
@@ -69,22 +66,6 @@ const FacilityRegularInput = ({
     }
     setText(e.target.value);
   };
-  // const handleKeyDown = (
-  //   e: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>
-  // ) => {
-  //   e.preventDefault();
-  //   const key = e.key;
-
-  //   if (key === "Escape") {
-  //     setText(facilityValues?.[facilityFormKey].value);
-  //   } else if (key === "Enter") {
-  //     if (!text) {
-  //       return toast.error("tidak boleh kosong");
-  //     } else {
-  //       registerValue();
-  //     }
-  //   }
-  // };
 
   if (facilityFormKey === "function" || facilityFormKey === "description") {
     return (
@@ -96,10 +77,7 @@ const FacilityRegularInput = ({
           maxLength={500}
           value={text}
           onChange={(e) => handleChange(e)}
-          // onKeyUp={(e) => {
-          //   handleKeyDown(e);
-          // }}
-          // onBlur={() => registerValue()}
+          onBlur={() => registerValue()}
           className={
             editable && facilityFormValue.editable
               ? "admin-input h-32 transition-all overflow-hidden"
@@ -117,18 +95,7 @@ const FacilityRegularInput = ({
         type={facilityFormKey === "price" ? "number" : "string"}
         disabled={!editable || !facilityFormValue.editable}
         value={text}
-        onChange={(e) => {
-          console.log("why");
-          e.stopPropagation();
-          e.preventDefault();
-        }}
-        // onChange={(e) => handleChange(e)}
-        onKeyUp={(e) => {
-          console.log("why");
-          e.stopPropagation();
-          e.preventDefault();
-          // handleKeyDown(e);
-        }}
+        onChange={(e) => handleChange(e)}
         onBlur={() => registerValue()}
         className={
           editable && facilityFormValue.editable
