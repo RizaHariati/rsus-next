@@ -6,6 +6,8 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import useAssignColumn from "@/app/(tools)/utils/useAssignColumn";
 import React, { useEffect, useState } from "react";
 import { hospitalBtnDetail } from "../../(tools)/column/sidebarColumnKeys";
+1;
+import { isMobile, isTablet, isDesktop } from "react-device-detect";
 
 type Props = {};
 
@@ -13,13 +15,17 @@ const AdminHospitalPage = (props: Props) => {
   const {
     handleShowDetail,
     showDetail,
+    state: { currentWindow },
     hospitalState: { dataDoctor, dataFacility },
   } = useGlobalContext();
 
-  useAssignColumn();
   const [showMidbar, setShowMidbar] = useState(
     showDetail.column_open === "all"
   );
+
+  if (!isMobile) {
+    useAssignColumn();
+  }
 
   useEffect(() => {
     handleShowDetail(hospitalBtnDetail[0]);

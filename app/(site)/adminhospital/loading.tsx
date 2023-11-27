@@ -15,6 +15,7 @@ const LoadingPage = (props: Props) => {
   const {
     handleShowDetail,
     showDetail,
+
     hospitalState: { dataDoctor, dataFacility },
   } = useGlobalContext();
   useAssignColumn();

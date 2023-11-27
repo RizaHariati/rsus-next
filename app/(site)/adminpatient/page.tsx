@@ -10,6 +10,7 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { ScheduledType } from "@/app/(tools)/patientTypes";
 import { getTujuan } from "@/app/(tools)/utils/patientUtils/getTujuan";
 import { patientBtnDetail } from "../../(tools)/column/sidebarColumnKeys";
+import { isMobile } from "react-device-detect";
 
 type Props = {};
 
@@ -25,7 +26,9 @@ const AdminPatientPage = (props: Props) => {
   );
   const Router = useRouter();
 
-  useAssignColumn();
+  if (!isMobile) {
+    useAssignColumn();
+  }
   useEffect(() => {
     handleShowDetail(patientBtnDetail[0]);
     if (!patient || !patient.medical_record_number) {
