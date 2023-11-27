@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -6,17 +7,19 @@ import {
   hospitalBtnDetail,
 } from "@/app/(tools)/column/sidebarColumnKeys";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
+import { closeSideBar, openSidebar } from "@/app/(tools)/column/columnCodes";
+import useAssignColumn from "@/app/(tools)/utils/useAssignColumn";
 
 type Props = {};
 
 const HospitalSidebarComponentLoading = (props: Props) => {
   const {
     showDetail,
-
     state: {
       columnAssignment: { column1, column3 },
     },
   } = useGlobalContext();
+
   return (
     <div
       className={

@@ -37,7 +37,9 @@ const nextConfig = {
   // experimental: {
   //   serverActions: true,
   // },
-
+  compiler: {
+    styledComponents: true,
+  },
   crossOrigin: "use-credentials",
   images:
     process.env.NODE_ENV === "production"

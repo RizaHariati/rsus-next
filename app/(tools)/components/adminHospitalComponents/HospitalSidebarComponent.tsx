@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeSideBar, openSidebar } from "../../column/columnCodes";

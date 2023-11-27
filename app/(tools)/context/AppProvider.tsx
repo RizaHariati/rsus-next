@@ -1,6 +1,13 @@
 "use client";
 
-import { useContext, useReducer, Dispatch, useState, useEffect } from "react";
+import {
+  useContext,
+  useReducer,
+  Dispatch,
+  useState,
+  useEffect,
+  useCallback,
+} from "react";
 import { AppContext } from "./AppContext";
 import { initialState, maxWidth, minWidth } from "./initialState";
 import { appReducer } from "../reducers/appReducer";
@@ -85,9 +92,10 @@ export const AppProvider = ({ children }: Props) => {
           });
         }
       );
+      if (typeof window !== "object" || typeof window === "undefined") return;
 
-      if (typeof window !== "object") return;
       const windowWidth = window!.innerWidth!;
+
       if (windowWidth < minWidth) {
         assignColumn(OCC);
       } else if (windowWidth >= minWidth && windowWidth <= maxWidth) {
@@ -225,10 +233,11 @@ export const AppProvider = ({ children }: Props) => {
     });
   };
 
-  const getWindow = (currentWindow: number) => {
-    dispatch({ type: "SET_WINDOW", payload: { currentWindow } });
-  };
-
+  const getWindow = useCallback(() => {
+    (currentWindow: number) => {
+      dispatch({ type: "SET_WINDOW", payload: { currentWindow } });
+    };
+  }, []);
   const settingEditable = (editable: boolean) => {
     dispatch({ type: "SET_EDITABLE", payload: { editable } });
   };

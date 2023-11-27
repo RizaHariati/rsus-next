@@ -11,7 +11,6 @@ type Props = {};
 
 const AdminHospitalPage = (props: Props) => {
   const {
-    loadingPatientScheduleDestination,
     handleShowDetail,
     showDetail,
     hospitalState: { dataDoctor, dataFacility },

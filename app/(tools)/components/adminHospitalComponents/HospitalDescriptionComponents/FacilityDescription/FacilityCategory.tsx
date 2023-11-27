@@ -57,7 +57,7 @@ const FacilityCategory = ({
                 value={item}
                 checked={Values[FormKey].value === item}
                 className=" cursor-pointer"
-                onClick={() =>
+                onChange={() =>
                   handleChangeValue([{ newValue: item, key: FormKey }])
                 }
               />

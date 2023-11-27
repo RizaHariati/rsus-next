@@ -6,38 +6,49 @@ import { maxWidth, minWidth } from "../context/initialState";
 type Props = {};
 
 const useAssignColumn = () => {
-  const { assignColumn, getWindow } = useGlobalContext();
-  // if (typeof window === "undefined" && typeof window !== "object") return;
+  if (typeof window !== "object" || typeof window === "undefined")
+    return "noClue";
+  else {
+    const {
+      assignColumn,
+      getWindow,
+      state: { currentWindow },
+    } = useGlobalContext();
+    // if (typeof window === "undefined" && typeof window !== "object") return;
+    const windowWidth = window!.innerWidth!;
+    if (currentWindow === windowWidth) return;
+    useEffect(() => {
+      // only execute all the code below in client side
+      // Handler to call on window resize
 
-  useEffect(() => {
-    // only execute all the code below in client side
-    // Handler to call on window resize
+      const handleResize = () => {
+        if (typeof window !== "object" || typeof window === "undefined") {
+          return;
+        }
+        // Set window width/height to state
 
-    function handleResize() {
-      if (typeof window === "undefined" && typeof window !== "object") return;
-      // Set window width/height to state
-      const windowWidth = window!.innerWidth!;
-      getWindow(windowWidth);
-      console.log(getWindow(windowWidth));
-      // if (windowWidth < minWidth) {
-      //   assignColumn(OCC);
-      // } else if (windowWidth >= minWidth && windowWidth <= maxWidth) {
-      //   assignColumn(OCO);
-      // } else {
-      //   assignColumn(OOO);
-      // }
-    }
+        getWindow(windowWidth);
 
-    // Add event listener
-    window.addEventListener("resize", handleResize);
+        if (windowWidth < minWidth) {
+          assignColumn(OCC);
+        } else if (windowWidth >= minWidth && windowWidth <= maxWidth) {
+          assignColumn(OCO);
+        } else {
+          assignColumn(OOO);
+        }
+      };
 
-    // Call handler right away so state gets updated with initial window size
-    handleResize();
+      // Add event listener
+      window.addEventListener("resize", handleResize);
 
-    // Remove event listener on cleanup
-    return () => window.removeEventListener("resize", handleResize);
-    // eslint-disable-next-line
-  }, []); // Empty array ensures that effect is only run on mount
+      // Call handler right away so state gets updated with initial window size
+      handleResize();
+
+      // Remove event listener on cleanup
+      return () => window.removeEventListener("resize", handleResize);
+      // eslint-disable-next-line
+    }, [window]); // Empty array ensures that effect is only run on mount
+  }
   return "nama";
 };
 
