@@ -67,7 +67,7 @@ const EditListInput = ({
       }
       handleChangeValue([{ newValue: finalList, key: FormKey }]);
     },
-    [list, setList]
+    [list, setList, FormKey, dataList, editable, handleChangeValue]
   );
   const closeModal = () => {
     setList(inputList);

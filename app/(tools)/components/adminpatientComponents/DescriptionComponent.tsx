@@ -48,9 +48,7 @@ const DescriptionComponent = (props: Props) => {
       >
         <button
           type="button"
-          onClick={() =>
-            useMemo(() => handleDescriptionButton(), [currentWindow, column3])
-          }
+          onClick={() => () => handleDescriptionButton()}
           className={
             !column3
               ? "column-navbar-main-btn-rotate"
