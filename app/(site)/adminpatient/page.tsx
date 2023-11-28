@@ -26,9 +26,8 @@ const AdminPatientPage = (props: Props) => {
   );
   const Router = useRouter();
 
-  if (!isMobile) {
-    useAssignColumn();
-  }
+  useAssignColumn();
+
   useEffect(() => {
     handleShowDetail(patientBtnDetail[0]);
     if (!patient || !patient.medical_record_number) {

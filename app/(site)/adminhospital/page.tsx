@@ -23,9 +23,7 @@ const AdminHospitalPage = (props: Props) => {
     showDetail.column_open === "all"
   );
 
-  if (!isMobile) {
-    useAssignColumn();
-  }
+  useAssignColumn();
 
   useEffect(() => {
     handleShowDetail(hospitalBtnDetail[0]);

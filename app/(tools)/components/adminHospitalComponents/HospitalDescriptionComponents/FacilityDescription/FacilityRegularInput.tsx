@@ -27,7 +27,7 @@ const FacilityRegularInput = ({
 
   useEffect(() => {
     setText(facilityValues?.[facilityFormKey].value);
-  }, [facilityValues]);
+  }, [facilityValues, facilityFormKey]);
 
   const registerValue = () => {
     if (!text) {
