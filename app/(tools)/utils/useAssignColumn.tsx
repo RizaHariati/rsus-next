@@ -7,7 +7,6 @@ import { isMobile } from "react-device-detect";
 type Props = {};
 
 const useAssignColumn = () => {
-  console.log("triggered");
   const { assignColumn, getWindow } = useGlobalContext();
   // if (typeof window === "undefined" && typeof window !== "object") return;
 

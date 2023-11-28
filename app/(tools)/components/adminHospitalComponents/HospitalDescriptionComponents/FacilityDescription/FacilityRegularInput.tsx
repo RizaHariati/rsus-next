@@ -80,7 +80,7 @@ const FacilityRegularInput = ({
           onBlur={() => registerValue()}
           className={
             editable && facilityFormValue.editable
-              ? "admin-input h-32 transition-all overflow-hidden"
+              ? "admin-input h-fit transition-all overflow-y-scroll"
               : "admin-input-disabled transition-all overflow-hidden"
           }
         />

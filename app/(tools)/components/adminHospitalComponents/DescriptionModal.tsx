@@ -59,11 +59,15 @@ const ModalContent = ({
         <FontAwesomeIcon icon={faClose} />
       </button>
       <h3 className="modal-title">Daftar Item Tambahan</h3>
-      <div className="w-full  grid grid-cols-1 md:grid-cols-3 gap-3 md:max-h-80 md:custom-scrollbar">
+      <div className="w-full  grid grid-cols-1 md:grid-cols-3 gap-3 md:max-h-80 md:custom-scrollbar bgp">
         {dataList.map((itemData, index) => {
-          const findItem = list.find((item) => item === itemData.title);
+          const findItem = list.find(
+            (item) => item.toLowerCase() === itemData.title.toLowerCase()
+          );
+          console.log(findItem);
           return (
             <button
+              type="button"
               onClick={() => addRemoveListItem(itemData.title)}
               key={index}
               className={
@@ -79,6 +83,7 @@ const ModalContent = ({
       </div>
       <div className=" w-full flex items-center justify-end gap-3 pt-2">
         <button
+          type="button"
           className="button-greenUrip"
           onClick={() => {
             closeModal();

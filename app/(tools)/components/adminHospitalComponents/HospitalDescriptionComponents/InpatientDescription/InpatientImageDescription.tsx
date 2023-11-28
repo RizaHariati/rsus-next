@@ -76,6 +76,7 @@ const InpatientImageDescription = ({
                     <input
                       type="radio"
                       value={img}
+                      onChange={(e) => e.preventDefault()}
                       checked={img === inpatientValues?.["img"]?.value}
                     />
                   </div>

@@ -44,8 +44,8 @@ const FacilityCategory = ({
       <div
         className={
           editable
-            ? "grid grid-cols-3 mt-2 standard-border p-2 bg-transparent h-28 overflow-hidden transition-all"
-            : "grid grid-cols-3 mt-2 standard-border p-0 px-2 border-none bg-transparent h-0 overflow-hidden  transition-all"
+            ? "grid grid-cols-2 md:grid-cols-3 mt-2 standard-border p-2 bg-transparent h-32 overflow-hidden transition-all"
+            : "grid grid-cols-2 md:grid-cols-3 mt-2 standard-border p-0 px-2 border-none bg-transparent h-0 overflow-hidden  transition-all"
         }
       >
         {categoryList.map((item, index) => {

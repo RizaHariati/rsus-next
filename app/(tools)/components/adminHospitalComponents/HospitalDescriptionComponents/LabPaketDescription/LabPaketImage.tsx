@@ -22,7 +22,6 @@ const LabPaketImage = ({
 }: Props) => {
   const {
     state: { editable },
-    hospitalState: { dataPaket },
   } = useGlobalContext();
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.preventDefault);

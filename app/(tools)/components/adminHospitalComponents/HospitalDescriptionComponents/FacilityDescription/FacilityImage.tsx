@@ -58,7 +58,7 @@ const FacilityImage = ({
         type="file"
         id="facilityImage"
         accept="image/jpeg"
-        className={editable ? "admin-input" : "admin-input-disabled"}
+        className={editable ? "admin-input py-1" : "admin-input-disabled py-1"}
         onChange={(e) => handleFileInput(e)}
       />
       {/* <FontAwesomeIcon icon={faPlus} className="w-4 h-4" /> */}

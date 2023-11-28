@@ -109,6 +109,7 @@ const InpatientDescription = (props: Props) => {
                 <div key={index} className="w-full">
                   <small className="">{inpatientFormValue.title}</small>
                   <input
+                    onChange={(e) => e.preventDefault()}
                     value={inpatientDetail.toString()}
                     className={
                       editable ? "admin-input" : "admin-input-disabled"

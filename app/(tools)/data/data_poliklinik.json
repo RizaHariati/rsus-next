@@ -160,5 +160,21 @@
             "Dokter umum adalah seorang dokter yang berfokus untuk menangani gejala dan penyakit pada pasien secara umum. Dokter ini juga dikenal sebagai dokter layanan tingkat pertama yang berperan dalam memberikan pencegahan, diagnosis, penanganan awal, dan rujukan ke dokter spesialis jika diperlukan",
             "dokter umum juga memegang peranan penting dalam memberikan perawatan medis awal dan berkelanjutan kepada pasien dari segala kelompok usia."
         ]
+    },
+    {
+        "id": "poli_020",
+        "title": "Spesialis Bedah Anak",
+        "img": "Child",
+        "description": [
+            "Dokter bedah anak adalah dokter spesialis yang memiliki keahlian khusus dalam melakukan tindakan pembedahan atau operasi pada pasien anak-anak, termasuk janin, bayi yang terlahir prematur atau cukup bulan, balita, hingga remaja usia 18 tahun. Dokter subspesialis bedah ini memiliki gelar Sp.BA."
+        ]
+    },
+    {
+        "id": "poli_020",
+        "title": "Gigi",
+        "img": "bedahmulut",
+        "description": [
+            "Dokter gigi merupakan seorang profesional terlatih yang memiliki kemampuan untuk membantu dalam merawat gigi dan mulut. Tugas utama dokter gigi adalah mencegah, mendiagnosis, dan mengobati berbagai masalah kesehatan mulut dan gigi."
+        ]
     }
 ]

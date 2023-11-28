@@ -99,7 +99,6 @@ const LabPaketHarga = ({
                 }}
                 className="w-full h-full bg-white px-2 shadow-inner border-l border-greyBorder"
               />
-              ``
             </div>
           );
         })}

@@ -7,6 +7,7 @@ import { LabPaketInitialValueType } from "@/app/(tools)/HospitalTypes";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import LabPaketHarga from "./LabPaketDescription/LabPaketHarga";
 import EditListInput from "../EditListInput";
+import LabPaketInputRegular from "./LabPaketDescription/LabPaketInputRegular";
 type Props = {};
 
 const LabPaketDescription = (props: Props) => {
@@ -103,17 +104,12 @@ const LabPaketDescription = (props: Props) => {
                   );
                 }
                 return (
-                  <div key={index} className="w-full">
-                    <small className="">{labPaketFormValue.title}</small>
-                    <input
-                      value={labPaketDetail.toString()}
-                      className={
-                        editable && labPaketFormValue.editable
-                          ? "admin-input"
-                          : "admin-input-disabled"
-                      }
-                    />
-                  </div>
+                  <LabPaketInputRegular
+                    key={index}
+                    labPaketFormKey={labPaketFormKey}
+                    labPaketFormValue={labPaketFormValue}
+                    labPaketValues={labPaketValues}
+                  />
                 );
               }
             )}

@@ -38,6 +38,7 @@ const MidbarComponent = (props: Props) => {
         }
       >
         <button
+          type="button"
           onClick={() => handleMidbarButton()}
           className={
             !column2

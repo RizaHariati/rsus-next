@@ -5,7 +5,7 @@ import {
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import DescriptionModal from "./DescriptionModal";
 import { toast } from "react-toastify";
 
@@ -34,40 +34,43 @@ const EditListInput = ({
     setList(inputList);
   }, [inputList, editable!]);
 
-  const addRemoveListItem = (itemList: string) => {
-    if (!editable) return;
-    if (list.length < 2) return toast.error("Pilihan tidak boleh kosong");
-    let finalList: any[] = [];
-    const findList = list.find((item) => item === itemList);
+  const addRemoveListItem = useCallback(
+    (itemList: string) => {
+      if (!editable) return;
+      if (list.length < 2) return toast.error("Pilihan tidak boleh kosong");
+      let finalList: any[] = [];
+      const findList = list.find((item) => item === itemList);
 
-    if (!findList) {
-      const newList = [...list, itemList];
+      if (!findList) {
+        const newList = [...list, itemList];
 
-      finalList = newList.map((item) => {
-        const findItem = dataList.find(
-          (itemdata) => itemdata.title.toLowerCase() === item.toLowerCase()
-        );
-        if (findItem) {
-          return findItem;
-        }
-      });
-      setList(newList);
-    } else {
-      const newList = list.filter((item: string) => item !== itemList);
-      finalList = newList.map((item) => {
-        const findItem = dataList.find(
-          (itemdata) => itemdata.title.toLowerCase() === item.toLowerCase()
-        );
-        if (findItem) {
-          return findItem;
-        }
-      });
-      setList(newList);
-    }
-    handleChangeValue([{ newValue: finalList, key: FormKey }]);
-  };
-
+        finalList = newList.map((item) => {
+          const findItem = dataList.find(
+            (itemdata) => itemdata.title.toLowerCase() === item.toLowerCase()
+          );
+          if (findItem) {
+            return findItem;
+          }
+        });
+        setList(newList);
+      } else {
+        const newList = list.filter((item: string) => item !== itemList);
+        finalList = newList.map((item) => {
+          const findItem = dataList.find(
+            (itemdata) => itemdata.title.toLowerCase() === item.toLowerCase()
+          );
+          if (findItem) {
+            return findItem;
+          }
+        });
+        setList(newList);
+      }
+      handleChangeValue([{ newValue: finalList, key: FormKey }]);
+    },
+    [list, setList]
+  );
   const closeModal = () => {
+    setList(inputList);
     setShowModal(false);
   };
 
@@ -94,6 +97,7 @@ const EditListInput = ({
             >
               <p className="text-sm leading-3">{itemList}</p>
               <button
+                type="button"
                 onClick={() => addRemoveListItem(itemList)}
                 className="standard-border h-6 w-6"
               >

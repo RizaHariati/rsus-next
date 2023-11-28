@@ -61,6 +61,7 @@ const SidebarComponent = (props: Props) => {
             return (
               <div key={index} className="sidebar-btn-container">
                 <button
+                  type="button"
                   className={
                     item.key === showDetail.key
                       ? "sidebar-btn-focus group"

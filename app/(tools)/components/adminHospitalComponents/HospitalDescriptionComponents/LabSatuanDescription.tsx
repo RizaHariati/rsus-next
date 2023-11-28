@@ -32,6 +32,7 @@ const LabSatuanDescription = (props: Props) => {
               <small className="">{labSatuanValue.title}</small>
               <input
                 value={labSatuanDetail.toString()}
+                onChange={(e) => e.preventDefault()}
                 className={editable ? "admin-input" : "admin-input-disabled"}
               />
             </div>

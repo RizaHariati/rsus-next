@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeDescription, openDescription } from "../../column/columnCodes";
 import PatientEditDelete from "./GeneralComponents/PatientEditDelete";
@@ -21,14 +21,12 @@ const DescriptionComponent = (props: Props) => {
 
   const [columnTitle, setColumnTitle] = useState<string>("detailed part");
   const handleDescriptionButton = () => {
-    console.log("description triggered");
     assignColumn(
       !column3
         ? openDescription(currentWindow)
         : closeDescription(currentWindow)
     );
   };
-
   useEffect(() => {
     if (showDetail.key === "scheduled_appointments") {
       setColumnTitle(
@@ -49,7 +47,10 @@ const DescriptionComponent = (props: Props) => {
         }
       >
         <button
-          onClick={() => handleDescriptionButton()}
+          type="button"
+          onClick={() =>
+            useMemo(() => handleDescriptionButton(), [currentWindow, column3])
+          }
           className={
             !column3
               ? "column-navbar-main-btn-rotate"
