@@ -1,6 +1,6 @@
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import React from "react";
-import PatientEditDelete from "../../adminpatientComponents/GeneralComponents/PatientEditDelete";
+import PatientEditDelete from "../../GeneralComponents/PatientEditDelete";
 import DoctorDescriptionLoading from "./DoctorDescriptionLoading";
 
 type Props = {};

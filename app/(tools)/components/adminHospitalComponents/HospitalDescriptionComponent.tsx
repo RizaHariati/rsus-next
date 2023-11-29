@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeDescription, openDescription } from "../../column/columnCodes";
-import PatientEditDelete from "../adminpatientComponents/GeneralComponents/PatientEditDelete";
+import PatientEditDelete from "../GeneralComponents/PatientEditDelete";
 import DoctorDescription from "./HospitalDescriptionComponents/DoctorDescription";
 import FacilityDescription from "./HospitalDescriptionComponents/FacilityDescription";
 import LabSatuanDescription from "./HospitalDescriptionComponents/LabSatuanDescription";
@@ -28,9 +28,7 @@ const HospitalDescriptionComponent = (props: Props) => {
   } = useGlobalContext();
   const [columnTitle, setColumnTitle] = useState<string>("detailed part");
 
-  const handleDescriptionButton = (
-    e: React.MouseEvent<HTMLButtonElement, MouseEvent>
-  ) => {
+  const handleDescriptionButton = () => {
     assignColumn(
       !column3
         ? openDescription(currentWindow)
@@ -73,8 +71,9 @@ const HospitalDescriptionComponent = (props: Props) => {
     handleSelected();
     // eslint-disable-next-line
   }, [handleSelected]);
+  console.log(columnTitle.length);
   return (
-    <div className={!column3 ? "column-container-rotate" : "column-container"}>
+    <div className={!column3 ? "column-container-rotate" : "column-container "}>
       <div
         className={
           column3
@@ -84,11 +83,13 @@ const HospitalDescriptionComponent = (props: Props) => {
       >
         <button
           id="descriptionTitleBtn"
-          onClick={(e) => handleDescriptionButton(e)}
+          onClick={() => handleDescriptionButton()}
           className={
             !column3
-              ? "column-navbar-main-btn-rotate "
-              : "column-navbar-main-btn text-xs "
+              ? "column-navbar-main-btn-rotate  "
+              : columnTitle.length > 25
+              ? "column-navbar-main-btn text-xs "
+              : "column-navbar-main-btn text-base "
           }
         >
           {showDetail.column_open === "all" ? columnTitle : showDetail.name}

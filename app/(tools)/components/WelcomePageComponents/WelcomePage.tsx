@@ -31,24 +31,30 @@ function WelcomePage(props: Props) {
               handleShowDetail(patientBtnDetail[0]);
               assignColumn(initialColumn);
             }}
-            className="btn-base"
+            className="btn-base w-32 md:w-full h-20 md:h-12"
           >
             Administrasi Pasien
           </button>
           <button
             onClick={() => {
-              handleShowDetail(hospitalBtnDetail[0]);
-              assignColumn(initialColumn);
-              new Promise((resolve) => {
+              const promise1 = new Promise((resolve) => {
+                resolve(handleShowDetail(hospitalBtnDetail[0]));
+              });
+              const promise2 = new Promise((resolve) => {
+                resolve(assignColumn(initialColumn));
+              });
+              const promise3 = new Promise((resolve) => {
                 resolve(selectedDoctor);
-              }).then((res) => {
+              });
+
+              Promise.all([promise1, promise2, promise3]).then((res) => {
                 if (res) {
                   router.push("/adminhospital/");
                   return res;
                 }
               });
             }}
-            className="btn-base"
+            className="btn-base w-32 md:w-full h-20 md:h-12"
           >
             Administrasi Rumah Sakit
           </button>

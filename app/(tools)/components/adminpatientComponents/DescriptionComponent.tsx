@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeDescription, openDescription } from "../../column/columnCodes";
-import PatientEditDelete from "./GeneralComponents/PatientEditDelete";
+import PatientEditDelete from "../GeneralComponents/PatientEditDelete";
 import PatientDescription from "./DescriptionComponents/PatientDescription";
 import ScheduleDescription from "./DescriptionComponents/ScheduleDescription";
 import MedicalRecordDescription from "./DescriptionComponents/MedicalRecordDescription";
@@ -38,21 +38,22 @@ const DescriptionComponent = (props: Props) => {
   }, [selectedScheduleAppointment]);
 
   return (
-    <div className={!column3 ? "column-container-rotate" : "column-container"}>
+    <div className={!column3 ? "column-container-rotate" : "column-container "}>
       <div
         className={
           column3
-            ? "column-navbar-container"
+            ? "column-navbar-container "
             : "column-navbar-container-rotate "
         }
       >
         <button
           type="button"
-          onClick={() => () => handleDescriptionButton()}
+          id="patientDescriptionTitleBtn"
+          onClick={() => handleDescriptionButton()}
           className={
             !column3
               ? "column-navbar-main-btn-rotate"
-              : "column-navbar-main-btn"
+              : "column-navbar-main-btn "
           }
         >
           {showDetail.column_open === "all" ? columnTitle : showDetail.name}

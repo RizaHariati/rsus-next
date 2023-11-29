@@ -239,6 +239,7 @@ export const AppProvider = ({ children }: Props) => {
   const settingEditable = (editable: boolean) => {
     dispatch({ type: "SET_EDITABLE", payload: { editable } });
   };
+
   const value = {
     hospitalState,
     selectDoctor,
