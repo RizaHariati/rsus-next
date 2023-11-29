@@ -1,17 +1,9 @@
-import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import React from "react";
 import DoctorMenuLoading from "./DoctorMenuLoading";
 
-type Props = {};
+type Props = { column2: boolean; column3: boolean };
 
-const HospitalMidbarComponentLoading = (props: Props) => {
-  const {
-    showDetail,
-    state: {
-      columnAssignment: { column2, column3 },
-    },
-  } = useGlobalContext();
-
+const HospitalMidbarComponentLoading = ({ column2, column3 }: Props) => {
   return (
     <div
       className={
@@ -36,14 +28,10 @@ const HospitalMidbarComponentLoading = (props: Props) => {
               : "column-navbar-main-btn"
           }
         >
-          {showDetail.column_open === "all"
-            ? showDetail.name
-            : "part of patient"}
+          "part of patient"
         </button>
       </div>
-      {column2 && (
-        <div>{showDetail.key === "doctor" && <DoctorMenuLoading />}</div>
-      )}
+      {column2 && <div>{<DoctorMenuLoading />}</div>}
     </div>
   );
 };

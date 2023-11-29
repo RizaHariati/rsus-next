@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
@@ -6,20 +5,15 @@ import {
   SidebarBtnType,
   hospitalBtnDetail,
 } from "@/app/(tools)/column/sidebarColumnKeys";
-import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { closeSideBar, openSidebar } from "@/app/(tools)/column/columnCodes";
-import useAssignColumn from "@/app/(tools)/utils/useAssignColumn";
+import { initialColumn, maxWidth } from "@/app/(tools)/context/initialState";
+import { ColumnAssignmentType } from "@/app/(tools)/types";
 
-type Props = {};
+type Props = {
+  column1: boolean;
+  column3: boolean;
+};
 
-const HospitalSidebarComponentLoading = (props: Props) => {
-  const {
-    showDetail,
-    state: {
-      columnAssignment: { column1, column3 },
-    },
-  } = useGlobalContext();
-
+const HospitalSidebarComponentLoading = ({ column1, column3 }: Props) => {
   return (
     <div
       className={
@@ -56,14 +50,14 @@ const HospitalSidebarComponentLoading = (props: Props) => {
                 {/* ---------------- this button is submenu buttons ---------------- */}
                 <button
                   className={
-                    item.key === showDetail.key
+                    item.key === "doctor"
                       ? "sidebar-btn-focus group"
                       : "sidebar-btn group"
                   }
                 >
                   <p
                     className={
-                      item.key === showDetail.key
+                      item.key === "doctor"
                         ? "sidebar-btn-text text-white"
                         : "sidebar-btn-text"
                     }
@@ -73,7 +67,7 @@ const HospitalSidebarComponentLoading = (props: Props) => {
                   <FontAwesomeIcon
                     icon={faChevronRight}
                     className={
-                      item.key === showDetail.key
+                      item.key === "doctor"
                         ? "sidebar-btn-icon text-white"
                         : "sidebar-btn-icon"
                     }

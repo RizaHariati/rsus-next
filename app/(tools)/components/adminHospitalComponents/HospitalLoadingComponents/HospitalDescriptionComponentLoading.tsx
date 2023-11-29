@@ -1,18 +1,12 @@
-import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import React from "react";
-import PatientEditDelete from "../../GeneralComponents/PatientEditDelete";
 import DoctorDescriptionLoading from "./DoctorDescriptionLoading";
+import PatientEditDeleteLoading from "../../GeneralComponents/PatientEditDeleteLoading";
 
-type Props = {};
+type Props = {
+  column3: boolean;
+};
 
-const HospitalDescriptionComponentLoading = (props: Props) => {
-  const {
-    showDetail,
-    state: {
-      columnAssignment: { column3 },
-    },
-  } = useGlobalContext();
-
+const HospitalDescriptionComponentLoading = ({ column3 }: Props) => {
   return (
     <div className={!column3 ? "column-container-rotate" : "column-container"}>
       <div
@@ -31,11 +25,11 @@ const HospitalDescriptionComponentLoading = (props: Props) => {
         >
           detailed part
         </button>
-        {column3 && <PatientEditDelete />}
+        {column3 && <PatientEditDeleteLoading />}
       </div>
       {column3 && (
-        <div className="h-[calc(100vh-112px)] w-full">
-          {showDetail.key === "doctor" && <DoctorDescriptionLoading />}
+        <div className="h-[calc(100vh-112px)] w-full ">
+          {<DoctorDescriptionLoading />}
         </div>
       )}
     </div>

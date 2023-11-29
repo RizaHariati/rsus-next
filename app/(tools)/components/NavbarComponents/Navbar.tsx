@@ -72,9 +72,12 @@ export const MainLogo = (props: Props) => {
 export const NavbarMenu = (props: Props) => {
   return (
     <div className="h-full ">
-      <div className="navbar-menu-container ">
+      <div className="navbar-menu-container flex-center-end ">
         <a href="https://rsus-api.vercel.app/" className="navbar-menu-btn">
-          <FontAwesomeIcon icon={faHome} className=" w-6 h-6" />
+          <FontAwesomeIcon
+            icon={faHome}
+            className=" w-6 h-6 md:w-8 md:h-8  text-base md:text-lg"
+          />
         </a>
         <Link
           href="/admin"
@@ -83,7 +86,10 @@ export const NavbarMenu = (props: Props) => {
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FontAwesomeIcon icon={faUserCircle} className=" w-6 h-6" />
+          <FontAwesomeIcon
+            icon={faUserCircle}
+            className=" w-6 h-6 md:w-10 md:h-10 text-base md:text-xl"
+          />
         </Link>
       </div>
     </div>
@@ -115,7 +121,6 @@ export const NavbarLinks = (props: Props) => {
         className="navbar-link"
         onClick={(e) => toggleMenuNavbar(e.currentTarget.id)}
       >
-        <FontAwesomeIcon icon={faHome} className="navbar-link-icon" />
         <p className="text-link">RumahSakit</p>
       </Link>
     </div>
