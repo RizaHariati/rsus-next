@@ -10,13 +10,13 @@ const LoadingHome = (props: Props) => {
       <div className=" flex-center-center flex-col p-5 text-center gap-5">
         <h1 className=" font-oswald">Loading </h1>
 
-        <GridLoader
+        {/* <GridLoader
           color="#007814"
           loading={true}
           size={10}
           aria-label="Loading Spinner"
           data-testid="loader"
-        />
+        /> */}
       </div>
     </div>
   );

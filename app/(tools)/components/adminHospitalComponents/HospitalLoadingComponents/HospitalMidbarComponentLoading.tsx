@@ -28,7 +28,7 @@ const HospitalMidbarComponentLoading = ({ column2, column3 }: Props) => {
               : "column-navbar-main-btn"
           }
         >
-          "part of patient"
+          part of patient
         </button>
       </div>
       {column2 && <div>{<DoctorMenuLoading />}</div>}

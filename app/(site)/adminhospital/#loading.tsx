@@ -14,21 +14,21 @@ const LoadingPage = (props: Props) => {
     <div className="ptn-container">
       <div className="ptn-content">
         {/* --------------------- COLUMN 1 SIDEBAR MENU -------------------- */}
-        <HospitalSidebarComponentLoading
+        {/* <HospitalSidebarComponentLoading
           column1={columnAssignment.column1}
           column3={columnAssignment.column3}
-        />
+        /> */}
         {/* ----------------------- COLUMN 2 MID MENU ---------------------- */}
-        {
+        {/* {
           <HospitalMidbarComponentLoading
             column2={columnAssignment.column2}
             column3={columnAssignment.column3}
           />
-        }
+        } */}
         {/* ----------------- COLUMN 3 DETAILED DESCRIPTION ---------------- */}
-        <HospitalDescriptionComponentLoading
+        {/* <HospitalDescriptionComponentLoading
           column3={columnAssignment.column3}
-        />
+        /> */}
       </div>
     </div>
   );

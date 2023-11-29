@@ -114,7 +114,7 @@ const DoctorDescription = (props: Props) => {
     return (
       <>
         <form
-          className="column-description-container "
+          className="column-description-container h-full flex items-start justify-center"
           onSubmit={(e) => handleSubmit(e)}
         >
           <div className="column-description-content">

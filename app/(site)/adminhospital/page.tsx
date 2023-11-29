@@ -1,52 +1,13 @@
-"use client";
-import HospitalDescriptionComponent from "@/app/(tools)/components/adminHospitalComponents/HospitalDescriptionComponent";
-import HospitalMidbarComponent from "@/app/(tools)/components/adminHospitalComponents/HospitalMidbarComponent";
-import HospitalSidebarComponent from "@/app/(tools)/components/adminHospitalComponents/HospitalSidebarComponent";
-import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import useAssignColumn from "@/app/(tools)/utils/useAssignColumn";
-import React, { useEffect, useState } from "react";
-import { hospitalBtnDetail } from "../../(tools)/column/sidebarColumnKeys";
-1;
-import { isMobile, isTablet, isDesktop } from "react-device-detect";
+import AdminHospitalContent from "@/app/(tools)/components/adminHospitalComponents/AdminHospitalContent";
+// import LoadingPage from "./#loading";
+import { Suspense } from "react";
 
 type Props = {};
 
-const AdminHospitalPage = (props: Props) => {
-  const {
-    handleShowDetail,
-    showDetail,
-    state: { currentWindow },
-    hospitalState: { dataDoctor, dataFacility },
-  } = useGlobalContext();
-
-  const [showMidbar, setShowMidbar] = useState(
-    showDetail.column_open === "all"
-  );
-
-  useAssignColumn();
-
-  useEffect(() => {
-    handleShowDetail(hospitalBtnDetail[0]);
-    // eslint-disable-next-line
-  }, []);
-
-  useEffect(() => {
-    setShowMidbar(showDetail.column_open === "all");
-    // eslint-disable-next-line
-  }, [showDetail]);
-
+export default async function AdminHospitalPage() {
   return (
     <div className="ptn-container">
-      <div className="ptn-content">
-        {/* --------------------- COLUMN 1 SIDEBAR MENU -------------------- */}
-        <HospitalSidebarComponent />
-        {/* ----------------------- COLUMN 2 MID MENU ---------------------- */}
-        {showMidbar && <HospitalMidbarComponent />}
-        {/* ----------------- COLUMN 3 DETAILED DESCRIPTION ---------------- */}
-        <HospitalDescriptionComponent />
-      </div>
+      <AdminHospitalContent />
     </div>
   );
-};
-
-export default AdminHospitalPage;
+}

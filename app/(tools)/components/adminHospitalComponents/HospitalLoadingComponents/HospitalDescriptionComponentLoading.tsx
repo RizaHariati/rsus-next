@@ -1,12 +1,12 @@
 import React from "react";
 import DoctorDescriptionLoading from "./DoctorDescriptionLoading";
 import PatientEditDeleteLoading from "../../GeneralComponents/PatientEditDeleteLoading";
+import { initialColumn } from "@/app/(tools)/context/initialState";
 
-type Props = {
-  column3: boolean;
-};
+type Props = {};
 
-const HospitalDescriptionComponentLoading = ({ column3 }: Props) => {
+const HospitalDescriptionComponentLoading = (props: Props) => {
+  const { column3 }: any = initialColumn;
   return (
     <div className={!column3 ? "column-container-rotate" : "column-container"}>
       <div
