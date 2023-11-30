@@ -97,6 +97,7 @@ export type HospitalItemType = {
   placeholder: string;
   editable: boolean;
   error: string;
+  number: boolean;
 };
 export type FormDoctorType = {
   name: HospitalItemType;
@@ -135,19 +136,7 @@ export type FormLabSatuanType = {
   price: HospitalItemType;
   category: HospitalItemType;
 };
-export type DoctorInitialValueType = {
-  [key: string]: { value: any; error: boolean };
-};
-
-export type FacilityInitialValueType = {
-  [key: string]: { value: any; error: boolean };
-};
-
-export type LabPaketInitialValueType = {
-  [key: string]: { value: any; error: boolean };
-};
-
-export type InpatientInitialValueType = {
+export type InitialValueType = {
   [key: string]: { value: any; error: boolean };
 };
 

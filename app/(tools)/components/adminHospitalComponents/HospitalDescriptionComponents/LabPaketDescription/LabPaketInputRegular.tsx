@@ -1,20 +1,15 @@
 import {
   HospitalItemType,
-  LabPaketInitialValueType,
+  InitialValueType,
 } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import {
-  faCircle,
-  faCircleDot,
-  faRadio,
-} from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect, useState } from "react";
+
+import React from "react";
 
 type Props = {
   labPaketFormKey: string;
   labPaketFormValue: HospitalItemType;
-  labPaketValues: LabPaketInitialValueType;
+  labPaketValues: InitialValueType;
 };
 
 const LabPaketInputRegular = ({

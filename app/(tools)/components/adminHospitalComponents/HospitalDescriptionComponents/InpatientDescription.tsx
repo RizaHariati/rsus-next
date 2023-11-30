@@ -1,9 +1,9 @@
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { inpatientForm } from "@/app/(tools)/utils/forms/InpatientFormInput";
 import InpatientImageDescription from "./InpatientDescription/InpatientImageDescription";
-import { InpatientInitialValueType } from "@/app/(tools)/HospitalTypes";
+import { InitialValueType } from "@/app/(tools)/HospitalTypes";
 import { useEffect, useState } from "react";
-import EditListInput from "../EditListInput";
+import EditListInput from "../../GeneralComponents/EditListInput";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 
 type Props = {};
@@ -17,8 +17,7 @@ const InpatientDescription = (props: Props) => {
     e.preventDefault();
   };
 
-  const [inpatientValues, setFacilityValues] =
-    useState<InpatientInitialValueType>({});
+  const [inpatientValues, setFacilityValues] = useState<InitialValueType>({});
   // console.log(selectedInpatient?.["fasilitas"]);
   useEffect(() => {
     if (!selectedInpatient) return;
@@ -57,7 +56,7 @@ const InpatientDescription = (props: Props) => {
   };
   const formInputInpatient = Object.entries(inpatientForm);
 
-  const handleChangeValue = (value: { newValue: any; key: string }[]) => {
+  const handleValueChange = (value: { newValue: any; key: string }[]) => {
     console.log({ value });
   };
   if (Object.keys(inpatientValues).length < 1 || !selectedInpatient) {
@@ -97,7 +96,7 @@ const InpatientDescription = (props: Props) => {
                 return (
                   <EditListInput
                     key={index}
-                    handleChangeValue={handleChangeValue}
+                    handleValueChange={handleValueChange}
                     FormKey={inpatientFormKey}
                     FormValue={inpatientFormValue}
                     inputList={inpatientValues[inpatientFormKey].value}
@@ -120,11 +119,13 @@ const InpatientDescription = (props: Props) => {
             }
           )}
         </div>
-        <div className="content-menu border-t">
+        <div className="content-menu border-t ">
           <button
             type="submit"
             className={
-              editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
+              editable
+                ? "btn-base-focus px-12 mx-0"
+                : "btn-base-small w-28 px-12 mx-0"
             }
           >
             Submit

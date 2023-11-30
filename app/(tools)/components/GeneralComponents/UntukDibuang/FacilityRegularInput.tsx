@@ -1,5 +1,5 @@
 import {
-  FacilityInitialValueType,
+  InitialValueType,
   HospitalItemType,
 } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 type Props = {
   facilityFormKey: string;
   facilityFormValue: HospitalItemType;
-  facilityValues: FacilityInitialValueType;
+  facilityValues: InitialValueType;
   handleChangeValue: (value: { newValue: any; key: string }[]) => void;
 };
 

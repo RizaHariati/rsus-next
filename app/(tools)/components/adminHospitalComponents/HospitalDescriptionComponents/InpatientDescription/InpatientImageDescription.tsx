@@ -1,6 +1,6 @@
 import {
   HospitalItemType,
-  InpatientInitialValueType,
+  InitialValueType,
 } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import myImageLoader, { sanityLoader } from "@/loader";
@@ -10,7 +10,7 @@ import React from "react";
 type Props = {
   inpatientFormKey: string;
   inpatientFormValue: HospitalItemType;
-  inpatientValues: InpatientInitialValueType;
+  inpatientValues: InitialValueType;
 };
 
 const InpatientImageDescription = ({

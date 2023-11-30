@@ -7,21 +7,24 @@ export const facilityForm: FormFacilityType = {
     placeholder: "masukkan Judul",
     editable: true,
     error: "Judul wajib diisi",
+    number: false,
   },
   id: {
     id: "facility_02",
-    title: "ID",
+    title: "Id",
     placeholder: "masukkan id",
     editable: false,
     error: "id wajib diisi",
+    number: false,
   },
 
   img: {
     id: "facility_03",
     title: "Gambar",
-    placeholder: "masukkan img",
+    placeholder: "masukkan gambar",
     editable: true,
     error: "Gambar wajib diisi",
+    number: false,
   },
   description: {
     id: "facility_04",
@@ -29,6 +32,7 @@ export const facilityForm: FormFacilityType = {
     placeholder: "masukkan keterangan",
     editable: true,
     error: "keterangan wajib diisi",
+    number: false,
   },
   function: {
     id: "facility_05",
@@ -36,6 +40,7 @@ export const facilityForm: FormFacilityType = {
     placeholder: "masukkan fungsi",
     editable: true,
     error: "fungsi wajib diisi",
+    number: false,
   },
   poliklinik: {
     id: "facility_06",
@@ -43,6 +48,7 @@ export const facilityForm: FormFacilityType = {
     placeholder: "masukkan poliklinik",
     editable: true,
     error: "poliklinik wajib diisi",
+    number: false,
   },
   category: {
     id: "facility_07",
@@ -50,6 +56,7 @@ export const facilityForm: FormFacilityType = {
     placeholder: "masukkan kategori",
     editable: true,
     error: "kategori wajib diisi",
+    number: false,
   },
   featured: {
     id: "facility_08",
@@ -57,6 +64,7 @@ export const facilityForm: FormFacilityType = {
     placeholder: "Fasilitas unggulan",
     editable: true,
     error: "feature wajib diisi",
+    number: false,
   },
   doctorref: {
     id: "facility_09",
@@ -64,6 +72,7 @@ export const facilityForm: FormFacilityType = {
     placeholder: "masukkan referensi",
     editable: true,
     error: "referensi wajib diisi",
+    number: true,
   },
   price: {
     id: "facility_10",
@@ -71,5 +80,6 @@ export const facilityForm: FormFacilityType = {
     placeholder: "masukkan harga",
     editable: true,
     error: "harga wajib diisi",
+    number: true,
   },
 };

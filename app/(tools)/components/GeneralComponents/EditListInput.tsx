@@ -1,7 +1,4 @@
-import {
-  FacilityInitialValueType,
-  HospitalItemType,
-} from "@/app/(tools)/HospitalTypes";
+import { HospitalItemType } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { faMinus, faPlus } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -10,7 +7,7 @@ import DescriptionModal from "./DescriptionModal";
 import { toast } from "react-toastify";
 
 type Props = {
-  handleChangeValue: (value: { newValue: any; key: string }[]) => void;
+  handleValueChange: (value: { newValue: any; key: string }[]) => void;
   FormKey: string;
   FormValue: HospitalItemType;
   inputList: string[];
@@ -22,7 +19,7 @@ const EditListInput = ({
   FormValue,
   inputList,
   dataList,
-  handleChangeValue,
+  handleValueChange,
 }: Props) => {
   const {
     state: { editable },
@@ -37,7 +34,7 @@ const EditListInput = ({
   const addRemoveListItem = useCallback(
     (itemList: string) => {
       if (!editable) return;
-      if (list.length < 2) return toast.error("Pilihan tidak boleh kosong");
+
       let finalList: any[] = [];
       const findList = list.find((item) => item === itemList);
 
@@ -54,6 +51,7 @@ const EditListInput = ({
         });
         setList(newList);
       } else {
+        if (list.length < 2) return toast.error("Pilihan tidak boleh kosong");
         const newList = list.filter((item: string) => item !== itemList);
         finalList = newList.map((item) => {
           const findItem = dataList.find(
@@ -65,9 +63,9 @@ const EditListInput = ({
         });
         setList(newList);
       }
-      handleChangeValue([{ newValue: finalList, key: FormKey }]);
+      handleValueChange([{ newValue: finalList, key: FormKey }]);
     },
-    [list, setList, FormKey, dataList, editable, handleChangeValue]
+    [list, setList, FormKey, dataList, editable, handleValueChange]
   );
   const closeModal = () => {
     setList(inputList);

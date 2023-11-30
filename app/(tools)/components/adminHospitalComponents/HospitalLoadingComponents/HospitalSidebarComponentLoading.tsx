@@ -5,8 +5,6 @@ import {
   SidebarBtnType,
   hospitalBtnDetail,
 } from "@/app/(tools)/column/sidebarColumnKeys";
-import { initialColumn, maxWidth } from "@/app/(tools)/context/initialState";
-import { ColumnAssignmentType } from "@/app/(tools)/types";
 
 type Props = {
   column1: boolean;

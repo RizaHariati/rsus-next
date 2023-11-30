@@ -1,6 +1,6 @@
 "use client";
 import {
-  DoctorInitialValueType,
+  InitialValueType,
   HospitalItemType,
 } from "@/app/(tools)/HospitalTypes";
 import React, { useEffect, useState } from "react";
@@ -12,7 +12,7 @@ import moment from "moment";
 import { SatuanWaktuType } from "../../../../utils/AllHari";
 type DoctorWaktuProps = {
   doctorFormKey: string;
-  doctorValues: DoctorInitialValueType;
+  doctorValues: InitialValueType;
   doctorFormValue: HospitalItemType;
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };

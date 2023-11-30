@@ -6,13 +6,15 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan name",
     editable: false,
     error: "tidak boleh kosong",
+    number: false,
   },
   id: {
     id: "doctor_01",
-    title: "ID",
+    title: "Id",
     placeholder: "masukkan id",
     editable: false,
     error: "tidak boleh kosong",
+    number: false,
   },
   poliklinik: {
     id: "doctor_02",
@@ -20,6 +22,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan poliklinik",
     editable: false,
     error: "tidak boleh kosong",
+    number: false,
   },
   waktu: {
     id: "doctor_03",
@@ -27,6 +30,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan waktu",
     editable: true,
     error: "tidak boleh kosong",
+    number: false,
   },
   jam: {
     id: "doctor_05",
@@ -34,6 +38,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan jam",
     editable: true,
     error: "tidak boleh kosong",
+    number: false,
   },
   hari: {
     id: "doctor_04",
@@ -41,6 +46,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan hari",
     editable: true,
     error: "tidak boleh kosong",
+    number: false,
   },
 
   gender: {
@@ -49,6 +55,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan gender",
     editable: false,
     error: "tidak boleh kosong",
+    number: true,
   },
   on_call: {
     id: "doctor_07",
@@ -56,6 +63,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan on call",
     editable: true,
     error: "tidak boleh kosong",
+    number: true,
   },
   telemedicine: {
     id: "doctor_08",
@@ -63,6 +71,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan telemedicine",
     editable: true,
     error: "tidak boleh kosong",
+    number: false,
   },
   biaya_telemedicine: {
     id: "doctor_09",
@@ -70,6 +79,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan biaya telemedicine",
     editable: true,
     error: "tidak boleh kosong",
+    number: true,
   },
   sedang_online: {
     id: "doctor_10",
@@ -77,6 +87,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan sedang online",
     editable: true,
     error: "tidak boleh kosong",
+    number: true,
   },
   biaya_tatapmuka: {
     id: "doctor_11",
@@ -84,6 +95,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan biaya tatapmuka",
     editable: true,
     error: "tidak boleh kosong",
+    number: true,
   },
   kuota: {
     id: "doctor_12",
@@ -91,6 +103,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan kuota",
     editable: true,
     error: "tidak boleh kosong",
+    number: true,
   },
   pengalaman: {
     id: "doctor_13",
@@ -98,6 +111,7 @@ export const doctorForm: FormDoctorType = {
     placeholder: "masukkan pengalaman",
     editable: true,
     error: "tidak boleh kosong",
+    number: true,
   },
 };
 export const doctorDetailedForm = (doctorInfo: DoctorType) => {

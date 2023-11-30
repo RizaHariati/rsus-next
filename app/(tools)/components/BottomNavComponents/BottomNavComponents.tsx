@@ -1,20 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faAmbulance,
-  faDoorOpen,
-  faPerson,
-  faPeopleGroup,
-  faHome,
-} from "@fortawesome/free-solid-svg-icons";
-import { toast } from "react-toastify";
-import Link from "next/link";
-import { AnimatePresence, motion } from "framer-motion";
-import { popBottomVariant } from "../../framervariants/bottomvariants";
+
 import moment from "moment";
 
 type Props = {};

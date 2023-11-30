@@ -3,11 +3,12 @@ import { labPaketForm } from "@/app/(tools)/utils/forms/LabPaketFormInput";
 
 import React, { useEffect, useState } from "react";
 import LabPaketImage from "./LabPaketDescription/LabPaketImage";
-import { LabPaketInitialValueType } from "@/app/(tools)/HospitalTypes";
+import { InitialValueType } from "@/app/(tools)/HospitalTypes";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import LabPaketHarga from "./LabPaketDescription/LabPaketHarga";
-import EditListInput from "../EditListInput";
+import EditListInput from "../../GeneralComponents/EditListInput";
 import LabPaketInputRegular from "./LabPaketDescription/LabPaketInputRegular";
+import ImageGenericInput from "../../GeneralComponents/ImageGenericInput";
 type Props = {};
 
 const LabPaketDescription = (props: Props) => {
@@ -18,8 +19,7 @@ const LabPaketDescription = (props: Props) => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
   };
-  const [labPaketValues, setLabPaketValues] =
-    useState<LabPaketInitialValueType>({});
+  const [labPaketValues, setLabPaketValues] = useState<InitialValueType>({});
   const formInputLabPaket = Object.entries(labPaketForm);
   // console.log(selectedPaket?.["pemeriksaan"]);
   useEffect(() => {
@@ -37,7 +37,7 @@ const LabPaketDescription = (props: Props) => {
     }
   }, [selectedPaket]);
 
-  const handleChangeValue = (value: { newValue: any; key: string }[]) => {
+  const handleValueChange = (value: { newValue: any; key: string }[]) => {
     console.log({ value });
   };
 
@@ -71,11 +71,12 @@ const LabPaketDescription = (props: Props) => {
                 }
                 if (labPaketFormKey === "img") {
                   return (
-                    <LabPaketImage
+                    <ImageGenericInput
                       key={index}
-                      labPaketFormKey={labPaketFormKey}
-                      labPaketFormValue={labPaketFormValue}
-                      labPaketValues={labPaketValues}
+                      formKey={labPaketFormKey}
+                      formValue={labPaketFormValue}
+                      values={labPaketValues}
+                      handleValueChange={handleValueChange}
                     />
                   );
                 }
@@ -91,7 +92,7 @@ const LabPaketDescription = (props: Props) => {
                   return (
                     <EditListInput
                       key={index}
-                      handleChangeValue={handleChangeValue}
+                      handleValueChange={handleValueChange}
                       FormKey={labPaketFormKey}
                       FormValue={labPaketFormValue}
                       inputList={inputList}
@@ -114,11 +115,13 @@ const LabPaketDescription = (props: Props) => {
               }
             )}
           </div>
-          <div className="content-menu border-t">
+          <div className="content-menu border-t ">
             <button
               type="submit"
               className={
-                editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
+                editable
+                  ? "btn-base-focus px-12 mx-0"
+                  : "btn-base-small w-28 px-12 mx-0"
               }
             >
               Submit

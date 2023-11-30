@@ -7,6 +7,7 @@ export const labSatuanForm: FormLabSatuanType = {
     placeholder: "masukkan Judul",
     editable: true,
     error: "Judul wajib diisi",
+    number: false,
   },
   id: {
     id: "labSatuan_02",
@@ -14,6 +15,7 @@ export const labSatuanForm: FormLabSatuanType = {
     placeholder: "masukkan id",
     editable: false,
     error: "id wajib diisi",
+    number: false,
   },
   description: {
     id: "labSatuan_03",
@@ -21,6 +23,7 @@ export const labSatuanForm: FormLabSatuanType = {
     placeholder: "masukkan keterangan",
     editable: true,
     error: "keterangan wajib diisi",
+    number: false,
   },
   price: {
     id: "labSatuan_04",
@@ -28,6 +31,7 @@ export const labSatuanForm: FormLabSatuanType = {
     placeholder: "masukkan harga",
     editable: true,
     error: "harga wajib diisi",
+    number: true,
   },
   category: {
     id: "labSatuan_05",
@@ -35,5 +39,6 @@ export const labSatuanForm: FormLabSatuanType = {
     placeholder: "masukkan kategori",
     editable: true,
     error: "kategori wajib diisi",
+    number: false,
   },
 };

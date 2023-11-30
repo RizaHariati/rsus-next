@@ -5,9 +5,8 @@ import HospitalSidebarComponent from "@/app/(tools)/components/adminHospitalComp
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import useAssignColumn from "@/app/(tools)/utils/useAssignColumn";
 import React, { Suspense, useEffect, useState } from "react";
-1;
+
 import { hospitalBtnDetail } from "../../column/sidebarColumnKeys";
-import HospitalDescriptionComponentLoading from "./HospitalLoadingComponents/HospitalDescriptionComponentLoading";
 
 type Props = {};
 
@@ -42,9 +41,7 @@ const AdminHospitalContent = (props: Props) => {
       {/* ----------------------- COLUMN 2 MID MENU ---------------------- */}
       {showMidbar && <HospitalMidbarComponent />}
       {/* ----------------- COLUMN 3 DETAILED DESCRIPTION ---------------- */}
-      <Suspense fallback={<HospitalDescriptionComponentLoading />}>
-        <HospitalDescriptionComponent />
-      </Suspense>
+      <HospitalDescriptionComponent />
     </div>
   );
 };

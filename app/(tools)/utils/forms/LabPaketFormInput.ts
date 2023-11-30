@@ -7,6 +7,7 @@ export const labPaketForm: FormLabPaketType = {
     placeholder: "masukkan Judul",
     editable: true,
     error: "Judul wajib diisi",
+    number: false,
   },
   id: {
     id: "labPaket_02",
@@ -14,6 +15,7 @@ export const labPaketForm: FormLabPaketType = {
     placeholder: "masukkan id",
     editable: false,
     error: "id wajib diisi",
+    number: false,
   },
   price: {
     id: "labPaket_03",
@@ -21,6 +23,7 @@ export const labPaketForm: FormLabPaketType = {
     placeholder: "masukkan harga",
     editable: true,
     error: "harga wajib diisi",
+    number: true,
   },
   img: {
     id: "labPaket_04",
@@ -28,6 +31,7 @@ export const labPaketForm: FormLabPaketType = {
     placeholder: "masukkan img",
     editable: true,
     error: "img wajib diisi",
+    number: false,
   },
   pemeriksaan: {
     id: "labPaket_05",
@@ -35,6 +39,7 @@ export const labPaketForm: FormLabPaketType = {
     placeholder: "masukkan pemeriksaan",
     editable: true,
     error: "pemeriksaan wajib diisi",
+    number: false,
   },
   laboratorium: {
     id: "labPaket_06",
@@ -42,5 +47,6 @@ export const labPaketForm: FormLabPaketType = {
     placeholder: "masukkan laboratorium",
     editable: true,
     error: "laboratorium wajib diisi",
+    number: false,
   },
 };

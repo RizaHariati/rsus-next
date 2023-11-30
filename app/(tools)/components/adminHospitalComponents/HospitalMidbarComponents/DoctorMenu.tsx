@@ -2,7 +2,7 @@ import { DoctorType } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import React, { useEffect } from "react";
+import React from "react";
 import DoctorMenuLoading from "../HospitalLoadingComponents/DoctorMenuLoading";
 
 type Props = {};

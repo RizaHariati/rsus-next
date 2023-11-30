@@ -64,7 +64,7 @@ const ModalContent = ({
           const findItem = list.find(
             (item) => item.toLowerCase() === itemData.title.toLowerCase()
           );
-          console.log(findItem);
+
           return (
             <button
               type="button"

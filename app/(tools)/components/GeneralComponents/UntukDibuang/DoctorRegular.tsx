@@ -1,5 +1,5 @@
 import {
-  DoctorInitialValueType,
+  InitialValueType,
   HospitalItemType,
 } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 
 type DoctorRegularProps = {
   doctorFormKey: string;
-  doctorValues: DoctorInitialValueType;
+  doctorValues?: InitialValueType;
   doctorFormValue: HospitalItemType;
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
@@ -142,7 +142,9 @@ const DoctorRegular = ({
         // }}
         // onBlur={() => registerValue()}
         className={
-          editable && doctorFormValue.editable
+          !doctorValues
+            ? "admin-input-disabled animate-pulse"
+            : editable && doctorFormValue.editable
             ? "admin-input"
             : "admin-input-disabled"
         }

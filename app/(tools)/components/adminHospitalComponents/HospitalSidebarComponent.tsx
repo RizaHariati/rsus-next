@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeSideBar, openSidebar } from "../../column/columnCodes";
 import {
@@ -50,31 +50,49 @@ const HospitalSidebarComponent = (props: Props) => {
     if (key.key === "inpatient") selectInpatient(dataInpatient?.[0]);
     settingEditable(false);
   };
+
+  const sidebarTheme = useMemo(() => {
+    return {
+      columnContainer: !column1
+        ? "column-container-rotate "
+        : !column3
+        ? "column-container "
+        : "column-container-triple ",
+      columnNavbarContainer: column1
+        ? "column-navbar-container"
+        : "column-navbar-container-rotate ",
+      columnChangerBtn: !column1
+        ? "column-navbar-main-btn-rotate"
+        : "column-navbar-main-btn",
+    };
+  }, [column1, column3]);
+
+  const sidebarButtonTheme = useCallback(
+    (itemKey: string) => {
+      return {
+        buttonBackground:
+          itemKey === showDetail.key
+            ? "sidebar-btn-focus group"
+            : "sidebar-btn group",
+        buttonText:
+          itemKey === showDetail.key
+            ? "sidebar-btn-text text-white"
+            : "sidebar-btn-text",
+        buttonIcon:
+          itemKey === showDetail.key
+            ? "sidebar-btn-icon text-white"
+            : "sidebar-btn-icon",
+      };
+    },
+    [showDetail]
+  );
   return (
-    <div
-      className={
-        !column1
-          ? "column-container-rotate "
-          : !column3
-          ? "column-container "
-          : "column-container-triple "
-      }
-    >
-      <div
-        className={
-          column1
-            ? "column-navbar-container"
-            : "column-navbar-container-rotate "
-        }
-      >
+    <div className={sidebarTheme.columnContainer}>
+      <div className={sidebarTheme.columnNavbarContainer}>
         {/* ----------- this button is to change the column size ----------- */}
         <button
           onClick={() => handleSidebarColumn()}
-          className={
-            !column1
-              ? "column-navbar-main-btn-rotate"
-              : "column-navbar-main-btn"
-          }
+          className={sidebarTheme.columnChangerBtn}
         >
           Kategori
         </button>
@@ -86,31 +104,17 @@ const HospitalSidebarComponent = (props: Props) => {
               <div key={index} className="sidebar-btn-container">
                 {/* ---------------- this button is submenu buttons ---------------- */}
                 <button
-                  className={
-                    item.key === showDetail.key
-                      ? "sidebar-btn-focus group"
-                      : "sidebar-btn group"
-                  }
+                  className={sidebarButtonTheme(item.key).buttonBackground}
                   onClick={() => {
                     handleClick(item);
                   }}
                 >
-                  <p
-                    className={
-                      item.key === showDetail.key
-                        ? "sidebar-btn-text text-white"
-                        : "sidebar-btn-text"
-                    }
-                  >
+                  <p className={sidebarButtonTheme(item.key).buttonText}>
                     {item.name}
                   </p>
                   <FontAwesomeIcon
                     icon={faChevronRight}
-                    className={
-                      item.key === showDetail.key
-                        ? "sidebar-btn-icon text-white"
-                        : "sidebar-btn-icon"
-                    }
+                    className={sidebarButtonTheme(item.key).buttonIcon}
                   />
                 </button>
               </div>

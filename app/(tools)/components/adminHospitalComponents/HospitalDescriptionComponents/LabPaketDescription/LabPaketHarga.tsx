@@ -1,6 +1,6 @@
 import {
   HospitalItemType,
-  LabPaketInitialValueType,
+  InitialValueType,
 } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import {
@@ -14,7 +14,7 @@ import React, { useEffect, useState } from "react";
 type Props = {
   labPaketFormKey: string;
   labPaketFormValue: HospitalItemType;
-  labPaketValues: LabPaketInitialValueType;
+  labPaketValues: InitialValueType;
 };
 
 const LabPaketHarga = ({

@@ -1,20 +1,17 @@
-import {
-  DoctorInitialValueType,
-  DoctorType,
-} from "@/app/(tools)/HospitalTypes";
+import { DoctorType, InitialValueType } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { doctorForm } from "@/app/(tools)/utils/forms/DoctorDetailedForm";
 import React, { useEffect, useState } from "react";
 import DoctorHari from "./DoctorDescription/DoctorHari";
 
 import DoctorWaktu from "./DoctorDescription/DoctorWaktu";
-import DoctorRegular from "./DoctorDescription/DoctorRegular";
 import DoctorTelemedicineInput from "./DoctorDescription/DoctorTelemedicineInput";
-import BooleanButton from "../BooleanButton";
+import BooleanButtonInput from "../../GeneralComponents/BooleanButtonInput";
 
 import DoctorGender from "./DoctorDescription/DoctorGender";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import { toast } from "react-toastify";
+import RegularInput from "../../GeneralComponents/RegularInput";
 
 type Props = {};
 
@@ -25,7 +22,7 @@ const DoctorDescription = (props: Props) => {
     hospitalState: { selectedDoctor, dataDoctor },
   } = useGlobalContext();
 
-  const [doctorValues, setDoctorValues] = useState<DoctorInitialValueType>({});
+  const [doctorValues, setDoctorValues] = useState<InitialValueType>({});
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -74,7 +71,7 @@ const DoctorDescription = (props: Props) => {
   const handleValueChange = (value: { newValue: any; key: string }[]) => {
     if (!editable) return;
     if (!doctorValues) return;
-    const newDoctorValues: DoctorInitialValueType = {};
+    const newDoctorValues: InitialValueType = {};
     const findTelemedicine = value.find((item) => item.key === "telemedicine");
     if (findTelemedicine) {
       if (findTelemedicine.newValue !== 1) {
@@ -167,7 +164,7 @@ const DoctorDescription = (props: Props) => {
                   return (
                     <div className="w-full" key={index}>
                       <small>{doctorFormValue.title}</small>
-                      <BooleanButton
+                      <BooleanButtonInput
                         booleanKey={doctorFormKey}
                         booleanValue={doctorDetail}
                         handleClick={handleValueChange}
@@ -176,22 +173,24 @@ const DoctorDescription = (props: Props) => {
                   );
                 default:
                   return (
-                    <DoctorRegular
+                    <RegularInput
                       key={index}
-                      doctorValues={doctorValues}
-                      doctorFormValue={doctorFormValue}
-                      doctorFormKey={doctorFormKey}
+                      values={doctorValues}
+                      formValue={doctorFormValue}
+                      formKey={doctorFormKey}
                       handleValueChange={handleValueChange}
                     />
                   );
               }
             })}
           </div>
-          <div className="content-menu border-t">
+          <div className="content-menu border-t ">
             <button
               type="submit"
               className={
-                editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
+                editable
+                  ? "btn-base-focus px-12 mx-0"
+                  : "btn-base-small w-28 px-12 mx-0"
               }
             >
               Submit
@@ -205,3 +204,25 @@ const DoctorDescription = (props: Props) => {
 // };
 
 export default DoctorDescription;
+
+// if (formKey === "biaya_telemedicine" || formKey === "biaya_tatapmuka") {
+//   const newText = parseInt(text.toString());
+//   if (newText < 10000) {
+//     setText(10000);
+//     sendValue = { ...sendValue, newValue: 10000 };
+//   } else {
+//     const newText = parseInt(text.toString());
+//     const round = (num: number) => {
+//       return Math.round(num / 500) * 500;
+//     };
+//     setText(round(newText));
+//     sendValue = { ...sendValue, newValue: round(newText) };
+//   }
+// }
+// if (formKey === "kuota") {
+//   const newText = parseInt(text.toString());
+//   if (newText < 5) {
+//     setText(5);
+//     sendValue = { ...sendValue, newValue: 5 };
+//   }
+// }

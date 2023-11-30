@@ -1,9 +1,6 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  DoctorInitialValueType,
-  HospitalItemType,
-} from "@/app/(tools)/HospitalTypes";
+import { HospitalItemType } from "@/app/(tools)/HospitalTypes";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 type Props = {

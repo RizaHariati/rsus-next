@@ -1,45 +1,37 @@
-import React, { useState } from "react";
-import { useGlobalContext } from "../../../../context/AppProvider";
-
-import {
-  InitialValueType,
-  HospitalItemType,
-} from "@/app/(tools)/HospitalTypes";
+import React from "react";
+import { HospitalItemType, InitialValueType } from "../../HospitalTypes";
+import { useGlobalContext } from "../../context/AppProvider";
 
 type Props = {
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
-  FormKey: string;
-  FormValue: HospitalItemType;
-  Values: InitialValueType;
+  formKey: string;
+  formValue: HospitalItemType;
+  values: InitialValueType;
+  list: string[];
 };
 
-const FacilityCategory = ({
-  FormKey,
-  FormValue,
+const SelectRadioInput = ({
+  formKey,
+  formValue,
   handleValueChange,
-  Values,
+  values,
+  list,
 }: Props) => {
   const {
     state: { columnAssignment, editable },
     hospitalState: { selectedFacility, dataFacility },
   } = useGlobalContext();
-
-  const [selected, setselected] = useState(null);
-  const categoryList = Array.from([
-    ...new Set(dataFacility.map((item) => item.category)),
-  ]);
-
   return (
     <div className="w-full">
-      <small className="">{FormValue.title}</small>
+      <small className="">{formValue.title}</small>
       <p
         className={
-          editable && FormValue.editable
+          editable && formValue.editable
             ? "admin-input flex-center-between capitalize "
             : "admin-input-disabled flex-center-between "
         }
       >
-        {Values[FormKey].value}
+        {values[formKey].value}
       </p>
       <div
         className={
@@ -48,18 +40,18 @@ const FacilityCategory = ({
             : "grid grid-cols-2 md:grid-cols-3 mt-2 standard-border p-0 px-2 border-none bg-transparent h-0 overflow-hidden  transition-all"
         }
       >
-        {categoryList.map((item, index) => {
+        {list.map((item, index) => {
           return (
             <div key={index} className="flex-center-start gap-2">
               <input
                 id={item}
                 type="radio"
                 value={item}
-                checked={Values[FormKey].value === item}
+                checked={values[formKey].value === item}
                 className=" cursor-pointer"
                 onChange={() => {
-                  console.log({ newValue: item, key: FormKey });
-                  handleValueChange([{ newValue: item, key: FormKey }]);
+                  console.log({ newValue: item, key: formKey });
+                  handleValueChange([{ newValue: item, key: formKey }]);
                 }}
               />
               <label htmlFor={item} className="capitalize  cursor-pointer">
@@ -73,4 +65,4 @@ const FacilityCategory = ({
   );
 };
 
-export default FacilityCategory;
+export default SelectRadioInput;

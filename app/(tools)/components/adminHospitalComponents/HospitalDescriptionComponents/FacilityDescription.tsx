@@ -1,17 +1,19 @@
 "use client";
-import { FacilityInitialValueType } from "@/app/(tools)/HospitalTypes";
+import { InitialValueType } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { facilityForm } from "@/app/(tools)/utils/forms/FacilityFormInput";
 
 import React, { useCallback, useEffect, useState } from "react";
-import EditListInput from "../EditListInput";
+import EditListInput from "../../GeneralComponents/EditListInput";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
-import BooleanButton from "../BooleanButton";
-import FacilityImage from "./FacilityDescription/FacilityImage";
+import BooleanButton from "../../GeneralComponents/BooleanButtonInput";
 import dataPoliklinik from "../../../data/data_poliklinik.json";
 import FacilityCategory from "./FacilityDescription/FacilityCategory";
-import FacilityRegularInput from "./FacilityDescription/FacilityRegularInput";
 import { toast } from "react-toastify";
+import ImageGenericInput from "../../GeneralComponents/ImageGenericInput";
+import RegularInput from "../../GeneralComponents/RegularInput";
+import TextAreaInput from "../../GeneralComponents/TextAreaInput";
+import SelectRadioInput from "../../GeneralComponents/SelectRadioInput";
 type Props = {};
 
 const FacilityDescription = (props: Props) => {
@@ -20,9 +22,10 @@ const FacilityDescription = (props: Props) => {
     hospitalState: { selectedFacility, dataFacility },
   } = useGlobalContext();
 
-  const [facilityValues, setFacilityValues] =
-    useState<FacilityInitialValueType>({});
-
+  const [facilityValues, setFacilityValues] = useState<InitialValueType>({});
+  const [category] = useState<string[]>(
+    Array.from([...new Set(dataFacility.map((item) => item.category))])
+  );
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!selectedFacility) return;
@@ -37,6 +40,8 @@ const FacilityDescription = (props: Props) => {
     let valueChanged = false;
     let newValue = { ...selectedFacility };
     facilityResultValues.map(([key, values]) => {
+      //@ts-ignore
+      console.log({ ori: selectedFacility[key], new: values.value });
       //@ts-ignore
       if (selectedFacility[key] !== values.value) {
         newValue = { ...newValue, [key]: values.value };
@@ -69,29 +74,30 @@ const FacilityDescription = (props: Props) => {
 
   const formInputFacility = Object.entries(facilityForm);
 
-  const handleChangeValue = (value: { newValue: any; key: string }[]) => {
+  const handleValueChange = (value: { newValue: any; key: string }[]) => {
     if (!editable) return;
     if (!facilityValues) return;
-    // const newFacility: FacilityInitialValueType = {};
-    // const facilityPoli =
-    //   value[0].key === "poliklinik"
-    //     ? value[0].newValue?.map((item: any) => item.title)
-    //     : null;
 
-    // Object.entries(facilityValues).map(([itemKey, itemValue]) => {
-    //   const findValue = value.find((item) => item.key === itemKey);
-    //   if (!findValue) {
-    //     //@ts-ignore
-    //     newFacility[itemKey] = { ...itemValue };
-    //   } else {
-    //     newFacility[itemKey] = {
-    //       value:
-    //         value[0].key === "poliklinik" ? facilityPoli : findValue.newValue,
-    //       error: false,
-    //     };
-    //   }
-    // });
-    // setFacilityValues(newFacility);
+    const newFacility: InitialValueType = {};
+    const facilityPoli =
+      value[0].key === "poliklinik"
+        ? value[0].newValue?.map((item: any) => item.title)
+        : null;
+
+    Object.entries(facilityValues).map(([itemKey, itemValue]) => {
+      const findValue = value.find((item) => item.key === itemKey);
+      if (!findValue) {
+        //@ts-ignore
+        newFacility[itemKey] = { ...itemValue };
+      } else {
+        newFacility[itemKey] = {
+          value:
+            value[0].key === "poliklinik" ? facilityPoli : findValue.newValue,
+          error: false,
+        };
+      }
+    });
+    setFacilityValues(newFacility);
   };
   if (Object.keys(facilityValues).length < 1 || !selectedFacility) {
     return (
@@ -110,67 +116,75 @@ const FacilityDescription = (props: Props) => {
             ([facilityFormKey, facilityFormValue], index) => {
               //@ts-ignore
               const facilityDetail = selectedFacility?.[facilityFormKey] || "";
-
-              if (facilityFormKey === "img") {
-                return (
-                  <FacilityImage
-                    key={index}
-                    facilityFormKey={facilityFormKey}
-                    facilityFormValue={facilityFormValue}
-                    facilityValues={facilityValues}
-                  />
-                );
-              }
-              if (
-                facilityFormKey === "featured" ||
-                facilityFormKey === "doctorref"
-              ) {
-                return (
-                  <div className="w-full" key={index}>
-                    <small>{facilityFormValue.title}</small>
-                    <BooleanButton
+              switch (facilityFormKey) {
+                case "img":
+                  return (
+                    <ImageGenericInput
                       key={index}
-                      booleanKey={facilityFormKey}
-                      booleanValue={
-                        facilityValues[facilityFormKey].value ? 1 : 0
-                      }
-                      handleClick={handleChangeValue}
+                      formKey={facilityFormKey}
+                      formValue={facilityFormValue}
+                      values={facilityValues}
+                      handleValueChange={handleValueChange}
                     />
-                  </div>
-                );
-              }
-              if (facilityFormKey === "category") {
-                return (
-                  <FacilityCategory
-                    key={index}
-                    handleChangeValue={handleChangeValue}
-                    FormKey={facilityFormKey}
-                    FormValue={facilityFormValue}
-                    Values={facilityValues}
-                  />
-                );
-              }
-              if (facilityFormKey === "poliklinik") {
-                return (
-                  <EditListInput
-                    key={index}
-                    handleChangeValue={handleChangeValue}
-                    FormKey={facilityFormKey}
-                    FormValue={facilityFormValue}
-                    inputList={facilityValues[facilityFormKey].value}
-                    dataList={dataPoliklinik}
-                  />
-                );
-              } else {
-                return (
-                  <FacilityRegularInput
-                    key={index}
-                    facilityFormKey={facilityFormKey}
-                    facilityFormValue={facilityFormValue}
-                    facilityValues={facilityValues}
-                    handleChangeValue={handleChangeValue}
-                  />
-                );
+                  );
+                case "featured":
+                case "doctorref":
+                  return (
+                    <div className="w-full" key={index}>
+                      <small>{facilityFormValue.title}</small>
+                      <BooleanButton
+                        key={index}
+                        booleanKey={facilityFormKey}
+                        booleanValue={
+                          facilityValues[facilityFormKey].value ? 1 : 0
+                        }
+                        handleClick={handleValueChange}
+                      />
+                    </div>
+                  );
+                case "function":
+                case "description":
+                  return (
+                    <TextAreaInput
+                      key={index}
+                      handleValueChange={handleValueChange}
+                      formKey={facilityFormKey}
+                      formValue={facilityFormValue}
+                      values={facilityValues}
+                    />
+                  );
+                case "category":
+                  return (
+                    <SelectRadioInput
+                      key={index}
+                      handleValueChange={handleValueChange}
+                      formKey={facilityFormKey}
+                      formValue={facilityFormValue}
+                      values={facilityValues}
+                      list={category}
+                    />
+                  );
+                case "poliklinik":
+                  return (
+                    <EditListInput
+                      key={index}
+                      handleValueChange={handleValueChange}
+                      FormKey={facilityFormKey}
+                      FormValue={facilityFormValue}
+                      inputList={facilityValues[facilityFormKey].value}
+                      dataList={dataPoliklinik}
+                    />
+                  );
+                default:
+                  return (
+                    <RegularInput
+                      key={index}
+                      formKey={facilityFormKey}
+                      formValue={facilityFormValue}
+                      values={facilityValues}
+                      handleValueChange={handleValueChange}
+                    />
+                  );
               }
             }
           )}
@@ -179,7 +193,9 @@ const FacilityDescription = (props: Props) => {
           <button
             type="submit"
             className={
-              editable ? "btn-base-focus px-12 " : "btn-base-small w-28 px-12"
+              editable
+                ? "btn-base-focus px-12 mx-0 "
+                : "btn-base-small w-28 px-12 mx-0 "
             }
           >
             Submit

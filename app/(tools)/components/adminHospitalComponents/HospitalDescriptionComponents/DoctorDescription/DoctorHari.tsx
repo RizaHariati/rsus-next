@@ -1,5 +1,5 @@
 import {
-  DoctorInitialValueType,
+  InitialValueType,
   HariType,
   HospitalItemType,
 } from "@/app/(tools)/HospitalTypes";
@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import { v4 as uuidv4 } from "uuid";
 type DoctorHariProps = {
   doctorFormValue: HospitalItemType;
-  doctorValues: DoctorInitialValueType;
+  doctorValues: InitialValueType;
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
 

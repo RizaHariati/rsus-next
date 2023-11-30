@@ -1,18 +1,16 @@
 import {
   HospitalItemType,
-  LabPaketInitialValueType,
+  InitialValueType,
 } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { sanityLoader } from "@/loader";
-import { faPlus } from "@fortawesome/free-solid-svg-icons";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import Image from "next/image";
-import React from "react";
+import React, { useState } from "react";
 
 type Props = {
   labPaketFormKey: string;
   labPaketFormValue: HospitalItemType;
-  labPaketValues: LabPaketInitialValueType;
+  labPaketValues: InitialValueType;
 };
 
 const LabPaketImage = ({
@@ -23,6 +21,15 @@ const LabPaketImage = ({
   const {
     state: { editable },
   } = useGlobalContext();
+
+  const [imgFile, setImgFile] = useState<{
+    imgSrc: string;
+    imgName: string;
+  }>({
+    imgSrc: labPaketValues[labPaketFormKey].value?.src,
+    imgName: labPaketValues[labPaketFormKey].value?.alt,
+  });
+
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.preventDefault);
     console.log(e.target.value.slice(12, e.target.value.length));

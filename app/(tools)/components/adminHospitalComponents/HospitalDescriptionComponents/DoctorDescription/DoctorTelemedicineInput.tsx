@@ -1,15 +1,16 @@
 import {
-  DoctorInitialValueType,
+  InitialValueType,
   HospitalItemType,
 } from "@/app/(tools)/HospitalTypes";
 import React, { useState } from "react";
-import DoctorRegular from "./DoctorRegular";
+import DoctorRegular from "../../../GeneralComponents/UntukDibuang/DoctorRegular";
 
-import BooleanButton from "../../BooleanButton";
+import BooleanButton from "../../../GeneralComponents/BooleanButtonInput";
+import RegularInput from "../../../GeneralComponents/RegularInput";
 
 type Props = {
   doctorFormKey: string;
-  doctorValues: DoctorInitialValueType;
+  doctorValues: InitialValueType;
   doctorFormValue: HospitalItemType;
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
@@ -42,10 +43,10 @@ const DoctorTelemedicineInput = ({
         }
       >
         {doctorFormKey === "biaya_telemedicine" && (
-          <DoctorRegular
-            doctorValues={doctorValues}
-            doctorFormValue={doctorFormValue}
-            doctorFormKey={doctorFormKey}
+          <RegularInput
+            values={doctorValues}
+            formValue={doctorFormValue}
+            formKey={doctorFormKey}
             handleValueChange={handleValueChange}
           />
         )}

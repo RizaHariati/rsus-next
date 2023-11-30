@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback, useMemo } from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeSideBar, openSidebar } from "../../column/columnCodes";
 
@@ -26,31 +26,48 @@ const SidebarComponent = (props: Props) => {
       !column1 ? openSidebar(currentWindow) : closeSideBar(currentWindow)
     );
   };
+  const sidebarTheme = useMemo(() => {
+    return {
+      columnContainer: !column1
+        ? "column-container-rotate "
+        : !column3
+        ? "column-container "
+        : "column-container-triple ",
+      columnNavbarContainer: column1
+        ? "column-navbar-container"
+        : "column-navbar-container-rotate ",
+      columnChangerBtn: !column1
+        ? "column-navbar-main-btn-rotate"
+        : "column-navbar-main-btn",
+    };
+  }, [column1, column3]);
+
+  const sidebarButtonTheme = useCallback(
+    (itemKey: string) => {
+      return {
+        buttonBackground:
+          itemKey === showDetail.key
+            ? "sidebar-btn-focus group"
+            : "sidebar-btn group",
+        buttonText:
+          itemKey === showDetail.key
+            ? "sidebar-btn-text text-white"
+            : "sidebar-btn-text",
+        buttonIcon:
+          itemKey === showDetail.key
+            ? "sidebar-btn-icon text-white"
+            : "sidebar-btn-icon",
+      };
+    },
+    [showDetail]
+  );
 
   return (
-    <div
-      className={
-        !column1
-          ? "column-container-rotate "
-          : !column3
-          ? "column-container "
-          : "column-container-triple "
-      }
-    >
-      <div
-        className={
-          column1
-            ? "column-navbar-container"
-            : "column-navbar-container-rotate "
-        }
-      >
+    <div className={sidebarTheme.columnContainer}>
+      <div className={sidebarTheme.columnNavbarContainer}>
         <button
           onClick={() => handleSidebarColumn()}
-          className={
-            !column1
-              ? "column-navbar-main-btn-rotate"
-              : "column-navbar-main-btn"
-          }
+          className={sidebarTheme.columnChangerBtn}
         >
           {patient.medical_record_number}
         </button>
