@@ -4,7 +4,7 @@ import HospitalMidbarComponent from "@/app/(tools)/components/adminHospitalCompo
 import HospitalSidebarComponent from "@/app/(tools)/components/adminHospitalComponents/HospitalSidebarComponent";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import useAssignColumn from "@/app/(tools)/utils/useAssignColumn";
-import React, { Suspense, useEffect, useState } from "react";
+import React, { Suspense, memo, useEffect, useMemo, useState } from "react";
 
 import { hospitalBtnDetail } from "../../column/sidebarColumnKeys";
 
@@ -21,9 +21,7 @@ const AdminHospitalContent = (props: Props) => {
   const [showMidbar, setShowMidbar] = useState(
     showDetail.column_open === "all"
   );
-
   useAssignColumn();
-
   useEffect(() => {
     handleShowDetail(hospitalBtnDetail[0]);
     // eslint-disable-next-line

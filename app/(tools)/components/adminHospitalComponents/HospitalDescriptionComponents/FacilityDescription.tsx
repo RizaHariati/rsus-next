@@ -3,7 +3,7 @@ import { InitialValueType } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { facilityForm } from "@/app/(tools)/utils/forms/FacilityFormInput";
 
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import EditListInput from "../../GeneralComponents/EditListInput";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import BooleanButton from "../../GeneralComponents/BooleanButtonInput";
@@ -78,7 +78,7 @@ const FacilityDescription = (props: Props) => {
     if (!editable) return;
     if (!facilityValues) return;
 
-    const newFacility: InitialValueType = {};
+    let newFacility: InitialValueType = {};
     const facilityPoli =
       value[0].key === "poliklinik"
         ? value[0].newValue?.map((item: any) => item.title)

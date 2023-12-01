@@ -2,13 +2,12 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { labPaketForm } from "@/app/(tools)/utils/forms/LabPaketFormInput";
 
 import React, { useEffect, useState } from "react";
-import LabPaketImage from "./LabPaketDescription/LabPaketImage";
 import { InitialValueType } from "@/app/(tools)/HospitalTypes";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import LabPaketHarga from "./LabPaketDescription/LabPaketHarga";
 import EditListInput from "../../GeneralComponents/EditListInput";
-import LabPaketInputRegular from "./LabPaketDescription/LabPaketInputRegular";
 import ImageGenericInput from "../../GeneralComponents/ImageGenericInput";
+import RegularInput from "../../GeneralComponents/RegularInput";
 type Props = {};
 
 const LabPaketDescription = (props: Props) => {
@@ -66,6 +65,7 @@ const LabPaketDescription = (props: Props) => {
                       labPaketFormKey={labPaketFormKey}
                       labPaketFormValue={labPaketFormValue}
                       labPaketValues={labPaketValues}
+                      handleValueChange={handleValueChange}
                     />
                   );
                 }
@@ -105,11 +105,12 @@ const LabPaketDescription = (props: Props) => {
                   );
                 }
                 return (
-                  <LabPaketInputRegular
+                  <RegularInput
                     key={index}
-                    labPaketFormKey={labPaketFormKey}
-                    labPaketFormValue={labPaketFormValue}
-                    labPaketValues={labPaketValues}
+                    formKey={labPaketFormKey}
+                    formValue={labPaketFormValue}
+                    values={labPaketValues}
+                    handleValueChange={handleValueChange}
                   />
                 );
               }

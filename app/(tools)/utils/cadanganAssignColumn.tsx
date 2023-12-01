@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useGlobalContext } from "../context/AppProvider";
 import { OCC, OCO, OOO } from "../column/columnPattern";
 import { maxWidth, minWidth } from "../context/initialState";
@@ -7,9 +7,10 @@ import { isMobile } from "react-device-detect";
 type Props = {};
 
 const useAssignColumn = () => {
+  console.log("triggered");
   const { assignColumn, getWindow } = useGlobalContext();
   // if (typeof window === "undefined" && typeof window !== "object") return;
-  console.log("triggered");
+  const [windowRealTime, setwindowRealTime] = useState(0);
   useEffect(() => {
     // only execute all the code below in client side
     // Handler to call on window resize

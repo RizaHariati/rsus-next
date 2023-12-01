@@ -3,7 +3,7 @@
     "id": "inp-001",
     "kelas": "President Suite",
     "pasien": 1,
-    "harga": "1.000.000",
+    "harga": 1000000,
     "img": "psuite-02.jpg",
     "img-array": [
       "psuite-01.jpg",
@@ -32,7 +32,7 @@
     "id": "inp-002",
     "kelas": "Super VIP A",
     "pasien": 1,
-    "harga": "900.000",
+    "harga": 900000,
     "img": "svipa-03.jpg",
     "img-array": [
       "svipa-01.jpg",
@@ -60,7 +60,7 @@
     "id": "inp-003",
     "kelas": "Super VIP B",
     "pasien": 1,
-    "harga": "850.000",
+    "harga": 850000,
     "img": "svipb-02.jpg",
     "img-array": [
       "svipb-01.jpg",
@@ -87,7 +87,7 @@
     "id": "inp-004",
     "kelas": "Super VIP C",
     "pasien": 1,
-    "harga": "800.000",
+    "harga": 800000,
     "img": "svipc-02.jpg",
     "img-array": [
       "svipc-01.jpg",
@@ -111,7 +111,7 @@
     "id": "inp-005",
     "kelas": "VIP A",
     "pasien": 1,
-    "harga": "750.000",
+    "harga": 750000,
     "img": "vipa-03.jpg",
     "img-array": [
       "vipa-01.jpg",
@@ -135,7 +135,7 @@
     "id": "inp-006",
     "kelas": "VIP B",
     "pasien": 1,
-    "harga": "700.000",
+    "harga": 700000,
     "img": "vipb-02.jpg",
     "img-array": [
       "vipb-01.jpg",
@@ -157,7 +157,7 @@
     "id": "inp-007",
     "kelas": "VIP C",
     "pasien": 1,
-    "harga": "650.000",
+    "harga": 650000,
     "img": "vipc-01.jpg",
     "img-array": [
       "vipc-01.jpg",
@@ -177,7 +177,7 @@
     "id": "inp-008",
     "kelas": "PRATAMA",
     "pasien": 1,
-    "harga": "500.000",
+    "harga": 500000,
     "img": "pratama-01.jpg",
     "img-array": [
       "pratama-01.jpg",
@@ -197,7 +197,7 @@
     "id": "inp-009",
     "kelas": "Kelas 1",
     "pasien": 2,
-    "harga": "400.000",
+    "harga": 400000,
     "img": "kls1-02.jpg",
     "img-array": [
       "kls1-01.jpg",
@@ -215,7 +215,7 @@
     "id": "inp-010",
     "kelas": "Kelas 3",
     "pasien": 3,
-    "harga": "200.000",
+    "harga": 200000,
     "img": "kelas3-01.jpg",
     "img-array": [
       "kelas3-01.jpg"
@@ -231,7 +231,7 @@
     "id": "inp-011",
     "kelas": "Kelas 1 (ANAK)",
     "pasien": 2,
-    "harga": "400.000",
+    "harga": 400000,
     "img": "kls1anak-01.jpg",
     "img-array": [
       "kls1anak-01.jpg",
@@ -249,7 +249,7 @@
     "id": "inp-012",
     "kelas": "Kelas 2 (ANAK)",
     "pasien": 3,
-    "harga": "350.000",
+    "harga": 350000,
     "img": "kls2anak-01.jpg",
     "img-array": [
       "kls2anak-01.jpg",

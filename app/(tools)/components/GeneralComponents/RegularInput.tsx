@@ -3,7 +3,6 @@ import {
   HospitalItemType,
 } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { doctorForm } from "@/app/(tools)/utils/forms/DoctorDetailedForm";
 import React, { useEffect, useMemo, useState } from "react";
 import { toast } from "react-toastify";
 
@@ -97,9 +96,6 @@ const RegularInput = ({
         type={formValue.number === false ? "string" : "number"}
         value={text}
         onChange={(e) => handleChange(e)}
-        // onKeyUp={(e) => {
-        //   handleKeyDown(e);
-        // }}
         onBlur={() => registerValue()}
         className={
           !values

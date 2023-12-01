@@ -41,7 +41,7 @@ export type InpatientType = {
   id: string;
   kelas: string;
   pasien: number;
-  harga: string;
+  harga: number;
   img: string;
   "img-array": string[];
   fasilitas: string[];

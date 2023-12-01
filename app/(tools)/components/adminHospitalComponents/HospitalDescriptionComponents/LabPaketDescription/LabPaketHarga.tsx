@@ -10,64 +10,94 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useEffect, useState } from "react";
+import { toast } from "react-toastify";
 
 type Props = {
   labPaketFormKey: string;
   labPaketFormValue: HospitalItemType;
   labPaketValues: InitialValueType;
+  handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
 
+type PaketHargaType = { type: "all" | "pria" | "wanita"; value: number }[];
 const LabPaketHarga = ({
   labPaketFormKey,
   labPaketFormValue,
   labPaketValues,
+  handleValueChange,
 }: Props) => {
   const {
     state: { editable },
     hospitalState: { dataPaket },
   } = useGlobalContext();
 
-  const [selectedHarga, setSelectedHarga] = useState(
-    labPaketValues[labPaketFormKey].value
-  );
-  const [allType, setallType] = useState({
-    all: true,
-    wanita: true,
-    pria: true,
-  });
-  useEffect(() => {}, []);
-
   const hargaCategory = [
     { id: "harga_1", type: "all" },
     { id: "harga_2", type: "pria" },
     { id: "harga_3", type: "wanita" },
   ];
+
+  const [selectedHarga, setSelectedHarga] = useState<PaketHargaType>(
+    labPaketValues?.[labPaketFormKey]?.value || [{ type: "all", value: 550000 }]
+  );
+  useEffect(() => {
+    if (!editable)
+      return setSelectedHarga(labPaketValues?.[labPaketFormKey]?.value);
+  }, [labPaketValues, editable]);
+
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
-
+    if (!editable) return;
     if (e.currentTarget.id === "all") {
-      const newValue = [{ type: "all", value: 550000 }];
-      setallType({
-        all: true,
-        wanita: false,
-        pria: false,
-      });
+      const newValue: PaketHargaType = [{ type: "all", value: 550000 }];
+
       return setSelectedHarga(newValue);
     } else {
-      const newValue = [
+      const newValue: PaketHargaType = [
         { type: "pria", value: 100000 },
         { type: "wanita", value: 100000 },
       ];
-      setallType({
-        all: true,
-        wanita: true,
-        pria: true,
-      });
+
       return setSelectedHarga(newValue);
     }
   };
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {};
+  const handleChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+    type: string
+  ) => {
+    e.preventDefault();
+
+    const findType = selectedHarga.find((item) => item.type === type);
+    if (!findType) return;
+    const newHarga: any = selectedHarga.map((item) => {
+      if (type === item.type) {
+        return { ...item, value: parseInt(e.target.value) };
+      } else {
+        return item;
+      }
+    });
+    setSelectedHarga(newHarga);
+  };
+  const registerValue = (
+    e: React.FocusEvent<HTMLInputElement, Element>,
+    type: string
+  ) => {
+    e.preventDefault();
+
+    const findType = selectedHarga.find((item) => item.type === type);
+
+    if (!findType) return;
+    const newText = e.target.value;
+    if (!newText) {
+      toast.error("harga tidak boleh kosong");
+
+      return setSelectedHarga([...labPaketValues?.[labPaketFormKey]?.value]);
+    } else {
+      handleValueChange([{ newValue: selectedHarga, key: labPaketFormKey }]);
+    }
+  };
+
   return (
     <div className="flex flex-col gap-2 mt-2">
       <small className="">{labPaketFormValue.title}</small>
@@ -93,11 +123,18 @@ const LabPaketHarga = ({
                 <p> {harga.type}</p>
               </button>
               <input
+                type="number"
+                disabled={!editable}
                 value={findHarga ? findHarga.value : "-"}
                 onChange={(e) => {
-                  handleChange(e);
+                  handleChange(e, harga.type);
                 }}
-                className="w-full h-full bg-white px-2 shadow-inner border-l border-greyBorder"
+                onBlur={(e) => registerValue(e, harga.type)}
+                className={
+                  editable
+                    ? "w-full h-full bg-white px-2 shadow-inner border-l border-greyBorder text-greyDrk"
+                    : "w-full h-full bg-hoverBG px-2 shadow-inner border-l border-greyBorder text-greyMed2"
+                }
               />
             </div>
           );

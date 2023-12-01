@@ -31,42 +31,41 @@ const EditListInput = ({
     setList(inputList);
   }, [inputList, editable!]);
 
-  const addRemoveListItem = useCallback(
-    (itemList: string) => {
-      if (!editable) return;
+  const addRemoveListItem = (itemList: string) => {
+    if (!editable) return;
 
-      let finalList: any[] = [];
-      const findList = list.find((item) => item === itemList);
+    let finalList: any[] = [];
+    const findList = list.find((item) => item === itemList);
 
-      if (!findList) {
-        const newList = [...list, itemList];
+    if (!findList) {
+      const newList = [...list, itemList];
 
-        finalList = newList.map((item) => {
-          const findItem = dataList.find(
-            (itemdata) => itemdata.title.toLowerCase() === item.toLowerCase()
-          );
-          if (findItem) {
-            return findItem;
-          }
-        });
-        setList(newList);
-      } else {
-        if (list.length < 2) return toast.error("Pilihan tidak boleh kosong");
-        const newList = list.filter((item: string) => item !== itemList);
-        finalList = newList.map((item) => {
-          const findItem = dataList.find(
-            (itemdata) => itemdata.title.toLowerCase() === item.toLowerCase()
-          );
-          if (findItem) {
-            return findItem;
-          }
-        });
-        setList(newList);
-      }
-      handleValueChange([{ newValue: finalList, key: FormKey }]);
-    },
-    [list, setList, FormKey, dataList, editable, handleValueChange]
-  );
+      finalList = newList.map((item) => {
+        const findItem = dataList.find(
+          (itemdata) => itemdata.title.toLowerCase() === item.toLowerCase()
+        );
+        if (findItem) {
+          return findItem;
+        }
+      });
+      setList(newList);
+    } else {
+      if (list.length < 2) return toast.error("Pilihan tidak boleh kosong");
+      const newList = list.filter((item: string) => item !== itemList);
+      finalList = newList.map((item) => {
+        const findItem = dataList.find(
+          (itemdata) => itemdata?.title?.toLowerCase() === item.toLowerCase()
+        );
+        if (findItem) {
+          return findItem;
+        }
+      });
+
+      setList(newList);
+    }
+
+    handleValueChange([{ newValue: finalList, key: FormKey }]);
+  };
   const closeModal = () => {
     setList(inputList);
     setShowModal(false);

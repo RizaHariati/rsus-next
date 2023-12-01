@@ -7,6 +7,7 @@ export const inpatientForm: FormInpatientType = {
     placeholder: "masukkan Judul",
     editable: true,
     error: "Judul wajib diisi",
+    number: false,
   },
   id: {
     id: "inpatient_02",
@@ -14,6 +15,7 @@ export const inpatientForm: FormInpatientType = {
     placeholder: "masukkan id",
     editable: false,
     error: "id wajib diisi",
+    number: false,
   },
   pasien: {
     id: "inpatient_03",
@@ -21,6 +23,7 @@ export const inpatientForm: FormInpatientType = {
     placeholder: "masukkan jumlah pasien per kamar",
     editable: true,
     error: "jumlah pasien per kamar wajib diisi",
+    number: true,
   },
   harga: {
     id: "inpatient_04",
@@ -28,6 +31,7 @@ export const inpatientForm: FormInpatientType = {
     placeholder: "masukkan harga",
     editable: true,
     error: "harga wajib diisi",
+    number: true,
   },
   img: {
     id: "inpatient_05",
@@ -35,6 +39,7 @@ export const inpatientForm: FormInpatientType = {
     placeholder: "Gambar Utama",
     editable: true,
     error: "Gambar wajib diisi",
+    number: false,
   },
   "img-array": {
     id: "inpatient_06",
@@ -42,6 +47,7 @@ export const inpatientForm: FormInpatientType = {
     placeholder: "maksimal masukkan 3 gambar",
     editable: true,
     error: "gambar wajib diisi",
+    number: false,
   },
   fasilitas: {
     id: "inpatient_07",
@@ -49,5 +55,6 @@ export const inpatientForm: FormInpatientType = {
     placeholder: "masukkan fasilitas",
     editable: true,
     error: "fasilitas wajib diisi",
+    number: false,
   },
 };

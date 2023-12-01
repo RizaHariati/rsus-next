@@ -5,20 +5,37 @@ import { InitialValueType } from "@/app/(tools)/HospitalTypes";
 import { useEffect, useState } from "react";
 import EditListInput from "../../GeneralComponents/EditListInput";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
+import RegularInput from "../../GeneralComponents/RegularInput";
+import { toast } from "react-toastify";
 
 type Props = {};
 
 const InpatientDescription = (props: Props) => {
   const {
-    state: { columnAssignment, editable },
+    settingEditable,
+    state: { editable },
     hospitalState: { selectedInpatient, dataInpatient },
   } = useGlobalContext();
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    const newPromise = new Promise((resolve) => {
+      setTimeout(() => {
+        resolve(console.log("loading data"));
+      }, 1000);
+    }).then((res) => {
+      settingEditable(false);
+    });
+    toast.promise(newPromise, {
+      pending: "Data diproses",
+      success: "Data berhasil diubah",
+      error: "Promise rejected 🤯",
+    });
+
+    // masukkan data ke context
   };
 
-  const [inpatientValues, setFacilityValues] = useState<InitialValueType>({});
-  // console.log(selectedInpatient?.["fasilitas"]);
+  const [inpatientValues, setInpatientValues] = useState<InitialValueType>({});
+
   useEffect(() => {
     if (!selectedInpatient) return;
     else {
@@ -29,7 +46,7 @@ const InpatientDescription = (props: Props) => {
           newFacilityValues[key] = { value, error: false };
         }
       });
-      setFacilityValues(newFacilityValues);
+      setInpatientValues(newFacilityValues);
     }
   }, [selectedInpatient, editable]);
   const getInpatientFacility = () => {
@@ -57,7 +74,39 @@ const InpatientDescription = (props: Props) => {
   const formInputInpatient = Object.entries(inpatientForm);
 
   const handleValueChange = (value: { newValue: any; key: string }[]) => {
-    console.log({ value });
+    if (!editable) return;
+    if (!inpatientValues) return;
+    let newPatientValues: any = {};
+
+    Object.entries(inpatientValues).map(([itemKey, itemValue]) => {
+      if (!newPatientValues[itemKey]) {
+        const findValue = value.find((item) => item.key === itemKey);
+
+        if (!findValue) {
+          //@ts-ignore
+
+          newPatientValues[itemKey] = { ...itemValue };
+        } else {
+          if (itemKey === "fasilitas") {
+            const newList: string[] = findValue.newValue.map(
+              (item: any) => item.title
+            );
+
+            newPatientValues[itemKey] = {
+              value: newList,
+              error: false,
+            };
+          } else {
+            newPatientValues[itemKey] = {
+              value: findValue.newValue,
+              error: false,
+            };
+          }
+        }
+      }
+    });
+
+    setInpatientValues(newPatientValues);
   };
   if (Object.keys(inpatientValues).length < 1 || !selectedInpatient) {
     return (
@@ -74,48 +123,42 @@ const InpatientDescription = (props: Props) => {
         <div className="column-description-content">
           {formInputInpatient.map(
             ([inpatientFormKey, inpatientFormValue], index) => {
-              //@ts-ignore
-              const inpatientDetail: any = //@ts-ignore
-                selectedInpatient?.[inpatientFormKey] || "";
-              if (
-                inpatientFormKey === "img" ||
-                inpatientFormKey === "img-array"
-              ) {
-                return (
-                  <InpatientImageDescription
-                    key={index}
-                    inpatientFormKey={inpatientFormKey}
-                    inpatientFormValue={inpatientFormValue}
-                    inpatientValues={inpatientValues}
-                  />
-                );
+              switch (inpatientFormKey) {
+                case "img":
+                case "img-array":
+                  return (
+                    <InpatientImageDescription
+                      key={index}
+                      inpatientFormKey={inpatientFormKey}
+                      inpatientFormValue={inpatientFormValue}
+                      inpatientValues={inpatientValues}
+                      handleValueChange={handleValueChange}
+                    />
+                  );
+                case "fasilitas":
+                  const dataList: { id: number; title: string }[] =
+                    getInpatientFacility() || [];
+                  return (
+                    <EditListInput
+                      key={index}
+                      handleValueChange={handleValueChange}
+                      FormKey={inpatientFormKey}
+                      FormValue={inpatientFormValue}
+                      inputList={inpatientValues[inpatientFormKey].value}
+                      dataList={dataList}
+                    />
+                  );
+                default:
+                  return (
+                    <RegularInput
+                      key={index}
+                      formKey={inpatientFormKey}
+                      formValue={inpatientFormValue}
+                      values={inpatientValues}
+                      handleValueChange={handleValueChange}
+                    />
+                  );
               }
-              if (inpatientFormKey === "fasilitas") {
-                const dataList: { id: number; title: string }[] =
-                  getInpatientFacility() || [];
-                return (
-                  <EditListInput
-                    key={index}
-                    handleValueChange={handleValueChange}
-                    FormKey={inpatientFormKey}
-                    FormValue={inpatientFormValue}
-                    inputList={inpatientValues[inpatientFormKey].value}
-                    dataList={dataList}
-                  />
-                );
-              }
-              return (
-                <div key={index} className="w-full">
-                  <small className="">{inpatientFormValue.title}</small>
-                  <input
-                    onChange={(e) => e.preventDefault()}
-                    value={inpatientDetail.toString()}
-                    className={
-                      editable ? "admin-input" : "admin-input-disabled"
-                    }
-                  />
-                </div>
-              );
             }
           )}
         </div>
