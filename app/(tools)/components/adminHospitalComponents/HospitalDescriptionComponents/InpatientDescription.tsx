@@ -49,8 +49,9 @@ const InpatientDescription = (props: Props) => {
       setInpatientValues(newFacilityValues);
     }
   }, [selectedInpatient, editable]);
+
   const getInpatientFacility = () => {
-    let inpatientFacilityList: { id: number; title: string }[] = [];
+    let inpatientFacilityList: { id: string; title: string }[] = [];
     if (!dataInpatient) return;
     else {
       let id = 0;
@@ -62,7 +63,10 @@ const InpatientDescription = (props: Props) => {
           });
           if (!findFacility) {
             id++;
-            inpatientFacilityList.push({ id, title: fasilitasItem });
+            inpatientFacilityList.push({
+              id: `inp-${id}`,
+              title: fasilitasItem,
+            });
           }
           return "";
         });
@@ -83,8 +87,6 @@ const InpatientDescription = (props: Props) => {
         const findValue = value.find((item) => item.key === itemKey);
 
         if (!findValue) {
-          //@ts-ignore
-
           newPatientValues[itemKey] = { ...itemValue };
         } else {
           if (itemKey === "fasilitas") {
@@ -136,15 +138,24 @@ const InpatientDescription = (props: Props) => {
                     />
                   );
                 case "fasilitas":
-                  const dataList: { id: number; title: string }[] =
+                  const dataList: { id: string; title: string }[] =
                     getInpatientFacility() || [];
+                  const newInputList: { id: string; title: string }[] =
+                    inpatientValues[inpatientFormKey].value.map(
+                      (inpatientItem: string) => {
+                        return dataList.find(
+                          (item) => item.title === inpatientItem
+                        );
+                      }
+                    );
+
                   return (
                     <EditListInput
                       key={index}
                       handleValueChange={handleValueChange}
                       FormKey={inpatientFormKey}
                       FormValue={inpatientFormValue}
-                      inputList={inpatientValues[inpatientFormKey].value}
+                      inputList={newInputList}
                       dataList={dataList}
                     />
                   );

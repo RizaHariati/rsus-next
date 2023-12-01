@@ -61,14 +61,12 @@ const ModalContent = ({
       <h3 className="modal-title">Daftar Item Tambahan</h3>
       <div className="w-full  grid grid-cols-1 md:grid-cols-3 gap-3 md:max-h-80 md:custom-scrollbar bgp">
         {dataList.map((itemData, index) => {
-          const findItem = list.find(
-            (item) => item.toLowerCase() === itemData.title.toLowerCase()
-          );
+          const findItem = list.find((item) => item.id === itemData.id);
 
           return (
             <button
               type="button"
-              onClick={() => addRemoveListItem(itemData.title)}
+              onClick={() => addRemoveListItem(itemData.id)}
               key={index}
               className={
                 findItem

@@ -37,7 +37,24 @@ const LabPaketDescription = (props: Props) => {
   }, [selectedPaket]);
 
   const handleValueChange = (value: { newValue: any; key: string }[]) => {
-    console.log({ value });
+    if (!editable) return;
+    if (!labPaketValues) return;
+    let newPaketValues: typeof labPaketValues = {};
+    Object.entries(labPaketValues).map(([itemKey, itemValue]) => {
+      if (!newPaketValues[itemKey]) {
+        const findValue = value.find((item) => item.key === itemKey);
+        if (!findValue) {
+          newPaketValues[itemKey] = { ...itemValue };
+        } else {
+          // console.log(itemKey);
+          // console.log(itemValue);
+          // console.log(findValue.newValue);
+          if (itemKey === "pemeriksaan" || itemKey === "laboratorium") {
+            // console.log(findValue);
+          }
+        }
+      }
+    });
   };
 
   if (Object.keys(labPaketValues).length < 1 || !selectedPaket) {
@@ -85,17 +102,13 @@ const LabPaketDescription = (props: Props) => {
                   labPaketFormKey === "pemeriksaan" ||
                   labPaketFormKey === "laboratorium"
                 ) {
-                  const inputList = labPaketValues?.[
-                    labPaketFormKey
-                  ]?.value.map((item: any) => item.title);
-
                   return (
                     <EditListInput
                       key={index}
                       handleValueChange={handleValueChange}
                       FormKey={labPaketFormKey}
                       FormValue={labPaketFormValue}
-                      inputList={inputList}
+                      inputList={labPaketValues?.[labPaketFormKey]?.value}
                       dataList={
                         labPaketFormKey === "pemeriksaan"
                           ? dataFacility

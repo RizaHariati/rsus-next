@@ -165,13 +165,21 @@ const FacilityDescription = (props: Props) => {
                     />
                   );
                 case "poliklinik":
+                  const newInputList: any[] = facilityValues?.[
+                    facilityFormKey
+                  ]?.value.map((facilityItem: string) => {
+                    return dataPoliklinik.find((item) => {
+                      return item.title === facilityItem;
+                    });
+                  });
+
                   return (
                     <EditListInput
                       key={index}
                       handleValueChange={handleValueChange}
                       FormKey={facilityFormKey}
                       FormValue={facilityFormValue}
-                      inputList={facilityValues[facilityFormKey].value}
+                      inputList={newInputList}
                       dataList={dataPoliklinik}
                     />
                   );

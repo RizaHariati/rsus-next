@@ -10,7 +10,7 @@ type Props = {
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
   FormKey: string;
   FormValue: HospitalItemType;
-  inputList: string[];
+  inputList: any[];
   dataList: any[];
 };
 
@@ -26,42 +26,23 @@ const EditListInput = ({
   } = useGlobalContext();
   const [showModal, setShowModal] = useState(false);
   const [list, setList] = useState<any[]>(inputList);
-
+  console.log({ list });
   useEffect(() => {
     setList(inputList);
   }, [inputList, editable!]);
 
-  const addRemoveListItem = (itemList: string) => {
+  const addRemoveListItem = (itemId: string) => {
     if (!editable) return;
 
     let finalList: any[] = [];
-    const findList = list.find((item) => item === itemList);
+    const findList = list.find((item) => item.id === itemId);
 
     if (!findList) {
-      const newList = [...list, itemList];
-
-      finalList = newList.map((item) => {
-        const findItem = dataList.find(
-          (itemdata) => itemdata.title.toLowerCase() === item.toLowerCase()
-        );
-        if (findItem) {
-          return findItem;
-        }
-      });
-      setList(newList);
+      const newItem = dataList.find((item) => item.id === itemId);
+      finalList = [...list, newItem];
     } else {
       if (list.length < 2) return toast.error("Pilihan tidak boleh kosong");
-      const newList = list.filter((item: string) => item !== itemList);
-      finalList = newList.map((item) => {
-        const findItem = dataList.find(
-          (itemdata) => itemdata?.title?.toLowerCase() === item.toLowerCase()
-        );
-        if (findItem) {
-          return findItem;
-        }
-      });
-
-      setList(newList);
+      finalList = list.filter((item: any) => item.id !== itemId);
     }
 
     handleValueChange([{ newValue: finalList, key: FormKey }]);
@@ -82,7 +63,7 @@ const EditListInput = ({
       />
       <small className="">{FormValue.title}</small>
       <div className="w-full flex flex-col gap-2 standard-border p-2 bg-hoverBG">
-        {list.map((itemList: string, indexPoli: number) => {
+        {list.map((itemList: any, indexPoli: number) => {
           return (
             <div
               key={indexPoli}
@@ -92,10 +73,13 @@ const EditListInput = ({
                   : "admin-input-disabled flex-center-between"
               }
             >
-              <p className="text-sm leading-3">{itemList}</p>
+              <p className="text-sm leading-3">{itemList.title}</p>
               <button
                 type="button"
-                onClick={() => addRemoveListItem(itemList)}
+                onClick={() => {
+                  if (itemList.id.slice(0, 3) === "std") return;
+                  addRemoveListItem(itemList.id);
+                }}
                 className="standard-border h-6 w-6"
               >
                 <FontAwesomeIcon icon={faMinus} className="h-4 w-4" />
