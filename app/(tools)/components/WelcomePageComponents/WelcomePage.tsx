@@ -9,7 +9,7 @@ import {
 } from "../../column/sidebarColumnKeys";
 import { initialColumn } from "../../context/initialState";
 import { useRouter } from "next/navigation";
-import LoadingPage from "@/app/(site)/adminhospital/#loading";
+import LoadingPage from "@/app/(site)/adminhospital/loading";
 import LoadingHome from "../../../(site)/loading";
 
 type Props = {};

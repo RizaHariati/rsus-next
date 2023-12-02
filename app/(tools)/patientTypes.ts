@@ -10,8 +10,9 @@ export type PersonalItemType = {
   id: string;
   title: string;
   placeholder: string;
-  col_width?: number;
   error: string;
+  number: boolean;
+  editable: boolean;
 };
 export type FormProfileType = {
   name: PersonalItemType;

@@ -79,32 +79,18 @@ const SidebarComponent = (props: Props) => {
               <div key={index} className="sidebar-btn-container">
                 <button
                   type="button"
-                  className={
-                    item.key === showDetail.key
-                      ? "sidebar-btn-focus group"
-                      : "sidebar-btn group"
-                  }
+                  className={sidebarButtonTheme(item.key).buttonBackground}
                   onClick={() => {
                     handleShowDetail(item);
                     settingEditable(false);
                   }}
                 >
-                  <p
-                    className={
-                      item.key === showDetail.key
-                        ? "sidebar-btn-text text-white"
-                        : "sidebar-btn-text"
-                    }
-                  >
+                  <p className={sidebarButtonTheme(item.key).buttonText}>
                     {item.name}
                   </p>
                   <FontAwesomeIcon
                     icon={faChevronRight}
-                    className={
-                      item.key === showDetail.key
-                        ? "sidebar-btn-icon text-white"
-                        : "sidebar-btn-icon"
-                    }
+                    className={sidebarButtonTheme(item.key).buttonIcon}
                   />
                 </button>
               </div>

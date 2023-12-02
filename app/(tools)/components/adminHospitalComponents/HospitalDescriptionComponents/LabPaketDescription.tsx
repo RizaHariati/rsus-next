@@ -10,6 +10,7 @@ import ImageGenericInput from "../../GeneralComponents/ImageGenericInput";
 import RegularInput from "../../GeneralComponents/RegularInput";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
+import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
 type Props = {};
 
 const LabPaketDescription = (props: Props) => {
@@ -71,16 +72,16 @@ const LabPaketDescription = (props: Props) => {
         } else {
           if (itemKey === "price") {
             let flag = false;
-            const value = findValue.newValue.map((item: any) => {
-              const roundup = Math.round(item.value / 500) * 500;
-              if (roundup > 100000000) {
-                toast.info("nilai maksimal adalah Rp.100.000.000");
+            const newValue = findValue.newValue.map((item: any) => {
+              const validate = validatePrice(item.value, 100000000);
+
+              if (validate.flag) {
                 flag = true;
-                return { ...item, value: roundup };
               }
-              return { ...item, value: roundup };
+              return { ...item, value: validate.roundup };
             });
-            if (!flag) newPaketValues[itemKey] = { ...itemValue, value };
+            if (!flag)
+              newPaketValues[itemKey] = { ...itemValue, value: newValue };
             else {
               newPaketValues[itemKey] = { ...itemValue };
             }

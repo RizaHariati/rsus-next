@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useCallback, useEffect, useState } from "react";
 import DescriptionModal from "./DescriptionModal";
 import { toast } from "react-toastify";
+import DoctorDescriptionLoading from "../adminHospitalComponents/HospitalLoadingComponents/DoctorDescriptionLoading";
 
 type Props = {
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
@@ -29,20 +30,22 @@ const EditListInput = ({
 
   useEffect(() => {
     setList(inputList);
+    if (!editable) closeModal();
   }, [inputList, editable!]);
 
   const addRemoveListItem = (itemId: string) => {
     if (!editable) return;
+    if (!dataList || !list) return;
 
     let finalList: any[] = [];
-    const findList = list.find((item) => item.id === itemId);
+    const findList = list?.find((item) => item.id === itemId);
 
     if (!findList) {
       const newItem = dataList.find((item) => item.id === itemId);
       finalList = [...list, newItem];
     } else {
-      if (list.length < 2) return toast.error("Pilihan tidak boleh kosong");
-      finalList = list.filter((item: any) => item.id !== itemId);
+      if (list?.length < 2) return toast.error("Pilihan tidak boleh kosong");
+      finalList = list?.filter((item: any) => item.id !== itemId);
     }
 
     handleValueChange([{ newValue: finalList, key: FormKey }]);
@@ -51,7 +54,12 @@ const EditListInput = ({
     setList(inputList);
     setShowModal(false);
   };
-
+  if (!dataList || !list)
+    return (
+      <div className="h-[calc(100vh-112px)] w-full">
+        <DoctorDescriptionLoading />
+      </div>
+    );
   return (
     <div className="w-full mt-2 bg-hoverBG">
       <DescriptionModal

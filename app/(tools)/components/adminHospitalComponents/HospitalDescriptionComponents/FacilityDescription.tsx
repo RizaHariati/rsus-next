@@ -1,5 +1,8 @@
 "use client";
-import { InitialValueType } from "@/app/(tools)/HospitalTypes";
+import {
+  FacilitySanityType,
+  InitialValueType,
+} from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { facilityForm } from "@/app/(tools)/utils/forms/FacilityFormInput";
 
@@ -14,10 +17,12 @@ import ImageGenericInput from "../../GeneralComponents/ImageGenericInput";
 import RegularInput from "../../GeneralComponents/RegularInput";
 import TextAreaInput from "../../GeneralComponents/TextAreaInput";
 import SelectRadioInput from "../../GeneralComponents/SelectRadioInput";
+import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
 type Props = {};
 
 const FacilityDescription = (props: Props) => {
   const {
+    settingEditable,
     state: { editable },
     hospitalState: { selectedFacility, dataFacility },
   } = useGlobalContext();
@@ -30,32 +35,25 @@ const FacilityDescription = (props: Props) => {
     e.preventDefault();
     if (!selectedFacility) return;
 
-    const facilityResultValues = Object.entries(facilityValues);
-    const originalValues = selectedFacility
-      ? Object.entries(selectedFacility)
-      : [];
-    if (facilityResultValues.length !== originalValues.length) {
-      return toast.error("data tidak lengkap, silahkan dicek ulang");
-    }
-    let valueChanged = false;
-    let newValue = { ...selectedFacility };
-    facilityResultValues.map(([key, values]) => {
-      //@ts-ignore
-      console.log({ ori: selectedFacility[key], new: values.value });
-      //@ts-ignore
-      if (selectedFacility[key] !== values.value) {
-        newValue = { ...newValue, [key]: values.value };
-        return (valueChanged = true);
-      } //@ts-ignore
-      // console.log(selectedFacility[key] !== values.value);
-
-      return "";
+    const newPromise = new Promise((resolve) => {
+      setTimeout(() => {
+        let editedFacilityValues: FacilitySanityType | any = {};
+        Object.entries(facilityValues).forEach(([editedKey, editedValue]) => {
+          if (!editedFacilityValues[editedKey]) {
+            editedFacilityValues[editedKey] = editedValue.value;
+          }
+        });
+        resolve(console.log({ editedFacilityValues }));
+      }, 1000);
+    }).then((res) => {
+      settingEditable(false);
+      return res;
     });
-    if (!valueChanged) return toast.error("tidak ada perubahan");
-    else {
-      // console.log({ newValue });
-      toast.success("data berhasil diubah");
-    }
+    toast.promise(newPromise, {
+      pending: "Data diproses",
+      success: "Data berhasil diubah",
+      error: "Promise rejected 🤯",
+    });
   };
 
   useEffect(() => {
@@ -79,10 +77,6 @@ const FacilityDescription = (props: Props) => {
     if (!facilityValues) return;
 
     let newFacility: InitialValueType = {};
-    const facilityPoli =
-      value[0].key === "poliklinik"
-        ? value[0].newValue?.map((item: any) => item.title)
-        : null;
 
     Object.entries(facilityValues).map(([itemKey, itemValue]) => {
       const findValue = value.find((item) => item.key === itemKey);
@@ -90,15 +84,26 @@ const FacilityDescription = (props: Props) => {
         //@ts-ignore
         newFacility[itemKey] = { ...itemValue };
       } else {
-        newFacility[itemKey] = {
-          value:
-            value[0].key === "poliklinik" ? facilityPoli : findValue.newValue,
-          error: false,
-        };
+        if (itemKey === "poliklinik") {
+          const poliArray: string[] = findValue.newValue.map(
+            (item: any) => item.title
+          );
+          newFacility[itemKey] = { ...itemValue, value: poliArray };
+        } else if (itemKey === "price") {
+          const validate = validatePrice(findValue.newValue, 100000000);
+          if (!validate.flag) {
+            newFacility[itemKey] = { ...itemValue, value: validate.roundup };
+          } else {
+            newFacility[itemKey] = { ...itemValue };
+          }
+        } else {
+          newFacility[itemKey] = { ...itemValue, value: findValue.newValue };
+        }
       }
     });
     setFacilityValues(newFacility);
   };
+
   if (Object.keys(facilityValues).length < 1 || !selectedFacility) {
     return (
       <div className="h-[calc(100vh-112px)] w-full">
@@ -168,9 +173,12 @@ const FacilityDescription = (props: Props) => {
                   const newInputList: any[] = facilityValues?.[
                     facilityFormKey
                   ]?.value.map((facilityItem: string) => {
-                    return dataPoliklinik.find((item) => {
-                      return item.title === facilityItem;
-                    });
+                    const findPoli =
+                      dataPoliklinik.find((item) => {
+                        return item.title === facilityItem;
+                      }) || {};
+
+                    return findPoli;
                   });
 
                   return (

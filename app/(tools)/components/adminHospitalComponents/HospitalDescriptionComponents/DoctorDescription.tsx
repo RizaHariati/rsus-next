@@ -12,6 +12,7 @@ import DoctorGender from "./DoctorDescription/DoctorGender";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import { toast } from "react-toastify";
 import RegularInput from "../../GeneralComponents/RegularInput";
+import SubmitButton from "../../GeneralComponents/SubmitButton";
 
 type Props = {};
 
@@ -209,45 +210,11 @@ const DoctorDescription = (props: Props) => {
               }
             })}
           </div>
-          <div className="content-menu border-t ">
-            <button
-              type="submit"
-              className={
-                editable
-                  ? "btn-base-focus px-12 mx-0"
-                  : "btn-base-small w-28 px-12 mx-0"
-              }
-            >
-              Submit
-            </button>
-          </div>
+          <SubmitButton />
         </form>
       </>
     );
   }
 };
-// };
 
 export default DoctorDescription;
-
-// if (formKey === "biaya_telemedicine" || formKey === "biaya_tatapmuka") {
-//   const newText = parseInt(text.toString());
-//   if (newText < 10000) {
-//     setText(10000);
-//     sendValue = { ...sendValue, newValue: 10000 };
-//   } else {
-//     const newText = parseInt(text.toString());
-//     const round = (num: number) => {
-//       return Math.round(num / 500) * 500;
-//     };
-//     setText(round(newText));
-//     sendValue = { ...sendValue, newValue: round(newText) };
-//   }
-// }
-// if (formKey === "kuota") {
-//   const newText = parseInt(text.toString());
-//   if (newText < 5) {
-//     setText(5);
-//     sendValue = { ...sendValue, newValue: 5 };
-//   }
-// }

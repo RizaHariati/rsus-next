@@ -50,7 +50,6 @@ const SelectRadioInput = ({
                 checked={values[formKey].value === item}
                 className=" cursor-pointer"
                 onChange={() => {
-                  console.log({ newValue: item, key: formKey });
                   handleValueChange([{ newValue: item, key: formKey }]);
                 }}
               />

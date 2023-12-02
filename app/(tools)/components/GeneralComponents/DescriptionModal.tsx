@@ -47,7 +47,6 @@ const DescriptionModal = ({
 export default DescriptionModal;
 
 const ModalContent = ({
-  showModal,
   closeModal,
   dataList,
   list,
@@ -55,7 +54,11 @@ const ModalContent = ({
 }: Props) => {
   return (
     <div className="modal-phone md:modal-lg">
-      <button className="modal-close-btn" onClick={() => closeModal()}>
+      <button
+        type="button"
+        className="modal-close-btn"
+        onClick={() => closeModal()}
+      >
         <FontAwesomeIcon icon={faClose} />
       </button>
       <h3 className="modal-title">Daftar Item Tambahan</h3>

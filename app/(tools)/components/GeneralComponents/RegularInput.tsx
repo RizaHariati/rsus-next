@@ -49,7 +49,7 @@ const RegularInput = ({
 
     //@ts-ignore
     if (formValue.number) {
-      if (newText.length > 10) return toast.error("angka terlalu besar");
+      if (newText.length >= 14) return toast.error("angka terlalu besar");
       return setText(parseInt(newText));
     } else {
       return setText(newText);
@@ -69,23 +69,6 @@ const RegularInput = ({
     let sendValue = { newValue: text, key: formKey };
 
     handleValueChange([{ ...sendValue }]);
-  };
-
-  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    e.preventDefault();
-    const key = e.key;
-
-    if (key === "Escape") {
-      setText(
-        formKey === "poliklinik" ? formDetail.title! : formDetail.toString()
-      );
-    } else if (key === "Enter") {
-      if (!text) {
-        return toast.error("tidak boleh kosong");
-      } else {
-        registerValue();
-      }
-    }
   };
 
   return (

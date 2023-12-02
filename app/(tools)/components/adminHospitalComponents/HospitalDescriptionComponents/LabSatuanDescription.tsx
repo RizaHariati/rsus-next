@@ -2,26 +2,52 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { labSatuanForm } from "@/app/(tools)/utils/forms/LabSatuanFormInput";
 import React, { useEffect, useState } from "react";
 import RegularInput from "../../GeneralComponents/RegularInput";
-import { InitialValueType } from "@/app/(tools)/HospitalTypes";
+import { InitialValueType, LabItemType } from "@/app/(tools)/HospitalTypes";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import TextAreaInput from "../../GeneralComponents/TextAreaInput";
 import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
 import SelectRadioInput from "../../GeneralComponents/SelectRadioInput";
+import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
+import { toast } from "react-toastify";
 
 type Props = {};
 
 const LabSatuanDescription = (props: Props) => {
   const {
-    state: { columnAssignment, editable },
+    settingEditable,
+    state: { editable },
     hospitalState: { selectedLabSatuan },
   } = useGlobalContext();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
+
   const [labSatuanValues, setLabSatuanValues] = useState<InitialValueType>({});
   const [category] = useState<string[]>(
     Array.from(new Set([...dataLabSatuan.map((data) => data.category)]))
   );
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    if (!selectedLabSatuan) return;
+
+    const newPromise = new Promise((resolve) => {
+      setTimeout(() => {
+        let editedLabItem: LabItemType | any = {};
+        Object.entries(labSatuanValues).forEach(([editedKey, editedValue]) => {
+          if (!editedLabItem[editedKey]) {
+            editedLabItem[editedKey] = editedValue.value;
+          }
+        });
+        resolve(console.log({ editedLabItem }));
+      }, 1000);
+    }).then((res) => {
+      settingEditable(false);
+      return res;
+    });
+    toast.promise(newPromise, {
+      pending: "Data diproses",
+      success: "Data berhasil diubah",
+      error: "Promise rejected 🤯",
+    });
+  };
 
   useEffect(() => {
     if (!selectedLabSatuan) return;
@@ -47,20 +73,23 @@ const LabSatuanDescription = (props: Props) => {
     if (!labSatuanValues) return;
 
     const newLabSatuan: InitialValueType = {};
-    const facilityPoli =
-      value[0].key === "poliklinik"
-        ? value[0].newValue?.map((item: any) => item.title)
-        : null;
 
     Object.entries(labSatuanValues).map(([itemKey, itemValue]) => {
       const findValue = value.find((item) => item.key === itemKey);
       if (!findValue) {
         //@ts-ignore
         newLabSatuan[itemKey] = { ...itemValue };
+      } else if (itemKey === "price") {
+        const validate = validatePrice(findValue.newValue, 10000000);
+
+        if (!validate.flag) {
+          newLabSatuan[itemKey] = { ...itemValue, value: validate.roundup };
+        } else {
+          newLabSatuan[itemKey] = { ...itemValue };
+        }
       } else {
         newLabSatuan[itemKey] = {
-          value:
-            value[0].key === "poliklinik" ? facilityPoli : findValue.newValue,
+          value: findValue.newValue,
           error: false,
         };
       }

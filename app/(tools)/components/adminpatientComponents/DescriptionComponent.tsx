@@ -1,10 +1,17 @@
-import React, { useCallback, useEffect, useMemo, useState } from "react";
+import React, {
+  Suspense,
+  useCallback,
+  useEffect,
+  useMemo,
+  useState,
+} from "react";
 import { useGlobalContext } from "../../context/AppProvider";
 import { closeDescription, openDescription } from "../../column/columnCodes";
 import PatientEditDelete from "../GeneralComponents/PatientEditDelete";
 import PatientDescription from "./DescriptionComponents/PatientDescription";
 import ScheduleDescription from "./DescriptionComponents/ScheduleDescription";
 import MedicalRecordDescription from "./DescriptionComponents/MedicalRecordDescription";
+import DoctorDescriptionLoading from "../adminHospitalComponents/HospitalLoadingComponents/DoctorDescriptionLoading";
 
 type Props = {};
 
@@ -62,11 +69,15 @@ const DescriptionComponent = (props: Props) => {
       </div>
       {column3 && (
         <div className="h-[calc(100vh-112px)] w-full">
-          {showDetail.key === "patient_profile" && <PatientDescription />}
-          {showDetail.key === "scheduled_appointments" && (
-            <ScheduleDescription />
-          )}
-          {showDetail.key === "medical_records" && <MedicalRecordDescription />}
+          <Suspense fallback={<DoctorDescriptionLoading />}>
+            {showDetail.key === "patient_profile" && <PatientDescription />}
+            {showDetail.key === "scheduled_appointments" && (
+              <ScheduleDescription />
+            )}
+            {showDetail.key === "medical_records" && (
+              <MedicalRecordDescription />
+            )}
+          </Suspense>
         </div>
       )}
     </div>

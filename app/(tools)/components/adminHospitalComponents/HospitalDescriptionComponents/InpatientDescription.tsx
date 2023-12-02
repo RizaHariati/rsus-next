@@ -7,6 +7,7 @@ import EditListInput from "../../GeneralComponents/EditListInput";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import RegularInput from "../../GeneralComponents/RegularInput";
 import { toast } from "react-toastify";
+import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
 
 type Props = {};
 
@@ -107,6 +108,16 @@ const InpatientDescription = (props: Props) => {
               value: newList,
               error: false,
             };
+          } else if (itemKey === "harga") {
+            const validate = validatePrice(findValue.newValue, 20000000);
+            if (!validate.flag) {
+              newPatientValues[itemKey] = {
+                ...itemValue,
+                value: validate.roundup,
+              };
+            } else {
+              newPatientValues[itemKey] = { ...itemValue };
+            }
           } else {
             newPatientValues[itemKey] = {
               value: findValue.newValue,
