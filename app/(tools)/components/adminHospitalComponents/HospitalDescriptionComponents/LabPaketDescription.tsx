@@ -2,25 +2,47 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { labPaketForm } from "@/app/(tools)/utils/forms/LabPaketFormInput";
 
 import React, { useEffect, useState } from "react";
-import { InitialValueType } from "@/app/(tools)/HospitalTypes";
+import { InitialValueType, PaketLabType } from "@/app/(tools)/HospitalTypes";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import LabPaketHarga from "./LabPaketDescription/LabPaketHarga";
 import EditListInput from "../../GeneralComponents/EditListInput";
 import ImageGenericInput from "../../GeneralComponents/ImageGenericInput";
 import RegularInput from "../../GeneralComponents/RegularInput";
+import { v4 as uuidv4 } from "uuid";
+import { toast } from "react-toastify";
 type Props = {};
 
 const LabPaketDescription = (props: Props) => {
   const {
-    state: { columnAssignment, editable },
+    settingEditable,
+    state: { editable },
     hospitalState: { selectedPaket, dataFacility, dataLabSatuan },
   } = useGlobalContext();
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-  };
   const [labPaketValues, setLabPaketValues] = useState<InitialValueType>({});
   const formInputLabPaket = Object.entries(labPaketForm);
-  // console.log(selectedPaket?.["pemeriksaan"]);
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const newPromise = new Promise((resolve) => {
+      setTimeout(() => {
+        let editedLabPaket: PaketLabType | any = {};
+        Object.entries(labPaketValues).forEach(([editedKey, editedValue]) => {
+          if (!editedLabPaket[editedKey]) {
+            editedLabPaket[editedKey] = editedValue.value;
+          }
+        });
+        resolve(console.log({ editedLabPaket }));
+      }, 1000);
+    }).then((res) => {
+      settingEditable(false);
+      return res;
+    });
+    toast.promise(newPromise, {
+      pending: "Data diproses",
+      success: "Data berhasil diubah",
+      error: "Promise rejected 🤯",
+    });
+  };
+
   useEffect(() => {
     if (!selectedPaket) return;
     else {
@@ -34,7 +56,7 @@ const LabPaketDescription = (props: Props) => {
 
       setLabPaketValues(newLabPaketValues);
     }
-  }, [selectedPaket]);
+  }, [selectedPaket, editable]);
 
   const handleValueChange = (value: { newValue: any; key: string }[]) => {
     if (!editable) return;
@@ -43,18 +65,65 @@ const LabPaketDescription = (props: Props) => {
     Object.entries(labPaketValues).map(([itemKey, itemValue]) => {
       if (!newPaketValues[itemKey]) {
         const findValue = value.find((item) => item.key === itemKey);
+
         if (!findValue) {
           newPaketValues[itemKey] = { ...itemValue };
         } else {
-          // console.log(itemKey);
-          // console.log(itemValue);
-          // console.log(findValue.newValue);
-          if (itemKey === "pemeriksaan" || itemKey === "laboratorium") {
-            // console.log(findValue);
+          if (itemKey === "price") {
+            let flag = false;
+            const value = findValue.newValue.map((item: any) => {
+              const roundup = Math.round(item.value / 500) * 500;
+              if (roundup > 100000000) {
+                toast.info("nilai maksimal adalah Rp.100.000.000");
+                flag = true;
+                return { ...item, value: roundup };
+              }
+              return { ...item, value: roundup };
+            });
+            if (!flag) newPaketValues[itemKey] = { ...itemValue, value };
+            else {
+              newPaketValues[itemKey] = { ...itemValue };
+            }
+          } else if (itemKey === "pemeriksaan" || itemKey === "laboratorium") {
+            const newValue = findValue.newValue.map((item: any) => {
+              const findValue = itemValue.value.find(
+                (valueItem: any) => valueItem.id === item.id
+              );
+              if (findValue) return item;
+              else {
+                const shortValue = {
+                  _key: uuidv4().slice(0, 8),
+                  id: item.id,
+                  title: item.title,
+                };
+                const completeValue = {
+                  id: item.id,
+                  title: item.title,
+                  _key: uuidv4().slice(0, 8),
+                  description: item.description.slice(0, 200),
+                };
+                const createValue =
+                  itemKey === "laboratorium" ? shortValue : completeValue;
+                return createValue;
+              }
+            });
+
+            newPaketValues[itemKey] = {
+              error: false,
+              value: newValue,
+            };
+          } else {
+            newPaketValues[itemKey] = {
+              ...itemValue,
+              value: findValue.newValue,
+            };
           }
         }
       }
+      return "";
     });
+
+    setLabPaketValues(newPaketValues);
   };
 
   if (Object.keys(labPaketValues).length < 1 || !selectedPaket) {

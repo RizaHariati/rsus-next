@@ -43,23 +43,23 @@ const LabPaketHarga = ({
   useEffect(() => {
     if (!editable)
       return setSelectedHarga(labPaketValues?.[labPaketFormKey]?.value);
+    setSelectedHarga(labPaketValues?.[labPaketFormKey]?.value);
   }, [labPaketValues, editable]);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     e.preventDefault();
     if (!editable) return;
+    let newValue: PaketHargaType = selectedHarga;
     if (e.currentTarget.id === "all") {
-      const newValue: PaketHargaType = [{ type: "all", value: 550000 }];
-
-      return setSelectedHarga(newValue);
+      newValue = [{ type: "all", value: 550000 }];
     } else {
-      const newValue: PaketHargaType = [
+      newValue = [
         { type: "pria", value: 100000 },
         { type: "wanita", value: 100000 },
       ];
-
-      return setSelectedHarga(newValue);
     }
+    handleValueChange([{ newValue, key: labPaketFormKey }]);
+    return setSelectedHarga(newValue);
   };
 
   const handleChange = (

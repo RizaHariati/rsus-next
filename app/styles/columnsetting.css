@@ -55,7 +55,7 @@
   }
   /* -------------------------- description ------------------------- */
   .midbar-btn {
-    @apply h-full w-full rounded-sm flex bg-pink-200;
+    @apply h-full w-full rounded-sm flex;
   }
 
   .midbar-btn-focus {
@@ -65,7 +65,7 @@
     @apply w-full h-[calc(100vh-112px)]  mx-auto flex flex-col items-center;
   }
   .column-description-content {
-    @apply w-full h-[calc(100vh-148px)] overflow-y-scroll  max-w-2xl scrollbar-thin p-2;
+    @apply w-full h-[calc(100vh-168px)] overflow-y-scroll  max-w-2xl scrollbar-thin p-2;
   }
 
   .column-description-sub-content {

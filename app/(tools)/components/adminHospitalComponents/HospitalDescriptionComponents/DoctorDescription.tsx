@@ -26,15 +26,26 @@ const DoctorDescription = (props: Props) => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    let editedDoctor: DoctorType | any = {};
-    Object.entries(doctorValues).forEach(([editedKey, editedValue]) => {
-      if (!editedDoctor[editedKey]) {
-        editedDoctor[editedKey] = editedValue;
-      }
-    });
 
-    settingEditable(false);
-    toast.success(`data Dr.${selectedDoctor!.name} berhasil diubah`);
+    const newPromise = new Promise((resolve) => {
+      setTimeout(() => {
+        let editedDoctor: DoctorType | any = {};
+        Object.entries(doctorValues).forEach(([editedKey, editedValue]) => {
+          if (!editedDoctor[editedKey]) {
+            editedDoctor[editedKey] = editedValue.value;
+          }
+        });
+        resolve(console.log({ editedDoctor }));
+      }, 1000);
+    }).then((res) => {
+      settingEditable(false);
+      return res;
+    });
+    toast.promise(newPromise, {
+      pending: "Data diproses",
+      success: "Data berhasil diubah",
+      error: "Promise rejected 🤯",
+    });
   };
 
   useEffect(() => {
@@ -57,8 +68,6 @@ const DoctorDescription = (props: Props) => {
       });
 
       if (!editable) {
-        let a = {};
-
         promiseDoctor.then((res: any) => {
           setDoctorValues(res);
 
@@ -93,8 +102,24 @@ const DoctorDescription = (props: Props) => {
         //@ts-ignore
         newDoctorValues[itemKey] = { ...itemValue };
       } else {
-        newDoctorValues[itemKey] = { value: findValue.newValue, error: false };
+        if (itemKey === "kuota" || itemKey === "pengalaman") {
+          if (findValue.newValue > 100) {
+            toast.info(`${itemKey} tidak boleh lebih dari 100`);
+            newDoctorValues[itemKey] = { ...itemValue };
+          } else {
+            newDoctorValues[itemKey] = {
+              value: findValue.newValue,
+              error: false,
+            };
+          }
+        } else {
+          newDoctorValues[itemKey] = {
+            value: findValue.newValue,
+            error: false,
+          };
+        }
       }
+      return "";
     });
     setDoctorValues(newDoctorValues);
     return;

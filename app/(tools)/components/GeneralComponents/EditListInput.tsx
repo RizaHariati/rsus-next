@@ -26,7 +26,7 @@ const EditListInput = ({
   } = useGlobalContext();
   const [showModal, setShowModal] = useState(false);
   const [list, setList] = useState<any[]>(inputList);
-  console.log({ list });
+
   useEffect(() => {
     setList(inputList);
   }, [inputList, editable!]);
@@ -77,7 +77,8 @@ const EditListInput = ({
               <button
                 type="button"
                 onClick={() => {
-                  if (itemList.id.slice(0, 3) === "std") return;
+                  if (itemList.id.slice(0, 3) === "std")
+                    return toast.info("Pemeriksaan standard harus disertakan");
                   addRemoveListItem(itemList.id);
                 }}
                 className="standard-border h-6 w-6"

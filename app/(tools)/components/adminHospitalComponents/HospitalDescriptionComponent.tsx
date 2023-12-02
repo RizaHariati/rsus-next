@@ -73,7 +73,9 @@ const HospitalDescriptionComponent = (props: Props) => {
   }, [handleSelected]);
 
   return (
-    <div className={!column3 ? "column-container-rotate" : "column-container "}>
+    <div
+      className={!column3 ? "column-container-rotate" : "column-container  "}
+    >
       <div
         className={
           column3

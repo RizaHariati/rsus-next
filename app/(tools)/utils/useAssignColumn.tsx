@@ -9,7 +9,7 @@ type Props = {};
 const useAssignColumn = () => {
   const { assignColumn, getWindow } = useGlobalContext();
   // if (typeof window === "undefined" && typeof window !== "object") return;
-  console.log("triggered");
+
   useEffect(() => {
     // only execute all the code below in client side
     // Handler to call on window resize

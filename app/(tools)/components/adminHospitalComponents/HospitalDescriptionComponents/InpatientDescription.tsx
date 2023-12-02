@@ -1,7 +1,7 @@
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { inpatientForm } from "@/app/(tools)/utils/forms/InpatientFormInput";
 import InpatientImageDescription from "./InpatientDescription/InpatientImageDescription";
-import { InitialValueType } from "@/app/(tools)/HospitalTypes";
+import { InitialValueType, InpatientType } from "@/app/(tools)/HospitalTypes";
 import { useEffect, useState } from "react";
 import EditListInput from "../../GeneralComponents/EditListInput";
 import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
@@ -16,14 +16,25 @@ const InpatientDescription = (props: Props) => {
     state: { editable },
     hospitalState: { selectedInpatient, dataInpatient },
   } = useGlobalContext();
+
+  const [inpatientValues, setInpatientValues] = useState<InitialValueType>({});
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     const newPromise = new Promise((resolve) => {
       setTimeout(() => {
-        resolve(console.log("loading data"));
+        let editedInpatient: InpatientType | any = {};
+        Object.entries(inpatientValues).forEach(([editedKey, editedValue]) => {
+          if (!editedInpatient[editedKey]) {
+            editedInpatient[editedKey] = editedValue.value;
+          }
+        });
+        resolve(console.log({ editedInpatient }));
       }, 1000);
     }).then((res) => {
       settingEditable(false);
+      return res;
     });
     toast.promise(newPromise, {
       pending: "Data diproses",
@@ -33,8 +44,6 @@ const InpatientDescription = (props: Props) => {
 
     // masukkan data ke context
   };
-
-  const [inpatientValues, setInpatientValues] = useState<InitialValueType>({});
 
   useEffect(() => {
     if (!selectedInpatient) return;

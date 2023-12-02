@@ -31,27 +31,31 @@ const ImageGenericInput = ({
     imgSrc: "",
     imgName: "",
   });
-  const handleFileInput = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      e.preventDefault();
-      if (e.target.files) {
-        const imgName = e.target.files?.[0].name;
-        const imgSrc = URL.createObjectURL(e.target.files?.[0]);
+  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    if (e.target.files) {
+      const imgName = e.target.files?.[0].name;
+      const imgSrc = URL.createObjectURL(e.target.files?.[0]);
 
-        if (
-          imgName !== values[formKey].value?.alt &&
-          imgSrc !== values[formKey].value?.src
-        ) {
-          return setImgFile({ imgSrc, imgName });
-        }
+      if (
+        imgName !== values[formKey].value?.alt &&
+        imgSrc !== values[formKey].value?.src
+      ) {
+        handleValueChange([
+          { newValue: { src: imgSrc, alt: imgName }, key: formKey },
+        ]);
+        return setImgFile({ imgSrc, imgName });
       }
-      return setImgFile({
-        imgSrc: "",
-        imgName: "",
-      });
-    },
-    [imgFile]
-  );
+    }
+    handleValueChange([
+      { newValue: { ...values[formKey].value }, key: formKey },
+    ]);
+    return setImgFile({
+      imgSrc: "",
+      imgName: "",
+    });
+  };
+
   useEffect(() => {
     if (!editable)
       return setImgFile({
