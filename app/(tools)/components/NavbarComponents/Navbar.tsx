@@ -29,8 +29,8 @@ const Navbar = (props: MainProps) => {
         nowPathname !== pathname
           ? "navbar-container shadow-sm opacity-0 fixed -top-14  "
           : scrollTop
-          ? "navbar-container bg-opacity-100 shadow-md opacity-100 top-0"
-          : "navbar-container shadow-sm bg-opacity-60 fixed top-0 opacity-100"
+          ? "navbar-container bg-opacity-80 shadow-md opacity-80 top-0"
+          : "navbar-container shadow-sm bg-opacity-60 fixed top-0 opacity-80"
       }
     >
       <nav className="navbar">
@@ -76,7 +76,7 @@ export const NavbarMenu = (props: Props) => {
         <a href="https://rsus-api.vercel.app/" className="navbar-menu-btn">
           <FontAwesomeIcon
             icon={faHome}
-            className=" w-6 h-6 md:w-8 md:h-8  text-base md:text-lg"
+            className=" w-5 h-5 md:w-6 md:h-6  text-base md:text-lg"
           />
         </a>
         <Link
@@ -88,7 +88,7 @@ export const NavbarMenu = (props: Props) => {
         >
           <FontAwesomeIcon
             icon={faUserCircle}
-            className=" w-6 h-6 md:w-10 md:h-10 text-base md:text-xl"
+            className=" w-5 h-5 md:w-6 md:h-6 text-base md:text-xl"
           />
         </Link>
       </div>
