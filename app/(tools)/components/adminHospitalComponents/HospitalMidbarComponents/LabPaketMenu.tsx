@@ -1,9 +1,9 @@
-import { LabItemType, PaketLabType } from "@/app/(tools)/HospitalTypes";
+import { PaketLabType } from "@/app/(tools)/HospitalTypes";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-
+import { openDescription } from "@/app/(tools)/column/columnCodes";
 type Props = {};
 
 const LabPaketMenu = (props: Props) => {
@@ -11,6 +11,8 @@ const LabPaketMenu = (props: Props) => {
     hospitalState: { dataPaket, selectedPaket },
     settingEditable,
     selectLabPaket,
+    assignColumn,
+    state: { currentWindow },
   } = useGlobalContext();
 
   return (
@@ -27,6 +29,7 @@ const LabPaketMenu = (props: Props) => {
             onClick={() => {
               selectLabPaket(labPaket);
               settingEditable(false);
+              assignColumn(openDescription(currentWindow));
             }}
           >
             <div className="h-10 w-full flex flex-col">

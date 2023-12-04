@@ -9,6 +9,7 @@ import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
 import SelectRadioInput from "../../GeneralComponents/SelectRadioInput";
 import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
 import { toast } from "react-toastify";
+import SubmitButton from "../../GeneralComponents/SubmitButton";
 
 type Props = {};
 
@@ -148,18 +149,7 @@ const LabSatuanDescription = (props: Props) => {
             }
           })}
         </div>
-        <div className="content-menu border-t w-full flex items-end ">
-          <button
-            type="submit"
-            className={
-              editable
-                ? "btn-base-focus px-12 mx-0"
-                : "btn-base-small w-28 px-12 mx-0"
-            }
-          >
-            Submit
-          </button>
-        </div>
+        <SubmitButton />
       </form>
     );
   }

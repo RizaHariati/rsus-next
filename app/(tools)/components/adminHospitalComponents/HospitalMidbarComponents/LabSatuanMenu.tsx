@@ -3,7 +3,7 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
-
+import { openDescription } from "@/app/(tools)/column/columnCodes";
 type Props = {};
 
 const LabSatuanMenu = (props: Props) => {
@@ -11,6 +11,8 @@ const LabSatuanMenu = (props: Props) => {
     hospitalState: { dataLabSatuan, selectedLabSatuan },
     settingEditable,
     selectLabSatuan,
+    assignColumn,
+    state: { currentWindow },
   } = useGlobalContext();
 
   return (
@@ -27,6 +29,7 @@ const LabSatuanMenu = (props: Props) => {
             onClick={() => {
               selectLabSatuan(labSatuan);
               settingEditable(false);
+              assignColumn(openDescription(currentWindow));
             }}
           >
             <div className="h-10 w-full flex flex-col">

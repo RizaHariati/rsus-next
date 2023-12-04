@@ -81,6 +81,7 @@ const SidebarComponent = (props: Props) => {
                   type="button"
                   className={sidebarButtonTheme(item.key).buttonBackground}
                   onClick={() => {
+                    assignColumn(closeSideBar(currentWindow));
                     handleShowDetail(item);
                     settingEditable(false);
                   }}

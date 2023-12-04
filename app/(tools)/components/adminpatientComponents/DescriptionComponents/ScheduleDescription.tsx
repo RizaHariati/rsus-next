@@ -1,6 +1,7 @@
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import React from "react";
 import ScheduleDetailContent from "./ScheduleDetailContent";
+import SubmitButton from "../../GeneralComponents/SubmitButton";
 
 type Props = {};
 
@@ -17,14 +18,7 @@ const ScheduleDescription = (props: Props) => {
         <div className="column-description-content ">
           <ScheduleDetailContent />
         </div>
-        <div className="content-menu border-t">
-          <button
-            type="submit"
-            className={editable ? "btn-base-focus" : "btn-base-small"}
-          >
-            Submit
-          </button>
-        </div>
+        <SubmitButton />
       </div>
     );
   }

@@ -42,6 +42,7 @@ const HospitalSidebarComponent = (props: Props) => {
   };
 
   const handleClick = (key: SidebarBtnType) => {
+    assignColumn(closeSideBar(currentWindow));
     handleShowDetail(key);
     if (key.key === "doctor") selectDoctor(dataDoctor?.[0]);
     if (key.key === "facility") selectFacility(dataFacility?.[0]);

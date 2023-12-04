@@ -1,17 +1,12 @@
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import {
-  PatientInitialValueType,
-  PatientProfileType,
-} from "@/app/(tools)/patientTypes";
+import { PatientProfileType } from "@/app/(tools)/patientTypes";
 import React, { useEffect, useState } from "react";
-import PatientProfileContent from "./PatientProfileContent";
 import { InitialValueType } from "@/app/(tools)/HospitalTypes";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
 import { patientFormInput } from "@/app/(tools)/utils/forms/patientFormInput";
 import RegularInput from "../../GeneralComponents/RegularInput";
 import { toast } from "react-toastify";
 import DoctorDescriptionLoading from "../../adminHospitalComponents/HospitalLoadingComponents/DoctorDescriptionLoading";
-import BooleanButton from "../../GeneralComponents/BooleanButtonInput";
 import DoctorGender from "../../adminHospitalComponents/HospitalDescriptionComponents/DoctorDescription/DoctorGender";
 
 type Props = {};
@@ -31,24 +26,24 @@ const PatientDescription = (props: Props) => {
   useEffect(() => {
     if (!patient_profile || !medical_record_number) return;
     else {
-      const promiseDoctor = new Promise((resolve) => {
-        let newDoctorValues: any = {};
+      const promisePatient = new Promise((resolve) => {
+        let newPatientValues: any = {};
         Object.entries(patient_profile).forEach(([key, value]) => {
           //@ts-ignore
-          if (!newDoctorValues[key]) {
+          if (!newPatientValues[key]) {
             //@ts-ignore
-            newDoctorValues[key] = { value, error: false };
+            newPatientValues[key] = { value, error: false };
           }
         });
 
-        resolve(newDoctorValues);
+        resolve(newPatientValues);
       });
-      promiseDoctor.then((newDoctorValues: any) => {
-        setPatientPersonalValues(newDoctorValues);
+      promisePatient.then((newPatientValues: any) => {
+        setPatientPersonalValues(newPatientValues);
       });
 
       if (!editable) {
-        promiseDoctor.then((res: any) => {
+        promisePatient.then((res: any) => {
           setPatientPersonalValues(res);
 
           return res;
@@ -62,15 +57,15 @@ const PatientDescription = (props: Props) => {
 
     const newPromise = new Promise((resolve) => {
       setTimeout(() => {
-        let editedDoctor: PatientProfileType | any = {};
+        let editedPatient: PatientProfileType | any = {};
         Object.entries(patientPersonalValues).forEach(
           ([editedKey, editedValue]) => {
-            if (!editedDoctor[editedKey]) {
-              editedDoctor[editedKey] = editedValue.value;
+            if (!editedPatient[editedKey]) {
+              editedPatient[editedKey] = editedValue.value;
             }
           }
         );
-        resolve(console.log({ editedDoctor }));
+        resolve(console.log({ editedPatient }));
       }, 1000);
     }).then((res) => {
       settingEditable(false);
@@ -94,7 +89,7 @@ const PatientDescription = (props: Props) => {
         //@ts-ignore
         newPatientValues[itemKey] = { ...itemValue };
       } else {
-        console.log({ itemKey });
+        // console.log({ itemKey });
         if (itemKey === "NIK" || itemKey === "phone") {
           const newValue =
             findValue.newValue.toString().slice(0, 1) === "0"
@@ -104,7 +99,29 @@ const PatientDescription = (props: Props) => {
             value: newValue,
             error: false,
           };
+        } else if (itemKey === "bpjs_number") {
+          if (findValue.newValue.toString().length > 13) {
+            return toast.error("Terlalu panjang");
+          } else if (findValue.newValue.toString().length < 13) {
+            const lengthAdd = 13 - findValue.newValue.toString().length;
+
+            const a = Array.from(
+              { length: lengthAdd },
+              (valueArray: any, _: number) => "0"
+            ).join("");
+
+            newPatientValues[itemKey] = {
+              value: a + parseInt(findValue.newValue),
+              error: false,
+            };
+          } else {
+            newPatientValues[itemKey] = {
+              value: parseInt(findValue.newValue),
+              error: false,
+            };
+          }
         } else {
+          // console.log(itemKey);
           newPatientValues[itemKey] = {
             value: findValue.newValue,
             error: false,
@@ -161,7 +178,7 @@ const PatientDescription = (props: Props) => {
                 }
               }
             )}
-          </div>{" "}
+          </div>
           <SubmitButton />
         </form>
       </>

@@ -44,6 +44,7 @@ const LabPaketHarga = ({
     if (!editable)
       return setSelectedHarga(labPaketValues?.[labPaketFormKey]?.value);
     setSelectedHarga(labPaketValues?.[labPaketFormKey]?.value);
+    //eslint-disable-next-line
   }, [labPaketValues, editable]);
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {

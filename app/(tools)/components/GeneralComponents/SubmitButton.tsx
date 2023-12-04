@@ -8,12 +8,12 @@ const SubmitButton = (props: Props) => {
     state: { editable },
   } = useGlobalContext();
   return (
-    <div className="content-menu border-t ">
+    <div className="content-menu border-t p-2">
       <button
         type="submit"
         className={
           editable
-            ? "btn-base-focus px-12 mx-0"
+            ? "btn-base-focus w-28 px-12 mx-0"
             : "btn-base-small w-28 px-12 mx-0"
         }
       >

@@ -10,6 +10,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
 import DoctorDescriptionLoading from "../../adminHospitalComponents/HospitalLoadingComponents/DoctorDescriptionLoading";
+import { closeMidbar, openDescription } from "@/app/(tools)/column/columnCodes";
 
 type Props = {};
 
@@ -17,6 +18,8 @@ const PatientScheduleMenu = (props: Props) => {
   const {
     selectPatientDestination,
     settingEditable,
+    assignColumn,
+    state: { currentWindow },
     patientState: {
       scheduleDestinationList,
       scheduleAppointments,
@@ -62,6 +65,7 @@ const PatientScheduleMenu = (props: Props) => {
                   if (dataSchedule) {
                     selectPatientDestination(scheduleAppointment, dataSchedule);
                   }
+                  assignColumn(openDescription(currentWindow));
                 }}
               >
                 <div>

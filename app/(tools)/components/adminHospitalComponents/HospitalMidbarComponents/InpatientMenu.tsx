@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { InpatientType } from "@/app/(tools)/HospitalTypes";
+import { openDescription } from "@/app/(tools)/column/columnCodes";
 import Image from "next/image";
 import myImageLoader from "@/loader";
 
@@ -14,6 +15,8 @@ const InpatientMenu = (props: Props) => {
     hospitalState: { dataInpatient, selectedInpatient },
     settingEditable,
     selectInpatient,
+    assignColumn,
+    state: { currentWindow },
   } = useGlobalContext();
   return (
     <div className="midbar-container">
@@ -28,6 +31,7 @@ const InpatientMenu = (props: Props) => {
             }
             onClick={() => {
               selectInpatient(inpatient);
+              assignColumn(openDescription(currentWindow));
               settingEditable(false);
             }}
           >

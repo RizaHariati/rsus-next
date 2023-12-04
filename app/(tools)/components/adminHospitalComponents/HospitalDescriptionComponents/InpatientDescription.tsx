@@ -8,6 +8,7 @@ import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescrip
 import RegularInput from "../../GeneralComponents/RegularInput";
 import { toast } from "react-toastify";
 import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
+import SubmitButton from "../../GeneralComponents/SubmitButton";
 
 type Props = {};
 
@@ -193,18 +194,7 @@ const InpatientDescription = (props: Props) => {
             }
           )}
         </div>
-        <div className="content-menu border-t ">
-          <button
-            type="submit"
-            className={
-              editable
-                ? "btn-base-focus px-12 mx-0"
-                : "btn-base-small w-28 px-12 mx-0"
-            }
-          >
-            Submit
-          </button>
-        </div>
+        <SubmitButton />
       </form>
     );
   }

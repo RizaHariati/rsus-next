@@ -18,6 +18,7 @@ import RegularInput from "../../GeneralComponents/RegularInput";
 import TextAreaInput from "../../GeneralComponents/TextAreaInput";
 import SelectRadioInput from "../../GeneralComponents/SelectRadioInput";
 import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
+import SubmitButton from "../../GeneralComponents/SubmitButton";
 type Props = {};
 
 const FacilityDescription = (props: Props) => {
@@ -205,18 +206,7 @@ const FacilityDescription = (props: Props) => {
             }
           )}
         </div>
-        <div className="content-menu border-t">
-          <button
-            type="submit"
-            className={
-              editable
-                ? "btn-base-focus px-12 mx-0 "
-                : "btn-base-small w-28 px-12 mx-0 "
-            }
-          >
-            Submit
-          </button>
-        </div>
+        <SubmitButton />
       </form>
     );
   }

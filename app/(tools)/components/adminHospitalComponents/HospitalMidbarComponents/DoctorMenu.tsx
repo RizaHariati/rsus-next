@@ -4,6 +4,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
 import DoctorMenuLoading from "../HospitalLoadingComponents/DoctorMenuLoading";
+import { closeMidbar, openDescription } from "@/app/(tools)/column/columnCodes";
 
 type Props = {};
 
@@ -12,6 +13,8 @@ const DoctorMenu = (props: Props) => {
     hospitalState: { dataDoctor, selectedDoctor },
     settingEditable,
     selectDoctor,
+    assignColumn,
+    state: { currentWindow },
   } = useGlobalContext();
 
   if (!dataDoctor) {
@@ -33,6 +36,7 @@ const DoctorMenu = (props: Props) => {
                 : "sidebar-btn group"
             }
             onClick={() => {
+              assignColumn(openDescription(currentWindow));
               selectDoctor(doctor);
               settingEditable(false);
             }}

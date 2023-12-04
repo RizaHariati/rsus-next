@@ -5,6 +5,7 @@ import React from "react";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { sanityLoader } from "../../../../../loader";
+import { openDescription } from "@/app/(tools)/column/columnCodes";
 
 type Props = {};
 
@@ -13,6 +14,8 @@ const FacilityMenu = (props: Props) => {
     hospitalState: { dataFacility, selectedFacility },
     settingEditable,
     selectFacility,
+    assignColumn,
+    state: { currentWindow },
   } = useGlobalContext();
 
   return (
@@ -28,6 +31,7 @@ const FacilityMenu = (props: Props) => {
             }
             onClick={() => {
               selectFacility(facility);
+              assignColumn(openDescription(currentWindow));
               settingEditable(false);
             }}
           >

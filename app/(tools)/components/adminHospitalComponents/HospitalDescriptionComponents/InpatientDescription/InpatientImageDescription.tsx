@@ -38,6 +38,7 @@ const InpatientImageDescription = ({
       setImageItem(inpatientValues?.["img"]?.value);
       setImageArray(inpatientValues?.["img-array"]?.value);
     }
+    //eslint-disable-next-line
   }, [inpatientValues, editable]);
 
   const handleChangeRadio = (e: React.ChangeEvent<HTMLInputElement>) => {

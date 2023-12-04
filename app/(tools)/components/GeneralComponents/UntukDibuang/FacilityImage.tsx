@@ -18,7 +18,6 @@ const FacilityImage = ({
   facilityFormKey,
   facilityFormValue,
   facilityValues,
-  handleChangeValue,
 }: Props) => {
   const {
     state: { editable },
@@ -32,34 +31,33 @@ const FacilityImage = ({
     imgSrc: facilityValues[facilityFormKey].value?.src,
     imgName: facilityValues[facilityFormKey].value?.alt,
   });
-  const handleFileInput = useCallback(
-    (e: React.ChangeEvent<HTMLInputElement>) => {
-      e.preventDefault();
-      if (e.target.files) {
-        const imgName = e.target.files?.[0].name;
-        const imgSrc = URL.createObjectURL(e.target.files?.[0]);
+  const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    if (e.target.files) {
+      const imgName = e.target.files?.[0].name;
+      const imgSrc = URL.createObjectURL(e.target.files?.[0]);
 
-        if (
-          imgFile.imgName !== facilityValues[facilityFormKey].value?.alt &&
-          imgFile.imgSrc !== facilityValues[facilityFormKey].value?.src
-        ) {
-          setImgFile({ imgSrc, imgName });
-        } else {
-          setImgFile({
-            imgSrc: facilityValues[facilityFormKey].value?.src,
-            imgName: facilityValues[facilityFormKey].value?.alt,
-          });
-        }
+      if (
+        imgFile.imgName !== facilityValues[facilityFormKey].value?.alt &&
+        imgFile.imgSrc !== facilityValues[facilityFormKey].value?.src
+      ) {
+        setImgFile({ imgSrc, imgName });
+      } else {
+        setImgFile({
+          imgSrc: facilityValues[facilityFormKey].value?.src,
+          imgName: facilityValues[facilityFormKey].value?.alt,
+        });
       }
-    },
-    [imgFile]
-  );
+    }
+  };
   useEffect(() => {
     if (!editable)
       setImgFile({
         imgSrc: facilityValues[facilityFormKey].value?.src,
         imgName: facilityValues[facilityFormKey].value?.alt,
       });
+
+    //eslint-disable-next-line
   }, [facilityValues, editable]);
 
   const handleBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
@@ -72,7 +70,6 @@ const FacilityImage = ({
         src: imgFile.imgSrc,
         alt: imgFile.imgName,
       };
-      console.log(newValue);
     }
     // handleChangeValue([{ newValue, key: facilityFormKey }]);
   };

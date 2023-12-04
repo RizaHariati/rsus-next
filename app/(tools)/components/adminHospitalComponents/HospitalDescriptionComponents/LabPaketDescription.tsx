@@ -11,6 +11,7 @@ import RegularInput from "../../GeneralComponents/RegularInput";
 import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
+import SubmitButton from "../../GeneralComponents/SubmitButton";
 type Props = {};
 
 const LabPaketDescription = (props: Props) => {
@@ -199,18 +200,7 @@ const LabPaketDescription = (props: Props) => {
               }
             )}
           </div>
-          <div className="content-menu border-t ">
-            <button
-              type="submit"
-              className={
-                editable
-                  ? "btn-base-focus px-12 mx-0"
-                  : "btn-base-small w-28 px-12 mx-0"
-              }
-            >
-              Submit
-            </button>
-          </div>
+          <SubmitButton />
         </form>
       </div>
     );
