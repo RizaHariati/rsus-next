@@ -11,7 +11,7 @@ import PatientEditDelete from "../GeneralComponents/PatientEditDelete";
 import PatientDescription from "./DescriptionComponents/PatientDescription";
 import ScheduleDescription from "./DescriptionComponents/ScheduleDescription";
 import MedicalRecordDescription from "./DescriptionComponents/MedicalRecordDescription";
-import DoctorDescriptionLoading from "../adminHospitalComponents/HospitalLoadingComponents/DoctorDescriptionLoading";
+import LoadingSpinner from "../GeneralComponents/LoadingSpinner";
 
 type Props = {};
 
@@ -69,7 +69,7 @@ const DescriptionComponent = (props: Props) => {
       </div>
       {column3 && (
         <div className="h-[calc(100vh-112px)] w-full">
-          <Suspense fallback={<DoctorDescriptionLoading />}>
+          <Suspense fallback={<LoadingSpinner />}>
             {showDetail.key === "patient_profile" && <PatientDescription />}
             {showDetail.key === "scheduled_appointments" && (
               <ScheduleDescription />

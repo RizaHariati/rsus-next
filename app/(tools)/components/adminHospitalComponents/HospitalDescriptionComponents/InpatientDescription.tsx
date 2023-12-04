@@ -4,11 +4,11 @@ import InpatientImageDescription from "./InpatientDescription/InpatientImageDesc
 import { InitialValueType, InpatientType } from "@/app/(tools)/HospitalTypes";
 import { useEffect, useState } from "react";
 import EditListInput from "../../GeneralComponents/EditListInput";
-import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import RegularInput from "../../GeneralComponents/RegularInput";
 import { toast } from "react-toastify";
 import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
+import LoadingSpinner from "../../GeneralComponents/LoadingSpinner";
 
 type Props = {};
 
@@ -134,7 +134,7 @@ const InpatientDescription = (props: Props) => {
   if (Object.keys(inpatientValues).length < 1 || !selectedInpatient) {
     return (
       <div className="h-[calc(100vh-112px)] w-full">
-        <DoctorDescriptionLoading />
+        <LoadingSpinner />
       </div>
     );
   } else {

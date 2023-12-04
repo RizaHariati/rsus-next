@@ -3,7 +3,7 @@ import { labPaketForm } from "@/app/(tools)/utils/forms/LabPaketFormInput";
 
 import React, { useEffect, useState } from "react";
 import { InitialValueType, PaketLabType } from "@/app/(tools)/HospitalTypes";
-import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
+
 import LabPaketHarga from "./LabPaketDescription/LabPaketHarga";
 import EditListInput from "../../GeneralComponents/EditListInput";
 import ImageGenericInput from "../../GeneralComponents/ImageGenericInput";
@@ -12,6 +12,7 @@ import { v4 as uuidv4 } from "uuid";
 import { toast } from "react-toastify";
 import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
+import LoadingSpinner from "../../GeneralComponents/LoadingSpinner";
 type Props = {};
 
 const LabPaketDescription = (props: Props) => {
@@ -131,7 +132,7 @@ const LabPaketDescription = (props: Props) => {
   if (Object.keys(labPaketValues).length < 1 || !selectedPaket) {
     return (
       <div className="h-[calc(100vh-112px)] w-full">
-        <DoctorDescriptionLoading />
+        <LoadingSpinner />
       </div>
     );
   } else {

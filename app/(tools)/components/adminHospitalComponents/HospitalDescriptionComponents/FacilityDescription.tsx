@@ -8,7 +8,6 @@ import { facilityForm } from "@/app/(tools)/utils/forms/FacilityFormInput";
 
 import React, { useEffect, useState } from "react";
 import EditListInput from "../../GeneralComponents/EditListInput";
-import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
 import BooleanButton from "../../GeneralComponents/BooleanButtonInput";
 import dataPoliklinik from "../../../data/data_poliklinik.json";
 import FacilityCategory from "./FacilityDescription/FacilityCategory";
@@ -19,6 +18,7 @@ import TextAreaInput from "../../GeneralComponents/TextAreaInput";
 import SelectRadioInput from "../../GeneralComponents/SelectRadioInput";
 import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
+import LoadingSpinner from "../../GeneralComponents/LoadingSpinner";
 type Props = {};
 
 const FacilityDescription = (props: Props) => {
@@ -108,7 +108,7 @@ const FacilityDescription = (props: Props) => {
   if (Object.keys(facilityValues).length < 1 || !selectedFacility) {
     return (
       <div className="h-[calc(100vh-112px)] w-full">
-        <DoctorDescriptionLoading />
+        <LoadingSpinner />
       </div>
     );
   } else {

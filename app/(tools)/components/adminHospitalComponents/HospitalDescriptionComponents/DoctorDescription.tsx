@@ -9,18 +9,19 @@ import DoctorTelemedicineInput from "./DoctorDescription/DoctorTelemedicineInput
 import BooleanButtonInput from "../../GeneralComponents/BooleanButtonInput";
 
 import DoctorGender from "./DoctorDescription/DoctorGender";
-import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
+
 import { toast } from "react-toastify";
 import RegularInput from "../../GeneralComponents/RegularInput";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
+import LoadingSpinner from "../../GeneralComponents/LoadingSpinner";
 
 type Props = {};
 
 const DoctorDescription = (props: Props) => {
   const {
     settingEditable,
-    state: { columnAssignment, editable },
-    hospitalState: { selectedDoctor, dataDoctor },
+    state: { editable },
+    hospitalState: { selectedDoctor },
   } = useGlobalContext();
 
   const [doctorValues, setDoctorValues] = useState<InitialValueType>({});
@@ -130,7 +131,7 @@ const DoctorDescription = (props: Props) => {
   if (Object.keys(doctorValues).length < 1 || !selectedDoctor) {
     return (
       <div className="h-[calc(100vh-112px)] w-full">
-        <DoctorDescriptionLoading />
+        <LoadingSpinner />
       </div>
     );
   } else {

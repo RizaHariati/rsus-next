@@ -9,8 +9,9 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import moment from "moment";
 import React, { useEffect, useState } from "react";
-import DoctorDescriptionLoading from "../../adminHospitalComponents/HospitalLoadingComponents/DoctorDescriptionLoading";
+
 import { closeMidbar, openDescription } from "@/app/(tools)/column/columnCodes";
+import LoadingSpinner from "../../GeneralComponents/LoadingSpinner";
 
 type Props = {};
 
@@ -30,13 +31,13 @@ const PatientScheduleMenu = (props: Props) => {
   if (!scheduleAppointments)
     return (
       <div className="h-[calc(100vh-112px)] w-full">
-        <DoctorDescriptionLoading />
+        <LoadingSpinner />
       </div>
     );
   if (!scheduleDestinationList || scheduleDestinationList.length < 1)
     return (
       <div className="h-[calc(100vh-112px)] w-full">
-        <DoctorDescriptionLoading />
+        <LoadingSpinner />
       </div>
     );
   return (

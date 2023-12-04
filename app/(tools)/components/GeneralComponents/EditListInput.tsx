@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React, { useCallback, useEffect, useState } from "react";
 import DescriptionModal from "./DescriptionModal";
 import { toast } from "react-toastify";
-import DoctorDescriptionLoading from "../adminHospitalComponents/HospitalLoadingComponents/DoctorDescriptionLoading";
+import LoadingSpinner from "./LoadingSpinner";
 
 type Props = {
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
@@ -31,6 +31,7 @@ const EditListInput = ({
   useEffect(() => {
     setList(inputList);
     if (!editable) closeModal();
+    //eslint-disable-next-line
   }, [inputList, editable!]);
 
   const addRemoveListItem = (itemId: string) => {
@@ -57,7 +58,7 @@ const EditListInput = ({
   if (!dataList || !list)
     return (
       <div className="h-[calc(100vh-112px)] w-full">
-        <DoctorDescriptionLoading />
+        <LoadingSpinner />
       </div>
     );
   return (

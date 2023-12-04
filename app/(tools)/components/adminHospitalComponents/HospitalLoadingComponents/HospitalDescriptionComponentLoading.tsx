@@ -1,7 +1,7 @@
 import React from "react";
-import DoctorDescriptionLoading from "./DoctorDescriptionLoading";
 import PatientEditDeleteLoading from "../../GeneralComponents/PatientEditDeleteLoading";
 import { initialColumn } from "@/app/(tools)/context/initialState";
+import LoadingSpinner from "../../GeneralComponents/LoadingSpinner";
 
 type Props = {};
 
@@ -29,7 +29,7 @@ const HospitalDescriptionComponentLoading = (props: Props) => {
       </div>
       {column3 && (
         <div className="h-[calc(100vh-112px)] w-full ">
-          {<DoctorDescriptionLoading />}
+          {<LoadingSpinner />}
         </div>
       )}
     </div>

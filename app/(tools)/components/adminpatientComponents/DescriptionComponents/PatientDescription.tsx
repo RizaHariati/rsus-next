@@ -6,8 +6,8 @@ import SubmitButton from "../../GeneralComponents/SubmitButton";
 import { patientFormInput } from "@/app/(tools)/utils/forms/patientFormInput";
 import RegularInput from "../../GeneralComponents/RegularInput";
 import { toast } from "react-toastify";
-import DoctorDescriptionLoading from "../../adminHospitalComponents/HospitalLoadingComponents/DoctorDescriptionLoading";
 import DoctorGender from "../../adminHospitalComponents/HospitalDescriptionComponents/DoctorDescription/DoctorGender";
+import LoadingSpinner from "../../GeneralComponents/LoadingSpinner";
 
 type Props = {};
 
@@ -141,7 +141,7 @@ const PatientDescription = (props: Props) => {
   ) {
     return (
       <div className="h-[calc(100vh-112px)] w-full">
-        <DoctorDescriptionLoading />
+        <LoadingSpinner />
       </div>
     );
   } else {

@@ -3,13 +3,14 @@ import { labSatuanForm } from "@/app/(tools)/utils/forms/LabSatuanFormInput";
 import React, { useEffect, useState } from "react";
 import RegularInput from "../../GeneralComponents/RegularInput";
 import { InitialValueType, LabItemType } from "@/app/(tools)/HospitalTypes";
-import DoctorDescriptionLoading from "../HospitalLoadingComponents/DoctorDescriptionLoading";
+
 import TextAreaInput from "../../GeneralComponents/TextAreaInput";
 import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
 import SelectRadioInput from "../../GeneralComponents/SelectRadioInput";
 import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
 import { toast } from "react-toastify";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
+import LoadingSpinner from "../../GeneralComponents/LoadingSpinner";
 
 type Props = {};
 
@@ -101,7 +102,7 @@ const LabSatuanDescription = (props: Props) => {
   if (!labSatuanValues || Object.keys(labSatuanValues).length < 1) {
     return (
       <div className="h-[calc(100vh-112px)] w-full">
-        <DoctorDescriptionLoading />
+        <LoadingSpinner />
       </div>
     );
   } else {

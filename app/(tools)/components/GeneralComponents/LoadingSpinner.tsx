@@ -2,13 +2,12 @@ import React from "react";
 
 type Props = {};
 
-const DoctorDescriptionLoading = (props: Props) => {
+const LoadingSpinner = (props: Props) => {
   return (
     <>
       <div className="column-description-container flex items-center justify-center gap-2 ">
         <h3>Loading</h3>
         <div className="mx-auto w-fit h-fit animate-spin origin-center">
-          {" "}
           {loaderServer}
         </div>
       </div>
@@ -16,7 +15,7 @@ const DoctorDescriptionLoading = (props: Props) => {
   );
 };
 
-export default DoctorDescriptionLoading;
+export default LoadingSpinner;
 
 export const loaderServer2 = (
   <svg
