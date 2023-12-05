@@ -9,10 +9,15 @@ import { UserType } from "../patientTypes";
 import { toast } from "react-toastify";
 import { getPatient } from "@/sanity/sanityUtils/getPatient";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 type Props = {};
 const AlertInputMedicalRecord = (props: Props) => {
-  const { closeAlert, loadingPatient } = useGlobalContext();
+  const {
+    closeAlert,
+    loadingPatient,
+    patientState: { patient },
+  } = useGlobalContext();
   const [loginData, setLoginData] = useState<Partial<UserType>>({
     medical_record_number: "",
     password: "admin",
@@ -74,6 +79,7 @@ const AlertInputMedicalRecord = (props: Props) => {
       medical_record_number: e.target.value,
     }));
   };
+
   return (
     <div className="modal-phone md:modal-md p-5 px-10 md:overflow-hidden bg-white">
       <button className="absolute top-2 right-4" onClick={() => closeAlert()}>
@@ -85,11 +91,22 @@ const AlertInputMedicalRecord = (props: Props) => {
           Masukkan Nomor Rekam Medis Pasien
         </p>
 
+        {patient && (
+          <Link
+            href="/adminpatient/"
+            className="btn-base"
+            onClick={() => closeAlert()}
+          >
+            <p className="body-2-bold text-center capitalize">
+              {`Teruskan patient ${patient.patient_profile.name}`}
+            </p>
+          </Link>
+        )}
         <form onSubmit={(e) => handleSubmit(e)} className="w-full">
           <input
             maxLength={12}
             id="input_mr"
-            className="admin-input"
+            className="admin-input h-12"
             placeholder="Nomor Rekam Medis "
             value={loginData.medical_record_number}
             onChange={(e) => handleChange(e)}

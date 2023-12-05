@@ -35,7 +35,7 @@ const Navbar = (props: MainProps) => {
     >
       <nav className="navbar">
         <MainLogo />
-        <NavbarLinks />
+
         <NavbarMenu />
       </nav>
     </div>
@@ -73,12 +73,12 @@ export const NavbarMenu = (props: Props) => {
   return (
     <div className="h-full ">
       <div className="navbar-menu-container flex-center-end ">
-        <a href="https://rsus-api.vercel.app/" className="navbar-menu-btn">
+        <Link href="/" className="navbar-menu-btn">
           <FontAwesomeIcon
             icon={faHome}
             className=" w-5 h-5 md:w-6 md:h-6  text-base md:text-lg"
           />
-        </a>
+        </Link>
         <Link
           href="/admin"
           // href="https://rsus.sanity.studio/"
