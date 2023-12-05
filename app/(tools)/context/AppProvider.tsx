@@ -145,22 +145,12 @@ export const AppProvider = ({ children }: Props) => {
     });
   };
 
-  const loadingPatientScheduleDestination = (
-    scheduleDestinationList: ScheduleDestinationsListType[] | null
-  ) => {
-    patientDispatch({
-      type: "LOAD_PATIENT_DESTINATION",
-      payload: { scheduleDestinationList },
-    });
-  };
-
   const selectPatientDestination = (
-    selectedScheduleAppointment: ScheduledType | null,
-    selectedScheduleDestination: ScheduleDestinationsListType | null
+    selectedScheduleAppointment: ScheduledType | null
   ) => {
     patientDispatch({
       type: "SELECT_PATIENT_DESTINATION",
-      payload: { selectedScheduleAppointment, selectedScheduleDestination },
+      payload: { selectedScheduleAppointment },
     });
   };
   const loadingPatient = (patient: PatientType) => {
@@ -265,7 +255,6 @@ export const AppProvider = ({ children }: Props) => {
     handleScroll,
     assignColumn,
     getWindow,
-    loadingPatientScheduleDestination,
     selectPatientDestination,
     scrollingUp,
     scrollTop,

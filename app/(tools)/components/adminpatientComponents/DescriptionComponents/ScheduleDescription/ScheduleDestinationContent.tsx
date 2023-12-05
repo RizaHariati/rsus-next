@@ -1,31 +1,28 @@
 import React from "react";
 
-import { doctorDetailedForm } from "../../../utils/forms/DoctorDetailedForm";
-import { testGeneralForm } from "../../../utils/forms/TestGeneralForm";
+import { doctorDetailedForm } from "../../../../utils/forms/DoctorDetailedForm";
+import { testGeneralForm } from "../../../../utils/forms/TestGeneralForm";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faMinusCircle,
   faPlugCirclePlus,
   faPlusCircle,
 } from "@fortawesome/free-solid-svg-icons";
-import { useGlobalContext } from "../../../context/AppProvider";
+import { useGlobalContext } from "../../../../context/AppProvider";
 
 type Props = {
   showDestination: any;
   setShowDestination: React.Dispatch<any>;
 };
 
-const ScheduleDestination = ({
-  showDestination,
-  setShowDestination,
-}: Props) => {
+const SomethingElse = ({ showDestination, setShowDestination }: Props) => {
   const {
     patientState: { selectedScheduleDestination },
   } = useGlobalContext();
   if (!selectedScheduleDestination) return <div></div>;
   return (
     <div className="column-description-sub-content  ">
-      {selectedScheduleDestination.value.map(
+      {/* {selectedScheduleDestination.value?.map(
         (destination: any, scheduleIndex: number) => {
           if (destination.id.includes("dr")) {
             return (
@@ -113,9 +110,9 @@ const ScheduleDestination = ({
             );
           }
         }
-      )}
+      )} */}
     </div>
   );
 };
 
-export default ScheduleDestination;
+export default SomethingElse;

@@ -16,7 +16,6 @@ type Props = {};
 
 const AdminPatientPage = (props: Props) => {
   const {
-    loadingPatientScheduleDestination,
     handleShowDetail,
     showDetail,
     patientState: { patient },
@@ -32,26 +31,6 @@ const AdminPatientPage = (props: Props) => {
     handleShowDetail(patientBtnDetail[0]);
     if (!patient || !patient.medical_record_number) {
       return Router.push("/");
-    } else {
-      let detail: any;
-      const schedulePromise = () => {
-        detail = patient.scheduled_appointments.map(
-          (schedule: ScheduledType) => {
-            const promise = schedule.tujuan.map((item) => {
-              return new Promise((resolve) => {
-                return resolve(getTujuan(item));
-              });
-            });
-            return Promise.all(promise).then((res: any) => {
-              return { id: schedule.schedule_id, value: res };
-            });
-          }
-        );
-        return detail;
-      };
-      Promise.all(schedulePromise()).then((res) => {
-        loadingPatientScheduleDestination([...res]);
-      });
     }
     // eslint-disable-next-line
   }, []);

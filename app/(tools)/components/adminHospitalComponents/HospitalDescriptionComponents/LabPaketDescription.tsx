@@ -144,9 +144,6 @@ const LabPaketDescription = (props: Props) => {
               ([labPaketFormKey, labPaketFormValue], index) => {
                 //@ts-ignore
 
-                const labPaketDetail =
-                  labPaketValues?.[labPaketFormKey]?.value || "";
-
                 if (labPaketFormKey === "price") {
                   return (
                     <LabPaketHarga

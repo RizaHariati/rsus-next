@@ -42,6 +42,4 @@ export const initialPatientState: PatientState = {
   ],
   scheduleAppointments: null,
   selectedScheduleAppointment: null,
-  scheduleDestinationList: null,
-  selectedScheduleDestination: null,
 };

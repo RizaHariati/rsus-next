@@ -35,8 +35,6 @@ export interface PatientState {
   allPatients: PatientType[];
   scheduleAppointments: ScheduledType[] | null;
   selectedScheduleAppointment: ScheduledType | null;
-  scheduleDestinationList: ScheduleDestinationsListType[] | null;
-  selectedScheduleDestination: ScheduleDestinationsListType | null;
 }
 
 export interface HospitalState {

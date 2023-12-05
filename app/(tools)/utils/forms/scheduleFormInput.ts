@@ -1,19 +1,19 @@
 import { FormProfileType, FormScheduleType } from "../../patientTypes";
 
 export const scheduleFormInput: FormScheduleType = {
-  tujuan: {
-    id: "schedule_1",
-    title: "Tujuan",
-    placeholder: "Tujuan penjadwalan",
-    error: "Tujuan wajib dimasukkan",
-    number: false,
-    editable: false,
-  },
   schedule_id: {
-    id: "schedule_2",
+    id: "schedule_1",
     title: "ID Jadwal",
     placeholder: "Jadwal pemeriksaan",
     error: "Jadwal pemeriksaan wajib dimasukkan",
+    number: false,
+    editable: false,
+  },
+  tujuan: {
+    id: "schedule_2",
+    title: "Tujuan",
+    placeholder: "Tujuan penjadwalan",
+    error: "Tujuan wajib dimasukkan",
     number: false,
     editable: false,
   },
@@ -63,6 +63,6 @@ export const scheduleFormInput: FormScheduleType = {
     placeholder: " Nomor BPJS boleh memilih untuk memakai atau tidak",
     error: "",
     number: true,
-    editable: true,
+    editable: false,
   },
 };

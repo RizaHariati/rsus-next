@@ -21,24 +21,12 @@ export const patientReducer = (
     };
   }
 
-  if (action.type === "LOAD_PATIENT_DESTINATION") {
-    const scheduleDestinationList = action.payload.scheduleDestinationList;
-    const selectedScheduleDestination = scheduleDestinationList[0];
-    return {
-      ...patientState,
-      scheduleDestinationList,
-      selectedScheduleDestination,
-    };
-  }
-
   if (action.type === "SELECT_PATIENT_DESTINATION") {
-    const { selectedScheduleAppointment, selectedScheduleDestination } =
-      action.payload;
+    const { selectedScheduleAppointment } = action.payload;
 
     return {
       ...patientState,
       selectedScheduleAppointment,
-      selectedScheduleDestination,
     };
   }
 

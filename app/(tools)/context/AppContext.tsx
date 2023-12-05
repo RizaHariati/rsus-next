@@ -35,12 +35,9 @@ export type AppContextProps = {
   scrollingUp: boolean;
   showFooter: boolean;
   loadingPatient: (patient: PatientType) => void;
-  loadingPatientScheduleDestination: (
-    scheduleDestinationList: ScheduleDestinationsListType[] | null
-  ) => void;
+
   selectPatientDestination: (
-    selectedScheduleAppointment: ScheduledType | null,
-    selectedScheduleDestination: ScheduleDestinationsListType | null
+    selectedScheduleAppointment: ScheduledType | null
   ) => void;
   getWindow: (currentWindow: number) => void;
   handleShowDetail: (key: SidebarBtnType) => void;

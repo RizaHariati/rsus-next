@@ -1,20 +1,53 @@
-import { getFacility } from "@/sanity/sanityUtils/getFacility";
-import { getDoctors } from "../../../../sanity/sanityUtils/getDoctors";
-import dataPaketKesehatan from "@/app/(tools)/data/data_paketkesehatan.json";
-import dataLabSatuan from "@/app/(tools)/data/data_lab_satuan.json";
+import {
+  DoctorType,
+  FacilitySanityType,
+  LabItemType,
+  PaketLabType,
+} from "../../HospitalTypes";
+import { toast } from "react-toastify";
 
-export const getTujuan = async (code: string) => {
+export const getTujuan = (
+  code: string,
+  dataFacility: FacilitySanityType[],
+  dataPaket: PaketLabType[],
+  dataLabSatuan: LabItemType[],
+  dataDoctor: DoctorType[]
+) => {
+  if (!dataFacility || !dataPaket || !dataDoctor || !dataLabSatuan) return;
+
   const codeTujuan = code.slice(0, 3);
 
   if (codeTujuan === "fas") {
-    const res = await getFacility(code);
-    return res[0];
+    const res: FacilitySanityType | undefined = dataFacility.find(
+      (item) => item.id === code
+    );
+    if (!res) return toast.error("data Fasilitas tidak ditemukan");
+    else {
+      return res;
+    }
   } else if (codeTujuan === "dr_") {
-    const res = await getDoctors(code);
-    return res[0];
+    const res: DoctorType | undefined = dataDoctor.find(
+      (item) => item.id === code
+    );
+    if (!res) return toast.error("data Dokter tidak ditemukan");
+    else {
+      return res;
+    }
   } else if (codeTujuan === "pak") {
-    return dataPaketKesehatan.find((item) => item.id === code);
+    const res: PaketLabType | undefined = dataPaket.find(
+      (item) => item.id === code
+    );
+    if (!res) return toast.error("data Paket tidak ditemukan");
+    else {
+      return res;
+    }
   } else {
-    return dataLabSatuan.find((item) => item.id === code);
+    const res: LabItemType | undefined = dataLabSatuan.find(
+      (item) => item.id === code
+    );
+    if (!res) return toast.error("data Laboratorium tidak ditemukan");
+    else {
+      return res;
+    }
   }
 };

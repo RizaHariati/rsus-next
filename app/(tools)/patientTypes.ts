@@ -6,7 +6,7 @@ export type UserType = {
   medical_record_number?: string;
 };
 
-export type PersonalItemType = {
+export type PatientItemType = {
   id: string;
   title: string;
   placeholder: string;
@@ -15,24 +15,24 @@ export type PersonalItemType = {
   editable: boolean;
 };
 export type FormProfileType = {
-  name: PersonalItemType;
-  NIK: PersonalItemType;
-  address: PersonalItemType;
-  sex: PersonalItemType;
-  birthdate: PersonalItemType;
-  phone: PersonalItemType;
-  bpjs_number?: PersonalItemType;
+  name: PatientItemType;
+  NIK: PatientItemType;
+  address: PatientItemType;
+  sex: PatientItemType;
+  birthdate: PatientItemType;
+  phone: PatientItemType;
+  bpjs_number?: PatientItemType;
 };
 
 export type FormScheduleType = {
-  schedule_id: PersonalItemType;
-  current_phone: PersonalItemType;
-  tujuan: PersonalItemType;
-  appointment_type: PersonalItemType;
-  scheduled_date: PersonalItemType;
-  register_date: PersonalItemType;
-  using_bpjs: PersonalItemType;
-  nomor_antrian: PersonalItemType;
+  schedule_id: PatientItemType;
+  current_phone: PatientItemType;
+  tujuan: PatientItemType;
+  appointment_type: PatientItemType;
+  scheduled_date: PatientItemType;
+  register_date: PatientItemType;
+  using_bpjs: PatientItemType;
+  nomor_antrian: PatientItemType;
 };
 export type PatientProfileType = {
   name: string;
