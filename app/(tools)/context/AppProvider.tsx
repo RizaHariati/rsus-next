@@ -113,37 +113,50 @@ export const AppProvider = ({ children }: Props) => {
     };
   }, []);
 
-  const selectDoctor = (selectedDoctor: DoctorType) => {
-    hospitalDispatch({ type: "SELECT_DOCTOR", payload: { selectedDoctor } });
-  };
-
-  const selectFacility = (selectedFacility: FacilitySanityType) => {
+  const updateHospital = (keyword: string, newData: any[]) => {
     hospitalDispatch({
-      type: "SELECT_FACILITY",
-      payload: { selectedFacility },
+      type: "UPDATE_HOSPITAL",
+      payload: { keyword, newData },
     });
   };
 
-  const selectLabSatuan = (selectedLabSatuan: LabItemType) => {
+  const selectHospitalDescription = (keyword: string, selected: any) => {
     hospitalDispatch({
-      type: "SELECT_LAB_SATUAN",
-      payload: { selectedLabSatuan },
+      type: "SELECT_DESCRIPTION",
+      payload: { keyword, selected },
     });
   };
+  // const selectDoctor = (selectedDoctor: DoctorType) => {
+  //   hospitalDispatch({ type: "SELECT_DOCTOR", payload: { selectedDoctor } });
+  // };
 
-  const selectLabPaket = (selectedPaket: PaketLabType) => {
-    hospitalDispatch({
-      type: "SELECT_LAB_PAKET",
-      payload: { selectedPaket },
-    });
-  };
+  // const selectFacility = (selectedFacility: FacilitySanityType) => {
+  //   hospitalDispatch({
+  //     type: "SELECT_FACILITY",
+  //     payload: { selectedFacility },
+  //   });
+  // };
 
-  const selectInpatient = (selectedInpatient: InpatientType) => {
-    hospitalDispatch({
-      type: "SELECT_INPATIENT",
-      payload: { selectedInpatient },
-    });
-  };
+  // const selectLabSatuan = (selectedLabSatuan: LabItemType) => {
+  //   hospitalDispatch({
+  //     type: "SELECT_LAB_SATUAN",
+  //     payload: { selectedLabSatuan },
+  //   });
+  // };
+
+  // const selectLabPaket = (selectedPaket: PaketLabType) => {
+  //   hospitalDispatch({
+  //     type: "SELECT_LAB_PAKET",
+  //     payload: { selectedPaket },
+  //   });
+  // };
+
+  // const selectInpatient = (selectedInpatient: InpatientType) => {
+  //   hospitalDispatch({
+  //     type: "SELECT_INPATIENT",
+  //     payload: { selectedInpatient },
+  //   });
+  // };
 
   const selectPatientDestination = (
     selectedScheduleAppointment: ScheduledType | null
@@ -232,12 +245,9 @@ export const AppProvider = ({ children }: Props) => {
 
   const value = {
     hospitalState,
-    selectDoctor,
-    selectFacility,
-    selectLabSatuan,
-    selectLabPaket,
-    selectInpatient,
     hospitalDispatch,
+    selectHospitalDescription,
+    updateHospital,
     showDetail,
     handleShowDetail,
     patientState,

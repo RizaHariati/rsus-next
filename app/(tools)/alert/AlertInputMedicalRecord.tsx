@@ -91,7 +91,7 @@ const AlertInputMedicalRecord = (props: Props) => {
           Masukkan Nomor Rekam Medis Pasien
         </p>
 
-        {patient && (
+        {patient?.medical_record_number && (
           <Link
             href="/adminpatient/"
             className="btn-base"

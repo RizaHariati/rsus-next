@@ -13,7 +13,7 @@ const FacilityMenu = (props: Props) => {
   const {
     hospitalState: { dataFacility, selectedFacility },
     settingEditable,
-    selectFacility,
+    selectHospitalDescription,
     assignColumn,
     state: { currentWindow },
   } = useGlobalContext();
@@ -30,7 +30,7 @@ const FacilityMenu = (props: Props) => {
                 : "sidebar-btn group"
             }
             onClick={() => {
-              selectFacility(facility);
+              selectHospitalDescription("facility", facility);
               assignColumn(openDescription(currentWindow));
               settingEditable(false);
             }}

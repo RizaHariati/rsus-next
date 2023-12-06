@@ -8,40 +8,79 @@ export const hospitalReducer = (
   hospitalState: HospitalState,
   action: OpenModalAction
 ) => {
-  if (action.type === "SELECT_INPATIENT") {
-    const selectedInpatient = action.payload.selectedInpatient;
-    return {
-      ...hospitalState,
-      selectedInpatient,
-    };
+  if (action.type === "SELECT_DESCRIPTION") {
+    const keyword = action.payload.keyword;
+    const selected = action.payload.selected;
+
+    switch (keyword) {
+      case "doctor":
+        const selectedDoctor = selected;
+        return { ...hospitalState, selectedDoctor };
+
+      case "facility":
+        const selectedFacility = selected;
+        return { ...hospitalState, selectedFacility };
+
+      case "lab_satuan":
+        const selectedLabSatuan = selected;
+
+        return { ...hospitalState, selectedLabSatuan };
+
+      case "lab_paket":
+        const selectedPaket = selected;
+        return { ...hospitalState, selectedPaket };
+      case "inpatient":
+        const selectedInpatient = selected;
+        return { ...hospitalState, selectedInpatient };
+      default:
+        return { ...hospitalState };
+    }
   }
-  if (action.type === "SELECT_LAB_SATUAN") {
-    const selectedLabSatuan = action.payload.selectedLabSatuan;
-    return {
-      ...hospitalState,
-      selectedLabSatuan,
+  if (action.type === "UPDATE_HOSPITAL") {
+    const newData = action.payload.newData;
+    const keyword = action.payload.keyword;
+    const updatingData = (data: any[], newData: any) => {
+      const newUpdatedData = data.map((item) => {
+        if (item.id === newData.id) return newData;
+        else return item;
+      });
+      return newUpdatedData;
     };
-  }
-  if (action.type === "SELECT_LAB_PAKET") {
-    const selectedPaket = action.payload.selectedPaket;
-    return {
-      ...hospitalState,
-      selectedPaket,
-    };
-  }
-  if (action.type === "SELECT_FACILITY") {
-    const selectedFacility = action.payload.selectedFacility;
-    return {
-      ...hospitalState,
-      selectedFacility,
-    };
-  }
-  if (action.type === "SELECT_DOCTOR") {
-    const selectedDoctor = action.payload.selectedDoctor;
-    return {
-      ...hospitalState,
-      selectedDoctor,
-    };
+
+    switch (keyword) {
+      case "doctor":
+        const dataDoctor = updatingData(hospitalState.dataDoctor, newData);
+        const selectedDoctor = newData;
+        return { ...hospitalState, selectedDoctor, dataDoctor };
+
+      case "facility":
+        const dataFacility = updatingData(hospitalState.dataDoctor, newData);
+        const selectedFacility = newData;
+        return { ...hospitalState, selectedFacility, dataFacility };
+
+      case "lab_satuan":
+        const dataLabSatuan = updatingData(
+          hospitalState.dataLabSatuan,
+          newData
+        );
+        const selectedLabSatuan = newData;
+        return { ...hospitalState, selectedLabSatuan, dataLabSatuan };
+
+      case "lab_paket":
+        const dataPaket = updatingData(hospitalState.dataPaket, newData);
+        const selectedPaket = newData;
+        return { ...hospitalState, selectedPaket, dataPaket };
+
+      case "inpatient":
+        const dataInpatient = updatingData(
+          hospitalState.dataInpatient,
+          newData
+        );
+        const selectedInpatient = newData;
+        return { ...hospitalState, selectedInpatient, dataInpatient };
+      default:
+        return { ...hospitalState };
+    }
   }
   if (action.type === "LOAD_HOSPITAL_DATA") {
     const { dataDoctor, dataFacility, dataLabSatuan, dataPaket } =
@@ -53,8 +92,8 @@ export const hospitalReducer = (
     return {
       ...hospitalState,
       dataDoctor,
-      dataFacility,
       selectedDoctor,
+      dataFacility,
       selectedFacility,
       dataLabSatuan,
       selectedLabSatuan,

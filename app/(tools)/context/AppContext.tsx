@@ -43,11 +43,8 @@ export type AppContextProps = {
   handleShowDetail: (key: SidebarBtnType) => void;
   showDetail: SidebarBtnType;
   settingEditable: (editable: boolean) => void;
-  selectDoctor: (doctor: DoctorType) => void;
-  selectFacility: (selectedFacility: FacilitySanityType) => void;
-  selectLabSatuan: (selectedLabSatuan: LabItemType) => void;
-  selectLabPaket: (selectedPaket: PaketLabType) => void;
-  selectInpatient: (selectedInpatient: InpatientType) => void;
+  updateHospital: (keyword: string, newData: any[]) => void;
+  selectHospitalDescription: (keyword: string, selected: any) => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

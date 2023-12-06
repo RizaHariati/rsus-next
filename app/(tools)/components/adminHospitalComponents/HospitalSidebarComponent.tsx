@@ -17,11 +17,7 @@ const HospitalSidebarComponent = (props: Props) => {
     showDetail,
     handleShowDetail,
     settingEditable,
-    selectDoctor,
-    selectFacility,
-    selectLabSatuan,
-    selectLabPaket,
-    selectInpatient,
+    selectHospitalDescription,
     state: {
       currentWindow,
       columnAssignment: { column1, column3 },
@@ -44,11 +40,26 @@ const HospitalSidebarComponent = (props: Props) => {
   const handleClick = (key: SidebarBtnType) => {
     assignColumn(closeSideBar(currentWindow));
     handleShowDetail(key);
-    if (key.key === "doctor") selectDoctor(dataDoctor?.[0]);
-    if (key.key === "facility") selectFacility(dataFacility?.[0]);
-    if (key.key === "lab_satuan") selectLabSatuan(dataLabSatuan?.[0]);
-    if (key.key === "lab_paket") selectLabPaket(dataPaket?.[0]);
-    if (key.key === "inpatient") selectInpatient(dataInpatient?.[0]);
+    switch (key.key) {
+      case "doctor":
+        selectHospitalDescription("doctor", dataDoctor?.[0]);
+        break;
+      case "facility":
+        selectHospitalDescription("facility", dataFacility?.[0]);
+        break;
+      case "lab_satuan":
+        selectHospitalDescription("lab_satuan", dataLabSatuan?.[0]);
+        break;
+      case "lab_paket":
+        selectHospitalDescription("lab_paket", dataPaket?.[0]);
+        break;
+      case "inpatient":
+        selectHospitalDescription("inpatient", dataInpatient?.[0]);
+        break;
+      default:
+        break;
+    }
+
     settingEditable(false);
   };
 

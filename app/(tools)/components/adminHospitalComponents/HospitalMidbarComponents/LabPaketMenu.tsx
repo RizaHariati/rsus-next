@@ -10,7 +10,7 @@ const LabPaketMenu = (props: Props) => {
   const {
     hospitalState: { dataPaket, selectedPaket },
     settingEditable,
-    selectLabPaket,
+    selectHospitalDescription,
     assignColumn,
     state: { currentWindow },
   } = useGlobalContext();
@@ -27,7 +27,7 @@ const LabPaketMenu = (props: Props) => {
                 : "sidebar-btn group"
             }
             onClick={() => {
-              selectLabPaket(labPaket);
+              selectHospitalDescription("lab_paket", labPaket);
               settingEditable(false);
               assignColumn(openDescription(currentWindow));
             }}

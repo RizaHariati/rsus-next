@@ -12,7 +12,7 @@ const DoctorMenu = (props: Props) => {
   const {
     hospitalState: { dataDoctor, selectedDoctor },
     settingEditable,
-    selectDoctor,
+    selectHospitalDescription,
     assignColumn,
     state: { currentWindow },
   } = useGlobalContext();
@@ -37,7 +37,7 @@ const DoctorMenu = (props: Props) => {
             }
             onClick={() => {
               assignColumn(openDescription(currentWindow));
-              selectDoctor(doctor);
+              selectHospitalDescription("doctor", doctor);
               settingEditable(false);
             }}
           >
