@@ -7,10 +7,7 @@ import SidebarComponent from "@/app/(tools)/components/adminpatientComponents/Si
 import MidbarComponent from "@/app/(tools)/components/adminpatientComponents/MidbarComponent";
 import DescriptionComponent from "@/app/(tools)/components/adminpatientComponents/DescriptionComponent";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import { ScheduledType } from "@/app/(tools)/patientTypes";
-import { getTujuan } from "@/app/(tools)/utils/patientUtils/getTujuan";
 import { patientBtnDetail } from "../../(tools)/column/sidebarColumnKeys";
-import { isMobile } from "react-device-detect";
 
 type Props = {};
 

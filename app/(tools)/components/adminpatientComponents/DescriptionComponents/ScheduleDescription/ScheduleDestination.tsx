@@ -22,15 +22,12 @@ type Props = {
   handleValueChange: (value: { newValue: any; key: string }[]) => void;
 };
 
-const ScheduleDestination = ({
-  formKey,
-  formValue,
-  values,
-  handleValueChange,
-}: Props) => {
+const ScheduleDestination = ({ formKey, formValue, values }: Props) => {
   const {
     state: { editable },
-    hospitalState: { dataFacility, dataDoctor, dataLabSatuan, dataPaket },
+    hospitalState: {
+      dataComplete: { dataFacility, dataDoctor, dataLabSatuan, dataPaket },
+    },
   } = useGlobalContext();
   const [showDestination, setShowDestination] = useState<string[]>(
     values[formKey].value

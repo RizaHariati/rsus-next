@@ -136,6 +136,10 @@ export const hospitalReducer = (
     const selectedLabSatuan = dataLabSatuan[0];
     const selectedPaket = dataPaket[0];
     const selectedInpatient = dataInpatient[0];
+    const dataComplete = {
+      ...action.payload,
+      dataInpatient: dataInpatient,
+    };
     return {
       ...hospitalState,
       dataDoctor,
@@ -148,6 +152,7 @@ export const hospitalReducer = (
       selectedPaket,
       dataInpatient,
       selectedInpatient,
+      dataComplete,
     };
   }
 

@@ -32,15 +32,9 @@ import { getFacility } from "@/sanity/sanityUtils/getFacility";
 import { initialHospitalState } from "./initialHospitalState";
 import { hospitalReducer } from "../reducers/hospitalReducer";
 import { usePathname } from "next/navigation";
-import {
-  DoctorType,
-  FacilitySanityType,
-  LabItemType,
-  PaketLabType,
-} from "../HospitalTypes";
+
 import { getLabSatuan } from "@/sanity/sanityUtils/getLabSatuan";
 import { getLabPaket } from "@/sanity/sanityUtils/getLabPaket";
-import { InpatientType } from "../HospitalTypes";
 
 interface Props {
   children: JSX.Element | JSX.Element[];

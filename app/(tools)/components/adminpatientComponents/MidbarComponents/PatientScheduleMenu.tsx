@@ -24,7 +24,9 @@ const PatientScheduleMenu = (props: Props) => {
     assignColumn,
     state: { editable, currentWindow },
     patientState: { scheduleAppointments, selectedScheduleAppointment },
-    hospitalState: { dataFacility, dataPaket, dataLabSatuan, dataDoctor },
+    hospitalState: {
+      dataComplete: { dataFacility, dataPaket, dataLabSatuan, dataDoctor },
+    },
   } = useGlobalContext();
 
   const [scheduleValues, setScheduleValues] = useState(

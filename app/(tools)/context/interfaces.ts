@@ -48,4 +48,11 @@ export interface HospitalState {
   selectedPaket: PaketLabType | null;
   dataInpatient: InpatientType[] | [];
   selectedInpatient: InpatientType | null;
+  dataComplete: {
+    dataDoctor: DoctorType[];
+    dataFacility: FacilitySanityType[];
+    dataLabSatuan: LabItemType[] | [];
+    dataPaket: PaketLabType[] | [];
+    dataInpatient: InpatientType[] | [];
+  };
 }
