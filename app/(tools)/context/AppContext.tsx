@@ -44,6 +44,7 @@ export type AppContextProps = {
   showDetail: SidebarBtnType;
   settingEditable: (editable: boolean) => void;
   updateHospital: (keyword: string, newData: any[]) => void;
+  deleteHospital: (keyword: string, id: string) => void;
   selectHospitalDescription: (keyword: string, selected: any) => void;
 };
 

@@ -122,6 +122,13 @@ export const AppProvider = ({ children }: Props) => {
     });
   };
 
+  const deleteHospital = (keyword: string, id: string) => {
+    hospitalDispatch({
+      type: "DELETE_HOSPITAL",
+      payload: { keyword, id },
+    });
+  };
+
   const selectHospitalDescription = (keyword: string, selected: any) => {
     hospitalDispatch({
       type: "SELECT_DESCRIPTION",
@@ -219,6 +226,7 @@ export const AppProvider = ({ children }: Props) => {
     hospitalDispatch,
     selectHospitalDescription,
     updateHospital,
+    deleteHospital,
     showDetail,
     handleShowDetail,
     patientState,

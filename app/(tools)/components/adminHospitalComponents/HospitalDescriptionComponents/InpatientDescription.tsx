@@ -9,7 +9,7 @@ import { toast } from "react-toastify";
 import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
 import LoadingSpinner from "../../GeneralComponents/LoadingSpinner";
-
+import data_inpatient from "../../../data/data_inap.json";
 type Props = {};
 
 const InpatientDescription = (props: Props) => {
@@ -65,27 +65,25 @@ const InpatientDescription = (props: Props) => {
 
   const getInpatientFacility = () => {
     let inpatientFacilityList: { id: string; title: string }[] = [];
-    if (!dataInpatient) return;
-    else {
-      let id = 0;
-      dataInpatient.map((inpatientItem) => {
-        inpatientItem.fasilitas.map((fasilitasItem) => {
-          const findFacility = inpatientFacilityList.find(({ title }) => {
-            // console.log({ title, fasilitasItem });
-            return title === fasilitasItem;
-          });
-          if (!findFacility) {
-            id++;
-            inpatientFacilityList.push({
-              id: `inp-${id}`,
-              title: fasilitasItem,
-            });
-          }
-          return "";
+
+    let id = 0;
+    data_inpatient.map((inpatientItem) => {
+      inpatientItem.fasilitas.map((fasilitasItem) => {
+        const findFacility = inpatientFacilityList.find(({ title }) => {
+          return title === fasilitasItem;
         });
+        if (!findFacility) {
+          id++;
+          inpatientFacilityList.push({
+            id: `inp-${id}`,
+            title: fasilitasItem,
+          });
+        }
         return "";
       });
-    }
+      return "";
+    });
+
     return inpatientFacilityList;
   };
   const formInputInpatient = Object.entries(inpatientForm);

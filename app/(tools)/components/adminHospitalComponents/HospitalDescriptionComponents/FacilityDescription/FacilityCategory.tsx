@@ -20,11 +20,10 @@ const FacilityCategory = ({
   Values,
 }: Props) => {
   const {
-    state: { columnAssignment, editable },
-    hospitalState: { selectedFacility, dataFacility },
+    state: { editable },
+    hospitalState: { dataFacility },
   } = useGlobalContext();
 
-  const [selected, setselected] = useState(null);
   const categoryList = Array.from([
     ...new Set(dataFacility.map((item) => item.category)),
   ]);

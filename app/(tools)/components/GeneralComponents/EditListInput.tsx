@@ -61,60 +61,64 @@ const EditListInput = ({
         <LoadingSpinner />
       </div>
     );
-  return (
-    <div className="w-full mt-2 bg-hoverBG">
-      <DescriptionModal
-        showModal={showModal}
-        closeModal={closeModal}
-        dataList={dataList}
-        list={list}
-        addRemoveListItem={addRemoveListItem}
-      />
-      <small className="">{FormValue.title}</small>
-      <div className="w-full flex flex-col gap-2 standard-border p-2 bg-hoverBG">
-        {list.map((itemList: any, indexPoli: number) => {
-          return (
-            <div
-              key={indexPoli}
-              className={
-                editable
-                  ? "admin-input flex-center-between "
-                  : "admin-input-disabled flex-center-between"
-              }
-            >
-              <p className="text-sm leading-3">{itemList.title}</p>
-              <button
-                type="button"
-                onClick={() => {
-                  if (itemList.id.slice(0, 3) === "std")
-                    return toast.info("Pemeriksaan standard harus disertakan");
-                  addRemoveListItem(itemList.id);
-                }}
-                className="standard-border h-6 w-6"
+  else {
+    return (
+      <div className="w-full mt-2 bg-hoverBG">
+        <DescriptionModal
+          showModal={showModal}
+          closeModal={closeModal}
+          dataList={dataList}
+          list={list}
+          addRemoveListItem={addRemoveListItem}
+        />
+        <small className="">{FormValue.title}</small>
+        <div className="w-full flex flex-col gap-2 standard-border p-2 bg-hoverBG">
+          {list.map((itemList: any, indexPoli: number) => {
+            return (
+              <div
+                key={indexPoli}
+                className={
+                  editable
+                    ? "admin-input flex-center-between "
+                    : "admin-input-disabled flex-center-between"
+                }
               >
-                <FontAwesomeIcon icon={faMinus} className="h-4 w-4" />
-              </button>
-            </div>
-          );
-        })}
+                <p className="text-sm leading-3">{itemList.title}</p>
+                <button
+                  type="button"
+                  onClick={() => {
+                    if (itemList.id.slice(0, 3) === "std")
+                      return toast.info(
+                        "Pemeriksaan standard harus disertakan"
+                      );
+                    addRemoveListItem(itemList.id);
+                  }}
+                  className="standard-border h-6 w-6"
+                >
+                  <FontAwesomeIcon icon={faMinus} className="h-4 w-4" />
+                </button>
+              </div>
+            );
+          })}
 
-        <button
-          onClick={() => {
-            if (!editable) return;
-            setShowModal(!showModal);
-          }}
-          type="button"
-          className={
-            editable
-              ? "admin-input flex-center-center"
-              : "admin-input-disabled flex-center-center"
-          }
-        >
-          <FontAwesomeIcon icon={faPlus} className="h-4 w-4" />
-        </button>
+          <button
+            onClick={() => {
+              if (!editable) return;
+              setShowModal(!showModal);
+            }}
+            type="button"
+            className={
+              editable
+                ? "admin-input flex-center-center"
+                : "admin-input-disabled flex-center-center"
+            }
+          >
+            <FontAwesomeIcon icon={faPlus} className="h-4 w-4" />
+          </button>
+        </div>
       </div>
-    </div>
-  );
+    );
+  }
 };
 
 export default EditListInput;

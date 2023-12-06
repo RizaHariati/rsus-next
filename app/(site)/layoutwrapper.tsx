@@ -43,7 +43,12 @@ const LayoutWrapper = ({ children }: Props) => {
       }}
       className="main-layout-container  "
     >
-      <ToastContainer position="top-right" theme="light" autoClose={1000} />
+      <ToastContainer
+        position="top-right"
+        theme="light"
+        autoClose={1000}
+        limit={3}
+      />
       <ModalContainer />
       <AlertContainer />
 

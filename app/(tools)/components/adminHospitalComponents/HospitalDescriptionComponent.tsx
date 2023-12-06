@@ -7,6 +7,7 @@ import FacilityDescription from "./HospitalDescriptionComponents/FacilityDescrip
 import LabSatuanDescription from "./HospitalDescriptionComponents/LabSatuanDescription";
 import LabPaketDescription from "./HospitalDescriptionComponents/LabPaketDescription";
 import InpatientDescription from "./HospitalDescriptionComponents/InpatientDescription";
+import EditDeleteButtons from "../GeneralComponents/EditDeleteButtons";
 
 type Props = {};
 
@@ -96,7 +97,7 @@ const HospitalDescriptionComponent = (props: Props) => {
         >
           {showDetail.column_open === "all" ? columnTitle : showDetail.name}
         </button>
-        {column3 && <PatientEditDelete />}
+        {column3 && <EditDeleteButtons />}
       </div>
       {column3 && (
         <div className="h-[calc(100vh-112px)] w-full">
