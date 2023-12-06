@@ -126,37 +126,6 @@ export const AppProvider = ({ children }: Props) => {
       payload: { keyword, selected },
     });
   };
-  // const selectDoctor = (selectedDoctor: DoctorType) => {
-  //   hospitalDispatch({ type: "SELECT_DOCTOR", payload: { selectedDoctor } });
-  // };
-
-  // const selectFacility = (selectedFacility: FacilitySanityType) => {
-  //   hospitalDispatch({
-  //     type: "SELECT_FACILITY",
-  //     payload: { selectedFacility },
-  //   });
-  // };
-
-  // const selectLabSatuan = (selectedLabSatuan: LabItemType) => {
-  //   hospitalDispatch({
-  //     type: "SELECT_LAB_SATUAN",
-  //     payload: { selectedLabSatuan },
-  //   });
-  // };
-
-  // const selectLabPaket = (selectedPaket: PaketLabType) => {
-  //   hospitalDispatch({
-  //     type: "SELECT_LAB_PAKET",
-  //     payload: { selectedPaket },
-  //   });
-  // };
-
-  // const selectInpatient = (selectedInpatient: InpatientType) => {
-  //   hospitalDispatch({
-  //     type: "SELECT_INPATIENT",
-  //     payload: { selectedInpatient },
-  //   });
-  // };
 
   const selectPatientDestination = (
     selectedScheduleAppointment: ScheduledType | null
