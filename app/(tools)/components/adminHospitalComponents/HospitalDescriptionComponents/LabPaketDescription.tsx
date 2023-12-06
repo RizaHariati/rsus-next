@@ -18,6 +18,7 @@ type Props = {};
 const LabPaketDescription = (props: Props) => {
   const {
     settingEditable,
+    updateHospital,
     state: { editable },
     hospitalState: { selectedPaket, dataFacility, dataLabSatuan },
   } = useGlobalContext();
@@ -33,7 +34,8 @@ const LabPaketDescription = (props: Props) => {
             editedLabPaket[editedKey] = editedValue.value;
           }
         });
-        resolve(console.log({ editedLabPaket }));
+
+        resolve(updateHospital("lab_paket", editedLabPaket));
       }, 1000);
     }).then((res) => {
       settingEditable(false);

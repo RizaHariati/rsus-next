@@ -6,6 +6,7 @@ import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import Image from "next/image";
 import { sanityLoader } from "../../../../../loader";
 import { openDescription } from "@/app/(tools)/column/columnCodes";
+import myImageLoader from "../../../../../loader";
 
 type Props = {};
 
@@ -36,10 +37,16 @@ const FacilityMenu = (props: Props) => {
             }}
           >
             <Image
-              loader={sanityLoader}
+              loader={
+                facility?.img?.src.slice(0, 4) === "blob"
+                  ? myImageLoader
+                  : sanityLoader
+              }
               placeholder="empty"
               src={
-                facility?.img.src || "/images/navbar/main-logo.png?w=64&q=75"
+                facility?.img?.src
+                  ? facility?.img?.src
+                  : "/images/navbar/main-logo.png?w=64&q=75"
               }
               width={40}
               height={40}

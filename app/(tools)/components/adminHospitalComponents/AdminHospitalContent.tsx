@@ -4,19 +4,14 @@ import HospitalMidbarComponent from "@/app/(tools)/components/adminHospitalCompo
 import HospitalSidebarComponent from "@/app/(tools)/components/adminHospitalComponents/HospitalSidebarComponent";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import useAssignColumn from "@/app/(tools)/utils/useAssignColumn";
-import React, { Suspense, memo, useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { hospitalBtnDetail } from "../../column/sidebarColumnKeys";
 
 type Props = {};
 
 const AdminHospitalContent = (props: Props) => {
-  const {
-    handleShowDetail,
-    showDetail,
-    state: { currentWindow },
-    hospitalState: { dataDoctor, dataFacility },
-  } = useGlobalContext();
+  const { handleShowDetail, showDetail } = useGlobalContext();
 
   const [showMidbar, setShowMidbar] = useState(
     showDetail.column_open === "all"

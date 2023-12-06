@@ -14,6 +14,7 @@ type Props = {};
 
 const InpatientDescription = (props: Props) => {
   const {
+    updateHospital,
     settingEditable,
     state: { editable },
     hospitalState: { selectedInpatient, dataInpatient },
@@ -32,7 +33,8 @@ const InpatientDescription = (props: Props) => {
             editedInpatient[editedKey] = editedValue.value;
           }
         });
-        resolve(console.log({ editedInpatient }));
+
+        resolve(updateHospital("inpatient", editedInpatient));
       }, 1000);
     }).then((res) => {
       settingEditable(false);

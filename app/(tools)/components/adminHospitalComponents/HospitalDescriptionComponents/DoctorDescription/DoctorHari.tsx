@@ -95,6 +95,10 @@ const DoctorHari = ({
 
     setHariChanged(isHariChanged);
     setSelectedHari(isHariChanged ? newAllHari : null);
+    if (isHariChanged) {
+      setSelectedHari(newAllHari);
+      handleValueChange([{ newValue: newAllHari, key: "hari" }]);
+    }
   };
   const handleHari = () => {
     if (!editable) {

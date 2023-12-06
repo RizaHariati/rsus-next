@@ -55,6 +55,7 @@ const InpatientImageDescription = ({
       const newImageArray = imageArray.filter(
         (item: string) => item !== itemImage
       );
+      handleValueChange([{ newValue: newImageArray, key: "img-array" }]);
       return setImageArray(newImageArray);
     }
   };

@@ -72,6 +72,7 @@ export const AppProvider = ({ children }: Props) => {
     let mount = true;
     if (mount) {
       const setDoctors = new Promise((resolve) => {
+        console.log("start provider");
         return resolve(getDoctors());
       }).then((doctor) => doctor);
       const setFacility = new Promise((resolve) => {
@@ -81,6 +82,7 @@ export const AppProvider = ({ children }: Props) => {
         return resolve(getLabSatuan());
       });
       const setLabPaket = new Promise((resolve) => {
+        console.log("end provider");
         return resolve(getLabPaket());
       });
 

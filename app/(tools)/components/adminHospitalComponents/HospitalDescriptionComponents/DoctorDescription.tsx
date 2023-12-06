@@ -14,12 +14,14 @@ import { toast } from "react-toastify";
 import RegularInput from "../../GeneralComponents/RegularInput";
 import SubmitButton from "../../GeneralComponents/SubmitButton";
 import LoadingSpinner from "../../GeneralComponents/LoadingSpinner";
+import { validatePrice } from "@/app/(tools)/utils/forms/validatePrice";
 
 type Props = {};
 
 const DoctorDescription = (props: Props) => {
   const {
     settingEditable,
+    updateHospital,
     state: { editable },
     hospitalState: { selectedDoctor },
   } = useGlobalContext();
@@ -37,7 +39,7 @@ const DoctorDescription = (props: Props) => {
             editedDoctor[editedKey] = editedValue.value;
           }
         });
-        resolve(console.log({ editedDoctor }));
+        resolve(updateHospital("doctor", editedDoctor));
       }, 1000);
     }).then((res) => {
       settingEditable(false);
@@ -67,6 +69,7 @@ const DoctorDescription = (props: Props) => {
       });
       promiseDoctor.then((newDoctorValues: any) => {
         setDoctorValues(newDoctorValues);
+        return newDoctorValues;
       });
 
       if (!editable) {
@@ -114,6 +117,24 @@ const DoctorDescription = (props: Props) => {
               error: false,
             };
           }
+        } else if (itemKey.includes("biaya")) {
+          const validate = validatePrice(findValue.newValue, 2000000);
+
+          if (!validate.flag) {
+            newDoctorValues[itemKey] = {
+              ...itemValue,
+              value: validate.roundup,
+            };
+          } else {
+            newDoctorValues[itemKey] = { ...itemValue };
+          }
+        } else if (itemKey === "hari") {
+          const hari = findValue.newValue.map((item: any) => item["id_hari"]);
+
+          newDoctorValues[itemKey] = {
+            value: findValue.newValue,
+            error: false,
+          };
         } else {
           newDoctorValues[itemKey] = {
             value: findValue.newValue,

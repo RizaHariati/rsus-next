@@ -18,7 +18,7 @@ function WelcomePage(props: Props) {
     openAlert,
     handleShowDetail,
     assignColumn,
-    hospitalState: { dataDoctor, selectedDoctor },
+    hospitalState: { selectedDoctor },
   } = useGlobalContext();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
@@ -31,12 +31,15 @@ function WelcomePage(props: Props) {
   const handleAdminHospitalBtn = () => {
     const promise1 = new Promise((resolve) => {
       setLoading(true);
+      console.log("one");
       resolve(handleShowDetail(hospitalBtnDetail[0]));
     });
     const promise2 = new Promise((resolve) => {
+      console.log("two");
       resolve(assignColumn(initialColumn));
     });
     const promise3 = new Promise((resolve) => {
+      console.log("three");
       resolve(selectedDoctor);
     });
 

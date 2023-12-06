@@ -10,7 +10,6 @@ import React, { useEffect, useState } from "react";
 import EditListInput from "../../GeneralComponents/EditListInput";
 import BooleanButton from "../../GeneralComponents/BooleanButtonInput";
 import dataPoliklinik from "../../../data/data_poliklinik.json";
-import FacilityCategory from "./FacilityDescription/FacilityCategory";
 import { toast } from "react-toastify";
 import ImageGenericInput from "../../GeneralComponents/ImageGenericInput";
 import RegularInput from "../../GeneralComponents/RegularInput";
@@ -24,6 +23,7 @@ type Props = {};
 const FacilityDescription = (props: Props) => {
   const {
     settingEditable,
+    updateHospital,
     state: { editable },
     hospitalState: { selectedFacility, dataFacility },
   } = useGlobalContext();
@@ -44,7 +44,7 @@ const FacilityDescription = (props: Props) => {
             editedFacilityValues[editedKey] = editedValue.value;
           }
         });
-        resolve(console.log({ editedFacilityValues }));
+        resolve(updateHospital("facility", editedFacilityValues));
       }, 1000);
     }).then((res) => {
       settingEditable(false);
@@ -97,6 +97,11 @@ const FacilityDescription = (props: Props) => {
           } else {
             newFacility[itemKey] = { ...itemValue };
           }
+        } else if (itemKey === "img") {
+          newFacility[itemKey] = {
+            ...itemValue,
+            value: findValue.newValue,
+          };
         } else {
           newFacility[itemKey] = { ...itemValue, value: findValue.newValue };
         }

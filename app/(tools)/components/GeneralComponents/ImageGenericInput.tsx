@@ -69,11 +69,14 @@ const ImageGenericInput = ({
       <small className="">{formValue.title}</small>
       <div className="w-full h-fit flex-center-center flex-col standard-border gap-2 p-2">
         <Image
-          loader={imgFile.imgSrc === "" ? myImageLoader : sanityLoader}
+          loader={
+            imgFile.imgSrc === "" || imgFile.imgSrc.slice(0, 4) === "blob"
+              ? myImageLoader
+              : sanityLoader
+          }
           unoptimized={imgFile.imgSrc === ""}
-          placeholder="empty"
           src={
-            imgFile.imgSrc !== ""
+            imgFile.imgSrc !== "" || imgFile.imgSrc.slice(0, 4) === "blob"
               ? imgFile.imgSrc
               : values[formKey].value?.src ||
                 "/static/images/pelayanan-fasilitas/audiometri"

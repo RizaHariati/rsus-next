@@ -1,6 +1,4 @@
 import AdminHospitalContent from "@/app/(tools)/components/adminHospitalComponents/AdminHospitalContent";
-// import LoadingPage from "./#loading";
-import { Suspense } from "react";
 
 type Props = {};
 

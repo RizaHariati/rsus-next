@@ -12,7 +12,6 @@ import {
 } from "@fortawesome/free-solid-svg-icons";
 import { getTujuan } from "@/app/(tools)/utils/patientUtils/getTujuan";
 import { doctorForm } from "@/app/(tools)/utils/forms/DoctorDetailedForm";
-import moment from "moment";
 import { allHari } from "@/app/(tools)/utils/AllHari";
 import { faMinus } from "@fortawesome/free-solid-svg-icons";
 
@@ -49,6 +48,8 @@ const ScheduleDestination = ({
 
     setShowDestination(values[formKey].value);
     if (!editable) setShowDestination(values[formKey].value);
+
+    //eslint-disable-next-line
   }, [values, editable]);
 
   if (!showDestination) return <div></div>;

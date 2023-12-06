@@ -3,8 +3,8 @@ import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { faChevronRight } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import React from "react";
-import DoctorMenuLoading from "../HospitalLoadingComponents/DoctorMenuLoading";
-import { closeMidbar, openDescription } from "@/app/(tools)/column/columnCodes";
+import { openDescription } from "@/app/(tools)/column/columnCodes";
+import LoadingSpinner from "../../GeneralComponents/LoadingSpinner";
 
 type Props = {};
 
@@ -20,7 +20,7 @@ const DoctorMenu = (props: Props) => {
   if (!dataDoctor) {
     return (
       <div className="h-[calc(100vh-112px)] w-full">
-        <DoctorMenuLoading />
+        <LoadingSpinner />
       </div>
     );
   }

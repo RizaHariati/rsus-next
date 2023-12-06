@@ -54,7 +54,7 @@ export const hospitalReducer = (
         return { ...hospitalState, selectedDoctor, dataDoctor };
 
       case "facility":
-        const dataFacility = updatingData(hospitalState.dataDoctor, newData);
+        const dataFacility = updatingData(hospitalState.dataFacility, newData);
         const selectedFacility = newData;
         return { ...hospitalState, selectedFacility, dataFacility };
 
