@@ -2,19 +2,8 @@ import { createContext } from "react";
 import { AppState, HospitalState, PatientState } from "./interfaces";
 import { SidebarBtnType } from "../column/sidebarColumnKeys";
 
-import {
-  PatientType,
-  ScheduleDestinationsListType,
-  ScheduledType,
-} from "../patientTypes";
+import { PatientType, ScheduledType } from "../patientTypes";
 import { ColumnAssignmentType } from "../types";
-import {
-  DoctorType,
-  FacilitySanityType,
-  InpatientType,
-  LabItemType,
-  PaketLabType,
-} from "../HospitalTypes";
 
 export type AppContextProps = {
   hospitalState: HospitalState;
@@ -35,7 +24,6 @@ export type AppContextProps = {
   scrollingUp: boolean;
   showFooter: boolean;
   loadingPatient: (patient: PatientType) => void;
-
   selectPatientDestination: (
     selectedScheduleAppointment: ScheduledType | null
   ) => void;
@@ -46,6 +34,7 @@ export type AppContextProps = {
   updateHospital: (keyword: string, newData: any[]) => void;
   deleteHospital: (keyword: string, id: string) => void;
   selectHospitalDescription: (keyword: string, selected: any) => void;
+  updatePatient: (keyword: string, newData: any) => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

@@ -16,8 +16,9 @@ type Props = {};
 const ScheduleDescription = (props: Props) => {
   const {
     settingEditable,
+    updatePatient,
     state: { editable },
-    patientState: { selectedScheduleAppointment },
+    patientState: { selectedScheduleAppointment, patient },
   } = useGlobalContext();
 
   const [scheduleValues, setScheduleValues] = useState<InitialValueType>({});
@@ -74,6 +75,12 @@ const ScheduleDescription = (props: Props) => {
             value: newValue,
             error: false,
           };
+        } else if (itemKey === "using_bpjs") {
+          const newValue = findValue.newValue === 1 ? true : false;
+          newScheduleValues[itemKey] = {
+            value: newValue,
+            error: false,
+          };
         } else {
           newScheduleValues[itemKey] = {
             ...itemValue,
@@ -103,8 +110,8 @@ const ScheduleDescription = (props: Props) => {
             editedSchedule[editedKey] = editedValue.value;
           }
         });
-        console.log(editedSchedule);
-        resolve(console.log({ editedSchedule }));
+
+        resolve(updatePatient("scheduled_appointments", editedSchedule));
       }, 1000);
     }).then((res) => {
       settingEditable(false);

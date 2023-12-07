@@ -9,6 +9,35 @@ export const patientReducer = (
   patientState: PatientState,
   action: OpenModalAction
 ) => {
+  if (action.type === "UPDATE_PATIENT") {
+    const keyword = action.payload.keyword;
+    const newData = action.payload.newData;
+
+    let patient = patientState.patient;
+    let scheduleAppointments = patient.scheduled_appointments;
+    let selectedScheduleAppointment = scheduleAppointments[0];
+    console.log(newData);
+    if (keyword === "patient_profile") {
+      patient = { ...patient, patient_profile: { ...newData } };
+    } else if (keyword === "scheduled_appointments") {
+      const newSchedule = patient.scheduled_appointments.map((item) => {
+        if (item.schedule_id === newData.schedule_id) {
+          return newData;
+        } else {
+          return item;
+        }
+      });
+      patient = { ...patient, scheduled_appointments: [...newSchedule] };
+      scheduleAppointments = newSchedule;
+      selectedScheduleAppointment = newData;
+    }
+    return {
+      ...patientState,
+      patient,
+      selectedScheduleAppointment,
+      scheduleAppointments,
+    };
+  }
   if (action.type === "LOAD_PATIENT") {
     const patient: PatientType = action.payload.patient;
     const scheduleAppointments = patient.scheduled_appointments;

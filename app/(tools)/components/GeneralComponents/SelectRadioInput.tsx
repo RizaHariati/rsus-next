@@ -18,8 +18,7 @@ const SelectRadioInput = ({
   list,
 }: Props) => {
   const {
-    state: { columnAssignment, editable },
-    hospitalState: { selectedFacility, dataFacility },
+    state: { editable },
   } = useGlobalContext();
   return (
     <div className="w-full">

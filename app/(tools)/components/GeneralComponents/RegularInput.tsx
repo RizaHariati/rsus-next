@@ -29,6 +29,7 @@ const RegularInput = ({
     formKey === "poliklinik" ? formDetail.title! : formDetail.toString()
   );
 
+  const costumId = "regular-input-id";
   useEffect(() => {
     setText(
       formKey === "poliklinik" ? formDetail.title! : formDetail.toString()
@@ -49,7 +50,8 @@ const RegularInput = ({
 
     //@ts-ignore
     if (formValue.number) {
-      if (newText.length >= 14) return toast.error("angka terlalu besar");
+      if (newText.length >= 14)
+        return toast.error("angka terlalu besar", { toastId: costumId });
       return setText(parseInt(newText));
     } else {
       return setText(newText);

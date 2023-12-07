@@ -3,6 +3,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { HospitalItemType } from "@/app/(tools)/HospitalTypes";
 import { faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 import { toast } from "react-toastify";
+import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 
 type Props = {
   doctorFormValue: HospitalItemType;
@@ -10,7 +11,11 @@ type Props = {
 };
 
 const DoctorGender = ({ doctorFormValue, doctorDetail }: Props) => {
+  const {
+    state: { editable },
+  } = useGlobalContext();
   const handleClick = () => {
+    if (!editable) return;
     toast.info("Saat ini tidak bisa mengubah Gender");
   };
   return (

@@ -109,6 +109,13 @@ export const AppProvider = ({ children }: Props) => {
     };
   }, []);
 
+  const updatePatient = (keyword: string, newData: any) => {
+    patientDispatch({
+      type: "UPDATE_PATIENT",
+      payload: { keyword, newData },
+    });
+  };
+
   const updateHospital = (keyword: string, newData: any[]) => {
     hospitalDispatch({
       type: "UPDATE_HOSPITAL",
@@ -224,6 +231,7 @@ export const AppProvider = ({ children }: Props) => {
     showDetail,
     handleShowDetail,
     patientState,
+    updatePatient,
     patientDispatch,
     loadingPatient,
     settingEditable,

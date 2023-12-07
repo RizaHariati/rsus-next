@@ -20,7 +20,10 @@ const LabPaketDescription = (props: Props) => {
     settingEditable,
     updateHospital,
     state: { editable },
-    hospitalState: { selectedPaket, dataFacility, dataLabSatuan },
+    hospitalState: {
+      selectedPaket,
+      dataComplete: { dataFacility, dataLabSatuan },
+    },
   } = useGlobalContext();
   const [labPaketValues, setLabPaketValues] = useState<InitialValueType>({});
   const formInputLabPaket = Object.entries(labPaketForm);

@@ -14,6 +14,7 @@ type Props = {};
 const PatientDescription = (props: Props) => {
   const {
     settingEditable,
+    updatePatient,
     state: { editable },
     patientState: {
       patient: { patient_profile, medical_record_number },
@@ -65,7 +66,8 @@ const PatientDescription = (props: Props) => {
             }
           }
         );
-        resolve(console.log({ editedPatient }));
+
+        resolve(updatePatient("patient_profile", editedPatient));
       }, 1000);
     }).then((res) => {
       settingEditable(false);

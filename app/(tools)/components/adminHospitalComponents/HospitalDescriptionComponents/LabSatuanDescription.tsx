@@ -19,12 +19,14 @@ const LabSatuanDescription = (props: Props) => {
     settingEditable,
     updateHospital,
     state: { editable },
-    hospitalState: { selectedLabSatuan },
+    hospitalState: { dataComplete, selectedLabSatuan },
   } = useGlobalContext();
 
   const [labSatuanValues, setLabSatuanValues] = useState<InitialValueType>({});
   const [category] = useState<string[]>(
-    Array.from(new Set([...dataLabSatuan.map((data) => data.category)]))
+    Array.from(
+      new Set([...dataComplete.dataLabSatuan.map((data) => data.category)])
+    )
   );
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
