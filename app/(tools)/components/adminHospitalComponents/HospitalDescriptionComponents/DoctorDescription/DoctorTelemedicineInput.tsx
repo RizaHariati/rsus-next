@@ -2,8 +2,7 @@ import {
   InitialValueType,
   HospitalItemType,
 } from "@/app/(tools)/HospitalTypes";
-import React, { useState } from "react";
-import DoctorRegular from "../../../GeneralComponents/UntukDibuang/DoctorRegular";
+import React from "react";
 
 import BooleanButton from "../../../GeneralComponents/BooleanButtonInput";
 import RegularInput from "../../../GeneralComponents/RegularInput";

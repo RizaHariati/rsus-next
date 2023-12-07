@@ -52,6 +52,9 @@ const PatientScheduleMenu = (props: Props) => {
     }
     assignColumn(openDescription(currentWindow));
   };
+  if (scheduleAppointments.length < 1) {
+    return <div></div>;
+  }
   return (
     <div className="midbar-container">
       {scheduleAppointments.map(

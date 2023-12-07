@@ -10,6 +10,13 @@ export const doctor: SchemaTypeDefinition = {
       title: "id",
     },
   },
+  orderings: [
+    {
+      title: "Order by Id",
+      name: "Id",
+      by: [{ field: "id", direction: "asc" }],
+    },
+  ],
   fields: [
     {
       name: "id",

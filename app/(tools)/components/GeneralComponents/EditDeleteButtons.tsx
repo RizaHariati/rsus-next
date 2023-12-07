@@ -7,7 +7,6 @@ import { toast } from "react-toastify";
 type Props = {};
 
 const EditDeleteButtons = ({}: Props) => {
-  const toastId = useRef(null);
   const customId = "custom-id-yes";
   const {
     showDetail,
@@ -53,6 +52,7 @@ const EditDeleteButtons = ({}: Props) => {
         break;
     }
     settingEditable(false);
+    toast.success(`Data ${showDetail.name} berhasil dihapus"`);
   };
 
   return (
@@ -98,7 +98,7 @@ export default EditDeleteButtons;
 type DeleteProps = {
   handleDelete: () => void;
 };
-const DeleteAlertBtn = ({ handleDelete }: DeleteProps) => {
+export const DeleteAlertBtn = ({ handleDelete }: DeleteProps) => {
   return (
     <div className="flex-center-center gap-2  ">
       <button className="w-20 h-8 text-center bg-white hover:bg-greenUripOpacity hover:text-greenUrip transition-all text-sm uppercase border border-greyBorder  hover:border-greenUripOpacity px-1">

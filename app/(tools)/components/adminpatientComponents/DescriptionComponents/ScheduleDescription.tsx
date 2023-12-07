@@ -18,7 +18,11 @@ const ScheduleDescription = (props: Props) => {
     settingEditable,
     updatePatient,
     state: { editable },
-    patientState: { selectedScheduleAppointment, patient },
+    patientState: {
+      selectedScheduleAppointment,
+      patient,
+      scheduleAppointments,
+    },
   } = useGlobalContext();
 
   const [scheduleValues, setScheduleValues] = useState<InitialValueType>({});
@@ -91,15 +95,6 @@ const ScheduleDescription = (props: Props) => {
     });
     setScheduleValues(newScheduleValues);
   };
-
-  if (!selectedScheduleAppointment) {
-    return (
-      <div className="h-[calc(100vh-112px)] w-full">
-        <LoadingSpinner />
-      </div>
-    );
-  }
-
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const newPromise = new Promise((resolve) => {
@@ -110,7 +105,6 @@ const ScheduleDescription = (props: Props) => {
             editedSchedule[editedKey] = editedValue.value;
           }
         });
-
         resolve(updatePatient("scheduled_appointments", editedSchedule));
       }, 1000);
     }).then((res) => {
@@ -123,6 +117,20 @@ const ScheduleDescription = (props: Props) => {
       error: "Promise rejected 🤯",
     });
   };
+  if (!scheduleAppointments || scheduleAppointments.length < 1) {
+    return (
+      <div className="h-[calc(100vh-112px)] w-full flex-center-center">
+        <h3 className="mx-auto"> Belum ada jadwal</h3>
+      </div>
+    );
+  }
+  if (!selectedScheduleAppointment) {
+    return (
+      <div className="h-[calc(100vh-112px)] w-full">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   if (!scheduleValues || Object.keys(scheduleValues).length < 1) {
     return (

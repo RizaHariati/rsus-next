@@ -34,7 +34,8 @@ export type AppContextProps = {
   updateHospital: (keyword: string, newData: any[]) => void;
   deleteHospital: (keyword: string, id: string) => void;
   selectHospitalDescription: (keyword: string, selected: any) => void;
-  updatePatient: (keyword: string, newData: any) => void;
+  updatePatient: (keyword: string, id: any) => void;
+  deletePatient: (keyword: string, id: any) => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

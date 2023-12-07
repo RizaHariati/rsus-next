@@ -109,6 +109,13 @@ export const AppProvider = ({ children }: Props) => {
     };
   }, []);
 
+  const deletePatient = (keyword: string, id: any) => {
+    patientDispatch({
+      type: "DELETE_PATIENT",
+      payload: { keyword, id },
+    });
+  };
+
   const updatePatient = (keyword: string, newData: any) => {
     patientDispatch({
       type: "UPDATE_PATIENT",
@@ -232,6 +239,7 @@ export const AppProvider = ({ children }: Props) => {
     handleShowDetail,
     patientState,
     updatePatient,
+    deletePatient,
     patientDispatch,
     loadingPatient,
     settingEditable,
