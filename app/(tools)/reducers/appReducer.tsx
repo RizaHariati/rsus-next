@@ -4,6 +4,22 @@ interface OpenModalAction {
   payload?: any;
 }
 export const appReducer = (state: AppState, action: OpenModalAction) => {
+  if (action.type === "EDIT_ALERT_ON") {
+    const editAlert = true;
+    return {
+      ...state,
+      editAlert,
+    };
+  }
+
+  if (action.type === "EDIT_ALERT_OFF") {
+    const editAlert = false;
+    return {
+      ...state,
+      editAlert,
+    };
+  }
+
   if (action.type === "SET_EDITABLE") {
     const editable = action.payload.editable;
     return {

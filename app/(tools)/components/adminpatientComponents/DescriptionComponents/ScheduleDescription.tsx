@@ -16,6 +16,7 @@ type Props = {};
 const ScheduleDescription = (props: Props) => {
   const {
     settingEditable,
+    settingEditAlert,
     updatePatient,
     state: { editable },
     patientState: {
@@ -144,7 +145,10 @@ const ScheduleDescription = (props: Props) => {
         className="column-description-container"
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div className="column-description-content ">
+        <div
+          className="column-description-content "
+          onClick={() => settingEditAlert()}
+        >
           <div className="column-description-container h-full flex items-center justify-start mx-auto  ">
             {Object.entries(scheduleFormInput).map(
               ([scheduleKey, scheduleValue], scheduleIndex) => {

@@ -10,7 +10,7 @@ const EditDeleteButtons = ({}: Props) => {
   const customId = "custom-id-yes";
   const {
     showDetail,
-    state: { editable },
+    state: { editable, editAlert },
     hospitalState: {
       selectedDoctor,
       selectedFacility,
@@ -62,7 +62,13 @@ const EditDeleteButtons = ({}: Props) => {
           settingEditable(!editable);
         }}
         type="button"
-        className={editable ? "btn-base-focus " : "btn-base-small "}
+        className={
+          editable
+            ? "btn-base-focus "
+            : editAlert
+            ? "btn-base-small border-4 border-redBase border-opacity-30"
+            : "btn-base-small"
+        }
       >
         <FontAwesomeIcon
           icon={faPenClip}

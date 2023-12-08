@@ -14,11 +14,7 @@ import { appReducer } from "../reducers/appReducer";
 import { AppState, PatientState } from "./interfaces";
 import { patientReducer } from "../reducers/patientReducer";
 import { initialPatientState } from "./initialPatientState";
-import {
-  PatientType,
-  ScheduleDestinationsListType,
-  ScheduledType,
-} from "../patientTypes";
+import { PatientType, ScheduledType } from "../patientTypes";
 
 import { OCC, OCO, OOO } from "../column/columnPattern";
 import {
@@ -35,6 +31,7 @@ import { usePathname } from "next/navigation";
 
 import { getLabSatuan } from "@/sanity/sanityUtils/getLabSatuan";
 import { getLabPaket } from "@/sanity/sanityUtils/getLabPaket";
+import { toast } from "react-toastify";
 
 interface Props {
   children: JSX.Element | JSX.Element[];
@@ -229,6 +226,20 @@ export const AppProvider = ({ children }: Props) => {
     dispatch({ type: "SET_EDITABLE", payload: { editable } });
   };
 
+  const settingEditAlert = () => {
+    const controlId = "edit-alert-toast";
+    if (!state.editable) {
+      toast.info("tekan edit untuk mulai mengedit", {
+        position: "top-left",
+        toastId: controlId,
+      });
+      console.log("alert on");
+      dispatch({ type: "EDIT_ALERT_ON" });
+      setTimeout(() => {
+        dispatch({ type: "EDIT_ALERT_OFF" });
+      }, 1500);
+    }
+  };
   const value = {
     hospitalState,
     hospitalDispatch,
@@ -245,6 +256,7 @@ export const AppProvider = ({ children }: Props) => {
     settingEditable,
     state,
     dispatch,
+    settingEditAlert,
     toggleMenuNavbar,
     openModal,
     closeModal,

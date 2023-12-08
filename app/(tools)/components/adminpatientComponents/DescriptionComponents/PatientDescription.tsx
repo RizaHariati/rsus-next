@@ -14,6 +14,7 @@ type Props = {};
 const PatientDescription = (props: Props) => {
   const {
     settingEditable,
+    settingEditAlert,
     updatePatient,
     state: { editable },
     patientState: {
@@ -153,7 +154,10 @@ const PatientDescription = (props: Props) => {
           className="column-description-container h-full flex items-center justify-start mx-auto "
           onSubmit={(e) => handleSubmit(e)}
         >
-          <div className="column-description-content gap-20">
+          <div
+            className="column-description-content "
+            onClick={() => settingEditAlert()}
+          >
             {formProfilePatient.map(
               ([patientFormKey, patientFormValue], index) => {
                 const patientDetail: any =

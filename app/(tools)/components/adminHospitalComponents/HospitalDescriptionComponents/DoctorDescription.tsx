@@ -22,6 +22,7 @@ const DoctorDescription = (props: Props) => {
   const {
     settingEditable,
     updateHospital,
+    settingEditAlert,
     state: { editable },
     hospitalState: { selectedDoctor },
   } = useGlobalContext();
@@ -159,10 +160,13 @@ const DoctorDescription = (props: Props) => {
     return (
       <>
         <form
-          className="column-description-container h-full flex items-start justify-center"
+          className="column-description-container h-full flex items-start justify-center "
           onSubmit={(e) => handleSubmit(e)}
         >
-          <div className="column-description-content">
+          <div
+            className="column-description-content "
+            onClick={() => settingEditAlert()}
+          >
             {formInputDoctor.map(([doctorFormKey, doctorFormValue], index) => {
               //@ts-ignore
               const doctorDetail: any =

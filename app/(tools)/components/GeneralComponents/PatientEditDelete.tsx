@@ -12,7 +12,7 @@ const PatientEditDelete = ({}: Props) => {
   const {
     showDetail,
     deletePatient,
-    state: { editable },
+    state: { editable, editAlert },
     patientState: { patient, selectedScheduleAppointment },
     settingEditable,
   } = useGlobalContext();
@@ -66,7 +66,13 @@ const PatientEditDelete = ({}: Props) => {
       <button
         onClick={() => settingEditable(!editable)}
         type="button"
-        className={editable ? "btn-base-focus " : "btn-base-small "}
+        className={
+          editable
+            ? "btn-base-focus "
+            : editAlert
+            ? "btn-base-small border-4 border-redBase border-opacity-30"
+            : "btn-base-small"
+        }
       >
         <FontAwesomeIcon
           icon={faPenClip}

@@ -25,7 +25,8 @@ export interface AppState {
   alertValue: any;
   columnAssignment: ColumnAssignmentType;
   currentWindow: number;
-  editable: false;
+  editable: boolean;
+  editAlert: boolean;
 }
 
 export interface PatientState {

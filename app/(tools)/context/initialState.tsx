@@ -23,4 +23,5 @@ export const initialState: AppState = {
   columnAssignment: initialColumn,
   currentWindow: typeof window === "object" ? window.innerWidth : maxWidth,
   editable: false,
+  editAlert: false,
 };

@@ -18,6 +18,7 @@ type Props = {};
 const LabPaketDescription = (props: Props) => {
   const {
     settingEditable,
+    settingEditAlert,
     updateHospital,
     state: { editable },
     hospitalState: {
@@ -144,7 +145,10 @@ const LabPaketDescription = (props: Props) => {
     return (
       <div className="column-description-container ">
         <form onSubmit={(e) => handleSubmit(e)} className="w-full">
-          <div className="column-description-content">
+          <div
+            className="column-description-content"
+            onClick={() => settingEditAlert()}
+          >
             {formInputLabPaket.map(
               ([labPaketFormKey, labPaketFormValue], index) => {
                 //@ts-ignore

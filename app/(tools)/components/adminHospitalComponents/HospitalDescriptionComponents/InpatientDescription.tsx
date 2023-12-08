@@ -16,6 +16,7 @@ const InpatientDescription = (props: Props) => {
   const {
     updateHospital,
     settingEditable,
+    settingEditAlert,
     state: { editable },
     hospitalState: { selectedInpatient, dataInpatient },
   } = useGlobalContext();
@@ -143,7 +144,10 @@ const InpatientDescription = (props: Props) => {
         className="column-description-container "
         onSubmit={(e) => handleSubmit(e)}
       >
-        <div className="column-description-content">
+        <div
+          className="column-description-content"
+          onClick={() => settingEditAlert()}
+        >
           {formInputInpatient.map(
             ([inpatientFormKey, inpatientFormValue], index) => {
               switch (inpatientFormKey) {
