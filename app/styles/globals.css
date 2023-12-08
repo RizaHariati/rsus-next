@@ -25,7 +25,7 @@ body {
     -moz-appearance: textfield;
   }
   body {
-    @apply h-screen w-full bg-hoverBG text-greyDrk scroll-smooth scrollbar-none overflow-hidden;
+    @apply h-screen w-full bg-hoverBG text-greyDrk scroll-smooth scrollbar-none;
   }
   mark {
     @apply bg-hoverBG;

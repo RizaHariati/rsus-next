@@ -16,9 +16,7 @@ const Footer = (props: Props) => {
   if (showModal) return <div></div>;
 
   return (
-    <div
-      className={showFooter ? "footer overflow-visible hidden" : "footer-hide "}
-    >
+    <div className="footer overflow-visible -bottom-14">
       <a
         href="https://www.ichacodes.com/"
         target="_blank"
@@ -27,14 +25,14 @@ const Footer = (props: Props) => {
       >
         by Riza Hariati for Ichacodes copyright &copy;{dayjs().format("YYYY")}
       </a>
-      <button className="thanks-btn" onClick={() => setShowThanks(!showThanks)}>
+      {/* <button className="thanks-btn" onClick={() => setShowThanks(!showThanks)}>
         <FontAwesomeIcon
           icon={faThumbsUp}
           className=" mix-blend-screen text-greyBorder"
         />
-      </button>
+      </button> */}
       <div className=" bg-pattern z-50 h-12 w-full absolute top-0 bg-[length:100px_100px] mix-blend-multiply opacity-30"></div>
-      <ThankYouSection showThanks={showThanks} />
+      {/* <ThankYouSection showThanks={showThanks} /> */}
     </div>
   );
 };

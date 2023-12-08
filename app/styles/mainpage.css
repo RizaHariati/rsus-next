@@ -18,11 +18,11 @@
 
   /* ----------------------------- PAGE ----------------------------- */
   .main-layout-container {
-    @apply bg-white h-fit overflow-y-scroll scrollbar-none scroll-smooth;
+    @apply bg-white h-full overflow-y-scroll scrollbar-none scroll-smooth;
   }
 
   .page-main-container {
-    @apply h-screen  w-full z-0 mx-auto relative bg-white pb-10 md:pb-0 pt-14;
+    @apply h-full  w-full z-0 mx-auto relative bg-white pb-10 md:pb-0 pt-14;
   }
 
   /* ----------------------------- MODAL ---------------------------- */
