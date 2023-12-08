@@ -55,10 +55,22 @@ const nextConfig = {
         }
       : {
           loader: "default",
-          domains: [
-            "cdn.sanity.io",
-            "rsuripsumoharjo-model.netlify.app",
-            "rsus-api.vercel.app",
+          remotePatterns: [
+            {
+              protocol: "https",
+              hostname: "cdn.sanity.io",
+              pathname: "**",
+            },
+            {
+              protocol: "https",
+              hostname: "rsuripsumoharjo-model.netlify.app",
+              pathname: "**",
+            },
+            {
+              protocol: "https",
+              hostname: "rsus-api.vercel.app",
+              pathname: "**",
+            },
           ],
         },
 
