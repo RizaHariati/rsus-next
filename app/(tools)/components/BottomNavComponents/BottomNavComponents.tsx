@@ -22,7 +22,10 @@ const BottomNavComponents = (props: Props) => {
   } else {
     return (
       <div className="nav-b-container ">
-        <div className="w-full h-8 bg-white flex-center-center border-t z-40 absolute bottom-0  border-greenUrip">
+        <div
+          className="w-full h-12 bg-white flex-center-center border-t z-40 absolute bottom-10
+          border-greenUrip"
+        >
           <a
             href="https://www.ichacodes.com/"
             target="_blank"

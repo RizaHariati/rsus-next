@@ -50,7 +50,11 @@ export const MainLogo = (props: Props) => {
   return (
     <Link
       id="home"
-      href="/"
+      href="https://rsuripsumoharjo-model.netlify.app/"
+      // href="https://rsus.sanity.studio/"
+
+      target="_blank"
+      rel="noopener noreferrer"
       className="navbar-logo-container"
       onClick={(e) => toggleMenuNavbar(null)}
     >

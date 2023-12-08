@@ -18,7 +18,7 @@
 
   /* ----------------------------- PAGE ----------------------------- */
   .main-layout-container {
-    @apply bg-greyMed2 h-fit overflow-y-scroll scrollbar-none scroll-smooth;
+    @apply bg-white h-fit overflow-y-scroll scrollbar-none scroll-smooth;
   }
 
   .page-main-container {

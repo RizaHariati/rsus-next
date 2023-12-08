@@ -76,14 +76,17 @@ const MainSection = ({
   handleAdminHospitalBtn,
 }: MainSectionProps) => {
   return (
-    <main className=" flex-center-center flex-col p-5 text-center">
-      <h1 className=" font-oswald">Login Berhasil, selamat datang Admin </h1>
-      <div className="grid grid-cols-2 gap-5 w-full max-w-2xl">
+    <main className=" flex-center-center flex-col p-5 text-center h-[calc(100vh-114px)] md:h-full">
+      <h1 className=" font-oswald text-2xl md:text-3xl">Login Berhasil </h1>
+      <h1 className=" font-oswald  text-2xl md:text-3xl">
+        Selamat datang Admin
+      </h1>
+      <div className="grid grid-cols-2 gap-2 md:ap-5 w-full max-w-2xl mt-5">
         <button
           onClick={() => {
             handleAdminPatientBtn();
           }}
-          className="btn-base w-32 md:w-full h-20 md:h-12"
+          className="btn-base w-40 md:w-full h-20 md:h-12 border-greyBorder  px-5"
         >
           Administrasi Pasien
         </button>
@@ -91,7 +94,7 @@ const MainSection = ({
           onClick={() => {
             handleAdminHospitalBtn();
           }}
-          className="btn-base w-32 md:w-full h-20 md:h-12"
+          className="btn-base w-40 md:w-full h-20 md:h-12 border-greyBorder px-5"
         >
           Administrasi Rumah Sakit
         </button>
