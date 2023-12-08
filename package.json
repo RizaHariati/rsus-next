@@ -35,9 +35,9 @@
     "formik": "^2.4.5",
     "framer-motion": "^10.15.1",
     "moment": "^2.29.4",
-    "next": "^13.5.4",
+    "next": "^14.0.4",
     "next-auth": "^4.24.5",
-    "next-sanity": "^5.5.4",
+    "next-sanity": "^5.5.11",
     "openssl": "^2.0.0",
     "plugin": "^0.3.3",
     "postcss": "8.4.27",
@@ -58,6 +58,6 @@
     "uuid4": "^2.0.3"
   },
   "devDependencies": {
-    "eslint-config-next": "^13.5.4"
+    "eslint-config-next": "^14.0.4"
   }
 }
