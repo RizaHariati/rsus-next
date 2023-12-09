@@ -51,15 +51,21 @@ export default Navbar;
 
 export const MainLogo = (props: Props) => {
   const { toggleMenuNavbar } = useGlobalContext();
-
+  const [showText, setShowText] = useState(false);
   return (
     <Link
       id="home"
       href="https://rsuripsumoharjo-model.netlify.app/"
       target="_blank"
       rel="noopener noreferrer"
-      className="navbar-logo-container"
+      className="navbar-logo-container relative"
       onClick={(e) => toggleMenuNavbar(null)}
+      onMouseEnter={() => {
+        setShowText(true);
+      }}
+      onMouseLeave={() => {
+        setShowText(false);
+      }}
     >
       <div className="h-8 w-8">
         <MainLogoImage />
@@ -71,6 +77,15 @@ export const MainLogo = (props: Props) => {
         <h6 className="text-base md:text-xl font-bold tracking-wide">
           Urip Sumoharjo
         </h6>
+      </div>
+      <div
+        className={
+          !showText
+            ? "absolute standard-border top-16 right-0 p-2 opacity-0 transition-all"
+            : "absolute standard-border top-16 right-0 p-2 opacity-100 transition-all z-50"
+        }
+      >
+        <p>Ke Website Utama</p>
       </div>
     </Link>
   );
