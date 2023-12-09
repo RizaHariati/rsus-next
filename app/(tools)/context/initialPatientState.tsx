@@ -6,11 +6,11 @@ import {
 } from "../data/sample";
 import { PatientState } from "./interfaces";
 export const initialPatientState: PatientState = {
-  user: {
-    login: false,
-    password: "",
-    medical_record_number: "",
-  },
+  // user: {
+  //   login: false,
+  //   password: "",
+  //   medical_record_number: "",
+  // },
 
   patient: {
     medical_record_number: "",
@@ -30,7 +30,6 @@ export const initialPatientState: PatientState = {
     notifications: [],
   },
 
-  verification_number: 0,
   allPatients: [
     {
       medical_record_number: "US4234123398",

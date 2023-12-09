@@ -4,7 +4,12 @@ import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faHome, faUserCircle } from "@fortawesome/free-solid-svg-icons";
+import {
+  faArrowRightToBracket,
+  faDoorClosed,
+  faHome,
+  faUserCircle,
+} from "@fortawesome/free-solid-svg-icons";
 import { usePathname } from "next/navigation";
 
 import MainLogoImage from "../../modal/MainLogoImage";
@@ -51,8 +56,6 @@ export const MainLogo = (props: Props) => {
     <Link
       id="home"
       href="https://rsuripsumoharjo-model.netlify.app/"
-      // href="https://rsus.sanity.studio/"
-
       target="_blank"
       rel="noopener noreferrer"
       className="navbar-logo-container"
@@ -75,25 +78,25 @@ export const MainLogo = (props: Props) => {
 
 export const NavbarMenu = (props: Props) => {
   return (
-    <div className="h-full ">
+    <div className="h-full ml-auto ">
       <div className="navbar-menu-container flex-center-end ">
-        <Link href="/" className="navbar-menu-btn">
+        <Link href="/" className="navbar-menu-btn group">
+          <FontAwesomeIcon icon={faHome} className="navbar-icon-btn" />
+        </Link>
+        <Link href="/login" className="navbar-menu-btn group">
           <FontAwesomeIcon
-            icon={faHome}
-            className=" w-5 h-5 md:w-6 md:h-6  text-base md:text-lg"
+            icon={faArrowRightToBracket}
+            className="navbar-icon-btn"
           />
         </Link>
         <Link
           href="/admin"
           // href="https://rsus.sanity.studio/"
-          className="navbar-menu-btn"
+          className="navbar-menu-btn group"
           target="_blank"
           rel="noopener noreferrer"
         >
-          <FontAwesomeIcon
-            icon={faUserCircle}
-            className=" w-5 h-5 md:w-6 md:h-6 text-base md:text-xl"
-          />
+          <FontAwesomeIcon icon={faUserCircle} className=" navbar-icon-btn" />
         </Link>
       </div>
     </div>

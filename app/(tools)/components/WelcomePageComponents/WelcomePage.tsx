@@ -1,8 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import { useGlobalContext } from "@/app/(tools)/context/AppProvider";
-import Link from "next/link";
 import {
   hospitalBtnDetail,
   patientBtnDetail,
@@ -10,6 +9,8 @@ import {
 import { initialColumn } from "../../context/initialState";
 import { useRouter } from "next/navigation";
 import LoadingHome from "../../../(site)/loading";
+import dayjs from "dayjs";
+import { toast } from "react-toastify";
 
 type Props = {};
 
@@ -18,17 +19,20 @@ function WelcomePage(props: Props) {
     openAlert,
     handleShowDetail,
     assignColumn,
+    state: { token },
     hospitalState: { selectedDoctor },
   } = useGlobalContext();
   const router = useRouter();
   const [loading, setLoading] = useState(false);
 
   const handleAdminPatientBtn = () => {
+    if (!token) return router.push("/login");
     openAlert("inputmedicalrecord", {});
     handleShowDetail(patientBtnDetail[0]);
     assignColumn(initialColumn);
   };
   const handleAdminHospitalBtn = () => {
+    if (!token) return router.push("/login");
     const promise1 = new Promise((resolve) => {
       setLoading(true);
       console.log("one");
@@ -51,6 +55,7 @@ function WelcomePage(props: Props) {
       }
     });
   };
+
   return (
     <div className="page-main-container">
       {!loading && (
@@ -75,12 +80,22 @@ const MainSection = ({
   handleAdminPatientBtn,
   handleAdminHospitalBtn,
 }: MainSectionProps) => {
+  const {} = useGlobalContext();
   return (
     <main className=" flex-center-center flex-col p-5 text-center h-[calc(100vh-114px)] md:h-full">
-      <h1 className=" font-oswald text-2xl md:text-3xl">Login Berhasil </h1>
-      <h1 className=" font-oswald  text-2xl md:text-3xl">
-        Selamat datang Admin
-      </h1>
+      <div>
+        <h1 className=" font-oswald text-2xl md:text-3xl">
+          Laman Administrasi
+        </h1>
+        <h1 className=" font-oswald  text-2xl md:text-3xl">
+          RS. Urip Sumoharjo
+        </h1>
+        <h5 className="font-normal w-2/3 mx-auto">
+          Waktu mengedit dibatasi selama 5 menit, setelah itu anda harus login
+          kembali
+        </h5>
+      </div>
+
       <div className="grid grid-cols-2 gap-2 md:ap-5 w-full max-w-2xl mt-5">
         <button
           onClick={() => {

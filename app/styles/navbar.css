@@ -25,7 +25,9 @@
   .navbar-reg-icon {
     @apply h-6 mr-1;
   }
-
+  .navbar-icon-btn {
+    @apply w-5 h-5 md:w-6 md:h-6  text-base md:text-lg text-greyDrk transition-all group-hover:text-greyMed2;
+  }
   .navbar-menu-btn {
     @apply flex-center-center ml-auto h-10 w-fit standard-border border-white hover:border-greyBorder px-3 gap-2;
   }

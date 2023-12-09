@@ -6,21 +6,23 @@ import { toast } from "react-toastify";
 import { useGlobalContext } from "../../context/AppProvider";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faEye, faEyeLowVision } from "@fortawesome/free-solid-svg-icons";
+import { useRouter } from "next/navigation";
 
 type Props = {};
 export type AdminType = {
   id_admin: string;
   password: string;
 };
-type LoginProps = {};
 
 const LoginForm = (props: Props) => {
+  const { createToken } = useGlobalContext();
   const [loginAdmin, setLoginAdmin] = useState<AdminType>({
     id_admin: "",
     password: "",
   });
   const [showValue, setShowValue] = useState(false);
-  const { toggleMenuNavbar } = useGlobalContext();
+  const router = useRouter();
+
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (loginAdmin.password === "" || loginAdmin.id_admin === "") {
@@ -35,10 +37,21 @@ const LoginForm = (props: Props) => {
       });
       return;
     } else {
-      console.log("something");
-      window.open("https://rsus-api.vercel.app/", "_blank");
-      setLoginAdmin({ id_admin: "", password: "" });
-      toggleMenuNavbar(null);
+      const promise = new Promise((resolve) => {
+        resolve(createToken());
+      });
+      promise.then((res) => {
+        const promise2 = new Promise((resolve) => {
+          toast.success("Login berhasil, selamat bekerja Admin");
+          setTimeout(() => {
+            resolve(router.push("/"));
+          }, 1000);
+        });
+        promise2.then((res2) => {
+          return res2;
+        });
+        return res;
+      });
     }
   };
 
@@ -60,8 +73,8 @@ const LoginForm = (props: Props) => {
     }
   };
   return (
-    <>
-      <div className="w-full flex-center-center gap-3 mb-3 ">
+    <div className="w-full max-w-md  h-full  flex-center-center  flex-col p-3 mx-auto">
+      <div className=" w-full  h-fit  flex-center-center gap-3 mb-3 ">
         <Image
           rel="preload"
           placeholder="empty"
@@ -72,7 +85,7 @@ const LoginForm = (props: Props) => {
           alt="main-logo"
           loading="lazy"
         />
-        <h4>ID Admin</h4>
+        <h4>LoginAdmin</h4>
       </div>
       <form
         onSubmit={(e) => handleSubmit(e)}
@@ -118,11 +131,11 @@ const LoginForm = (props: Props) => {
         </button>
       </form>
 
-      <p className="body-3 leading-4 text-center mt-2 text-greyDrk">
+      <p className="text-sm leading-4 text-center mt-2 text-greyDrk">
         Masukkan ID Admin: Admin dan password: password untuk test login. Untuk
         simulasi data tidak bisa diubah.
       </p>
-    </>
+    </div>
   );
 };
 

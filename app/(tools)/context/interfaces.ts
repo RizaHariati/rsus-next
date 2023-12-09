@@ -27,11 +27,17 @@ export interface AppState {
   currentWindow: number;
   editable: boolean;
   editAlert: boolean;
+  token: string | null;
+  admin: {
+    name: string;
+    email: string;
+    password: string;
+  };
 }
 
 export interface PatientState {
-  user: UserType;
-  verification_number: number;
+  // user: UserType;
+  // verification_number: number;
   patient: PatientType;
   allPatients: PatientType[];
   scheduleAppointments: ScheduledType[] | null;

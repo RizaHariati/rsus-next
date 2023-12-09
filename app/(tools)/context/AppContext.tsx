@@ -37,6 +37,8 @@ export type AppContextProps = {
   updatePatient: (keyword: string, id: any) => void;
   deletePatient: (keyword: string, id: any) => void;
   settingEditAlert: () => void;
+  createToken: () => void;
+  removeToken: () => void;
 };
 
 export const AppContext = createContext<AppContextProps>({} as AppContextProps);

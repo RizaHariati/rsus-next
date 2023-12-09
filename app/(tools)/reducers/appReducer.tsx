@@ -1,9 +1,26 @@
 import { AppState } from "../context/interfaces";
+import { v4 as uuidv4 } from "uuid";
 interface OpenModalAction {
   type: string;
   payload?: any;
 }
 export const appReducer = (state: AppState, action: OpenModalAction) => {
+  if (action.type === "CREATE_TOKEN") {
+    const token = uuidv4();
+
+    return {
+      ...state,
+      token,
+    };
+  }
+
+  if (action.type === "REMOVE_TOKEN") {
+    const token = null;
+    return {
+      ...state,
+      token,
+    };
+  }
   if (action.type === "EDIT_ALERT_ON") {
     const editAlert = true;
     return {

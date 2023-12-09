@@ -1,8 +1,8 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useGlobalContext } from "../(tools)/context/AppProvider";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import ModalContainer from "../(tools)/modal/ModalContainer";
 import AlertContainer from "../(tools)/alert/AlertContainer";
 import BottomNavComponents from "../(tools)/components/BottomNavComponents/BottomNavComponents";
@@ -23,9 +23,9 @@ const LayoutWrapper = ({ children }: Props) => {
   const {
     handleScroll,
     toggleMenuNavbar,
-    assignColumn,
+    removeToken,
 
-    state: { columnAssignment, currentWindow },
+    state: { token },
   } = useGlobalContext();
   const pathname = usePathname();
   useEffect(() => {
@@ -34,6 +34,28 @@ const LayoutWrapper = ({ children }: Props) => {
     }
     // eslint-disable-next-line
   }, [pathname]);
+  const [timer, setTimer] = useState<number>(0);
+  const router = useRouter();
+  useEffect(() => {
+    if (!token) return;
+    else {
+      while (timer < 300) {
+        const interval = setInterval(() => {
+          setTimer(timer + 1);
+        }, 1000);
+
+        return () => {
+          clearInterval(interval);
+        };
+      }
+      removeToken();
+      setTimer(0);
+      toast.info("waktu mengedit habis, silahkan login kembali", {
+        autoClose: 1500,
+      });
+      router.push("/");
+    }
+  }, [timer, token]);
 
   return (
     <div

@@ -24,4 +24,10 @@ export const initialState: AppState = {
   currentWindow: typeof window === "object" ? window.innerWidth : maxWidth,
   editable: false,
   editAlert: false,
+  token: null,
+  admin: {
+    name: "",
+    email: "",
+    password: "",
+  },
 };

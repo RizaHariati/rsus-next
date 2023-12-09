@@ -240,6 +240,14 @@ export const AppProvider = ({ children }: Props) => {
       }, 1500);
     }
   };
+
+  const createToken = () => {
+    dispatch({ type: "CREATE_TOKEN" });
+  };
+  const removeToken = () => {
+    dispatch({ type: "REMOVE_TOKEN" });
+  };
+
   const value = {
     hospitalState,
     hospitalDispatch,
@@ -255,6 +263,8 @@ export const AppProvider = ({ children }: Props) => {
     loadingPatient,
     settingEditable,
     state,
+    createToken,
+    removeToken,
     dispatch,
     settingEditAlert,
     toggleMenuNavbar,
