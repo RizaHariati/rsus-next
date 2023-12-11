@@ -31,7 +31,10 @@ const LoginForm = (props: Props) => {
       });
       return;
     }
-    if (loginAdmin.password !== "password" || loginAdmin.id_admin !== "Admin") {
+    if (
+      loginAdmin.password.replace(" ", "") !== "password" ||
+      loginAdmin.id_admin.replace(" ", "") !== "Admin"
+    ) {
       toast.error("password/id admin salah", {
         position: toast.POSITION.TOP_CENTER,
       });
