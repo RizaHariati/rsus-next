@@ -36,6 +36,7 @@ const LayoutWrapper = ({ children }: Props) => {
   }, [pathname]);
   const [timer, setTimer] = useState<number>(0);
   const router = useRouter();
+
   useEffect(() => {
     if (!token) return;
     else {
@@ -55,6 +56,7 @@ const LayoutWrapper = ({ children }: Props) => {
       });
       router.push("/");
     }
+    // eslint-disable-next-line
   }, [timer, token]);
 
   return (

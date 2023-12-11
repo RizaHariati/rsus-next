@@ -10,7 +10,7 @@ type Props = {};
 
 const BottomNavComponents = (props: Props) => {
   const {
-    patientState: { user, patient },
+    patientState: { patient },
   } = useGlobalContext();
 
   if (!patient || !patient.scheduled_appointments) {
